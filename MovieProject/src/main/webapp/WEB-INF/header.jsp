@@ -46,12 +46,13 @@
 
     <!-- CSS files -->
    	<link rel="stylesheet" href="<c:url value="/resources/css/plugins.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
+	<link rel="stylesheet" href="<c:url value="/resources/css/header_style.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/hm_css.css" />">
 		<link rel="stylesheet" href="<c:url value="/resources/css/modifystyle.css"/>">
 	<!-- yj : css 추가 -->
 	<link rel="stylesheet" href="<c:url value="resources/css/modifyplugins.css" />">
+
 </head>
 
 
@@ -675,14 +676,11 @@
                             </a>
                         </li>
                         <li class="dropdown first">
-                            <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-                                영화<i class="fa fa-angle-down" aria-hidden="true"></i>
+                            <a class="btn btn-default dropdown-toggle lv1" href="movieList.html">
+                                영화
                             </a>
-                            <ul class="dropdown-menu level1">
-                                <li><a href="movieChart.html">영화 차트</a></li>
-                                <li class="it-last"><a href="movieList.html">영화 목록</a></li>
-                            </ul>
                         </li>
+                        
                         <li class="dropdown first">
                             <a class="btn btn-default dropdown-toggle lv1" href="cinemaList.html">
                                 영화관
