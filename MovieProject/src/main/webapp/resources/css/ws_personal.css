@@ -1,0 +1,240 @@
+/*board/free/BoardFreeList*/
+
+
+	
+	<!--/* 스타일은 통합 이후에 기존의 style.css 혹은 별도의  .css파일로 이동시킨 후, header에 링크로 연결*/-->
+	
+	<!--/*board/free/list : 1. 베스트 게시물 css */-->
+	.ws_table_best {
+		display:relative;top:50px;left:50%;right:50%;width:100%;
+	}
+	<!--/*board/free/list : 1-1. 베스트 게시물의 열 정보 */-->
+	.ws_table_best thead th {
+		background-color:#FFDBD8;color:black;text-align:center;
+	}
+	<!--/*board/free/list : 1-2. 베스트 게시물의 글본문*/-->
+	.ws_table_best tbody td { 
+	background-color:#DFE5F5;
+	}
+		
+	<!--/*board/free/list : 2. 게시물 테이블목록 */-->
+	<!--/*board/free/list : 2-1. 공통설정 */-->
+	.ws_table {
+		border-collapse:collapse;
+		border-spacing:0;
+		display:relative;
+		top:50px;
+		text-overflow:ellipsis;
+	}
+	<!--/*board/free/list : 2-2. 게시물 테이블의 열 별 이름부분.  */-->
+	.ws_table thead {
+		background-color:#717F9A;
+		color:#ffffff;
+		width:100%;
+		text-align:center;
+		
+	}
+
+	.ws_table thead th {
+		text-align:center;
+	}
+	
+	<!--/*board/free/list : 2-3. 게시물 테이블의 본문 중 공지  */-->
+	.ws_table tbody .notice td {
+		text-align:center;
+		background-color:#DFE5F5;
+	}
+	.ws_table tbody .notice td:nth-child(3) {
+		text-align:left;
+	}
+	.ws_table tbody .notice td:nth-child(7) {
+		text-align:left;
+		display:none;
+	}
+	<!--/*board/free/list : 2-4. 게시물 테이블의 본문 중 일반 게시글  */-->
+	
+	.ws_table tbody .post td {
+		text-align:center;
+		background-color:#C3D8F5;
+	}
+	
+	.ws_table tbody .post td:nth-child(3) {
+		text-align:left;
+	}
+	.ws_table tbody .post td:nth-child(7) {
+		text-align:left;
+		display:none;
+	}
+	<!--/*반응형 테이블 구현의 시작*/-->
+	@media(max-width: 1000px) {
+		
+		/*머리부터 뗀다*/
+		/*1. 머리를 제거한다*/
+		.ws_table thead {
+		display:none;
+		}
+		/*2. 테이블 구조를 무너트린다. 디스플레이를 block으로*/
+				
+		/*3. 유지하고자 하는 테이블을 지정하고, 복구시킨다*/
+		
+		.ws_table tbody td:nth-child(1)	{
+		width:20%;
+		display:inline-block;
+		border-bottom:1px solid #C3D8F5;
+		}
+		
+		.ws_table tbody td:nth-child(2) 	{
+		width:20%;
+		display:inline-block;
+		
+		}
+		
+		.ws_table tbody td:nth-child(3)	{
+		display:none;
+		}
+		.ws_table tbody td:nth-child(4),td:nth-child(5)	{
+		width:20%;
+		display:inline-block;
+		}
+		.ws_table tbody td:nth-child(6)	{
+		width:20%;
+		display:inline-block;
+		
+		}
+		
+		.ws_table tbody .post td:nth-child(7)	{
+		display:block;
+		width:99.95%;
+		border-top:1px solid #C3D8F5;
+		border-bottom:1px solid;
+		}
+		.ws_table tbody .notice td:nth-child(7)	{
+		display:block;
+		width:99.95%;
+		border-bottom:1px solid;
+		}
+		.ws_table tbody .notice td:nth-child(1)	{
+		width:20%;
+		display:inline-block;
+		border-bottom:1px solid #DFE5F5;
+		}
+		
+		
+	
+	}<!--/*board/free/list : 반응형 웹 구현-->
+		
+	<!--/*board/free/list : 3. 검색바  */-->
+	<!--/*board/free/list : 3-1. 검색바  */-->
+	.buster-light .movie-items .container .col-md-14 {
+	position:relative;
+	top:40px;
+	width:100%;
+	background-color:#ffffff;
+	margin-bottom:0px;
+	margin:auto;
+	display:inline-block;
+	}
+
+	<!--/*board/free/list : 3-2. select박스 두 개의 공통 설정  */-->
+	.buster-light .movie-items .container .col-md-14 select {
+	width:90px;display:inline-block;border: 2px solid #020d18;color:#2F2F2F;
+	}
+	<!--/*board/free/list : 3-3. 글목록 검색바 설정  */-->
+	.buster-light .movie-items .container .col-md-14 .list-search {
+	width:35%;border: 2px solid #020d18;color:#2F2F2F;display:inline-block;
+	}
+	<!--/*board/free/list : 4. 페이징은 기본 탬플릿 설정 그대로 유지  */-->
+	
+	<!--/*기타. 버튼 등*/-->
+	.ws-btn-reddish {
+	background-color:#FF6F61;width:70px;border:0px;border-radius:15px;
+	margin:10px;width:60px;height:40px;
+	}
+	
+	<!--
+					/*board/free/write & Update: 1. 글쓰기 컨테이너 설정 */
+	-->
+	
+	
+	.ws-writer-box {
+		padding:75;
+	}
+	.ws-top-writer {
+		min-height:80;
+	}
+	<!--/*board/free/write : 2. 글쓰기 상단부의 밑줄 설정 */-->
+	.ws-top-writer input {
+		width:75%;border-color:#999999; background-color:#FFFFFF; border-style:solid;
+       	border-top-width:0px; border-bottom-width:1px; border-left-width:0px;
+       	border-right-width:0px;color:#0000FF;
+	}
+	<!--/*board/free/write : 3. 글쓰기 공지 부분의 설정 */-->
+	.ws-middle-top-writer {
+		border:1px solid;width:100%;height:80;background-color:#f8f87d;
+	}
+
+
+<!-- /*board/free/get : 1. 글본문*/ -->
+	<!-- /*board/free/get : 1-1. 글제목*/ -->
+	.ws-post-get-title {
+		padding:10px;margin:10px 0px;background-color:#FFDBD8;position:relative;bottom:5px;
+	}
+	<!-- /*board/free/get : 1-2. 글쓴이 정보*/ -->
+	.ws-post-get-info {
+	border-width:3px 0px;border-style:solid;border-color:#0F2133;
+	}
+	.ws-post-get-info span {
+	display:inline-block;
+	}
+	.ws-post-get-info img {
+	width:150px;margin:10px;border-color:#525EAA;
+	}
+	
+	<!-- /*board/free/get : 1-3. 글본문*/ -->
+	.ws-post-get-content {
+	min-height:200px;height:100%;padding:10px;
+	}
+	
+	.ws-reply-buffer {
+	height:40px;
+	}
+	<!-- /*board/free/get : 댓글간격 및 바탕색*/ -->
+	.ws-reply-outer {
+	background-color:#ffffff;margin:5px;
+	}
+	<!-- /*board/free/get : 댓글 상하단의 얇은 구분선*/ -->
+	.ws-reply-outer .author-infor {
+	border-width:1px 0px;border-style:solid;
+	}
+	
+	.ws-reply-info {
+	float:left;
+	}
+	.ws-reply-btns {
+	float:right;
+	}
+	.ws-reply-content {
+	margin:10px;
+	clear:both;
+	}
+	
+	<!-- /*board/free/get : 기타. 버튼들 ??*/ -->
+	.ws-btn-warning {
+	min-width:35px;min-height:35px;background-color:#ffffff;border-radius:8px;border:1px solid #FF6F61;right:5px;margin:5px;color:orange;
+	}
+	.ws-btn-thumbs-up {
+	min-width:50px;min-height:35px;background-color:#ffffff;border-radius:8px;border:1px solid #FF6F61;right:5px;margin:5px;color:blue;
+	}
+	.ws-btn-thumbs-down {
+	min-width:50px;min-height:35px;background-color:#ffffff;border-radius:8px;border:1px solid #FF6F61;right:5px;margin:5px;color:red;
+	}
+	.ws-btn-update {
+	width:35px;height:35px;background-color:#ffffff;border-radius:8px;border:1px solid #FF6F61;position:relative;right:5px;margin:5px;
+	}
+	.ws-btn-delete {
+	width:35px;height:35px;background-color:#ffffff;border-radius:8px;border:1px solid #99098f;position:relative;right:5px;margin:5px;
+	}
+	
+
+		
+	
