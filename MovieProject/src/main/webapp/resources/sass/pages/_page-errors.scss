@@ -1,0 +1,62 @@
+/* Page Error */
+
+.page-error {
+	text-align: center;
+
+	.vertical-align-middle {
+		padding: 30px;
+	}
+
+	h1 {
+		margin-top: 0;
+	}
+
+	.title {
+		@include inline-block;
+
+		text-align: center;
+	}
+
+	.number {
+		font-size: 4em;
+		
+		&.left {
+			@include inline-block; 
+		
+			float: left;
+			text-align: right;
+			margin-right: 15px;
+		}
+	}
+
+	.text {
+		@include inline-block;
+
+		float: left;
+		text-align: left;
+		font-size: 1.5em;
+		line-height: 1.1;
+		position: relative;
+		top: 24px;
+
+		@include max-screen($break-small) {
+			margin-bottom: 40px;
+		}
+	}
+
+	.number.left,
+	.text {
+		@include max-screen($break-small) {
+			display: block;
+			width: 100%;
+			float: none;
+			text-align: center;
+		}
+
+		@include max-screen($break-xsmall) {
+			font-size: 1.4em;
+		}
+	}
+}
+
+
