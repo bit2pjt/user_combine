@@ -1,0 +1,372 @@
+﻿/*mmlGet 모바일*/
+.social-link{
+  width:1258px;
+  display:flex;
+}
+
+
+@media(max-width: 1100px){
+.social-link{
+  display:inline-block;
+}
+
+}
+
+
+
+
+/*mmlFollowList 모바일*/
+
+.blog-item-style-11 {
+  display: flex;
+  float:left;
+  width: 100%;
+  left:40%;
+   padding-right: 15px;
+  padding-left:15px;
+  margin:auto;
+  
+}
+
+.blog-item-style-11 img {
+  margin-right: 30px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 35%;
+}
+
+
+/* mmlList 모바일 크기 */
+
+
+  @media(max-width: 767px){
+  .row1{
+    position: relative;
+    align-items:center;
+    width: 100%;
+    
+ 
+
+  }
+
+  .sp_col-md-41 {
+ 	margin:auto;
+ 	display: inline-block;
+    left:20%
+  }
+
+}
+.row1 {
+
+  margin-left: 15px;
+  margin-right: 15px;
+  *zoom: 1;
+}
+.row1:before,
+.row1:after{
+	 content: " ";
+  display: table;
+}
+
+.row1:after{
+	 clear: both;
+}
+
+/*mml list 카드부분 div영역*/
+.sp_col-md-41 {
+	
+	
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 5px;
+
+}
+
+
+.sp_col-md-4{
+	width:350px;
+	height:200px;
+	float: left;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 5px;
+}
+/*카드*/
+.card {
+  width: 350px;
+  height: 400px;
+  margin-left:10px
+}
+
+.card-info {
+  padding: 1rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 2.5rem;
+      grid-template-rows: 1fr 2.5rem;
+  -ms-grid-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
+}
+
+.card-title {
+  font-size: 2rem;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.card-icon {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  justify-self: right;
+  width: 30px;
+  height: 30px;
+  background-color: LightBlue;
+  border-radius: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-column-align: center;
+      justify-items: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.card-author {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  -webkit-align-self: bottom;
+      -ms-flex-item-align: bottom;
+              -ms-grid-row-align: bottom;
+          align-self: bottom;
+}
+
+.card-stats {
+  -webkit-align-self: bottom;
+      -ms-flex-item-align: bottom;
+              -ms-grid-row-align: bottom;
+          align-self: bottom;
+  justify-self: right;
+}
+/*카드끝*/
+
+/*최신순 추천순 버튼*/
+
+.mb-3,
+.my-3 {
+  margin-bottom: 1rem !important;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  padding: 0.5rem 1rem;
+  font-size: 2.09375rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+}
+
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+.btn-brand.btn-lg i, .btn-group-lg > .btn-brand.btn i {
+  width: 2.640625rem;
+  margin: -0.5rem -1rem;
+  line-height: 2.640625rem;
+  border-radius: 0.3rem;
+}
+
+.btn-brand.btn-lg i + span, .btn-group-lg > .btn-brand.btn i + span {
+  margin-left: 2rem;
+}
+
+.btn-secondary {
+  color: #23282c;
+  background-color: #c8ced3;
+  border-color: #c8ced3;
+}
+
+.btn-secondary:hover {
+  color: #23282c;
+  background-color: #b3bbc2;
+  border-color: #acb5bc;
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(175, 181, 186, 0.5);
+}
+
+.btn-secondary.disabled, .btn-secondary:disabled {
+  color: #23282c;
+  background-color: #c8ced3;
+  border-color: #c8ced3;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #23282c;
+  background-color: #acb5bc;
+  border-color: #a5aeb7;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(175, 181, 186, 0.5);
+}
+
+
+
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+  width: 100%;
+}
+/*최신순 추천순 버튼끝*/
+
+
+/*나영리 쓰기 버튼 */
+.btn1 {
+  display: inline-block;
+  font-weight: 400;
+  color: #23282c;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+}
+
+.btn-square {
+  border-radius: 0;
+}
+
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-block + .btn-block {
+  margin-top: 0.5rem;
+}
+
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+  width: 100%;
+}
+
+
+.btn-dark {
+  color: #fff;
+  background-color: #2f353a;
+  border-color: #2f353a;
+  width:130px;
+  font-size:20px;
+}
+
+.btn-dark:hover {
+  color: #fff;
+  background-color: #1e2225;
+  border-color: #181b1e;
+}
+
+.btn-dark:focus, .btn-dark.focus {
+  box-shadow: 0 0 0 0.2rem rgba(78, 83, 88, 0.5);
+}
+
+.btn-dark.disabled, .btn-dark:disabled {
+  color: #fff;
+  background-color: #2f353a;
+  border-color: #2f353a;
+}
+
+.btn-dark:not(:disabled):not(.disabled):active, .btn-dark:not(:disabled):not(.disabled).active,
+.show > .btn-dark.dropdown-toggle {
+  color: #fff;
+  background-color: #181b1e;
+  border-color: #121517;
+}
+
+.btn-dark:not(:disabled):not(.disabled):active:focus, .btn-dark:not(:disabled):not(.disabled).active:focus,
+.show > .btn-dark.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(78, 83, 88, 0.5);
+}
+
+.btn-check{
+  display: inline-block;
+  background-color:#FF6F61;
+  padding: 0 45px;
+  height: 46px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  font-family: 'Dosis', sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+}
+/*나영리 쓰기 버튼 끝*/
+
+/*컨셉 색상 버튼을 만들어 볼까용 */
+
+.blog-detail-ct .comment-form form button.submit2 {
+  background-color:#FF6F61;
+  padding: 0 45px;
+  height: 46px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  font-family: 'Dosis', sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+}
+/*홍당무색 버튼 끝 */
+
+.blog-item-style-31 img {
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.blog-item-style-31 .blog-it-infor {
+  padding: 20px 20px 20px 0;
+}
+@media (max-width: 767px) {
+  .blog-item-style-31 .blog-it-infor {
+    padding: 30px;
+    margin-top: 0;
+  }
+}
+.blog-item-style-31:hover img {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.blog-item-style-31:hover .blog-it-infor h3 a {
+  color: #dcf836;
+}
+
+
