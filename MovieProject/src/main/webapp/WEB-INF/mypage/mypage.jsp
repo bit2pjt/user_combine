@@ -21,6 +21,9 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="../header.jsp" %>
+<head>
+	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+</head>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -46,7 +49,7 @@
 							<h2> <strong>황진석 님</strong> </h2>
 							<h3> <strong>h10046245h@naver.com</strong></h3>
 						</div>
-					<div class="user-information">
+					<div class="user-information-hjs">
 						<div class="user-fav">
 								<ul>
 									<li><a href="mypage.do">마이페이지</a></li>
@@ -74,74 +77,73 @@
 						<div class="form-style-1 user-pro">
 							<div style="display:block;">
 								<div class="user-img">
-										<a href="#"><img src="resources/images/uploads/user-img.png" alt=""><br></a><br>
-										<a href="#" class="redbtn1">사진 등록</a>
-										<br>
+									<a href="#"><img src="resources/images/uploads/user-img.png" alt=""><br></a><br>
+									<a href="#" class="redbtn1">사진 등록</a>
+									<br>
 								</div>
 							
-								<div style="display: inline-block; margin-left:5%;">
-										<h4> 이름: 황진석</h4> 
-										<h4> 닉네임: 비트코인</h4> 
-										<h4> 이메일: h10046245h@naver.com</h4> 
-										<h4> 선호장르: 공포/호러, 스릴러, 느와르</h4> 
+								<div class="hjs-info" >
+									<h4> 이름: 황진석</h4> 
+									<h4> 닉네임: 비트코인</h4> 
+									<h4> 이메일: h10046245h@naver.com</h4> 
+									<h4> 선호장르: 공포/호러, 스릴러, 느와르</h4> 
 								</div>
 							
 							<br><br>
 							<div class="div_one">
-								<div>
-									<ul>
-										<li>
-											<span class="do_span">1:1 문의내역 </span>
-											<span class="do_span1">
-												<a href="one_list.do"><b> 더보기 </b></a>
-											</span>
-										</li>
-										<li><hr class="hr_style"></li>
-										<li>
-											<span style="margin-left:3%;">구분</span>
-											<span style="margin-left:25%;">상담제목</span>
-											<span style="margin-left:25%;">작성날짜</span>
-											<span style="margin-left:10%;">답변여부</span>
-										</li>
-										<li><hr class="hr_style1"></li>
-									</ul>
-									<ul>
-										<li> 최근 내역이 없습니다.</li>
-									</ul>
-									<ul>
-										<li><hr class="hr_style1"></li>
-									</ul>
+								<table class="tb_hjs">
+									<caption class="caption-hjs"> <h2>1:1 문의 내역</h2></caption>
+									<span class="do_span1">
+										<a href="#"> <b> 더보기 </b></a>
+									</span>
+									<colgroup>
+										<col width="10%" />
+										<col width="25%"/>
+										<col width="15%"/>
+										<col width="10%"/>
+									</colgroup>
+									<thead>
+										<tr>
+										<th> 구분 </th>
+										<th> 상담제목 </th>
+										<th> 작성날짜 </th>
+										<th> 답변여부 </th>
+									</tr>
+									</thead>
 									
-								</div>
+									<tbody>
+										<td colspan="4">  최근 목록이 없습니다.</td>	
+									</tbody>
+								</table>
 							</div>
 							<br><br><br>
 							<div class="div_one">
-									<div>
-										<ul>
-											<li>
-												<span class="do_span"> 나의 팔로잉/팔로워 </span>
-												<span class="do_span1">
-													<a href="#"> <b> 더보기 </b></a>
-												</span>
-											</li>
-											<li><hr class="hr_style"></li>
-											<li>
-													<span style="margin-left:3%;">팔로잉 ID</span>
-													<span style="margin-left:25%;">팔로워 ID</span>
-											</li>
-											<li><hr class="hr_style1"></li>
-										</ul>
-										<ul>
-											<li> 팔로워/팔로잉가 없습니다.</li>
-										</ul>
-										<ul>
-											<li><hr class="hr_style1"></li>
-										</ul>
-									</div>
+									<table class="tb_hjs">
+										<caption class="caption-hjs"> <h2> 나의 팔로잉/팔로워 </h2></caption>
+											<span class="do_span1">
+												<a href="#"> <b> 더보기 </b></a>
+											</span>
+											<colgroup>
+												<col width="10%" />
+												<col width="25%"/>
+												<col width="15%"/>
+												<col width="10%"/>
+											</colgroup>
+											<thead>
+												<tr>
+												<th colspan="2"> 팔로잉 ID </th>
+												<th colspan="2"> 팔로워 ID </th>
+											</tr>
+											</thead>
+											
+											<tbody>
+												<td colspan="4">  팔로잉/팔로워가 없습니다. </td>	
+											</tbody>
+									</table>
 								</div>
-							</div>
 						</div>
 					</div>
+				</div>
 				</div>
 			</div>
 		</div>

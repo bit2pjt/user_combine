@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!--
 /**
 * @Class Name : faq.jsp
@@ -20,8 +21,11 @@
 -->
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html>
-<html>
 
+<html>
+<head>
+	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+</head>
 <div class="hero user-hero">
 	<div class="container">
 		<div class="row">
@@ -46,22 +50,22 @@
 						<h2> <strong>황진석 님</strong> </h2>
 						<h3> <strong>h10046245h@naver.com</strong></h3>
 					</div>
-					<div class="user-information">
+					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage.html">마이페이지</a></li>
+								<li><a href="mypage.do">마이페이지</a></li>
 							</ul>
 										
 							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm.html">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out.html">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 					
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list.html">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-								<li><a href="faq.html">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
+								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
 					</div>

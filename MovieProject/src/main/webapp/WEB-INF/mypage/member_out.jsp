@@ -20,6 +20,9 @@
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
+<head>
+	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+</head>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -45,7 +48,7 @@
 							<h2> <strong>황진석 님</strong> </h2>
 							<h3> <strong>h10046245h@naver.com</strong></h3>
 						</div>
-					<div class="user-information">
+					<div class="user-information-hjs">
 							<div class="user-fav">
 								<ul>
 									<li><a href="mypage.do">마이페이지</a></li>

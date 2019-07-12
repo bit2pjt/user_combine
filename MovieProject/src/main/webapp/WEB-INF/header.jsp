@@ -47,7 +47,8 @@
     <!-- CSS files -->
    	<link rel="stylesheet" href="<c:url value="/resources/css/plugins.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/header_style.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+	<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
+	
 	<link rel="stylesheet" href="<c:url value="/resources/css/hm_css.css" />">
 		<link rel="stylesheet" href="<c:url value="/resources/css/modifystyle.css"/>">
 	<!-- yj : css 추가 -->
@@ -703,11 +704,11 @@
                     </ul>
                     <ul class="nav navbar-nav flex-child-menu menu-right">
                         <li class="dropdown first">
-                            <a class="btn btn-default dropdown-toggle lv1" href="mmlList.html">
+                            <a class="btn btn-default dropdown-toggle lv1" href="mmlList.do">
                                 나영리
                             </a>
                         </li>
-                        <li><a href="mypage.html">마이페이지</a></li>
+                        <li><a href="mypage.do">마이페이지</a></li>
                         <li class="loginLink"><a href="#">로그인</a></li>
                         <li class="btn signupLink"><a href="#">회원가입</a></li>
                         <!--  hm |   <li><a href="member_join.html">회원가입</a></li> -->
