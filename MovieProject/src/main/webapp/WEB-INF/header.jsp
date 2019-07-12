@@ -703,7 +703,7 @@
                     </ul>
                     <ul class="nav navbar-nav flex-child-menu menu-right">
                         <li class="dropdown first">
-                            <a class="btn btn-default dropdown-toggle lv1" href="mmlList.html">
+                            <a class="btn btn-default dropdown-toggle lv1" href="mmlList.do">
                                 나영리
                             </a>
                         </li>
