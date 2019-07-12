@@ -24,6 +24,8 @@
 
 <br>
 <br>
+<br>
+<br>
 
     	<div class="buster-light">
 
@@ -35,12 +37,12 @@
                         <div class="social-link" style="width:1258px; display:flex;">
                        
                             <div style="flex:2;">
-                                <img src="<c:url value="/resources/images/개사진.jfif"/>" width="80px" height="80px">
+                                <img src="<c:url value="/resources/images/sp_image/개사진.jfif"/>" width="80px" height="80px">
                             <h1 style="display:inline">nickname</h1>
                             </div>
                            
                             <div style="flex:2;"> 
-                            <img src="<c:url value="/resources/images/왕관.jpg"/>" width="80px" height="80px">
+                            <img src="<c:url value="/resources/images/sp_image/왕관.jpg"/>" width="80px" height="80px">
                             <h1 style="display:inline">팔로워 </h1> <h4 style="display:inline; color: lightcoral" >140  </h4>
                             <h1 style="display:inline">팔로잉 </h1> <h4 style="display:inline; color: lightcoral">27  </h4>
                             
@@ -59,7 +61,7 @@
 					
 					<div class="sp_col-md-4">
 							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/노트북.jpg"/>" alt="header" style="width: 350px; height: 300px;" />
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" style="width: 350px; height: 300px;" />
 									<div class="card-info">
 									<h1 class="card-title">mml_title</h1>
 									<div class="card-icon">6</div>
@@ -70,7 +72,7 @@
 					</div>
 					<div class="sp_col-md-4">
 							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/타이타닉.jpeg"/>" alt="header"style="width: 350px; height: 300px;"/>
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/타이타닉.jpeg"/>" alt="header"style="width: 350px; height: 300px;"/>
 									<div class="card-info">
 									<h1 class="card-title">mml_title</h1>
 									<div class="card-icon">6</div>
@@ -81,7 +83,7 @@
 					</div>
 					<div class="sp_col-md-4">
 							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/히트.jpg"/>" alt="header" style="width: 350px; height: 300px;"/>
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/히트.jpg"/>" alt="header" style="width: 350px; height: 300px;"/>
 									<div class="card-info">
 									<h1 class="card-title">mml_title</h1>
 									<div class="card-icon">6</div>
