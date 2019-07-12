@@ -1,4 +1,4 @@
-package com.spring.moive;
+package com.spring.movie;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

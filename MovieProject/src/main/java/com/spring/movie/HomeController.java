@@ -1,4 +1,4 @@
-package com.spring.moive;
+package com.spring.movie;
 
 import java.text.DateFormat;
 import java.util.Date;
