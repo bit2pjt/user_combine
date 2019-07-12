@@ -20,9 +20,11 @@
 *  Copyright (C) by bit 2조 All right reserved.
 */
 -->
-<!DOCTYPE html>
-<html>
+
 <%@ include file="../header.jsp" %>
+<head>
+	<link rel="stylesheet" href="<c:url value="/resources/css/yj_style.css" />">
+</head>
 <!-- yj : 헤더와 본 컨텐츠를 분리하기 위해 section 사용-->
     <section>
         <!-- yj : start | movielist -->
@@ -74,5 +76,3 @@
         </div>
     </section>
     <%@ include file="../footer.jsp" %>
-</body>
-</html>
