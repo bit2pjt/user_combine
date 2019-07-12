@@ -374,7 +374,8 @@ ul.jq_tab.tab_menu li a{
 @media(max-width: 1200px){
   .admin_review_button div{
     width: 100%;
-    position: relative;
+    position:relative;
     left: 0%;
+    
   }
 }
