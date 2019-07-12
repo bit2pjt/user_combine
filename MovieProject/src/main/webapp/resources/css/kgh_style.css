@@ -223,15 +223,21 @@ ul.jq_tab.tab_menu li a{
   width: 1200px;
   margin: 0 auto;
 }
+@media(max-width: 1200px){
+  .section{
+    width: 100%;
+  }
+}
 
 .cinema_select select{
   width: 24%;
   height: 200px;
   display: inline-block;
+  vertical-align: top;
   border-style: none
 }
 .cinema_info {
-  
+  margin-bottom: 40px;
 }
 .cinema_info div{
   
@@ -239,20 +245,32 @@ ul.jq_tab.tab_menu li a{
 }
 .cinema_info div.cinema_info_text{
   width: 60%;
-  height: 140px;
+  height: 160px;
   display: inline-block;
-  
+  overflow: hidden;
+  border:1px solid #333;
   
 }
 .cinema_info div.cinema_info_map{
   width: 38%;
-  height: 140px;
+  height: 160px;
   display: inline-block;
   vertical-align: top; 
   background-color: #cfc;
 }
 
-
+@media(max-width: 1200px){
+  .cinema_select select{
+  width: 100%;
+  height: 200px;
+  display: block;
+  border-style: none
+}
+}
+.cinema_ticket_info{
+  
+  float: right;
+}
 
 /**
 * @Class Name : EgovSampleService.java
@@ -359,7 +377,4 @@ ul.jq_tab.tab_menu li a{
     position: relative;
     left: 0%;
   }
-  
-  
-
 }
