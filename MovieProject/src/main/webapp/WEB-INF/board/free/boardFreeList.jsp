@@ -123,7 +123,7 @@
 							  <td ><strong>2011/04/25</strong></td>
 							  <td><strong>84200</strong></td>
 							  <td>모바일 글제목. </td>
-							</tr>
+							  </tr>
 							<tr class="notice">
 							  <td><strong>002</strong></td>
 							  <td><strong>공지</strong></td>

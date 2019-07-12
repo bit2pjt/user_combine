@@ -66,7 +66,7 @@
 		<!-- 2. 글정보+개인정보의 배치 -->
 			<div class="ws-post-get-info">
 				<span>
-				<img src="../../resources/images/defaultprofile.PNG">
+				<img src="../../resources/images/customs/ws_img/defaultprofile.PNG">
 				</span>
 				<span>
 					<span>작성자 : 김시덕이 </span><br>
@@ -189,9 +189,9 @@
 					<li><a href="#">2</a></li>
 					<li><a href="#">3</a></li>
 					<li><a href="#">4</a></li>
-					<li><a href="#">...</a></li>
-					<li><a href="#">21</a></li>
-					<li><a href="#">22</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li><a href="#">7</a></li>
 					<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
             	</ul>
 				</div>		
@@ -262,23 +262,17 @@
 <script type="text/javascript">
 
 	function CatDelete() {
-    location.replace("/board/free/list");
+    location.replace("/board/free/boardFreeList.do");
   	}
 	function replydel() {
-	    location.replace("/board/free/list");
+	    location.replace("/board/free/boardFreeList.do");
 	  	}
-	
-	
-	
+		
 	$(function(){
 	    $('.ws-btn-thumbs-up').click(function(){
-	       $('.ws-reply-msg').css('color', 'red');
-	    	
-	    
+	       $('.ws-reply-msg').css('color', 'red').css('display','inline');
 	    });
 	});
-	
-	
 </script>
 <%@include file="../../footer.jsp" %>
 

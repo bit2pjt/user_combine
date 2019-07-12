@@ -77,6 +77,7 @@
 							  <td style="color:#FF6F61;"><strong>admin01</strong></td>
 							  <td style="text-overflow: ellipsis;"><strong>2011/04/25</strong></td>
 							  <td><strong>84200</strong></td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="notice">
 							  <td><strong>002</strong></td>
@@ -85,6 +86,7 @@
 							  <td><strong>admin01</strong></td>
 							  <td><strong>2011/07/25</strong></td>
 							  <td><strong>16847</strong></td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<!--4.  자유게시판 게시글의 나열 시작 -->
 							<tr class="post">
@@ -94,6 +96,7 @@
 							  <td>가모라</td>
 							  <td>2009/01/12</td>
 							  <td>2400</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0023</td>
@@ -102,6 +105,7 @@
 							  <td>22</td>
 							  <td>2012/03/29</td>
 							  <td>$433,060</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0022</td>
@@ -110,6 +114,7 @@
 							  <td>33</td>
 							  <td>2008/11/28</td>
 							  <td>$162,700</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0020</td>
@@ -118,6 +123,7 @@
 							  <td>61</td>
 							  <td>2012/12/02</td>
 							  <td>$372,000</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0019</td>
@@ -126,6 +132,7 @@
 							  <td>59</td>
 							  <td>2012/08/06</td>
 							  <td>$137,500</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0017</td>
@@ -134,6 +141,7 @@
 							  <td>55</td>
 							  <td>2010/10/14</td>
 							  <td>$327,900</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0016</td>
@@ -150,6 +158,7 @@
 							  <td>23</td>
 							  <td>2008/12/13</td>
 							  <td>$103,600</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0014</td>
@@ -158,6 +167,7 @@
 							  <td>30</td>
 							  <td>2008/12/19</td>
 							  <td>$90,560</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>00013</td>
@@ -166,6 +176,34 @@
 							  <td>22</td>
 							  <td>2013/03/03</td>
 							  <td>$342,000</td>
+							  <td>모바일 글제목. </td>
+							</tr>
+							<tr class="post">
+							  <td>00013</td>
+							  <td>유머</td>
+							  <td>Edinburgh</td>
+							  <td>22</td>
+							  <td>2013/03/03</td>
+							  <td>$342,000</td>
+							  <td>모바일 글제목. </td>
+							</tr>
+							<tr class="post">
+							  <td>0014</td>
+							  <td>결말해석</td>
+							  <td>London</td>
+							  <td>30</td>
+							  <td>2008/12/19</td>
+							  <td>$90,560</td>
+							  <td>모바일 글제목. </td>
+							</tr>
+							<tr class="post">
+							  <td>00013</td>
+							  <td>유머</td>
+							  <td>Edinburgh</td>
+							  <td>22</td>
+							  <td>2013/03/03</td>
+							  <td>$342,000</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>00013</td>
@@ -182,6 +220,7 @@
 							  <td>30</td>
 							  <td>2008/12/19</td>
 							  <td>$90,560</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>00013</td>
@@ -190,30 +229,7 @@
 							  <td>22</td>
 							  <td>2013/03/03</td>
 							  <td>$342,000</td>
-							</tr>
-							<tr class="post">
-							  <td>00013</td>
-							  <td>유머</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2013/03/03</td>
-							  <td>$342,000</td>
-							</tr>
-							<tr class="post">
-							  <td>0014</td>
-							  <td>결말해석</td>
-							  <td>London</td>
-							  <td>30</td>
-							  <td>2008/12/19</td>
-							  <td>$90,560</td>
-							</tr>
-							<tr class="post">
-							  <td>00013</td>
-							  <td>유머</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2013/03/03</td>
-							  <td>$342,000</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							</tbody>
 						</table>
