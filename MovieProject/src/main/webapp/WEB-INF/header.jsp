@@ -47,6 +47,7 @@
     <!-- CSS files -->
    	<link rel="stylesheet" href="<c:url value="/resources/css/plugins.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/header_style.css" />">
+	<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
 	
 	<link rel="stylesheet" href="<c:url value="/resources/css/hm_css.css" />">
 		<link rel="stylesheet" href="<c:url value="/resources/css/modifystyle.css"/>">
