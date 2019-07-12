@@ -247,8 +247,8 @@ ul.jq_tab.tab_menu li a{
   width: 60%;
   height: 160px;
   display: inline-block;
-  overflow: hidden;
-  border:1px solid #333;
+  
+  
   
 }
 .cinema_info div.cinema_info_map{
@@ -259,6 +259,10 @@ ul.jq_tab.tab_menu li a{
   background-color: #cfc;
 }
 
+.cinema_ticket_info{
+  margin-top: 70px;
+  float: right;
+}
 @media(max-width: 1200px){
   .cinema_select select{
   width: 100%;
@@ -266,12 +270,11 @@ ul.jq_tab.tab_menu li a{
   display: block;
   border-style: none
 }
-}
 .cinema_ticket_info{
-  
+  margin-top: 20px;
   float: right;
 }
-
+}
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -374,8 +377,7 @@ ul.jq_tab.tab_menu li a{
 @media(max-width: 1200px){
   .admin_review_button div{
     width: 100%;
-    position:relative;
+    position: relative;
     left: 0%;
-    
   }
 }
