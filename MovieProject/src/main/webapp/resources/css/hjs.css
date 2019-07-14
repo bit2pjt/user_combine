@@ -204,7 +204,7 @@
   border:solid 1px black;
 }
 .hr_style2 {
-  border:solid 3px black;
+  border:solid 2px black;
 }
 .etcWrap {
   border-bottom:4px solid black;
@@ -332,13 +332,13 @@
 
 #basic-form {
   width:100%;
-  margin-left:17%;
+  margin-left:20%;
 }
 .form-style-pw {
   background-color: white;
-  width:60%;
-  margin:auto;
+  width:70%;
 }
+
 .form-style-pw .form-div{
   color:black;
   width:100%;
@@ -426,3 +426,48 @@
   text-transform: lowercase;
   margin-bottom: 30px;
 }
+
+.tbinfo_hjs {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: none;
+  border-right: none;
+}
+
+.person_info {
+  margin-top:20px;
+  width:100%;
+}
+
+.person_info h1{
+  padding-bottom:30px;
+  font-size: 36px;
+  color: black;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align:center;
+}
+
+.tbinfo_hjs td:nth-child(odd) {
+  text-align: center;
+  font-weight: bold;
+}
+
+.tbinfo_hjs td:nth-child(even) {
+  text-align: left;
+  border-right:none;
+}
+
+.td-content {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+.td-content input[type=tel]{
+  width: 25%;
+  display: inline-block;
+}
+.td-content label{
+  margin-bottom:5px;
+}
+
