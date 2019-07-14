@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="../../header.jsp" %>
 
-	<link rel="stylesheet" href="../../resources/css/ws_personal.css">
+	<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=1.1">
 
 <div class="hero common-hero">
 	<div class="container">
@@ -60,20 +60,22 @@
 	
 	<!-- 1. 글제목 자리 -->
 		<div class="ws-post-get-title">
-		<h4> 글제목이 들어올 자리입니다.</h4>
+		<h4> 글제목이 들어올 자리입니다. aaaaa</h4>
 		</div>
 		<!-- 글제목 자리 끝 -->
 		<!-- 2. 글정보+개인정보의 배치 -->
 			<div class="ws-post-get-info">
-				<span>
-				<img src="../../resources/images/customs/ws_img/defaultprofile.PNG">
-				</span>
-				<span>
+				<div class="ws-post-get-info-profile">
+					<img src="../../resources/images/customs/ws_img/defaultprofile.PNG">
+				</div>
+				<div class="ws-post-get-info-inner">
 					<span>작성자 : 김시덕이 </span><br>
 					<span>작성일자 : </span><span>19/07/01 13:15</span><br>
 					<span>수정일자 :</span><span>19/07/01 15:15</span><br>
 					<span>조회수 : </span><span>1258</span><br>
-				</span>
+					<span>선호장르 : </span><span> 다큐멘터리</span>
+				</div>
+				
 			</div>
 					<!-- 글정보+개인정보의 배치 끝 -->
 					
@@ -92,9 +94,9 @@
 						<button class="ws-btn-thumbs-up">  <i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> 5</button> 
 						<button class="ws-btn-thumbs-down"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 1</button>
 					<div style="float:right;">
-						<button class="ws-btn-update"><i class="fa fa-repeat" aria-hidden="true"></i></button> 
+						수정 <button class="ws-btn-update"><i class="fa fa-repeat" aria-hidden="true"></i></button> 
 						
-						<button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-post-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
+						삭제 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-post-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
 					</div>
 				</center>
 			  		<!-- 글신고/글추천/글비추 배치 끝 -->
@@ -114,12 +116,16 @@
 								<div class="flex-it2">
 									
 								<div>
+									
 									<!-- 댓글 좌상단의 작성자 정보부분  -->
 									<div class="ws-reply-info" > 
 										<a href="#">Steve Perrysssssssss</a> <a class="rep-btn" href="#"><i class="fa fa-reply" aria-hidden="true" style="color:#FF6F61;"></i>댓글</a>  
 										<br>
-										 등록/수정일 : <span class="time"> - 19/07/08 13:10</span>
+										 등록/수정일 : <span class="time"> - 19/07/08 13:10</span> <span>선호장르 : sf</span>  
 									</div>
+									
+									<span class="ws-best"><strong> BEST !</strong></span>
+									
 									<!-- 댓글 우상단의 댓글 추비추&신고 -->
 									<div class="ws-reply-btns">
 										<span class="ws-reply-msg" style="color:#ffffff;">중복불허</span>
@@ -149,13 +155,13 @@
 									<div class="ws-reply-info"> 
 										<a href="#">Steve Perry</a> <a class="rep-btn" href="#"><i class="fa fa-reply" aria-hidden="true" style="color:#FF6F61;"></i>댓글</a> 
 										<br>
-										 등록/수정일 : <span class="time"> - 19/07/08 13:10</span>
+										 등록/수정일 : <span class="time"> - 19/07/08 13:10</span> <span>선호장르 : sf</span>
 									</div>
 									<!-- 우측 버튼들. -->
 									<div class="ws-reply-btns">
 										
-										<button class="ws-btn-update"><i class="fa fa-repeat" aria-hidden="true"></i></button> 
-										<button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-reply-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
+										수정 <button class="ws-btn-update"> <i class="fa fa-repeat" aria-hidden="true"></i></button> 
+										삭제 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-reply-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
 									</div>
 								</div>
 								<!-- 댓글 본문 -->
@@ -207,7 +213,7 @@
 								</div>
 							</div>
 							<br>
-							<input class="submit" type="submit" placeholder="submit" style="float:right;">
+							<input class="submit" type="submit" style="float:right;" value="등록">
 						</form>
 					</div>
 					</div>

@@ -7,14 +7,15 @@
 	<!--/*board/free/list : 1. 베스트 게시물 css */-->
 	.ws_table_best {
 		display:relative;top:50px;left:50%;right:50%;width:100%;
+		
 	}
 	<!--/*board/free/list : 1-1. 베스트 게시물의 열 정보 */-->
 	.ws_table_best thead th {
-		background-color:#FFDBD8;color:black;text-align:center;
+		background-color:#0F2133;color:white;text-align:center;
 	}
 	<!--/*board/free/list : 1-2. 베스트 게시물의 글본문*/-->
 	.ws_table_best tbody td { 
-	background-color:#DFE5F5;
+	
 	}
 		
 	<!--/*board/free/list : 2. 게시물 테이블목록 */-->
@@ -28,7 +29,7 @@
 	}
 	<!--/*board/free/list : 2-2. 게시물 테이블의 열 별 이름부분.  */-->
 	.ws_table thead {
-		background-color:#717F9A;
+		background-color:#0F2133;
 		color:#ffffff;
 		width:100%;
 		text-align:center;
@@ -42,7 +43,11 @@
 	<!--/*board/free/list : 2-3. 게시물 테이블의 본문 중 공지  */-->
 	.ws_table tbody .notice td {
 		text-align:center;
-		background-color:#DFE5F5;
+		background-color:#DEDEDE;
+		border-left:0px solid #ffffff;
+		border-right:0px solid #ffffff;
+		border-top:1px solid #0F2133;
+		border-bottom:1px solid #0F2133;
 	}
 	.ws_table tbody .notice td:nth-child(3) {
 		text-align:left;
@@ -55,7 +60,10 @@
 	
 	.ws_table tbody .post td {
 		text-align:center;
-		background-color:#C3D8F5;
+		border-left:0px solid #ffffff;
+		border-right:0px solid #ffffff;
+		border-top:1px solid #0F2133;
+		border-bottom:1px solid #0F2133;
 	}
 	
 	.ws_table tbody .post td:nth-child(3) {
@@ -146,8 +154,12 @@
 	<!--/*board/free/list : 4. 페이징은 기본 탬플릿 설정 그대로 유지  */-->
 	
 	<!--/*기타. 버튼 등*/-->
-	.ws-btn-reddish {
-	background-color:#FF6F61;width:70px;border:0px;border-radius:15px;
+	.ws-btn-reddish-write {
+	background-color:#FFFFFF;width:70px;border:1px solid;border-radius:15px;
+	margin:10px;width:60px;height:40px;float:right;
+	}
+	.ws-btn-reddish-search {
+	background-color:#FFFFFF;width:70px;border:1px solid;border-radius:15px;
 	margin:10px;width:60px;height:40px;
 	}
 	
@@ -170,26 +182,46 @@
 	}
 	<!--/*board/free/write : 3. 글쓰기 공지 부분의 설정 */-->
 	.ws-middle-top-writer {
-		border:1px solid;width:100%;height:80;background-color:#f8f87d;
+		border:1px solid;width:100%;height:80;background-color:#AFCBE8;
 	}
 
 
 <!-- /*board/free/get : 1. 글본문*/ -->
 	<!-- /*board/free/get : 1-1. 글제목*/ -->
 	.ws-post-get-title {
-		padding:10px;margin:10px 0px;background-color:#FFDBD8;position:relative;bottom:5px;
+		padding:10px;
+		margin:10px 0px;
+		background-color:#FFDBD8;
+		position:relative;
+		bottom:5px;
 	}
 	<!-- /*board/free/get : 1-2. 글쓴이 정보*/ -->
 	.ws-post-get-info {
-	border-width:3px 0px;border-style:solid;border-color:#0F2133;
+		border-width:3px 0px;
+		border-style:solid;
+		border-color:#0F2133;
+		
 	}
-	.ws-post-get-info span {
-	display:inline-block;
+	.ws-post-get-info-profile {
+		display:inline-block;
+		position:relative;top:-20px;
+		max-width:160px;
+		max-height:160px;
 	}
-	.ws-post-get-info img {
-	width:150px;margin:10px;border-color:#525EAA;
+	.ws-post-get-info-inner {
+		display:inline-block;
+		margin-top:5px;
 	}
 	
+	@media(max-width:450px){
+	.ws-post-get-info-profile {
+		max-width:100px;
+		max-height:100px;
+		position:relative;
+		top:-45px;
+	}
+	
+	}
 	<!-- /*board/free/get : 1-3. 글본문*/ -->
 	.ws-post-get-content {
 	min-height:200px;height:100%;padding:10px;
@@ -235,6 +267,14 @@
 	width:35px;height:35px;background-color:#ffffff;border-radius:8px;border:1px solid #99098f;position:relative;right:5px;margin:5px;
 	}
 	
-
+	.ws-best {
+	background-color:#0f2133;
+	color:white;
+	padding:3px 6px;
+	text-align:center;
+	float:left;
+	margin:10px;
+	margin-top:10px;
+	}
 		
 	

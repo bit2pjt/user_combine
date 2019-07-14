@@ -48,11 +48,10 @@
    	<link rel="stylesheet" href="<c:url value="/resources/css/plugins.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/header_style.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
-	
 	<link rel="stylesheet" href="<c:url value="/resources/css/hm_css.css" />">
-		<link rel="stylesheet" href="<c:url value="/resources/css/modifystyle.css"/>">
+	<link rel="stylesheet" href="<c:url value="/resources/css/modifystyle.css"/>">
 	<!-- yj : css 추가 -->
-	<link rel="stylesheet" href="<c:url value="resources/css/modifyplugins.css" />">
+	<link rel="stylesheet" href="<c:url value="/resources/css/modifyplugins.css" />">
 
 </head>
 
@@ -61,7 +60,7 @@
 
     <!--preloading-->
     <div id="preloader">
-        <img class="logo" src="resources/images/logo1.png" alt="" width="119" height="58">
+        <img class="logo" src="/resources/images/logo1.png" alt="" width="119" height="58">
         <div id="status">
             <span></span>
             <span></span>
@@ -662,7 +661,7 @@
                             <span></span>
                         </div>
                     </div>
-                    <a href="index.html"><img class="logo" src="resources/images/logo1.png" alt="" width="119" height="58"></a>
+                    <a href="index.html"><img class="logo" src="/resources/images/logo1.png" alt="" width="119" height="58"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -697,8 +696,8 @@
                                 커뮤니티<i class="fa fa-angle-down" aria-hidden="true"></i>
                             </a>
                             <ul class="dropdown-menu level1">
-                                <li><a href="../../movie/board/free/boardFreeList.do">자유 게시판</a></li>
-                                <li class="it-last"><a href="../../movie/board/share/boardShareList.do">나눔 게시판</a></li>
+                                <li><a href="../../board/free/boardFreeList.do">자유 게시판</a></li>
+                                <li class="it-last"><a href="../../board/share/boardShareList.do">나눔 게시판</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -708,7 +707,7 @@
                                 나영리
                             </a>
                         </li>
-                        <li><a href="mypage.do">마이페이지</a></li>
+                        <li><a href="../../mypage.do">마이페이지</a></li>
                         <li class="loginLink"><a href="#">로그인</a></li>
                         <li class="btn signupLink"><a href="#">회원가입</a></li>
                         <!--  hm |   <li><a href="member_join.html">회원가입</a></li> -->

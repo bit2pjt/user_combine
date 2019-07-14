@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="../../header.jsp" %>
 
-<link rel="stylesheet" href="../../resources/css/ws_personal.css">
+<link rel="stylesheet" href="../../resources/css/ws_personal.css?ver=1">
 
 <!--  
 * @Class Name : EgovSampleService.java
@@ -53,6 +53,24 @@
 	<form>
 		<!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
 		<div class="ws-writer-box">
+			<div>
+			&nbsp;&nbsp;<strong>분류</strong>
+			&nbsp;&nbsp;
+			<label class="fancy-radio custom-color-coral">
+        		<input name="category" value="interpretation" type="radio" checked=""><span><i></i>결말해석</span>
+        	</label>&nbsp;&nbsp;&nbsp;
+			<label class="fancy-radio custom-color-coral">
+        		<input name="category" value="argument" type="radio"><span><i></i>토론</span>
+        	</label>&nbsp;&nbsp;&nbsp;
+        	<label class="fancy-radio custom-color-coral">
+        		<input name="category" value="chat" type="radio" ><span><i></i>잡담</span>
+        	</label>&nbsp;&nbsp;&nbsp;
+        	<label class="fancy-radio custom-color-coral">
+        		<input name="category" value="humor" type="radio"><span><i></i>유머</span>
+       	 	</label>
+		</div>
+			
+			
 			<!-- 2.상단부는 제목과 출처가 들어간다.  -->
 			<div class="ws-top-writer">
 				<br><br>
@@ -71,7 +89,13 @@
 		<br>
 			</div><!-- end of top-writer -->
 			<!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
-			<div class="ws-middle-top-writer">
+			
+		
+		<br>
+		<br>
+		<textarea name="content" id="summernote" style="border:1 solid;width:100%"></textarea>
+		<br>
+		<div class="ws-middle-top-writer">
 				<br>
 				&nbsp;&nbsp;<span style="color: #ff0000;"><strong>※</strong></span> <span style="color: #ff0000;">음란물 및 욕설</span><strong>이 포함된 게시글은  사전 경고 없이 즉시 게시글이 삭제될 수 있습니다.</strong><br>
 				<br>
@@ -82,23 +106,9 @@
 				
 			</div><!-- end of middle-top-writer -->
 		
-		<br>
-		<br>
-		<textarea name="content" id="summernote" style="border:1 solid;width:100%"></textarea>
 		
 		
 		
-		<br>
-		<br>
-		<div>
-		&nbsp;&nbsp;<h4>분류</h4>
-		<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="category"> <label>결말해석&nbsp;&nbsp;&nbsp;</label>
-		<input type="radio" name="category"> <label>토론&nbsp;&nbsp;&nbsp;</label>
-		<input type="radio" name="category"> <label>잡담&nbsp;&nbsp;&nbsp;</label>
-		<input type="radio" name="category"> <label>유머&nbsp;&nbsp;&nbsp;</label>
-		</div>
 		
 			<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
 			<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->	
@@ -120,17 +130,8 @@
 	
 	
 <script>
-$(document).ready(function() {
-     $('#summernote').summernote({
-             height: 500,                 // set editor height
-             minHeight: 45,             // set minimum height of editor
-             maxHeight: 600,             // set maximum height of editor
-             width: 1100,
-             minWidth : 500,
-             maxWidth : 1100,
-             focus: true                  // set focus to editable area after initializing summernote
-     });
-     
+
+
      //n자 남음 구현
      $(function() {
          $('.post-title').keyup(function (e){
@@ -140,10 +141,19 @@ $(document).ready(function() {
          });
          $('.post-title').keyup();
    });
-});
 
+     $(document).ready(function() {
+         $('#summernote').summernote({
+                 height: 500,                 // set editor height
+                 minHeight: 45,             // set minimum height of editor
+                 maxHeight: 600,             // set maximum height of editor
+                 width: 1100,
+                 minWidth : 500,
+                 maxWidth : 1100,
+                 focus: true                  // set focus to editable area after initializing summernote
+         });
 
 
 </script>
 </body>
-<%@include file="../../footer_bs_write.jsp" %>
+<%@include file="../../footer.jsp" %>

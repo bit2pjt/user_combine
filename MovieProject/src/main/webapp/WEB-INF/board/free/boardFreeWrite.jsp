@@ -145,4 +145,4 @@ $(document).ready(function() {
 
 </script>
 </body>
-<%@include file="../../footer_bs_write.jsp" %>
+<%@include file="../../footer.jsp" %>

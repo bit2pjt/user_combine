@@ -18,9 +18,5 @@ public class BoardFreeController {
 	public void getWritePage() {}
 	@GetMapping("boardFreeUpdate.do")
 	public void getUpdatePage() {}
-	@GetMapping("boardFreeList_test.do")
-	public void getList_testPage() {}
-	
-	
-	
+		
 }//e_BoardFreeController class

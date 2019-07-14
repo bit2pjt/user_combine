@@ -4,7 +4,7 @@
 
 
 <!-- 해당 페이지의 커스텀 css 설정입니다. -->
-<link rel="stylesheet" href="../../resources/css/ws_personal.css">
+<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=1">
 
 
 
@@ -94,9 +94,10 @@
 		<div class="row">
 			<!-- listTable 배치 시작 -->
 			<div>
-				<div style="position:relative;top:50px;">
+				<div style="position:relative;top:50px">
 					
-					<button class="ws-btn-reddish" value="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+					<button class="ws-btn-reddish-write" value="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+					
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
@@ -316,7 +317,7 @@
 					</span>
 					<span>
 					&nbsp;&nbsp;
-					<button class="ws-btn-reddish"><i class="fa fa-search" aria-hidden="true"></i></button>
+					<button class="ws-btn-reddish-search"><i class="fa fa-search" aria-hidden="true"></i></button>
 					</span>
 				</center>
 				
