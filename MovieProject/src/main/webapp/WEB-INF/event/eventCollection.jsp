@@ -288,10 +288,6 @@ function load(id, cnt, btn) {
                     <li><a href="javascript:;" class="tit">MegaBox</a></li>
                     <br>
 
-                    <ul class="last_event" style="float: right;">
-                	<li style="width: 120px;height: 40px; background-color: #333;" ><a style="color: #fff;" href="/WEB-INF/lastevent.jsp">지난이벤트</a></li>
-                	<li style="width: 120px;height: 40px; background-color: #333;"><a style="color: #fff;" href="/WEB-INF/winner.jsp">당첨자확인</a></li>
-                	</ul>
                 </ul>
                 
 

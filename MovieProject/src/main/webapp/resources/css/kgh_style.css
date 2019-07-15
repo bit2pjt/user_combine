@@ -4,16 +4,16 @@
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      탭 기능에 css 
+* @ 2019.07.02   源�愿묓씗      �꺆 湲곕뒫�뿉 css 
 *
-* @author BIT 116기 2조
+* @author BIT 116湲� 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
 *
-*  Copyright (C) by bit 2조 All right reserved.
+*  Copyright (C) by bit 2議� All right reserved.
 */
 
 ul.jq_tab.tab_menu li{
@@ -24,16 +24,17 @@ ul.jq_tab.tab_menu li{
   height: 40px;
   line-height: 40px;
   text-align: center;
-  background-color: #333;
+  background-color: black;
   color: #fff;
   
 }
 
 li:hover{background: #ccc;}
 li:active a { text-decoration:none; color: #dd003f; font-weight: bold }
-/*메뉴 글씨색 변경.*/
+/*硫붾돱 湲��뵪�깋 蹂�寃�.*/
 ul.jq_tab.tab_menu li.on a{
-  color: red;
+  color: #FF6F61;
+  border-bottom: 3px solid #FF6F61;
 }
 ul.jq_tab.tab_menu li a{
   color: #fff;
@@ -48,16 +49,16 @@ ul.jq_tab.tab_menu li a{
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      더보기 기능 css 
+* @ 2019.07.02   源�愿묓씗      �뜑蹂닿린 湲곕뒫 css 
 *
-* @author BIT 116기 2조
+* @author BIT 116湲� 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
 *
-*  Copyright (C) by bit 2조 All right reserved.
+*  Copyright (C) by bit 2議� All right reserved.
 */
 .js-load {
     display: none;
@@ -89,7 +90,7 @@ ul.jq_tab.tab_menu li a{
 
 }
 .lists__item {
-    /*포스터 나오는거*/
+    /*�룷�뒪�꽣 �굹�삤�뒗嫄�*/
     
     width: 240px;
     height: 400px;
@@ -106,16 +107,16 @@ ul.jq_tab.tab_menu li a{
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      3사 이벤트 더보기 하기
+* @ 2019.07.02   源�愿묓씗      3�궗 �씠踰ㅽ듃 �뜑蹂닿린 �븯湲�
 *
-* @author BIT 116기 2조
+* @author BIT 116湲� 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
 *
-*  Copyright (C) by bit 2조 All right reserved.
+*  Copyright (C) by bit 2議� All right reserved.
 */
 
 
@@ -127,16 +128,16 @@ ul.jq_tab.tab_menu li a{
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희     포스터 float left 영역 채우기
+* @ 2019.07.02   源�愿묓씗     �룷�뒪�꽣 float left �쁺�뿭 梨꾩슦湲�
 *
-* @author BIT 116기 2조
+* @author BIT 116湲� 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
 *
-*  Copyright (C) by bit 2조 All right reserved.
+*  Copyright (C) by bit 2議� All right reserved.
 */
 
 .clear {
@@ -155,24 +156,24 @@ ul.jq_tab.tab_menu li a{
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      탭 클릭시 색변경
+* @ 2019.07.02   源�愿묓씗      �꺆 �겢由��떆 �깋蹂�寃�
 *
-* @author BIT 116기 2조
+* @author BIT 116湲� 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
 *
-*  Copyright (C) by bit 2조 All right reserved.
+*  Copyright (C) by bit 2議� All right reserved.
 */
 
 .jq_tabonoff ul > li > a {
   color: #fff;
   text-decoration: none;
-  display: block;
+  
   padding: 5px 10px;
-  background-color: #333;
+  background-color: black;
  }
  .jq_tabonoff ul > li:hover > a,
  .jq_tabonoff ul > li:focus > a,
@@ -202,22 +203,22 @@ ul.jq_tab.tab_menu li a{
   
 
 }
-/*-------------------CinemaList 스타일------------------------*/
+/*-------------------CinemaList �뒪���씪------------------------*/
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      CinemaList.jsp style
+* @ 2019.07.02   源�愿묓씗      CinemaList.jsp style
 *
-* @author BIT 116기 2조
+* @author BIT 116湲� 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
 *
-*  Copyright (C) by bit 2조 All right reserved.
+*  Copyright (C) by bit 2議� All right reserved.
 */
 .section {
   width: 1200px;
@@ -237,6 +238,7 @@ ul.jq_tab.tab_menu li a{
   border-style: none
 }
 .cinema_info {
+  margin-top: 40px;
   margin-bottom: 40px;
 }
 .cinema_info div{
@@ -248,12 +250,10 @@ ul.jq_tab.tab_menu li a{
   height: 160px;
   display: inline-block;
   
-  
-  
 }
 .cinema_info div.cinema_info_map{
   width: 38%;
-  height: 160px;
+  height: 220px;
   display: inline-block;
   vertical-align: top; 
   background-color: #cfc;
@@ -266,7 +266,7 @@ ul.jq_tab.tab_menu li a{
 @media(max-width: 1200px){
   .cinema_select select{
   width: 100%;
-  height: 200px;
+  height: 100px;
   display: block;
   border-style: none
 }
@@ -274,22 +274,35 @@ ul.jq_tab.tab_menu li a{
   margin-top: 20px;
   float: right;
 }
+.cinema_info div.cinema_info_text{
+  width: 100%;
+  height: 160px;
+  display: block;
+}
+.cinema_info div.cinema_info_map{
+  width: 100%;
+  height: 300px;
+  display: block;
+  vertical-align: top; 
+  background-color: #cfc;
+}
+
 }
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      CinemaList 극장정보 탭
+* @ 2019.07.02   源�愿묓씗      CinemaList 洹뱀옣�젙蹂� �꺆
 *
-* @author BIT 116기 2조
+* @author BIT 116湲� 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
 *
-*  Copyright (C) by bit 2조 All right reserved.
+*  Copyright (C) by bit 2議� All right reserved.
 */
 
  .tab-wrap * { 
@@ -362,16 +375,16 @@ ul.jq_tab.tab_menu li a{
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.08   김광희      @media 처리
+* @ 2019.07.08   源�愿묓씗      @media 泥섎━
 *
-* @author BIT 116기 2조
+* @author BIT 116湲� 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
 *
-*  Copyright (C) by bit 2조 All right reserved.
+*  Copyright (C) by bit 2議� All right reserved.
 */
 
 @media(max-width: 1200px){

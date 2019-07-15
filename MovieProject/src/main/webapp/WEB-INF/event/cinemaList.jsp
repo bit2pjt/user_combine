@@ -302,7 +302,7 @@ function load(id, cnt, btn) {
 		<span>CGV</span><span>서울 영화관1호</span><br>
 		<span>인천광역시 중구 운서동 3088-3 예스타워 영종 7층</span><br>
 		<a href="./www.naver.com">홈페이지 이동</a><span>02-444-4444</span><span>|</span><span>상영관 수</span><span>전체 좌석</span>
-		<p style="float: right; background-color: #333; color: #fff; width: 120px;line-height: 80px; padding: 10px; margin-top: 30px; text-align: center; vertical-align: middle;">예매정보</p>
+		<p style="float: right; background-color: #333; color: #fff; width: 120px;line-height: 80px; padding: 10px; margin-top: 120px; text-align: center; vertical-align: middle;">예매정보></p>
 	</div>
 	<div class="cinema_info_map">
 		<img src="./images/.png">지도
