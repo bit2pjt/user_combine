@@ -399,6 +399,156 @@ function load(id, cnt, btn) {
 <script src="<c:url value="/resources/js/plugins2.js" />"></script>
 <script src="<c:url value="/resources/js/custom.js" />"></script>
 
+	<script type="text/javascript">
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.08   김광희      4단 영화관 지역선택
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+
+
+		/*두번째셀렉트박스*/
+var groups = document.frm1.gd_code.options.length
+var group=new Array(groups)
+
+for (i=0; i<groups; i++){
+group[i] = new Array()
+}
+
+group[0][0] = new Option("CGV_빨강", "CGV_빨강");
+group[0][1] = new Option("CGV_노랑", "CGV_노랑");
+group[1][0] = new Option("LotteCinema_주황", "LotteCinema_주황");
+group[1][1] = new Option("LotteCinema_검정", "LotteCinema_검정");
+group[2][0] = new Option("MegaBox_파랑", "MegaBox_파랑");
+group[2][1] = new Option("MegaBox_보라", "MegaBox_보라");
+
+ 
+
+ 
+
+var temp=document.frm1.gp_color
+function redirect(x){
+ for(m=temp.options.length-1;m>0;m--) //옵션이 생성되어 있으면 일단 그놈들을 없앤다.
+ temp.options[m]=null
+ for(i=0;i<group[x].length;i++)   //gd_code에 선택되어 있는 애들의 갯수만큼 루프를 돌면서 옵션을 만든다..
+ {
+  temp.options[i]=new Option(group[x][i].text,group[x][i].value)
+ }
+ temp.options[0].selected=true
+ redirect1(0);
+}
+
+
+/*세번째셀렉트박스*/
+var secondGroups=document.frm1.gp_color.options.length
+var secondGroup=new Array() //secondGroup이라는 개체를 만들지..
+for (i=0; i<groups; i++)  { //gd_code의 옵션 갯수만큼 루프돌면서 secondGroup[0]..등을 배열로 생성.
+secondGroup[i]=new Array()
+for (j=0; j<group[i].length; j++)  { //group의 총갯수(여기서는 6개)만큼 루프를 돌면서 secondGroup[0][0]..등의 배열을 생성..
+secondGroup[i][j]=new Array()  }
+
+}
+
+
+secondGroup[0][0][0] = new Option("CGV_빨강_단면", "CGV_빨강_단면");
+secondGroup[0][0][1] = new Option("CGV_빨강_양면", "CGV_빨강_양면");
+secondGroup[0][1][0] = new Option("CGV_노랑_단면", "CGV_노랑_단면");
+secondGroup[0][1][1] = new Option("CGV_노랑_양면", "CGV_노랑_양면");
+secondGroup[1][0][0] = new Option("LotteCinema_주뢍_단면", "LotteCinema_주뢍_단면");
+secondGroup[1][0][1] = new Option("LotteCinema_주뢍_양면", "LotteCinema_주뢍_양면");
+secondGroup[1][1][0] = new Option("LotteCinema_검정_단면", "LotteCinema_검정_단면");
+secondGroup[1][1][1] = new Option("LotteCinema_검정_양면", "LotteCinema_검정_양면");
+secondGroup[2][0][0] = new Option("MegaBox_파랑_단면", "MegaBox_파랑_단면");
+secondGroup[2][0][1] = new Option("MegaBox_파랑_양면", "MegaBox_파랑_양면");
+secondGroup[2][1][0] = new Option("MegaBox_보라_단면", "MegaBox_보라_단면");
+secondGroup[2][1][1] = new Option("MegaBox_보라_양면", "MegaBox_보라_양면");
+
+ 
+
+var temp1=document.frm1.gp_face
+function redirect1(z){
+for (m=temp1.options.length-1;m>0;m--) //세번째 셀렉트박스에 옵션이 만들어져 있으면 그놈들을 없앤다.
+temp1.options[m]=null
+for (i=0;i<secondGroup[document.frm1.gd_code.options.selectedIndex][z].length;i++){
+temp1.options[i]=new Option(secondGroup[document.frm1.gd_code.options.selectedIndex][z][i].text,secondGroup[document.frm1.gd_code.options.selectedIndex][z][i].value)
+}
+temp1.options[0].selected=true
+redirect2(0)
+}
+
+/*네번째 셀렉트박스.. 제발되라.. ㅠㅠ*/
+var thirdGroups = document.frm1.gp_face.options.length
+var thirdGroup = new Array()
+for (i=0; i<groups; i++){
+thirdGroup[i] = new Array()
+//alert("i : " + i );
+
+ for (j=0; j<group[i].length; j++){
+//  alert("j : " + j );
+  thirdGroup[i][j] = new Array()
+  for (k=0; k<secondGroup[i][j].length; k++){
+//  alert("k : " + k );
+   thirdGroup[i][j][k] = new Array()
+  }
+ }
+}
+
+
+thirdGroup[0][0][0][0] = new Option("CGV_빨강_단면_100", "CGV_빨강_단면_100");
+thirdGroup[0][0][0][1] = new Option("CGV_빨강_단면_200", "CGV_빨강_단면_200");
+thirdGroup[0][0][1][0] = new Option("CGV_빨강_양면_100", "CGV_빨강_양면_100");
+thirdGroup[0][0][1][1] = new Option("CGV_빨강_양면_200", "CGV_빨강_양면_200");
+thirdGroup[0][1][0][0] = new Option("CGV_노랑_단면_100", "CGV_노랑_단면_100");
+thirdGroup[0][1][0][1] = new Option("CGV_노랑_단면_200", "CGV_노랑_단면_200");
+thirdGroup[0][1][1][0] = new Option("CGV_노랑_양면_100", "CGV_노랑_양면_100");
+thirdGroup[0][1][1][1] = new Option("CGV_노랑_양면_200", "CGV_노랑_양면_200");
+thirdGroup[1][0][0][0] = new Option("LotteCinema_주뢍_단면_100", "LotteCinema_주뢍_단면_100");
+thirdGroup[1][0][0][1] = new Option("LotteCinema_주뢍_단면_200", "LotteCinema_주뢍_단면_200");
+thirdGroup[1][0][1][0] = new Option("LotteCinema_주뢍_양면_100", "LotteCinema_주뢍_양면_100");
+thirdGroup[1][0][1][1] = new Option("LotteCinema_주뢍_양면_200", "LotteCinema_주뢍_양면_200");
+thirdGroup[1][1][0][0] = new Option("LotteCinema_검정_단면_100", "LotteCinema_검정_단면_100");
+thirdGroup[1][1][0][1] = new Option("LotteCinema_검정_단면_200", "LotteCinema_검정_단면_200");
+thirdGroup[1][1][1][0] = new Option("LotteCinema_검정_양면_100", "LotteCinema_검정_양면_100");
+thirdGroup[1][1][1][1] = new Option("LotteCinema_검정_양면_200", "LotteCinema_검정_양면_200");
+thirdGroup[2][0][0][0] = new Option("MegaBox_파랑_단면_100", "MegaBox_파랑_단면_100");
+thirdGroup[2][0][0][1] = new Option("MegaBox_파랑_단면_200", "MegaBox_파랑_단면_200");
+thirdGroup[2][0][1][0] = new Option("MegaBox_파랑_양면_100", "MegaBox_파랑_양면_100");
+thirdGroup[2][0][1][1] = new Option("MegaBox_파랑_양면_200", "MegaBox_파랑_양면_200");
+thirdGroup[2][1][0][0] = new Option("MegaBox_보라_단면_100", "MegaBox_보라_단면_100");
+thirdGroup[2][1][0][1] = new Option("MegaBox_보라_단면_200", "MegaBox_보라_단면_200");
+thirdGroup[2][1][1][0] = new Option("MegaBox_보라_양면_100", "MegaBox_보라_양면_100");
+thirdGroup[2][1][1][1] = new Option("MegaBox_보라_양면_200", "MegaBox_보라_양면_200");
+
+ 
+
+var temp2=document.frm1.gp_quantity
+function redirect2(a){
+for (m=temp2.options.length-1;m>0;m--) //네번째 셀렉트박스에 옵션이 만들어져 있으면 그놈들을 없앤다.
+temp2.options[m]=null
+for (i=0;i<thirdGroup[document.frm1.gd_code.options.selectedIndex][document.frm1.gp_color.options.selectedIndex][a].length;i++){
+temp2.options[i]=new Option(thirdGroup[document.frm1.gd_code.options.selectedIndex][document.frm1.gp_color.options.selectedIndex][a][i].text,thirdGroup[document.frm1.gd_code.options.selectedIndex][document.frm1.gp_color.options.selectedIndex][a][i].value)
+}
+temp2.options[0].selected=true
+}
+
+ 
+
+
+redirect(0);
+
+	</script>
 <!-- <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
