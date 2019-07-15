@@ -124,8 +124,8 @@
 							</dl>
 					</div> <br>
 					<div class="btn_m">
-						<input type="button" class="btn-check" value="탈퇴"> &nbsp;
-						<input type="reset" class="btn-check" value="취소">
+						<input type="submit" class="btn-check-hjs" value="탈퇴"> &nbsp;
+						<input type="reset" class="btn-check-hjs" value="취소">
 					</div>
 				</div>
 			</div>

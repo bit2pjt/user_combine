@@ -70,63 +70,68 @@
 				</div>
 				<div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
-					<div class="info_update">
-						<h1><strong>1:1 문의쓰기</strong></h1>
-					</div>
-						
-					<div>
-						<form action="one_update" method="get">
-							<ul>
-								<li class="tb_line">
-									<div class="tb_th1"> 상담구분 </div>
-									<div class="tb_td1"> 
-										<label>
-											<input type="radio" name="genre" value="fear">&nbsp;<span>영화 문의</span>&nbsp;
-											<input type="radio" name="genre" value="melo">&nbsp;<span>예매 문의</span>&nbsp;
-											<input type="radio" name="genre" value="action">&nbsp;<span>이벤트 문의</span>&nbsp;<br>
-											<input type="radio" name="genre" value="comedy">&nbsp;<span>회원정보 문의</span>
-											<input type="radio" name="genre" value="crime">&nbsp;<span>기타 문의</span>&nbsp;
+				<div class="info_update">
+					<h1><strong>1:1 상세보기</strong></h1>
+				</div>
+					
+				<div>
+					<form>
+						<ul>
+							<li class="tb_line">
+								<div class="tb_th1"> 상담구분 </div>
+								<div class="tb_td1"> 
+									<label for="">
+										<label class="fancy-radio custom-color-coral">
+											<input name="one" type="radio" checked><span><i></i><b>영화 문의</b></span>
 										</label>
-									</div>
-								</li>
-	
-								<li class="tb_line">
-									<div class="tb_th1"> 이름 </div>
-									<div class="tb_td1"> 가나다 </div>
-								</li>
-	
-								<li class="tb_line">
-									<div class="tb_th1"> 닉네임 </div>
-									<div class="tb_td1"> 비트코인 </div>
-								</li>
-	
-								<li class="tb_line">
-									<div class="tb_th1"> 제목 </div>
+										<label class="fancy-radio custom-color-coral">
+											<input  name="one" type="radio"><span><i></i><b>예매 문의</b> </span>
+										</label> 
+										<label class="fancy-radio custom-color-coral">
+											<input name="one" type="radio"><span><i></i><b>이벤트 문의</b></span>
+										</label>
+										<label class="fancy-radio custom-color-coral">
+											<input name="one" type="radio"><span><i></i><b>회원정보 문의</b></span>
+										</label>
+										<label class="fancy-radio custom-color-coral">
+											<input name="one" type="radio"><span><i></i><b>기타 문의</b></span>
+										</label>
+									</label>
+								</div>
+							</li>
+
+							<li class="tb_line">
+								<div class="tb_th1"> 닉네임 </div>
+								<div class="tb_td1"> 비트코인 </div>
+							</li>
+
+							<li class="tb_line">
+								<div class="tb_th1"> 제목 </div>
 									<div class="tb_td1"> 
 										제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다.
 									</div>
-								</li>
-		
-								<li class="tb_line">
-									<div style="display: inline-block">
-										<div class="tb_th1"> 내용 </div>
-											<div class="tb_td1">
-												내용입니다.내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
-												내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
-												내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
-												내용입니다내용입니다내용입니다내용입니다내용입니다
-											</div>
-										</div>
-								</li>
-							</ul>
+							</li>
+	
+							<li class="tb_line">
+								<div style="display: inline-block">
+									<div class="tb_th1"> 내용 </div>
+									<div class="tb_td1">
+										내용입니다.내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
+										내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
+										내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
+										내용입니다내용입니다내용입니다내용입니다내용입니다
+									</div>
+								</div>
+							</li>
+						</ul>
 							<br>
 							<div class="btn_m">
-								<input type="submit" class="btn-check" value="수정"> &nbsp;
-								<input type="reset" class="btn-check" value="취소">
+								<input type="submit" class="btn-check-hjs" value="수정"> &nbsp;
+								<input type="reset" class="btn-check-hjs" value="취소">
 							</div>
 						</form>
-						</div>
 					</div>
+				</div>
 				</div>
 			</div>
 		</div>

@@ -71,55 +71,73 @@
 				<div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="info_update">
-						<h1><strong>1:1 문의쓰기</strong></h1>
+						<h1><strong>1:1 문의수정</strong></h1>
 					</div>
-						
+							
 					<div>
 						<form action="one_list.do" method="post">
-							<ul>
-								<li class="tb_line">
-									<div class="tb_th1"> 상담구분 </div>
-									<div class="tb_td1"> 
-										<label>
-											<input type="radio" name="genre" value="fear">&nbsp;<span>영화 문의</span>&nbsp;
-											<input type="radio" name="genre" value="melo">&nbsp;<span>예매 문의</span>&nbsp;
-											<input type="radio" name="genre" value="action">&nbsp;<span>이벤트 문의</span>&nbsp;<br>
-											<input type="radio" name="genre" value="comedy">&nbsp;<span>회원정보 문의</span>
-											<input type="radio" name="genre" value="crime">&nbsp;<span>기타 문의</span>&nbsp;
-										</label>
-									</div>
-								</li>
-	
-								<li class="tb_line">
-									<div class="tb_th1"> 이름 </div>
-									<div class="tb_td1"> 가나다 </div>
-								</li>
-	
-								<li class="tb_line">
-									<div class="tb_th1"> 닉네임 </div>
-									<div class="tb_td1"> 비트코인 </div>
-								</li>
-	
-								<li class="tb_line">
-									<div class="tb_th1"> 제목 </div>
-									<div class="tb_td1"> 
-										<input type="text" size="70" value="제목입니다" placeholder="제목을 입력하세요."/>
-									</div>
-								</li>
-		
-								<li class="tb_line">
-									<div class="tb_th1"> 내용 </div>
-									<div class="tb_td1">
-										<textarea  cols="70" rows="5" style="resize: none;height: 200px" >
-											내용입니다.
-										</textarea>
-									</div>
-								</li>
-							</ul>
-							<br>
+							<table class="onetable_hjs">
+								<colgroup>
+									<col width="5%" />
+									<col width="30%"/>
+								</colgroup>
+								<tbody>
+									<tr>
+										<td class="vertical_top"> 상담구분 </td>
+										<td> 
+											<div> 
+												<label for="">
+													<label class="fancy-radio custom-color-coral">
+														<input name="one" type="radio" checked><span><i></i><b>영화 문의</b></span>
+													</label>
+													<label class="fancy-radio custom-color-coral">
+														<input  name="one" type="radio"><span><i></i><b>예매 문의</b> </span>
+													</label> 
+													<label class="fancy-radio custom-color-coral">
+														<input name="one" type="radio"><span><i></i><b>이벤트 문의</b></span>
+													</label>
+													<label class="fancy-radio custom-color-coral">
+														<input name="one" type="radio"><span><i></i><b>회원정보 문의</b></span>
+													</label>
+													<label class="fancy-radio custom-color-coral">
+														<input name="one" type="radio"><span><i></i><b>기타 문의</b></span>
+													</label>
+												</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td> 닉네임 </td>
+										<td> <div> 비트코인 </div> </td>
+									</tr>
+									<tr>
+										<td> 제목 </td>
+										<td> 
+											<div> 
+												<input type="text" size="50" value="제목입니다"/>
+											</div>
+										</td>
+									</tr>
+													
+									<tr>
+										<td> 내용 </td>
+										<td> 
+											<div>
+												<textarea  cols="1" rows="1" style="resize: none;height: 200px">
+													내용입니다. 내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+													내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+													내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+													내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+													내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+												</textarea>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 							<div class="btn_m">
-								<input type="submit" class="btn-check" value="수정"> &nbsp;
-								<input type="reset" class="btn-check" value="취소">
+								<input type="submit" class="btn-check-hjs" value="수정"> &nbsp;
+								<input type="reset" class="btn-check-hjs" value="취소">
 							</div>
 						</form>
 						</div>

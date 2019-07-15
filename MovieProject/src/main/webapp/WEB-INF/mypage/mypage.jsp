@@ -70,32 +70,33 @@
 					</div>
 				</div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
-						<div class="info">
-							<h1> <strong>마이 페이지</strong></h1>
-						</div>
-						
-						<div class="form-style-1 user-pro">
-							<div style="display:block;">
+					<div class="info">
+						<h1> <strong>마이 페이지</strong></h1>
+					</div>
+					<hr class="hr_style"/>
+					<div class="form-style-1-hjs user-pro-hjs">
+						<div style="display:block;">
+							<div class="information-hjs">
 								<div class="user-img">
-									<a href="#"><img src="resources/images/uploads/user-img.png" alt=""><br></a><br>
+									<a href="#"><img src="resources/images/uploads/user-img.png" alt="사진등록"><br></a><br>
 									<a href="#" class="redbtn1">사진 등록</a>
 									<br>
 								</div>
-							
+								
 								<div class="hjs-info" >
 									<h4> 이름: 황진석</h4> 
 									<h4> 닉네임: 비트코인</h4> 
 									<h4> 이메일: h10046245h@naver.com</h4> 
 									<h4> 선호장르: 공포/호러, 스릴러, 느와르</h4> 
 								</div>
+							</div>
 							
 							<br><br>
 							<div class="div_one">
 								<table class="tb_hjs">
-									<caption class="caption-hjs"> <h2>1:1 문의 내역</h2></caption>
-									<span class="do_span1">
-										<a href="#"> <b> 더보기 </b></a>
-									</span>
+									<caption class="caption-hjs"> 
+										<h2>1:1 문의 내역 <a href="one_list.do" class="caption_a"> 더보기 </a></h2>
+									</caption>
 									<colgroup>
 										<col width="10%" />
 										<col width="25%"/>
@@ -104,46 +105,48 @@
 									</colgroup>
 									<thead>
 										<tr>
-										<th> 구분 </th>
-										<th> 상담제목 </th>
-										<th> 작성날짜 </th>
-										<th> 답변여부 </th>
-									</tr>
+											<th class="th_border"> 구분 </th>
+											<th class="th_border"> 상담제목 </th>
+											<th class="th_border"> 작성날짜 </th>
+											<th> 답변여부 </th>
+										</tr>
 									</thead>
 									
 									<tbody>
-										<td colspan="4">  최근 목록이 없습니다.</td>	
+										<tr>
+											<td colspan="4">  최근 목록이 없습니다.</td>
+										</tr>	
 									</tbody>
 								</table>
 							</div>
 							<br><br><br>
 							<div class="div_one">
 									<table class="tb_hjs">
-										<caption class="caption-hjs"> <h2> 나의 팔로잉/팔로워 </h2></caption>
-											<span class="do_span1">
-												<a href="#"> <b> 더보기 </b></a>
-											</span>
+										<caption class="caption-hjs"> 
+											<h2> 나의 팔로잉/팔로워 <a href="#" class="caption_a"> 더보기 </a> </h2></caption>
+												
 											<colgroup>
-												<col width="10%" />
+												<col width="25%" />
 												<col width="25%"/>
-												<col width="15%"/>
-												<col width="10%"/>
 											</colgroup>
 											<thead>
 												<tr>
-												<th colspan="2"> 팔로잉 ID </th>
-												<th colspan="2"> 팔로워 ID </th>
-											</tr>
+													<th colspan="2" class="th_border"> 팔로잉 ID </th>
+													<th colspan="2"> 팔로워 ID </th>
+												</tr>
 											</thead>
 											
 											<tbody>
-												<td colspan="4">  팔로잉/팔로워가 없습니다. </td>	
+												<tr>
+													<td colspan="4">  팔로잉/팔로워가 없습니다. </td>	
+												</tr>
 											</tbody>
 									</table>
 								</div>
+							</div>
 						</div>
+						<hr class="hr_style"/>
 					</div>
-				</div>
 				</div>
 			</div>
 		</div>
