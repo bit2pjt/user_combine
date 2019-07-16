@@ -45,11 +45,11 @@
                                             </div>
                                            
                                             <div style="flex:2;"> 
-                                            <img src="<c:url value="/resources/images/왕관.jpg"/>" width="80px" height="80px">
-                                            <a href="#"><img src="<c:url value="/resources/images/하트.jpg"/>"></a>
-                                            <a href="mmlFollowList.do"><img src="<c:url value="/resources/images/팔로워.jpg"/>"></a>
-                                            <a href="#"><img src="<c:url value="/resources/images/팔로잉.jpg"/>"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="#"><img src="<c:url value="/resources/images/신고.jpg"/>"></a>
+                                            <img src="<c:url value="/resources/images/sp_image/왕관.jpg"/>" width="80px" height="80px">
+                                            <a href="#"><img src="<c:url value="/resources/images/sp_image/하트.jpg"/>"></a>
+                                            <a href="mmlFollowList.do"><img src="<c:url value="/resources/images/sp_image/팔로워.jpg"/>"></a>
+                                            <a href="#"><img src="<c:url value="/resources/images/sp_image/팔로잉.jpg"/>"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="#"><img src="<c:url value="/resources/images/sp_image/신고.jpg"/>"></a>
 
                                             </div>
                                          
@@ -69,9 +69,9 @@
 
 
                             <!-- share link -->
-                            <a href="movieInfo.html"> <img src="<c:url value="/resources/images/노트북.jpg"/>" alt="" width="185" height="284" ></a>
+                            <a href="movieInfo.html"> <img src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="" width="185" height="284" ></a>
                             
-                            <a href="movieInfo.html">  <img src="<c:url value="/resources/images/타이타닉.jpeg"/>" alt="" width="185" height="284"></a>
+                            <a href="movieInfo.html">  <img src="<c:url value="/resources/images/sp_image/타이타닉.jpeg"/>" alt="" width="185" height="284"></a>
                             
                             <div class="flex-it share-tag" style="width:1258px; float:left;">
                                 </div>
