@@ -23,7 +23,7 @@
 <%@ include file="../header.jsp"%>
 
 <br>
-<br><br><br>
+<br>
 
  <div class="flex-it share-tag" style="width:1258px; float:left;">
                                 </div>
@@ -52,7 +52,7 @@
 					<div class="sp_col-md-41">
 						<div class="card" OnClick="location.href ='mmlGet.do'"
 							style="cursor: pointer;">
-							<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header"
+							<img class="card-img" src="<c:url value="/resources/images/노트북.jpg"/>" alt="header"
 								style="width: 350px; height: 300px;" />
 							<div class="card-info">
 								<h1 class="card-title">mml_title</h1>
@@ -68,7 +68,7 @@
 					<div class="sp_col-md-41">
 						<div class="card" OnClick="location.href ='mmlGet.do'"
 							style="cursor: pointer;">
-							<img class="card-img" src="<c:url value="/resources/images/sp_image/타이타닉.jpeg"/>" alt="header"
+							<img class="card-img" src="<c:url value="/resources/images/타이타닉.jpeg"/>" alt="header"
 								style="width: 350px; height: 300px;" />
 							<div class="card-info">
 								<h1 class="card-title">mml_title</h1>
@@ -84,7 +84,7 @@
 					<div class="sp_col-md-41">
 						<div class="card" OnClick=" location.href='mmlGet.do'" 
 						style="cursor: pointer;">
-							<img class="card-img" src="<c:url value="/resources/images/sp_image/히트.jpg"/>" alt="header"
+							<img class="card-img" src="<c:url value="/resources/images/히트.jpg"/>" alt="header"
 								style="width: 350px; height: 300px;" />
 							<div class="card-info">
 								<h1 class="card-title">mml_title</h1>

@@ -24,10 +24,6 @@
 
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 
 
     <div class="buster-light" style="padding:75,600,75,600">
@@ -70,7 +66,7 @@
 
 
 
-                                            <img src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="" width="185" height="284">
+                                            <img src="<c:url value="/resources/images/노트북.jpg"/>" alt="" width="185" height="284">
 
 
 
@@ -85,7 +81,7 @@
 
                                             <a href="movieList.do"> </i>
 
-                                                <img src="<c:url value="/resources/images/sp_image/mv-item1.jpg"/>" alt="" width="185" height="284">
+                                                <img src="<c:url value="/resources/images/mv-item1.jpg"/>" alt="" width="185" height="284">
 
 
                                                 <i class="ion-android-arrow-dropright"></i>Add Movie</a>
