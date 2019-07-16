@@ -2,7 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@include file="../../header.jsp" %>
 
-<link rel="stylesheet" href="../../resources/css/ws_personal.css?ver=1">
+	<link rel="stylesheet" href="../../resources/vendor/bootstrap-markdown/bootstrap-markdown.min.css">
+	<link rel="stylesheet" href="../../resources/vendor/summernote/summernote.css">
+	
+	
+	<link rel="stylesheet" href="../../resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../resources/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../resources/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="../../resources/vendor/metisMenu/metisMenu.css">
+	
+
+
+	<link rel="stylesheet" href="../../resources/css/ws_personal.css?ver=1">
 
 <!--  
 * @Class Name : EgovSampleService.java
@@ -20,12 +31,6 @@
 *
 *  Copyright (C) by bit 2조 All right reserved.
 */-->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
- <!-- include summernote css/js-->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 
 
 <!-- 서머노트 웹에서 ... 끝-->
@@ -93,7 +98,15 @@
 		
 		<br>
 		<br>
-		<textarea name="content" id="summernote" style="border:1 solid;width:100%"></textarea>
+		<!--  <textarea name="content" id="summernote" style="border:1 solid;width:100%"></textarea>-->
+		
+		<div class="summernote">Hello there,
+						<br/>
+						<p>The toolbar can be customized and it also supports various callbacks such as <code>oninit</code>, <code>onfocus</code>, <code>onpaste</code> and many more.</p>
+						<p>Please try <b>paste some texts</b> here</p>
+						
+					</div>
+		
 		<br>
 		<div class="ws-middle-top-writer">
 				<br>
@@ -127,10 +140,20 @@
 	</div>
 	</div>
 	<!-- end of buster-white -->
-	
-	
-<script>
+<!-- footer의 jquery 스크립트가 화면에 추가된 스크립트를 계속 초기화 시킨다(더욱 아랫줄에 있기 때문에) 그러므로 섬머노트가 있는 페이지는
+	별도의 footer를 사용하도록 하자
+	쓰이는  -->
+<script src="../../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
+<script src="../../resources/vendor/metisMenu/metisMenu.js"></script>
+<script src="../../resources/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../../resources/vendor/summernote/summernote.min.js"></script>
+<script src="../../resources/vendor/markdown/markdown.js"></script>
+<script src="../../resources/vendor/to-markdown/to-markdown.js"></script>
+<script src="../../resources/vendor/bootstrap-markdown/bootstrap-markdown.js"></script>
+<script src="../../resources/vendor/common.js"></script>
+<script>
 
      //n자 남음 구현
      $(function() {
@@ -142,18 +165,24 @@
          $('.post-title').keyup();
    });
 
-     $(document).ready(function() {
-         $('#summernote').summernote({
-                 height: 500,                 // set editor height
-                 minHeight: 45,             // set minimum height of editor
-                 maxHeight: 600,             // set maximum height of editor
-                 width: 1100,
-                 minWidth : 500,
-                 maxWidth : 1100,
-                 focus: true                  // set focus to editable area after initializing summernote
-         });
-
-
+   
+     
+     $(function() {
+  		// summernote editor
+  		$('.summernote').summernote({
+  			height: 300,
+  			focus: true,
+  			onpaste: function() {
+  				alert('You have pasted something to the editor');
+  			}
+  		});
+  		 $("button").attr("aria-expanded","true");
+  	});
+     
+     
+    
+     
 </script>
-</body>
-<%@include file="../../footer.jsp" %>
+
+
+<%@include file="../../footer_bs_write.jsp" %>
