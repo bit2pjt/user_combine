@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 30.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.member.MemberDAO">
+	
+	  <resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
+      <result property="id" column="id"/>
+      <result property="m_nickname" column="m_nickname"/>
+      <result property="m_image" column="m_image"/>
+      <result property="m_email" column="m_email"/>
+      <result property="m_eagree" column="m_eagree"/>
+      <result property="m_sagree" column="m_sagree"/>
+      <result property="m_name" column="m_name"/>
+      <result property="m_phone" column="m_phone"/>
+      <result property="m_cert" column="m_cert"/>
+      <result property="m_password" column="m_password"/>
+      <result property="m_regdate" column="m_regdate"/>
+      <result property="m_update_date" column="m_update_date"/>
+      <result property="m_deleteyn" column="m_deleteyn"/>
+      <result property="m_following" column="m_following"/>
+      <result property="m_follower" column="m_follower"/>
+      <result property="m_level" column="m_level"/>
+      <result property="m_favorite" column="m_favorite"/>
+      <result property="m_blacklist" column="m_blacklist"/>
+   </resultMap>
+   
+   <!-- 로그인시 회원 체크 -->
+	<select id="userCheck" parameterType="String" resultMap="MemberResultMap">
+		select *
+		from member
+		where m_email = #{email}
+	</select>
+
+</mapper>
