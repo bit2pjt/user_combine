@@ -87,110 +87,100 @@
 						</ul>
 					</div>
 					<div class="btn_t">
-						<button type="button" class="btn-check"> 1:1 문의쓰기 </button>
+						<button type="button" class="btn-check-hjs"> 1:1 문의쓰기 </button>
 					</div>
-						
+					
 					<div class="static-table-list">
 						<div class="card mb-3">
-							<div class="card-body" style="width:100%;">
-								<div class="table-responsive">
-									<table class="one_table">
-										<thead>
-									   		<tr>
-												<th style="width:10%;">상담구분</th>
-												<th style="width:45%;">상담제목</th>
-												<th style="width:15%;">작성일</th>
-												<th style="width:10%;">답변유무</th>
-									  		</tr>
-									  	</thead>
-									 <!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-									  <tbody>
-									   <tr>
-										 <td><strong>공지</strong></td>
-										 <td><strong>비속어 사용 금지</strong></td>
-										 <td><strong>2011/04/25</strong></td>
-										 <td><strong>N</strong></td>
-									   </tr>
-									   <tr>
-										 <td><strong>공지</strong></td>
-										 <td><strong>정치글은 글삭제 대상입니다.</strong></td>
-										 <td><strong>2011/04/25</strong></td>
-										 <td><strong>N</strong></td>
-									   </tr>
-									   <tr>
-										 <td>결말해석</td>
-										 <td>고질라 쿠키영상 무슨뜻인가요?</td>
-										 <td>2011/04/25</td>
-										 <td>N</td>
-									   </tr>
-									   <tr>
-										 <td>잡담</td>
-										 <td>Edinburgh</td>
-										 <td>2011/04/25</td>
-										 <td>N</td>
-									   </tr>
-									   <tr>
-										 <td>토론</td>
-										 <td>Tokyo</td>
-										 <td>2011/04/25</td>
-										 <td>N</td>
-									   </tr>
-									   <tr>
-										 <td>잡담해석</td>
-										 <td>New York</td>
-										 <td>2011/04/25</td>
-										 <td>N</td>
-									   </tr>
-									   <tr>
-										 <td>잡담</td>
-										 <td>San Francisco</td>
-										 <td>2011/04/25</td>
-										 <td>N</td>
-									   </tr>
-									   <tr>
-										 <td>유머</td>
-										 <td>Tokyo</td>
-										 <td>2011/04/25</td>
-										 <td>N</td>
-									   </tr>
-									   <tr>
-										 <td>토론</td>
-										 <td>San Francisco</td>
-										 <td>2011/04/25</td>
-										 <td>N</td>
-									   </tr>
-									   <tr>
-										 <td>결말해석</td>
-										 <td>Edinburgh</td>
-										 <td>2011/04/25</td>
-										 <td>Y</td>
-									   </tr>
-									   <tr>
-										 <td>결말해석</td>
-										 <td>London</td>
-										 <td>2011/04/25</td>
-										 <td>Y</td>
-									   </tr>
-									   <tr>
-										 <td>유머</td>
-										 <td>Edinburgh</td>
-										 <td>2011/04/25</td>
-										 <td>Y</td>
-									   </tr>
-									  </tbody>
-									</table>
-							   </div>
-							 </div>
-							 
-							</div>
+						 <div class="card-body">
+							<table class="one_table">
+							  <thead>
+							   <tr>
+								 <th style="width:10%;" class="th_border">구분</th>
+								 <th style="width:30%;" class="th_border">상담제목</th>
+								 <th style="width:20%;" class="th_border">작성일</th>
+								 <th style="width:10%;">답변유무</th>
+							   </tr>
+							  </thead>
+							 <!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
+							  <tbody>
+							   <tr>
+								 <td>결말해석</td>
+								 <td><a href="#">고질라 쿠키영상 무슨뜻인가요?</a></td>
+								 <td>2011/04/25</td>
+								 <td>N</td>
+							   </tr>
+							   <tr>
+								 <td>잡담</td>
+								 <td><a href="#">Edinburgh</a></td>
+								 <td>2011/04/25</td>
+								 <td>N</td>
+							   </tr>
+							   <tr>
+								 <td>토론</td>
+								 <td> <a href="#"> Tokyo </a></td>
+								 <td>2011/04/25</td>
+								 <td>N</td>
+							   </tr>
+							   <tr>
+								 <td>잡담해석</td>
+								 <td>New York</td>
+								 <td>2011/04/25</td>
+								 <td>N</td>
+							   </tr>
+							   <tr>
+								 <td>잡담</td>
+								 <td>San Francisco</td>
+								 <td>2011/04/25</td>
+								 <td>N</td>
+							   </tr>
+							   <tr>
+								 <td>유머</td>
+								 <td>Tokyo</td>
+								 <td>2011/04/25</td>
+								 <td>N</td>
+							   </tr>
+							   <tr>
+								 <td>토론</td>
+								 <td>San Francisco</td>
+								 <td>2011/04/25</td>
+								 <td>N</td>
+							   </tr>
+							   <tr>
+								 <td>결말해석</td>
+								 <td>Edinburgh</td>
+								 <td>2011/04/25</td>
+								 <td>Y</td>
+							   </tr>
+							   <tr>
+								 <td>결말해석</td>
+								 <td>London</td>
+								 <td>2011/04/25</td>
+								 <td>Y</td>
+							   </tr>
+							   <tr>
+								 <td>유머</td>
+								 <td>Edinburgh</td>
+								 <td>2011/04/25</td>
+								 <td>Y</td>
+							   </tr>
+							  </tbody>
+							</table>
+
 							<ul class="pagination">
-							<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-						</ul>
+								<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">...</a></li>
+								<li><a href="#">21</a></li>
+								<li><a href="#">22</a></li>
+								<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+							</ul>
+						   </div>
+						 </div>
+						 
 						</div>
 				</div>
 			</div>

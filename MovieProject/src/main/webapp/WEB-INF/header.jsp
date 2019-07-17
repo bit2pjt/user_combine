@@ -47,19 +47,16 @@
     <!-- CSS files -->
    	<link rel="stylesheet" href="<c:url value="/resources/css/plugins.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/header_style.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/css/ws_personal.css" />">
 	
 	<link rel="stylesheet" href="<c:url value="/resources/css/hm_css.css" />">
 		<link rel="stylesheet" href="<c:url value="/resources/css/modifystyle.css"/>">
 	<!-- yj : css 추가 -->
 	<link rel="stylesheet" href="<c:url value="resources/css/modifyplugins.css" />">
-<script src="https://kit.fontawesome.com/bb8498b585.js"></script>
+
 </head>
 
 
 <body>
-
     <!--preloading-->
     <div id="preloader">
         <img class="logo" src="resources/images/logo1.png" alt="" width="119" height="58">
@@ -81,18 +78,18 @@
         <div class="login-content">
             <a href="#" class="close">x</a>
             <h3>Login</h3>
-            <form method="post" action="login.php">
+            <form action="Login.do" method="post" name="joinForm">
                 <!-- action 변경 필요 -->
                 <div class="row">
                     <label for="email">
-                        <input type="text" name="email" id="email" placeholder="이메일" required="required"
+                        <input type="text" name="m_email" id="m_email" placeholder="이메일을 입력하세요" required="required"
                             autocapitalize="off" />
                     </label>
                 </div>
 
                 <div class="row">
                     <label for="password">
-                        <input type="password" name="password" id="password" placeholder="비밀번호" required="required" />
+                        <input type="password" name="m_password" id="m_password" placeholder="비밀번호를 입력하세요" required="required" />
                     </label>
                 </div>
                 <div class="row">
@@ -125,7 +122,7 @@
             <h3>아이디 찾기</h3>
             <h6> 등록된 휴대폰 번호로 찾기</h6>
             <p> 가입 당시 입력한 휴대전화 번호를 통해 아이디를 찾을 수 있습니다.</p>
-            <form method="post" action="id_find.php">
+            <form method="post" class="findIdClass">
                 <!-- login.php 액션 변경 -->
 
                 <div class="row">
@@ -133,7 +130,7 @@
                         <!-- username 라벨 이름 변경 -->
                         이름
                         <!-- 라벨 추가 -->
-                        <input type="text" name="username" id="username" placeholder="이름" required="required"
+                        <input type="text" name="m_name" id="id_username" placeholder="이름" required="required"
                             autocapitalize="off" /> <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
@@ -143,16 +140,16 @@
                         <!-- password 라벨 이름 변경 -->
                         휴대전화</br>
                         <!-- 라벨 추가 -->
-                        <input type="text" name="phone-1" placeholder="010" Srequired="required" /> -
-                        <input type="text" name="phone-2" placeholder="" Srequired="required" /> -
-                        <input type="text" name="phone-3" placeholder="" Srequired="required" />
+                        <input type="text" name="m_phone1" maxlength="3" placeholder="" required="required" /> -
+                        <input type="text" name="m_phone2" maxlength="4" placeholder="" required="required" /> -
+                        <input type="text" name="m_phone3" maxlength="4" placeholder="" required="required" />
                         <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
 
                 <div class="row" id="hm_logtext">
                     <!-- <button type="submit">확인</button>  버튼 이름 변경 -->
-                    <button class="idokLink" type="submit">확인</button>
+                    <button class="idokLink" type="button">확인</button>
                     <a class="btn pwfindLink" href="">비밀번호 찾기</a> <!-- 하단 링크 변경 -->
                 </div>
             </form>
@@ -169,12 +166,16 @@
         <div class="login-content" style="text-align: center">
             <!-- login-content 클래스 변경 X -->
             <a href="#" class="close">x</a>
-            <h6> 입력하신 정보와 일치하는 아이디는</h6>
-            <h6> 아래와 같습니다.</h6>
+            <!--  
+            <h6 class="h6one"> 입력하신 정보와 일치하는 아이디는 <br>아래와 같습니다.</h6>
+			<h6 class="h6two"style="display:none"> 입력하신 정보와 일치하는 <br>아이디가 없습니다.</h6>
+			-->
             <!-- 이메일 정보 추가 -->
-            <p>bit0***@gmail.com</p>
+            <p> 
+            	<span> </span>
+            </p>
             <div class="row">
-                <button class="close" type="submit" style="display: inline-block;">확인</button>
+                <button class="close" type="button" style="display: inline-block;">확인</button>
             </div>
         </div>
     </div>
@@ -191,14 +192,14 @@
             <h3>비밀번호 찾기</h3>
             <h6> 등록된 휴대폰 번호로 찾기</h6>
             <p> 가입 당시 입력한 휴대전화 번호를 통해 인증 후 새비밀번호를 등록해주세요.</p>
-            <form method="post" action="pw_find.php">
+            <form method="post" class="findPwClass">
                 <!-- login.php 액션 변경 -->
                 <div class="row">
                     <label for="email">
                         <!-- username 라벨 이름 변경 -->
                         이메일
                         <!-- 라벨 추가 -->
-                        <input type="text" name="email" id="email" placeholder="이메일" required="required"
+                        <input type="text" name="m_email" id="pw_email" placeholder="이메일" required="required"
                             autocapitalize="off" /> <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
@@ -208,7 +209,7 @@
                         <!-- username 라벨 이름 변경 -->
                         이름
                         <!-- 라벨 추가 -->
-                        <input type="text" name="username" id="username" placeholder="이름" required="required"
+                        <input type="text" name="m_name" id="pw_username" placeholder="이름" required="required"
                             autocapitalize="off" /> <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
@@ -218,16 +219,17 @@
                         <!-- password 라벨 이름 변경 -->
                         휴대전화</br>
                         <!-- 라벨 추가 -->
-                        <input type="text" name="phone-1" placeholder="010" Srequired="required" /> -
-                        <input type="text" name="phone-2" placeholder="" Srequired="required" /> -
-                        <input type="text" name="phone-3" placeholder="" Srequired="required" />
+                       <!-- 라벨 추가 -->
+                       <input type="text" name="m_phone1" maxlength="3" placeholder="" required="required" /> -
+                       <input type="text" name="m_phone2" maxlength="4" placeholder="" required="required" /> -
+                       <input type="text" name="m_phone3" maxlength="4" placeholder="" required="required" />
                         <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
 
                 <div class="row" id="hm_logtext">
                     <!-- <button type="submit">확인</button>  버튼 이름 변경 -->
-                    <button class="pwokLink" type="submit">확인</button>
+                    <button class="pwokLink" type="button">확인</button>
                     <a class="btn idfindLink" href="">아이디 찾기</a> <!-- 하단 링크 변경 -->
                 </div>
             </form>
@@ -257,8 +259,10 @@
                     신규 비밀번호 입력 </br>
                     <!-- 라벨 추가 -->
                     <input type="password" name="password" id="password" placeholder="" required="required"
-                        autocapitalize="off" /> <!-- name, id, placeholder 변경-->
+                        autocapitalize="off" onchange="checkPassword(this.value)"/> <!-- name, id, placeholder 변경-->
+                	  <span> </span>
                 </label>
+              
             </div>
 
             <div class="row">
@@ -267,11 +271,15 @@
                     비밀번호 확인 </br>
                     <!-- 라벨 추가 -->
                     <input type="password" name="password2" id="password2" placeholder="" required="required"
-                        autocapitalize="off" /> <!-- name, id, placeholder 변경-->
+                        autocapitalize="off" onchange="checkPasswordConfirm(this.value)"/> <!-- name, id, placeholder 변경-->
+                	 <span> </span>
                 </label>
+            <div class="alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+			<div class="alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
             </div>
+            
             <div class="row">
-                <button class="" type="submit">비밀번호 변경</button>
+                <button class="pwcfLink" type="button">비밀번호 변경</button>
             </div>
         </div>
     </div>
@@ -285,20 +293,20 @@
         <div class="login-content">
             <a href="#" class="close">x</a>
             <h3>sign up</h3>
-            <form method="post" action="signup.php">
+            <form action="MemberJoin.do" method="post" >
 
                 <div class="row">
                     <label for="email-2">
                         이메일 :</br>
-                        <input type="text" name="email" id="email-2" placeholder="이메일을 입력하세요" required="required" />
-                        <button id="overch">중복확인</button>
+                        <input type="text" name="m_email" id="email-2" placeholder="이메일을 입력하세요" required="required" />
+                        <button id="overch" onclick="openConfirmEmail(this.form)">중복확인</button>
                     </label>
                 </div>
 
                 <div class="row">
                     <label for="username-2">
                         이름 :
-                        <input type="text" name="username" id="username-2" placeholder="이름을 입력하세요"
+                        <input type="text" name="m_name" id="username-2" placeholder="이름을 입력하세요"
                             required="required" />
                     </label>
                 </div>
@@ -306,7 +314,7 @@
                 <div class="row">
                     <label for="nickname-2">
                         닉네임 :</br>
-                        <input type="text" name="nickname" id="nickname-2" placeholder="닉네임을 입력하세요"
+                        <input type="text" name="m_nickname" id="nickname-2" placeholder="닉네임을 입력하세요"
                             required="required" />
                         <button id="overch">중복확인</button>
                     </label>
@@ -315,24 +323,24 @@
                 <div class="row">
                     <label for="password-2">
                         비밀번호:
-                        <input type="password" name="password" id="password-2" placeholder="8-20자 이내 영문자, 숫자의 조합"
+                        <input type="password" name="m_password" id="password-2" placeholder="8-20자 이내 영문자, 숫자의 조합"
                             required="required" />
                     </label>
                 </div>
                 <div class="row">
                     <label for="repassword-2">
                         비밀번호 확인 :
-                        <input type="password" name="password" id="repassword-2" placeholder="8-20자 이내 영문자, 숫자의 조합"
-                            Srequired="required" />
+                        <input type="password" name="m_password1" id="repassword-2" placeholder="8-20자 이내 영문자, 숫자의 조합"
+                            required="required" />
                     </label>
                 </div>
 
                 <div class="row phone">
                     <label for="repassword-2">
                         휴대전화 : </br>
-                        <input type="text" name="phone-1" placeholder="" Srequired="required" /> -
-                        <input type="text" name="phone-2" placeholder="" Srequired="required" /> -
-                        <input type="text" name="phone-3" placeholder="" Srequired="required" />
+                        <input type="text" name="m_phone1" placeholder="" required="required" /> -
+                        <input type="text" name="m_phone2" placeholder="" required="required" /> -
+                        <input type="text" name="m_phone3" placeholder="" required="required" />
                     </label>
                 </div>
 
@@ -340,34 +348,34 @@
                     <label for="genre-2">
                         선호장르 : </br>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="공포/호러" type="radio" checked><span><i></i>공포/호러</span>
+                            <input name="m_favorite" value="공포/호러" type="radio" checked><span><i></i>공포/호러</span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="멜로/로맨스" type="radio"><span><i></i>멜로/로맨스 </span>
+                            <input name="m_favorite" value="멜로/로맨스" type="radio"><span><i></i>멜로/로맨스 </span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="액션" type="radio"><span><i></i>액션</span>
+                            <input name="m_favorite" value="액션" type="radio"><span><i></i>액션</span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="코미디" type="radio"><span><i></i>코미디</span>
+                            <input name="m_favorite" value="코미디" type="radio"><span><i></i>코미디</span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="범죄" type="radio"><span><i></i>범죄</span>
+                            <input name="m_favorite" value="범죄" type="radio"><span><i></i>범죄</span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="스릴러" type="radio"><span><i></i>스릴러</span>
+                            <input name="m_favorite" value="스릴러" type="radio"><span><i></i>스릴러</span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="느와르" type="radio"><span><i></i>느와르</span>
+                            <input name="m_favorite" value="느와르" type="radio"><span><i></i>느와르</span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="가족" type="radio"><span><i></i>가족</span>
+                            <input name="m_favorite" value="가족" type="radio"><span><i></i>가족</span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="애니메이션" type="radio"><span><i></i>애니메이션</span>
+                            <input name="m_favorite" value="애니메이션" type="radio"><span><i></i>애니메이션</span>
                         </label>
                         <label class="fancy-radio custom-color-coral">
-                            <input name="gender4" value="코미디" type="radio"><span><i></i>코미디</span>
+                            <input name="m_favorite" value="코미디" type="radio"><span><i></i>코미디</span>
                         </label>
                     </label>
                 </div>
@@ -376,27 +384,25 @@
                     <label for="terms-2">
                         약관동의 : </br>
                         <label class="fancy-checkbox custom-bgcolor-coral">
-                            <input type="checkbox" checked><span>[필수]이용약관</span>
+                            <input type="checkbox" ><span>[필수]이용약관</span>
                         </label>
                         <a class="termsLink">약관보기</a>
                         <!-- <a href="약관.html"
                             onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">약관보기</a> -->
                         <label class="fancy-checkbox custom-bgcolor-coral">
-                            <input type="checkbox" checked><span>[필수]개인정보 수집 및 이용</span></label>
+                            <input type="checkbox" ><span>[필수]개인정보 수집 및 이용</span></label>
                         <a href="약관.html"
                             onclick="window.open(this.href, '_blank', 'width=500px,height=500px,toolbars=no,scrollbars=no'); return false;">약관보기</a>
                         <label class="fancy-checkbox custom-bgcolor-coral">
-                            <input type="checkbox" checked><span>이메일 수신 동의</span></label>
+                            <input type="checkbox" ><span>이메일 수신 동의</span></label>
                         <label class="fancy-checkbox custom-bgcolor-coral">
-                            <input type="checkbox" checked><span>SMS 수신 동의</span></label>
+                            <input type="checkbox" ><span>SMS 수신 동의</span></label>
                     </label>
                     <hr>
                     <label class="fancy-checkbox custom-bgcolor-coral" id="checkall">
-                        <input type="checkbox" checked=""><span>전체동의</span></label>
-
+                        <input type="checkbox" ><span>전체동의</span></label>
                 </div>
-
-
+                
                 <div class="row">
                     <button class="signupokLink" type="submit">가입하기</button>
                 </div>
@@ -704,17 +710,24 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav flex-child-menu menu-right">
+                    
+                    <c:choose>
+                    	<c:when test="${!empty email }">     	
                         <li class="dropdown first">
                             <a class="btn btn-default dropdown-toggle lv1" href="mmlList.do">
                                 나영리
                             </a>
                         </li>
                         <li><a href="mypage.do">마이페이지</a></li>
-                        <li class="loginLink"><a href="#">로그인</a></li>
-                        <li class="btn signupLink"><a href="#">회원가입</a></li>
+                        <li><a href="Logout.do">로그아웃</a></li>
                         <!--  hm |   <li><a href="member_join.html">회원가입</a></li> -->
-
-
+						</c:when>
+						
+						<c:otherwise>
+							<li class="loginLink"><a href="#">로그인</a></li>
+                        	<li class="btn signupLink"><a href="#">회원가입</a></li>
+						</c:otherwise>
+					</c:choose>
                     </ul>
 
                 </div>
