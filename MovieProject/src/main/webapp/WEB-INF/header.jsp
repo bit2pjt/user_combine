@@ -259,8 +259,10 @@
                     신규 비밀번호 입력 </br>
                     <!-- 라벨 추가 -->
                     <input type="password" name="password" id="password" placeholder="" required="required"
-                        autocapitalize="off" /> <!-- name, id, placeholder 변경-->
+                        autocapitalize="off" onchange="checkPassword(this.value)"/> <!-- name, id, placeholder 변경-->
+                	  <span> </span>
                 </label>
+              
             </div>
 
             <div class="row">
@@ -269,9 +271,13 @@
                     비밀번호 확인 </br>
                     <!-- 라벨 추가 -->
                     <input type="password" name="password2" id="password2" placeholder="" required="required"
-                        autocapitalize="off" /> <!-- name, id, placeholder 변경-->
+                        autocapitalize="off" onchange="checkPasswordConfirm(this.value)"/> <!-- name, id, placeholder 변경-->
+                	 <span> </span>
                 </label>
+            <div class="alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+			<div class="alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
             </div>
+            
             <div class="row">
                 <button class="pwcfLink" type="button">비밀번호 변경</button>
             </div>

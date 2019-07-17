@@ -74,10 +74,8 @@ public class MemberServiceImpl implements MemberService {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		MemberVO memberVO = memberDAO.findPw(vo);
 		if(memberVO == null) {
-			System.out.println("null입니다.");
 			return null;
 		}else {
-			System.out.println("null이 아닙니다.");
 			return memberVO;
 		}
 	}

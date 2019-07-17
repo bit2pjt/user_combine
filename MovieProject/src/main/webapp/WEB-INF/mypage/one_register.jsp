@@ -124,8 +124,8 @@
 										<td> 내용 </td>
 										<td> 
 											<div>
-												<textarea  cols="1" rows="1" style="resize: none;height: 200px">
-												</textarea>
+												<textarea  cols="1" rows="1" style="resize: none;height: 200px"></textarea>
+												
 											</div>
 										</td>
 									</tr>

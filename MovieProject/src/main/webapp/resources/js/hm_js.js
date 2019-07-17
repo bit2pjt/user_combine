@@ -76,6 +76,8 @@ var idcheckct = $("#id-check-content");
 var nikcheckct = $("#nik-check-content");
 // 약관 수정중
 var termsct = $("#terms-content");
+//
+
 
 //pop up for signup ok 추가
 signupokLink.on('click', function (event) {
@@ -223,39 +225,61 @@ pwokLink.on('click', function (event) { // link 변경
 	   });
 });
 
-function checkPassword(id,password){
-	if(!/^[a-zA-Z0-9]{10,15}$/.test(password)){
-		alert('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
+
+$("#alert-success").hide();
+$("#alert-danger").hide();
+
+function checkPassword(password){
+	if(!/^[a-zA-Z0-9]{8,20}$/.test(password)){
+		$("#pw-ok-content > div > div:nth-child(5) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+		$("#pw-ok-content > div > div:nth-child(5) > label > span").css("color", "red");
+		$("#alert-danger").hide();
+		$("#alert-success").hide();
 		return false;
 	}
 
-	var checkNumber = password.search(/[0-9]/g);
-	var checkEnglish = password.search(/[a-z]/ig);
+	$("#pw-ok-content > div > div:nth-child(5) > label > span").text("");
+	
+	if(pw1 == pw2) {
+		$("#alert-success").show();
+		$("#alert-danger").hide();
+	}else {
+		$("#alert-danger").show();
+		$("#alert-success").hide();
+	}
+	
+	return true;
+}
 
-	if(checkNumber <0 || checkEnglish <0){
-		alert("숫자와 영문자를 혼용하여야 합니다.");
+function checkPasswordConfirm(password){
+	var pw1 = $("#pw-ok-content #password").val();
+	var pw2 = $("#pw-ok-content #password2").val();
+	
+	if(!/^[a-zA-Z0-9]{8,20}$/.test(password)){
+		$("#pw-ok-content > div > div:nth-child(6) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+		$("#pw-ok-content > div > div:nth-child(6) > label > span").css("color", "red");
+		$("#alert-danger").hide();
+		$("#alert-success").hide();
 		return false;
 	}
 
-	if(/(\w)\1\1\1/.test(password)){
-		alert('444같은 문자를 4번 이상 사용하실 수 없습니다.');
-		return false;
+	$("#pw-ok-content > div > div:nth-child(6) > label > span").text("");
+	
+	alert("1: " + pw1);
+	alert("2: " + pw2);
+	
+	if(pw1 == pw2) {
+		$("#alert-success").show();
+		$("#alert-danger").hide();
+	}else {
+		$("#alert-danger").show();
+		$("#alert-success").hide();
 	}
-
-	if(password.search(id) > -1){
-		alert("비밀번호에 아이디가 포함되었습니다.");
-		return false;
-	}
-
 	return true;
 }
 
 pwcfLink.on('click', function (event) { // link 변경
 //	event.preventDefault();
-	var pw1 = $("#pw-ok-content #password").val();
-	var pw2 = $("#pw-ok-content #password2").val();
-	alert("pw1: " + pw1);
-	alert("pw2: " + pw2);
 	pwfindct.parents(overlay).addClass("openform"); // ct 변경
 	$(document).on('click', function (e) {
 		var target = $(e.target);
