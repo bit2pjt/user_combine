@@ -37,14 +37,15 @@
                         <div class="social-link" style="width:1258px; display:flex;">
                        
                             <div style="flex:2;">
-                                <img src="<c:url value="/resources/images/sp_image/개사진.jfif"/>" width="80px" height="80px">
-                            <h1 style="display:inline">nickname</h1>
+                                <img src="<c:url value="/resources/images/sp_image/dog.jfif"/>"  class="profile_img">
+                           &nbsp;&nbsp; <img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h2 style="display:inline">nickname</h2>
                             </div>
                            
                             <div style="flex:2;"> 
-                            <img src="<c:url value="/resources/images/sp_image/왕관.jpg"/>" width="80px" height="80px">
-                            <h1 style="display:inline">팔로워 </h1> <h4 style="display:inline; color: lightcoral" >140  </h4>
-                            <h1 style="display:inline">팔로잉 </h1> <h4 style="display:inline; color: lightcoral">27  </h4>
+                          
+                            <h4 style="display:inline; color: lightcoral" >140 </h4>&nbsp;&nbsp;&nbsp;&nbsp;<h4 style="display:inline">Followers</h4> 
+                          
+							&nbsp;&nbsp;&nbsp;&nbsp; <h4 style="display:inline; color: lightcoral">27 &nbsp;&nbsp;&nbsp;  </h4><h4 style="display:inline">Followings</h4>
                             
                             </div>
                             
@@ -57,78 +58,92 @@
                         </div>
                     
 				
-				<div class="row">
-					
-					<div class="sp_col-md-4">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" style="width: 350px; height: 300px;" />
-									<div class="card-info">
-									<h1 class="card-title">mml_title</h1>
-									<div class="card-icon">6</div>
-									<p class="card-author">ninkname</p>
-									<p class="card-stats">6 <img src="https://placehold.it/20" alt="hi" /> 6 <img src="https://placehold.it/20" alt="hi" /></p>
-									</div>
-								  </div>
-					</div>
-					<div class="sp_col-md-4">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/타이타닉.jpeg"/>" alt="header"style="width: 350px; height: 300px;"/>
-									<div class="card-info">
-									<h1 class="card-title">mml_title</h1>
-									<div class="card-icon">6</div>
-									<p class="card-author">ninkname</p>
-									<p class="card-stats">6 <img src="https://placehold.it/20" alt="hi" /> 6 <img src="https://placehold.it/20" alt="hi" /></p>
-									</div>
-								  </div>
-					</div>
-					<div class="sp_col-md-4">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/히트.jpg"/>" alt="header" style="width: 350px; height: 300px;"/>
-									<div class="card-info">
-									<h1 class="card-title">mml_title</h1>
-									<div class="card-icon">6</div>
-									<p class="card-author">ninkname</p>
-									<p class="card-stats">6 <img src="https://placehold.it/20" alt="hi" /> 6 <img src="https://placehold.it/20" alt="hi" /></p>
-									</div>
-								  </div>
-					</div>
 
-				</div>
-				<div class="row">
-					
-						<div class="sp_col-md-4">
-								<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-										<img class="card-img" src="https://placehold.it/350x300" alt="header" />
-										<div class="card-info">
-										<h1 class="card-title">mml_title</h1>
-										<div class="card-icon">6</div>
-										<p class="card-author">ninkname</p>
-										<p class="card-stats">6 <img src="https://placehold.it/20" alt="hi" /> 6 <img src="https://placehold.it/20" alt="hi" /></p>
-										</div>
-									  </div>
-						</div>
-						<div class="sp_col-md-4">
-								<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-										<img class="card-img" src="https://placehold.it/350x300" alt="header" />
-										<div class="card-info">
-										<h1 class="card-title">mml_title</h1>
-										<div class="card-icon">6</div>
-										<p class="card-author">ninkname</p>
-										<p class="card-stats">6 <img src="https://placehold.it/20" alt="hi" /> 6 <img src="https://placehold.it/20" alt="hi" /></p>
-										</div>
-									  </div>
-						</div>
-						<div class="sp_col-md-4">
-								<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-										<img class="card-img" src="https://placehold.it/350x300" alt="header" />
-										<div class="card-info">
-										<h1 class="card-title">mml_title</h1>
-										<div class="card-icon">6</div>
-										<p class="card-author">ninkname</p>
-										<p class="card-stats">6 <img src="https://placehold.it/20" alt="hi" /> 6 <img src="https://placehold.it/20" alt="hi" /></p>
-										</div>
-									  </div>
-						</div>
+
+
+
+				<div class="row1">
+	<div class="sp_col-md-41">
+							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
+									<div class="card-info">
+										<div class="card-ho"></div>
+											<div class="ho-info" style="float:left;">									
+												<h1 style="text-align: left;">mml_title</h1>
+												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
+												</div><br>
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
+									
+									</div>
+									
+									</div>
+								  </div>
+					</div>
+						<div class="sp_col-md-41">
+							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
+									<div class="card-info">
+										<div class="card-ho"></div>
+											<div class="ho-info" style="float:left;">									
+												<h1 style="text-align: left;">mml_title</h1>
+												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
+												</div><br>
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
+									
+									</div>
+									
+									</div>
+								  </div>
+					</div>
+						<div class="sp_col-md-41">
+							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
+									<div class="card-info">
+										<div class="card-ho"></div>
+											<div class="ho-info" style="float:left;">									
+												<h1 style="text-align: left;">mml_title</h1>
+												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
+												</div><br>
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
+									
+									</div>
+									
+									</div>
+								  </div>
+					</div>
+					<div class="sp_col-md-41">
+							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
+									<div class="card-info">
+										<div class="card-ho"></div>
+											<div class="ho-info" style="float:left;">									
+												<h1 style="text-align: left;">mml_title</h1>
+												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
+												</div><br>
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
+									
+									</div>
+									
+									</div>
+								  </div>
+					</div>
+					<div class="sp_col-md-41">
+							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
+									<div class="card-info">
+										<div class="card-ho"></div>
+											<div class="ho-info" style="float:left;">									
+												<h1 style="text-align: left;">mml_title</h1>
+												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
+												</div><br>
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
+									
+									</div>
+									
+									</div>
+								  </div>
+					</div>
+						
 					</div>
 					
                     <center>

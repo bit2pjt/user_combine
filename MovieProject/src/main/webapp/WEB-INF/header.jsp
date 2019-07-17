@@ -48,12 +48,13 @@
    	<link rel="stylesheet" href="<c:url value="/resources/css/plugins.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/header_style.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
+	<link rel="stylesheet" href="<c:url value="/resources/css/ws_personal.css" />">
 	
 	<link rel="stylesheet" href="<c:url value="/resources/css/hm_css.css" />">
 		<link rel="stylesheet" href="<c:url value="/resources/css/modifystyle.css"/>">
 	<!-- yj : css 추가 -->
 	<link rel="stylesheet" href="<c:url value="resources/css/modifyplugins.css" />">
-
+<script src="https://kit.fontawesome.com/bb8498b585.js"></script>
 </head>
 
 
