@@ -1,12 +1,13 @@
 
 /**
-* @Class Name :  modifystyle.css
-* @Description : modifystyle css
+* @Class Name :  yj_style.css
+* @Description : yj_style css
 * @Modification Information
 * @
 * @  수정일      수정자              수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.2     한유진      최초생성
+* @ 2019.07.15     한유진     7/12 회의결과 수정
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -239,18 +240,67 @@ yj : start | movieDetail 페이지 관련
 .movie-single2 {
   margin-top: -490px;
 }
+.movie-info .movie-title-top1{
+  display: none;
+  width:auto;
+}
 
+.movie-info .movie-title-top1 h2, .movie-info .movie-title-top1 h3{
+  display: unset;
+  color: white;
+}
+.movie-info .movie-title-top2{
+  display:unset;
+}
+.page-single{
+  padding:75px 0;
+}
+.movie-info{
+  background: #ffffff5e;
+  border-radius: 3%;
+}
+.movie-info h1, .movie-info h3, .movie-info table{
+  color:black;
+}
 
+  .movie-img img{
+    max-width: 261px;
+    max-height: 401px;
+  }
+  
 @media (max-width: 991px) {
   .movie-img{
     text-align: center;
-    max-width:261px;
   }
-  .buster-light .tabs ul{
+ 
+  .buster-light .movie-tabs .tabs .tab-links{
     background-color: rgba(0, 0, 0, 0.75);
-    max-width: 420px;
     margin: auto;
+    min-width: 410px;
   }
+  .movie-info .movie-title-top1{
+    display: unset;
+    margin-bottom: 5px;
+    background-color:#ffffff00; 
+    text-align: left;
+  }
+  .movie-info .movie-title-top2{
+  display:none;
+  }
+  .page-single{
+    padding:30px 0;
+  }
+  .movie-info{
+    background: #ffffff00;
+    border-radius: 3%;
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 470px) {
+  .page-single{
+    padding:0px 0;
+  }
+ 
 }
 .buster-light .tabs ul.tabs-mv li.active a, .buster-light .tabs ul.tabs-mv li:hover a {
   color: #FF6F61;
@@ -262,11 +312,17 @@ yj : start | movieDetail 페이지 관련
   font-weight: bold;
   text-transform: uppercase;
 }
+
 .story-content{
   margin-left: 20px;
   text-align: center;
 }
 .movie-single .movie-single-ct .movie-rate .rate p span {
+  color: #000000;
+  font-size: 15px;
+  font-weight: 400;
+}
+.total-rate p span {
   color: #000000;
   font-size: 15px;
   font-weight: 400;
@@ -283,8 +339,18 @@ yj : start | movieDetail 페이지 관련
   border-top: none;
   border-bottom: none;
   margin-bottom: 0px;
-  max-width:370px;
+  max-width:310px;
 }
+
+.movie-single .movie-single-ct h1{
+  font-family: 'Dosis', sans-serif;
+  color: #000000;
+  font-weight: bold;
+  text-transform: none;
+  font-size: 27px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+} 
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
@@ -331,15 +397,6 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 
 
-.movie-info{
-  background: #ffffff5e;
-  border-radius: 3%;
-}
-.movie-info h1, .movie-info h3, .movie-info table{
-  color:black;
-}
-
-
 
 /*
 yj : start | tab - review
@@ -353,6 +410,16 @@ yj : start | tab - review
   }
   .movie-single .movie-single-ct .movie-rate .rate {
     margin-bottom: 10px;
+  }
+  .tabs ul.tabs-mv li {
+    margin-bottom: 0px;
+  }
+  .tabs ul.tab-links, .tabs ul.tab-links-2, .tabs ul.tab-links-3 {
+    display:flex;
+    width:95%;
+  }
+  .tabs ul.tabs-mv {
+    padding: 20px 0;
   }
 }
 .movie-rate{
@@ -379,12 +446,14 @@ yj : start | tab - review
 .review-write-input textarea{
   width:570px;
   height: 80px;
+  resize: none;
 }
 .review-write-button{
   display:inline;
   vertical-align: middle;
 }
 @media (max-width: 669px) {
+
   .review-write{
     display: inline-block;
     margin-left: auto;
@@ -402,11 +471,15 @@ yj : start | tab - review
   .review-write-input textarea{
     width: 100%;
     margin-bottom: 20px;
+    resize: none;
   }
   .review-write-button{
     display:inline;
     margin-left: auto;
     margin-right: auto;
+  }
+  .review-write-button .redbtn{
+    width:100%;
   }
 }
 
@@ -456,12 +529,11 @@ yj : start | tab - review
 .user-like{
   width: 150px;
   text-align: center;
-  
-
 }
 .user-like button{
   width: 80px;
   margin-top: 7px;
+  background-color: #ffffff;
 }
 .thumbs-up{
   color: blue;
@@ -518,19 +590,18 @@ yj : start | tab - review
 /*3사 평점*/
 .total-movie-rate{
   display: inline-block;
-  border: 1px solid #696969c7;
-  width:300px;
+  /* border: 1px solid #dcdcdcc7; */
+  border-radius: 10px;
   margin: 10px;
 }
-.total-movie-rate h1{
+.total-movie-rate-span{
   font-family: 'Dosis', sans-serif;
-  font-size: 18px;
   color: #000000;
   font-weight: bold;
   text-transform: none;
-  font-size: 24px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  font-size: 17px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 } 
 .total-movie-rate .total-rate{
   padding-right: 10px;
@@ -539,6 +610,7 @@ yj : start | tab - review
 }
 .total-movie-rate .total-rate-star{
   padding-left: 10px;
+  padding-right: 10px;
   color: #f5b50c;
   margin-bottom: 10px;
 }
