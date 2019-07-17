@@ -505,8 +505,9 @@ $(function(){
 		//sticky for menu
 		if(scrollPos > 300){
 			header.addClass('sticky');
-		}else{
+	/*	}else{
 			header.removeClass('sticky');
+		} */
 		}
 	});		
 	//back to top js
