@@ -288,7 +288,6 @@ function load(id, cnt, btn) {
                     <li><a href="javascript:;" class="tit">MegaBox</a></li>
                     <br>
 
-                    
                 </ul>
                 
 
