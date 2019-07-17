@@ -11,5 +11,7 @@ public interface MemberService {
 	
 	public void deleteMember(String email);
 	
-	public MemberVO findEmail(String email);
+	public String findEmail(MemberVO vo);
+	
+	public MemberVO findPw(MemberVO vo);
 }

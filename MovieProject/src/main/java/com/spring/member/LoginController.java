@@ -11,17 +11,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 /**
 * @Class Name : LoginController.java
-* @Description : login°ü·Ã ÄÁÆ®·Ñ·¯ 
+* @Description : loginê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬ 
 * @Modification Information
 * @
-* @  ¼öÁ¤ÀÏ     		     ¼öÁ¤ÀÚ            		¼öÁ¤³»¿ë
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.15         È²Áø¼®      		ÃÖÃÊ»ı¼º
-* @author bit 2Á¶
+* @  	ìˆ˜ì •ì¼               	 ìˆ˜ì •ì                  	ìˆ˜ì •ë‚´ìš©
+* @ -----------   ---------   -------------------------------
+* @ 2019. 07. 15         í™©ì§„ì„            		ìµœì´ˆìƒì„±
+* @ 2019. 07. 16 	í™©ì§„ì„				ë¡œê·¸ì¸/ë¡œê·¸ì•„ì›ƒ, ì´ë©”ì¼ ì°¾ê¸° ì»¨íŠ¸ë¡¤ëŸ¬ ì¶”ê°€
+* @ 2019. 07. 17 	í™©ì§„ì„				
+* @author bit 2ì¡°
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -31,60 +35,124 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
-	
-	@Autowired
-	private MemberService memberService;
-	
-	/**
-	 * ·Î±×ÀÎ
-	 * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
-	 * @param request
-	 * @param response
-	 * @param model
-	 * @return "index"
-	 * @throws Exception 
-	 */
-	@RequestMapping(value="/Login.do")
-	public String MemberLogin(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		String email= vo.getM_email();
-		String pw = vo.getM_password();
-		HttpSession session = request.getSession();
-		
-		int check = memberService.userCheck(email, pw);
-		if(check == 1){
-			session.setAttribute("email", email);
-			return "index";
-		}else if( check == -1) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù. È®ÀÎÇØÁÖ¼¼¿ä!');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-			return "index";
-		}else {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('¾ÆÀÌµğ È¤Àº ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù. È®ÀÎÇØÁÖ¼¼¿ä!');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-			return "index";
-		}
-	}
-	
-	@RequestMapping(value="/Logout.do")
-	public String MemberLogOut(HttpServletRequest request, HttpServletResponse response, Model model)  {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		return "index";
-	}
-	
-	@RequestMapping(value="/MeberEmailCheck.do")
-	public String MemberEmailCheck() {
-		
-		return "";
-	}
+   
+   @Autowired
+   private MemberService memberService;
+   
+   /**
+    * ë¡œê·¸ì¸
+    * @param vo - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * @param request
+    * @param response
+    * @param model
+    * @return "index"
+    * @throws Exception 
+    */
+   @RequestMapping(value="/Login.do")
+   public String MemberLogin(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+      String email= vo.getM_email();
+      String pw = vo.getM_password();
+      HttpSession session = request.getSession();
+      
+      int check = memberService.userCheck(email, pw);
+      if(check == 1){
+         session.setAttribute("email", email);
+         return "index";
+      }else if( check == -1) {
+         response.setContentType("text/html; charset=utf-8");
+         PrintWriter out = response.getWriter();
+         out.println("<script>");
+         out.println("alert('ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. í™•ì¸í•´ì£¼ì„¸ìš”!');");
+         out.println("history.go(-1);");
+         out.println("</script>");
+         out.close();
+         return "index";
+      }else {
+         response.setContentType("text/html; charset=utf-8");
+         PrintWriter out = response.getWriter();
+         out.println("<script>");
+         out.println("alert('ì•„ì´ë”” í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. í™•ì¸í•´ì£¼ì„¸ìš”!');");
+         out.println("history.go(-1);");
+         out.println("</script>");
+         out.close();
+         return "index";
+      }
+   }
+   
+   /**
+    * ë¡œê·¸ì•„ì›ƒ
+    * @param request
+    * @param response
+    * @param model
+    * @return "index"
+    */
+   @RequestMapping(value="/Logout.do")
+   public String MemberLogOut(HttpServletRequest request, HttpServletResponse response, Model model)  {
+      HttpSession session = request.getSession();
+      session.invalidate();
+      return "index";
+   }
+   
+   /**
+    * ì´ë©”ì¼ ì°¾ê¸°
+    * @param vo - ì•„ì´ë”” ì°¾ê¸° ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * @param request
+    * @param response
+    * @param model
+    * @return String
+    */
+   @RequestMapping(value="/id_find.do", method=RequestMethod.GET, produces="application/json")
+   public @ResponseBody String id_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
+	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
+	   vo.setM_phone(phone);
+	   String email = memberService.findEmail(vo);
+	   if(email == "fail")
+		  return "fail";
+	   else
+		  return email;
+   }
+   
+   /**
+    * ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+    * @param vo - ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * @param request
+    * @param response
+    * @param model
+    * @return String
+    */
+   @RequestMapping(value="/pw_find.do", method=RequestMethod.GET, produces="application/json")
+   public @ResponseBody String pw_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
+	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
+	   vo.setM_phone(phone);
+	   MemberVO memberVO = memberService.findPw(vo);
+	   
+	   if(memberVO != null) {
+		   return "success";
+	   }else {
+		   return "fail";
+	   }
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 }

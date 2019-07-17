@@ -17,10 +17,10 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	/**
-	 * ·Î±×ÀÎ ½Ã È¸¿ø Ã¼Å©
-	 * @param email - ÀÔ·ÂÇÑ email
-	 * @param pw - ÀÔ·ÂÇÑ password
-	 * @return È¸¿ø ¿©ºÎ °á°ú
+	 * ë¡œê·¸ì¸ ì‹œ íšŒì› ì²´í¬
+	 * @param email - ì…ë ¥í•œ email
+	 * @param pw - ì…ë ¥í•œ password
+	 * @return íšŒì› ì—¬ë¶€ ê²°ê³¼
 	 */
 	@Override
 	public int userCheck(String email, String pw) {
@@ -28,14 +28,13 @@ public class MemberServiceImpl implements MemberService {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		MemberVO vo = memberDAO.userCheck(email);
 		
-		// È¸¿øÀÎ °æ¿ì
 		if(vo != null) {
 			if(pw.equals(vo.getM_password()))
-				x = 1; // ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ µÑ´Ù ¸Â´Â°æ¿ì
+				x = 1; // ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ë‘˜ë‹¤ ë§ëŠ”ê²½ìš°
 			else
-				x = -1; // ¾ÆÀÌµğ´Â ¸ÂÁö¸¸ ºñ¹Ğ¹øÈ£°¡ ´Ù¸¥°æ¿ì
+				x = -1; // ì•„ì´ë””ëŠ” ë§ì§€ë§Œ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¥¸ê²½ìš°
 		}else 
-			x = 0; // È¸¿øÀÌ ¾Æ´Ñ °æ¿ì
+			x = 0; // íšŒì›ì´ ì•„ë‹Œ ê²½ìš°
 		return x;
 	}
 
@@ -58,9 +57,29 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO findEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public String findEmail(MemberVO vo) {
+		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
+		String email = memberDAO.findEmail(vo);
+		
+		if(email != null) { 
+			return email;
+		}
+		else
+			return  "fail";
+					
+	}
+
+	@Override
+	public MemberVO findPw(MemberVO vo) {
+		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
+		MemberVO memberVO = memberDAO.findPw(vo);
+		if(memberVO == null) {
+			System.out.println("nullì…ë‹ˆë‹¤.");
+			return null;
+		}else {
+			System.out.println("nullì´ ì•„ë‹™ë‹ˆë‹¤.");
+			return memberVO;
+		}
 	}
 
 }

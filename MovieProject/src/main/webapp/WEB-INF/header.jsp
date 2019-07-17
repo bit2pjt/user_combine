@@ -57,25 +57,6 @@
 
 
 <body>
-<script type="text/javascript">
-
-var idcheck = $(".m_email").val();
-
-function openConfirmEmail(joinForm){			
-	var email = joinForm.m_email.value;
-	alert(email);
-	var url="./MemberEmailCheck.do?m_email="+joinForm.m_email.value;
-	/*
-	if(email.length == 0){
-		alert("아이디를 입력하세요.");
-		joinForm.m_email.focus();
-		return false;
-	}
-	*/
-	open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,"+
-						 "scrollbars=no,resizable=no,width=400,height=200");
-}
-</script>
     <!--preloading-->
     <div id="preloader">
         <img class="logo" src="resources/images/logo1.png" alt="" width="119" height="58">
@@ -97,7 +78,7 @@ function openConfirmEmail(joinForm){
         <div class="login-content">
             <a href="#" class="close">x</a>
             <h3>Login</h3>
-            <form action="login.do" method="post" name="joinForm">
+            <form action="Login.do" method="post" name="joinForm">
                 <!-- action 변경 필요 -->
                 <div class="row">
                     <label for="email">
@@ -141,7 +122,7 @@ function openConfirmEmail(joinForm){
             <h3>아이디 찾기</h3>
             <h6> 등록된 휴대폰 번호로 찾기</h6>
             <p> 가입 당시 입력한 휴대전화 번호를 통해 아이디를 찾을 수 있습니다.</p>
-            <form method="post" action="id_find.do">
+            <form method="post" class="findIdClass">
                 <!-- login.php 액션 변경 -->
 
                 <div class="row">
@@ -149,7 +130,7 @@ function openConfirmEmail(joinForm){
                         <!-- username 라벨 이름 변경 -->
                         이름
                         <!-- 라벨 추가 -->
-                        <input type="text" name="m_name" id="username" placeholder="이름" required="required"
+                        <input type="text" name="m_name" id="id_username" placeholder="이름" required="required"
                             autocapitalize="off" /> <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
@@ -159,16 +140,16 @@ function openConfirmEmail(joinForm){
                         <!-- password 라벨 이름 변경 -->
                         휴대전화</br>
                         <!-- 라벨 추가 -->
-                        <input type="text" name="m_phone1" placeholder="010" Srequired="required" /> -
-                        <input type="text" name="m_phone2" placeholder="" Srequired="required" /> -
-                        <input type="text" name="m_phone3" placeholder="" Srequired="required" />
+                        <input type="text" name="m_phone1" maxlength="3" placeholder="" required="required" /> -
+                        <input type="text" name="m_phone2" maxlength="4" placeholder="" required="required" /> -
+                        <input type="text" name="m_phone3" maxlength="4" placeholder="" required="required" />
                         <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
 
                 <div class="row" id="hm_logtext">
                     <!-- <button type="submit">확인</button>  버튼 이름 변경 -->
-                    <button class="idokLink" type="submit">확인</button>
+                    <button class="idokLink" type="button">확인</button>
                     <a class="btn pwfindLink" href="">비밀번호 찾기</a> <!-- 하단 링크 변경 -->
                 </div>
             </form>
@@ -185,12 +166,16 @@ function openConfirmEmail(joinForm){
         <div class="login-content" style="text-align: center">
             <!-- login-content 클래스 변경 X -->
             <a href="#" class="close">x</a>
-            <h6> 입력하신 정보와 일치하는 아이디는</h6>
-            <h6> 아래와 같습니다.</h6>
+            <!--  
+            <h6 class="h6one"> 입력하신 정보와 일치하는 아이디는 <br>아래와 같습니다.</h6>
+			<h6 class="h6two"style="display:none"> 입력하신 정보와 일치하는 <br>아이디가 없습니다.</h6>
+			-->
             <!-- 이메일 정보 추가 -->
-            <p>bit0***@gmail.com</p>
+            <p> 
+            	<span> </span>
+            </p>
             <div class="row">
-                <button class="close" type="submit" style="display: inline-block;">확인</button>
+                <button class="close" type="button" style="display: inline-block;">확인</button>
             </div>
         </div>
     </div>
@@ -207,14 +192,14 @@ function openConfirmEmail(joinForm){
             <h3>비밀번호 찾기</h3>
             <h6> 등록된 휴대폰 번호로 찾기</h6>
             <p> 가입 당시 입력한 휴대전화 번호를 통해 인증 후 새비밀번호를 등록해주세요.</p>
-            <form method="post" action="pw_find.php">
+            <form method="post" class="findPwClass">
                 <!-- login.php 액션 변경 -->
                 <div class="row">
                     <label for="email">
                         <!-- username 라벨 이름 변경 -->
                         이메일
                         <!-- 라벨 추가 -->
-                        <input type="text" name="email" id="email" placeholder="이메일" required="required"
+                        <input type="text" name="m_email" id="pw_email" placeholder="이메일" required="required"
                             autocapitalize="off" /> <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
@@ -224,7 +209,7 @@ function openConfirmEmail(joinForm){
                         <!-- username 라벨 이름 변경 -->
                         이름
                         <!-- 라벨 추가 -->
-                        <input type="text" name="username" id="username" placeholder="이름" required="required"
+                        <input type="text" name="m_name" id="pw_username" placeholder="이름" required="required"
                             autocapitalize="off" /> <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
@@ -234,16 +219,17 @@ function openConfirmEmail(joinForm){
                         <!-- password 라벨 이름 변경 -->
                         휴대전화</br>
                         <!-- 라벨 추가 -->
-                        <input type="text" name="phone-1" placeholder="010" Srequired="required" /> -
-                        <input type="text" name="phone-2" placeholder="" Srequired="required" /> -
-                        <input type="text" name="phone-3" placeholder="" Srequired="required" />
+                       <!-- 라벨 추가 -->
+                       <input type="text" name="m_phone1" maxlength="3" placeholder="" required="required" /> -
+                       <input type="text" name="m_phone2" maxlength="4" placeholder="" required="required" /> -
+                       <input type="text" name="m_phone3" maxlength="4" placeholder="" required="required" />
                         <!-- name, id, placeholder 변경-->
                     </label>
                 </div>
 
                 <div class="row" id="hm_logtext">
                     <!-- <button type="submit">확인</button>  버튼 이름 변경 -->
-                    <button class="pwokLink" type="submit">확인</button>
+                    <button class="pwokLink" type="button">확인</button>
                     <a class="btn idfindLink" href="">아이디 찾기</a> <!-- 하단 링크 변경 -->
                 </div>
             </form>
@@ -287,7 +273,7 @@ function openConfirmEmail(joinForm){
                 </label>
             </div>
             <div class="row">
-                <button class="" type="submit">비밀번호 변경</button>
+                <button class="pwcfLink" type="button">비밀번호 변경</button>
             </div>
         </div>
     </div>
@@ -727,7 +713,7 @@ function openConfirmEmail(joinForm){
                             </a>
                         </li>
                         <li><a href="mypage.do">마이페이지</a></li>
-                        <li><a href="logout.do">로그아웃</a></li>
+                        <li><a href="Logout.do">로그아웃</a></li>
                         <!--  hm |   <li><a href="member_join.html">회원가입</a></li> -->
 						</c:when>
 						

@@ -32,5 +32,18 @@
 		from member
 		where m_email = #{email}
 	</select>
+	
+	<select id="findEmail" parameterType="com.spring.member.MemberVO" resultType="String">
+		select m_email
+		from member
+		where m_name = #{m_name, jdbcType=VARCHAR} and m_phone = #{m_phone, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="findPw" parameterType="com.spring.member.MemberVO" resultMap="MemberResultMap">
+		select *
+		from member
+		where m_email = #{m_email, jdbcType=VARCHAR} and m_name = #{m_name, jdbcType=VARCHAR} and m_phone = #{m_phone, jdbcType=VARCHAR}
+		
+	</select>
 
 </mapper>

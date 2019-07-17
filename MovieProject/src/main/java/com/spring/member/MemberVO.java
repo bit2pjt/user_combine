@@ -13,7 +13,7 @@ public class MemberVO {
 	private String m_eagree;
 	private String m_sagree;
 	private String m_name;
-	private int m_phone;
+	private String m_phone;
 	private String m_cert;
 	private String m_password;
 	private Date m_regdate;
