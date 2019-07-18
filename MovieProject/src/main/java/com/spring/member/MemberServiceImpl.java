@@ -4,10 +4,19 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.member.MemberVO.cert;
+
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+
 @Service("memberService")
+@AllArgsConstructor
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Setter(onMethod_ = {@Autowired})
+	private MemberDAO memberDAOglobal;
 	
 	@Override
 	public int insertMember(MemberVO vo) {
@@ -17,10 +26,10 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	/**
-	 * 로그인 시 회원 체크
-	 * @param email - 입력한 email
-	 * @param pw - 입력한 password
-	 * @return 회원 여부 결과
+	 * 濡쒓렇�씤 �떆 �쉶�썝 泥댄겕
+	 * @param email - �엯�젰�븳 email
+	 * @param pw - �엯�젰�븳 password
+	 * @return �쉶�썝 �뿬遺� 寃곌낵
 	 */
 	@Override
 	public int userCheck(String email, String pw) {
@@ -30,11 +39,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		if(vo != null) {
 			if(pw.equals(vo.getM_password()))
-				x = 1; // 아이디/비밀번호 둘다 맞는경우
+				x = 1; // �븘�씠�뵒/鍮꾨�踰덊샇 �몮�떎 留욌뒗寃쎌슦
 			else
-				x = -1; // 아이디는 맞지만 비밀번호가 다른경우
+				x = -1; // �븘�씠�뵒�뒗 留욎�留� 鍮꾨�踰덊샇媛� �떎瑜멸꼍�슦
 		}else 
-			x = 0; // 회원이 아닌 경우
+			x = 0; // �쉶�썝�씠 �븘�땶 寃쎌슦
 		return x;
 	}
 
@@ -79,5 +88,24 @@ public class MemberServiceImpl implements MemberService {
 			return memberVO;
 		}
 	}
+
+
+	@Override
+	public void memberJoin(MemberVO vo) {
+		vo.setM_image("");
+		vo.setM_cert(cert.N);
+		vo.setM_deleteyn("N");
+		vo.setM_following(0);
+		vo.setM_follower(0);
+		vo.setM_level("Bronze");
+		vo.setM_blacklist("g");
+		
+		
+		memberDAOglobal.memberJoin(vo);
+		}
+	
+	
+	
+	
 
 }

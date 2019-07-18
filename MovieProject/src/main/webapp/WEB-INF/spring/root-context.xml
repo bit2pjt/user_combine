@@ -3,16 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
-		<property name="username" value="c##blockbuster"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1522:orcl"></property>
+		<property name="username" value="blockbuster"></property>
 		<property name="password" value="1234"></property>
 	</bean>
 	
@@ -25,4 +27,10 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
+	<bean id="memberSerivceImpl" class="com.spring.member.MemberServiceImpl"/>
+	
+	
+	
+	<mybatis-spring:scan base-package="com.spring.member"/>
+	<context:component-scan base-package="com.spirng.member"/>
 </beans>

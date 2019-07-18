@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,15 +18,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
 * @Class Name : LoginController.java
-* @Description : login관련 컨트롤러 
+* @Description : login愿��젴 而⑦듃濡ㅻ윭 
 * @Modification Information
 * @
-* @  	수정일               	 수정자                  	수정내용
+* @  	�닔�젙�씪               	 �닔�젙�옄                  	�닔�젙�궡�슜
 * @ -----------   ---------   -------------------------------
-* @ 2019. 07. 15         황진석            		최초생성
-* @ 2019. 07. 16 	황진석				로그인/로그아웃, 이메일 찾기 컨트롤러 추가
-* @ 2019. 07. 17 	황진석				
-* @author bit 2조
+* @ 2019. 07. 15         �솴吏꾩꽍            		理쒖큹�깮�꽦
+* @ 2019. 07. 16 	�솴吏꾩꽍				濡쒓렇�씤/濡쒓렇�븘�썐, �씠硫붿씪 李얘린 而⑦듃濡ㅻ윭 異붽�
+* @ 2019. 07. 17 	�솴吏꾩꽍				
+* @author bit 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -40,8 +41,8 @@ public class LoginController {
    private MemberService memberService;
    
    /**
-    * 로그인
-    * @param vo - 로그인시 입력한 정보가 담긴 MemberVO
+    * 濡쒓렇�씤
+    * @param vo - 濡쒓렇�씤�떆 �엯�젰�븳 �젙蹂닿� �떞湲� MemberVO
     * @param request
     * @param response
     * @param model
@@ -62,7 +63,7 @@ public class LoginController {
          response.setContentType("text/html; charset=utf-8");
          PrintWriter out = response.getWriter();
          out.println("<script>");
-         out.println("alert('비밀번호가 다릅니다. 확인해주세요!');");
+         out.println("alert('鍮꾨�踰덊샇媛� �떎由낅땲�떎. �솗�씤�빐二쇱꽭�슂!');");
          out.println("history.go(-1);");
          out.println("</script>");
          out.close();
@@ -71,7 +72,7 @@ public class LoginController {
          response.setContentType("text/html; charset=utf-8");
          PrintWriter out = response.getWriter();
          out.println("<script>");
-         out.println("alert('아이디 혹은 비밀번호가 다릅니다. 확인해주세요!');");
+         out.println("alert('�븘�씠�뵒 �샊�� 鍮꾨�踰덊샇媛� �떎由낅땲�떎. �솗�씤�빐二쇱꽭�슂!');");
          out.println("history.go(-1);");
          out.println("</script>");
          out.close();
@@ -80,7 +81,7 @@ public class LoginController {
    }
    
    /**
-    * 로그아웃
+    * 濡쒓렇�븘�썐
     * @param request
     * @param response
     * @param model
@@ -94,8 +95,8 @@ public class LoginController {
    }
    
    /**
-    * 이메일 찾기
-    * @param vo - 아이디 찾기 시 입력한 정보가 담긴 MemberVO
+    * �씠硫붿씪 李얘린
+    * @param vo - �븘�씠�뵒 李얘린 �떆 �엯�젰�븳 �젙蹂닿� �떞湲� MemberVO
     * @param request
     * @param response
     * @param model
@@ -113,8 +114,8 @@ public class LoginController {
    }
    
    /**
-    * 비밀번호 찾기
-    * @param vo - 비밀번호 찾기 시 입력한 정보가 담긴 MemberVO
+    * 鍮꾨�踰덊샇 李얘린
+    * @param vo - 鍮꾨�踰덊샇 李얘린 �떆 �엯�젰�븳 �젙蹂닿� �떞湲� MemberVO
     * @param request
     * @param response
     * @param model
@@ -131,8 +132,15 @@ public class LoginController {
 	   }else {
 		   return "fail";
 	   }
+	}
+   @PostMapping("/memberJoin.do") 
+   String memberJoin(MemberVO vo, HttpServletRequest request, HttpServletResponse response) {
+	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
+	   vo.setM_phone(phone);
+	   memberService.memberJoin(vo);
+	   	   
+	   return "index";
    }
-   
    
    
    
