@@ -14,4 +14,6 @@ public interface MemberService {
 	public String findEmail(MemberVO vo);
 	
 	public MemberVO findPw(MemberVO vo);
+	
+	public void memberJoin(MemberVO vo);
 }

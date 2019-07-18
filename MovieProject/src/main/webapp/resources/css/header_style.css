@@ -1,3 +1,21 @@
+/**
+* @Class Name : hm_css.css
+* @Description : memeber, index css 추가 사항
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.03   박현민       최초생성
+* @ 2019.07.15   박현민 	index 리스트 수정
+*
+* @author bit 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by Bit All right reserved.
+*/
+
 /* ---------------- TABLE OF CONTENT ----------------------
 	-----------------------------------------------------------
 	-----------------------------------------------------------
@@ -2018,7 +2036,7 @@ tbody.collapse.in {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #555555;
+  color: white;
   background-color: #06121e;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
@@ -4804,7 +4822,8 @@ ul {
   }
 }
 .tabs ul.tabs-mv li {
-  margin-right: 50px;
+ /* margin-right: 50px; */
+	margin: auto;
 }
 @media (max-width: 991px) {
   .tabs ul.tabs-mv li {
@@ -7047,12 +7066,14 @@ p.ceb-single {
   background-color: #00b9ef;
 }
 .slider {
-  background: url('../images/uploads/slider-bg.jpg') no-repeat;
+/*  background: url('../images/uploads/slider-bg.jpg') no-repeat; */
   background-position: center;
+  background-color: white;
   text-align: center;
   background-size: cover;
   position: relative;
-  padding-top: 200px;
+/*  padding-top: 200px; */
+  padding-top: 100px;
   padding-bottom: 50px;
   display: -webkit-flex;
   display: -moz-box;
@@ -8143,12 +8164,13 @@ header#headerv3-light {
   }
 }
 footer {
-  background: url('../images/uploads/ft-bg.jpg') no-repeat;
+  /* background: url('../images/uploads/ft-bg.jpg') no-repeat; */
+  background-color: #cccccc;
   background-position: center;
   background-size: cover;
 }
 footer .flex-parent-ft {
-  padding: 80px 0 60px 0;
+  padding: 10px 0 10px 0;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
@@ -8289,3 +8311,6 @@ footer.full-width-ft .ft-copyright {
   font-weight: 700;
 }
 
+
+
+  

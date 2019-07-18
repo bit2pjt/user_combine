@@ -655,7 +655,7 @@
     <!-- ======================================================================================================================== -->
 
     <!-- BEGIN | Header -->
-    <header class="ht-header">
+    <header class="ht-header sticky">
         <div class="container">
             <nav class="navbar navbar-default navbar-custom">
                 <!-- Brand and toggle get grouped for better mobile display -->

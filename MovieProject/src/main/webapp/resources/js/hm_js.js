@@ -80,29 +80,31 @@ var termsct = $("#terms-content");
 
 
 //pop up for signup ok 추가
-signupokLink.on('click', function (event) {
-	event.preventDefault();
-	sginupokct.parents(overlay).addClass("openform");
-	$(document).on('click', function (e) {
-		var target = $(e.target);
-		if ($(target).hasClass("overlay")) {
-			$(target).find(sginupokct).each(function () {
-				$(this).removeClass("openform");
-			});
-			setTimeout(function () {
-				$(target).removeClass("openform");
-			}, 350);
-		}
-	});
-});
+//signupokLink.on('click', function (event) {
+//	event.preventDefault();
+//	sginupokct.parents(overlay).addClass("openform");
+//	$(document).on('click', function (e) {
+//		var target = $(e.target);
+//		if ($(target).hasClass("overlay")) {
+//			$(target).find(sginupokct).each(function () {
+//				$(this).removeClass("openform");
+//			});
+//			setTimeout(function () {
+//				$(target).removeClass("openform");
+//			}, 350);
+//		}
+//	});
+//});
 
 //pop up for 추가
 
 //pop up for id-find-content 추가
 idfindLink.on('click', function (event) { // link 변경
 	event.preventDefault();
+	
 	idfindct.parents(overlay).addClass("openform"); // ct 변경
 	$(document).on('click', function (e) {
+		event.stopPropagation();
 		var target = $(e.target);
 		if ($(target).hasClass("overlay")) {
 			$(target).find(idfindct).each(function () { // ct 변경
