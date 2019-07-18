@@ -1,3 +1,4 @@
+
 package com.spring.movie;
 
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class BoardFreeController {
 	
-	// 1. ´Ü¼øÇÑ È­¸éÀÇ ¹İÈ¯À» ´ã´çÇÏ´Â void È£Ãâ
+	// 1. ë‹¨ìˆœí•œ í™”ë©´ì˜ ë°˜í™˜ì„ ë‹´ë‹¹í•˜ëŠ” void í˜¸ì¶œ
 	@GetMapping("boardFreeList.do")
 	public void getListPage() {}
 	@GetMapping("boardFreeGet.do")

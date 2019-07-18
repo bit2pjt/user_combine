@@ -1,3 +1,7 @@
+.information-hjs {
+  margin-top:30px;
+  margin-left:20px;
+}
 .user-information-hjs {
   border: 3px solid #0f2133;
   margin-right: 30px;
@@ -35,7 +39,7 @@
 .user-information-hjs ul li {
   margin-bottom: 15px;
 }
-/** ¼öÁ¤ **/
+/** ï¿½ï¿½ï¿½ï¿½ **/
 .user-information-hjs.info ul li{
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
@@ -78,14 +82,16 @@
 .buster-light .user-information-hjs ul li.active a {
   color: #dd003f;
 }
+
 .card-body {
   display:inline-block;
-  margin-top:10px;
+  margin-top:20px;
 }
 
 .etc {
   margin-top: 5px;
   font-size:10px;
+  margin-left: 20px;
   color:gray;
 }
 .inpbx1 {
@@ -134,7 +140,9 @@
   border-left: 1px solid gray;
   width:70%;
 }
-
+.onetable_hjs .vertical_top {
+  vertical-align: middle;
+}
 .tb_td1 {
   font-size:16px;
   font-weight: bold;
@@ -179,6 +187,15 @@
   display: inline-block;
   background-color: #FF6F61;
   border-color: #FF6F61;
+  color:white;
+  padding:5px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.btn-check-hjs{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
   color:white;
   padding:5px;
   padding-left:10px;
@@ -230,6 +247,12 @@
   padding-right:21px;
   padding-left:20px;
 }
+.small_tab .list1{
+  font-weight: bold;
+  display: inline-block;
+  padding-right:21px;
+  padding-left:20px;
+}
 .div_one {
   display:block; 
   width:100%; 
@@ -244,6 +267,7 @@
   float:right; vertical-align: middle;
 }
 .info_update {
+  margin-top: 20px;
   width:100%;
 }
 
@@ -378,6 +402,11 @@
 }
 .one_table th {
   text-align:center;
+  background-color: black;
+  color:white;
+}
+.one_table td, a {
+  color:black;
 }
 
 .div_one th,td {
@@ -388,19 +417,22 @@
   margin-left:5%;
 }
 .caption-hjs {
-  text-align:center; 
-  color:rgb(68, 67, 67); 
+  color:black;
   margin-bottom:20px;
 }
+.caption_a {
+  font-size: 12px;
+  float:right;
+}
 .tb_hjs {
-  width:90%;
+  width:100%;
+  margin-bottom:30px;
 }
 .hjs-info {
   display: inline-block; 
   margin-left:5%;
 }
-.user-img {
-  margin-left:30%;
+.information-hjs .user-img {
   display:inline-block;
 }
 @media (max-width: 767px) {
@@ -433,6 +465,10 @@
   border-left: none;
   border-right: none;
 }
+.onetable_hjs {
+  border-left: none;
+  border-right: none;
+}
 
 .person_info {
   margin-top:20px;
@@ -452,10 +488,20 @@
   text-align: center;
   font-weight: bold;
 }
+.onetable_hjs td:nth-child(odd) {
+  text-align: center;
+  font-weight: bold;
+}
 
 .tbinfo_hjs td:nth-child(even) {
   text-align: left;
   border-right:none;
+}
+.onetable_hjs td:nth-child(even) {
+  text-align: left;
+  border-right:none;
+  font-weight: bold;
+  padding:10px;
 }
 
 .td-content {
@@ -467,7 +513,151 @@
   width: 25%;
   display: inline-block;
 }
+
 .td-content label{
   margin-bottom:5px;
 }
+.user-pro-hjs h4 {
+  font-size: 14px;
+  color:  black;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
 
+.tb_hjs th {
+  background-color: black;
+  color: white;
+}
+.tb_hjs .th_border{
+  border-right-color: gray;
+}
+.one_table .th_border {
+  border-right-color: gray;
+}
+
+@media (max-width: 664px) {
+  .col-md-9 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+.fancy-radio {
+  margin-right: 10px; 
+  display: inline; padding: 0px;
+}
+.fancy-radio,.fancy-radio label {
+  font-weight: normal; 
+}
+.fancy-radio input[type="radio"] {
+  display: none; 
+}
+.fancy-radio input[type="radio"] + span {
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  position: relative; 
+}
+.fancy-radio input[type="radio"] + span i {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  position: relative;
+  bottom: 1px;
+  content: "";
+  border: 1px solid #ccc;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px; 
+}
+.fancy-radio input[type="radio"]:checked + span i:after {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  top: 3px;
+  left: 3px;
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: #7b848c; 
+}
+.fancy-radio.custom-color-coral input[type="radio"]:checked + span i:after {
+  background-color: #FF6F61; 
+}
+.fancy-radio.custom-bgcolor-coral input[type="radio"]:checked + span i {
+  background-color: #FF6F61; 
+}
+.fancy-radio.custom-bgcolor-coral input[type="radio"]:checked + span i:after {
+  background-color: #fff; 
+}
+
+.fancy-checkbox {
+  margin-right: 10px; 
+  display: inline; 
+  padding:0px;}
+  .fancy-checkbox,
+  .fancy-checkbox label {
+    font-weight: normal; }
+  .fancy-checkbox input[type="checkbox"] {
+    display: none; }
+    .fancy-checkbox input[type="checkbox"] + span {
+      display: inline-block;
+      vertical-align: middle;
+      *vertical-align: auto;
+      *zoom: 1;
+      *display: inline;
+      cursor: pointer;
+      position: relative; }
+      .fancy-checkbox input[type="checkbox"] + span:before {
+        display: inline-block;
+        vertical-align: middle;
+        *vertical-align: auto;
+        *zoom: 1;
+        *display: inline;
+        position: relative;
+        bottom: 1px;
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+        content: "";
+        border: 1px solid #ccc; }
+    .fancy-checkbox input[type="checkbox"]:checked + span:before {
+      font-family: FontAwesome;
+      content: '\f00c';
+      font-size: 12px;
+      color: #99a1a7;
+      text-align: center;
+      line-height: 16px;
+      background: #ededed;
+      border: 1px solid #ccc; }
+  .fancy-checkbox.custom-color-coral input[type="checkbox"]:checked + span:before {
+    color: #FF6F61;
+    background-color: #fff; }
+  .fancy-checkbox.custom-bgcolor-coral input[type="checkbox"]:checked + span:before {
+    color: #fff;
+    background-color: #FF6F61;
+    border-color: #cf5732; }
+  
+.td-content .div-yn {
+  display:inline-block;
+}
+@media (max-width: 477px) {
+  .td-content .div-yn {
+    display:block;
+  }
+}
+.btn_t {
+  float:right;
+}
+
+@media (max-width: 489px) {
+  .faq_content {
+    margin-left:5%;
+  }
+}
