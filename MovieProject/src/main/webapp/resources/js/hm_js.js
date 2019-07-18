@@ -101,8 +101,10 @@ var termsct = $("#terms-content");
 //pop up for id-find-content 추가
 idfindLink.on('click', function (event) { // link 변경
 	event.preventDefault();
+	
 	idfindct.parents(overlay).addClass("openform"); // ct 변경
 	$(document).on('click', function (e) {
+		event.stopPropagation();
 		var target = $(e.target);
 		if ($(target).hasClass("overlay")) {
 			$(target).find(idfindct).each(function () { // ct 변경
