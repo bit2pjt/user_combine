@@ -1,10 +1,10 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../header.jsp" %>
-
-
+	
 <!-- 해당 페이지의 커스텀 css 설정입니다. -->
-<link rel="stylesheet" href="../../resources/css/ws_personal.css">
+<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=4">
 
 
 
@@ -29,6 +29,8 @@
 
 
 
+
+
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -45,58 +47,149 @@
 	</div>
 </div>
 
+
+<center class="slider sliderv2">
+	<div class="container">
+		<div class="row">
+	    	<div class="slider-single-item" >
+	    		<!-- 낱장 슬라이더는 movie-item으로 분류되는듟 하다 -->
+	    		<div class="movie-item"  >
+	    			<div class="row">
+	    				<h4>실시간 급상승 추천 게시물.</h4>
+						<br>
+						<table class="ws_table_best">
+						<thead>	
+						<!-- 2. 최초의 행. 열의 종류 구분 -->
+							<tr>
+								<th>제  목</th>
+								<th>제  목</th>
+							</tr>
+						</thead>
+						<!-- 향후 core jstl의 foreach로 게시글의 목록이 올 자리다 -->
+						<tbody>
+							<tr>
+								<td>추천 수 n 이상의 게시물을 시간순서로 밀어내기. top10만 잘라내서 보여준다.</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+						</tbody>
+						</table>
+	   				 </div>	
+	    		</div>
+	    		<div class="movie-item">
+	    			<div class="row">
+	    				<h4>주간 베스트.</h4>
+						<br>
+						<table class="ws_table_best" >
+						<thead>
+						<!-- 2. 최초의 행. 열의 종류 구분 -->
+							<tr>
+								<th>제  목</th>
+								<th>제  목</th>
+							</tr>
+						</thead>
+						<!-- 향후 core jstl의 foreach로 게시글의 목록이 올 자리다 -->
+						<tbody>
+							<tr>
+								<td>1주일 이내의 기간 중 가장 추천을 많이 받은 게시물 top 10</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+						</tbody>
+					</table>
+	    			</div>	
+	    		</div>
+	   			 <div class="movie-item">
+	    			<div class="row">
+	    			<h4>랜덤 베스트.</h4>
+					<br>
+						<table class="ws_table_best">
+						<thead>
+					<!-- 2. 최초의 행. 열의 종류 구분 -->
+							<tr>
+								<th>제  목</th>
+								<th>제  목</th>
+							</tr>
+						</thead>
+					<!-- 향후 core jstl의 foreach로 게시글의 목록이 올 자리다 -->
+						<tbody>
+							<tr>
+								<td>추천 수 n 이상의 게시물을 중 무작위 게시글을 가져온다(6개월 이내??)</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+							<tr>
+								<td>고질라 쿠키영상</td>
+								<td>고질라 결말해석[74]</td>
+							</tr>
+						</tbody>
+					</table>
+	    		</div>	
+	    	</div>
+	    </div>
+	 </div>
+	</div>
+</center>
+
+
 <!-- 바탕 : 흰색 -->
 <div class="buster-light">
 	<div class="movie-items">
 		<!-- 1. 베스트 게시물의 시작 -->	
 		<div class="container">
-		<div class="col-md-14">
-		<!-- 1. listTable 배치 -->
-		<h4>베스트 게시물</h4>
-		<br>
-		<table class="ws_table_best" >
-			<thead>
-		<!-- 2. 최초의 행. 열의 종류 구분 -->
-				<tr>
-					<th>제  목</th>
-					<th>제  목</th>
-				</tr>
-			</thead>
-		<!-- 향후 core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-			<tbody>
-				<tr>
-					<td>고질라 쿠키영상</td>
-					<td>고질라 결말해석[74]</td>
-				</tr>
-				<tr>
-					<td>고질라 쿠키영상</td>
-					<td>고질라 결말해석[74]</td>
-				</tr>
-				<tr>
-					<td>고질라 쿠키영상</td>
-					<td>고질라 결말해석[74]</td>
-				</tr>
-				<tr>
-					<td>고질라 쿠키영상</td>
-					<td>고질라 결말해석[74]</td>
-				</tr>
-			</tbody>
-		</table>
+			<div class="col-md-14">
+			<!-- 1. listTable 배치 -->
+			<h4>유머게시판  >_0 </h4>
+			</div>
 		</div>
-	</div>
-			
 		
-<!--lst 복사-->
-			
-			
-
-	<div class="container">
-		<div class="row">
+		<div class="container">
+			<div class="row">
 			<!-- listTable 배치 시작 -->
-			<div>
-				<div style="position:relative;top:50px;">
-					
-					<button class="ws-btn-reddish" value="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+				<div>
+					<div style="position:relative;top:50px">
+						<button class="ws-btn-reddish-write" value="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
@@ -123,7 +216,7 @@
 							  <td ><strong>2011/04/25</strong></td>
 							  <td><strong>84200</strong></td>
 							  <td>모바일 글제목. </td>
-							</tr>
+							  </tr>
 							<tr class="notice">
 							  <td><strong>002</strong></td>
 							  <td><strong>공지</strong></td>
@@ -315,8 +408,7 @@
 					<input class="list-search" type="text" placeholder="원하시는 내용을 입력하세요">
 					</span>
 					<span>
-					&nbsp;&nbsp;
-					<button class="ws-btn-reddish"><i class="fa fa-search" aria-hidden="true"></i></button>
+					<button class="ws-btn-reddish-search"><i class="fa fa-search" aria-hidden="true"></i></button>
 					</span>
 				</center>
 				
