@@ -1,26 +1,43 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--
-/**
-* @Class Name : modal
-* @Description : 헤더 수정 및 모달 연습
-* @Modification Information
-* @
-* @  수정일      수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.02   박현민       최초생성
-* @ 2019.07.04   박현민       헤더 푸터 수정
-* @ 2019.07.16   박현민       헤더 푸터 링크 수정
-* @author bit 2조
-* @since 2019. 07.01
-* @version 1.0
-* @see
-*
-*  Copyright (C) by Bit All right reserved.
-*/
--->
-<%@ include file="./header.jsp"%>
+	/**
+	* @Class Name : index.jsp
+	* @Description : 헤더 수정 및 모달 연습
+	* @Modification Information
+	* @
+	* @  수정일      수정자              수정내용
+	* @ ---------   ---------   -------------------------------
+	* @ 2019.07.02   박현민       최초생성
+	* @ 2019.07.04   박현민       헤더 푸터 수정
+	* @ 2019.07.16   박현민       헤더 푸터 링크 수정
+	* @ 2019.07.18   박현민	헤더 푸터 파일 나눔
+	* @author bit 2조
+	* @since 2019. 07.01
+	* @version 1.0
+	* @see
+	*
+	*  Copyright (C) by Bit All right reserved.
+	*/
+	-->
+<!-- 1. header1.jsp : head  -->
+<%@ include file="./header1.jsp"%>
+
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
+
+<!-- yj : css 추가 -->
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/modifyplugins.css" />">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/yj_style.css" />">
+
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="./header2.jsp" %>
+
+<!-- 4. 페이지별 본문 -->
+
 <div class="slider movie-items">
 	<div class="container">
 		<div class="row">
@@ -36,7 +53,6 @@
 					<div class="moviechart">
 						<!-- yj : start | total tab-->
 						<div id="total" class="tab active">
-							total chart
 							<div class="slick-multiItemSlider">
 								<div class="movie-item">
 									<div class="mv-img">
@@ -194,7 +210,6 @@
 						</div>
 						<!-- yj : start | cgv tab-->
 						<div id="cgv" class="tab review">
-							cgv chart
 							<div class="slick-multiItemSlider">
 								<div class="movie-item">
 									<div class="mv-img">
@@ -352,7 +367,6 @@
 						</div>
 						<!-- yj : start | lottecinema tab-->
 						<div id="lottecinema" class="tab">
-							lottecinema chart
 							<div class="slick-multiItemSlider">
 								<div class="movie-item">
 									<div class="mv-img">
@@ -510,7 +524,6 @@
 						</div>
 						<!-- yj : start | megabox tab-->
 						<div id="megabox" class="tab">
-							megabox chart
 							<div class="slick-multiItemSlider">
 								<div class="movie-item">
 									<div class="mv-img">
@@ -678,14 +691,9 @@
 
 
 
+<!-- 5. footer1.jsp : footer -->
 
-<button onclick="topFunction()" id="hm_myBtn" title="Go to top">Top</button>
-</body>
-  
-<script src="<c:url value="/resources/js/jquery.js" />"></script>
-<script src="<c:url value="/resources/js/plugins.js" />"></script>
-<script src="<c:url value="/resources/js/plugins2.js" />"></script>
-<script src="<c:url value="/resources/js/header_custom.js" />"></script>
-<script src="<c:url value="/resources/js/hm_js.js" />"></script>
-<!--  hm |   js 추가 -->
-</html>
+<!-- 6. 페이지별 script 추가 -->
+
+<!-- footer2.jsp : script -->
+<%@ include file="./footer2.jsp"%>
