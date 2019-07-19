@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../../header.jsp" %>
@@ -145,4 +146,4 @@ $(document).ready(function() {
 
 </script>
 </body>
-<%@include file="../../footer_bs_write.jsp" %>
+<%@include file="../../footer.jsp" %>
