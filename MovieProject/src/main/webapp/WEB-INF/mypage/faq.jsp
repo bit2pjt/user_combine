@@ -92,13 +92,13 @@
 							<li class="list">
 								<a href="#">이벤트</a>
 							</li>
-							<li class="list">
+							<li class="list1">
 								<a href="#">기타</a>
 							</li>
-								
+							
 						</ul>
 						<hr class="small_hr"> 
-	
+
 						<ul class="small_tab1">
 							<li>
 								<span style="margin-left:10%;">구분</span>
@@ -116,8 +116,8 @@
 							</li>
 							<li><hr class="small_hr1"></li>
 						</ul>
+						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>

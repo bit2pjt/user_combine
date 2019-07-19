@@ -60,6 +60,7 @@ var idfindLink = $(".idfindLink");
 var idokLink = $(".idokLink");
 var pwfindLink = $(".pwfindLink");
 var pwokLink = $(".pwokLink");
+var pwcfLink = $(".pwcfLink");
 var idcheckLink = $(".idcheckLink");
 var nikcheckLink = $(".nikcheckLink");
 // 약관 수정중
@@ -75,6 +76,8 @@ var idcheckct = $("#id-check-content");
 var nikcheckct = $("#nik-check-content");
 // 약관 수정중
 var termsct = $("#terms-content");
+//
+
 
 //pop up for signup ok 추가
 signupokLink.on('click', function (event) {
@@ -114,21 +117,48 @@ idfindLink.on('click', function (event) { // link 변경
 
 //pop up for id-ok-content 추가
 idokLink.on('click', function (event) { // link 변경
-	event.preventDefault();
-	idokct.parents(overlay).addClass("openform"); // ct 변경
-	$(document).on('click', function (e) {
-		var target = $(e.target);
-		if ($(target).hasClass("overlay")) {
-			$(target).find(idokct).each(function () { // ct 변경
-				$(this).removeClass("openform");
-			});
-			setTimeout(function () {
-				$(target).removeClass("openform");
-			}, 350);
-		}
-	});
+//	event.preventDefault();
+	var data = $(".findIdClass").serialize();
+	   $.ajax({
+	      url: "/moive/id_find.do",
+	      data: data,
+	      dataType: "text",
+	      type: "get",
+	      contentType: "application/json; charset=UTF-8",
+	      success: function(data) {
+	    	  if(data == "fail") {
+	    		  $("#id-ok-content > div > span").remove();
+	    		  $("#id-ok-content > div").prepend("<span> <strong>입력하신 정보와 일치하는 <br>아이디가 없습니다. <strong></span>");
+	    		  $("#id-ok-content > div > p > span").text("");
+	    		  $("#id_username").val("");
+	    		  $("#id-find-content input[type=text]").val("");
+	    	  }else {
+	    		  $("#id-ok-content > div > span").remove();
+	    		  $("#id-ok-content > div").prepend("<span> <strong>입력하신 정보와 일치하는 아이디는 <br> 아래와 같습니다.</strong></span>");
+	    		  $("#id-ok-content > div > p > span").text(data);
+	    		  $("#id_username").val("");
+	    		  $("#id-find-content input[type=text]").val("");
+	    	  }
+	      },
+	      error: function(xhr, status, e) {
+	    	  alert("에러");
+	      }
+	   });
+	   
+	   idokct.parents(overlay).addClass("openform"); // ct 변경
+       $(document).on('click', function (e) {
+          var target = $(e.target);
+          if ($(target).hasClass("overlay")) {
+             $(target).find(idokct).each(function () { // ct 변경
+                $(this).removeClass("openform");
+             });
+             setTimeout(function () {
+                $(target).removeClass("openform");
+             }, 350);
+          }
+       });
+	  
 });
-
 //pop up for pw-find-content 추가
 pwfindLink.on('click', function (event) { // link 변경
 	event.preventDefault();
@@ -148,12 +178,113 @@ pwfindLink.on('click', function (event) { // link 변경
 
 //pop up for pw-ok-content 추가
 pwokLink.on('click', function (event) { // link 변경
-	event.preventDefault();
-	pwokct.parents(overlay).addClass("openform"); // ct 변경
+	var data = $(".findPwClass").serialize();
+	   $.ajax({
+	      url: "/moive/pw_find.do",
+	      data: data,
+	      dataType: "text",
+	      type: "get",
+	      contentType: "application/text; charset=UTF-8",
+	      success: function(data) {
+	    	 if(data == "success") {
+	    		 alert("성공");
+	    		 $("#pw_email").val("");
+	    		 $("#pw-find-content input[type=text]").val("");
+	    		 pwokct.parents(overlay).addClass("openform"); // ct 변경
+	    			$(document).on('click', function (e) {
+	    				var target = $(e.target);
+	    				if ($(target).hasClass("overlay")) {
+	    					$(target).find(pwokct).each(function () { // ct 변경
+	    						$(this).removeClass("openform");
+	    					});
+	    					setTimeout(function () {
+	    						$(target).removeClass("openform");
+	    					}, 350);
+	    				}
+	    			});
+	    	 }else {
+	    		 alert("등록된 정보가 없습니다.");
+	    		 $("#pw_email").val("");
+	    		 $("#pw-find-content input[type=text]").val("");
+	    		 $(document).on('click', function (e) {
+	    				var target = $(e.target);
+	    				if ($(target).hasClass("overlay")) {
+	    					$(target).find(pwokct).each(function () { // ct 변경
+	    						$(this).removeClass("openform");
+	    					});
+	    					setTimeout(function () {
+	    						$(target).removeClass("openform");
+	    					}, 350);
+	    				}
+	    			});
+	    	 }
+	      },
+	      error: function(xhr, status, e) {
+	    	  alert("에러");
+	      }
+	   });
+});
+
+
+$("#alert-success").hide();
+$("#alert-danger").hide();
+
+function checkPassword(password){
+	if(!/^[a-zA-Z0-9]{8,20}$/.test(password)){
+		$("#pw-ok-content > div > div:nth-child(5) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+		$("#pw-ok-content > div > div:nth-child(5) > label > span").css("color", "red");
+		$("#alert-danger").hide();
+		$("#alert-success").hide();
+		return false;
+	}
+
+	$("#pw-ok-content > div > div:nth-child(5) > label > span").text("");
+	
+	if(pw1 == pw2) {
+		$("#alert-success").show();
+		$("#alert-danger").hide();
+	}else {
+		$("#alert-danger").show();
+		$("#alert-success").hide();
+	}
+	
+	return true;
+}
+
+function checkPasswordConfirm(password){
+	var pw1 = $("#pw-ok-content #password").val();
+	var pw2 = $("#pw-ok-content #password2").val();
+	
+	if(!/^[a-zA-Z0-9]{8,20}$/.test(password)){
+		$("#pw-ok-content > div > div:nth-child(6) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+		$("#pw-ok-content > div > div:nth-child(6) > label > span").css("color", "red");
+		$("#alert-danger").hide();
+		$("#alert-success").hide();
+		return false;
+	}
+
+	$("#pw-ok-content > div > div:nth-child(6) > label > span").text("");
+	
+	alert("1: " + pw1);
+	alert("2: " + pw2);
+	
+	if(pw1 == pw2) {
+		$("#alert-success").show();
+		$("#alert-danger").hide();
+	}else {
+		$("#alert-danger").show();
+		$("#alert-success").hide();
+	}
+	return true;
+}
+
+pwcfLink.on('click', function (event) { // link 변경
+//	event.preventDefault();
+	pwfindct.parents(overlay).addClass("openform"); // ct 변경
 	$(document).on('click', function (e) {
 		var target = $(e.target);
 		if ($(target).hasClass("overlay")) {
-			$(target).find(pwokct).each(function () { // ct 변경
+			$(target).find(pwfindct).each(function () { // ct 변경
 				$(this).removeClass("openform");
 			});
 			setTimeout(function () {
@@ -162,7 +293,6 @@ pwokLink.on('click', function (event) { // link 변경
 		}
 	});
 });
-
 //pop up for id-check-content 추가
 idcheckLink.on('click', function (event) { // link 변경
 	event.preventDefault();
