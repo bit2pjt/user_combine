@@ -661,3 +661,71 @@
     margin-left:5%;
   }
 }
+
+
+
+/* HM| FAQ 아코디언 추가 */
+.hm_accordion-container {
+		position: relative;
+		width: 100%;
+		border: 1px solid white;
+		border-top: none;
+		outline: 0;
+		cursor: pointer
+}
+
+.hm_accordion-container .hm_article-title {
+		display: block;
+		position: relative;
+		margin: 0;
+		padding: 0.625em 0.625em 0.625em 2em;
+		border-top: 1px solid black;
+		font-size: 1.2em;
+		font-weight: normal;
+		color: black;
+		cursor: pointer;
+}
+
+.hm_accordion-container .hm_article-title:hover,
+.hm_accordion-container .hm_article-title:active,
+.hm_accordion-container .hm_content-entry.open .hm_article-title {
+		background-color: black;
+		color: white;
+}
+
+.hm_accordion-container .hm_article-title:hover i:before,
+.hm_accordion-container .hm_article-title:hover i:active,
+.hm_accordion-container .hm_content-entry.open i {
+		color: white;
+}
+
+.hm_accordion-container .hm_content-entry i {
+		position: absolute;
+		top: 3px;
+		left: 12px;
+		font-style: normal;
+		font-size: 1.625em;
+		color: black;
+}
+
+.hm_accordion-container .hm_content-entry i:before {
+		content: "+ ";
+}
+
+.hm_accordion-container .hm_content-entry.open i:before {
+		content: "- ";
+}
+
+.hm_accordion-content {
+		display: none;
+		padding-top: 1em;
+		padding-left: 2.3125em;
+		height: 5em;
+}
+/* This stuff is just for the Codepen demo */
+
+#hm_content {
+		width: 100%;
+}
+
+/* HM| FAQ 아코디언 추가 끝 */
