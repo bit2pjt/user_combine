@@ -9,6 +9,7 @@
 * @  수정일     		     수정자            		수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.06         황진석      		 	최초생성
+* @ 2019.07.07 	박현민		header, footer 수정	
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -17,12 +18,17 @@
 *  Copyright (C) by Bit All right reserved.
 */
 -->
-<%@ include file="../header.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
-</head>
+
+<!-- 1. header1.jsp : head  -->
+<%@ include file="../header1.jsp"%>
+
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
+<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="../header2.jsp"%>
+
+<!-- 4. 여기에 페이지별 본문을 추가해주세요 -->
 
 <div class="hero user-hero">
 	<div class="container">
@@ -138,6 +144,11 @@
 	</div>
 </div>
 <!-- footer section-->
-<%@ include file="../footer.jsp" %>
-</body>
-</html>
+
+<!-- 5. footer1.jsp : footer -->
+<%@ include file="../footer1.jsp"%>
+
+<!-- 6. 페이지별 script 추가해 주세요. -->
+
+<!-- 7. footer2.jsp : script -->
+<%@ include file="../footer2.jsp"%>
