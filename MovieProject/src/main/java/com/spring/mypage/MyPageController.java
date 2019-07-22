@@ -53,10 +53,10 @@ public class MyPageController {
 	public String memberInfo(MemberVO vo, Model model, HttpSession session) {
 		boolean result = myPageService.checkPw(vo.getM_email(), vo.getM_password());
 		if(result) {//비밀번호가 일치하면 사이트 이동
-			System.out.println("비밀번호 일치");
+			System.out.println("비밀번호 일치1");
 			return "mypage/member_info";
 		}else {
-			System.out.println("비밀번호 불일치");
+			System.out.println("비밀번호 불일치2");
 			return "redirect:/pw_confirm.do";
 		}
 		
