@@ -117,15 +117,7 @@
 	 <div class="login-wrapper" id="id-ok-content">
         <!-- login-content 아이디 변경 -->
         <div class="login-content" style="text-align: center">
-            <!-- login-content 클래스 변경 X -->
-            <a href="#" class="close">x</a>
-            <!--  
-            <h6 class="h6one"> 입력하신 정보와 일치하는 아이디는 <br>아래와 같습니다.</h6>
-			<h6 class="h6two"style="display:none"> 입력하신 정보와 일치하는 <br>아이디가 없습니다.</h6>
-			-->
-            <!-- 이메일 정보 추가 -->
             <p> 
-            	<span> </span>
             </p>
             <div class="row">
                 <button class="close" type="button" style="display: inline-block;">확인</button>
