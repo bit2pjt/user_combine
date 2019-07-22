@@ -23,10 +23,10 @@
 <%@ include file="../header1.jsp"%>
 
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
-
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+
 <!-- 3. heaer2.jsp : header -->
-<%@ include file="../header2.jsp" %>
+<%@ include file="../header2.jsp"%>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -124,10 +124,22 @@
 		</div>
 	</div>
 </div>
+
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="../footer1.jsp"%>
 
 <!-- 6. 페이지별 script 추가해 주세요. -->
+<script>
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
 
-<!-- 7. footer2.jsp : script -->
-<%@ include file="../footer2.jsp"%> 
+			var links = this.el.find('.hm_article-title');
+			links.on('click', {
+				el : this.el,
+				multiple : this.multiple
+			}, this.dropdown)
+		}
+<%@ include file="../footer2.jsp"%>
+
