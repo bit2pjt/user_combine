@@ -693,7 +693,7 @@
                     <ul class="nav navbar-nav flex-child-menu menu-right">
                     
                     <c:choose>
-                    	<c:when test="${!empty email }">     	
+                    	<c:when test="${!empty m_email }">     	
                         <li class="dropdown first">
                             <a class="btn btn-default dropdown-toggle lv1" href="mmlList.do">
                                 나영리

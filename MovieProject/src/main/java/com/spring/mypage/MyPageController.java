@@ -67,7 +67,7 @@ public class MyPageController {
 
 		// 로그인 연동 후 삭제
 		// 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-		session.setAttribute("m_email", "bit0hyj@gmail.com");
+		//session.setAttribute("m_email", "bit0hyj@gmail.com");
 
 		// 사용자 정보
 		String m_email = (String) session.getAttribute("m_email");
@@ -95,7 +95,7 @@ public class MyPageController {
 		
 		// 로그인 연동 후 삭제
 		// 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-		session.setAttribute("m_email", "bit0hyj@gmail.com");
+		//session.setAttribute("m_email", "bit0hyj@gmail.com");
 
 		// 사용자 정보
 		String m_email = (String) session.getAttribute("m_email");
@@ -117,7 +117,7 @@ public class MyPageController {
 			
 			// 로그인 연동 후 삭제
 			// 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-			session.setAttribute("m_email", "bit0hyj@gmail.com");
+			//session.setAttribute("m_email", "bit0hyj@gmail.com");
 			
 			oneVO.setId(myPageService.getMemberId((String) session.getAttribute("m_email")));
 
@@ -144,7 +144,7 @@ public class MyPageController {
 	public String oneUpdate(HttpSession session, HttpServletRequest request) {
 		// 로그인 연동 후 삭제
 		// 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-		session.setAttribute("m_email", "bit0hyj@gmail.com");
+		//session.setAttribute("m_email", "bit0hyj@gmail.com");
 		String m_email = (String) session.getAttribute("m_email");
 		String m_name = myPageService.getMemberName(m_email);
 		String m_nickname = myPageService.getMemberNickname(m_email);
@@ -174,7 +174,7 @@ public class MyPageController {
 			
 			// 로그인 연동 후 삭제
 			// 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-			session.setAttribute("m_email", "bit0hyj@gmail.com");
+			//session.setAttribute("m_email", "bit0hyj@gmail.com");
 			
 			//qna_title, qna_content의 앞뒤 공백 제거
 			oneVO.setQna_title(oneVO.getQna_title().trim());

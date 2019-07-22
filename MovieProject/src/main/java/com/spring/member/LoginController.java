@@ -57,7 +57,7 @@ public class LoginController {
       
       int check = memberService.userCheck(email, pw);
       if(check == 1){
-         session.setAttribute("email", email);
+         session.setAttribute("m_email", email);
          return "index";
       }else if( check == -1) {
          response.setContentType("text/html; charset=utf-8");
