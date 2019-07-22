@@ -1,12 +1,14 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../header1.jsp"%>
+
+<!-- 1. header1.jsp : head  -->
+<%@ include file="/WEB-INF/header1.jsp"%>
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
 	<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=1.3">
-<%@ include file="../../header2.jsp" %>
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="/WEB-INF/header2.jsp" %>
 
-
-	
 
 <div class="hero common-hero">
 	<div class="container">
@@ -303,6 +305,13 @@
     </div>
 	
 </div>
+
+<!-- 5. footer1.jsp : footer -->
+<%@ include file="/WEB-INF/footer1.jsp" %>
+
+
+<!-- 6. 페이지별 script 추가 -->
+
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
 
@@ -374,12 +383,9 @@
 		// setInterval(function(){
 		//	  $(".ws-best").toggle();
 		//	}, 1200)
-	
 	});		
-	
-	
-
-	
 </script>
-<%@ include file="../../footer1.jsp"%>
-<%@ include file="../../footer2.jsp" %>
+
+<!-- footer2.jsp : script -->
+<%@ include file="/WEB-INF/footer2.jsp"%>
+

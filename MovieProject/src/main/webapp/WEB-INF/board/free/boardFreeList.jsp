@@ -1,9 +1,13 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../header1.jsp"%>
-	<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=4">
-<%@ include file="../../header2.jsp" %>
+
+<!-- 1. header1.jsp : head  -->
+<%@ include file="/WEB-INF/header1.jsp"%>
+<!-- 해당 페이지의 커스텀 css 설정입니다. -->
+<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=4">
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="/WEB-INF/header2.jsp" %>
 
 
 
@@ -430,5 +434,9 @@
 		
 <!--list 페이지 구현의 몸통부 끝. 이하 footer 등-->
 
-<%@ include file="../../footer1.jsp"%>
-<%@ include file="../../footer2.jsp" %>
+<!-- 5. footer1.jsp : footer -->
+<%@ include file="/WEB-INF/footer1.jsp" %>
+<!-- 6. 페이지별 script 추가 -->	
+<!-- footer2.jsp : script -->
+<%@ include file="/WEB-INF/footer2.jsp"%>
+
