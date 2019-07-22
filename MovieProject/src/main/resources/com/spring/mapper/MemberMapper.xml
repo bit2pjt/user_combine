@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.spring.member.MemberDAO">
-	
 	  <resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
       <result property="id" column="id"/>
       <result property="m_nickname" column="m_nickname"/>
@@ -43,9 +42,9 @@
 		select *
 		from member
 		where m_email = #{m_email, jdbcType=VARCHAR} and m_name = #{m_name, jdbcType=VARCHAR} and m_phone = #{m_phone, jdbcType=VARCHAR}
-		
 	</select>
 	
+
 	<insert id="memberJoin">
 		insert into member
 		values (seq_member_id.nextval, #{m_nickname}, #{m_image}, #{m_email}, #{m_eagree}, #{m_sagree}, #{m_name},#{m_phone}, #{m_cert}, #{m_password},
@@ -64,6 +63,10 @@
 		where m_email = #{m_nickname}
 	</select>
 	
+
+	<update id="updatePw" parameterType="com.spring.member.MemberVO">
+		update member set m_password = #{m_password, jdbcType=VARCHAR} where m_phone = #{m_phone, jdbcType=VARCHAR}
+	</update>
 
 
 </mapper>

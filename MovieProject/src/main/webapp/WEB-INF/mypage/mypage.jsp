@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page import="com.spring.member.MemberVO" %>
+<%
+	MemberVO member = (MemberVO)request.getAttribute("member");
+%>
 <!--
 /**
 * @Class Name : mypage.jsp
@@ -18,12 +23,13 @@
 *  Copyright (C) by Bit All right reserved.
 */
 -->
-<!DOCTYPE html>
-<html>
-<%@ include file="../header.jsp" %>
-<head>
-	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
-</head>
+<%@ include file="../header1.jsp"%>
+
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
+
+<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="../header2.jsp" %>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -46,8 +52,8 @@
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
 						<div class="info">
-							<h2> <strong>황진석 님</strong> </h2>
-							<h3> <strong>h10046245h@naver.com</strong></h3>
+							<h2> <strong><%= member.getM_name() %></strong> </h2>
+							<h3> <strong><%= member.getM_email() %></strong></h3>
 						</div>
 					<div class="user-information-hjs">
 						<div class="user-fav">
@@ -57,7 +63,7 @@
 										
 								<ul>
 									<li>회원 정보</li>
-									<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+									<li><a href="pw_confirm.do?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
 									<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 								</ul>
 					
@@ -84,10 +90,10 @@
 								</div>
 								
 								<div class="hjs-info" >
-									<h4> 이름: 황진석</h4> 
-									<h4> 닉네임: 비트코인</h4> 
-									<h4> 이메일: h10046245h@naver.com</h4> 
-									<h4> 선호장르: 공포/호러, 스릴러, 느와르</h4> 
+									<h4> 이름: <%= member.getM_name() %></h4> 
+									<h4> 닉네임: <%= member.getM_nickname() %></h4> 
+									<h4> 이메일: <%= member.getM_email() %></h4> 
+									<h4> 선호장르: <%= member.getM_favorite() %></h4> 
 								</div>
 							</div>
 							
@@ -151,6 +157,10 @@
 			</div>
 		</div>
 	</div>
-<%@ include file="../footer.jsp" %>
-</body>
-</html>
+<!-- 5. footer1.jsp : footer -->
+<%@ include file="../footer1.jsp"%>
+
+<!-- 6. 페이지별 script 추가해 주세요. -->
+
+<!-- 7. footer2.jsp : script -->
+<%@ include file="../footer2.jsp"%> 

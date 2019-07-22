@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\Bit\Desktop\git_combine2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+145212585.index
+526009883.index
+3193899831.index
+1221181752.index
+4266828705.index
+2388759581.index

@@ -1,9 +1,15 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
+<!-- 1. header1.jsp : head  -->
+<%@ include file="/WEB-INF/header1.jsp"%>
 
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="../../resources/css/ws_personal.css">
+
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="/WEB-INF/header2.jsp" %>
+
 <!--  
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -146,4 +152,8 @@ $(document).ready(function() {
 
 </script>
 </body>
-<%@include file="../../footer.jsp" %>
+<!-- 5. footer1.jsp : footer -->
+<%@ include file="/WEB-INF/footer1.jsp" %>
+<!-- 6. 페이지별 script 추가 -->	
+<!-- footer2.jsp : script -->
+<%@ include file="/WEB-INF/footer2.jsp"%>

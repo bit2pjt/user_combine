@@ -48,9 +48,14 @@ signupLink.on('click', function (event) {
 // close popup for mobile
 var closebt = $(".close");
 closebt.on('click', function (e) {
-	e.preventDefault();
+	//e.preventDefault();
+	/*
 	var overlay = $(".overlay");
-	overlay.removeClass("openform");
+	overlay.removeClass("openform");*/
+	$("#login-content").parent().addClass("openform");
+	$("#id-ok-content").parent().removeClass("openform");
+	$("#id-find-content").parent().removeClass("openform");
+	
 });
 
 // 여기서부터 추가
@@ -77,7 +82,8 @@ var nikcheckct = $("#nik-check-content");
 // 약관 수정중
 var termsct = $("#terms-content");
 //
-
+$("#alert-success").hide();
+$("#alert-danger").hide();
 
 //pop up for signup ok 추가
 //signupokLink.on('click', function (event) {
@@ -96,10 +102,15 @@ var termsct = $("#terms-content");
 //	});
 //});
 
+
 //pop up for 추가
 
 //pop up for id-find-content 추가
 idfindLink.on('click', function (event) { // link 변경
+	if(pwfindct.parent().hasClass("openform"))
+		pwfindct.parent().removeClass("openform");
+	
+	idfindct.parent().addClass("openform");
 	event.preventDefault();
 	
 	idfindct.parents(overlay).addClass("openform"); // ct 변경
@@ -110,9 +121,11 @@ idfindLink.on('click', function (event) { // link 변경
 			$(target).find(idfindct).each(function () { // ct 변경
 				$(this).removeClass("openform");
 			});
+			/*
 			setTimeout(function () {
 				$(target).removeClass("openform");
 			}, 350);
+			*/
 		}
 	});
 });
@@ -122,7 +135,7 @@ idokLink.on('click', function (event) { // link 변경
 //	event.preventDefault();
 	var data = $(".findIdClass").serialize();
 	   $.ajax({
-	      url: "/moive/id_find.do",
+	      url: "/movie/id_find.do",
 	      data: data,
 	      dataType: "text",
 	      type: "get",
@@ -154,9 +167,11 @@ idokLink.on('click', function (event) { // link 변경
              $(target).find(idokct).each(function () { // ct 변경
                 $(this).removeClass("openform");
              });
-             setTimeout(function () {
-                $(target).removeClass("openform");
-             }, 350);
+             /*
+				setTimeout(function () {
+					$(target).removeClass("openform");
+				}, 350);
+				*/
           }
        });
 	  
@@ -171,25 +186,28 @@ pwfindLink.on('click', function (event) { // link 변경
 			$(target).find(pwfindct).each(function () { // ct 변경
 				$(this).removeClass("openform");
 			});
+			/*
 			setTimeout(function () {
 				$(target).removeClass("openform");
 			}, 350);
+			*/
 		}
 	});
 });
 
 //pop up for pw-ok-content 추가
 pwokLink.on('click', function (event) { // link 변경
-	var data = $(".findPwClass").serialize();
+	var infodata = $(".findPwClass").serialize();
 	   $.ajax({
-	      url: "/moive/pw_find.do",
-	      data: data,
+	      url: "/movie/pw_find.do",
+	      data: infodata,
 	      dataType: "text",
 	      type: "get",
 	      contentType: "application/text; charset=UTF-8",
 	      success: function(data) {
+	    	 var phone = $("#pw-find-content input[type=text]:eq(2)").val()+ $("#pw-find-content input[type=text]:eq(3)").val() + $("#pw-find-content input[type=text]:eq(4)").val();
+	    	 $("#pw-ok-content #phone_number").val(phone);
 	    	 if(data == "success") {
-	    		 alert("성공");
 	    		 $("#pw_email").val("");
 	    		 $("#pw-find-content input[type=text]").val("");
 	    		 pwokct.parents(overlay).addClass("openform"); // ct 변경
@@ -199,9 +217,11 @@ pwokLink.on('click', function (event) { // link 변경
 	    					$(target).find(pwokct).each(function () { // ct 변경
 	    						$(this).removeClass("openform");
 	    					});
+	    					/*
 	    					setTimeout(function () {
 	    						$(target).removeClass("openform");
 	    					}, 350);
+	    					*/
 	    				}
 	    			});
 	    	 }else {
@@ -214,42 +234,52 @@ pwokLink.on('click', function (event) { // link 변경
 	    					$(target).find(pwokct).each(function () { // ct 변경
 	    						$(this).removeClass("openform");
 	    					});
+	    					/*
 	    					setTimeout(function () {
 	    						$(target).removeClass("openform");
 	    					}, 350);
+	    					*/
 	    				}
 	    			});
 	    	 }
 	      },
-	      error: function(xhr, status, e) {
-	    	  alert("에러");
+	      error:function(request,status,error) {
+	    	  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	      }
 	   });
 });
 
 
-$("#alert-success").hide();
-$("#alert-danger").hide();
+
 
 function checkPassword(password){
+	var pw1 = $("#pw-ok-content #password").val();
+	var pw2 = $("#pw-ok-content #password2").val();
+	
 	if(!/^[a-zA-Z0-9]{8,20}$/.test(password)){
-		$("#pw-ok-content > div > div:nth-child(5) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
-		$("#pw-ok-content > div > div:nth-child(5) > label > span").css("color", "red");
-		$("#alert-danger").hide();
+		$("#pw-ok-content > div > form > div:nth-child(2) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+		$("#pw-ok-content > div > form > div:nth-child(2) > label > span").css("color", "red");
+		
 		$("#alert-success").hide();
+		$("#alert-danger").hide();
+		
 		return false;
 	}
 
-	$("#pw-ok-content > div > div:nth-child(5) > label > span").text("");
+	$("#pw-ok-content > div > form > div:nth-child(2) > label > span").text("");
 	
-	if(pw1 == pw2) {
-		$("#alert-success").show();
-		$("#alert-danger").hide();
+	if(pw2 != "") {
+		if(pw1 == pw2) {
+			$("#alert-success").show();
+			$("#alert-danger").hide();
+		}else {
+			$("#alert-danger").show();
+			$("#alert-success").hide();
+		}
 	}else {
-		$("#alert-danger").show();
 		$("#alert-success").hide();
+		$("#alert-danger").hide();
 	}
-	
 	return true;
 }
 
@@ -258,17 +288,15 @@ function checkPasswordConfirm(password){
 	var pw2 = $("#pw-ok-content #password2").val();
 	
 	if(!/^[a-zA-Z0-9]{8,20}$/.test(password)){
-		$("#pw-ok-content > div > div:nth-child(6) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
-		$("#pw-ok-content > div > div:nth-child(6) > label > span").css("color", "red");
+		$("#pw-ok-content > div > form > div:nth-child(3) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+		$("#pw-ok-content > div > form > div:nth-child(3) > label > span").css("color", "red");
 		$("#alert-danger").hide();
 		$("#alert-success").hide();
 		return false;
 	}
 
-	$("#pw-ok-content > div > div:nth-child(6) > label > span").text("");
+	$("#pw-ok-content > div > form > div:nth-child(3) > label > span").text("");
 	
-	alert("1: " + pw1);
-	alert("2: " + pw2);
 	
 	if(pw1 == pw2) {
 		$("#alert-success").show();
@@ -282,34 +310,23 @@ function checkPasswordConfirm(password){
 
 pwcfLink.on('click', function (event) { // link 변경
 //	event.preventDefault();
-	pwfindct.parents(overlay).addClass("openform"); // ct 변경
-	$(document).on('click', function (e) {
-		var target = $(e.target);
-		if ($(target).hasClass("overlay")) {
-			$(target).find(pwfindct).each(function () { // ct 변경
-				$(this).removeClass("openform");
-			});
-			setTimeout(function () {
-				$(target).removeClass("openform");
-			}, 350);
-		}
-	});
-});
-//pop up for id-check-content 추가
-idcheckLink.on('click', function (event) { // link 변경
-	event.preventDefault();
-	idcheckct.parents(overlay).addClass("openform"); // ct 변경
-	$(document).on('click', function (e) {
-		var target = $(e.target);
-		if ($(target).hasClass("overlay")) {
-			$(target).find(idcheckct).each(function () { // ct 변경
-				$(this).removeClass("openform");
-			});
-			setTimeout(function () {
-				$(target).removeClass("openform");
-			}, 350);
-		}
-	});
+		var newdata = $(".newPassword").serialize();
+		$.ajax({
+		      url: "/movie/pw_new.do",
+		      data: newdata,
+		      dataType: "text",
+		      type: "get",
+		      contentType: "application/text; charset=UTF-8",
+		      success: function(data) {
+		    	alert("변경되었습니다.");
+		    	pwfindct.parent().removeClass("openform");
+		  		pwokct.parent().removeClass("openform");
+		  		idfindct.parent().removeClass("openform");
+		      },
+		      error:function(request,status,error) {
+		    	  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		      }
+	   });
 });
 
 //pop up for nik-check-content 추가
@@ -322,12 +339,73 @@ nikcheckLink.on('click', function (event) { // link 변경
 			$(target).find(nikcheckct).each(function () { // ct 변경
 				$(this).removeClass("openform");
 			});
+			/*
 			setTimeout(function () {
 				$(target).removeClass("openform");
 			}, 350);
+			*/
 		}
 	});
 });
+
+$(document).ready(function() {
+    var userInputEmail = getCookie("userInputEmail");
+    var setCookieYN = getCookie("setCookieYN");
+    
+    if(setCookieYN == 'Y') {
+        $("#idSaveCheck").prop("checked", true);
+    } else {
+        $("#idSaveCheck").prop("checked", false);
+    }
+    
+    $("#m_email").val(userInputEmail); 
+    
+    //로그인 버튼 클릭
+    $('#loginbtn').click(function() {
+        if($("#idSaveCheck").is(":checked")){ 
+            var userInputEmail = $("#m_email").val();
+            setCookie("userInputEmail", userInputEmail, 60); 
+            setCookie("setCookieYN", "Y", 60);
+        } else {
+            deleteCookie("userInputEmail");
+            deleteCookie("setCookieYN");
+        }
+        
+        document.LoginForm.submit();
+    });
+});
+
+//쿠키값 Set
+function setCookie(cookieName, value, exdays){
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + 
+    exdate.toGMTString());
+    document.cookie = cookieName + "=" + cookieValue;
+}
+
+//쿠키값 Delete
+function deleteCookie(cookieName){
+    var expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() - 1);
+    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+}
+
+//쿠키값 가져오기
+function getCookie(cookie_name) {
+    var x, y;
+    var val = document.cookie.split(';');
+    
+    for (var i = 0; i < val.length; i++) {
+        x = val[i].substr(0, val[i].indexOf('='));
+        y = val[i].substr(val[i].indexOf('=') + 1);
+        x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+        
+        if (x == cookie_name) {
+          return unescape(y); // unescape로 디코딩 후 값 리턴
+        }
+    }
+}
 
 /* 수정중 */
 // //pop up for terms-content 추가
@@ -342,9 +420,11 @@ termsLink.on('click', function (event) { // link 변경
 			$(target).find(termsct).each(function () { // ct 변경
 				$(this).removeClass("openform2");
 			});
+			/*
 			setTimeout(function () {
-				$(target).removeClass("openform2");
+				$(target).removeClass("openform");
 			}, 350);
+			*/
 		}
 	});
 });
@@ -366,9 +446,11 @@ $('.terms-content-bt').on('click', function (event) { // link 변경
 			$(target).find(termsct).each(function () { // ct 변경
 				$(this).removeClass("openform");
 			});
+			/*
 			setTimeout(function () {
 				$(target).removeClass("openform");
 			}, 350);
+			*/
 		}
 	});
 });

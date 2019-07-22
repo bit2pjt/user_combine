@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
+<!-- 1. header1.jsp : head  -->
+<%@ include file="/WEB-INF/header1.jsp"%>
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="assets/vendor/summernote/summernote.css">
 <link rel="stylesheet" href="../../resources/css/ws_personal.css?ver=1">
-
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="/WEB-INF/header2.jsp" %>
 <!--  
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -136,6 +139,9 @@
 	</div>
 	<!-- end of buster-white -->
 	
+	<!-- 5. footer1.jsp : footer -->
+<%@ include file="/WEB-INF/footer1.jsp" %>
+	
 <script src="assets/vendor/summernote/summernote.min.js"></script>	
 <script>
 
@@ -178,4 +184,4 @@
   	});
 </script>
 </body>
-<%@include file="../../footer.jsp" %>
+<%@ include file="/WEB-INF/footer2.jsp"%>

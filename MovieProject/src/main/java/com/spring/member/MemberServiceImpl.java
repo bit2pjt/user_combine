@@ -89,6 +89,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+
 	/**
 	 * 회원가입
 	 * @param memberVO vo
@@ -141,5 +142,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
+
+
+	@Override
+	public int updatePw(MemberVO vo) {
+		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
+		int num = memberDAO.updatePw(vo);
+		return num;
+	}
+
 
 }
