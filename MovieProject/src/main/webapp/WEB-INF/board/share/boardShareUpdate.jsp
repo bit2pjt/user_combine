@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
-<link rel="stylesheet" href="../../resources/css/ws_personal.css">
 
 <!--  
 * @Class Name : EgovSampleService.java
@@ -11,6 +9,7 @@
 * @  수정일      			수정자 				             수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.2     이웅식                    			최초 생성
+* @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -19,16 +18,18 @@
 *
 *  Copyright (C) by bit 2조 All right reserved.
 */-->
+<%@include file="../../header1.jsp" %>
+<link rel="stylesheet" href="../../resources/css/ws_personal.css">
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
  <!-- include summernote css/js-->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-
+<%@include file="../../header2.jsp" %>
 
 <!-- 서머노트 웹에서 ... 끝-->
-<body>
+<!-- <body> -->
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">

@@ -1,9 +1,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
+<%@include file="../../header1.jsp" %>
 <link rel="stylesheet" href="../../resources/css/ws_personal.css">
-
+<%@include file="../../header2.jsp" %>
 
 
 
@@ -15,6 +15,7 @@
 * @  수정일      			수정자 				             수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.2     이웅식                    			최초 생성
+* @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -283,6 +284,7 @@
 		
 <!--list 페이지 구현의 몸통부 끝. 이하 footer 등-->
 		
-<%@include file="../../footer.jsp" %>
+<%@include file="../../footer1.jsp" %>
+<%@include file="../../footer2.jsp" %>
 
 
