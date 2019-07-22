@@ -1,26 +1,4 @@
-/.metadata/
-MovieProject/target/classes/com/spring/movie/MovieController.class
-MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/moive/pom.properties
-MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/movie/pom.properties
-MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/movie/pom.xml
-MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/moive/pom.properties
-.DS_Store
-*.class
-*.prefs
-Servers/Pivotal tc Server Developer Edition v4.0-config/catalina.policy
-Servers/Tomcat v8.5 Server at localhost-config/server.xml
-Servers/Pivotal tc Server Developer Edition v4.0-config/web.xml
-Servers/Pivotal tc Server Developer Edition v4.0-config/tomcat-users.xml
-*.policy
-MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-Servers/.settings/org.eclipse.wst.server.core.prefs
-Servers/Tomcat v8.5 Server at localhost-config/server.xml
-Servers/.settings/org.eclipse.wst.server.core.prefs
-Servers/Tomcat v8.5 Server at localhost-config/server.xml
-MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 MovieProject/target/classes/com/spring/movie/BoardFreeController.class
-MovieProject/target/classes/com/spring/member/LoginController.class
+MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+

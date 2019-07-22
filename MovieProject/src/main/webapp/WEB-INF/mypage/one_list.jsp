@@ -18,19 +18,9 @@
 *  Copyright (C) by Bit All right reserved.
 */
 -->
-<%
-	//
-	
-	//MyPageController.java의 oneList에서 넘어온 값(회원이름, 회원 이메일));
-	String m_name = (String)request.getAttribute("m_name");
-	String m_email = (String)request.getAttribute("m_email");
-%>
-<%@ include file="../header.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
-</head>
+<%@ include file="../header1.jsp"%>
+	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+<%@ include file="../header2.jsp"%>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -176,6 +166,6 @@
 		</div>
 	</div>
 </div>
-<%@ include file="../footer.jsp"%>
-</body>
-</html>
+<%@ include file="../footer1.jsp"%>
+<%@ include file="../footer2.jsp"%>
+
