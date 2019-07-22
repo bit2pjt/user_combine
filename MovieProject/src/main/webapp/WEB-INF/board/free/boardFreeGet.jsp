@@ -1,12 +1,11 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
-
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 	<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=1.3">
-
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
@@ -389,3 +388,4 @@
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
+

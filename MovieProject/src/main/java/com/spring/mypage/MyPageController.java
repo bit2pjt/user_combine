@@ -274,11 +274,17 @@ public class MyPageController {
 			return "redirect:/one_get.do?qna_no="+oneVO.getQna_no();
 		}
 
-	// 마이페이지 - FAQ
-	@RequestMapping(value = "/faq.do", method = RequestMethod.GET)
-	public String faqList() {
-		return "mypage/faq";
-	}
+			// 마이페이지 - FAQ
+		@RequestMapping(value = "/one_get.do", method = RequestMethod.GET)
+		public String oneGet() {
+			return "mypage/one_get";
+		}
+		
+		// 마이페이지 - FAQ
+		@RequestMapping(value = "/faq.do", method = RequestMethod.GET)
+		public String faqList() {
+			return "mypage/faq";
+		}
 
 
 }
