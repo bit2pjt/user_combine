@@ -21,7 +21,13 @@
 *  Copyright (C) by bit 2조 All right reserved.
 */
 -->
-<%@ include file="../header.jsp"%>
+<%@ include file="../header1.jsp"%>
+
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
+
+
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="../header2.jsp" %>
 <head>
 	<link rel="stylesheet" href="<c:url value="/resources/css/yj_style.css" />">
 </head>

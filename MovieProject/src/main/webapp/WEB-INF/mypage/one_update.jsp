@@ -20,9 +20,12 @@
 *  Copyright (C) by Bit All right reserved.
 */
 -->
+
 <%@ include file="../header1.jsp" %>
 	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <%@ include file="../header2.jsp" %>
+
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <script>
 function check(){
 	//제목과 내용의 앞뒤 공백 제거
@@ -54,7 +57,6 @@ function register_back(){
 	
 }
 </script>
-</head>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -224,8 +226,8 @@ function register_back(){
 		</div>
 	</div>
 </div>
+
 <!-- footer section-->
 <%@ include file="../footer1.jsp" %>
 <%@ include file="../footer2.jsp" %>
-</body>
-</html>
+
