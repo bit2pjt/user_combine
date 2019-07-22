@@ -39,7 +39,7 @@
 .user-information-hjs ul li {
   margin-bottom: 15px;
 }
-/** ���� **/
+/** 占쏙옙占쏙옙 **/
 .user-information-hjs.info ul li{
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
@@ -82,12 +82,10 @@
 .buster-light .user-information-hjs ul li.active a {
   color: #dd003f;
 }
-
 .card-body {
   display:inline-block;
   margin-top:20px;
 }
-
 .etc {
   margin-top: 5px;
   font-size:10px;
@@ -98,7 +96,6 @@
   width:200px;
   margin-bottom:10px;
 }
-
 .tb_line {
   border-bottom:1px solid gray;
   width:100%;
@@ -112,7 +109,6 @@
   text-align:center;
   vertical-align: top;
 }
-
 .tb_th1 {
   font-size:16px;
   font-weight: bold;
@@ -161,7 +157,6 @@
   border-left: 1px solid gray;
   
 }
-
 .tb_td2 > input[type=tel] {
   display:inline-block;
   width:60px;
@@ -182,7 +177,6 @@
   padding-left:20px;
   padding-right:20px;
 }
-
 .btn-check{
   display: inline-block;
   background-color: #FF6F61;
@@ -226,12 +220,10 @@
 .etcWrap {
   border-bottom:4px solid black;
 }
-
 .small_hr {
   border:2px solid black;
   margin-bottom: 5px;
 }
-
 .small_hr1 {
   border:1px solid gray;
   margin-bottom: 5px;
@@ -259,7 +251,6 @@
   font-size:13px; 
   text-align:center
 }
-
 .do_span {
   font-size: 20px; font-weight:bold;
 }
@@ -270,7 +261,6 @@
   margin-top: 20px;
   width:100%;
 }
-
 .info_update h1{
   border-bottom:4px solid black;
   padding-bottom:30px;
@@ -288,7 +278,6 @@
   text-transform: uppercase;
   margin-top:10px;
 }
-
 .info h1 {
   font-size: 36px;
   color: black;
@@ -305,7 +294,6 @@
   text-align:center;
   width:90%;
 }
-
 .info h3 {
   font-size: 15px;
   color:black;
@@ -327,12 +315,10 @@
   color: black;
   text-align:center;
 }
-
 .pw_info>h1{
   color: black;
   display:inline-block;
 }
-
 .pw_info span{
   color: black;
   display:inline-block;
@@ -353,7 +339,6 @@
   border-radius: 5px;
   margin-left:5px;
 }
-
 #basic-form {
   width:100%;
   margin-left:20%;
@@ -362,24 +347,20 @@
   background-color: white;
   width:70%;
 }
-
 .form-style-pw .form-div{
   color:black;
   width:100%;
   display: inline-block;
   margin: 20px 0px;
 }
-
 .form-style-pw span{
   width:100%;
   font-size:20px;
 }
-
 .form-style-pw input[type=password]{
   width:50%;
   display: inline-block;
 }
-
 .form-style-pw .btn-pw{
   display: inline-block;
   background-color: black;
@@ -389,7 +370,6 @@
   padding-left:20px;
   padding-right:20px;
 }
-
 .faq_gubun {
   margin-left:10%;
    display: inline-block; 
@@ -408,7 +388,6 @@
 .one_table td, a {
   color:black;
 }
-
 .div_one th,td {
   text-align: center;
 }
@@ -443,13 +422,11 @@
     font-size:20px;
   }
 }
-
 @media (max-width: 664px) {
   .hjs-info {
     margin-top:40px;
   }
 }
-
 .user-pro .hjs-info h4{
   font-family:"";
   font-size: 14px;
@@ -458,7 +435,6 @@
   text-transform: lowercase;
   margin-bottom: 30px;
 }
-
 .tbinfo_hjs {
   border-top: 2px solid black;
   border-bottom: 2px solid black;
@@ -469,12 +445,10 @@
   border-left: none;
   border-right: none;
 }
-
 .person_info {
   margin-top:20px;
   width:100%;
 }
-
 .person_info h1{
   padding-bottom:30px;
   font-size: 36px;
@@ -483,7 +457,6 @@
   text-transform: uppercase;
   text-align:center;
 }
-
 .tbinfo_hjs td:nth-child(odd) {
   text-align: center;
   font-weight: bold;
@@ -492,7 +465,6 @@
   text-align: center;
   font-weight: bold;
 }
-
 .tbinfo_hjs td:nth-child(even) {
   text-align: left;
   border-right:none;
@@ -503,7 +475,6 @@
   font-weight: bold;
   padding:10px;
 }
-
 .td-content {
   margin-top: 10px;
   margin-left: 20px;
@@ -513,7 +484,6 @@
   width: 25%;
   display: inline-block;
 }
-
 .td-content label{
   margin-bottom:5px;
 }
@@ -523,7 +493,6 @@
   font-weight: bold;
   margin-bottom: 30px;
 }
-
 .tb_hjs th {
   background-color: black;
   color: white;
@@ -534,7 +503,6 @@
 .one_table .th_border {
   border-right-color: gray;
 }
-
 @media (max-width: 664px) {
   .col-md-9 {
     padding-left: 0px;
@@ -596,7 +564,6 @@
 .fancy-radio.custom-bgcolor-coral input[type="radio"]:checked + span i:after {
   background-color: #fff; 
 }
-
 .fancy-checkbox {
   margin-right: 10px; 
   display: inline; 
@@ -655,9 +622,64 @@
 .btn_t {
   float:right;
 }
-
 @media (max-width: 489px) {
   .faq_content {
     margin-left:5%;
   }
 }
+/* HM| FAQ 아코디언 추가 */
+.hm_accordion-container {
+        position: relative;
+        width: 100%;
+        border: 1px solid white;
+        border-top: none;
+        outline: 0;
+        cursor: pointer
+}
+.hm_accordion-container .hm_article-title {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0.625em 0.625em 0.625em 2em;
+        border-top: 1px solid black;
+        font-size: 1.2em;
+        font-weight: normal;
+        color: black;
+        cursor: pointer;
+}
+.hm_accordion-container .hm_article-title:hover,
+.hm_accordion-container .hm_article-title:active,
+.hm_accordion-container .hm_content-entry.open .hm_article-title {
+        background-color: black;
+        color: white;
+}
+.hm_accordion-container .hm_article-title:hover i:before,
+.hm_accordion-container .hm_article-title:hover i:active,
+.hm_accordion-container .hm_content-entry.open i {
+        color: white;
+}
+.hm_accordion-container .hm_content-entry i {
+        position: absolute;
+        top: 3px;
+        left: 12px;
+        font-style: normal;
+        font-size: 1.625em;
+        color: black;
+}
+.hm_accordion-container .hm_content-entry i:before {
+        content: "+ ";
+}
+.hm_accordion-container .hm_content-entry.open i:before {
+        content: "- ";
+}
+.hm_accordion-content {
+        display: none;
+        padding-top: 1em;
+        padding-left: 2.3125em;
+        height: 5em;
+}
+/* This stuff is just for the Codepen demo */
+#hm_content {
+        width: 100%;
+}
+/* HM| FAQ 아코디언 추가 끝 */
