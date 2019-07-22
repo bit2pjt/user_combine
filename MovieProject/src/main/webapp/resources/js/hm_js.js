@@ -48,13 +48,13 @@ signupLink.on('click', function (event) {
 // close popup for mobile
 var closebt = $(".close");
 closebt.on('click', function (e) {
-	//e.preventDefault();
+	e.preventDefault();
 	/*
 	var overlay = $(".overlay");
 	overlay.removeClass("openform");*/
-	$("#login-content").parent().addClass("openform");
-	$("#id-ok-content").parent().removeClass("openform");
-	$("#id-find-content").parent().removeClass("openform");
+	idfindct.parents(overlay).removeClass("openform");
+	idokct.parents(overlay).removeClass("openform");
+	loginct.parents(overlay).addClass("openform");
 	
 });
 
