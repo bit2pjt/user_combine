@@ -44,8 +44,29 @@
 		where m_email = #{m_email, jdbcType=VARCHAR} and m_name = #{m_name, jdbcType=VARCHAR} and m_phone = #{m_phone, jdbcType=VARCHAR}
 	</select>
 	
+
+	<insert id="memberJoin">
+		insert into member
+		values (seq_member_id.nextval, #{m_nickname}, #{m_image}, #{m_email}, #{m_eagree}, #{m_sagree}, #{m_name},#{m_phone}, #{m_cert}, #{m_password},
+				sysdate, sysdate, #{m_deleteyn}, #{m_following}, #{m_follower}, #{m_level}, #{m_favorite}, #{m_blacklist})
+	</insert>
+
+	<select id="emailOverlapChk" parameterType="String" resultType="int">
+		select count(m_email)
+		from member
+		where m_email = #{m_email}
+	</select>
+	
+	<select id="nickOverlapChk" parameterType="String" resultType="int">
+		select count(m_nickname)
+		from member
+		where m_email = #{m_nickname}
+	</select>
+	
+
 	<update id="updatePw" parameterType="com.spring.member.MemberVO">
 		update member set m_password = #{m_password, jdbcType=VARCHAR} where m_phone = #{m_phone, jdbcType=VARCHAR}
 	</update>
+
 
 </mapper>

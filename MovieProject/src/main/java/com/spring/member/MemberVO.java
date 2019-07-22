@@ -6,6 +6,9 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
+	
+	enum level {BRONZE, SILVER, GOLD, PLATINUM}
+		
 	private int id;
 	private String m_nickname;
 	private String m_image;
@@ -21,7 +24,14 @@ public class MemberVO {
 	private String m_deleteyn;
 	private int m_following;
 	private int m_follower;
-	private String m_level;
+	private level m_level;
 	private String m_favorite;
 	private String m_blacklist;
+
+	public void setM_level (level BRONZE) {
+		this.m_level = BRONZE;
+	}
+
+
+
 }
