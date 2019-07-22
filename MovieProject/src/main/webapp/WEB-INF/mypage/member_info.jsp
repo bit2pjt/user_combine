@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.spring.mypage.MemberVO"%>
+<%@ page import="com.spring.member.MemberVO"%>
 <%
 	MemberVO member1 = (MemberVO) request.getAttribute("member1");
 String phone1 = member1.getM_phone().substring(0,3);

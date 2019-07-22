@@ -2,6 +2,8 @@ package com.spring.mypage;
 
 import java.util.List;
 
+import com.spring.member.MemberVO;
+
 /**
 * @Class Name : MyPageService.java
 * @Description : 
