@@ -6,9 +6,10 @@
 * @Description : 1:1문의 상세
 * @Modification Information
 * @
-* @  수정일     		     수정자            		수정내용
+* @  수정일     	  수정자            		수정내용
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.06         황진석      		 	최초생성
+* @ 2019.07.06    황진석      		 	최초생성
+* @ 2019.07.18    한유진       		    하단의 <input>취소 -> <button>목록으로 변경 및 back-end 작업
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -17,12 +18,12 @@
 *  Copyright (C) by Bit All right reserved.
 */
 -->
-<%@ include file="../header.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
+<%
+	int qna_no = Integer.parseInt(request.getParameter("qna_no"));
+%>
+<%@ include file="../header1.jsp"%>
 	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
-</head>
+<%@ include file="../header2.jsp"%>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -70,74 +71,71 @@
 				</div>
 				<div>
 				<div class="col-md-9 col-sm-12 col-xs-12">
-				<div class="info_update">
-					<h1><strong>1:1 상세보기</strong></h1>
-				</div>
-					
-				<div>
-					<form>
-						<ul>
-							<li class="tb_line">
-								<div class="tb_th1"> 상담구분 </div>
-								<div class="tb_td1"> 
-									<label for="">
-										<label class="fancy-radio custom-color-coral">
-											<input name="one" type="radio" checked><span><i></i><b>영화 문의</b></span>
+					<div class="info_update">
+						<h1><strong>1:1 문의 상세보기</strong></h1>
+					</div>
+						
+					<div>
+						<%-- <form action="one_update.do?qna_no=<%=qna_no %>" method="get"> --%>
+							<ul>
+								<li class="tb_line">
+									<div class="tb_th1"> 상담구분 </div>
+									<div class="tb_td1"> 
+										<label>
+											<input type="radio" name="genre" value="fear">&nbsp;<span>영화 문의</span>&nbsp;
+											<input type="radio" name="genre" value="melo">&nbsp;<span>예매 문의</span>&nbsp;
+											<input type="radio" name="genre" value="action">&nbsp;<span>이벤트 문의</span>&nbsp;<br>
+											<input type="radio" name="genre" value="comedy">&nbsp;<span>회원정보 문의</span>
+											<input type="radio" name="genre" value="crime">&nbsp;<span>기타 문의</span>&nbsp;
 										</label>
-										<label class="fancy-radio custom-color-coral">
-											<input  name="one" type="radio"><span><i></i><b>예매 문의</b> </span>
-										</label> 
-										<label class="fancy-radio custom-color-coral">
-											<input name="one" type="radio"><span><i></i><b>이벤트 문의</b></span>
-										</label>
-										<label class="fancy-radio custom-color-coral">
-											<input name="one" type="radio"><span><i></i><b>회원정보 문의</b></span>
-										</label>
-										<label class="fancy-radio custom-color-coral">
-											<input name="one" type="radio"><span><i></i><b>기타 문의</b></span>
-										</label>
-									</label>
-								</div>
-							</li>
-
-							<li class="tb_line">
-								<div class="tb_th1"> 닉네임 </div>
-								<div class="tb_td1"> 비트코인 </div>
-							</li>
-
-							<li class="tb_line">
-								<div class="tb_th1"> 제목 </div>
+									</div>
+								</li>
+	
+								<li class="tb_line">
+									<div class="tb_th1"> 이름 </div>
+									<div class="tb_td1"> 가나다 </div>
+								</li>
+	
+								<li class="tb_line">
+									<div class="tb_th1"> 닉네임 </div>
+									<div class="tb_td1"> 비트코인 </div>
+								</li>
+	
+								<li class="tb_line">
+									<div class="tb_th1"> 제목 </div>
 									<div class="tb_td1"> 
 										제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다.
 									</div>
-							</li>
-	
-							<li class="tb_line">
-								<div style="display: inline-block">
-									<div class="tb_th1"> 내용 </div>
-									<div class="tb_td1">
-										내용입니다.내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
-										내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
-										내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
-										내용입니다내용입니다내용입니다내용입니다내용입니다
-									</div>
-								</div>
-							</li>
-						</ul>
+								</li>
+		
+								<li class="tb_line">
+									<div style="display: inline-block">
+										<div class="tb_th1"> 내용 </div>
+											<div class="tb_td1">
+												내용입니다.내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
+												내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
+												내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
+												내용입니다내용입니다내용입니다내용입니다내용입니다
+											</div>
+										</div>
+								</li>
+							</ul>
 							<br>
 							<div class="btn_m">
-								<input type="submit" class="btn-check-hjs" value="수정"> &nbsp;
-								<input type="reset" class="btn-check-hjs" value="취소">
+								<!-- <input type="submit" class="btn-check" value="수정"> &nbsp; -->
+								<button type="button" class="btn-check" onclick="location.href='one_update.do?qna_no=<%=qna_no%>'">수정</button>
+								<button type="button" class="btn-check" onclick="location.href='one_list.do'">목록</button>
 							</div>
-						</form>
+						<!-- </form> -->
+						</div>
 					</div>
-				</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- footer section-->
-<%@ include file="../footer.jsp" %>
+<%@ include file="../footer1.jsp"%>
+<%@ include file="../footer2.jsp"%>
 </body>
 </html>
