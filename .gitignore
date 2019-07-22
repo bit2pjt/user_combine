@@ -1,4 +1,12 @@
+/.metadata/
+MovieProject/target/classes/com/spring/movie/MovieController.class
+MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/moive/pom.properties
+MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/movie/pom.xml
 MovieProject/target/classes/com/spring/movie/BoardFreeController.class
-MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-
+MovieProject/spring-tool-suite-/sts-bundle/workspace/MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/moive/pom.xml
+MovieProject/spring-tool-suite-/sts-bundle/workspace/MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/moive/pom.properties
+MovieProject/spring-tool-suite-/sts-bundle/workspace/MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+MovieProject/.settings/org.eclipse.wst.common.component
+MovieProject/.classpath
+MovieProject/target/*
