@@ -19,6 +19,12 @@ import java.util.List;
 */
 
 public interface MyPageDAO {
+
+	public MemberVO getMember(int id);
+	void updateMember(MemberVO memberVO);
+	void updatePw(MemberVO memberVO);
+	void updateNick(MemberVO memberVO);
+	int checkNick(String m_nickname);
 	//멤버데이터 가져오기, 수정하기, 탈퇴요청하기
 	public String getMemberName(String m_email);	//멤버 이름 가져오기
 	public int getMemberId(String m_email);		//멤버 아이디 가져오기
@@ -31,4 +37,5 @@ public interface MyPageDAO {
 	public int insertQna(OneVO oneVO);	//1:1 문의 등록
 	public OneVO getQnaDetail(int qna_no);	//1:1 문의 상세정보 가져오기
 	public int updateQna(OneVO oneVO);	//1:1 문의 상세정보 수정하기
+
 }

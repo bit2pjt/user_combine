@@ -33,7 +33,6 @@ public class MyPageServiceImpl implements MyPageService{
 	public String getMemberName(String m_email) {
 		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
 		String m_name = mypageDAO.getMemberName(m_email);
-		
 		return m_name;
 	}
 	
@@ -41,7 +40,6 @@ public class MyPageServiceImpl implements MyPageService{
 	public int getMemberId(String m_email) {
 		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
 		int id = mypageDAO.getMemberId(m_email);
-		
 		return id;
 	}
 	
@@ -54,6 +52,39 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 	
 	@Override
+
+	public MemberVO getMember(int id){
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		MemberVO member = mypageDAO.getMember(id);
+		
+		return member;
+	}
+
+	@Override
+	public void updateMember(MemberVO memberVO) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		mypageDAO.updateMember(memberVO);
+	}
+	
+	@Override
+	public void updatePw(MemberVO memberVO) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		mypageDAO.updatePw(memberVO);
+	}
+	
+	@Override
+	public void updateNick(MemberVO memberVO) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		mypageDAO.updateNick(memberVO);
+	}
+	
+	@Override
+	public int checkNick(String m_nickname) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		int check = mypageDAO.checkNick(m_nickname);
+		return check;
+	}
+
 	public int insertQna(OneVO oneVO) {
 		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
 		int result = mypageDAO.insertQna(oneVO);
