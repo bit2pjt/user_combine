@@ -4,12 +4,12 @@ package com.spring.mypage;
  * @Description : MyPage Controller
  * @Modification Information
  * @
- * @  ¼öÁ¤ÀÏ     	  ¼öÁ¤ÀÚ                 ¼öÁ¤³»¿ë
+ * @  ìˆ˜ì •ì¼     	  ìˆ˜ì •ì                 ìˆ˜ì •ë‚´ìš©
  * @ ---------   ---------   -------------------------------
- * @ 2019.07.0?     È²Áø¼®      ÃÖÃÊ»ı¼º
- * @ 2019.07.17     ÇÑÀ¯Áø      ¼ø¼­º¯°æ, °¢ ¸Ş¼­µå º° ÁÖ¼®Ãß°¡(±â´É¼³¸í)
- * @ 2019.07.17     ÇÑÀ¯Áø      Å¬·¡½º¸í º¯°æ(LoginController -> MyPageController), ±â´É±¸Çö
- * @author bit 2Á¶
+ * @ 2019.07.0?     í™©ì§„ì„      ìµœì´ˆìƒì„±
+ * @ 2019.07.17     í•œìœ ì§„      ìˆœì„œë³€ê²½, ê° ë©”ì„œë“œ ë³„ ì£¼ì„ì¶”ê°€(ê¸°ëŠ¥ì„¤ëª…)
+ * @ 2019.07.17     í•œìœ ì§„      í´ë˜ìŠ¤ëª… ë³€ê²½(LoginController -> MyPageController), ê¸°ëŠ¥êµ¬í˜„
+ * @author bit 2ì¡°
  * @since 2019. 07.01
  * @version 1.0
  * @see
@@ -17,15 +17,12 @@ package com.spring.mypage;
  *  Copyright (C) by Bit All right reserved.
  */
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,12 +32,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyPageController {
+
 	
 	@Autowired
 	private MyPageService myPageService;
 	
 	
-	//¸¶ÀÌÆäÀÌÁö Ã¹È­¸é
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹È­ï¿½ï¿½
 	@RequestMapping(value="/mypage.do", method=RequestMethod.GET)
 	public String mypage(Model model, HttpSession session) {
 		
@@ -54,7 +52,7 @@ public class MyPageController {
 			return "mypage/mypage";
 	}
 	
-	//¸¶ÀÌÆäÀÌÁö - ºñ¹Ğ¹øÈ£ ÀçÈ®ÀÎ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½Ğ¹ï¿½È£ ï¿½ï¿½È®ï¿½ï¿½
 	@RequestMapping(value="/pw_confirm.do", method=RequestMethod.GET)
 	public String pwConfirm(int id, Model model) {
 		MemberVO member = myPageService.getMember(id);
@@ -64,15 +62,15 @@ public class MyPageController {
 		return "mypage/pw_confirm";
 	}
 	
-	//¸¶ÀÌÆäÀÌÁö - ºñ¹Ğ¹øÈ£ ÀçÈ®ÀÎ - È¸¿øÁ¤º¸ ¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½Ğ¹ï¿½È£ ï¿½ï¿½È®ï¿½ï¿½ - È¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value="/member_info.do")
 	public String memberInfo(MemberVO member, Model model, int id) {
 		MemberVO member1 = myPageService.getMember(id);
 		System.out.println("member1="+member1);
-		// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ÀÔ·ÂÇÑ ºñ¹Ğ¹øÈ£
+		// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½Ğ¹ï¿½È£
 		String input_password = member.getM_password();
 		System.out.println("input_pwd="+input_password);
-		// id·Î °Ë»öÇÑ memberÀÇ ºñ¹Ğ¹øÈ£
+		// idï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ memberï¿½ï¿½ ï¿½ï¿½Ğ¹ï¿½È£
 		String member_password = member1.getM_password();
 		System.out.println("member_pwd="+member_password);
 		
@@ -82,14 +80,14 @@ public class MyPageController {
 			model.addAttribute("member",member);
 			model.addAttribute("member1",member1);
 			model.addAttribute("check",check);
-			System.out.println("³Ñ±ä´Ù"+member1);
+			System.out.println("ï¿½Ñ±ï¿½ï¿½"+member1);
 			return "mypage/member_info";
 		}
 		else {
 			return "mypage/mypage";
 		}
 	}
-	//¸¶ÀÌÆäÀÌÁö - ºñ¹Ğ¹øÈ£¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½Ğ¹ï¿½È£ï¿½ï¿½ï¿½
 	@RequestMapping(value="/update_pw.do")
 	public String updatePw(Model model, MemberVO memberVO, int id) {
 	
@@ -104,7 +102,7 @@ public class MyPageController {
 		return "mypage/member_info";
 	}
 	
-//	//¸¶ÀÌÆäÀÌÁö - ¼öÁ¤ÇÒ ´Ğ³×ÀÓ Áßº¹ È®ÀÎ
+//	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ğ³ï¿½ï¿½ï¿½ ï¿½ßºï¿½ È®ï¿½ï¿½
 //	@RequestMapping(value="/update_checknick.do")
 //	public String updateCheckNick(Model model, String m_nickname, MemberVO memberVO,int id) {
 //		int check = myPageService.checkNick(m_nickname);
@@ -112,12 +110,12 @@ public class MyPageController {
 //		
 //		model.addAttribute("check", check);
 //		model.addAttribute("member1",member);
-//		System.out.println("Áßº¹Ã¼Å© " +check);
+//		System.out.println("ï¿½ßºï¿½Ã¼Å© " +check);
 //		return "mypage/member_info";
 //	}
 	
 	
-	//¸¶ÀÌÆäÀÌÁö - ´Ğ³×ÀÓ¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Ğ³ï¿½ï¿½Ó¼ï¿½ï¿½
 	@RequestMapping(value="/update_nick.do")
 	public String updateNick(Model model, int id, MemberVO memberVO) {
 		MemberVO member1 = myPageService.getMember(id);
@@ -130,7 +128,7 @@ public class MyPageController {
 		return "mypage/member_info";
 	}
 
-	//¸¶ÀÌÆäÀÌÁö - È¸¿øÁ¤º¸¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/member_update.do")
 	public String updateMember(Model model, HttpServletResponse response, MemberVO memberVO, int id) {
 		MemberVO member1 = myPageService.getMember(id);
@@ -144,7 +142,7 @@ public class MyPageController {
 		try {
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); 
-			out.println("alert('È¸¿øÁ¤º¸¼öÁ¤¿Ï·á');");
+			out.println("alert('È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½');");
 			out.println("</script>");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -153,57 +151,166 @@ public class MyPageController {
 		return "mypage/member_info";
 	}
 	
-	//¸¶ÀÌÆäÀÌÁö - È¸¿øÅ»Åğ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - È¸ï¿½ï¿½Å»ï¿½ï¿½
 	@RequestMapping(value="/member_out.do", method=RequestMethod.GET)
 	public String memberOut() {
 		return "mypage/member_out";
 	}
 	
-	//¸¶ÀÌÆäÀÌÁö - 1:1 ¹®ÀÇ³»¿ª ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - 1:1 ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	@RequestMapping(value="/one_list.do", method=RequestMethod.GET)
 	public String oneList(HttpServletRequest request, HttpSession session) {
 	
-		//¿ŞÂÊ ¸Ş´º »ó´ÜÀÇ »ç¿ëÀÚ Á¤º¸°¡Á®¿À±â À§ÇØ session¿¡ °­Á¦·Î emailÁ¤º¸ ÀúÀå
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ş´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ sessionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ emailï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		session.setAttribute("m_email", "bit0hyj@gmail.com");
 		
-		//»ç¿ëÀÚ Á¤º¸
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		String m_email = (String)session.getAttribute("m_email");
 		String m_name = myPageService.getMemberName(m_email);	//System.out.println("=============MyPageController.java=====================  m_name : " + m_name);
 		request.setAttribute("m_name", m_name);
 		
-		//1:1 ¹®ÀÇ³»¿ª
+		//1:1 ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½
 		List<OneVO> qnaList = null;
-		int id = myPageService.getMemberId(m_email);	//System.out.println("=============MyPageController.java=====================  id : " + id);
+		int id = myPageService.getMemberId(m_email);	//System.out.println("=============MyPageController.java=====================  id : " + id)
+
+
+
+	// ë§ˆì´í˜ì´ì§€ - íšŒì›íƒˆí‡´
+	@RequestMapping(value = "/member_out.do", method = RequestMethod.GET)
+	public String memberOut() {
+		return "mypage/member_out";
+	}
+
+	// ë§ˆì´í˜ì´ì§€ - 1:1 ë¬¸ì˜ë‚´ì—­ ë¦¬ìŠ¤íŠ¸
+	@RequestMapping(value = "/one_list.do", method = RequestMethod.GET)
+	public String oneList(HttpServletRequest request, HttpSession session) {
+
+		// ë¡œê·¸ì¸ ì—°ë™ í›„ ì‚­ì œ
+		// ì™¼ìª½ ë©”ë‰´ ìƒë‹¨ì˜ ì‚¬ìš©ì ì •ë³´ê°€ì ¸ì˜¤ê¸° ìœ„í•´ sessionì— ê°•ì œë¡œ emailì •ë³´ ì €ì¥
+		//session.setAttribute("m_email", "bit0hyj@gmail.com");
+
+		// ì‚¬ìš©ì ì •ë³´
+		String m_email = (String) session.getAttribute("m_email");
+		String m_name = myPageService.getMemberName(m_email); // System.out.println("=============MyPageController.java===================== m_name : " + m_name);
+		request.setAttribute("m_name", m_name);
+
+		
+		// 1:1 ë¬¸ì˜ë‚´ì—­
+		List<OneVO> qnaList = null;
+		int id = myPageService.getMemberId(m_email); // System.out.println("=============MyPageController.java===================== id : " + id);
 		qnaList = myPageService.getQnaList(id);
 		request.setAttribute("qnaList", qnaList);
 		return "mypage/one_list";
 	}
+
 	
-	//¸¶ÀÌÆäÀÌÁö - 1:1 ¹®ÀÇ³»¿ª - 1:1 ¹®ÀÇ³»¿ª »ó¼¼º¸±â
-	@RequestMapping(value="/one_get.do", method=RequestMethod.GET)
-	public String Loggin() {
-		return "mypage/one_get";
-	}
-	
-	//¸¶ÀÌÆäÀÌÁö - 1:1 ¹®ÀÇ³»¿ª ¸®½ºÆ® - 1:1¹®ÀÇ³»¿ª µî·Ï
-	@RequestMapping(value="/one_register.do", method=RequestMethod.GET)
-	public String oneRegister() {
+	// ë§ˆì´í˜ì´ì§€ - 1:1 ë¬¸ì˜ë‚´ì—­ ë¦¬ìŠ¤íŠ¸ - 1:1ë¬¸ì˜ë‚´ì—­ ë“±ë¡
+	@RequestMapping(value = "/one_register.do", method = RequestMethod.GET)
+	public String oneRegister(HttpServletRequest request, HttpSession session, OneVO oneVO) {
+		
+		// ë¡œê·¸ì¸ ì—°ë™ í›„ ì‚­ì œ
+		// ì™¼ìª½ ë©”ë‰´ ìƒë‹¨ì˜ ì‚¬ìš©ì ì •ë³´ê°€ì ¸ì˜¤ê¸° ìœ„í•´ sessionì— ê°•ì œë¡œ emailì •ë³´ ì €ì¥
+		//session.setAttribute("m_email", "bit0hyj@gmail.com");
+
+		// ì‚¬ìš©ì ì •ë³´
+		String m_email = (String) session.getAttribute("m_email");
+		String m_name = myPageService.getMemberName(m_email);
+		String m_nickname = myPageService.getMemberNickname(m_email);	//System.out.println("=============MyPageController.java===================== nickname : " + m_nickname);
+		request.setAttribute("m_name", m_name);
+		request.setAttribute("m_nickname", m_nickname);
+		
+		
+//		myPageService.insertQna(oneVO);
+		
+		
 		return "mypage/one_register";
 	}
 	
-	//¸¶ÀÌÆäÀÌÁö - 1:1 ¹®ÀÇ³»¿ª ¼öÁ¤
-	@RequestMapping(value="/one_update.do", method=RequestMethod.GET)
-	public String oneUpdate() {
-		return "mypage/one_update";
-	}
-	
-	//¸¶ÀÌÆäÀÌÁö - FAQ
-	@RequestMapping(value="/faq.do", method=RequestMethod.GET)
-	public String faqList() {
-		return "mypage/faq";
-	}
+		// ë§ˆì´í˜ì´ì§€ - 1:1 ë¬¸ì˜ë‚´ì—­ ë¦¬ìŠ¤íŠ¸ - 1:1ë¬¸ì˜ë‚´ì—­ ë“±ë¡ ì•¡ì…˜
+		@RequestMapping(value = "/one_registerAction.do", method = RequestMethod.POST)
+		public String oneRegisterAction(HttpSession session, HttpServletRequest request, HttpServletResponse response, OneVO oneVO){
+			
+			// ë¡œê·¸ì¸ ì—°ë™ í›„ ì‚­ì œ
+			// ì™¼ìª½ ë©”ë‰´ ìƒë‹¨ì˜ ì‚¬ìš©ì ì •ë³´ê°€ì ¸ì˜¤ê¸° ìœ„í•´ sessionì— ê°•ì œë¡œ emailì •ë³´ ì €ì¥
+			//session.setAttribute("m_email", "bit0hyj@gmail.com");
+			
+			oneVO.setId(myPageService.getMemberId((String) session.getAttribute("m_email")));
+
+			//qna_title, qna_contentì˜ ì•ë’¤ ê³µë°± ì œê±°
+			oneVO.setQna_title(oneVO.getQna_title().trim());
+			oneVO.setQna_content(oneVO.getQna_content().trim());
+			
+			try {
+				int result = myPageService.insertQna(oneVO);
+				if(result == 0) {
+					return "redirect:/one_register.do";
+				}
+			} catch (Exception e) {
+				System.out.println("ERROR : oneRegisterAction - " + e.getMessage());
+			}
+			return "redirect:/one_list.do";
+			
+		}
 	
 	
 
+	// ë§ˆì´í˜ì´ì§€ - 1:1 ë¬¸ì˜ë‚´ì—­ ìˆ˜ì •
+	@RequestMapping(value = "/one_update.do", method = RequestMethod.GET)
+	public String oneUpdate(HttpSession session, HttpServletRequest request) {
+		// ë¡œê·¸ì¸ ì—°ë™ í›„ ì‚­ì œ
+		// ì™¼ìª½ ë©”ë‰´ ìƒë‹¨ì˜ ì‚¬ìš©ì ì •ë³´ê°€ì ¸ì˜¤ê¸° ìœ„í•´ sessionì— ê°•ì œë¡œ emailì •ë³´ ì €ì¥
+		//session.setAttribute("m_email", "bit0hyj@gmail.com");
+		String m_email = (String) session.getAttribute("m_email");
+		String m_name = myPageService.getMemberName(m_email);
+		String m_nickname = myPageService.getMemberNickname(m_email);
+		
+		// ì‚¬ìš©ìì˜ idë¥¼ ê°€ì ¸ì˜´
+		int id = myPageService.getMemberId(m_email);
+		
+		// qna_no=?ì˜ ì‘ì„±ìì™€ ì¼ì¹˜í•˜ëŠ”ì§€ í™•ì¸ í›„ ì¼ì¹˜í•˜ë©´ ìˆ˜ì •í˜ì´ì§€ë¡œ, ë¶ˆì¼ì¹˜í•˜ë©´ ë¦¬ìŠ¤íŠ¸ë¡œ
+		int qna_no = Integer.parseInt(request.getParameter("qna_no"));
+		OneVO qnaDetail = myPageService.getQnaDetail(qna_no);
+		
+		if(id != qnaDetail.getId()) {
+			return "redirect:/one_list.do";
+		}
+		
+		request.setAttribute("m_name", m_name);
+		request.setAttribute("m_nickname", m_nickname);
+		request.setAttribute("qnaDetail", qnaDetail);
+		
+		return "mypage/one_update";
+	}
 	
+	
+	// ë§ˆì´í˜ì´ì§€ - 1:1 ë¬¸ì˜ë‚´ì—­ ìˆ˜ì • ì•¡ì…˜
+		@RequestMapping(value = "/one_updateAction.do", method = RequestMethod.POST)
+		public String oneUpdateAction(HttpSession session, HttpServletRequest request, OneVO oneVO) {
+			
+			// ë¡œê·¸ì¸ ì—°ë™ í›„ ì‚­ì œ
+			// ì™¼ìª½ ë©”ë‰´ ìƒë‹¨ì˜ ì‚¬ìš©ì ì •ë³´ê°€ì ¸ì˜¤ê¸° ìœ„í•´ sessionì— ê°•ì œë¡œ emailì •ë³´ ì €ì¥
+			//session.setAttribute("m_email", "bit0hyj@gmail.com");
+			
+			//qna_title, qna_contentì˜ ì•ë’¤ ê³µë°± ì œê±°
+			oneVO.setQna_title(oneVO.getQna_title().trim());
+			oneVO.setQna_content(oneVO.getQna_content().trim());
+			
+			try {
+				int result = myPageService.updateQna(oneVO);
+				if(result == 0) {
+					return "redirect:/one_update.do?qna_no="+oneVO.getQna_no();
+				}
+			} catch (Exception e) {
+				System.out.println("ERROR : oneUpdateAction - " + e.getMessage());
+			}
+			return "redirect:/one_get.do?qna_no="+oneVO.getQna_no();
+		}
+
+	// ë§ˆì´í˜ì´ì§€ - FAQ
+	@RequestMapping(value = "/faq.do", method = RequestMethod.GET)
+	public String faqList() {
+		return "mypage/faq";
+	}
+
+
 }

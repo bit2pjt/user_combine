@@ -2,13 +2,14 @@ package com.spring.mypage;
 
 /**
 * @Class Name : OneVO.java
-* @Description : 1:1¹®ÀÇ µ¥ÀÌÅÍ - 1:1¹®ÀÇ Å×ÀÌºíÀÇ ÄÃ·³¸í°ú µ¿ÀÏÇÏ°Ô ÀÛ¼º
+
+* @Description : 1:1ë¬¸ì˜ ë°ì´í„° - 1:1ë¬¸ì˜ í…Œì´ë¸”ì˜ ì»¬ëŸ¼ëª…ê³¼ ë™ì¼í•˜ê²Œ ì‘ì„±
 * @Modification Information
 * @
-* @  ¼öÁ¤ÀÏ     	  ¼öÁ¤ÀÚ                 ¼öÁ¤³»¿ë
+* @  ìˆ˜ì •ì¼     	  ìˆ˜ì •ì                 ìˆ˜ì •ë‚´ìš©
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.18     ÇÑÀ¯Áø      ÃÖÃÊ»ı¼º
-* @author bit 2Á¶
+* @ 2019.07.18     í•œìœ ì§„      ìµœì´ˆìƒì„±
+* @author bit 2ì¡°
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -24,14 +25,16 @@ import lombok.ToString;
 @Data
 public class OneVO {
 
-	private int qna_no;		//1:1 ¹®ÀÇ ±Û¹øÈ£
-	private int id;			//1:1 ¹®ÀÇ ÀÛ¼ºÀÚ ¸â¹öID
-	private String qna_category;	//1:1 ¹®ÀÇ Ä«Å×°í¸®
-	private String qna_title;	//1:1 ¹®ÀÇ Å¸ÀÌÆ²
-	private String qna_content;	//1:1 ¹®ÀÇ ³»¿ë 
-	private Date qna_date;	//1:1 ¹®ÀÇ ÀÛ¼º³¯Â¥
-	private Date qna_update_date;	//1:1 ¹®ÀÇ ¼öÁ¤³¯Â¥
-	private String qna_answer;	//1:1 ¹®ÀÇ ´äº¯¿©ºÎ
+
+	private int qna_no;		//1:1 ë¬¸ì˜ ê¸€ë²ˆí˜¸
+	private int id;			//1:1 ë¬¸ì˜ ì‘ì„±ì ë©¤ë²„ID
+	private String qna_category;	//1:1 ë¬¸ì˜ ì¹´í…Œê³ ë¦¬
+	private String qna_title;	//1:1 ë¬¸ì˜ íƒ€ì´í‹€
+	private String qna_content;	//1:1 ë¬¸ì˜ ë‚´ìš© 
+	private Date qna_date;	//1:1 ë¬¸ì˜ ì‘ì„±ë‚ ì§œ
+	private Date qna_update_date;	//1:1 ë¬¸ì˜ ìˆ˜ì •ë‚ ì§œ
+	private String qna_answer;	//1:1 ë¬¸ì˜ ë‹µë³€ì—¬ë¶€
+
 	
 	public String toString() {
 		return "[" + qna_no + ", " + id + ", " + qna_category + ", " + qna_title + ", " + qna_content + ", " + qna_date + ", " + qna_update_date + ", " + qna_answer+ "]\n"; 

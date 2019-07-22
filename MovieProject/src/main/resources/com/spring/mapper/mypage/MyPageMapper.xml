@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
 /**
@@ -86,6 +87,79 @@
 	<select id="checkNick" parameterType="String" resultType="int">
 		select count(*) from member where m_nickname = #{m_nickname}
 	</select>
+	
+	
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+* @Class Name : MyPageMapper.xml
+* @Description : 1:1문의 페이지에서 필요한 데이터들을 가져오기 위한 mapper
+* @Modification Information
+* @
+* @  수정일     	  수정자                 수정내용
+* @ ===========  ========   ============================
+* @ 2019.07.18     한유진      최초생성
+* @author bit 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by Bit All right reserved.
+*/ 
+-->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 30.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mypage.MyPageDAO">
+
+	<resultMap type="com.spring.mypage.OneVO" id="mypageQnaMap">
+		<result property="qna_no" column="qna_no"/>
+		<result property="id" column="id"/>
+		<result property="qna_category" column="qna_category"/>
+		<result property="qna_title" column="qna_title"/>
+		<result property="qna_content" column="qna_content"/>
+		<result property="qna_date" column="qna_date"/>
+		<result property="qna_update_date" column="qna_update_date"/>
+		<result property="qna_answer" column="qna_answer"/>
+	</resultMap>
+	
+	<select id="getMemberName" parameterType="String" resultType="String">
+		select M_NAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getMemberNickname" parameterType="String" resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
+	</select>
+
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getQnaList" parameterType="int" resultMap="mypageQnaMap">
+		select * from board_qna where ID=#{id} order by QNA_NO desc
+	</select>
+	
+	<!-- board_qna의 qna_no 시퀀스 생성 쿼리문
+		create sequence board_qna_no_seq
+		start with 1
+		increment by 1
+		maxvalue 100000
+		minvalue 1
+		nocycle;
+	 -->
+	<insert id="insertQna" parameterType="com.spring.mypage.OneVO">
+		insert into board_qna values (board_qna_no_seq.nextval, #{id}, #{qna_category, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}
+		, #{qna_content, jdbcType=VARCHAR}, sysdate, sysdate, 'N')
+	</insert>
+	
+	<select id="getQnaDetail" parameterType="int" resultMap="mypageQnaMap">
+		select * from board_qna where QNA_NO=#{qna_no}
+	</select>
+	
+	<update id="updateQna" parameterType="com.spring.mypage.OneVO">
+		UPDATE board_qna SET QNA_CATEGORY=#{qna_category, jdbcType=VARCHAR}, QNA_TITLE=#{qna_title, jdbcType=VARCHAR}, QNA_CONTENT=#{qna_content, jdbcType=VARCHAR}, QNA_UPDATE_DATE=sysdate WHERE QNA_NO=#{qna_no}
+	</update>
 	
 	
 </mapper>	

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -56,7 +57,7 @@ public class LoginController {
       
       int check = memberService.userCheck(email, pw);
       if(check == 1){
-         session.setAttribute("email", email);
+         session.setAttribute("m_email", email);
          return "index";
       }else if( check == -1) {
          response.setContentType("text/html; charset=utf-8");
@@ -120,7 +121,7 @@ public class LoginController {
     * @param model
     * @return String
     */
-   @RequestMapping(value="/pw_find.do", method=RequestMethod.GET, produces="application/json")
+   @RequestMapping(value="/pw_find.do", method=RequestMethod.GET)
    public @ResponseBody String pw_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
 	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
 	   vo.setM_phone(phone);
@@ -133,22 +134,16 @@ public class LoginController {
 	   }
    }
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+   @RequestMapping(value="/pw_new.do", method=RequestMethod.GET)
+   public @ResponseBody String pw_new(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {
+	   int count = memberService.updatePw(vo);
+	   
+	   if(count == 1) {
+		   return "success";
+	   }else {
+		   return "fail";
+	   }
+   }
    
    
    

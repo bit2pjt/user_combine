@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 * @Description :
 * @Modification Information
 * @
-* @  ¼öÁ¤ÀÏ     	  ¼öÁ¤ÀÚ                 ¼öÁ¤³»¿ë
+* @  ìˆ˜ì •ì¼     	  ìˆ˜ì •ì                 ìˆ˜ì •ë‚´ìš©
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.17     ÇÑÀ¯Áø      ÃÖÃÊ»ı¼º
-* @author bit 2Á¶
+* @ 2019.07.17     í•œìœ ì§„      ìµœì´ˆìƒì„±
+* @author bit 2ì¡°
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -52,6 +52,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 	
 	@Override
+
 	public MemberVO getMember(int id){
 		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
 		MemberVO member = mypageDAO.getMember(id);
@@ -83,4 +84,36 @@ public class MyPageServiceImpl implements MyPageService{
 		int check = mypageDAO.checkNick(m_nickname);
 		return check;
 	}
+
+	public int insertQna(OneVO oneVO) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		int result = mypageDAO.insertQna(oneVO);
+		
+		return result;
+	}
+	
+	@Override
+	public String getMemberNickname(String m_email) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		String m_nickname = mypageDAO.getMemberNickname(m_email);
+		
+		return m_nickname;
+	}
+	
+	@Override
+	public OneVO getQnaDetail(int qna_no) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		OneVO oneVO = mypageDAO.getQnaDetail(qna_no);
+		
+		return oneVO;
+	}
+	
+	@Override
+	public int updateQna(OneVO oneVO) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		int result = mypageDAO.updateQna(oneVO);
+		
+		return result;
+	}
+
 }
