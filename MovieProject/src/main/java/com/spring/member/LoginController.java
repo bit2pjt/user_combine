@@ -18,15 +18,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
 * @Class Name : LoginController.java
-* @Description : login愿��젴 而⑦듃濡ㅻ윭 
+* @Description : login관련 컨트롤러 
 * @Modification Information
 * @
-* @  	�닔�젙�씪               	 �닔�젙�옄                  	�닔�젙�궡�슜
+* @  	수정일               	 수정자                  	수정내용
 * @ -----------   ---------   -------------------------------
-* @ 2019. 07. 15         �솴吏꾩꽍            		理쒖큹�깮�꽦
-* @ 2019. 07. 16 	�솴吏꾩꽍				濡쒓렇�씤/濡쒓렇�븘�썐, �씠硫붿씪 李얘린 而⑦듃濡ㅻ윭 異붽�
-* @ 2019. 07. 17 	�솴吏꾩꽍				
-* @author bit 2議�
+* @ 2019. 07. 15         황진석            		최초생성
+* @ 2019. 07. 16 	황진석				로그인/로그아웃, 이메일 찾기 컨트롤러 추가
+* @ 2019. 07. 17 	황진석				
+* @ 2019. 07. 22	이웅식			회원가입 + 가입시 메일&닉네임 중복확인 구현
+* @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -41,8 +42,8 @@ public class LoginController {
    private MemberService memberService;
    
    /**
-    * 濡쒓렇�씤
-    * @param vo - 濡쒓렇�씤�떆 �엯�젰�븳 �젙蹂닿� �떞湲� MemberVO
+    * 로그인
+    * @param vo - 로그인시 입력한 정보가 담긴 MemberVO
     * @param request
     * @param response
     * @param model
@@ -63,7 +64,7 @@ public class LoginController {
          response.setContentType("text/html; charset=utf-8");
          PrintWriter out = response.getWriter();
          out.println("<script>");
-         out.println("alert('鍮꾨�踰덊샇媛� �떎由낅땲�떎. �솗�씤�빐二쇱꽭�슂!');");
+         out.println("alert('비밀번호가 다릅니다. 확인해주세요!');");
          out.println("history.go(-1);");
          out.println("</script>");
          out.close();
@@ -72,7 +73,7 @@ public class LoginController {
          response.setContentType("text/html; charset=utf-8");
          PrintWriter out = response.getWriter();
          out.println("<script>");
-         out.println("alert('�븘�씠�뵒 �샊�� 鍮꾨�踰덊샇媛� �떎由낅땲�떎. �솗�씤�빐二쇱꽭�슂!');");
+         out.println("alert('아이디 혹은 비밀번호가 다릅니다. 확인해주세요!');");
          out.println("history.go(-1);");
          out.println("</script>");
          out.close();
@@ -95,8 +96,8 @@ public class LoginController {
    }
    
    /**
-    * �씠硫붿씪 李얘린
-    * @param vo - �븘�씠�뵒 李얘린 �떆 �엯�젰�븳 �젙蹂닿� �떞湲� MemberVO
+    * 이메일 찾기
+    * @param vo - 아이디 찾기 시 입력한 정보가 담긴 MemberVO
     * @param request
     * @param response
     * @param model
@@ -114,8 +115,8 @@ public class LoginController {
    }
    
    /**
-    * 鍮꾨�踰덊샇 李얘린
-    * @param vo - 鍮꾨�踰덊샇 李얘린 �떆 �엯�젰�븳 �젙蹂닿� �떞湲� MemberVO
+    * 비밀번호 찾기
+    * @param vo - 비밀번호 찾기 시 입력한 정보가 담긴 MemberVO
     * @param request
     * @param response
     * @param model
@@ -133,6 +134,15 @@ public class LoginController {
 		   return "fail";
 	   }
 	}
+   /**
+    * 회원가입
+    * @param vo - 로그인시 입력한 정보가 담긴 MemberVO
+    * @param request
+    * @param response
+    * @param model
+    * @return "index"
+    * @throws Exception 
+    */
    @PostMapping("/memberJoin.do") 
    String memberJoin(MemberVO vo, HttpServletRequest request, HttpServletResponse response) {
 	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
@@ -141,8 +151,47 @@ public class LoginController {
 	   	   
 	   return "index";
    }
+   /**
+    * 로그인
+    * @param vo - 로그인시 입력한 정보가 담긴 MemberVO
+    * @param request
+    * @param response
+    * @param model
+    * @return "application/text"
+    * @throws Exception 
+    */
+   @RequestMapping(value="/email_overlap_chk.do", method=RequestMethod.GET, produces="application/json")
+   public @ResponseBody String emailOverlapChk (@RequestParam(value="m_email") String m_email, HttpServletRequest request, HttpServletResponse response, Model model) {
+	  MemberVO vo = new MemberVO();
+	  vo.setM_email(m_email);
+	  System.out.println("입력된 값은 =" + vo.getM_email());
+	  if( memberService.emailOverlapChk(vo)) {
+		   return "success";
+	   }else {
+		   return "fail";
+	   }
+   }
+   /**
+    * 로그인
+    * @param vo - 로그인시 입력한 정보가 담긴 MemberVO
+    * @param request
+    * @param response
+    * @param model
+    * @return "application/text"
+    * @throws Exception 
+    */
+	  @RequestMapping(value="/nick_overlap_chk.do", method=RequestMethod.GET, produces="application/json")
+	   public @ResponseBody String nickOverlapChk (@RequestParam(value="m_nickname") String m_nickname, HttpServletRequest request, HttpServletResponse response, Model model) {
+		  MemberVO vo = new MemberVO();
+		  vo.setM_nickname(m_nickname);
+		  System.out.println("입력된 값은 =" + vo.getM_nickname());
+		  if( memberService.nickOverlapChk(vo)) {
+			   return "success";
+		   }else {
+			   return "fail";
+		   }
    
-   
+   }
    
    
    

@@ -220,15 +220,17 @@
 		<div class="login-content">
 			<a href="#" class="close">x</a>
 			<h3>sign up</h3>
-			<form method="post" action="memberJoin.do" method="post">
-
+			<form method="post" id="joinform" action="memberJoin.do" method="post" onsubmit="return ws_check()">
+						
 				<div class="row">
 					<label for="email-2"> 이메일 :</br> 
 					<input type="text" name="m_email" id="email-2" placeholder="이메일을 입력하세요" required="required" />
-					<button id="overch">중복확인</button>
+					<button class="overch" id="email_overlap_chk">중복확인</button>
+						
 					</label>
+					<div id="email_chk_msg">이메일 중복검사를 눌러주세요</div>
 				</div>
-
+				
 				<div class="row">
 					<label for="username-2"> 이름 : <input type="text"
 						name="m_name" id="username-2" placeholder="이름을 입력하세요"
@@ -240,8 +242,9 @@
 					<label for="nickname-2"> 닉네임 :</br> <input type="text"
 						name="m_nickname" id="nickname-2" placeholder="닉네임을 입력하세요"
 						required="required" />
-						<button id="overch">중복확인</button>
+						<button class="overch" id="nick_overlap_chk">중복확인</button>
 					</label>
+					<div id="nick_chk_msg">닉네임 중복검사를 눌러주세요</div>
 				</div>
 
 				<div class="row">
@@ -295,20 +298,25 @@
 
 				<div class="row">
 
-					<label for="terms-2"> 약관동의 : </br> <label
-						class="fancy-checkbox custom-bgcolor-coral"> <input
-							type="checkbox" checked><span>[필수]이용약관</span>
-					</label> <a class="termsLink">약관보기</a> <label
-						class="fancy-checkbox custom-bgcolor-coral"> <input
-							type="checkbox" checked><span>[필수]개인정보 수집 및 이용</span>
-					</label> <a class="termsLink">약관보기</a> <label
-						class="fancy-checkbox custom-bgcolor-coral"> <input
-							type="checkbox" checked name="m_eagree"><span>이메일 수신 동의</span></label> <label
-						class="fancy-checkbox custom-bgcolor-coral"> <input
-							type="checkbox" checked name="m_sagree"><span>SMS 수신 동의</span></label>
+					<label for="terms-2"> 약관동의 : </br> 
+						<label class="fancy-checkbox custom-bgcolor-coral"> 
+							<input type="checkbox" checked name="useage_agree" value="usage_ok"><span>[필수]이용약관</span>
+						</label>  
+						<a class="termsLink">약관보기</a> 
+						<label class="fancy-checkbox custom-bgcolor-coral">
+							<input type="checkbox" checked name="info_agree" value="info_ok"><span>[필수]개인정보 수집 및 이용</span>
+						</label> 
+						<a class="termsLink">약관보기</a>
+						<input name="m_cert" type="hidden" value="Y"/>
+						<label class="fancy-checkbox custom-bgcolor-coral">
+							<input type="checkbox" checked name="m_eagree" value="Y"><span>이메일 수신 동의</span>
+						</label>
+						<label class="fancy-checkbox custom-bgcolor-coral"> 
+							<input	type="checkbox" checked name="m_sagree" value="Y"><span>SMS 수신 동의</span>
+						</label>
 					</label>
-					<label class="fancy-checkbox custom-bgcolor-coral" id="checkall" st>
-						<input type="checkbox" checked=""><span>전체동의</span>
+					<label class="fancy-checkbox custom-bgcolor-coral" id="checkall" >
+						<input type="checkbox" checked><span>전체동의</span>
 					</label>
 					<hr>
 				</div>

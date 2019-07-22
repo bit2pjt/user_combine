@@ -52,4 +52,18 @@
 				sysdate, sysdate, #{m_deleteyn}, #{m_following}, #{m_follower}, #{m_level}, #{m_favorite}, #{m_blacklist})
 	</insert>
 
+	<select id="emailOverlapChk" parameterType="String" resultType="int">
+		select count(m_email)
+		from member
+		where m_email = #{m_email}
+	</select>
+	
+	<select id="nickOverlapChk" parameterType="String" resultType="int">
+		select count(m_nickname)
+		from member
+		where m_email = #{m_nickname}
+	</select>
+	
+
+
 </mapper>

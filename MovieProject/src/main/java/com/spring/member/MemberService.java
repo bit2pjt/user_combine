@@ -16,4 +16,8 @@ public interface MemberService {
 	public MemberVO findPw(MemberVO vo);
 	
 	public void memberJoin(MemberVO vo);
+
+	public boolean emailOverlapChk(MemberVO vo);
+	
+	public boolean nickOverlapChk(MemberVO vo);
 }
