@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ page import="com.spring.member.MemberVO" %>
+<%@ page import="com.spring.mypage.MemberVO" %>
 <%
 	MemberVO member = (MemberVO)request.getAttribute("member");
 %>

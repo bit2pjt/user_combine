@@ -24,11 +24,11 @@ public class MemberVO {
 	private String m_deleteyn;
 	private int m_following;
 	private int m_follower;
-	private level m_level;
+	private String m_level;
 	private String m_favorite;
 	private String m_blacklist;
 
-	public void setM_level (level BRONZE) {
+	public void setM_level (String BRONZE) {
 		this.m_level = BRONZE;
 	}
 

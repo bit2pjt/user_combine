@@ -101,9 +101,8 @@ public class MemberServiceImpl implements MemberService {
 		vo.setM_deleteyn("N");
 		vo.setM_following(0);
 		vo.setM_follower(0);
-		vo.setM_level(level.BRONZE);
+		vo.setM_level("BRONZE");
 		vo.setM_blacklist("N");
-		
 		
 		memberDAOglobal.memberJoin(vo);
 		}
@@ -130,7 +129,7 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public boolean nickOverlapChk(MemberVO vo) {
-		
+		System.out.println("11111111111111111111111111: " + memberDAOglobal.nickOverlapChk(vo.getM_nickname()));
 		if (memberDAOglobal.nickOverlapChk(vo.getM_nickname()) == 0) {
 			System.out.println("일치하는 닉네임 = 사용 가능");
 			return true;

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.spring.member.MemberVO" %>
+<%@ page import="com.spring.mypage.MemberVO" %>
 <%
 	MemberVO member = (MemberVO)request.getAttribute("member");
 %>

@@ -46,7 +46,9 @@ public class MyPageController {
 	}
 	//���������� - ��й�ȣ ��Ȯ��
 	@RequestMapping(value="/pw_confirm.do", method=RequestMethod.GET)
-	public String pwConfirm(int id, Model model) {
+	public String pwConfirm(HttpSession session, Model model) {
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		
 		MemberVO member = myPageService.getMember(id);
 		
 		model.addAttribute("member",member);

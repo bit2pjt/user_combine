@@ -612,7 +612,7 @@ $('#email_overlap_chk').on('click', function (event) { // link 변경
 	
 	var m_email = joinform.m_email.value;
 	   $.ajax({
-	      url: "/moive/email_overlap_chk.do",
+	      url: "/movie/email_overlap_chk.do",
 	      data: {'m_email' : m_email},
 	      dataType: 'text',
 	      type: 'get',
@@ -636,7 +636,7 @@ $('#nick_overlap_chk').on('click', function (event) {
 	
 	var m_nickname = joinform.m_nickname.value;
 	   $.ajax({
-	      url: "/moive/nick_overlap_chk.do",
+	      url: "/movie/nick_overlap_chk.do",
 	      data: {'m_nickname' : m_nickname},
 	      dataType: 'text',
 	      type: 'get',
