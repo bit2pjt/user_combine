@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 30.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mypage.AdminDAO">
+
+	<resultMap type="com.spring.mypage.AdminVO"
+		id="adminQnaResultMap">
+		<result property="aqna_no" column="AQNA_NO" />
+		<result property="qna_no" column="QNA_NO" />
+		<result property="aqna_content" column="AQNA_CONTENT" />
+		<result property="aqna_date" column="AQNA_DATE" />
+		<result property="aqna_update_date" column="AQNA_UPDATE_DATE" />
+		<result property="admin_num" column="ADMIN_NUM" />
+	</resultMap>
+
+	<!-- qna_no로 정보 불러오기 -->
+	<select id="getQnaDetailAnswer" parameterType="String"
+		resultMap="adminQnaResultMap">
+		select *
+		from ad_qna
+		where qna_no = #{qna_no}
+	</select>
+
+</mapper>
