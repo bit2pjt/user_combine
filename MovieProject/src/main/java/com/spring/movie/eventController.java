@@ -13,6 +13,7 @@ public class eventController {
 	}
 	@RequestMapping(value="/cinemaList.do", method=RequestMethod.GET)
 	public String cinemaList() {
+		System.out.println("222");
 		return "event/cinemaList";
 	}
 	@RequestMapping(value="/lastevent.do", method=RequestMethod.GET)
