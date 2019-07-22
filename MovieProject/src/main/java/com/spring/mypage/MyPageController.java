@@ -32,26 +32,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MyPageController {
-
-	
 	@Autowired
 	private MyPageService myPageService;
-	
 	
 	//���������� ùȭ��
 	@RequestMapping(value="/mypage.do", method=RequestMethod.GET)
 	public String mypage(Model model, HttpSession session) {
-		
-		
 			session.setAttribute("id", 1);
-				
-			
 			MemberVO member = (MemberVO)myPageService.getMember(1);
 			System.out.println(member);
 			model.addAttribute("member",member);
 			return "mypage/mypage";
 	}
-	
 	//���������� - ��й�ȣ ��Ȯ��
 	@RequestMapping(value="/pw_confirm.do", method=RequestMethod.GET)
 	public String pwConfirm(int id, Model model) {
@@ -149,32 +141,8 @@ public class MyPageController {
 		}
 		
 		return "mypage/member_info";
-	}
+	}	
 	
-	//���������� - ȸ��Ż��
-	@RequestMapping(value="/member_out.do", method=RequestMethod.GET)
-	public String memberOut() {
-		return "mypage/member_out";
-	}
-	
-	//���������� - 1:1 ���ǳ��� ����Ʈ
-	@RequestMapping(value="/one_list.do", method=RequestMethod.GET)
-	public String oneList(HttpServletRequest request, HttpSession session) {
-	
-		//���� �޴� ����� ����� ��������� ��� session�� ����� email��� ����
-		session.setAttribute("m_email", "bit0hyj@gmail.com");
-		
-		//����� ���
-		String m_email = (String)session.getAttribute("m_email");
-		String m_name = myPageService.getMemberName(m_email);	//System.out.println("=============MyPageController.java=====================  m_name : " + m_name);
-		request.setAttribute("m_name", m_name);
-		
-		//1:1 ���ǳ���
-		List<OneVO> qnaList = null;
-		int id = myPageService.getMemberId(m_email);	//System.out.println("=============MyPageController.java=====================  id : " + id)
-
-
-
 	// 마이페이지 - 회원탈퇴
 	@RequestMapping(value = "/member_out.do", method = RequestMethod.GET)
 	public String memberOut() {
