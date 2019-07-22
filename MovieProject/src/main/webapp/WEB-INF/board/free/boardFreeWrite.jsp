@@ -1,9 +1,14 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
 
+<!-- 1. header1.jsp : head  -->
+<%@ include file="/WEB-INF/header1.jsp"%>
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="../../resources/css/ws_personal.css">
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="/WEB-INF/header2.jsp" %>
+
 <!--  
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -12,6 +17,7 @@
 * @  수정일      			수정자 				             수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.2     이웅식                    			최초 생성
+* @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -29,7 +35,7 @@
 
 
 <!-- 서머노트 웹에서 ... 끝-->
-<body>
+<!-- <body> -->
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -145,5 +151,9 @@ $(document).ready(function() {
 
 
 </script>
-</body>
-<%@include file="../../footer.jsp" %>
+<!-- 5. footer1.jsp : footer -->
+<%@ include file="/WEB-INF/footer1.jsp" %>
+<!-- 6. 페이지별 script 추가 -->	
+<!-- footer2.jsp : script -->
+<%@ include file="/WEB-INF/footer2.jsp"%>
+

@@ -1,21 +1,18 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
-
+<!-- 1. header1.jsp : head  -->
+<%@ include file="/WEB-INF/header1.jsp"%>
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
 	<link rel="stylesheet" href="../../resources/vendor/bootstrap-markdown/bootstrap-markdown.min.css">
 	<link rel="stylesheet" href="../../resources/vendor/summernote/summernote.css">
-	
-	
 	<link rel="stylesheet" href="../../resources/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../resources/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../../resources/vendor/linearicons/style.css">
 	<link rel="stylesheet" href="../../resources/vendor/metisMenu/metisMenu.css">
-	
-
-
 	<link rel="stylesheet" href="../../resources/css/ws_personal.css?ver=1">
-
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="/WEB-INF/header2.jsp" %>
 <!--  
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -24,6 +21,7 @@
 * @  수정일      			수정자 				             수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.2     이웅식                    			최초 생성
+* @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -35,7 +33,6 @@
 
 
 <!-- 서머노트 웹에서 ... 끝-->
-<body>
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -144,6 +141,9 @@
 <!-- footer의 jquery 스크립트가 화면에 추가된 스크립트를 계속 초기화 시킨다(더욱 아랫줄에 있기 때문에) 그러므로 섬머노트가 있는 페이지는
 	별도의 footer를 사용하도록 하자
 	쓰이는  -->
+	<!-- 5. footer1.jsp : footer -->
+<%@ include file="/WEB-INF/footer1.jsp" %>
+<!-- 6. 페이지별 script 추가 -->
 <script src="../../resources/vendor/jquery/jquery.min.js"></script>
 <script src="../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -155,7 +155,6 @@
 <script src="../../resources/vendor/bootstrap-markdown/bootstrap-markdown.js"></script>
 <script src="../../resources/vendor/common.js"></script>
 <script>
-
      //n자 남음 구현
      $(function() {
          $('.post-title').keyup(function (e){
@@ -179,11 +178,8 @@
   		});
   		 $("button").attr("aria-expanded","true");
   	});
-     
-     
-    
-     
 </script>
 
+<-- footer2.jsp : script -->
+<%@ include file="/WEB-INF/footer2.jsp"%>
 
-<%@include file="../../footer_bs_write.jsp" %>
