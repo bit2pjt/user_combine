@@ -102,13 +102,13 @@
 
 									<li class="tb_line">
 										<div class="tb_th1">닉네임</div>
-										<div class="tb_td1">비트코인</div>
+										<div class="tb_td1">${requestScope.m_nickname }</div>
 									</li>
 
 									<li class="tb_line">
 										<div class="tb_th1">제목</div>
 										<div class="tb_td1">
-											제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다제목입니다.</div>
+											${requestScope}</div>
 									</li>
 
 									<li class="tb_line">
