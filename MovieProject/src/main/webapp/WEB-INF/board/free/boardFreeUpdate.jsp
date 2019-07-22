@@ -1,20 +1,17 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
-
+<%@ include file="../../header1.jsp"%>
 	<link rel="stylesheet" href="../../resources/vendor/bootstrap-markdown/bootstrap-markdown.min.css">
 	<link rel="stylesheet" href="../../resources/vendor/summernote/summernote.css">
-	
-	
 	<link rel="stylesheet" href="../../resources/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../resources/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../../resources/vendor/linearicons/style.css">
 	<link rel="stylesheet" href="../../resources/vendor/metisMenu/metisMenu.css">
-	
-
-
 	<link rel="stylesheet" href="../../resources/css/ws_personal.css?ver=1">
+<%@ include file="../../header2.jsp" %>
+
+	
 
 <!--  
 * @Class Name : EgovSampleService.java
@@ -24,6 +21,7 @@
 * @  수정일      			수정자 				             수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.2     이웅식                    			최초 생성
+* @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -35,7 +33,6 @@
 
 
 <!-- 서머노트 웹에서 ... 끝-->
-<body>
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -155,7 +152,6 @@
 <script src="../../resources/vendor/bootstrap-markdown/bootstrap-markdown.js"></script>
 <script src="../../resources/vendor/common.js"></script>
 <script>
-
      //n자 남음 구현
      $(function() {
          $('.post-title').keyup(function (e){
@@ -179,11 +175,8 @@
   		});
   		 $("button").attr("aria-expanded","true");
   	});
-     
-     
-    
-     
 </script>
 
 
 <%@include file="../../footer_bs_write.jsp" %>
+

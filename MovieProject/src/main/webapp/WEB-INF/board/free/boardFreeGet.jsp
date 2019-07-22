@@ -1,10 +1,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
-
-
+<%@ include file="../../header1.jsp"%>
 	<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=1.3">
+<%@ include file="../../header2.jsp" %>
+
+
+	
 
 <div class="hero common-hero">
 	<div class="container">
@@ -379,4 +381,5 @@
 
 	
 </script>
-<%@include file="../../footer.jsp" %>
+<%@ include file="../../footer1.jsp"%>
+<%@ include file="../../footer2.jsp" %>
