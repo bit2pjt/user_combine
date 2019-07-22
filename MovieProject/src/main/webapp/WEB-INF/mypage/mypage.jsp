@@ -18,13 +18,13 @@
 *  Copyright (C) by Bit All right reserved.
 */
 -->
-<%@ include file="../header1.jsp"%>
-
-<!-- 2. 여기에 페이지별 css 추가해주세요 -->
-
-<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
-<!-- 3. heaer2.jsp : header -->
+<!DOCTYPE html>
+<html>
+<%@ include file="../header1.jsp" %>
 <%@ include file="../header2.jsp" %>
+<head>
+	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+</head>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -152,10 +152,7 @@
 			</div>
 		</div>
 	</div>
-<!-- 5. footer1.jsp : footer -->
-<%@ include file="../footer1.jsp"%>
-
-<!-- 6. 페이지별 script 추가해 주세요. -->
-
-<!-- 7. footer2.jsp : script -->
-<%@ include file="../footer2.jsp"%> 
+<%@ include file="../footer1.jsp" %>
+<%@ include file="../footer2.jsp" %>
+</body>
+</html>

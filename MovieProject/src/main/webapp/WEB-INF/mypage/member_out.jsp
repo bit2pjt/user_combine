@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+    
 <!--
 /**
 * @Class Name : member_out.jsp
@@ -17,13 +20,32 @@
 *  Copyright (C) by Bit All right reserved.
 */
 -->
-<%@ include file="../header1.jsp"%>
-
-<!-- 2. 여기에 페이지별 css 추가해주세요 -->
-
-<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
-<!-- 3. heaer2.jsp : header -->
+<%@ include file="../header1.jsp" %>
 <%@ include file="../header2.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+	
+</head>
+<script>
+
+/* 회원탈퇴 클릭 js  */
+var delete_confirm = function ()
+{
+	var deleteyn = confirm('정말 탈퇴하시겠습니까?');
+    if (deleteyn == true) {
+    	// yes
+
+    	location.href = "member_delete.do";
+    } else {
+    	// no
+    	
+    	return false;
+         
+}
+}
+</script>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -124,19 +146,20 @@
 								<dd>(아이디가 여러 개인 경우 최종 가입 아이디 가입일 기준)<br>- 탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.</dd>
 							</dl>
 					</div> <br>
+					<form action="member_delete.do">
 					<div class="btn_m">
-						<input type="submit" class="btn-check-hjs" value="탈퇴"> &nbsp;
-						<input type="reset" class="btn-check-hjs" value="취소">
+						<input type="submit" class="btn-check" value="탈퇴" onclick="delete_confirm()"> &nbsp;
+						<input type="reset" class="btn-check" value="취소">
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- 5. footer1.jsp : footer -->
-<%@ include file="../footer1.jsp"%>
 
-<!-- 6. 페이지별 script 추가해 주세요. -->
-
-<!-- 7. footer2.jsp : script -->
-<%@ include file="../footer2.jsp"%> 
+<!-- footer section-->
+<%@ include file="../footer1.jsp" %>
+<%@ include file="../footer2.jsp" %>
+</body>
+</html>

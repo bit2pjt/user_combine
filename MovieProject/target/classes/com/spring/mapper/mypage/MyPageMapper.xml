@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 30.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mypage.MyPageDAO">
+
+	<select id="getMemberName" parameterType="String" resultType="String">
+	 	select M_NAME from member where M_EMAIL=#{m_email}
+	 </select>
+	 
+	 
+	 <!-- 비밀번호 체크  -->
+	 <select id="checkPw" resultType="Int">
+	 	select 
+	 		count(*)
+	 		from member
+	 		where m_email = #{m_email ,jdbcType=VARCHAR} and m_password = #{m_password ,jdbcType=VARCHAR}
+	 </select>
+	 
+	 <!-- 회원 탈퇴신청 -->
+	 <update id="delete_member">
+	 	update member
+	 	set 
+	 		m_deleteyn = 'Y'
+	 	where
+	 		m_email = #{m_email, jdbcType=VARCHAR}
+	 </update>
+	 <update id="delete_date">
+	 	 update delete_member
+	 	 set
+	 	 	delete_date = SYSDATE
+	 	 where
+	 	 	id = 1
+	 </update>
+	 
+	 
+</mapper>	
