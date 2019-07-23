@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header.jsp" %>
-<link rel="stylesheet" href="../../resources/css/ws_personal.css">
+<%@include file="../../header1.jsp" %>
+<%@include file="../../header2.jsp" %>
+<link rel="stylesheet" href="./resources/css/ws_personal.css">
 
 <!--  
 * @Class Name : EgovSampleService.java
@@ -37,7 +38,7 @@
 					<h1> 새 글 작성하기</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="#">커뮤니티</a></li>
-						<li> <span class="ion-ios-arrow-right"></span> 자유 게시판</li>
+						<li> <span class="ion-ios-arrow-right"></span> 나눔 게시판</li>
 					</ul>
 				</div>
 			</div>
