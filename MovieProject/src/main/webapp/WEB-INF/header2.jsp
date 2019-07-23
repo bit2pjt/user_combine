@@ -220,8 +220,8 @@
                         autocapitalize="off" onchange="checkPasswordConfirm(this.value)"/> <!-- name, id, placeholder 변경-->
                 	 <span> </span>
                 </label>
-            <div class="alert-success" id="alert-success">비밀번호가 일치합니다.</div>
-			<div class="alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+            <div class="success" id="alert-success" style="font-weight:bold; margin-bottom:10px; color:blue;">비밀번호가 일치합니다.</div>
+			<div class="danger" id="alert-danger" style="font-weight:bold; margin-bottom:10px; color:red;">비밀번호가 일치하지 않습니다.</div>
             </div>
             
             <div class="row">
@@ -723,7 +723,7 @@
     </header>
 	<!-- END | Header -->
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
-<script src="<c:url value="/resources/js/plugins.js" />"></script>
-<script src="<c:url value="/resources/js/plugins2.js" />"></script>
-	
+	<script src="<c:url value="/resources/js/plugins.js" />"></script>
+	<script src="<c:url value="/resources/js/plugins2.js" />"></script>
+		
 <!-- header2 끝 -->
