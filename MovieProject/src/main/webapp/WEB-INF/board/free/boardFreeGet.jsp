@@ -5,7 +5,7 @@
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
-	<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=1.3">
+	<link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=1.3">
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
@@ -69,7 +69,7 @@
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
 			<div class="ws-post-get-info-profile">
-				<img src="../../resources/images/customs/ws_img/defaultprofile.PNG">
+				<img src="./resources/images/customs/ws_img/defaultprofile.PNG">
 			</div>
 			<div class="ws-post-get-info-inner">
 				<span>작성자 : 김시덕이 </span><br>

@@ -5,12 +5,9 @@
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 해당 페이지의 커스텀 css 설정입니다. -->
-<link rel="stylesheet" href="../../resources/css/ws_personal.css?Ver=4">
+<link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=4">
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
-
-
-
 
 
 <!--  
@@ -40,7 +37,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-					<h1> 자유게시판</h1>
+					<h1> 자유 게시판</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="#">커뮤니티</a></li>
 						<li> <span class="ion-ios-arrow-right"></span> 자유 게시판</li>
@@ -51,7 +48,7 @@
 	</div>
 </div>
 
-
+<!-- 상단 베스트 게시물 슬라이더 -->
 <center class="slider sliderv2">
 	<div class="container">
 		<div class="row">
@@ -177,14 +174,14 @@
 </center>
 
 
-<!-- 바탕 : 흰색 -->
+<!-- 바탕 : 메인 컨텐츠 시작 -->
 <div class="buster-light">
 	<div class="movie-items">
-		<!-- 1. 베스트 게시물의 시작 -->	
+		
 		<div class="container">
 			<div class="col-md-14">
 			<!-- 1. listTable 배치 -->
-			<h4>유머게시판  >_0 </h4>
+			<h4>자유 게시판  >_0 </h4>
 			</div>
 		</div>
 		

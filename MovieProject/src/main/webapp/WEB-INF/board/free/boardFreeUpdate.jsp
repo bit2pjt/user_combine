@@ -4,15 +4,19 @@
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
-	<link rel="stylesheet" href="../../resources/vendor/bootstrap-markdown/bootstrap-markdown.min.css">
-	<link rel="stylesheet" href="../../resources/vendor/summernote/summernote.css">
-	<link rel="stylesheet" href="../../resources/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../resources/vendor/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../../resources/vendor/linearicons/style.css">
-	<link rel="stylesheet" href="../../resources/vendor/metisMenu/metisMenu.css">
-	<link rel="stylesheet" href="../../resources/css/ws_personal.css?ver=1">
+
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
+
+
+	<link rel="stylesheet" href="./resources/vendor/bootstrap-markdown/bootstrap-markdown.min.css">
+	<link rel="stylesheet" href="./resources/vendor/summernote/summernote.css">
+	<link rel="stylesheet" href="./resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./resources/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./resources/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="./resources/vendor/metisMenu/metisMenu.css">
+	
+	<link rel="stylesheet" href="./resources/css/ws_personal.css?ver=1">
 <!--  
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -60,7 +64,7 @@
 			&nbsp;&nbsp;<strong>분류</strong>
 			&nbsp;&nbsp;
 			<label class="fancy-radio custom-color-coral">
-        		<input name="category" value="interpretation" type="radio" checked=""><span><i></i>결말해석</span>
+        		<input name="category" value="interpretation" type="radio" checked><span><i></i>결말해석</span>
         	</label>&nbsp;&nbsp;&nbsp;
 			<label class="fancy-radio custom-color-coral">
         		<input name="category" value="argument" type="radio"><span><i></i>토론</span>
@@ -92,8 +96,7 @@
 		<br>
 			</div><!-- end of top-writer -->
 			<!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
-			
-		
+
 		<br>
 		<br>
 		<!--  <textarea name="content" id="summernote" style="border:1 solid;width:100%"></textarea>-->
@@ -113,14 +116,10 @@
 				&nbsp;&nbsp;<span style="color: #ff0000;"><strong>※</strong></span> <span style="color: #ff0000;">스포일러</span><strong>가 포함된 글은 반드시 말머리에 [스포일러]를 붙여주세요.</strong><br>
 				<br>
 				&nbsp;&nbsp;<span style="color: #ff0000;"><strong>※</strong></span> 기타 자세한 공지사항은 아래의 <span style="color: #ff0000;">통합공지</span><strong> 링크에서 확인할 수 있습니다.</strong><br>
-				<a href="mypage/notice/list">&nbsp;&nbsp;--> 통합공지 페이지로 이동 </a>
+				<a href="#">&nbsp;&nbsp;--> 통합공지 페이지로 이동 </a>
 				
 			</div><!-- end of middle-top-writer -->
-		
-		
-		
-		
-		
+	
 			<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
 			<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->	
 			<center class="form-style-1" style="background-color:#FFFFFF;">
@@ -144,16 +143,16 @@
 	<!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <!-- 6. 페이지별 script 추가 -->
-<script src="../../resources/vendor/jquery/jquery.min.js"></script>
-<script src="../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="./resources/vendor/jquery/jquery.min.js"></script>
+<script src="./resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<script src="../../resources/vendor/metisMenu/metisMenu.js"></script>
-<script src="../../resources/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<script src="../../resources/vendor/summernote/summernote.min.js"></script>
-<script src="../../resources/vendor/markdown/markdown.js"></script>
-<script src="../../resources/vendor/to-markdown/to-markdown.js"></script>
-<script src="../../resources/vendor/bootstrap-markdown/bootstrap-markdown.js"></script>
-<script src="../../resources/vendor/common.js"></script>
+<script src="./resources/vendor/metisMenu/metisMenu.js"></script>
+<script src="./resources/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="./resources/vendor/summernote/summernote.min.js"></script>
+<script src="./resources/vendor/markdown/markdown.js"></script>
+<script src="./resources/vendor/to-markdown/to-markdown.js"></script>
+<script src="./resources/vendor/bootstrap-markdown/bootstrap-markdown.js"></script>
+<script src="./resources/vendor/common.js"></script>
 <script>
      //n자 남음 구현
      $(function() {
@@ -180,6 +179,6 @@
   	});
 </script>
 
-<-- footer2.jsp : script -->
+	
 <%@ include file="/WEB-INF/footer2.jsp"%>
 

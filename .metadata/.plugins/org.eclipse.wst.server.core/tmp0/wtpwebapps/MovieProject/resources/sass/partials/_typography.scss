@@ -1,0 +1,97 @@
+/* Typography */
+
+.section-heading {
+	padding: 0 15px;
+	margin-bottom: 15px;
+
+	.section-title {
+		margin: 0;
+		display: inline;
+		float: left;
+		font-size: 24px;
+
+		i {
+			margin-right: 8px;
+		}
+	}
+
+	.section-subtitle {
+		font-size: 13px;
+		color: $color-muted;
+		vertical-align: middle;
+	}
+
+	.right {
+		float: right;
+		font-size: 14px;
+	}
+
+	@include max-screen($break-small) {
+		.section-title,
+		.right {
+			float: none;
+			display: block;
+		}
+
+		.section-title {
+			margin-bottom: 10px;
+		}
+	}
+}
+
+ul.list-justify {
+	> li {
+		margin-bottom: 5px;
+
+		span,
+		strong {
+			float: right;
+		}
+	}
+
+	&.large-number {
+		> li {
+			margin-bottom: 15px;
+		}
+
+		span {
+			font-size: 32px;
+			line-height: 1;
+		}
+	}
+}
+
+.text-primary {
+	color: $color-accent;
+}
+
+.text-info {
+	color: $color-info;
+}
+
+.text-success {
+	color: $color-success;
+}
+
+.text-warning {
+	color: $color-warning;
+}
+
+.text-danger {
+	color: $color-danger;
+}
+
+.text-muted {
+	color: $color-muted;
+}
+
+.text-larger {
+	font-size: 1.2em;
+}
+
+.text-large {
+	font-size: 1.53em;
+}
+
+
+
