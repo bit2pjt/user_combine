@@ -1,10 +1,14 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../header1.jsp" %>
-<link rel="stylesheet" href="../../resources/css/ws_personal.css">
-<%@include file="../../header2.jsp" %>
 
+<!-- 1. header1.jsp : head  -->
+<%@ include file="/WEB-INF/header1.jsp"%>
+
+<!-- 해당 페이지의 커스텀 css 설정입니다. -->
+<link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=4">
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="/WEB-INF/header2.jsp" %>
 
 
 <!--  
@@ -27,6 +31,8 @@
 
 
 
+
+
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -35,7 +41,7 @@
 					<h1> 나눔 게시판</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="#">커뮤니티</a></li>
-						<li> <span class="ion-ios-arrow-right"></span> 나눔 게시판</li>
+						<li> <span class="ion-ios-arrow-right"></span> 자유 게시판</li>
 					</ul>
 				</div>
 			</div>
@@ -43,18 +49,24 @@
 	</div>
 </div>
 
-<!-- 바탕 : 흰색 -->
+
+<!-- 컨텐츠 시작 -->
 <div class="buster-light">
 	<div class="movie-items">
-				
-<!--lst 복사-->
 		
-	<div class="container">
-		<div class="row">
+		<div class="container">
+			<div class="col-md-14">
+			<!-- 1. listTable 배치 -->
+			<h4>나눔 게시판 </h4>
+			</div>
+		</div>
+		
+		<div class="container">
+			<div class="row">
 			<!-- listTable 배치 시작 -->
-			<div>
-				<div style="position:relative;">
-					<button class="ws-btn-reddish" value="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+				<div>
+					<div style="position:relative;top:50px">
+						<button class="ws-btn-reddish-write" value="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
@@ -66,6 +78,7 @@
 							  <th style="width:10%;">글쓴이</th>
 							  <th style="width:10%;">최근수정일</th>
 							  <th style="width:10%;">조회수</th>
+							  
 							</tr>
 						  </thead>
 						 
@@ -76,11 +89,11 @@
 							  <td><strong>0026</strong></td>
 							  <td><strong>공지</strong></td>
 							  <td><strong>비속어 사용과 음란물 게시시 활동정지 처분합니다.</strong></td>
-							  <td style="color:#FF6F61;"><strong>admin01</strong></td>
-							  <td style="text-overflow: ellipsis;"><strong>2011/04/25</strong></td>
+							  <td ><strong>admin01</strong></td>
+							  <td ><strong>2011/04/25</strong></td>
 							  <td><strong>84200</strong></td>
 							  <td>모바일 글제목. </td>
-							</tr>
+							  </tr>
 							<tr class="notice">
 							  <td><strong>002</strong></td>
 							  <td><strong>공지</strong></td>
@@ -152,6 +165,7 @@
 							  <td>39</td>
 							  <td>2009/09/15</td>
 							  <td>$205,500</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0015</td>
@@ -214,6 +228,7 @@
 							  <td>22</td>
 							  <td>2013/03/03</td>
 							  <td>$342,000</td>
+							  <td>모바일 글제목. </td>
 							</tr>
 							<tr class="post">
 							  <td>0014</td>
@@ -233,7 +248,16 @@
 							  <td>$342,000</td>
 							  <td>모바일 글제목. </td>
 							</tr>
-							</tbody>
+							<tr class="post">
+							  <td>00013</td>
+							  <td>유머</td>
+							  <td>Edinburgh</td>
+							  <td>22</td>
+							  <td>2013/03/03</td>
+							  <td>$342,000</td>
+							  <td>모바일 글제목. </td>
+							</tr>
+						  </tbody>
 						</table>
 						</div>
 					</div>
@@ -246,23 +270,22 @@
 					<select>
 						<option value="all">전체</option>
 						<option value="ticket">결말해석</option>
-						<option value="humor">유머</option>
-						<option value="talk">잡담</option>
+						<option value="snack">유머</option>
+						<option value="snack">잡담</option>
 						
 					</select>
 					&nbsp;&nbsp;
 					<select>
-						<option value="all">전체</option>
-						<option value="writer">글쓴이</option>
-						<option value="title">제목</option>
+						<option value="united">제목</option>
+						<option value="saab">글쓴이</option>
+						<option value="saab">전체</option>
 					</select>
 					&nbsp;&nbsp;
 					<span>
 					<input class="list-search" type="text" placeholder="원하시는 내용을 입력하세요">
 					</span>
 					<span>
-					&nbsp;&nbsp;
-					<button class="ws-btn-reddish"><i class="fa fa-search" aria-hidden="true"></i></button>
+					<button class="ws-btn-reddish-search"><i class="fa fa-search" aria-hidden="true"></i></button>
 					</span>
 				</center>
 				
@@ -283,8 +306,10 @@
 	</div>
 		
 <!--list 페이지 구현의 몸통부 끝. 이하 footer 등-->
-		
-<%@include file="../../footer1.jsp" %>
-<%@include file="../../footer2.jsp" %>
 
 
+<!-- 5. footer1.jsp : footer -->
+<%@ include file="/WEB-INF/footer1.jsp" %>
+<!-- 6. 페이지별 script 추가 -->	
+<!-- footer2.jsp : script -->
+<%@ include file="/WEB-INF/footer2.jsp"%>
