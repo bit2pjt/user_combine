@@ -60,7 +60,7 @@
 	<select id="nickOverlapChk" parameterType="String" resultType="int">
 		select count(m_nickname)
 		from member
-		where m_email = #{m_nickname}
+		where m_nickname = #{m_nickname}
 	</select>
 	
 

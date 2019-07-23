@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -67,7 +66,8 @@
 	<div class="col-md-12">
 	<!-- 1. 글제목 자리 -->
 		<div class="ws-post-get-title" >
-			<h4> 글제목이 들어올 자리입니다. aaaaa</h4>
+		<!-- 글제목 들어오는 자리입니다.  -->
+			<h4> ${title }하이루</h4>
 		</div>
 		<!-- 글제목 자리 끝 -->
 		<!-- 2. 글정보+개인정보의 배치 -->
@@ -76,10 +76,10 @@
 				<img src="./resources/images/customs/ws_img/defaultprofile.PNG">
 			</div>
 			<div class="ws-post-get-info-inner">
-				<span>작성자 : 김시덕이 </span><br>
-				<span>작성일자 : </span><span>19/07/01 13:15</span><br>
-				<span>수정일자 :</span><span>19/07/01 15:15</span><br>
-				<span>조회수 : </span><span>1258</span><br>
+				<span>작성자 : 김시덕씨 </span><br>
+				<span>작성일자 : </span><span>${bf_reg_date } 19/07/01 13:15</span><br>
+				<span>수정일자 :</span><span>${bf_update_date } 19/07/01 15:15</span><br>
+				<span>조회수 : </span><span>${bf_view_counter } 1258</span><br>
 				<span>선호장르 : </span><span> 다큐멘터리</span>
 			</div>
 		</div>
