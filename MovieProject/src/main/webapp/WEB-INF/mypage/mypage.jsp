@@ -15,6 +15,7 @@
 * @  수정일     		     수정자            		수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.06         황진석      		 	최초생성
+* @ 2019.07.22    한유진      		 	qnaList 기능 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -111,17 +112,31 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="th_border"> 구분 </th>
-											<th class="th_border"> 상담제목 </th>
-											<th class="th_border"> 작성날짜 </th>
-											<th> 답변여부 </th>
+											<th style="width: 10%;" class="th_border">구분</th>
+											<th style="width: 30%;" class="th_border">상담제목</th>
+											<th style="width: 20%;" class="th_border">작성일</th>
+											<th style="width: 10%;">답변유무</th>
 										</tr>
 									</thead>
-									
+									<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
 									<tbody>
-										<tr>
-											<td colspan="4">  최근 목록이 없습니다.</td>
-										</tr>	
+									<c:choose>
+										<c:when test="${requestScope.qnaList[0].qna_no == null}">
+											<tr>
+												<td colspan="4">등록된 문의글이 없습니다.</td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="qna" items="${requestScope.qnaList }" end="4">
+												<tr>
+													<td>${qna.qna_category }</td>
+													<td><a href="one_get.do?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
+													<td>${qna.qna_date}</td>
+													<td>${qna.qna_answer}</td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 									</tbody>
 								</table>
 							</div>
