@@ -25,11 +25,7 @@
 		</div>
 	</div>
 </div>
-
-
-
 		
-
 	<div class="buster-light">
 		<div class="movie-items">
 		<!--  베스트 게시물 슬라이더 : 산만해. 우측 바가 더 깔끔할듯 하다 
