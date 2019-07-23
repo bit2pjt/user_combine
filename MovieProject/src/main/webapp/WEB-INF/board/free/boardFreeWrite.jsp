@@ -1,14 +1,22 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
-<link rel="stylesheet" href="../../resources/css/ws_personal.css">
+
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
+
+	<link rel="stylesheet" href="./resources/vendor/bootstrap-markdown/bootstrap-markdown.min.css">
+	<link rel="stylesheet" href="./resources/vendor/summernote/summernote.css">
+	<link rel="stylesheet" href="./resources/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./resources/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./resources/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="./resources/vendor/metisMenu/metisMenu.css">
+	
+	<link rel="stylesheet" href="./resources/css/ws_personal.css?ver=1">
 <!--  
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -26,12 +34,6 @@
 *
 *  Copyright (C) by bit 2조 All right reserved.
 */-->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
- <!-- include summernote css/js-->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 
 
 <!-- 서머노트 웹에서 ... 끝-->
@@ -41,7 +43,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-					<h1> 새 글 작성하기</h1>
+					<h1> 새 글 작성</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="#">커뮤니티</a></li>
 						<li> <span class="ion-ios-arrow-right"></span> 자유 게시판</li>
@@ -59,6 +61,24 @@
 	<form>
 		<!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
 		<div class="ws-writer-box">
+			<div>
+			&nbsp;&nbsp;<strong>분류</strong>
+			&nbsp;&nbsp;
+			<label class="fancy-radio custom-color-coral">
+        		<input name="category" value="interpretation" type="radio" checked><span><i></i>결말해석</span>
+        	</label>&nbsp;&nbsp;&nbsp;
+			<label class="fancy-radio custom-color-coral">
+        		<input name="category" value="argument" type="radio"><span><i></i>토론</span>
+        	</label>&nbsp;&nbsp;&nbsp;
+        	<label class="fancy-radio custom-color-coral">
+        		<input name="category" value="chat" type="radio" ><span><i></i>잡담</span>
+        	</label>&nbsp;&nbsp;&nbsp;
+        	<label class="fancy-radio custom-color-coral">
+        		<input name="category" value="humor" type="radio"><span><i></i>유머</span>
+       	 	</label>
+		</div>
+			
+			
 			<!-- 2.상단부는 제목과 출처가 들어간다.  -->
 			<div class="ws-top-writer">
 				<br><br>
@@ -77,7 +97,20 @@
 		<br>
 			</div><!-- end of top-writer -->
 			<!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
-			<div class="ws-middle-top-writer">
+
+		<br>
+		<br>
+		<!--  <textarea name="content" id="summernote" style="border:1 solid;width:100%"></textarea>-->
+		
+		<div class="summernote">Hello there,
+						<br/>
+						<p>The toolbar can be customized and it also supports various callbacks such as <code>oninit</code>, <code>onfocus</code>, <code>onpaste</code> and many more.</p>
+						<p>Please try <b>paste some texts</b> here</p>
+						
+					</div>
+		
+		<br>
+		<div class="ws-middle-top-writer">
 				<br>
 				&nbsp;&nbsp;<span style="color: #ff0000;"><strong>※</strong></span> <span style="color: #ff0000;">음란물 및 욕설</span><strong>이 포함된 게시글은  사전 경고 없이 즉시 게시글이 삭제될 수 있습니다.</strong><br>
 				<br>
@@ -87,25 +120,7 @@
 				<a href="mypage/notice/list">&nbsp;&nbsp;--> 통합공지 페이지로 이동 </a>
 				
 			</div><!-- end of middle-top-writer -->
-		
-		<br>
-		<br>
-		<textarea name="content" id="summernote" style="border:1 solid;width:100%"></textarea>
-		
-		
-		
-		<br>
-		<br>
-		<div>
-		&nbsp;&nbsp;<h4>분류</h4>
-		<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="category"> <label>결말해석&nbsp;&nbsp;&nbsp;</label>
-		<input type="radio" name="category"> <label>토론&nbsp;&nbsp;&nbsp;</label>
-		<input type="radio" name="category"> <label>잡담&nbsp;&nbsp;&nbsp;</label>
-		<input type="radio" name="category"> <label>유머&nbsp;&nbsp;&nbsp;</label>
-		</div>
-		
+	
 			<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
 			<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->	
 			<center class="form-style-1" style="background-color:#FFFFFF;">
@@ -123,20 +138,24 @@
 	</div>
 	</div>
 	<!-- end of buster-white -->
-	
-	
+<!-- footer의 jquery 스크립트가 화면에 추가된 스크립트를 계속 초기화 시킨다(더욱 아랫줄에 있기 때문에) 그러므로 섬머노트가 있는 페이지는
+	별도의 footer를 사용하도록 하자
+	쓰이는  -->
+	<!-- 5. footer1.jsp : footer -->
+<%@ include file="/WEB-INF/footer1.jsp" %>
+<!-- 6. 페이지별 script 추가 -->
+<script src="./resources/vendor/jquery/jquery.min.js"></script>
+<script src="./resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="./resources/vendor/metisMenu/metisMenu.js"></script>
+<script src="./resources/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="./resources/vendor/summernote/summernote.min.js"></script>
+<script src="./resources/vendor/markdown/markdown.js"></script>
+<script src="./resources/vendor/to-markdown/to-markdown.js"></script>
+<script src="./resources/vendor/bootstrap-markdown/bootstrap-markdown.js"></script>
+<script src="./resources/vendor/common.js"></script>
 <script>
-$(document).ready(function() {
-     $('#summernote').summernote({
-             height: 500,                 // set editor height
-             minHeight: 45,             // set minimum height of editor
-             maxHeight: 600,             // set maximum height of editor
-             width: 1100,
-             minWidth : 500,
-             maxWidth : 1100,
-             focus: true                  // set focus to editable area after initializing summernote
-     });
-     
+
      //n자 남음 구현
      $(function() {
          $('.post-title').keyup(function (e){
@@ -146,14 +165,30 @@ $(document).ready(function() {
          });
          $('.post-title').keyup();
    });
-});
 
-
-
+   
+     
+     $(function() {
+  		// summernote editor
+  		$('.summernote').summernote({
+  			height: 300,
+  			focus: true,
+  			onpaste: function() {
+  				alert('You have pasted something to the editor');
+  			}
+  		});
+  		 $("button").attr("aria-expanded","true");
+  	});
+     
+     
+    
+     
 </script>
+
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <!-- 6. 페이지별 script 추가 -->	
+
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
 
