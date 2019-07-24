@@ -118,4 +118,13 @@ public class MyPageServiceImpl implements MyPageService{
 		return result;
 	}
 
+	// hm| 1:1문의 답변 가져오기 
+	@Override
+	public OneAdVO getQnaAdDetail(int qna_no) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		OneAdVO oneAdVO = mypageDAO.getQnaAdDetail(qna_no);
+		
+		return oneAdVO;
+	}
+
 }
