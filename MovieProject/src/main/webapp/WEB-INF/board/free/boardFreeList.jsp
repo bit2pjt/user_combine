@@ -28,10 +28,6 @@
 *  Copyright (C) by bit 2조 All right reserved.
 */-->
 
-
-
-
-
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -229,9 +225,9 @@
 							</tr>
 							<!--4.  자유게시판 게시글의 나열 시작 -->
 							<tr class="post">
-							  <td >0024</td>
+							  <td >24</td>
 							  <td>결말해석</td>
-							  <td>고질라 쿠키영상 무슨뜻인가요?</td>
+							  <td><a href="boardFreeGet.do?bno=24">고질라 쿠키영상 무슨뜻인가요?</a></td>
 							  <td>가모라</td>
 							  <td>2009/01/12</td>
 							  <td>2400</td>

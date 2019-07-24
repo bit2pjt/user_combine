@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.spring.member.MemberDAO">
-	  <resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
+	 <resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
       <result property="id" column="id"/>
       <result property="m_nickname" column="m_nickname"/>
       <result property="m_image" column="m_image"/>

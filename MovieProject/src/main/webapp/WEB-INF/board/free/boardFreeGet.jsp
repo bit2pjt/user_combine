@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
@@ -9,6 +9,95 @@
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
+<script>
+	/*
+	var session = "${sessionyn}";
+
+ 	if( session == "") {
+ 		alert("로그인 하셔야 이용하실수 있습니다.");
+ 		location.href="index.do";
+ 	}
+ 	*/
+ 	$(function() {
+ 		var session = "${sessionyn}";
+ 		var reco = $("#ws-cnt-tup");
+ 		var deco = $("#ws-cnt-tdn");
+ 		var warn = ${"#ws-cnt-warning"};
+ 		var bno = "${boardFreeVO.bf_bno}";
+ 	
+ 		reco.on("click", function() {
+ 		 	if( session == "") {
+ 		 		alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 		location.href="index.do";
+ 		 		return false;
+ 		 	}
+ 			$.ajax({
+ 				url:"boardFreeReco.do",
+ 				data: {bf_bno: bno, type: 1},
+ 				dataType: "text",
+ 				type:"post",
+ 				success: function(data) {
+ 					if(data == "fail") {
+ 						alert("이미 추천/비추천을 누르셨습니다.");
+ 						return false;
+ 					}else {
+ 						reco.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
+ 					}
+ 				},
+ 				error: function() {
+ 					alert("에러");
+ 				}
+ 			});
+ 		});
+ 		
+ 		deco.on("click", function() {
+ 		 	if( session == "") {
+ 		 		alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 		location.href="index.do";
+ 		 		return false;
+ 		 	}
+ 			$.ajax({
+ 				url:"boardFreeReco.do",
+ 				data: {bf_bno: bno, type: 0},
+ 				dataType: "text",
+ 				type:"post",
+ 				success: function(data) {
+ 					if(data == "fail") {
+ 						alert("이미 추천/비추천을 누르셨습니다.");
+ 						return false;
+ 					}else {
+ 						deco.html("<i class='fa fa-thumbs-o-down' aria-hidden='true'></i>  " + data);
+ 					}
+ 				},
+ 				error: function() {
+ 					alert("에러");
+ 				}
+ 			});
+ 		});
+ 		
+ 		warn.on("click", function() {
+ 		 	if( session == "") {
+ 		 		alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 		location.href="index.do";
+ 		 		return false;
+ 		 	}
+ 		 	
+ 			$.ajax({
+ 				url:"boardFreeWarn.do",
+ 				data: {bf_bno: bno, type: 0},
+ 				dataType: "text",
+ 				type:"post",
+ 				success: function(data) {
+ 					
+ 				},
+ 				error: function() {
+ 					alert("에러");
+ 				}
+ 			});
+ 		});
+ 		
+ 	});
+</script>
 
 <div class="hero common-hero">
 	<div class="container">
@@ -57,42 +146,39 @@
 			-->
 <!-- blog detail section-->
 <div class="container">
-	
-	
-
 	<div class="col-md-12">
 	<!-- 1. 글제목 자리 -->
 		<div class="ws-post-get-title" >
-			<h4> 글제목이 들어올 자리입니다. aaaaa</h4>
+			<h4> ${boardFreeVO.bf_title }</h4>
 		</div>
 		<!-- 글제목 자리 끝 -->
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
 			<div class="ws-post-get-info-profile">
-				<img src="./resources/images/customs/ws_img/defaultprofile.PNG">
+				<img src="${memberVO.m_image}" alt="프로필사진">
 			</div>
 			<div class="ws-post-get-info-inner">
-				<span>작성자 : 김시덕이 </span><br>
-				<span>작성일자 : </span><span>19/07/01 13:15</span><br>
-				<span>수정일자 :</span><span>19/07/01 15:15</span><br>
-				<span>조회수 : </span><span>1258</span><br>
-				<span>선호장르 : </span><span> 다큐멘터리</span>
+				<div>작성자 : ${memberVO.m_nickname}</div>
+				<div>작성일자 : <fmt:formatDate value="${boardFreeVO.bf_reg_date}" pattern="yyyy-MM-dd"/></div>
+				<div>수정일자 : <fmt:formatDate value="${boardFreeVO.bf_update_date}" pattern="yyyy-MM-dd"/></div>
+				<div>조회수 : ${boardFreeVO.bf_view_counter}</div>
+				<div>선호장르 : ${memberVO.m_favorite} </div>
 			</div>
 		</div>
 		<!-- 글정보+개인정보의 배치 끝 -->
 		<!-- 3. 글본문 자리 -->
 		<div class="ws-post-get-content">
-			여기는 본문. 최소 높이=200px. 쓰는 만큼 늘어납니다.
+			${boardFreeVO.bf_content }
 		</div>
 			<!-- 글본문 자리의 끝 -->
 			<!-- 4. 글신고/글추천/글비추 자리 -->
 		<center class="ws-post-get-buttons">
 			<div style="float:left">
-				<button class="ws-btn-warning" id="ws-cnt-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> </button>
+				<button class="ws-btn-warning" id="ws-cnt-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
 			</div>
 			<span>
-				<button class="ws-btn-thumbs-up" id="ws-cnt-tup">  <i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> 5</button> 
-				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 1</button>
+				<button class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
+				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
 			<div style="float:right;">
 				수정 <button class="ws-btn-update"><i class="fa fa-repeat" aria-hidden="true"></i></button> 
@@ -317,69 +403,7 @@
 	function replydel() {
 	    location.replace("/board/free/boardFreeList.do");
 	  	}
-	$(document).ready(function() {
-		 
-		//추천 클릭시 메세지 보이는 상태로 : 추천 
-		//향후 중복추천인 경우의 반응으로 이어주면 된다. 현재는 클릭되면 바로 나오게 되어있지만, 나중에는 단독함수 구현 후, 이미 추천한 경우에 함수 호출하는 방식으로,,,
-		$('#ws-cnt-tup').click(function(){
-		       
-			$('#ws-content-msg').css('color', 'blue').css('display','inline').css('clear', 'both').text('중복추천은 불가능합니다.');
-			setTimeout(function(){
-				$('#ws-content-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		});
-		//추천 클릭시 메세지 보이는 상태로 : 비추천 
-		$('#ws-cnt-tdn').click(function(){
-		       
-			$('#ws-content-msg').css('color', 'red').css('display','inline').css('clear', 'both').text('중복비추는 불가능합니다');
-			setTimeout(function(){
-				$('#ws-content-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		
-		});
-		// 추천 클릭시 메세지 보이는 상태로 : 신고
-		$('#ws-cnt-warning').click(function(){
-		      
-			$('#ws-content-msg').css('color', 'orange').css('display','inline').css('clear', 'both').text('이미 신고하셨습니다.');
-			setTimeout(function(){
-				$('#ws-content-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		
-		});
-				
-		//댓글추천 비추천 신고버튼의 중복시 구현
-		//추천 클릭시 메세지 보이는 상태로 : 추천 
-		$('.ws-btn-thumbs-up').click(function(){
-		       
-			$('.ws-reply-msg').css('color', 'blue').css('display','inline').css('clear', 'both').text('중복추천은 불가능합니다.');
-			setTimeout(function(){
-				$('.ws-reply-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		});
-		//추천 클릭시 메세지 보이는 상태로 : 비추천 
-		$('.ws-btn-thumbs-down').click(function(){
-		       
-			$('.ws-reply-msg').css('color', 'red').css('display','inline').css('clear', 'both').text('중복비추는 불가능합니다');
-			setTimeout(function(){
-				$('.ws-reply-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		
-		});
-		// 추천 클릭시 메세지 보이는 상태로 : 신고
-		$('.ws-btn-warning').click(function(){
-		      
-			$('.ws-reply-msg').css('color', 'orange').css('display','inline').css('clear', 'both').text('이미 신고하셨습니다.');
-			setTimeout(function(){
-				$('.ws-reply-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		
-		});
-			
-		//best 표시 반짝임.
-		// setInterval(function(){
-		//	  $(".ws-best").toggle();
-		//	}, 1200)
-	});		
+	
 </script>
 
 <!-- footer2.jsp : script -->

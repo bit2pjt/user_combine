@@ -3,13 +3,13 @@
 <%@ page import="com.spring.member.MemberVO"%>
 <%
 	MemberVO member1 = (MemberVO) request.getAttribute("member1");
-String phone1 = member1.getM_phone().substring(0,3);
-String phone2 = member1.getM_phone().substring(3,7);
-String phone3 = member1.getM_phone().substring(7,11);
-	
-System.out.println(phone1);
-System.out.println(phone2);
-System.out.println(phone3);
+	String phone1 = member1.getM_phone().substring(0,3);
+	String phone2 = member1.getM_phone().substring(3,7);
+	String phone3 = member1.getM_phone().substring(7,11);
+		
+	System.out.println(phone1);
+	System.out.println(phone2);
+	System.out.println(phone3);
 %>
 <!--
 /**
