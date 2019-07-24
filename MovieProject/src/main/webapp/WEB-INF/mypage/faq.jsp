@@ -54,10 +54,10 @@
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
 						<h2>
-							<strong>황진석 님</strong>
+							<strong>${requestScope.m_name } 님</strong>
 						</h2>
 						<h3>
-							<strong>h10046245h@naver.com</strong>
+							<strong>${sessionScope.m_email }</strong>
 						</h3>
 					</div>
 					<div class="user-information-hjs">
