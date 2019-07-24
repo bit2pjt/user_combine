@@ -152,21 +152,21 @@
 	<div class="col-md-12">
 	<!-- 1. 글제목 자리 -->
 		<div class="ws-post-get-title" >
-			<h4> ${boardFreeVO.bf_title }</h4>
+			<h3> ${boardFreeVO.bf_title }</h3>
 		</div>
 		<!-- 글제목 자리 끝 -->
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
-			<div class="ws-post-get-info-profile">
-				<img src="${memberVO.m_image}" alt="프로필사진">
-			</div>
-			<div class="ws-post-get-info-inner">
-				<div>작성자 : ${memberVO.m_nickname}</div>
-				<div>작성일자 : <fmt:formatDate value="${boardFreeVO.bf_reg_date}" pattern="yyyy-MM-dd"/></div>
-				<div>수정일자 : <fmt:formatDate value="${boardFreeVO.bf_update_date}" pattern="yyyy-MM-dd"/></div>
-				<div>조회수 : ${boardFreeVO.bf_view_counter}</div>
-				<div>선호장르 : ${memberVO.m_favorite} </div>
-			</div>
+				<div class="ws-post-get-info-profile">
+					<img src="${memberVO.m_image}" alt="프로필사진">
+				</div>
+				<div class="ws-post-get-info-inner">
+					<div>작성자 : ${memberVO.m_nickname}</div>
+					<div>작성일자 : <fmt:formatDate value="${boardFreeVO.bf_reg_date}" pattern="yyyy-MM-dd"/></div>
+					<div>수정일자 : <fmt:formatDate value="${boardFreeVO.bf_update_date}" pattern="yyyy-MM-dd"/></div>
+					<div>조회수 : ${boardFreeVO.bf_view_counter}</div>
+					<div>선호장르 : ${memberVO.m_favorite} </div>
+				</div>
 		</div>
 		<!-- 글정보+개인정보의 배치 끝 -->
 		<!-- 3. 글본문 자리 -->
@@ -235,7 +235,7 @@
 		
 	<div class="col-md-12">
 		<br>
-		<h4>04 Comments</h4>
+		<h4> Reply list </h4>
 		<br>
 		<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
 		<div class="comments" style="border-width:3px 0px;border-style:solid;border-color:#525EAA;">
@@ -247,20 +247,10 @@
 						<div>
 						<!-- 댓글 좌상단의 작성자 정보부분  -->
 							<div class="ws-reply-info" > 
-								<a href="#">Steve Perrysssssssss</a>
-								<a class="rep-btn" href="#"><i class="fa fa-reply" aria-hidden="true" style="color:#FF6F61;"></i>댓글</a>  
-								<span class="ws-best"><strong> BEST !</strong></span>
-								<br>
+								<a href="#"><strong>황진석</strong></a>
 								등록/수정일 : <span class="time"> - 19/07/08 13:10</span> <span>선호장르 : sf</span>
 							</div>
-							  
-							<!-- 댓글 우상단의 댓글 추비추&신고 -->
-							<div class="ws-reply-btns">
-								<span class="ws-reply-msg"></span>
-								<button class="ws-btn-warning" >	<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 	</button>
-								<button class="ws-btn-thumbs-up">	<i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> 5			</button> 
-								<button class="ws-btn-thumbs-down">	<i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 1		</button>
-							</div>
+							
 						</div>
 						<!-- 댓글 본문 -->
 						<div class="ws-reply-content">
@@ -401,11 +391,11 @@
 <script type="text/javascript">
 
 	function CatDelete() {
-    location.replace("/board/free/boardFreeList.do");
+    	location.replace("/board/free/boardFreeList.do");
   	}
 	function replydel() {
 	    location.replace("/board/free/boardFreeList.do");
-	  	}
+	}
 	
 </script>
 
