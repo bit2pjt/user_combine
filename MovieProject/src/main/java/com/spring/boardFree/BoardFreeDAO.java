@@ -21,4 +21,10 @@ public interface BoardFreeDAO {
 	void updateDecommend(ThumbVO vo);
 	
 	int getRecommend(int bno);
+	
+	int insertWarn(WarnVO vo);
+	
+	WarnVO warn_check(int id);
+	
+	void WarnCount(int bno);
 }

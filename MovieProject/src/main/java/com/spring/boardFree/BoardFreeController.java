@@ -21,7 +21,7 @@ import com.spring.member.MemberVO;
 * @  	수정일               	 수정자                  	수정내용
 * @ -----------   ---------   -------------------------------
 * @ 2019. 07. 23         황진석            		최초생성
-* @ 2019. 07. 24	황진석				추천기능 추가
+* @ 2019. 07. 24	황진석				추천기능 추가 / 신고기능 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -116,9 +116,28 @@ public class BoardFreeController {
 		}
 	}
 	
+	/**
+	  * 신고 기능
+	  * @param request
+	  * @param session
+	  * @return @ResponseBody String => json
+	 */
 	@ResponseBody
 	@RequestMapping(value="boardFreeWarn.do", method=RequestMethod.POST)
-	public String 
-	
+	public String boardFreeWarn(HttpSession session, HttpServletRequest request) {
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
+		int bno = Integer.parseInt(request.getParameter("bf_bno")); //게시글 번호
+		WarnVO vo = new WarnVO();
+		vo.setBf_bno(bno);
+		vo.setId(id);
 		
+		String msg = boardFreeService.warn_check(vo); 
+		if(msg.equals("1"))
+			msg = "success";
+		
+		return msg;
+	}
+	
+	
 }//e_BoardFreeController class

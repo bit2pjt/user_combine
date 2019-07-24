@@ -22,7 +22,7 @@
  		var session = "${sessionyn}";
  		var reco = $("#ws-cnt-tup");
  		var deco = $("#ws-cnt-tdn");
- 		var warn = ${"#ws-cnt-warning"};
+ 		var warn = $("#ws-cnt-warning");
  		var bno = "${boardFreeVO.bf_bno}";
  	
  		reco.on("click", function() {
@@ -84,11 +84,14 @@
  		 	
  			$.ajax({
  				url:"boardFreeWarn.do",
- 				data: {bf_bno: bno, type: 0},
+ 				data: {bf_bno: bno},
  				dataType: "text",
  				type:"post",
  				success: function(data) {
- 					
+ 					if(data == "success")
+ 						alert("신고 되었습니다.");
+ 					else
+ 						alert("이미 신고 하셨습니다.");
  				},
  				error: function() {
  					alert("에러");

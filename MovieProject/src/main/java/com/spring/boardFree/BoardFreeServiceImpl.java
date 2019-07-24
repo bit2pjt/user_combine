@@ -13,7 +13,7 @@ import com.spring.member.MemberVO;
 * @  	수정일               	 수정자                  	수정내용
 * @ -----------   ---------   -------------------------------
 * @ 2019. 07. 23         황진석            		최초생성
-* @ 2019. 07. 24	황진석				추천기능 추가
+* @ 2019. 07. 24	황진석				추천기능 추가 / 신고기능 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -90,8 +90,8 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	  * board_free의 bf_recommend update
 	  * @param vo - 게시글의 번호와 추천/비추천여부 및 id
 	 */
-	@Override
-	public void updateRecommend(ThumbVO vo) {
+
+	private void updateRecommend(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.updateRecommend(vo);
 	}
@@ -100,10 +100,21 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	  * board_free의 bf_decommend update
 	  * @param vo - 게시글의 번호와 추천/비추천여부 및 id
 	 */
-	@Override
-	public void updateDecommend(ThumbVO vo) {
+
+	private void updateDecommend(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.updateDecommend(vo);
+	}
+	
+	/**
+	  * board_free에서 추천수를 가져온다.
+	  * @param bno - 게시글 번호
+	  * @return num(추천수)
+	 */
+	private int getRecommend(int bno) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		int num = boardFreeDAO.getRecommend(bno);
+		return num;
 	}
 	
 	/**
@@ -125,16 +136,49 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		return msg;
 	}
 	
+
+
 	/**
-	  * board_free에서 추천수를 가져온다.
-	  * @param bno - 게시글 번호
-	  * @return num(추천수)
+	  * free_warning에 추가하고, board_free에 신고수 증가
+	  * @param vo 
+	  * @return msg
+	*/
+	@Override
+	public int insertWarn(WarnVO vo) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		WarnCount(vo.getBf_bno()); // 신고수 1 증가
+		int num = boardFreeDAO.insertWarn(vo); 
+		
+		return num;
+	}
+	
+	/**
+	  * board_free에 신고수 증가
+	  * @param bno - 게시글의 번호
+	*/
+	private void WarnCount(int bno) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		boardFreeDAO.WarnCount(bno);
+	}
+	
+	/**
+	  * free_warning에 id가 있는지 없는지 확인
+	  * @param vo 
+	  * @return msg
 	 */
 	@Override
-	public int getRecommend(int bno) {
+	public String warn_check(WarnVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
-		int num = boardFreeDAO.getRecommend(bno);
-		return num;
+		WarnVO warnVO = boardFreeDAO.warn_check(vo.getId());
+		String msg = "";
+		
+		if(warnVO != null) {
+			msg = "fail";
+		}else {
+			msg = String.valueOf(insertWarn(vo));  // 1
+		}
+		
+		return msg;
 	}
 
 

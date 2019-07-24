@@ -14,9 +14,7 @@ public interface BoardFreeService {
 	
 	int plusRecommend(ThumbVO vo);
 	
-	void updateRecommend(ThumbVO vo);
+	int insertWarn(WarnVO vo);
 	
-	void updateDecommend(ThumbVO vo);
-	
-	int getRecommend(int bno);
+	String warn_check(WarnVO vo);
 }
