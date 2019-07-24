@@ -133,20 +133,41 @@
 						<br> <br>
 						<!-- hm |관리자 답변 폼 -->
 						<div>
+
+
+
+
 							<form>
-								<ul>
-									<li class="tb_line"></li>
-									<li class="tb_line">
-										<div class="tb_th1">답변일시</div>
-										<div class="tb_td1">${requestScope.qnaAdDetail.aqna_update_date }</div>
-									</li>
-									<li class="tb_line">
-											<div class="tb_th1">답변내용</div>
-											<div class="tb_td1">
-												${requestScope.qnaAdDetail.aqna_content }</div>
-										
-									</li>
-								</ul>
+								<c:choose>
+									<c:when test="${requestScope.qnaAdDetail.aqna_content == null}">
+										<br>
+
+										<ul>
+											<li class="tb_line"></li>
+											<li class="tb_line">
+												<div class="tb_th1">답변내용</div>
+												<div class="tb_th1" style="width:80%">답변이 아직 없습니다.</div>
+											</li>
+										</ul>
+										<br>
+									</c:when>
+									<c:otherwise>
+										<ul>
+											<li class="tb_line"></li>
+											<li class="tb_line">
+												<div class="tb_th1">답변일시</div>
+												<div class="tb_td1">${requestScope.qnaAdDetail.aqna_update_date }</div>
+											</li>
+											<li class="tb_line">
+												<div class="tb_th1">답변내용</div>
+												<div class="tb_td1">
+													${requestScope.qnaAdDetail.aqna_content }</div>
+
+											</li>
+										</ul>
+									</c:otherwise>
+								</c:choose>
+
 								<br>
 								<div class="btn_m">
 									<input type="button" onClick="location.href='one_list.do'"
