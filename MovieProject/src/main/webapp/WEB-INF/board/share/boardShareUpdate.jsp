@@ -138,170 +138,169 @@
 	</header>
 	<!-- header 끝 -->
 
-<!-- 서머노트 웹에서 ... 끝-->
-<!-- <body> -->
-<div class="hero common-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>글 수정</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">커뮤니티</a></li>
-						<li><span class="ion-ios-arrow-right"></span> 나눔 게시판</li>
-					</ul>
+	<!-- 서머노트 웹에서 ... 끝-->
+	<!-- <body> -->
+	<div class="hero common-hero">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						<h1>글 수정</h1>
+						<ul class="breadcumb">
+							<li class="active"><a href="#">커뮤니티</a></li>
+							<li><span class="ion-ios-arrow-right"></span> 나눔 게시판</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="buster-light" style="min-height: 1300px;">
-	<!-- 글쓰기 폼의 시작.-->
-	<div class="movie-items">
-		<div class="container">
-			<div class="col-md-12">
-				<form>
-					<!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
-					<div class="ws-writer-box">
-						<div>
-							&nbsp;&nbsp;<strong>분류</strong> &nbsp;&nbsp; <label
-								class="fancy-radio custom-color-coral"> <input
-								name="category" value="티켓나눔" type="radio" checked=""><span><i></i>티켓나눔</span>
-							</label>&nbsp;&nbsp;&nbsp; <label class="fancy-radio custom-color-coral">
-								<input name="category" value="스낵나눔" type="radio"><span><i></i>스낵나눔</span>
-							</label>
-						</div>
+	<div class="buster-light" style="min-height: 1300px;">
+		<!-- 글쓰기 폼의 시작.-->
+		<div class="movie-items">
+			<div class="container">
+				<div class="col-md-12">
+					<form>
+						<!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
+						<div class="ws-writer-box">
+							<div>
+								&nbsp;&nbsp;<strong>분류</strong> &nbsp;&nbsp; <label
+									class="fancy-radio custom-color-coral"> <input
+									name="category" value="티켓나눔" type="radio" checked=""><span><i></i>티켓나눔</span>
+								</label>&nbsp;&nbsp;&nbsp; <label class="fancy-radio custom-color-coral">
+									<input name="category" value="스낵나눔" type="radio"><span><i></i>스낵나눔</span>
+								</label>
+							</div>
 
 
-						<!-- 2.상단부는 제목과 출처가 들어간다.  -->
-						<div class="ws-top-writer">
-							<br>
-							<br> <span><strong>&nbsp;&nbsp;제목
-									:&nbsp;&nbsp;&nbsp;&nbsp; </strong></span> <span> <!-- 밑줄만 나오는 style서식 -->
+							<!-- 2.상단부는 제목과 출처가 들어간다.  -->
+							<div class="ws-top-writer">
+								<br> <br> <span><strong>&nbsp;&nbsp;제목
+										:&nbsp;&nbsp;&nbsp;&nbsp; </strong></span> <span> <!-- 밑줄만 나오는 style서식 -->
 
 
 
-								<input class="post-title" name="bf_title"
-								placeholder="제목을 적어주세요"></span> <span id="counter"></span><span>자
-								남음 </span> <br>
-							<br> <strong>&nbsp;&nbsp;출처
-								:&nbsp;&nbsp;&nbsp;&nbsp; </strong> <span><input
-								class="post-source" name="bf_source" placeholder="출처를 적어주세요"></span>
+									<input class="post-title" name="bf_title"
+									placeholder="제목을 적어주세요"></span> <span id="counter"></span><span>자
+									남음 </span> <br> <br>
+							</div>
+							<!-- end of top-writer -->
+							<!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
 
-							<br> <br> <br>
-						</div>
-						<!-- end of top-writer -->
-						<!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
+							<br> <br>
 
-						<br> <br>
-						
 							<textarea id="summernote" name="editordata"></textarea>
 
 
 
-						<br>
-						<div class="ws-middle-top-writer">
-							<br> &nbsp;&nbsp;<span style="color: #ff0000;"><strong>※</strong></span>
-							<span style="color: #ff0000;">음란물 및 욕설</span><strong>이
-								포함된 게시글은 사전 경고 없이 즉시 게시글이 삭제될 수 있습니다.</strong><br> <br>
-							&nbsp;&nbsp;<span style="color: #ff0000;"><strong>※</strong></span>
-							<span style="color: #ff0000;">스포일러</span><strong>가 포함된
-								글은 반드시 말머리에 [스포일러]를 붙여주세요.</strong><br> <br> &nbsp;&nbsp;<span
-								style="color: #ff0000;"><strong>※</strong></span> 기타 자세한 공지사항은
-							아래의 <span style="color: #ff0000;">통합공지</span><strong>
-								링크에서 확인할 수 있습니다.</strong><br> <a href="#">&nbsp;&nbsp;--> 통합공지
-								페이지로 이동 </a>
+							<br>
+							<div class="ws-middle-top-writer">
+								<br> &nbsp;&nbsp;<span style="color: #ff0000;"><strong>※</strong></span>
+								<span style="color: #ff0000;">음란물 및 욕설</span><strong>이
+									포함된 게시글은 사전 경고 없이 즉시 게시글이 삭제될 수 있습니다.</strong><br> <br>
+								&nbsp;&nbsp;<span style="color: #ff0000;"><strong>※</strong></span>
+								<span style="color: #ff0000;">스포일러</span><strong>가 포함된
+									글은 반드시 말머리에 [스포일러]를 붙여주세요.</strong><br> <br> &nbsp;&nbsp;<span
+									style="color: #ff0000;"><strong>※</strong></span> 기타 자세한 공지사항은
+								아래의 <span style="color: #ff0000;">통합공지</span><strong>
+									링크에서 확인할 수 있습니다.</strong><br> <a href="#">&nbsp;&nbsp;--> 통합공지
+									페이지로 이동 </a>
+
+							</div>
+							<!-- end of middle-top-writer -->
+
+							<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
+							<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
+							<center class="form-style-1" style="background-color: #FFFFFF;">
+								<input type="button" class="submit" value="수정하기"
+									style="background-color: #FF6F61; width: 70px; margin: 10px;">
+								<input type="button" class="submit" value=" 취 소 "
+									style="background-color: #dcf836; color: #0b0b06; width: 70px; margin: 10px;">
+							</center>
+
+
+
 
 						</div>
-						<!-- end of middle-top-writer -->
-
-						<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
-						<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
-						<center class="form-style-1" style="background-color: #FFFFFF;">
-							<input type="button" class="submit" value="수정하기"
-								style="background-color: #FF6F61; width: 70px; margin: 10px;">
-							<input type="button" class="submit" value=" 취 소 "
-								style="background-color: #dcf836; color: #0b0b06; width: 70px; margin: 10px;">
-						</center>
-
-
-
-
-					</div>
-					<!-- end of writer-box  -->
-				</form>
+						<!-- end of writer-box  -->
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- end of buster-white -->
+	<!-- end of buster-white -->
 
-<script>
-	//n자 남음 구현
-	$(function() {
-		$('.post-title').keyup(function(e) {
-			var content = $(this).val();
-			$(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
-			$('#counter').html(content.length + '/50');
-		});
-		$('.post-title').keyup();
-	});
-
-	$(function() {
-		// summernote editor
-		$('#summernote').summernote({
-								placeholder : '본문 내용을 입력해 주세요',
-								tabsize : 2,
-								height : 500
+	<script>
+		//n자 남음 구현
+		$(function() {
+			$('.post-title')
+					.keyup(
+							function(e) {
+								var content = $(this).val();
+								$(this)
+										.height(
+												((content.split('\n').length + 1) * 1.5)
+														+ 'em');
+								$('#counter').html(content.length + '/50');
 							});
-		$("button").attr("aria-expanded", "true");
-	});
-</script>
-<!--   hm |  footer section-->
-<footer class="ht-footer">
-	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				<a href="index.do"><img class="logo"
-					src="resources/images/logo1.png" alt=""></a>
-			</div>
+			$('.post-title').keyup();
+		});
 
-			<div class="flex-child-ft item2">
+		$(function() {
+			// summernote editor
+			$('#summernote').summernote({
+				placeholder : '본문 내용을 입력해 주세요',
+				tabsize : 2,
+				height : 500
+			});
+			$("button").attr("aria-expanded", "true");
+		});
+	</script>
+	<!--   hm |  footer section-->
+	<footer class="ht-footer">
+		<div class="container">
+			<div class="flex-parent-ft">
+				<div class="flex-child-ft item1">
+					<a href="index.do"><img class="logo"
+						src="resources/images/logo1.png" alt=""></a>
+				</div>
+
+				<div class="flex-child-ft item2">
+					<h4>
+						<a href="faq_list.html"> 고객센터 </a>
+					</h4>
+				</div>
 				<h4>
-					<a href="faq_list.html"> 고객센터 </a>
+					<a class="termsLink"> 약관보기 </a>
 				</h4>
-			</div>
-			<h4>
-				<a class="termsLink"> 약관보기 </a>
-			</h4>
-			<div class="flex-child-ft item3">
-				<h4>
-					<a href="one_regist.do"> 1:1 문의 </a>
-				</h4>
-			</div>
+				<div class="flex-child-ft item3">
+					<h4>
+						<a href="one_regist.do"> 1:1 문의 </a>
+					</h4>
+				</div>
 
-			<div class="flex-child-ft item4"></div>
-		</div>
-		<div class="ft-copyright">
-			<div class="ft-left">
-				<p>© 2019 Bit 2 Jo. All Rights Reserved.</p>
+				<div class="flex-child-ft item4"></div>
 			</div>
-			<div class="backtotop">
-				<p>
-					<a href="#" id="back-to-top">맨 위로 <i
-						class="ion-ios-arrow-thin-up"></i></a>
-				</p>
+			<div class="ft-copyright">
+				<div class="ft-left">
+					<p>© 2019 Bit 2 Jo. All Rights Reserved.</p>
+				</div>
+				<div class="backtotop">
+					<p>
+						<a href="#" id="back-to-top">맨 위로 <i
+							class="ion-ios-arrow-thin-up"></i></a>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
-</footer>
-<!--   hm |  end of footer section-->
+	</footer>
+	<!--   hm |  end of footer section-->
 
 
-<button onclick="topFunction()" id="hm_myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="hm_myBtn" title="Go to top">Top</button>
 
-<script src="<c:url value="/resources/js/header_custom.js" />"></script>
-<script src="<c:url value="/resources/js/hm_js.js" />"></script>
+	<script src="<c:url value="/resources/js/header_custom.js" />"></script>
+	<script src="<c:url value="/resources/js/hm_js.js" />"></script>
 
 </body>
 </html>

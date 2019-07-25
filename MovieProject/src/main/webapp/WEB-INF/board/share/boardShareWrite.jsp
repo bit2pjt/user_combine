@@ -172,11 +172,8 @@
 
 									<input class="post-title" name="bf_title"
 									placeholder="제목을 적어주세요"></span> <span id="counter"></span><span>자
-									남음 </span> <br> <br> <strong>&nbsp;&nbsp;출처
-									:&nbsp;&nbsp;&nbsp;&nbsp; </strong> <span><input
-									class="post-source" name="bf_source" placeholder="출처를 적어주세요"></span>
-
-								<br> <br> <br>
+									남음 </span> <br> <br> 
+				
 							</div>
 							<!-- end of top-writer -->
 							<!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
