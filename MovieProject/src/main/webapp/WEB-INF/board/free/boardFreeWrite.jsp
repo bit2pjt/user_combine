@@ -72,6 +72,33 @@
 <!-- 추가 헤더 -->
 </head>
 <body>
+<script>
+function check(){
+	//제목과 내용의 앞뒤 공백 제거
+	var bf_title=bfform.bf_title.value.trim();
+	var bf_content=bfform.bf_content.value.trim();
+	
+	if(bf_title.length == 0){
+		alert("제목을 입력해주세요.");
+		bfform.bf_title.focus();
+		return false;
+	}
+	if(bf_content.length == 0){
+		alert("내용을 입력하세요.");
+		bfform.bf_content.focus();
+		return false;
+	}
+	
+	return true;
+}
+function register_back(){
+	msg="게시글 작성을 취소하시겠습니까?";
+	if(confirm(msg)!=0){
+		location.href="boardFreeList.do";
+	}
+	
+}
+</script>
 	<!-- BEGIN | Header -->
 	<header class="ht-header sticky">
 		<div class="container">
@@ -161,19 +188,19 @@
 		<div class="movie-items">
 			<div class="container">
 				<div class="col-md-12">
-					<form>
+					<form name="bfform" action="boardFreeWriteAction.do" method="POST" onsubmit="return check()">
 						<!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
 						<div class="ws-writer-box">
 							<div>
 								&nbsp;&nbsp;<strong>분류</strong> &nbsp;&nbsp; <label
 									class="fancy-radio custom-color-coral"> <input
-									name="category" value="interpretation" type="radio" checked><span><i></i>결말해석</span>
+									name="bf_category" value="결말해석" type="radio" checked><span><i></i>결말해석</span>
 								</label>&nbsp;&nbsp;&nbsp; <label class="fancy-radio custom-color-coral">
-									<input name="category" value="argument" type="radio"><span><i></i>토론</span>
+									<input name="bf_category" value="토론" type="radio"><span><i></i>토론</span>
 								</label>&nbsp;&nbsp;&nbsp; <label class="fancy-radio custom-color-coral">
-									<input name="category" value="chat" type="radio"><span><i></i>잡담</span>
+									<input name="bf_category" value="잡담" type="radio"><span><i></i>잡담</span>
 								</label>&nbsp;&nbsp;&nbsp; <label class="fancy-radio custom-color-coral">
-									<input name="category" value="humor" type="radio"><span><i></i>유머</span>
+									<input name="bf_category" value="유머" type="radio"><span><i></i>유머</span>
 								</label>
 							</div>
 
@@ -185,11 +212,11 @@
 
 
 
-									<input class="post-title" name="bf_title"
+									<input class="post-title" name="bf_title" id="bf_title"
 									placeholder="제목을 적어주세요"></span> <span id="counter"></span><span>자
 									남음 </span> <br> <br> <strong>&nbsp;&nbsp;출처
 									:&nbsp;&nbsp;&nbsp;&nbsp; </strong> <span><input
-									class="post-source" name="bf_source" placeholder="출처를 적어주세요"></span>
+									class="post-source" name="bf_source" id="bf_source" placeholder="출처를 적어주세요"></span>
 
 								<br> <br> <br>
 							</div>
@@ -197,7 +224,7 @@
 							<!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
 
 							<br> <br>
-							<textarea id="summernote" name="editordata"></textarea>
+							<textarea id="summernote" name="bf_content" style="resize: none;"></textarea>
 
 							<br>
 							<div class="ws-middle-top-writer">
@@ -218,9 +245,9 @@
 							<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
 							<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
 							<center class="form-style-1" style="background-color: #FFFFFF;">
-								<input type="button" class="submit" value="작성하기"
+								<input type="submit" class="submit" value="작성하기"
 									style="background-color: #FF6F61; width: 70px; margin: 10px;">
-								<input type="button" class="submit" value=" 취 소 "
+								<input type="button" class="button" value=" 취 소 " onclick="register_back()"
 									style="background-color: #dcf836; color: #0b0b06; width: 70px; margin: 10px;">
 							</center>
 

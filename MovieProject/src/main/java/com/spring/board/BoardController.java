@@ -97,12 +97,12 @@ public class BoardController {
 		try {
 			int result = boardService.updateBoardFree(freeVO);
 			if (result == 0) {
-				return "redirect:/boardFreeUpdate.do?bf_no=" + freeVO.getBf_bno();
+				return "redirect:/boardFreeUpdate.do?bf_bno=" + freeVO.getBf_bno();
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR : boardFreeUpdateAction - " + e.getMessage());
 		}
-		return "redirect:/boardFreeGet.do?bf_no=" + freeVO.getBf_bno();
+		return "redirect:/boardFreeGet.do?bf_bno=" + freeVO.getBf_bno();
 	}
 
 	// 나눔게시판 글쓰기
@@ -169,12 +169,12 @@ public class BoardController {
 		try {
 			int result = boardService.updateBoardShare(shareVO);
 			if (result == 0) {
-				return "redirect:/boardShareUpdate.do?bs_no=" + shareVO.getBs_bno();
+				return "redirect:/boardShareUpdate.do?bs_bno=" + shareVO.getBs_bno();
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR : boardShareUpdateAction - " + e.getMessage());
 		}
-		return "redirect:/boardShareGet.do?bs_no=" + shareVO.getBs_bno();
+		return "redirect:/boardShareGet.do?bs_bno=" + shareVO.getBs_bno();
 	}
 
 }
