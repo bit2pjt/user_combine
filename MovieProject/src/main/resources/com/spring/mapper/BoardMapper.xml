@@ -97,7 +97,7 @@
 	</update>
 	
 	<!-- select : boardFree -->
-	<select id="selectBoardFree" parameterType="com.spring.board.FreeVO">
+	<select id="selectBoardFree" parameterType="int" resultMap="boardFreeMap">
 	SELECT * FROM board_free WHERE BF_BNO=#{bf_bno}
 	</select>
 	
@@ -110,7 +110,7 @@
 	</insert>
 	
 	<!-- select : boardShare -->
-	<select id="selectBoardShare" parameterType="com.spring.board.ShareVO">
+	<select id="selectBoardShare" parameterType="int" resultMap="boardShareMap">
 	SELECT * FROM board_share WHERE BS_BNO=#{bs_bno}
 	</select>
 	

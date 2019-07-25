@@ -78,8 +78,14 @@ public class BoardController {
 
 		// bf_bno=?의 작성자와 일치하는지 확인 후 일치하면 수정페이지로, 불일치하면 리스트로
 		int bf_bno = Integer.parseInt(request.getParameter("bf_bno"));
+		
 		FreeVO selectBoardFree = boardService.selectBoardFree(bf_bno);
 
+
+		if (id != selectBoardFree.getId()) {
+			return "redirect:/boardFreeList.do";
+		}
+		
 		request.setAttribute("selectBoardFree", selectBoardFree);
 
 		return "board/free/boardFreeUpdate";
