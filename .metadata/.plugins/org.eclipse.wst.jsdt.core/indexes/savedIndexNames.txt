@@ -1,9 +1,5 @@
-INDEX VERSION 1.4+C:\Users\Bit\Desktop\git_combine2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-526009883.index
-145212585.index
-2388759581.index
-4258333378.index
-3193899831.index
-3401094905.index
-4266828705.index
-1221181752.index
+INDEX VERSION 1.4+C:\Users\mung\Desktop\git\fork_user_combine\user_combine\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+295524663.index
+488171567.index
+2396064812.index
+4228528935.index

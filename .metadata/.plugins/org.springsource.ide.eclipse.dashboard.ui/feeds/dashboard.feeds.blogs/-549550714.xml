@@ -5,7 +5,58 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-07-19T07:42:45Z</updated>
+  <updated>2019-07-24T21:30:30Z</updated>
+  <entry>
+    <title>Simplifying the Spring Cloud Release Train</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/07/24/simplifying-the-spring-cloud-release-train" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Spencer Gibb</name>
+    </author>
+    <id>tag:spring.io,2019-07-24:3749</id>
+    <updated>2019-07-24T21:30:30Z</updated>
+    <content type="html">&lt;p&gt;Spring Cloud continues to prove immensely popular, and over the last few years a number of IaaS providers have provided integration with their technology and joined the release train. This has typically involved getting into the spring-cloud GitHub org and publishing in the org.springframework.cloud Maven groupid. As the number of projects included looks to increase, it is becoming a little unwieldy, and we wanted to take a step back and review the pros and cons that this model provides and propose a better path forward that benefits all projects involved.&lt;/p&gt;
+&lt;p&gt;Perhaps the biggest downside to being part of the release train is that it removes a level of control from the project maintainers. Since the core Spring Cloud team does the releases, maintainers can¡¯t work to the schedule of the technology they are integrating with. Or even if they do manage to get a service refresh out, it won¡¯t be picked up by the release train until the next release train version is released. This model also means that typically the project maintainer doesn¡¯t have direct access to key statistics, such as the Maven download numbers for their project.&lt;/p&gt;
+&lt;p&gt;Also, there appears to be a lot of benefits to being part of the release train, but in fact many of these are benefits available to any project, rather than being anything to do with being on the train or in the spring-cloud GitHub org:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The Spring Cloud team regularly engages with external projects to help review them and provide constructive feedback on how best to integrate with Spring Cloud. Inclusion in the release train doesn¡¯t make this more or less likely to happen. (Please reach out if you want feedback.)&lt;/li&gt;
+  &lt;li&gt;There is a perception that it makes it easier to get that elusive checkbox on &lt;a href="https://start.spring.io"&gt;start.spring.io&lt;/a&gt;. This is not true. There are &lt;a href="https://github.com/spring-io/initializr/wiki/Guidelines-for-3rd-Party-Starters"&gt;guidelines&lt;/a&gt; about how to ensure a project is developed such that it is suitable for start.spring.io, but decisions about inclusion are based on more than following a naming scheme. Are we finding that the community is embracing the technology the project is integrating with? Has the project built a vibrant and sustainable community, ensuring a long life and healthy codebase? Are there sufficient docs, guides, etc. showing how to use the project? Nothing in the guidelines necessitates inclusion in a Spring GitHub organization.&lt;/li&gt;
+  &lt;li&gt;The Spring team regularly produces content involving third-party projects, highlighting key releases or enhancements. There is no need to be part of the release train for this to happen.&lt;br/&gt;The &lt;a href="https://spring.io"&gt;https://spring.io&lt;/a&gt; site obviously includes content that covers the main Spring Cloud projects, but it also includes content that covers some third-party projects. This might be a guide showing how to use the technology or an entry on one of the existing project pages. See &lt;a href="https://spring.io/projects/spring-cloud"&gt;https://spring.io/projects/spring-cloud&lt;/a&gt;, which refers to many projects &amp;ndash; some of which are on the train and some of which are not.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For these reasons, the Spring Cloud team has decided to move to a model that slims down the release train, allowing us to address the downsides whilst keeping all the perceived benefits. The proposal is that IaaS providers will host and maintain their code in their own GitHub organizations. This applies to all of the existing integrations currently on the release train. Spring Cloud Azure have never joined the train, and the Spring Cloud Alibaba team are already embracing this new model as they graduate from the incubator organization.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-will-this-mean-in-practical-terms" class="anchor" name="what-will-this-mean-in-practical-terms"&gt;&lt;/a&gt;What will this mean in practical terms?&lt;/h2&gt;
+&lt;p&gt;The removal of some of these projects from the Spring Cloud GitHub organization and the release train is not a statement about a change in active development or support policy. The same teams will be working on these, keeping up with Spring Cloud releases. If anything, this change may bring clarity to the support model: if the projects are hosted in the IaaS provider¡¯s GitHub organization, they are obviously providing the support.&lt;/p&gt;
+&lt;p&gt;The new model does mean that there will likely be a change in the group-id, and possibly in the artifact-id. It is also likely that the package names will be updated to reflect these changes. Developers will also need to explicitly include these dependencies in their projects, rather than inheriting them via managed versions through the Spring Cloud BOM.&lt;/p&gt;
+&lt;p&gt;The Spring Boot team have &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html#boot-features-custom-starter-naming"&gt;guidelines&lt;/a&gt; for appropriate naming of modules (autoconfiguration and starters). These are not strictly enforced for Spring Cloud, but adherence to the guidelines can mean that anything built relying on the scheme will ¡®just work¡¯ (for example, content assist tooling in an IDE).&lt;/p&gt;
+&lt;p&gt;Following this model, the Alibaba team are graduating from the spring-cloud-incubator into their own GitHub org at &lt;a href="https://github.com/alibaba/spring-cloud-alibaba"&gt;https://github.com/alibaba/spring-cloud-alibaba&lt;/a&gt;, where we continue to work with them as they head this week for an important release that supports Spring Cloud Greenwich.SR2 and Finchley.SR4. This release will include Sentinel support for Spring Cloud Gateway and enable Nacos service discovery and Spring-Cloud-Config to be used together. Look out for that!&lt;/p&gt;
+&lt;p&gt;You can expect to see the other providers move during the release of a future major Spring Cloud train, as a major release is the right time to make a serious change such as this.&lt;/p&gt;
+&lt;p&gt;Note that this is purely describing the situation and plan for the main Spring Cloud train at this time; it isn¡¯t impacting other projects (for example, Spring Cloud Stream binders).&lt;/p&gt;
+&lt;p&gt;We hope that the reasoning above explains what we are trying to achieve with this strategy. As always, we are receptive to feedback ? please let us know what you think. Giving project owners full flexibility to build and release software that better aligns with their culture, whilst continuing to offer all of the benefits of working closely with us on code reviews and project promotion, should benefit everyone.&lt;/p&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
+  <entry>
+    <title>This Week in Spring - July 23, 2019</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/07/23/this-week-in-spring-july-23-2019" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2019-07-23:3748</id>
+    <updated>2019-07-23T13:18:10Z</updated>
+    <content type="html">&lt;p&gt;Hi Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! I concluded my time in Portland, OR, for OSCON on Sunday, went to Chicago for the epic Chicago, IL Cloud Conf yesterday; today I am in Denver, CO, for meetings; and then Wednesday I am off to Burlington, MA for the SpringOne Tour 2019 event. We&amp;rsquo;ve got some good stuff this week so let&amp;rsquo;s get to it! &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Hi Spring fans! In last week&amp;rsquo;s episode of &lt;a href="https://spring.io/blog/2019/07/19/a-bootiful-podcast-azul-cto-gil-tene-on-java-jvms-garbage-collection-and-a-ton-more"&gt;&lt;em&gt;A Bootiful Podcast&lt;/em&gt;, I talk to Azul CTO Gil Tene on Java, JVMs, garbage collection, and a ton more&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;There&amp;rsquo;s an interesting new feature on &lt;code&gt;master&lt;/code&gt; for Spring Cloud Gateway giving &lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/pull/785#issuecomment-513988787"&gt;improved details about your routes in the Actuator&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Check out how the Dutch government uses &lt;a href="https://www.cloudfoundry.org/blog/dutch-government-uses-cloud-foundry-enhance-user-experience/"&gt;Cloud Foundry to enhance users experience&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;It&amp;rsquo;s finally here! Check out the new support for the &lt;a href="https://content.pivotal.io/pivotal-announcements/pivotal-makes-kubernetes-easier-for-developers-and-operators?utm_campaign=pr-pivotal-makes-kubernetes-easier-q219&amp;utm_source=twitter&amp;utm_medium=social&amp;utm_content=1562979455"&gt;Cloud Foundry PAS running on Kubernetes&lt;/a&gt;. Here&amp;rsquo;s another post with details from our partners over at VMWare &lt;a href="https://blogs.vmware.com/cloudnative/2019/07/16/pas-on-kubernetes-improves-the-developer-experience/"&gt;on how PAS on Kubernetes improves the developer experience&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;A nice post on the Okta blog on how to &lt;a href="https://developer.okta.com/blog/2019/07/17/monitoring-with-actuator"&gt;monitor your Java applications with the Spring Boot Actuator &lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://springonetour.io/2019/burlington"&gt;Have you registered for the Burlington, MA installment of the SpringOne Tour&lt;/a&gt;?&lt;/li&gt;
+  &lt;li&gt;An interesting &lt;a href="https://www.youtube.com/watch?v=-wruptabpq4&amp;feature=share"&gt;video on creating REST APIs with Spring Boot&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;InfoQ has a nice post on &lt;a href="https://www.infoq.com/news/2019/07/spring-initializr-tool-updated/?itm_source=presentations_about_Spring-Boot&amp;itm_medium=link&amp;itm_campaign=Spring-Boot"&gt;the updates to the Spring Initializr tool&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;I liked this post by Andriy Redko on &lt;a href="https://dzone.com/articles/testing-spring-boot-conditionals-the-sane-way"&gt;testing Spring Boot &lt;code&gt;Conditional&lt;/code&gt;s&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Check out Rajesh Bjojwani&amp;rsquo;s look at the &lt;a href="https://dzone.com/articles/pcf-26-feature-app-revisions"&gt;feature called App Revisions in Pivotal Cloud Foundry 2.6&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>A Bootiful Podcast: Azul CTO Gil Tene on Java, JVMs, garbage collection, and a ton more</title>
     <link rel="alternate" href="https://spring.io/blog/2019/07/19/a-bootiful-podcast-azul-cto-gil-tene-on-java-jvms-garbage-collection-and-a-ton-more" />
@@ -965,95 +1016,6 @@ dependencies {&#xD;
   &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/05/spring-tips-organizational-consistency-in-your-spring-boot-applications"&gt;Organizational Consistency in your Spring Boot Applications&lt;/a&gt; 06/05/2019&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/12/spring-tips-spring-s-support-for-kotlin-coroutines"&gt;Spring&amp;rsquo;s Support for Kotlin Coroutines&lt;/a&gt; 6/12/2019&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/19/spring-tips-distributed-locks-with-spring-integration"&gt;Distributed Locks with Spring Integration&lt;/a&gt; 6/19/2019&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud Data Flow 2.1.2 GA and 2.0.3 GA Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/06/26/spring-cloud-data-flow-2-1-2-ga-and-2-0-3-ga-released" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Ilayaperumal Gopinathan</name>
-    </author>
-    <id>tag:spring.io,2019-06-26:3729</id>
-    <updated>2019-06-26T15:21:33Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;a href="https://cloud.spring.io/spring-cloud-dataflow/"&gt;Spring Cloud Data Flow&lt;/a&gt; team is pleased to announce the release of 2.1.2 GA and 2.0.3 GA of Data Flow.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This is a minor release with mostly bug fixes and documentation enhancements.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Here are the highlights of the releases:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Bug fixes on Spring Cloud Data Flow, Spring Cloud Data Flow UI and Spring Cloud Scheduler for CloudFoundry&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Java Stream DSL now supports stream update operation&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Spring Cloud Deployer now uses Maven Resolver instead of Aether for resolving the Maven artifacts&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Along with the releases, we also have the Spring Cloud Data Flow &lt;a href="https://dataflow.spring.io/"&gt;website&lt;/a&gt; enhanced with&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Responsive Design&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;More receipes and use cases discussion&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Documentation fixes&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="stay-in-touch"&gt;&lt;a class="anchor" href="#stay-in-touch"&gt;&lt;/a&gt;Stay in touch&amp;#8230;&amp;#8203;&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;As always, we welcome feedback and contributions, so please reach out to us on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud-dataflow"&gt;Stackoverflow&lt;/a&gt; or &lt;a href="https://github.com/spring-cloud/spring-cloud-dataflow/issues"&gt;GitHub&lt;/a&gt; or via &lt;a href="https://gitter.im/spring-cloud/spring-cloud-dataflow"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - June 25, 2019</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/06/25/this-week-in-spring-june-25-2019" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2019-06-25:3728</id>
-    <updated>2019-06-25T19:06:06Z</updated>
-    <content type="html">&lt;p&gt;Hi Spring fans! Welcome to another installment of This Week in Spring. Today I&amp;rsquo;m in beautiful Tampla, Fl, where I got to talk to a wonderful Pivotal customer today. Now I&amp;rsquo;m at TPA airport preparing to board for Paris, France, for JHipsterConf. &lt;/p&gt;
-&lt;p&gt;We&amp;rsquo;ve got a ton to cover so let&amp;rsquo;s get to it! &lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;I just want to remind people that the majority of the Spring team is sponsored by the company Pivotal, an open-source powerhouse that sponsors among other things Spring, Cloud Foundry, a Kubernetes distribution, RabbitMQ, Jasmine, Apache Geode, Apache Tomcat, and a ton of other things. We&amp;rsquo;ve also got a deep bench in building software development tools including things like Pivotal Tracker. Want &lt;a href="https://pivotal.io/why-pivotal"&gt;to learn more&lt;/a&gt;?&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/21/spring-tools-4-3-0-released"&gt;Spring Tools 4.3.0 released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/21/a-bootiful-podcast-ibm-s-pratik-patel-on-java-functions-as-a-service-cloud-infrastructure-spring-and-devnexus"&gt;A Bootiful Podcast: IBM&amp;rsquo;s Pratik Patel on Java, Functions-as-a-service, cloud infrastructure, Spring and Devnexus&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/20/spring-tool-suite-3-9-9-released"&gt;Spring Tool Suite 3.9.9 released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/19/cve-2019-11272-spring-security-4-2-13-released"&gt;CVE-2019-11272: Spring Security 4.2.13 Released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/19/spring-tips-distributed-locks-with-spring-integration"&gt;Spring Tips: Distributed Locks with Spring Integration&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/19/java-cfenv-1-1-ga-released"&gt;Java CFEnv 1.1 GA Released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/19/spring-boot-2-2-0-m4"&gt;Spring Boot 2.2.0.M4&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/06/19/spring-boot-2-1-6-released"&gt;Spring Boot 2.1.6 released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;I love this article by Pivotal&amp;rsquo;s Brian McClain and Ben Wilcock &lt;a href="https://content.pivotal.io/practitioners/getting-started-with-spring-cloud-gateway-3"&gt;on using Spring Cloud Gateway&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://www.openservicebrokerapi.org/blog/2019/06/21/announcing-open-service-broker-api-v2-15"&gt;Announcing the Open Service Broker API, v 2.15&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This is pretty interesting: it&amp;rsquo;s a sample demonstrating Atomikos&amp;rsquo; Logcloud integration with the Spring Boot Atomikos JTA starter. &lt;a href="https://github.com/atomikos/spring-boot-sample-jta-atomikos-logcloud"&gt;It&amp;rsquo;s a project showing how easy it is to do XA with clustered, cloud-native transaction logging and recovery.&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Wow! I can&amp;rsquo;t believe I almost missed this one. It&amp;rsquo;s an awesome post by Jagdish Mirani on using Spring for Apache Geode. Apache Geode is a distributed data-grid sort of like Hazelcast, Oracle Coherence, etc. It is the open-source distribution of what we sell as Pivotal Gemfire. It&amp;rsquo;s also got every thing you could want: distribution, high speed replication, continuous queries, WAN gateways, etc.&lt;/li&gt;
-  &lt;li&gt;Nice post about &lt;a href="https://thenewstack.io/what-home-depot-can-teach-devops-and-anyone-else/"&gt;how Home Depot can teach DevOops (and everyone else)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Running Cypress tests with TestContainers for a &lt;a href="https://wimdeblauwe.wordpress.com/2019/06/15/running-cypress-tests-with-testcontainers-for-a-spring-boot-with-thymeleaf-application/"&gt;Spring Boot with Thymeleaf application &lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Woohoo! Check out the latest release by &lt;a href="https://spring.io/blog/2019/06/18/spring-session-corn-m2-and-spring-session-bean-sr6-released"&gt;Vedran Pavi? announcing Spring Session Corn-M2 and Spring Session Bean-SR6 Released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://pivotal.io/pivotal-spring-runtime"&gt;Want support for OpenJDK, Spring, and Apache Tomcat?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
