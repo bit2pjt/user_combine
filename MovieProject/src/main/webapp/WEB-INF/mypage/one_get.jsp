@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	if (session.getAttribute("id") == null) {
-		System.out.println("id : " + (String) session.getAttribute("id"));
+	if (session.getAttribute("m_email") == null) {
+		System.out.println("m_email : " + (String) session.getAttribute("m_email"));
 		out.println("<script>");
 		out.println("alert('로그인 후 이용해주세요.')");
 		out.println("location.href='index.do'");
