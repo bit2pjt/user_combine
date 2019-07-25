@@ -3,3 +3,4 @@
 RemoteSystemsTempFiles/
 Servers/
 *.class
+MovieProject/target/m2e-wtp/web-resources/META-INF/maven/com.spring/movie/pom.properties
