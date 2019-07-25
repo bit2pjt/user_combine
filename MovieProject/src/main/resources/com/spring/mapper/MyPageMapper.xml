@@ -8,6 +8,7 @@
 * @  수정일     	  수정자                 수정내용
 * @ ===========  ========   ============================
 * @ 2019.07.18     한유진      최초생성
+* @ 2019.07.24		박현민		one_get  부분 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -119,5 +120,8 @@
 		SELECT qna_no, aqna_content, aqna_update_date FROM ad_qna WHERE qna_no = #{qna_no}
 	</select>
 	
-	
+	<!-- hm | 1:1문의 삭제 -->
+	<delete id="deleteQnaDetail" parameterType="String">
+		delete FROM board_qna WHERE qna_no = #{qna_no}
+	</delete>
 </mapper>

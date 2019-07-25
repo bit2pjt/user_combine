@@ -9,6 +9,7 @@ package com.spring.mypage;
  * @ 2019.07.0?     황진석      최초생성
  * @ 2019.07.17     한유진      순서변경, 각 메서드 별 주석추가(기능설명)
  * @ 2019.07.17     한유진      클래스명 변경(LoginController -> MyPageController), 기능구현
+ * @ 2019.07.24		박현민		one_get  부분 추가
  * @author bit 2조
  * @since 2019. 07.01
  * @version 1.0

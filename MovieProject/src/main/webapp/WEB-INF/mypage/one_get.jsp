@@ -31,9 +31,22 @@
 <%@ include file="../header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+<script>
+function deleteQnaDetail(){
+	msg="삭제 하시겠습니까?";
+	if(confirm(msg)!=0){
+		location.href="one_list.do";
+	}
+	
+}
+</script>
+
+
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp"%>
 <!-- 4. 여기에 페이지별 본문을 추가해주세요 -->
+
+
 <br>
 <div class="buster-light">
 	<div class="page-single">
@@ -81,24 +94,7 @@
 									<li class="tb_line">
 										<div class="tb_th1">상담구분</div>
 										<div class="tb_td1">
-											<label for=""> <label
-												class="fancy-radio custom-color-coral"> <input
-													name="one" type="radio" checked><span><i></i><b>영화
-															문의</b></span>
-											</label> <label class="fancy-radio custom-color-coral"> <input
-													name="one" type="radio"><span><i></i><b>예매
-															문의</b> </span>
-											</label> <label class="fancy-radio custom-color-coral"> <input
-													name="one" type="radio"><span><i></i><b>이벤트
-															문의</b></span>
-											</label> <label class="fancy-radio custom-color-coral"> <input
-													name="one" type="radio"><span><i></i><b>회원정보
-															문의</b></span>
-											</label> <label class="fancy-radio custom-color-coral"> <input
-													name="one" type="radio"><span><i></i><b>기타
-															문의</b></span>
-											</label>
-											</label>
+											${requestScope.qnaDetail.qna_category }
 										</div>
 									</li>
 									<li class="tb_line">
@@ -123,9 +119,9 @@
 								<br>
 								<div class="btn_m">
 									<input type="button"
-										onClick="location.href='one_update.do?qna_no=${qna.qna_no}'"
+										onClick="location.href='one_update.do?qna_no=${requestScope.qnaDetail.qna_no}'"
 										class="btn-check-hjs" value="수정"> &nbsp; <input
-										type="reset" class="btn-check-hjs" value="삭제">
+										type="reset" class="btn-check-hjs" value="삭제"  onclick="deleteQnaDetail()">
 								</div>
 								<br>
 							</form>

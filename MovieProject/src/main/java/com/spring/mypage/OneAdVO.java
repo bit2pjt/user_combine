@@ -1,6 +1,6 @@
 package com.spring.mypage;
 /**
-* @Class Name : OneVO.java
+* @Class Name : OneAdVO.java
 
 * @Description : 1:1문의 답변 데이터 - 1:1문의 답변 테이블의 컬럼명과 동일하게 작성
 * @Modification Information
