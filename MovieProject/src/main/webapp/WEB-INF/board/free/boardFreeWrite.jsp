@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	if (session.getAttribute("id") == null) {
+		System.out.println("id : " + (String) session.getAttribute("id"));
+		out.println("<script>");
+		out.println("alert('로그인 후 이용해주세요.')");
+		out.println("location.href='index.do'");
+		out.println("</script>");
+	}
+%>
 <!--  
 * @Class Name : boardFreeWrite.jsp
 * @Description : 자유게시판 작성
