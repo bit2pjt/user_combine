@@ -24,6 +24,7 @@ public interface BoardDAO {
 	
 	public String getMemberNickname(String m_email);	//멤버 닉네임 가져오기
 	public MemberVO getMember(int id);
+	public int getMemberId(String m_email);		//멤버 아이디 가져오기
 	
 	// 자유게시판 등록 / 수정
 	public int insertBoardFree(FreeVO freeVO);	 // 자유게시판 등록
@@ -33,7 +34,7 @@ public interface BoardDAO {
 	// 나눔게시판 등록 / 수정
 	public int insertBoardShare(ShareVO shareVO);	 // 나눔게시판 등록
 	public int updateBoardShare(ShareVO shareVO);	// 나눔게시판 수정
-	public FreeVO selectBoardShare(int bs_bno);	// 나눔게시판 상세정보 가져오기
+	public ShareVO selectBoardShare(int bs_bno);	// 나눔게시판 상세정보 가져오기
 		
 	
 }
