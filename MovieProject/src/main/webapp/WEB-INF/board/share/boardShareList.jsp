@@ -66,7 +66,7 @@
 			<!-- listTable 배치 시작 -->
 				<div>
 					<div style="position:relative;top:50px">
-						<button class="ws-btn-reddish-write" value="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+						<button class="ws-btn-reddish-write" value="글쓰기" onClick="location.href='boardShareWrite.do'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
