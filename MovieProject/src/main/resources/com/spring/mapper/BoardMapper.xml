@@ -76,6 +76,11 @@
 		select * from member where id=#{id}
 	</select>
 	
+	<!-- select : 멤버  아이디 가져오기-->
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
 	<!-- insert : boardFree -->
 	<insert id="insertBoardFree" parameterType="com.spring.board.FreeVO">
 		INSERT INTO board_free VALUES (seq_bf_bno.nextval, #{id}, #{bf_category, jdbcType=VARCHAR}, 
@@ -113,7 +118,7 @@
 	<update id="updateBoardShare" parameterType="com.spring.board.ShareVO">
 		UPDATE board_share SET BS_CATEGORY=#{bs_category, jdbcType=VARCHAR}, 
 		BS_TITLE=#{bs_title, jdbcType=VARCHAR}, BS_CONTENT=#{bs_content, jdbcType=VARCHAR}, 
-		BF_UPDATE_DATE=sysdate WHERE bs_bno=#{bs_bno}
+		BS_UPDATE_DATE=sysdate WHERE bs_bno=#{bs_bno}
 	</update>
 	
 	
