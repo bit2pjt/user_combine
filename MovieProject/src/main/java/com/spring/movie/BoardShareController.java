@@ -12,9 +12,9 @@ public class BoardShareController {
 	public String getListPage() 	{return "board/share/boardShareList";}
 	@GetMapping("/boardShareGet.do")
 	public String getGetPage() 		{return "board/share/boardShareGet"; }
-	@GetMapping("/boardShareWrite.do")
-	public String getWritePage()	{return "board/share/boardShareWrite";}
-	@GetMapping("/boardShareUpdate.do")
-	public String getUpdatePage() 	{return "board/share/boardShareUpdate";}
-	
+//	@GetMapping("/boardShareWrite.do")
+//	public String getWritePage()	{return "board/share/boardShareWrite";}
+//	@GetMapping("/boardShareUpdate.do")
+//	public String getUpdatePage() 	{return "board/share/boardShareUpdate";}
+//	
 }
