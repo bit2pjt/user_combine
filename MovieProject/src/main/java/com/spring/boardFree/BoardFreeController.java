@@ -43,7 +43,7 @@ public class BoardFreeController {
 	  * 자유게시판 리스트로 이동
 	  * @return "boardFreeList"
 	 */
-	@RequestMapping(value = "/boardFreeList.do", method=RequestMethod.GET)
+	@RequestMapping(value = "/boardFreeList", method=RequestMethod.GET)
 	public String getListPage() {
 		return "board/free/boardFreeList";
 	}
@@ -56,15 +56,15 @@ public class BoardFreeController {
 	  * @return "boardFreeGet"
 	 */
 	
-	@RequestMapping(value= "/boardFreeGet.do", method=RequestMethod.GET)
+	@RequestMapping(value= "/boardFreeGet", method=RequestMethod.GET)
 	public String getGetPage(@RequestParam("bno") int bno, HttpSession session, Model model) {
 		String sessionyn = (String)session.getAttribute("m_email");
-		BoardFreeVO boardFreeVO = boardFreeService.getContent(bno);
-		MemberVO memberVO = boardFreeService.getWriter(boardFreeVO.getId());
+		BoardFreeVO boardFreeVO = boardFreeService.getContent(bno); // 게시글의 내용
+		MemberVO memberVO = boardFreeService.getWriter(boardFreeVO.getId()); // 게시물 작성자의 정보
 		
 		model.addAttribute("sessionyn",sessionyn);
-		model.addAttribute("boardFreeVO", boardFreeVO);
-		model.addAttribute("memberVO", memberVO);
+		model.addAttribute("boardFreeVO", boardFreeVO); // 게시글의 내용
+		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
 		return "board/free/boardFreeGet"; 
 	}
 	
@@ -72,7 +72,7 @@ public class BoardFreeController {
 	  * 자유게시판 게시글 등록화면으로 이동
 	  * @return "boardFreeWrite"
 	 */
-	@GetMapping("/boardFreeWrite.do")
+	@GetMapping("/boardFreeWrite")
 	public String getWritePage() {
 		return "board/free/boardFreeWrite";
 	}
@@ -81,7 +81,7 @@ public class BoardFreeController {
 	  * 자유게시판 게시글 수정화면으로 이동
 	  * @return "boardFreeList"
 	 */
-	@GetMapping("/boardFreeUpdate.do")
+	@GetMapping("/boardFreeUpdate")
 	public String getUpdatePage() {
 		return "board/free/boardFreeUpdate";
 	}
@@ -93,7 +93,7 @@ public class BoardFreeController {
 	  * @return @ResponseBody String => json
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/boardFreeReco.do", method=RequestMethod.POST)
+	@RequestMapping(value = "/boardFreeReco", method=RequestMethod.POST)
 	public String boardFreeRdco(HttpSession session, HttpServletRequest request) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
@@ -123,7 +123,7 @@ public class BoardFreeController {
 	  * @return @ResponseBody String => json
 	 */
 	@ResponseBody
-	@RequestMapping(value="boardFreeWarn.do", method=RequestMethod.POST)
+	@RequestMapping(value="/boardFreeWarn", method=RequestMethod.POST)
 	public String boardFreeWarn(HttpSession session, HttpServletRequest request) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값

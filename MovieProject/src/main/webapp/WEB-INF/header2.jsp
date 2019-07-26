@@ -31,7 +31,7 @@
         <div class="login-content">
             <a href="#" class="close">x</a>
             <h3>Login</h3>
-            <form action="Login.do" method="post" name="LoginForm">
+            <form action="Login" method="post" name="LoginForm">
                 <!-- action 변경 필요 -->
                 <div class="row">
                     <label for="email">
@@ -240,7 +240,7 @@
 		<div class="login-content">
 			<a href="#" class="close">x</a>
 			<h3>sign up</h3>
-			<form method="post" id="joinform" action="memberJoin.do" method="post" onsubmit="return ws_check()">
+			<form method="post" id="joinform" action="memberJoin" method="post" onsubmit="return ws_check()">
 						
 				<div class="row">
 					<label for="email-2"> 이메일 :</br> 
@@ -650,7 +650,7 @@
                             <span></span>
                         </div>
                     </div>
-                    <a href="index.do"><img class="logo" src="resources/images/logo1.png" alt="" width="119" height="58"></a>
+                    <a href="index"><img class="logo" src="resources/images/logo1.png" alt="" width="119" height="58"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -685,8 +685,8 @@
                                 커뮤니티<i class="fa fa-angle-down" aria-hidden="true"></i>
                             </a>
                             <ul class="dropdown-menu level1">
-                                <li><a href="boardFreeList.do">자유 게시판</a></li>
-                                <li class="it-last"><a href="boardShareList.do">나눔 게시판</a></li>
+                                <li><a href="boardFreeList">자유 게시판</a></li>
+                                <li class="it-last"><a href="boardShareList">나눔 게시판</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -695,13 +695,13 @@
                     <c:choose>
                     	<c:when test="${!empty m_email }">     	
                         <li class="dropdown first">
-                            <a class="btn btn-default dropdown-toggle lv1" href="mmlList.do">
+                            <a class="btn btn-default dropdown-toggle lv1" href="mmlList">
                                 나영리
                             </a>
                         </li>
 
-                        <li><a href="mypage.do">마이페이지</a></li>
-                        <li><a href="Logout.do">로그아웃</a></li>
+                        <li><a href="mypage">마이페이지</a></li>
+                        <li><a href="Logout">로그아웃</a></li>
                         <!--  hm |   <li><a href="member_join.html">회원가입</a></li> -->
 						</c:when>
 						

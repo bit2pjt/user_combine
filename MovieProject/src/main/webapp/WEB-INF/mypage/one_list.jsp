@@ -53,20 +53,20 @@
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage.do">마이페이지</a></li>
+								<li><a href="mypage">마이페이지</a></li>
 							</ul>
 
 							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
-								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -90,7 +90,7 @@
 					</div>
 					<div class="btn_t">
 						<button type="button" class="btn-check-hjs"
-							onclick="location.href='one_register.do'">1:1 문의쓰기</button>
+							onclick="location.href='one_register'">1:1 문의쓰기</button>
 					</div>
 
 					<div class="static-table-list">
@@ -117,7 +117,7 @@
 											<c:forEach var="qna" items="${requestScope.qnaList }">
 												<tr>
 													<td>${qna.qna_category }</td>
-													<td><a href="one_get.do?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
+													<td><a href="one_get?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
 													<td>${qna.qna_date}</td>
 													<td>${qna.qna_answer}</td>
 												</tr>
@@ -133,7 +133,7 @@
 									%>
 										<tr>
 											<td>결말해석</td>
-											<td><a href="one_get.do">고질라 쿠키영상 무슨뜻인가요?</a></td>
+											<td><a href="one_get">고질라 쿠키영상 무슨뜻인가요?</a></td>
 											<td>2011/04/25</td>
 											<td>N</td>
 										</tr>

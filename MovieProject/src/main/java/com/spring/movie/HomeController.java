@@ -35,7 +35,7 @@ public class HomeController {
 //		
 //		return "home";
 //	}
-	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 		return "index";
 	}

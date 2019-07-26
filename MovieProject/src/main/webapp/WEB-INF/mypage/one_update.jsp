@@ -52,7 +52,7 @@ function check(){
 function register_back(){
 	msg="1:1 문의글 작성을 취소하시겠습니까?";
 	if(confirm(msg)!=0){
-		location.href="one_list.do";
+		location.href="one_list";
 	}
 	
 }
@@ -85,19 +85,19 @@ function register_back(){
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage.do">마이페이지</a></li>
+								<li><a href="mypage">마이페이지</a></li>
 							</ul>
 										
 							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 					
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
+								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -109,7 +109,7 @@ function register_back(){
 					</div>
 						
 					<div>
-						<form action="one_updateAction.do" method="post" onsubmit="return check()">
+						<form action="one_updateAction" method="post" onsubmit="return check()">
 							<ul>
 								<li class="tb_line">
 									<div class="tb_th1"> 상담구분 </div>

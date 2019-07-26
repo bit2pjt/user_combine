@@ -30,6 +30,9 @@
 	
 	
 	<mybatis-spring:scan base-package="com.spring.member"/>
+	<mybatis-spring:scan base-package="com.spring.boardFree"/>
+	<mybatis-spring:scan base-package="com.spring.movie"/>
+	<mybatis-spring:scan base-package="com.spring.mypage"/>
 	<context:component-scan base-package="com.spirng.member"/>
 
 </beans>

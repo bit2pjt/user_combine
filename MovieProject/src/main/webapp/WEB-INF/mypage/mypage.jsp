@@ -58,19 +58,19 @@
 					<div class="user-information-hjs">
 						<div class="user-fav">
 								<ul>
-									<li><a href="mypage.do">마이페이지</a></li>
+									<li><a href="mypage">마이페이지</a></li>
 								</ul>
 										
 								<ul>
 									<li>회원 정보</li>
-									<li><a href="pw_confirm.do?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-									<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+									<li><a href="pw_confirm?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+									<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 								</ul>
 					
 								<ul>
 									<li>고객센터</li>
-									<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-									<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+									<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
+									<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 								</ul>
 							</div>
 					</div>
@@ -101,7 +101,7 @@
 							<div class="div_one">
 								<table class="tb_hjs">
 									<caption class="caption-hjs"> 
-										<h2>1:1 문의 내역 <a href="one_list.do" class="caption_a"> 더보기 </a></h2>
+										<h2>1:1 문의 내역 <a href="one_list" class="caption_a"> 더보기 </a></h2>
 									</caption>
 									<colgroup>
 										<col width="10%" />

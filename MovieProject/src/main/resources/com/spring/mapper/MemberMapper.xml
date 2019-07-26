@@ -32,6 +32,13 @@
 		where m_email = #{email}
 	</select>
 	
+	<select id="userNickName" parameterType="int" resultType="String">
+		select m_nickname
+		from member
+		where id = #{id}
+	</select>
+	
+	
 	<select id="findEmail" parameterType="com.spring.member.MemberVO" resultType="String">
 		select m_email
 		from member

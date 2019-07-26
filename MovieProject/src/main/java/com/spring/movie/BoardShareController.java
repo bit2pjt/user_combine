@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BoardShareController {
 
-	@GetMapping("/boardShareList.do")
+	@GetMapping("/boardShareList")
 	public String getListPage() 	{return "board/share/boardShareList";}
-	@GetMapping("/boardShareGet.do")
+	@GetMapping("/boardShareGet")
 	public String getGetPage() 		{return "board/share/boardShareGet"; }
-	@GetMapping("/boardShareWrite.do")
+	@GetMapping("/boardShareWrite")
 	public String getWritePage()	{return "board/share/boardShareWrite";}
-	@GetMapping("/boardShareUpdate.do")
+	@GetMapping("/boardShareUpdate")
 	public String getUpdatePage() 	{return "board/share/boardShareUpdate";}
 	
 }

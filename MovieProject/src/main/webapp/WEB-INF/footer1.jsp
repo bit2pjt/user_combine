@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				<a href="index.do"><img class="logo"
+				<a href="index"><img class="logo"
 					src="resources/images/logo1.png" alt=""></a>
 			</div>
 
@@ -23,7 +23,7 @@
 			</h4>
 			<div class="flex-child-ft item3">
 				<h4>
-					<a href="one_regist.do"> 1:1 문의 </a>
+					<a href="one_regist"> 1:1 문의 </a>
 				</h4>
 			</div>
 

@@ -27,4 +27,6 @@ public interface MemberDAO {
 
 	public int updatePw(MemberVO vo);
 
+	public String userNickName(int id);
+
 }
