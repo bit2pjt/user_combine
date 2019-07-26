@@ -3,3 +3,6 @@
 RemoteSystemsTempFiles/
 Servers/
 *.class
+*.classpath
+.settings/
+target/
