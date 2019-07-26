@@ -1,6 +1,0 @@
-INDEX VERSION 1.4+/Users/yujeen/Desktop/bitcamp2019/2019bitPro/source/gitProject/fork_user_combine/user_combine/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-3040437869.index
-2360319231.index
-46142929.index
-4139395137.index
-1097579976.index
