@@ -11,13 +11,41 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//제모
+	
+	// 메세지 db insert문 만들기
 	@Override
-	public int findtitle(String BF_TITLE){
+	public void bfr_content(String bfr_content) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
-		int bf_title  = boardFreeDAO.findtitle(BF_TITLE); 
-		System.out.println("BF_TITLE:"+BF_TITLE);
 		
-		return bf_title;
+		boardFreeDAO.insert_bfr_content(bfr_content);
+		return;
 	}
+	// 댓글 db 내용 selecet 하기
+	@Override
+	public String bfr_content_select(String bfr_content) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		
+		String bfr_select = boardFreeDAO.select_bfr_content(bfr_content);
+		return bfr_select;
+	}
+	
+	
+	@Override
+	public BoardFreeVO viewMember(int id) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		
+		BoardFreeVO num = boardFreeDAO.viewMember(id);
+		// 좋
+		
+		
+		return num;
+	}
+	
+	@Override
+	public void update_count(int id){
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		
+		boardFreeDAO.update_count(id);
+	}
+	
 }

@@ -8,6 +8,130 @@
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		listReply("1");
+		
+		$("#btnReply").click(function(){
+			replyJson(); // json으로 입력
+		});
+		
+		$("btnList").click(function(){
+			location.href="${path}/board/list.do?curPage=${curpage}&searchOption=${searchOption}&keyword=${keyword}";
+		});
+		
+		//게시글 삭제 버튼 클릭이벤트
+		$("#btnDelete").click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				document.form1.action = "${path}/board/delete.do";
+				document.form1.submit();
+			}
+		});
+		
+		//게시글 수정 버튼 클릭 이벤트
+		$("#btnUpdete").click(function(){
+			var title = $(#title).val();
+			var content = $(#content)
+			
+			if(title== ""){
+				alert("제목을 입력하세요");
+				document.form1.title.focus();
+				return;
+			}
+			if(content == ""){
+				alert("내용을 입력하세요");
+				document.form1.contest.focus();
+			}
+			document.form1.action="${path}/board/update.do"
+			document.form1.submit();
+		});
+		
+	});
+	
+	//** 댓글 쓰기 (json 방식)
+	function replyJson(){
+		var replytext=$("#replytext").val();
+		var bno= "${dto.bno}"
+		
+		var secretReply = "n";
+		
+		if( $("#secretReply").is(":checked")){
+			secretReply = "y";
+		}
+		$.ajax({
+			type: "post",
+			url: "${path}/reply/insertRest.do",
+			headers:{
+				"Content-Type": "application/json"
+			},
+			dateType: "text",
+			// param형식보다 편하다
+			data: JSON.stringify({
+				bno : bno,
+				replytext : replytext,
+				secretReply : secretReply
+			}),
+			success : function(){
+				alert("댓글이 등록되었습니다.");
+				listReply("1");
+			}
+		});
+	}
+	
+	// 댓글 쓰기 (폼데이터 방식)
+	function reply(){
+		var replytext= $("#replytext").val();
+		var bno = "${dto.bno}"
+		
+		var secretReply = "n";
+		
+		if($("#secretReply").is(":checked")){
+			secretReply = "y";
+		}
+		
+		var param="replytext="+replytext+"&bno="+bno+"&secretReply="+secretReply;
+		$.ajax({
+			type: "post",
+			url : "${path}/reply/insert.do",
+			data: param,
+			success: function(){
+				alert("댓글이 등록되었습니다.");
+				listReply("1");
+			}
+		});
+		
+	}	
+	
+	//Controller 방식
+	// 댓글 목록1
+	function listReply(num){
+		$.ajax({
+			type : "get",
+			url : "${path}/reply/list.do?bno=${dto.bno}&curPage="+num,
+			success : function(result){
+				$("#listReply").html(result);
+			}
+		});
+	}
+	function listReply2(){
+		$.ajax({
+			type: "get",
+			url: "${path}/reply/listJson.do?bno=${dto.bno}",
+			success: function(result){
+				console.log(result);
+				var output = "<table>";
+				for(var i in result){
+					output += "<tr>";
+					output += "<td>"+result[i].userName;
+					output += "("+changeDate(result[i].regdate)+")<br>)"
+				}
+			}
+		})
+	}
+	
+	
+</script>
+
 
 <div class="hero common-hero">
 	<div class="container">
@@ -67,7 +191,7 @@
 	<!-- 1. 글제목 자리 -->
 		<div class="ws-post-get-title" >
 		<!-- 글제목 들어오는 자리입니다.  -->
-			<h4> ${title }하이루</h4>
+			<h4> ${BF_TITLE }하이루</h4>
 		</div>
 		<!-- 글제목 자리 끝 -->
 		<!-- 2. 글정보+개인정보의 배치 -->
@@ -76,10 +200,10 @@
 				<img src="./resources/images/customs/ws_img/defaultprofile.PNG">
 			</div>
 			<div class="ws-post-get-info-inner">
-				<span>작성자 : 김시덕씨 </span><br>
-				<span>작성일자 : </span><span>${bf_reg_date } 19/07/01 13:15</span><br>
-				<span>수정일자 :</span><span>${bf_update_date } 19/07/01 15:15</span><br>
-				<span>조회수 : </span><span>${bf_view_counter } 1258</span><br>
+				<span>작성자 : ${m_nickname } </span><br>
+				<span>작성일자 : </span><span>${bf_reg_date } </span><br>
+				<span>수정일자 :</span><span>${bf_update_date } </span><br>
+				<span>조회수 : </span><span>${bf_view_counter } </span><br>
 				<span>선호장르 : </span><span> 다큐멘터리</span>
 			</div>
 		</div>
@@ -95,7 +219,9 @@
 				<button class="ws-btn-warning" id="ws-cnt-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> </button>
 			</div>
 			<span>
-				<button class="ws-btn-thumbs-up" id="ws-cnt-tup">  <i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> 5</button> 
+				<!-- 추천버튼 -->
+				<button class="ws-btn-thumbs-up" id="ws-cnt-tup">  <i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> </button> 
+				<!-- 비추천버튼 -->
 				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 1</button>
 			</span>
 			<div style="float:right;">
@@ -194,19 +320,29 @@
 					<!-- 댓글작성자 정보부분 -->	
 						<div>
 						<!-- 좌측 댓글러 개인정보 -->
-							<div class="ws-reply-info"> 
+							<div class="ws-reply-info">
+								<!-- 작성자 -->
 								<a href="#">Steve Perry</a> <a class="rep-btn" href="#"><i class="fa fa-reply" aria-hidden="true" style="color:#FF6F61;"></i>댓글</a> 
 								<br>
 								 등록/수정일 : <span class="time"> - 19/07/08 13:10</span> <span>선호장르 : sf</span>
 							</div>
 							<!-- 우측 버튼들. -->
 								<div class="ws-reply-btns">
-									수정 <button class="ws-btn-update"> <i class="fa fa-repeat" aria-hidden="true"></i></button> 
-									삭제 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-reply-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
+								<!-- 수정 삭제 번튼 -->
+								
+								<!-- 본인이 쓴것만 수정 삭제가 가능하도록 처리  -->
+									수정 <button type="button" id="btnUpdate" class="ws-btn-update" > <i class="fa fa-repeat" aria-hidden="true"></i></button> 
+									삭제 <button type="button" id="btnDelete" class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-reply-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
+									
 								</div>
 							</div>
 							<!-- 댓글 본문 -->
 							<div class="ws-reply-content">
+								<div>
+									<!-- 댓글 내용 -->
+									<p name="bfr_content" id="bfr_content">${bfr_content }</p>
+									
+								</div>
 								<p>나의 댓글의 경우, 신고 버튼이 없고, 추/비추 대신 수정 삭제 버튼으로 대체
 									<br>
 									<br>
@@ -244,7 +380,7 @@
 					<div class="blog-detail-ct">	
 					<div class="comment-form">
 						<h4>댓글 남기기</h4>
-						<form action="">
+						<form action="./boardFreeGet_reply.do">
 							<div class="row">
 								<div class="col-md-12">
 									<!-- 댓글 입력창 -->
