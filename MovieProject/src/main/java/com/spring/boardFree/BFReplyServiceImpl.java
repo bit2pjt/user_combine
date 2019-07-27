@@ -66,6 +66,7 @@ public class BFReplyServiceImpl implements BFReplyService {
 			String nickname = userNickName(id);
 			list.get(i).setNickname(nickname);
 		}
+		System.out.println("list: " + list);
 		return list;
 	}
 

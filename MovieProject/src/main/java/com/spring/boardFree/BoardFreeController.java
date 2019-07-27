@@ -94,7 +94,7 @@ public class BoardFreeController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/boardFreeReco", method=RequestMethod.POST)
-	public String boardFreeRdco(HttpSession session, HttpServletRequest request) {
+	public String boardFreeReco(HttpSession session, HttpServletRequest request) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
 		int bno = Integer.parseInt(request.getParameter("bf_bno")); //게시글 번호
@@ -115,6 +115,38 @@ public class BoardFreeController {
 			return msg;
 		}
 	}
+	
+	/**
+	  * 댓글 추천/비추천기능
+	  * @param request
+	  * @param session
+	  * @return @ResponseBody String => json
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/BFReplyReco", method=RequestMethod.POST)
+	public String BFReplyReco(HttpSession session, HttpServletRequest request) { 
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
+		int bfr_rno = Integer.parseInt(request.getParameter("bfr_rno")); //게시글 번호
+		int type = Integer.parseInt(request.getParameter("type")); // 추천:1, 비추천:0
+		System.out.println("bfr_rno:" + bfr_rno);
+		System.out.println("type: " + type);
+		ThumbVO vo = new ThumbVO();
+		vo.setBfr_rno(bfr_rno);
+		vo.setId(id);
+		vo.setBf_thumb(type);
+		
+		if( type == 1) {
+			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+			String msg = boardFreeService.reply_check(vo); 
+			return msg;
+		}else {
+			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+			String msg = boardFreeService.reply_check(vo);
+			return msg;
+		}
+	}
+	
 	
 	/**
 	  * 신고 기능

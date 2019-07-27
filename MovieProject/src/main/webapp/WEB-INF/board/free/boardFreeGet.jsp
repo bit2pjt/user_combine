@@ -26,6 +26,8 @@
  		var warn = $("#ws-cnt-warning");
  		var bno = "${boardFreeVO.bf_bno}";
  	
+ 		
+ 		
  		reco.on("click", function() {
  		 	if( session == "") {
  		 		alert("로그인 하셔야 이용하실수 있습니다.");
@@ -100,6 +102,9 @@
  			});
  		});
  		
+ 		
+ 		
+
  	});
 </script>
 
@@ -357,7 +362,7 @@
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <script>
 	var replyPageNum = 1;
-    var bfr_bno = 24;
+    var bfr_bno = "${boardFreeVO.bf_bno}";
     //getReplies();
     getRepliesPaging(replyPageNum);
 
@@ -425,11 +430,43 @@
         var reply = $(this).parent(); // 댓글의 li
         var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
         var replyText = reply.find(".replyText").text(); //댓글의 내용
-
         $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
 
     });
+    
+    $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent(); // 댓글의 li
+        var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-thumbs-up");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+ 		$.ajax({
+ 			url:"BFReplyReco",
+ 			data: {bfr_rno: replyNo, type: 1},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "fail") {
+ 					alert("1111: " + present.text());
+ 					alert("이미 추천/비추천을 누르셨습니다.");
+ 					return false;
+ 				}else {
+ 					present.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
+ 				}
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
 	
     $(".modalDelBtn").on("click", function () {
 
@@ -495,37 +532,38 @@
         });
 
     });
-	
-
+    
+    
+	var total ="";
     function getRepliesPaging(page) {
-
         $.getJSON("/movie/replies/" + bfr_bno + "/" + page, function (data) {
-           console.log(data);
            var str = "";
-          
+           total = data.pageMaker.totalCount;
+           total = total - (page-1)*10;
+           
            if(data == "") {
            		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
            }else {
-				var num = data.pageMaker.totalCount;
-				var i = 1;
-                	 $(data.replies).each(function () {
-                     	str +=	"<li data-replyNo='" + this.bfr_rno + "' class='replyLi'>"
-         					+	"No.<p class='replyRno' style='display:inline-block;'> " + num-- + "</p>"
-                          	+	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
-                            +	"<p class='replyText' style='word-break:break-all;'>" + this.bfr_content + "</p>"
-                            +	"<button type='button' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
-                            +	"</li>"
-                            +	"<hr/>";
-                            
-                            i++;
-                            
-                            if(i%10 ==0)
-                            	num = num-i;
-                     });
+                $(data.replies).each(function () {
+                    str +=	"<li data-replyNo='" + this.bfr_rno + "' class='replyLi'>"
+         				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
+                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
+                        +	"<p class='replyText' style='word-break:break-all;'>" + this.bfr_content + "</p>"
+                        +	"<button type='button' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
+        				+   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
+                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
+                        +	"</li>"
+                        +	"<hr/>";
+                        
+                   });
+                
              }
              
            $("#replies").html(str);
            printPageNumbers(data.pageMaker);
+           
+          
+           
         });
     }
 

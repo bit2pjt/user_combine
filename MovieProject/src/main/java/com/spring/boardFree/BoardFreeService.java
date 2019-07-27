@@ -12,7 +12,11 @@ public interface BoardFreeService {
 	
 	String thumb_check(ThumbVO vo);
 	
+	String reply_check(ThumbVO vo);
+	
 	int plusRecommend(ThumbVO vo);
+
+	int replyRecommend(ThumbVO vo);
 	
 	int insertWarn(WarnVO vo);
 	

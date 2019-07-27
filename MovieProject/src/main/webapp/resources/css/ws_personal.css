@@ -399,27 +399,31 @@
 	
 	<!-- /*board/free/get : 기타. 버튼들 ??*/ -->
 	.ws-btn-warning {
-	min-width:35px;min-height:35px;
+	min-width:35px;min-height:30px;
 	background-color:#ffffff;
 	border-radius:8px;
-	border:1px solid #FF6F61;
+	border:white;
 	right:5px;margin:5px;
 	color:orange;
 	}
 	.ws-btn-thumbs-up {
-	min-width:50px;min-height:35px;
+	min-width:50px;min-height:30px;
 	background-color:#ffffff;
 	border-radius:8px;
-	border:1px solid #FF6F61;
-	right:5px;margin:5px;
+	border:white;
+	right:5px;
 	color:blue;
+	padding:0px;
 	}
 	.ws-btn-thumbs-down {
-	min-width:50px;min-height:35px;
+	min-width:50px;min-height:30px;
 	background-color:#ffffff;
 	border-radius:8px;
-	border:1px solid #FF6F61;
-	right:5px;margin:5px;color:red;
+	border:white;
+	right:5px;
+	color:red;
+	padding:0px;
+	margin-left:2px;
 	}
 	.ws-btn-update {
 	width:35px;height:35px;

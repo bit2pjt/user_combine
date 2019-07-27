@@ -92,18 +92,14 @@ public class BFReplyController {
 	@RequestMapping(value = "/{bfr_bno}/{page}", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> listPaging(@PathVariable("bfr_bno") Integer bfr_bno,
                                                           @PathVariable("page") Integer page) {
-		System.out.println("1: " + bfr_bno); 
-		System.out.println("2: " + page);
         ResponseEntity<Map<String, Object>> entity = null;
 
         try {
-
             Criteria criteria = new Criteria();
             criteria.setPage(page);
-            System.out.println("3: " + criteria.getPage());
             
             List<BFReplyVO> replies = replyService.getRepliesPaging(bfr_bno, criteria);
-            System.out.println("replies: " + replies);
+            System.out.println("aaaaaaaaaaaaaaaa" + replies);
             int repliesCount = replyService.countReplies(bfr_bno);
 
             PageMaker pageMaker = new PageMaker();

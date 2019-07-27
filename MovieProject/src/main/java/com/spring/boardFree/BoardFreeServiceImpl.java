@@ -77,12 +77,14 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	public int plusRecommend(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.plusRecommend(vo); // bf_thumb insert
-		if(vo.getBf_thumb() == 1)
+		int num = 0;
+		if(vo.getBf_thumb() == 1) {
 			updateRecommend(vo); // board_free update
-		else
+			num = getRecommend(vo.getBf_bno());
+		}else {
 			updateDecommend(vo); // board_free update
-		
-		int num = getRecommend(vo.getBf_bno());
+			num = getDecommend(vo.getBf_bno());
+		}
 		return num;
 	}
 	
@@ -96,6 +98,11 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		boardFreeDAO.updateRecommend(vo);
 	}
 	
+	private void updateReplyRecommend(ThumbVO vo) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		boardFreeDAO.updateReplyRecommend(vo);
+	}
+	
 	/**
 	  * board_free의 bf_decommend update
 	  * @param vo - 게시글의 번호와 추천/비추천여부 및 id
@@ -106,6 +113,11 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		boardFreeDAO.updateDecommend(vo);
 	}
 	
+	private void updateReplyDecommend(ThumbVO vo) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		boardFreeDAO.updateReplyDecommend(vo);
+	}
+	
 	/**
 	  * board_free에서 추천수를 가져온다.
 	  * @param bno - 게시글 번호
@@ -114,6 +126,25 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	private int getRecommend(int bno) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		int num = boardFreeDAO.getRecommend(bno);
+		return num;
+	}
+	
+	private int getDecommend(int bno) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		int num = boardFreeDAO.getDecommend(bno);
+		return num;
+	}
+	
+	
+	private int getReplyRecommend(int bfr_rno) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		int num = boardFreeDAO.getReplyRecommend(bfr_rno);
+		return num;
+	}
+	
+	private int getReplyDecommend(int bfr_rno) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		int num = boardFreeDAO.getReplyDecommend(bfr_rno);
 		return num;
 	}
 	
@@ -182,5 +213,35 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	}
 
 
+	@Override
+	public String reply_check(ThumbVO vo) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+		ThumbVO thumbVO1 = boardFreeDAO.reply_check1(vo.getBfr_rno()); 
+		ThumbVO thumbVO2 = boardFreeDAO.reply_check2(vo.getId()); 
+		String msg = "";
+		if( thumbVO1 != null && thumbVO2 != null) {// br_thumb테이블에 해당 댓글번호가 있으면 중복 추천/비추천 불가
+			msg ="fail";
+		}else { 
+			msg = String.valueOf(replyRecommend(vo)); // board_free에서 추천수를 가져와서 보여준다.
+		}
+		return msg;
+	}
+
+
+	@Override
+	public int replyRecommend(ThumbVO vo) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		boardFreeDAO.replyRecommend(vo); // br_thumb 추가
+		int num=0;
+		if(vo.getBf_thumb() == 1) {
+			updateReplyRecommend(vo); // bf_reply update
+			num = getReplyRecommend(vo.getBfr_rno());
+		}else {
+			updateReplyDecommend(vo); // bf_reply update
+			num = getReplyDecommend(vo.getBfr_rno());
+		}
+		return num;
+	}
 
 }
