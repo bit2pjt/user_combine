@@ -189,8 +189,8 @@
 				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
 			<div style="float:right;">
-				 <button class="ws-btn-update">수정</button> 
-				 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-post-delete">삭제</button>
+				 <button id='btn-hjs'>수정</button> 
+				 <button id='btn-hjs' data-toggle="modal" data-target="#CatModal-post-delete">삭제</button>
 			</div>
 		</center>
 		<span id="ws-content-msg"></span>
@@ -256,20 +256,20 @@
                         </div>
                         <div class="modal-body">
 	                        <div class="form-group">
-	                            <label for="replyNo"><strong>댓글 번호</strong></label>
+	                            <label for="replyNo" style="margin-bottom:10px;"><strong>댓글 번호</strong></label>
 	                            <input class="form-control" id="replyNo" name="replyNo" readonly>
 	                        </div>
                         
                             <div class="form-group">
-                                <label for="replyText" style="margin-bottom:20px;"><strong>댓글 내용</strong></label>
+                                <label for="replyText" style="margin-bottom:10px;"><strong>댓글 내용</strong></label>
                                 <textarea class="form-control" id="replyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; height:100px;"></textarea>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
-                            <button type="button" class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
-                            <button type="button" class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
+                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
+                            <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
                         </div>
                     </div>
                 </div>
@@ -620,8 +620,8 @@
 	                    	+	"<input type='hidden' value='" + this.id +"'/>"
 	         				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
 	                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
-	                        +	"<p class='replyText' style='word-break:break-all;'>" + this.bfr_content + "</p>"
-	                        +	"<button type='button' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
+	                        +	"<p class='replyText' style='word-break:break-all; margin-bottom:20px;'>" + this.bfr_content + "</p>"
+	                        +	"<button type='button' id='btn-hjs' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
 	                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
 	                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
 	                       	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"

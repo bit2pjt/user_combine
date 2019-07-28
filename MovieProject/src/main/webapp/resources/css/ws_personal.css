@@ -562,4 +562,15 @@
   color:white;
   padding:10px;
 }
+
+#btn-hjs{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:5px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:13px;
+}
 		
