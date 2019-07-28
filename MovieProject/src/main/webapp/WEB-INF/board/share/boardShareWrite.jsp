@@ -73,33 +73,41 @@
 </head>
 <body>
 
-<script>
-function check(){
-	//제목과 내용의 앞뒤 공백 제거
-	var bs_title=bsform.bs_title.value.trim();
-	var bs_content=bsform.bs_content.value.trim();
-	
-	if(bs_title.length == 0){
-		alert("제목을 입력해주세요.");
-		bsform.bs_title.focus();
-		return false;
-	}
-	if(bs_content.length == 0){
-		alert("내용을 입력하세요.");
-		bsform.bf_content.focus();
-		return false;
-	}
-	
-	return true;
-}
-function register_back(){
-	msg="게시글 작성을 취소하시겠습니까?";
-	if(confirm(msg)!=0){
-		location.href="boardShareList.do";
-	}
-	
-}
-</script>
+	<script>
+		function check() {
+			//제목과 내용의 앞뒤 공백 제거
+			var bs_title = bsform.bs_title.value.trim();
+			var bs_content = bsform.bs_content.value.trim();
+
+			if (bs_title.length == 0) {
+				alert("제목을 입력해주세요.");
+				bsform.bs_title.focus();
+				return false;
+			}
+			if (bs_content.length == 0) {
+				alert("내용을 입력하세요.");
+				bsform.bf_content.focus();
+				return false;
+			}
+
+			return true;
+		}
+		function register_back() {
+			msg = "게시글 작성을 취소하시겠습니까?";
+			if (confirm(msg) != 0) {
+				location.href = "boardShareList.do";
+			}
+
+		}
+
+		function submitCheck() {
+			if (confirm("등록하시겠습니까?") == true) { //확인
+				document.bsform.submit();
+			} else { //취소
+				return false;
+			}
+		}
+	</script>
 	<!-- BEGIN | Header -->
 	<header class="ht-header sticky">
 		<div class="container">
@@ -188,7 +196,8 @@ function register_back(){
 		<div class="movie-items">
 			<div class="container">
 				<div class="col-md-12">
-				<form name="bsform" action="boardShareWriteAction.do" method="POST" onsubmit="return check()">
+					<form name="bsform" action="boardShareWriteAction.do" method="POST"
+						onsubmit="return check()">
 						<!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
 						<div class="ws-writer-box">
 							<!-- 2.상단부는 제목과 출처가 들어간다.  -->
@@ -200,8 +209,8 @@ function register_back(){
 
 									<input class="post-title" name="bs_title" id="bs_title"
 									placeholder="제목을 적어주세요"></span> <span id="counter"></span><span>자
-									남음 </span> <br> <br> 
-				
+									남음 </span> <br> <br>
+
 							</div>
 							<!-- end of top-writer -->
 							<!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
@@ -234,23 +243,15 @@ function register_back(){
 								<h4>분류</h4>
 								<label class="fancy-radio custom-color-coral"> <input
 									name="bs_category" value="티켓나눔" type="radio" checked><span><i></i>티켓나눔</span>
-								</label>
-								<label class="fancy-radio custom-color-coral"> <input
+								</label> <label class="fancy-radio custom-color-coral"> <input
 									name="bs_category" value="스낵나눔" type="radio"><span><i></i>스낵나눔</span>
-								</label> 
+								</label>
 							</div>
 
 							<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
 							<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
-							<center class="form-style-1" style="background-color: #FFFFFF;">
-								<input type="submit" class="submit" value="작성하기"
-									style="background-color: #FF6F61; width: 70px; margin: 10px;">
-								<input type="button" class="button" value=" 취 소 " onclick="register_back()"
-									style="background-color: #dcf836; color: #0b0b06; width: 70px; margin: 10px;">
-							</center>
-
-
-
+							<input type="button" value="작성하기" onclick="submitCheck()">
+							<input type="button" class="button" value=" 취 소 " onclick="register_back()">
 
 						</div>
 						<!-- end of writer-box  -->

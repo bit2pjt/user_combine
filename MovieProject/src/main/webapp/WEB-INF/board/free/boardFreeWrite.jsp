@@ -98,6 +98,13 @@ function register_back(){
 	}
 	
 }
+function submitCheck() {
+	if (confirm("등록하시겠습니까?") == true) { //확인
+		document.bfform.submit();
+	} else { //취소
+		return false;
+	}
+}
 </script>
 	<!-- BEGIN | Header -->
 	<header class="ht-header sticky">
@@ -244,12 +251,9 @@ function register_back(){
 
 							<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
 							<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
-							<center class="form-style-1" style="background-color: #FFFFFF;">
-								<input type="submit" class="submit" value="작성하기"
-									style="background-color: #FF6F61; width: 70px; margin: 10px;">
-								<input type="button" class="button" value=" 취 소 " onclick="register_back()"
-									style="background-color: #dcf836; color: #0b0b06; width: 70px; margin: 10px;">
-							</center>
+							
+							<input type="button" value="작성하기" onclick="submitCheck()">
+								<input type="button" class="button" value=" 취 소 " onclick="register_back()">
 
 
 

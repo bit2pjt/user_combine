@@ -99,6 +99,13 @@
 			}
 
 		}
+		function submitCheck() {
+			if (confirm("수정하시겠습니까?") == true) { //확인
+				document.bfform.submit();
+			} else { //취소
+				return false;
+			}
+		}
 	</script>
 	<!-- BEGIN | Header -->
 	<header class="ht-header sticky">
@@ -187,7 +194,7 @@
 		<div class="movie-items">
 			<div class="container">
 				<div class="col-md-12">
-					<form action="boardFreeUpdateAction.do" method="post"
+					<form name="bfform" action="boardFreeUpdateAction.do" method="post"
 						onsubmit="return check()">
 						<!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
 						<div class="ws-writer-box">
@@ -251,7 +258,8 @@
 							</div>
 							<input type="hidden" name="bf_bno"
 								value="${requestScope.selectBoardFree.bf_bno }" /> <input
-								type="hidden" name="id" value="${requestScope.selectBoardFree.id }" />
+								type="hidden" name="id"
+								value="${requestScope.selectBoardFree.id }" />
 
 
 							<!-- 2.상단부는 제목과 출처가 들어간다.  -->
@@ -296,13 +304,8 @@
 
 							<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
 							<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
-							<center class="form-style-1" style="background-color: #FFFFFF;">
-								<input type="submit" class="submit" value="수정하기"
-									style="background-color: #FF6F61; width: 70px; margin: 10px;">
-								<input type="button" class="button" value=" 취 소 "
-									style="background-color: #dcf836; color: #0b0b06; width: 70px; margin: 10px;"
-									onclick="register_back()">
-							</center>
+							<input type="button" value="수정하기" onclick="submitCheck()">
+							<input type="button" class="button" value=" 취 소 " onclick="register_back()">
 
 
 
