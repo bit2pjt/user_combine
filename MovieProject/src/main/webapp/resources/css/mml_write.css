@@ -1,0 +1,93 @@
+
+/**
+* @Class Name :  mml_write.css
+* @Description : mml_write css
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.27     한유진      최초생성
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+/* I. FRAMEWORK
+***********************/
+/*!
+ * Bootstrap v3.3.5 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+
+/*
+yj : start | index 페이지 상단의 영화 차트 관련
+*/
+.mml-write-title{
+	width:100%;
+	/* background-color:#ffa4ba; */
+	margin-left:auto;
+	margin-right:auto;
+}
+.mml-title{
+	width:75%;
+	border: 1px solid #999999; 
+}
+.mml-write-content{
+	width:100%;
+	/* background-color:#fff188; */
+}
+
+.mml-write-content textarea{
+	min-height: 300px;
+}
+
+.mml-write-movie{
+	width:100%;
+	/* background-color:#a3ffae; */
+}
+
+.mml-movie-body{
+	
+}
+
+.mml-movie-item{
+	display:inline-block;
+	width:150px;
+	height:200px;
+	border:1px solid gray;
+	text-align:center;
+	position:relative;
+}
+.mml-movie-item img {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.mml-write-button{
+	width:100%;
+	/* background-color:#afe4ff; */
+	text-align: center;
+}
+
+.mml-write-button input{
+	display: inline-block;
+	background-color: black;
+	border-color: black;
+	color:white;
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
+}
