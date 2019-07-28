@@ -116,6 +116,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	private void updateReplyDecommend(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.updateReplyDecommend(vo);
+		System.out.println("update");
 	}
 	
 	/**
@@ -184,12 +185,35 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	}
 	
 	/**
+	  * bfr_warning에 추가하고, bf_reply에 신고수 증가
+	  * @param vo 
+	  * @return msg
+	*/
+	@Override
+	public int insertReplyWarn(WarnVO vo) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		ReplyWarnCount(vo.getBfr_rno()); // 신고수 1 증가
+		int num = boardFreeDAO.insertReplyWarn(vo); 
+		
+		return num;
+	}
+	
+	/**
 	  * board_free에 신고수 증가
 	  * @param bno - 게시글의 번호
 	*/
 	private void WarnCount(int bno) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.WarnCount(bno);
+	}
+	
+	/**
+	  * bf_Reply에 신고수 증가
+	  * @param bno - 게시글의 번호
+	*/
+	private void ReplyWarnCount(int rno) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		boardFreeDAO.ReplyWarnCount(rno);
 	}
 	
 	/**
@@ -206,7 +230,27 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		if(warnVO != null) {
 			msg = "fail";
 		}else {
-			msg = String.valueOf(insertWarn(vo));  // 1
+			msg = String.valueOf(insertReplyWarn(vo));  // 1
+		}
+		
+		return msg;
+	}
+	
+	/**
+	  * bfr_warning에 있는지 없는지 확인
+	  * @param vo 
+	  * @return msg
+	 */
+	@Override
+	public String ReplyWarn(WarnVO vo) {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		WarnVO warnVO = boardFreeDAO.ReplyWarn(vo);
+		String msg = "";
+		
+		if(warnVO != null) {
+			msg = "fail";
+		}else {
+			msg = String.valueOf(insertReplyWarn(vo));  // 1
 		}
 		
 		return msg;
@@ -217,10 +261,10 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	public String reply_check(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
-		ThumbVO thumbVO1 = boardFreeDAO.reply_check1(vo.getBfr_rno()); 
-		ThumbVO thumbVO2 = boardFreeDAO.reply_check2(vo.getId()); 
+		ThumbVO thumbVO = boardFreeDAO.reply_check(vo); 
 		String msg = "";
-		if( thumbVO1 != null && thumbVO2 != null) {// br_thumb테이블에 해당 댓글번호가 있으면 중복 추천/비추천 불가
+		
+		if( thumbVO != null) {// br_thumb테이블에 해당 댓글번호가 있으면 중복 추천/비추천 불가
 			msg ="fail";
 		}else { 
 			msg = String.valueOf(replyRecommend(vo)); // board_free에서 추천수를 가져와서 보여준다.
@@ -234,12 +278,16 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.replyRecommend(vo); // br_thumb 추가
 		int num=0;
+		System.out.println("bf_thumb: " + vo.getBf_thumb());
 		if(vo.getBf_thumb() == 1) {
+			System.out.println("1111");
+			System.out.println(vo.getBfr_rno());
 			updateReplyRecommend(vo); // bf_reply update
 			num = getReplyRecommend(vo.getBfr_rno());
 		}else {
 			updateReplyDecommend(vo); // bf_reply update
 			num = getReplyDecommend(vo.getBfr_rno());
+			System.out.println("num:" + num);
 		}
 		return num;
 	}

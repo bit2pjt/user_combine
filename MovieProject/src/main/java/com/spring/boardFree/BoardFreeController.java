@@ -59,9 +59,11 @@ public class BoardFreeController {
 	@RequestMapping(value= "/boardFreeGet", method=RequestMethod.GET)
 	public String getGetPage(@RequestParam("bno") int bno, HttpSession session, Model model) {
 		String sessionyn = (String)session.getAttribute("m_email");
+		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
 		BoardFreeVO boardFreeVO = boardFreeService.getContent(bno); // 게시글의 내용
 		MemberVO memberVO = boardFreeService.getWriter(boardFreeVO.getId()); // 게시물 작성자의 정보
 		
+		model.addAttribute("id", id);
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardFreeVO", boardFreeVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
@@ -129,18 +131,16 @@ public class BoardFreeController {
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
 		int bfr_rno = Integer.parseInt(request.getParameter("bfr_rno")); //게시글 번호
 		int type = Integer.parseInt(request.getParameter("type")); // 추천:1, 비추천:0
-		System.out.println("bfr_rno:" + bfr_rno);
-		System.out.println("type: " + type);
 		ThumbVO vo = new ThumbVO();
-		vo.setBfr_rno(bfr_rno);
-		vo.setId(id);
-		vo.setBf_thumb(type);
+		vo.setBfr_rno(bfr_rno); // 댓글 번호
+		vo.setId(id); // 댓글 쓴 사람의 id
+		vo.setBf_thumb(type); // 1: 추천, 0: 비추천
 		
-		if( type == 1) {
+		if( type == 1) { // 추천을 눌렀을 경우
 			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
 			String msg = boardFreeService.reply_check(vo); 
 			return msg;
-		}else {
+		}else { // 비추천을 눌렀을 경우
 			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
 			String msg = boardFreeService.reply_check(vo);
 			return msg;
@@ -165,6 +165,29 @@ public class BoardFreeController {
 		vo.setId(id);
 		
 		String msg = boardFreeService.warn_check(vo); 
+		if(msg.equals("1"))
+			msg = "success";
+		
+		return msg;
+	}
+	
+	/**
+	  * 댓글 신고 기능
+	  * @param request
+	  * @param session
+	  * @return @ResponseBody String => json
+	 */
+	@ResponseBody
+	@RequestMapping(value="/BFReplyWarn", method=RequestMethod.POST)
+	public String BFReplyWarn(HttpSession session, HttpServletRequest request) {
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
+		int bfr_rno = Integer.parseInt(request.getParameter("bfr_rno")); //게시글 번호
+		WarnVO vo = new WarnVO();
+		vo.setBfr_rno(bfr_rno);
+		vo.setId(id);
+		
+		String msg = boardFreeService.ReplyWarn(vo); 
 		if(msg.equals("1"))
 			msg = "success";
 		

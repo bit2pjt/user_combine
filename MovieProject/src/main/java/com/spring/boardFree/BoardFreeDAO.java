@@ -14,9 +14,7 @@ public interface BoardFreeDAO {
 	
 	ThumbVO thumb_check(int id);
 	
-	ThumbVO reply_check1(int bfr_rno);
-	
-	ThumbVO reply_check2(int id);
+	ThumbVO reply_check(ThumbVO vo);
 	
 	int plusRecommend(ThumbVO vo);
 	
@@ -40,7 +38,13 @@ public interface BoardFreeDAO {
 	
 	int insertWarn(WarnVO vo);
 	
+	int insertReplyWarn(WarnVO vo);
+	
 	WarnVO warn_check(int id);
 	
+	WarnVO ReplyWarn(WarnVO vo);
+	
 	void WarnCount(int bno);
+	
+	void ReplyWarnCount(int rno);
 }

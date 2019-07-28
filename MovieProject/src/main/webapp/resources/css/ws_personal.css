@@ -403,8 +403,9 @@
 	background-color:#ffffff;
 	border-radius:8px;
 	border:white;
-	right:5px;margin:5px;
+	right:5px;
 	color:orange;
+	padding:0px;
 	}
 	.ws-btn-thumbs-up {
 	min-width:50px;min-height:30px;
@@ -552,9 +553,13 @@
 	.ws-reply-msg {
 	font-size:74%;
 	}
-	
-	
-	
-	
-	}
+}
+
+#replyAddBtn{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:10px;
+}
 		

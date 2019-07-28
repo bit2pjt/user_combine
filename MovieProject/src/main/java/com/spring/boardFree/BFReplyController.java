@@ -97,9 +97,7 @@ public class BFReplyController {
         try {
             Criteria criteria = new Criteria();
             criteria.setPage(page);
-            
             List<BFReplyVO> replies = replyService.getRepliesPaging(bfr_bno, criteria);
-            System.out.println("aaaaaaaaaaaaaaaa" + replies);
             int repliesCount = replyService.countReplies(bfr_bno);
 
             PageMaker pageMaker = new PageMaker();

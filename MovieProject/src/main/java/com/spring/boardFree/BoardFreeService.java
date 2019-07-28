@@ -20,5 +20,9 @@ public interface BoardFreeService {
 	
 	int insertWarn(WarnVO vo);
 	
+	int insertReplyWarn(WarnVO vo);
+	
 	String warn_check(WarnVO vo);
+	
+	String ReplyWarn(WarnVO vo);
 }

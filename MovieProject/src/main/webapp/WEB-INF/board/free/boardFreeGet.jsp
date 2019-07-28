@@ -25,8 +25,8 @@
  		var deco = $("#ws-cnt-tdn");
  		var warn = $("#ws-cnt-warning");
  		var bno = "${boardFreeVO.bf_bno}";
- 	
  		
+ 		    
  		
  		reco.on("click", function() {
  		 	if( session == "") {
@@ -84,7 +84,6 @@
  		 		location.href="index";
  		 		return false;
  		 	}
- 		 	
  			$.ajax({
  				url:"boardFreeWarn",
  				data: {bf_bno: bno},
@@ -190,8 +189,8 @@
 				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
 			<div style="float:right;">
-				수정 <button class="ws-btn-update"><i class="fa fa-repeat" aria-hidden="true"></i></button> 
-				삭제 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-post-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
+				 <button class="ws-btn-update">수정</button> 
+				 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-post-delete">삭제</button>
 			</div>
 		</center>
 		<span id="ws-content-msg"></span>
@@ -244,7 +243,7 @@
 		<h4> Reply list </h4>
 		<br>
 		<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
-		<div class="comments" style="border-width:3px 0px;border-style:solid;border-color:#525EAA;">
+		<div class="comments" style="border-width:3px 0px;border-style:solid;">
 			<div class="ws-reply-buffer"></div>	
 			<!-- 댓글2 -->
 	<div class="content-wrapper">		
@@ -257,7 +256,7 @@
                         </div>
                         <div class="modal-body">
 	                        <div class="form-group">
-	                            <label for="replyNo">댓글 번호</label>
+	                            <label for="replyNo"><strong>댓글 번호</strong></label>
 	                            <input class="form-control" id="replyNo" name="replyNo" readonly>
 	                        </div>
                         
@@ -270,7 +269,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
                             <button type="button" class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
-                            <button type="button" class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제</button>
+                            <button type="button" class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
                         </div>
                     </div>
                 </div>
@@ -316,15 +315,10 @@
 	
 <!-- end of  blog detail section-->
 	
-	<!-- 삭제 모달 : 게시글 	
-	<div id="CatModal-post-delete" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div id="CatModal-post-delete" class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">게시글 삭제</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
        <div class="modal-body">
           <p>게시글을 삭제하시겠습니까?</p>
@@ -335,8 +329,7 @@
        </div>
       </div>
     </div>
-</div>
--->	
+
 	<!-- 삭제 모달 : 댓글 
 		<div id="CatModal-reply-delete" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -365,7 +358,8 @@
     var bfr_bno = "${boardFreeVO.bf_bno}";
     //getReplies();
     getRepliesPaging(replyPageNum);
-
+  
+    /*
     function getReplies() {
         $.getJSON("/movie/replies/all/" + bfr_bno, function (data) {
             var str = "";
@@ -385,7 +379,8 @@
             $("#replies").html(str);
          });
     }
-
+	*/
+	
     $("#replyAddBtn").on("click", function () {
     	var session = "${sessionyn}";
         var replyText = $("#newReplyText");
@@ -424,8 +419,7 @@
             }
         });
     });
-
-    
+	
     $("#replies").on("click", ".replyLi button", function () { // 댓글의 수정 버튼 클릭시
         var reply = $(this).parent(); // 댓글의 li
         var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
@@ -435,9 +429,11 @@
 
     });
     
+    $()
+    
     $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li
-        var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
+        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
         var present = $(this).parent().find(".ws-btn-thumbs-up");
         var session = "${sessionyn}";
         //var bf_rno = $("#replies > li");
@@ -449,17 +445,79 @@
  		 }
  		$.ajax({
  			url:"BFReplyReco",
- 			data: {bfr_rno: replyNo, type: 1},
+ 			data: {bfr_rno: bfr_rno, type: 1},
  			dataType: "text",
  			type:"post",
  			success: function(data) {
  				if(data == "fail") {
- 					alert("1111: " + present.text());
  					alert("이미 추천/비추천을 누르셨습니다.");
  					return false;
  				}else {
  					present.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
  				}
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
+    
+    $("#replies").on("click", ".replyLi .ws-btn-thumbs-down", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent(); // 댓글의 li
+        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-thumbs-down");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+ 		$.ajax({
+ 			url:"BFReplyReco",
+ 			data: {bfr_rno: bfr_rno, type: 0},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "fail") {
+ 					alert("이미 추천/비추천을 누르셨습니다.");
+ 					return false;
+ 				}else {
+ 					present.html("<i class='fa fa-thumbs-o-down' aria-hidden='true'></i>  " + data);
+ 				}
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
+    
+    $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent(); // 댓글의 li
+        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-thumbs-down");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+     	
+ 		$.ajax({
+ 			url:"BFReplyWarn",
+ 			data: {bfr_rno: bfr_rno},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "success")
+						alert("신고 되었습니다.");
+					else
+						alert("이미 신고 하셨습니다.");
  			},
  			error: function() {
  				alert("에러");
@@ -535,6 +593,7 @@
     
     
 	var total ="";
+	var id = "${id}";
     function getRepliesPaging(page) {
         $.getJSON("/movie/replies/" + bfr_bno + "/" + page, function (data) {
            var str = "";
@@ -545,24 +604,35 @@
            		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
            }else {
                 $(data.replies).each(function () {
-                    str +=	"<li data-replyNo='" + this.bfr_rno + "' class='replyLi'>"
+                	if(this.id != id) {
+                		str +=	"<li style='display:inline-block; width:100%;'data-replyNo='" + this.bfr_rno + "' class='replyLi'>"
+                    	+	"<input type='hidden' value='" + this.id +"'/>"
          				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
                         +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
                         +	"<p class='replyText' style='word-break:break-all;'>" + this.bfr_content + "</p>"
-                        +	"<button type='button' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
-        				+   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
+                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
                         +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
+                       	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
                         +	"</li>"
                         +	"<hr/>";
-                        
+                	}else {
+	                    str +=	"<li data-replyNo='" + this.bfr_rno + "' class='replyLi'>"
+	                    	+	"<input type='hidden' value='" + this.id +"'/>"
+	         				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
+	                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
+	                        +	"<p class='replyText' style='word-break:break-all;'>" + this.bfr_content + "</p>"
+	                        +	"<button type='button' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
+	                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
+	                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
+	                       	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+	                        +	"</li>"
+	                        +	"<hr/>";
+                	}     
                    });
-                
              }
              
            $("#replies").html(str);
            printPageNumbers(data.pageMaker);
-           
-          
            
         });
     }
