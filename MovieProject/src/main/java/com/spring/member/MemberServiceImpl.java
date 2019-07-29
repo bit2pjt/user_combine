@@ -1,10 +1,10 @@
+
 package com.spring.member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.member.MemberVO.level;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -101,7 +101,7 @@ public class MemberServiceImpl implements MemberService {
 		vo.setM_deleteyn("N");
 		vo.setM_following(0);
 		vo.setM_follower(0);
-		vo.setM_level(level.BRONZE);
+		vo.setM_level("BRONZE");
 		vo.setM_blacklist("N");
 		
 		

@@ -28,7 +28,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.spring.member.MemberVO;
 
 @Controller
 public class MyPageController {
@@ -46,7 +47,9 @@ public class MyPageController {
 	}
 	//���������� - ��й�ȣ ��Ȯ��
 	@RequestMapping(value="/pw_confirm.do", method=RequestMethod.GET)
-	public String pwConfirm(int id, Model model) {
+	public String pwConfirm(HttpSession session, Model model) {
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		
 		MemberVO member = myPageService.getMember(id);
 		
 		model.addAttribute("member",member);

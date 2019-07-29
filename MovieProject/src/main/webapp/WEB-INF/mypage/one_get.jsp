@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int qna_no = Integer.parseInt(request.getParameter("qna_no"));
+%>
 <!--
 /**
 * @Class Name : one_get.jsp
@@ -114,7 +117,7 @@
                                 </ul>
                                 <br>
                                 <div class="btn_m">
-                                    <input type="button" onClick="location.href='one_update.do?qna_no=${qna.qna_no}'"  class="btn-check-hjs" value="수정">
+                                    <input type="button" onClick="location.href='one_update.do?qna_no=<%=qna_no %>'"  class="btn-check-hjs" value="수정">
                                     &nbsp; <input type="reset" class="btn-check-hjs" value="삭제">
                                 </div>
                                 <br>
