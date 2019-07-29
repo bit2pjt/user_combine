@@ -1,12 +1,11 @@
 package com.spring.mypage;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.spring.member.MemberVO;
 
 /**
 * @Class Name : MyPageServiceImpl.java
@@ -30,92 +29,48 @@ public class MyPageServiceImpl implements MyPageService{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	
 	@Override
 	public String getMemberName(String m_email) {
 		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
 		String m_name = mypageDAO.getMemberName(m_email);
 		return m_name;
 	}
-	
-	@Override
-	public int getMemberId(String m_email) {
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		int id = mypageDAO.getMemberId(m_email);
-		return id;
-	}
-	
-	@Override
-	public List<OneVO> getQnaList(int id) {
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		List<OneVO> qnaList = mypageDAO.getQnaList(id);
-		
-		return qnaList;
-	}
-	
-	@Override
-
-	public MemberVO getMember(int id){
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		MemberVO member = mypageDAO.getMember(id);
-		
-		return member;
-	}
 
 	@Override
-	public void updateMember(MemberVO memberVO) {
+	public boolean checkPw(String m_email, String m_password) {
 		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		mypageDAO.updateMember(memberVO);
-	}
-	
-	@Override
-	public void updatePw(MemberVO memberVO) {
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		mypageDAO.updatePw(memberVO);
-	}
-	
-	@Override
-	public void updateNick(MemberVO memberVO) {
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		mypageDAO.updateNick(memberVO);
-	}
-	
-	@Override
-	public int checkNick(String m_nickname) {
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		int check = mypageDAO.checkNick(m_nickname);
-		return check;
-	}
-
-	public int insertQna(OneVO oneVO) {
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		int result = mypageDAO.insertQna(oneVO);
-		
+		boolean result = false;
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("m_email", m_email);
+		map.put("m_password", m_password);
+		int count = mypageDAO.checkPw(map);
+		if(count == 1) result = true;
 		return result;
 	}
 	
+
 	@Override
-	public String getMemberNickname(String m_email) {
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		String m_nickname = mypageDAO.getMemberNickname(m_email);
+	public int delete_member(String m_email) {
 		
-		return m_nickname;
-	}
-	
-	@Override
-	public OneVO getQnaDetail(int qna_no) {
 		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		OneVO oneVO = mypageDAO.getQnaDetail(qna_no);
 		
-		return oneVO;
-	}
-	
-	@Override
-	public int updateQna(OneVO oneVO) {
-		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-		int result = mypageDAO.updateQna(oneVO);
+		int num = mypageDAO.delete_member(m_email);
+		System.out.println("num:"+num);
+		return num;
+		 
 		
-		return result;
 	}
 
+	@Override
+	public int delete_date(String id) {
+		
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int id_num = mypageDAO.delete_date(id);
+		System.out.println("id_num:"+id_num);
+		return id_num;
+	}
+	
+	
 }

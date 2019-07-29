@@ -24,7 +24,6 @@
 	<context:component-scan base-package="com.spring.movie" />
 	<context:component-scan base-package="com.spring.member"/>
 	<context:component-scan base-package="com.spring.mypage"/>
-	<context:component-scan base-package="com.spring.boardFree"/>
 	
 	
 </beans:beans>
