@@ -607,8 +607,12 @@ function ws_check() { //유효성 검사
 
 //메일 중복체크 
 $('#email_overlap_chk').on('click', function (event) { // link 변경
+	
+	//console.log('이메일 중복체크 눌림');
 	//event.stopimmediatepropagation();
-	//event.stopPropagation();
+	preventDefault();
+	event.stopPropagation();
+	alert('눌림');
 	
 	var m_email = joinform.m_email.value;
 	   $.ajax({
@@ -654,4 +658,19 @@ $('#nick_overlap_chk').on('click', function (event) {
 	   });
 });
 
+$('#check_all').on('click', function() {
+	$('.chk_box').prop( 'checked', this.checked );
+    
+});
+
+$('#check_all').on('click', function() {
+	//모든 이벤트가 작동이 안되는듯 하다
+	alert('asdasd');
+	if($('#check_all').is(':checked')) {
+		$('.chk_box').prop('checked', true);
+	}else {
+		$('.chk_box').prop('checked', false);
+	}
+	
+});
 

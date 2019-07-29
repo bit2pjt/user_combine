@@ -1,8 +1,11 @@
+
 package com.spring.member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
@@ -93,13 +96,14 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public void memberJoin(MemberVO vo) {
-		vo.setM_image("");
+		vo.setM_image("defaultprofile.PNG");
 		vo.setM_cert("N");
 		vo.setM_deleteyn("N");
 		vo.setM_following(0);
 		vo.setM_follower(0);
 		vo.setM_level("BRONZE");
 		vo.setM_blacklist("N");
+		
 		
 		memberDAOglobal.memberJoin(vo);
 		}
@@ -126,7 +130,7 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public boolean nickOverlapChk(MemberVO vo) {
-		System.out.println("11111111111111111111111111: " + memberDAOglobal.nickOverlapChk(vo.getM_nickname()));
+		
 		if (memberDAOglobal.nickOverlapChk(vo.getM_nickname()) == 0) {
 			System.out.println("일치하는 닉네임 = 사용 가능");
 			return true;
@@ -145,6 +149,13 @@ public class MemberServiceImpl implements MemberService {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		int num = memberDAO.updatePw(vo);
 		return num;
+	}
+
+
+	@Override
+	public int getId(String m_email, String m_password) {
+		
+		return memberDAOglobal.getId(m_email, m_password);
 	}
 
 

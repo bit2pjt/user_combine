@@ -1,3 +1,4 @@
+
 package com.spring.member;
 
 import java.io.PrintWriter;
@@ -28,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 * @ 2019. 07. 16 	황진석				로그인/로그아웃, 이메일 찾기 컨트롤러 추가
 * @ 2019. 07. 17 	황진석				
 * @ 2019. 07. 22	이웅식			회원가입 + 가입시 메일&닉네임 중복확인 구현
+* @ 2019. 07. 26	이웅식			login 성공시 id 코드를 세션값에 추가하도록 수정
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -60,6 +62,7 @@ public class LoginController {
       int check = memberService.userCheck(email, pw);
       if(check == 1){
          session.setAttribute("m_email", email);
+         session.setAttribute("id", memberService.getId(email, pw));
          return "index";
       }else if( check == -1) {
          response.setContentType("text/html; charset=utf-8");
@@ -204,10 +207,9 @@ public class LoginController {
 	   }
    }
 
+}   
    
    
    
    
    
-   
-}

@@ -11,3 +11,4 @@ public class Mmlr_WarningVO {
 	private int number;		//신고자 계정코드
 	private Date mml_date;	//신고일자
 }
+
