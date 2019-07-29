@@ -41,10 +41,15 @@ public class MyPageController {
 	// ���������� ùȭ��
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
 	public String mypage(Model model, HttpSession session) {
-		session.setAttribute("id", 1);
-		MemberVO member = (MemberVO) myPageService.getMember(1);
-		System.out.println(member);
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		MemberVO member = (MemberVO) myPageService.getMember(id);
 		model.addAttribute("member", member);
+		
+		// 1:1 문의내역
+		List<OneVO> qnaList = null;
+		qnaList = myPageService.getQnaList(id);
+		model.addAttribute("qnaList", qnaList);
+
 		return "mypage/mypage";
 	}
 
