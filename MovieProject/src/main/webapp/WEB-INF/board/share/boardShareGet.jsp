@@ -16,7 +16,7 @@
  		var warn = $("#ws-cnt-warning");
  		var bs_bno = "${boardShareVO.bs_bno}";
  		
-
+		// 신고버튼 눌렀을 때 
  		warn.on("click", function() {
  		 	if( session == "") {
  		 		alert("로그인 하셔야 이용하실수 있습니다.");
@@ -301,8 +301,7 @@
 <script>
 	var replyPageNum = 1;
     var bs_bno = "${boardShareVO.bs_bno}";
-    alert(bs_bno);
-    //getReplies();
+    
     getRepliesPaging(replyPageNum);
   
 	
