@@ -6,6 +6,8 @@ public interface BoardFreeService {
 
 	BoardFreeVO getContent(int page);
 	
+	void boardDelete(int bno);
+	
 	MemberVO getWriter(int id);
 
 	int getUser(String email);

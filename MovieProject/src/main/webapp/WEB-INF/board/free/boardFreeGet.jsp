@@ -101,10 +101,17 @@
  			});
  		});
  		
- 		
- 		
-
  	});
+ 	
+ 	function updateContent(){
+		location.href="boardFreeUpdate";
+	}
+ 	
+ 	function deleteContent() {
+ 		var result = confirm("삭제하시겠습니까?");
+ 		if(result == true)
+ 			location.href="boardFreeDelete";
+ 	}
 </script>
 
 <div class="hero common-hero">
@@ -189,8 +196,8 @@
 				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
 			<div style="float:right;">
-				 <button id='btn-hjs'>수정</button> 
-				 <button id='btn-hjs' data-toggle="modal" data-target="#CatModal-post-delete">삭제</button>
+				 <button id='btn-hjs' onclick="updateContent()">수정</button> 
+				 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
 			</div>
 		</center>
 		<span id="ws-content-msg"></span>
@@ -314,7 +321,7 @@
 				</div>
 	
 <!-- end of  blog detail section-->
-	
+	<!-- 
     <div id="CatModal-post-delete" class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -329,7 +336,7 @@
        </div>
       </div>
     </div>
-
+ -->
 	<!-- 삭제 모달 : 댓글 
 		<div id="CatModal-reply-delete" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -600,7 +607,7 @@
            total = data.pageMaker.totalCount;
            total = total - (page-1)*10;
            
-           if(data == "") {
+           if(data.replies == "") {
            		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
            }else {
                 $(data.replies).each(function () {

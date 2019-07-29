@@ -18,6 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.paging.Criteria;
 import com.spring.paging.PageMaker;
 
+/**
+* @Class Name : BFReplyController.java
+* @Description : BoardFree 게시판의 댓글
+* @Modification Information
+* @
+* @  	수정일               	 수정자                  	수정내용
+* @ -----------   ---------   -------------------------------
+* @ 2019. 07. 24         황진석            		최초생성
+* @author bit 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by Bit All right reserved.
+*/
+
 @RestController
 @RequestMapping("/replies")
 public class BFReplyController {
@@ -27,8 +43,13 @@ public class BFReplyController {
 	
 	@Autowired(required=false)
 	BoardFreeService boardFreeService;
-
-	// 댓글 등록
+	
+	/**
+	  * 댓글 등록
+	  * @param replyVO - 댓글 내용을 담은 vo
+	  * @param session - 세션
+	  * @return ResponseEntity<String>
+	 */
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody BFReplyVO replyVO, HttpSession session) {
 		ResponseEntity<String> entity = null;
@@ -46,7 +67,11 @@ public class BFReplyController {
 		return entity;
 	}
 	
-	// 댓글 목록 가져오기 
+	/**
+	  * 해당 게시글의 댓글 전체목록 가져오기
+	  * @param bfr_bno - 게시글 번호
+	  * @return ResponseEntity<String>
+	 */
 	@RequestMapping(value = "/all/{bfr_bno}", method = RequestMethod.GET)
     public ResponseEntity<List<BFReplyVO>> list(@PathVariable("bfr_bno") Integer bfr_bno) {
         ResponseEntity<List<BFReplyVO>> entity = null;
@@ -59,7 +84,13 @@ public class BFReplyController {
         return entity;
     }
 	
-	// 댓글 수정
+
+	/**
+	  *	댓글 수정
+	  * @param bfr_bno - 게시글 번호
+	  * @param replyVO - 댓글 수정 내용
+	  * @return ResponseEntity<String>
+	 */
 	@RequestMapping(value = "/{bfr_rno}", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	public ResponseEntity<String> update(@PathVariable("bfr_rno") Integer bfr_rno, @RequestBody BFReplyVO replyVO) {
 		ResponseEntity<String> entity = null;
@@ -74,7 +105,11 @@ public class BFReplyController {
 		return entity;
 	}
 	
-	//댓글 삭제
+	/**
+	  *	댓글 삭제
+	  * @param bfr_bno - 게시글 번호
+	  * @return ResponseEntity<String>
+	 */
 	@RequestMapping(value = "/{bfr_rno}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("bfr_rno") Integer bfr_rno) {
 		ResponseEntity<String> entity = null;
@@ -88,7 +123,12 @@ public class BFReplyController {
 		return entity;
 	}
 	
-	
+	/**
+	  * 해당 게시글의 댓글 전체목록 가져오기(페이징)
+	  * @param bfr_bno - 게시글 번호
+	  * @param page - 페이지 번호
+	  * @return ResponseEntity<String>
+	 */
 	@RequestMapping(value = "/{bfr_bno}/{page}", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> listPaging(@PathVariable("bfr_bno") Integer bfr_bno,
                                                           @PathVariable("page") Integer page) {

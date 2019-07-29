@@ -59,14 +59,18 @@ public class BoardFreeController {
 	@RequestMapping(value= "/boardFreeGet", method=RequestMethod.GET)
 	public String getGetPage(@RequestParam("bno") int bno, HttpSession session, Model model) {
 		String sessionyn = (String)session.getAttribute("m_email");
-		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
+		if(sessionyn != null) {
+			int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
+			model.addAttribute("id", id);
+		}
+		
 		BoardFreeVO boardFreeVO = boardFreeService.getContent(bno); // 게시글의 내용
 		MemberVO memberVO = boardFreeService.getWriter(boardFreeVO.getId()); // 게시물 작성자의 정보
 		
-		model.addAttribute("id", id);
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardFreeVO", boardFreeVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
+		
 		return "board/free/boardFreeGet"; 
 	}
 	
@@ -86,6 +90,18 @@ public class BoardFreeController {
 	@GetMapping("/boardFreeUpdate")
 	public String getUpdatePage() {
 		return "board/free/boardFreeUpdate";
+	}
+	
+	/**
+	  * 자유게시판 게시글 삭제
+	  * @return "boardFreeList"
+	 */
+	@GetMapping("/boardFreeDelete")
+	public String boardDelete(@RequestParam("bno") int bno, HttpSession session, HttpServletRequest request) {
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
+		
+		return "board/free/boardFreeList";
 	}
 	
 	/**

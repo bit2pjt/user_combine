@@ -6,6 +6,8 @@ public interface BoardFreeDAO {
 	
 	BoardFreeVO getContent(int page);
 	
+	void boardDelete(int bno);
+	
 	void updateViewCnt(int bno);
 	
 	MemberVO getWriter(int id);

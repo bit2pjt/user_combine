@@ -92,12 +92,14 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	  * board_free의 bf_recommend update
 	  * @param vo - 게시글의 번호와 추천/비추천여부 및 id
 	 */
-
 	private void updateRecommend(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.updateRecommend(vo);
 	}
 	
+	/**
+	  * bf_reply의  bfr_like update
+	 */
 	private void updateReplyRecommend(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.updateReplyRecommend(vo);
@@ -113,6 +115,9 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		boardFreeDAO.updateDecommend(vo);
 	}
 	
+	/**
+	  * bf_reply의  bfr_dislike update
+	 */
 	private void updateReplyDecommend(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		boardFreeDAO.updateReplyDecommend(vo);
@@ -130,6 +135,11 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		return num;
 	}
 	
+	/**
+	  * board_free에서 비추천수를 가져온다.
+	  * @param bno - 게시글 번호
+	  * @return num(추천수)
+	 */
 	private int getDecommend(int bno) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		int num = boardFreeDAO.getDecommend(bno);
@@ -137,12 +147,22 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	}
 	
 	
+	/**
+	  * bf_reply에서 추천수를 가져온다.
+	  * @param bfr_rno - 게시글 번호
+	  * @return num(추천수)
+	 */
 	private int getReplyRecommend(int bfr_rno) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		int num = boardFreeDAO.getReplyRecommend(bfr_rno);
 		return num;
 	}
 	
+	/**
+	  * bf_reply에서 비추천수를 가져온다.
+	  * @param bfr_rno - 게시글 번호
+	  * @return num(추천수)
+	 */
 	private int getReplyDecommend(int bfr_rno) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		int num = boardFreeDAO.getReplyDecommend(bfr_rno);
@@ -150,7 +170,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	}
 	
 	/**
-	  * thumb_check에 해당 id가 존재하는지 확인
+	  * bf_thumb에 해당 id가 존재하는지 확인
 	  * @param vo - 게시글의 번호와 추천/비추천여부 및 id
 	  * @return msg(추천수)
 	 */
@@ -256,7 +276,12 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		return msg;
 	}
 
-
+	
+	/**
+	  * br_thumb에 해당 id 와 댓글번호가 동시에 존재하는것이 있는지 확인
+	  * @param vo - 게시글의 번호와 추천/비추천여부 및 id
+	  * @return msg(추천수)
+	 */
 	@Override
 	public String reply_check(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
@@ -267,12 +292,17 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		if( thumbVO != null) {// br_thumb테이블에 해당 댓글번호가 있으면 중복 추천/비추천 불가
 			msg ="fail";
 		}else { 
-			msg = String.valueOf(replyRecommend(vo)); // board_free에서 추천수를 가져와서 보여준다.
+			msg = String.valueOf(replyRecommend(vo)); // bf_reply에서 추천수를 가져와서 보여준다.
 		}
 		return msg;
 	}
 
-
+	
+	/**
+	  * bf_reply에서 추천수를 가져와서 보여준다.
+	  * @param vo - 게시글의 번호와 추천/비추천여부 및 id
+	  * @return msg(추천수)
+	 */
 	@Override
 	public int replyRecommend(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
@@ -280,16 +310,20 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		int num=0;
 		System.out.println("bf_thumb: " + vo.getBf_thumb());
 		if(vo.getBf_thumb() == 1) {
-			System.out.println("1111");
-			System.out.println(vo.getBfr_rno());
 			updateReplyRecommend(vo); // bf_reply update
 			num = getReplyRecommend(vo.getBfr_rno());
 		}else {
 			updateReplyDecommend(vo); // bf_reply update
 			num = getReplyDecommend(vo.getBfr_rno());
-			System.out.println("num:" + num);
 		}
 		return num;
+	}
+
+
+	@Override
+	public void boardDelete(int bno) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
