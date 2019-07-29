@@ -5,4 +5,4 @@ Servers/
 *.class
 *.classpath
 target/
-.settings/
+*.settings/
