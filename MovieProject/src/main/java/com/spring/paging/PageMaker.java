@@ -59,23 +59,9 @@ public class PageMaker {
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("pagePageNum", criteria.getPerPageNum())
-                .queryParam("searchType", ((SearchCriteria) criteria).getSearchType())
-                .queryParam("keyword", encoding(((SearchCriteria) criteria).getKeyword()))
                 .build();
 
         return uriComponents.toUriString();
-    }
-
-    private String encoding(String keyword) {
-        if (keyword == null || keyword.trim().length() == 0) {
-            return "";
-        }
-
-        try {
-            return URLEncoder.encode(keyword, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            return "";
-        }
     }
 
     public int getTotalCount() {

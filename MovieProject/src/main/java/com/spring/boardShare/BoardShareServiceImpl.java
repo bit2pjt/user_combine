@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.boardFree.BoardFreeDAO;
 import com.spring.member.MemberVO;
 
 @Service("boardShareService")
@@ -14,20 +15,24 @@ public class BoardShareServiceImpl implements BoardShareService {
 	
 	@Override
 	public BoardShareVO getContent(int page) {
-		// TODO Auto-generated method stub
-		return null;
+		BoardShareDAO boardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		boardShareDAO.updateViewCnt(page);
+		BoardShareVO vo = boardShareDAO.getContent(page);
+		return vo;
 	}
 
 	@Override
 	public MemberVO getWriter(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		BoardShareDAO boardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		MemberVO vo = boardShareDAO.getWriter(id);
+		return vo;
 	}
 
 	@Override
 	public int getUser(String email) {
-		// TODO Auto-generated method stub
-		return 0;
+		BoardShareDAO boardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		int num = boardShareDAO.getUser(email);
+		return num;
 	}
 
 }

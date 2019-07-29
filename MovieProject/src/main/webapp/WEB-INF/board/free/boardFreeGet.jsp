@@ -195,10 +195,12 @@
 				<button class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
 				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
-			<div style="float:right;">
-				 <button id='btn-hjs' onclick="updateContent()">수정</button> 
-				 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
-			</div>
+			<c:if test="${id == boardFreeVO.id }">
+				<div style="float:right;">
+					 <button id='btn-hjs' onclick="updateContent()">수정</button> 
+					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
+				</div>
+			</c:if>
 		</center>
 		<span id="ws-content-msg"></span>
 		<!-- 글신고/글추천/글비추 배치 끝 -->

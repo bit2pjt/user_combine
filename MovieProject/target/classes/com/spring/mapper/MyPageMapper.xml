@@ -17,7 +17,7 @@
 */ 
 -->
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 30.//EN"
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mypage.MyPageDAO">
 
@@ -32,7 +32,7 @@
 		<result property="qna_answer" column="qna_answer"/>
 	</resultMap>
 		
-	<resultMap type="com.spring.mypage.MemberVO" id="getMemberMap">
+	<resultMap type="com.spring.member.MemberVO" id="getMemberMap">
 		<result property="id" column="id"/>
 		<result property="m_nickname" column="m_nickname"/>
 		<result property="m_image" column="m_image"/>
@@ -74,15 +74,15 @@
 	</select>
 	
 	
-	<update id="updateMember" parameterType="com.spring.mypage.MemberVO">
+	<update id="updateMember" parameterType="com.spring.member.MemberVO">
 		update member set m_phone=#{m_phone} where id=#{id}
 	</update>
 	
-	<update id="updatePw" parameterType="com.spring.mypage.MemberVO">
+	<update id="updatePw" parameterType="com.spring.member.MemberVO">
 		update member set m_password=#{m_password} where id=#{id}
 	</update>
 	
-	<update id="updateNick" parameterType="com.spring.mypage.MemberVO">
+	<update id="updateNick" parameterType="com.spring.member.MemberVO">
 		update member set m_nickname=#{m_nickname} where id=#{id}
 	</update>
 	
@@ -104,4 +104,4 @@
 	</update>
 	
 	
-</mapper>	
+</mapper>

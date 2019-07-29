@@ -57,7 +57,7 @@ public class BoardFreeController {
 	 */
 	
 	@RequestMapping(value= "/boardFreeGet", method=RequestMethod.GET)
-	public String getGetPage(@RequestParam("bno") int bno, HttpSession session, Model model) {
+	public String boardFreeGet(@RequestParam("bno") int bno, HttpSession session, Model model) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		if(sessionyn != null) {
 			int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
