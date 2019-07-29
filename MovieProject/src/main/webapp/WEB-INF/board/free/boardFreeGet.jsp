@@ -279,7 +279,7 @@
 		<h4>04 Comments</h4>
 		<br>
 		<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
-		<div class="comments" style="border-width:3px 0px;border-style:solid;border-color:#525EAA;">
+		<div class="comments" style="border-width:3px 0px;border-style:solid;border-color:#525EAA;">	
 			<div class="ws-reply-buffer"></div>	
 			<!-- 댓글2 -->
 			<div class="ws-reply-outer">

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.boardFree.BoardFreeDAO">
+	<resultMap type="com.spring.boardFree.BoardFreeVO" id="BoardFreeResultMap">
+      <result property="id" column="id"/>
+      <result property="bf_thumb" column="bf_thumb"/>
+      <result property="bf_category" column="bf_category"/>
+      <result property="bf_title" column="bf_title"/>
+      <result property="bf_reg_date" column="bf_reg_date"/>
+      <result property="bf_update_date" column="bf_update_date"/>
+      <result property="bf_source" column="bf_source"/>
+      <result property="bf_content" column="bf_content"/>
+      <result property="bf_warn_counter" column="bf_warn_counter"/>
+      <result property="bf_view_counter" column="bf_view_counter"/>
+      <result property="bf_deleteyn" column="bf_deleteyn"/>
+    </resultMap>
+   
+   
+	 
+	 <!-- 자유게시판 댓글 메시지 db insert  -->
+	 <!-- not null이기 때문에 임시로 채원넣어보자   -->
+	 <!-- ${bfr_content}  -->
+	 
+	 <!-- 작성자 정보 -->
+	 
+	 
+	 
+	 <insert id="insert_bfr_content">
+	 	INSERT INTO "C##BLOCKBUSTER"."BF_REPLY" (BFR_RNO, BFR_BNO, ID, BFR_REGDATE, BFR_LIKE, BFR_DISLIKE, BFR_UPDATE, BFR_ALERT, BFR_CONTENT, BFR_BLOCK) VALUES ('1', '1', '1', sysdate, '1', '0', sysdate, '0', #{bfr_content,jdbcType=VARCHAR } , '0')
+	 
+	 </insert>
+	 
+	 <select id="select_bfr_content" resultType="String">
+	 	select *
+	 	from BF_REPLY
+	 	where bfr_content = #{bfr_content,jdbcType=VARCHAR}
+	 </select>
+		 
+	 <select id="viewMember" resultType="com.spring.boardFree.BoardFreeVO">
+	 	select
+	 		id as id,
+	 		bf_title as bf_title,
+	 		bf_reg_date as bf_reg_date,
+	 		bf_update_date as bf_update_date,
+	 		bf_view_counter as bf_view_counter
+	 		from board_free
+	 		where id = #{id }
+	 </select>
+	
+	<update id="update_count" >
+		update board_free
+
+		set bf_view_counter = bf_view_counter +1
+
+		where id = #{id }
+
+	</update>	
+	
+	
+	
+</mapper>
