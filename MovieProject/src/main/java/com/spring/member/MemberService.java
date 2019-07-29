@@ -24,4 +24,6 @@ public interface MemberService {
 
 	public int updatePw(MemberVO vo);
 
+	public int getId(String m_email, String m_password);
+
 }

@@ -96,7 +96,7 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public void memberJoin(MemberVO vo) {
-		vo.setM_image("");
+		vo.setM_image("defaultprofile.PNG");
 		vo.setM_cert("N");
 		vo.setM_deleteyn("N");
 		vo.setM_following(0);
@@ -149,6 +149,13 @@ public class MemberServiceImpl implements MemberService {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		int num = memberDAO.updatePw(vo);
 		return num;
+	}
+
+
+	@Override
+	public int getId(String m_email, String m_password) {
+		
+		return memberDAOglobal.getId(m_email, m_password);
 	}
 
 

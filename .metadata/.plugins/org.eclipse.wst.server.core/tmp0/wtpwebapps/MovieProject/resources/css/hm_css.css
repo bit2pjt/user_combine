@@ -1,13 +1,13 @@
 /**
 * @Class Name : hm_css.css
-* @Description : memeber, index css 추가 사항
+* @Description : memeber, index css 異붽� �궗�빆
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.03   박현민       최초생성
+* @ 2019.07.03   諛뺥쁽誘�       理쒖큹�깮�꽦
 *
-* @author bit 2조
+* @author bit 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -16,8 +16,8 @@
 */
 
 /* 0702 */
-/*자동대문자화 취소 - 주석처리*/
-/* 빨강에서 다홍으로 색변경 */
+/*�옄�룞��臾몄옄�솕 痍⑥냼 - 二쇱꽍泥섎━*/
+/* 鍮④컯�뿉�꽌 �떎�솉�쑝濡� �깋蹂�寃� */
 /* #DD003F -> #FF6F61 */
     /* 
     * {
@@ -26,7 +26,7 @@
     }
     */
 
-/* 헤더 배경색 수정 */
+/* �뿤�뜑 諛곌꼍�깋 �닔�젙 */
 /*
 header {
       /* background-color: transparent; 
@@ -34,7 +34,7 @@ header {
 }
 */
 
-/* hm | start | radio 추가 */
+/* hm | start | radio 異붽� */
 /* fancy checkbox and radio button */
 .fancy-checkbox {
     margin-right: 10px; 
@@ -130,10 +130,10 @@ header {
       background-color: #FF6F61; }
       .fancy-radio.custom-bgcolor-coral input[type="radio"]:checked + span i:after {
         background-color: #fff; }
-/* hm | end | radio 추가  */
+/* hm | end | radio 異붽�  */
 
 
-/* hm | start | member 모달 css */
+/* hm | start | member 紐⑤떖 css */
 .hm_logtext {
   text-align: center;
 }
@@ -155,14 +155,14 @@ header {
   display: inline-block;
 }
 
-#overch {
+.overch {
  text-align: center; 
  margin: 0px; 
  display: inline-block; 
  width:19%;
 }
 @media (max-width: 767px) {
-  .overlay #overch, #email-2, #nickname-2 {
+  .overlay .overch, #email-2, #nickname-2 {
     width:100%;
     display: inline;
   }
@@ -182,7 +182,7 @@ header {
   width: 49%;
 }
 
-/* 이용약관 스타일 */
+/* �씠�슜�빟愿� �뒪���씪 */
 .hm_contents {
   height:500px;
   overflow:auto;  
@@ -213,7 +213,7 @@ background-color: #555;
 
 
 
-/* 검색 창 */
+/* 寃��깋 李� */
 input {
 	outline: none;
 }
@@ -285,7 +285,7 @@ input::-webkit-input-placeholder {
 }
 
 
-/* 리스트 */
+/* 由ъ뒪�듃 */
 #lr-list{
   width:870px;
   margin: auto;
@@ -321,7 +321,7 @@ input::-webkit-input-placeholder {
 
 
 
-/* 약관 */
+/* �빟愿� */
 
 .overlay2 {
   background-color: rgba(0, 0, 0, 0.75);
@@ -429,4 +429,4 @@ input::-webkit-input-placeholder {
   }
 }
 
-/* 약관 오버레이 끝 */
+/* �빟愿� �삤踰꾨젅�씠 �걹 */

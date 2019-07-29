@@ -60,6 +60,7 @@ public class LoginController {
       int check = memberService.userCheck(email, pw);
       if(check == 1){
          session.setAttribute("m_email", email);
+         session.setAttribute("id", memberService.getId(email, pw));
          return "index";
       }else if( check == -1) {
          response.setContentType("text/html; charset=utf-8");

@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class MemberVO {
 	
-	enum level {BRONZE, SILVER, GOLD, PLATINUM}
+	enum level {BRONZE, SILVER, GOLD, PLATINUM, Bronze}
 		
 	private int id;
 	private String m_nickname;

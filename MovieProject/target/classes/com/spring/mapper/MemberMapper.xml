@@ -20,7 +20,7 @@
       <result property="m_deleteyn" column="m_deleteyn"/>
       <result property="m_following" column="m_following"/>
       <result property="m_follower" column="m_follower"/>
-      <result property="m_level" column="m_level"/>
+      <result property="m_level" column="m_level" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
       <result property="m_favorite" column="m_favorite"/>
       <result property="m_blacklist" column="m_blacklist"/>
    </resultMap>
@@ -68,5 +68,11 @@
 		update member set m_password = #{m_password, jdbcType=VARCHAR} where m_phone = #{m_phone, jdbcType=VARCHAR}
 	</update>
 
+	<select id="getId" parameterType="String" resultType="int">
+		select id
+		from member
+		where 	m_email = #{m_email}
+		and 	m_password = #{m_password}
+	</select>
 
 </mapper>

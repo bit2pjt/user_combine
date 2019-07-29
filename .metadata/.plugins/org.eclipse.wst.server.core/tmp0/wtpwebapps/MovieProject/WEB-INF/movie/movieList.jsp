@@ -11,6 +11,7 @@
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.03     한유진      최초생성
 * @ 2019.07.09     한유진      jsp로 변경
+* @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -20,17 +21,9 @@
 *  Copyright (C) by bit 2조 All right reserved.
 */
 -->
-
 <%@ include file="../header1.jsp"%>
-
-<!-- 2. 여기에 페이지별 css 추가해주세요 -->
-
-
-<!-- 3. heaer2.jsp : header -->
-<%@ include file="../header2.jsp" %>
-<head>
 	<link rel="stylesheet" href="<c:url value="/resources/css/yj_style.css" />">
-</head>
+<%@ include file="../header2.jsp" %>
 <!-- yj : 헤더와 본 컨텐츠를 분리하기 위해 section 사용-->
     <section>
         <!-- yj : start | movielist -->
@@ -81,4 +74,5 @@
         <!--end | movielist-->
         </div>
     </section>
-    <%@ include file="../footer.jsp" %>
+<%@ include file="../footer1.jsp"%>
+<%@ include file="../footer2.jsp"%>

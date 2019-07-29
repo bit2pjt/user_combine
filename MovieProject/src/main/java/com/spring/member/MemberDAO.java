@@ -1,5 +1,7 @@
 package com.spring.member;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface MemberDAO {
 	
 	
@@ -26,5 +28,7 @@ public interface MemberDAO {
 	public int nickOverlapChk(String nickname);
 
 	public int updatePw(MemberVO vo);
+
+	public int getId(@Param("m_email") String m_email, @Param("m_password")String m_password);
 
 }

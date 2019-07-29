@@ -17,3 +17,4 @@ MovieProject/target/classes/com/spring/mypage/MyPageService.class
 MovieProject/target/classes/com/spring/mypage/MyPageDAO.class
 *.class
 *.xml
+MovieProject\src\main\webapp\WEB-INF\spring\root-context.xml
