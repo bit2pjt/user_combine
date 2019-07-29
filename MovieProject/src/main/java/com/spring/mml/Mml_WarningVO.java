@@ -1,3 +1,4 @@
+
 package com.spring.mml;
 
 import java.util.Date;
@@ -6,7 +7,8 @@ import lombok.Data;
 
 @Data
 public class Mml_WarningVO {
-	private int mml_num;		//½Å°í´ë»ó ³ª¿µ¸® ÄÚµå¹øÈ£
-	private int id;				//½Å°íÀÚ
-	private Date mml_date;		//½Å°íÀÏÀÚ
+	private int mml_num;		//ì‹ ê³ ëŒ€ìƒ ë‚˜ì˜ë¦¬ ì½”ë“œë²ˆí˜¸
+	private int id;				//ì‹ ê³ ì
+	private Date mml_date;		//ì‹ ê³ ì¼ì
 }
+

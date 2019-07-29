@@ -27,8 +27,10 @@
 <%@ include file="/WEB-INF/header1.jsp"%>
 
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
+
 <link rel="stylesheet" href="./resources/css/sp_style.css">
 <link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=4">
+
 <script src="https://kit.fontawesome.com/bb8498b585.js"></script>
 
 <!-- 3. heaer2.jsp : header -->

@@ -16,11 +16,41 @@ public class MmlServiceImpl implements MmlService {
 	@Autowired
 	private MmlDAO mmlDAO;
 	
+  ////////////////
+  //ìœ ì§„ ê°œë°œë¶€ë¶„//
+  ////////////////
+  
+  @Override
+	public Mml_ContentVO getMmlContent(int mml_num) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		Mml_ContentVO mml_ContentVO = mmlDAO.getMmlContent(mml_num);
+		return mml_ContentVO;
+	}
+	
+	@Override
+	public int insertMml(Mml_ContentVO mmlContentVO) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		int result = mmlDAO.insertMml(mmlContentVO);
+		return result;
+	}
+	
+	@Override
+	public int updateMml(Mml_ContentVO mmlContentVO) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		int result = mmlDAO.updateMml(mmlContentVO);
+		return result;
+	}
+  
+  ////////////////
+  //ì›…ì‹ ê°œë°œë¶€ë¶„//
+  ////////////////
+  
+  
 	@Override
 	public Mml_ContentVO getPage(int mml_num) {
 		System.out.println(mml_num); //ok
-		Mml_ContentVO content = mmlDAO.getMmlContent(mml_num); //null°ª ¹ß»ı
-		System.out.println("°Ô½Ã±Û Á¶È¸ ¹İÈ¯°á°ú = "+content);	
+		Mml_ContentVO content = mmlDAO.getMmlContent(mml_num); //nullê°’ ë°œìƒ
+		System.out.println("ê²Œì‹œê¸€ ì¡°íšŒ ë°˜í™˜ê²°ê³¼ = "+content);	
 		
 		return content;
 	}
@@ -42,18 +72,18 @@ public class MmlServiceImpl implements MmlService {
 	@Override
 	@Transactional
 	public String registerFR(int followee, int follower) {
-		if(followee == follower) { //Àç±Í°Ë»ç´Â ÇâÈÄ ¾ø¾Ö´Â°Ô ÁÁÀ»µí ÇÏ´Ù. ¾Æ¿¹ ¹öÆ°À» ³ëÃâ½ÃÅ°Áö ¾Êµµ·Ï È­¸é¿¡¼­ Ã³¸®ÇÏ´Â°Ô ÁÁÀ»Å×´Ï
-			return "followItSelf";
+		if(followee == follower) { //ì¬ê·€ê²€ì‚¬ëŠ” í–¥í›„ ì—†ì• ëŠ”ê²Œ ì¢‹ì„ë“¯ í•˜ë‹¤. ì•„ì˜ˆ ë²„íŠ¼ì„ ë…¸ì¶œì‹œí‚¤ì§€ ì•Šë„ë¡ í™”ë©´ì—ì„œ ì²˜ë¦¬í•˜ëŠ”ê²Œ ì¢‹ì„í…Œë‹ˆ
+      return "followItSelf";
 		}else {
-			//Áßº¹È®ÀÎ
+			//ì¤‘ë³µí™•ì¸
 			if(mmlDAO.FROverlapedChk(followee, follower) !=0) {
 				return "overlaped";
 			}else {
-			//ÀÚ±âÆÈ·Î¿ì¿Í Áßº¹ÆÈ·Î¿ì°¡ ¾Æ´Ï¶ó¸é °ü°è Ãß°¡
-			//ÀÌ¾î¼­ Å×ÀÌºí ¾÷µ¥ÀÌÆ®. Ç×»ó 1À» Ãß°¡ÇÑ´Ù.
+			//ìê¸°íŒ”ë¡œìš°ì™€ ì¤‘ë³µíŒ”ë¡œìš°ê°€ ì•„ë‹ˆë¼ë©´ ê´€ê³„ ì¶”ê°€
+			//ì´ì–´ì„œ í…Œì´ë¸” ì—…ë°ì´íŠ¸. í•­ìƒ 1ì„ ì¶”ê°€í•œë‹¤.
 				mmlDAO.registerFR(followee, follower);
 				mmlDAO.updateMml_follower(followee);
-				System.out.println("¼º°ø : ÆÈ·Î¿ì ¸Î±â");
+				System.out.println("ì„±ê³µ : íŒ”ë¡œìš° ë§ºê¸°");
 				return "success";
 			}
 		}
@@ -64,10 +94,10 @@ public class MmlServiceImpl implements MmlService {
 	public String giveLike(int giver, int mml_num) {
 		if(mmlDAO.giveLikeOverlapCheck(giver, mml_num) != 0) {
 			return "overlaped";
-		}else {	//Áßº¹ÀÌ ¾Æ´Ñ °æ¿ì´Â
+		}else {	//ì¤‘ë³µì´ ì•„ë‹Œ ê²½ìš°ëŠ”
 			mmlDAO.giveLike(giver, mml_num);
 			mmlDAO.updateMml_like(mml_num);
-			System.out.println("¼º°ø : ÃßÃµÁÖ±â");
+			System.out.println("ì„±ê³µ : ì¶”ì²œì£¼ê¸°");
 			return "success";
 		}
 	}
@@ -77,10 +107,10 @@ public class MmlServiceImpl implements MmlService {
 	public String giveWarning(int warner, int mml_num) {
 		if(mmlDAO.giveWarningOverlapCheck(warner, mml_num) != 0) {
 			return "overlaped";
-		}else {	//Áßº¹ÀÌ ¾Æ´Ñ °æ¿ì´Â
+		}else {	//ì¤‘ë³µì´ ì•„ë‹Œ ê²½ìš°ëŠ”
 			mmlDAO.giveWarning(warner, mml_num);
 			mmlDAO.updateMml_warn_count(mml_num);
-			System.out.println("¼º°ø : ÃßÃµÁÖ±â");
+			System.out.println("ì„±ê³µ : ì¶”ì²œì£¼ê¸°");
 			return "success";
 		}
 	}
@@ -94,13 +124,17 @@ public class MmlServiceImpl implements MmlService {
 	@Override
 	@Transactional
 	public List<MemberVO> getFollowList(int id) {
-		//1. °Ô½ÃÀÚ id¸¦ ±âÁØÀ¸·Î ÆÈ·Î¿ö ¸í´ÜÀ» »Ì´Â´Ù.
+		//1. ê²Œì‹œì idë¥¼ ê¸°ì¤€ìœ¼ë¡œ íŒ”ë¡œì›Œ ëª…ë‹¨ì„ ë½‘ëŠ”ë‹¤.
 		List<Integer> list = mmlDAO.getFollowListFromMF_table(id);
-		System.out.println(id+"È¸¿øÀ» µû¸£´Â ³ğÆØÀÌµéÀº"+list);
-		System.out.println("°¡º¸ÀÚ!!!! ÀÏ´Ü ListÇüÅÂ·Î µ¥ÀÌÅÍ in");
-		//2. ¹è¿­°°Àº ÀÚ·á±¸Á¶¸¦ ³Ö¾î¼­ ¿©·¯ °ªÀ» È£Ãâ... ¾î¶»°Ô??
+		System.out.println(id+"íšŒì›ì„ ë”°ë¥´ëŠ” ë†ˆíŒ½ì´ë“¤ì€"+list);
+		System.out.println("ê°€ë³´ì!!!! ì¼ë‹¨ Listí˜•íƒœë¡œ ë°ì´í„° in");
+		//2. ë°°ì—´ê°™ì€ ìë£Œêµ¬ì¡°ë¥¼ ë„£ì–´ì„œ ì—¬ëŸ¬ ê°’ì„ í˜¸ì¶œ... ì–´ë–»ê²Œ??
 		List<MemberVO> result = mmlDAO.getFollowers(list);
-		System.out.println("¹İÈ¯µÈ µ¥ÀÌÅÍ´Â ´ÙÀ½°ú °°´Ù. "+result);
+		System.out.println("ë°˜í™˜ëœ ë°ì´í„°ëŠ” ë‹¤ìŒê³¼ ê°™ë‹¤."+result);
 		return result;
 	}
 }//e_MmlServiceImpl
+
+	
+	
+

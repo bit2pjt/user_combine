@@ -1,27 +1,24 @@
 package com.spring.mml;
 
-
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.spring.member.MemberVO;
-
-import org.springframework.web.bind.annotation.*;
+import com.spring.mypage.MyPageService;
 
 @Controller
 public class MmlController {
 	
 	@Autowired
-	MmlService mmlService;
+	private MmlService mmlService;
+	
+	@Autowired
+	private MyPageService myPageService;
 	
 	@RequestMapping(value="/mmlList.do", method=RequestMethod.GET)
 	public String mmlList() {
@@ -29,39 +26,121 @@ public class MmlController {
 	}
 	
 	@RequestMapping(value="/mmlGet.do", method=RequestMethod.GET)
-	public String mmlGet(@RequestParam("mml_num") int mml_num, Model model) {
-		System.out.println("³ª¿µ¸® °Ô½Ã±Û " +mml_num + " ³Ñ¾î¿È" );
-		mmlService.upCounter(mml_num);//Á¶È¸¼ö 1 Áõ°¡
-		Mml_ContentVO content = mmlService.getPage(mml_num); //ÂüÁ¶º¯¼öÀÌ¹Ç·Î null°ªÀÌ µé¾î¿À¸é ¹®Á¦µÈ´Ù
-		
-		model.addAttribute("mml_content", content ); //¹İÈ¯°ªÀÌ nullÀÌ¸é, null°ªÀ» ±×´ë·Î ¿ä¼Ò¿¡ ´ã¾Æ º¸³½´Ù
-		model.addAttribute("member", mmlService.getMemberInfo(content.getId()));
-	
+	public String mmlGet() {
 		return "mml/mmlGet";
 	}
-	@RequestMapping(value="/mmlWrite.do", method=RequestMethod.GET)
-	public String mmlWrite() {
-		return "mml/mmlWrite";
-	}
-	@RequestMapping(value="/mmlFollowList.do", method=RequestMethod.GET)
-	public String mmlFollow(@RequestParam("id") int id, Model model) {
-		model.addAttribute("followee",mmlService.getMemberInfo(id));
-		System.out.println("followee Á¤º¸ ÀûÀç ¿Ï·á");
-		model.addAttribute("followers",mmlService.getFollowList(id));
-		System.out.println("followers Á¤º¸ ÀûÀç ¿Ï·á");
-		return "mml/mmlFollowList";
+	
+	////////////////
+  //ìœ ì§„ ê°œë°œë¶€ë¶„//
+  ////////////////
+  @RequestMapping(value="/mmlWrite.do", method=RequestMethod.GET)
+	public String mmlWrite(HttpSession session, Model model) 
+	{
+		String m_email = (String)session.getAttribute("m_email");
+		//System.out.println("=============MmlController.java===================== m_email : " + m_email);
+		//ì„¸ì…˜ì´ ì—†ì„ê²½ìš° ë¡œê·¸ì¸í˜ì´ì§€ë¡œ ì´ë™....ê·¼ë° ëª¨ë‹¬ì¸ë°?
+		if(m_email == null) {
+			//System.out.println("=============MyPageController.java===================== m_name == null : " + m_email);
+			return "redirect:/index.do";
+		}
+		
+		int id = myPageService.getMemberId(m_email);
+		model.addAttribute("id", id);
+		
+		return "mml/mmlWrite2";
 	}
 	
+	@RequestMapping(value="/mmlWriteAction.do", method=RequestMethod.POST)
+	public String mmlWriteAction(Mml_ContentVO mmlContentVO) 
+	{
+		//mml ì‘ì„±ì´ ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œë˜ë©´ ì‘ì„±í–ˆë˜ê¸€ì„ ë³¼ ìˆ˜ ìˆê²Œ ì—°ê²°
+		//ë„˜ì–´ì˜¨ ê°’ì„ í† ëŒ€ë¡œ dbì— ë„£ëŠ” ì‘ì—… ì§„í–‰
+		//System.out.println("=============MmlController.java===================== mmlContentVO.getId() : " + mmlContentVO.getId());
+		//mml_title, mml_contentì˜ ì•ë’¤ ê³µë°± ì œê±°
+		mmlContentVO.setMml_title(mmlContentVO.getMml_title().trim());
+		
+		try {
+			int result = mmlService.insertMml(mmlContentVO);
+			if(result == 0) {
+				return "redirect:/mmlWrite.do";
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR : MmlWriteAction - " + e.getMessage());
+		}
+		//ì‘ì„±ìì˜ ê°œì¸ mmlListë¡œ ì´ë™í•˜ê²Œ ì¶”í›„ ë§í¬ì¡°ì •
+		return "redirect:/mmlList.do";
+	}
+	
+	@RequestMapping(value="/mmlUpdate.do", method=RequestMethod.GET)
+	public String mmlUpdate(HttpSession session, HttpServletRequest request, Model model) 
+	{
+		String m_email = (String)session.getAttribute("m_email");
+		//System.out.println("=============MmlController.java===================== m_email : " + m_email);
+		//ì„¸ì…˜ì´ ì—†ì„ê²½ìš° ë¡œê·¸ì¸í˜ì´ì§€ë¡œ ì´ë™....ê·¼ë° ëª¨ë‹¬ì¸ë°?
+		if(m_email == null) {
+			//System.out.println("=============MyPageController.java===================== m_name == null : " + m_email);
+			return "redirect:/index.do";
+		}
+		
+		int mml_num = Integer.parseInt((String)request.getParameter("mml_num"));
+		Mml_ContentVO mmlContentVO = mmlService.getMmlContent(mml_num);
+		//System.out.println("=============MyPageController.java - mmlUpdate()===================== mmlContentVO.getId() : " + mmlContentVO.getId());
+		//System.out.println("=============MyPageController.java - mmlUpdate()===================== myPageService.getMemberId(m_email) : " + myPageService.getMemberId(m_email));
+		//ë³¸ì¸ì´ ì‘ì„±í•œ mmlì´ ì•„ë‹ê²½ìš° ìˆ˜ì • ë¶ˆê°€ëŠ¥í•˜ê²Œ
+		if(mmlContentVO.getId() != myPageService.getMemberId(m_email)) {
+			//alertì°½ ë„ì›Œì£¼ë©´ ë” ì¡°ì˜¤ì¹˜
+			return "redirect:/mmlGet.do?mml_num="+mmlContentVO.getMml_num();
+		}
+		model.addAttribute("mmlContentVO", mmlContentVO);
+		
+		return "mml/mmlUpdate";
+	}
+	
+	@RequestMapping(value="/mmlUpdateAction.do", method=RequestMethod.POST)
+	public String mmlUpdateAction(HttpServletRequest request, Mml_ContentVO mmlContentVO) 
+	{
+		//System.out.println("=============MyPageController.java - mmlUpdateAction()===================== mmlContentVO.getId() : " + mmlContentVO.getId());
+		try {
+			int result = mmlService.updateMml(mmlContentVO);
+			if(result == 0) {
+				
+				return "redirect:/mmlUpdate.do?mml_num="+mmlContentVO.getMml_num();
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR : mmlUpdateAction - " + e.getMessage());
+		}
+		return "redirect:/mmlGet.do?mml_num="+mmlContentVO.getMml_num();
+	}
+	
+		
 	@RequestMapping(value="/mmlMemberList.do", method=RequestMethod.GET)
 	public String mmlMember() {
 		return "mml/mmlMemberList";
 	}
+  
+  /////////////////////////////////////
+  // ê°œë°œë¶€ë¶„ : mmlGet.jspì˜ ì„œë¹„ìŠ¤ë“¤//
+  /////////////////////////////////////
+ 
+  //1. getpage
+  @RequestMapping(value="/mmlGet.do", method=RequestMethod.GET)
+	public String mmlGet(@RequestParam("mml_num") int mml_num, Model model) {
+		System.out.println("ë‚˜ì˜ë¦¬ ê²Œì‹œê¸€ " +mml_num + " ë„˜ì–´ì˜´" );
+		mmlService.upCounter(mml_num);//ì¡°íšŒìˆ˜ 1 ì¦ê°€
+		Mml_ContentVO content = mmlService.getPage(mml_num); //ì°¸ì¡°ë³€ìˆ˜ì´ë¯€ë¡œ nullê°’ì´ ë“¤ì–´ì˜¤ë©´ ë¬¸ì œëœë‹¤
+		
+		model.addAttribute("mml_content", content ); //ë°˜í™˜ê°’ì´ nullì´ë©´, nullê°’ì„ ê·¸ëŒ€ë¡œ ìš”ì†Œì— ë‹´ì•„ ë³´ë‚¸ë‹¤
+		model.addAttribute("member", mmlService.getMemberInfo(content.getId()));
 	
-	@GetMapping("/mmlDelete.do")
+		return "mml/mmlGet";
+	}
+  
+  //2. ê²Œì‹œê¸€ ì‚­ì œì²˜ë¦¬
+  @GetMapping("/mmlDelete.do")
 	public String mmlDelete(@RequestParam("mml_num")int mml_num, HttpServletResponse response) {
 		mmlService.mmlDelete(mml_num);
-		System.out.println(mml_num+" ¹ø ³ª¿µ¸® °Ô½Ã¹° »èÁ¦. ¸®½ºÆ® ÆäÀÌÁö·Î Redirect");
-		//¾Ë¸²Ã¢À¸·Î »èÁ¦µÇ¾úÀ½À» ÅëÁöÇÒ±î??
+		System.out.println(mml_num+" ë²ˆ ë‚˜ì˜ë¦¬ ê²Œì‹œë¬¼ ì‚­ì œ. ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ë¡œ Redirect");
+		//ì•Œë¦¼ì°½ìœ¼ë¡œ ì‚­ì œë˜ì—ˆìŒì„ í†µì§€í• ê¹Œ??
 		response.setContentType("text/html; charset=utf-8");
         PrintWriter out = null;
 		try {
@@ -71,21 +150,24 @@ public class MmlController {
 			e.printStackTrace();
 		}
         out.println("<script>");
-        out.println("alert('°Ô½Ã±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù. ¼·¼·...');");
+        out.println("alert('ê²Œì‹œê¸€ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.');");
         out.println("location.replace('/movie/mmlList.do')");
         out.println("</script>");
         out.close();
 		return "redirect:/mmlList.do";
 	}
-	
-	//Å×½ºÆ®¿ë ¸Ş¼­µå. ÅëÇÕ½Ã »èÁ¦.
-	@GetMapping("/mmlUpdate.do")
-	public String mmlUpdate(Mml_ContentVO vo, Model model) {
-		
-		System.out.println("ÇØ´ç VO°¡ Update·Î ³Ñ¾î°©´Ï´Ù : "+vo);
-		
-        return "mml/mmlUpdate";
+  
+  ////////////////////////////////////////////
+  //ws ê°œë°œë¶€ë¶„ : mmlFollowList.jspì˜ ì„œë¹„ìŠ¤ë“¤//
+  ////////////////////////////////////////////
+  
+  	@RequestMapping(value="/mmlFollowList.do", method=RequestMethod.GET)
+	public String mmlFollow(@RequestParam("id") int id, Model model) {
+		model.addAttribute("followee",mmlService.getMemberInfo(id));
+		System.out.println("followee ì •ë³´ ì ì¬ ì™„ë£Œ");
+		model.addAttribute("followers",mmlService.getFollowList(id));
+		System.out.println("followers ì •ë³´ ì ì¬ ì™„ë£Œ");
+		return "mml/mmlFollowList";
 	}
-	
-	
+  
 }

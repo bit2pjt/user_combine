@@ -1,3 +1,4 @@
+
 package com.spring.mml;
 
 import java.util.List;
@@ -7,8 +8,21 @@ import org.apache.ibatis.annotations.Param;
 import com.spring.member.MemberVO;
 
 public interface MmlDAO {
+  
+  ////////////////
+  //ìœ ì§„ ê°œë°œë¶€ë¶„//
+  ////////////////
+  public Mml_ContentVO getMmlContent(int mml_num); //mmlContent ê°€ì ¸ì˜¤ê¸°
+	
+  public int insertMml(Mml_ContentVO mmlContentVO);	//mmlContent ë“±ë¡í•˜ê¸°
+	
+  public int updateMml(Mml_ContentVO mmlContentVO);	//mmlContent ìˆ˜ì •í•˜ê¸°
 
-	public void upCounter(@Param("mml_num")int mml_num);
+	////////////////
+  //ì›…ì‹ ê°œë°œë¶€ë¶„//
+  ////////////////
+  
+  public void upCounter(@Param("mml_num")int mml_num);
 
 	public Mml_ContentVO getMmlContent(int mml_num);
 
@@ -17,26 +31,26 @@ public interface MmlDAO {
 	public int getCountFollower(int id);
 
 	public int getCountLike(int mml_num);
-//ÆÈ·Î¿ì ÄÁÆ®·Ñ·¯¿¡¼­ ¾²ÀÌ´Â ¸ÅÆÛ 3Á¾
+//íŒ”ë¡œìš° ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì“°ì´ëŠ” ë§¤í¼ 3ì¢…
 	public void registerFR(@Param("mf_ing")int mf_ing, @Param("mf_wer")int mf_wer);
 
 	public int FROverlapedChk(@Param("mf_ing")int mf_ing,@Param("mf_wer") int mf_wer);
 
 	public void updateMml_follower(@Param("id")int id);
-//ÃßÃµ ÄÁÆ®·Ñ·¯¿¡¼­ ¾²ÀÌ´Â ¸ÅÆÛ 3Á¾
+//ì¶”ì²œ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì“°ì´ëŠ” ë§¤í¼ 3ì¢…
 	public int giveLikeOverlapCheck(@Param("giver")int giver,@Param("mml_num")int mml_num);
 
 	public void giveLike(@Param("giver")int giver, @Param("mml_num")int mml_num);
 	
 	public void updateMml_like(@Param("mml_num")int mml_num);
-//½Å°í ÄÁÆ®·Ñ·¯¿¡¼­ ¾²ÀÌ´Â ¸ÅÆÛ 3Á¾
+//ì‹ ê³  ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ì“°ì´ëŠ” ë§¤í¼ 3ì¢…
 	public int giveWarningOverlapCheck(@Param("giver")int warner,@Param("mml_num") int mml_num);
 
 	public void giveWarning(@Param("giver")int warner,@Param("mml_num") int mml_num);
 
 	public void updateMml_warn_count(@Param("mml_num")int mml_num);
-//´ëºÎºĞÀÇ ¿ø¸®°¡ °°Àºµ¥, µ¿ÀÏÇÑ ¸ÅÆÛ¸¦ µ¿ÀûÀ¸·Î ÀÀ¿ëÇÒ ¼ö ¾øÀ»±î? ¸¦ Å½±¸ÇØº¸ÀÚ	
-
+//ëŒ€ë¶€ë¶„ì˜ ì›ë¦¬ê°€ ê°™ì€ë°, ë™ì¼í•œ ë§¤í¼ë¥¼ ë™ì ìœ¼ë¡œ ì‘ìš©í•  ìˆ˜ ì—†ì„ê¹Œ? ë¥¼ íƒêµ¬í•´ë³´ì
+  
 	public void mmlDelete(int mml_num);
 
 	public List<Integer> getFollowListFromMF_table(int id);
