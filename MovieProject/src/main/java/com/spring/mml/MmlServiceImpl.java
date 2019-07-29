@@ -26,4 +26,10 @@ public class MmlServiceImpl implements MmlService {
 		return result;
 	}
 	
+	@Override
+	public int updateMml(Mml_ContentVO mmlContentVO) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		int result = mmlDAO.updateMml(mmlContentVO);
+		return result;
+	}
 }

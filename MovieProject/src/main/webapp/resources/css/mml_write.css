@@ -65,7 +65,16 @@ yj : start | index 페이지 상단의 영화 차트 관련
 	text-align:center;
 	position:relative;
 }
+
 .mml-movie-item img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.mml-movie-item .add_btn {
 	width: 50px;
 	height: 50px;
 	position: absolute;
