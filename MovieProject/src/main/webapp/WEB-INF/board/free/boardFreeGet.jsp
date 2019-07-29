@@ -608,7 +608,7 @@
            var str = "";
            total = data.pageMaker.totalCount;
            total = total - (page-1)*10;
-           
+         
            if(data.replies == "") {
            		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
            }else {

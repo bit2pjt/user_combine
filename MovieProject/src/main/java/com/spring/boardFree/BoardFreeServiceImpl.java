@@ -250,7 +250,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		if(warnVO != null) {
 			msg = "fail";
 		}else {
-			msg = String.valueOf(insertReplyWarn(vo));  // 1
+			msg = String.valueOf(insertWarn(vo));  // 1
 		}
 		
 		return msg;

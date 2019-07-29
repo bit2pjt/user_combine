@@ -1,5 +1,6 @@
 package com.spring.boardShare;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.boardFree.BoardFreeVO;
+import com.spring.boardFree.WarnVO;
 import com.spring.member.MemberService;
 import com.spring.member.MemberVO;
 
@@ -43,5 +46,52 @@ public class BoardShareController {
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
 		
 		return "board/share/boardShareGet"; 
+	}
+	
+	/**
+	  * 신고 기능
+	  * @param request
+	  * @param session
+	  * @return @ResponseBody String => json
+	 */
+	@ResponseBody
+	@RequestMapping(value="/boardShareWarn", method=RequestMethod.POST)
+	public String boardFreeWarn(HttpSession session, HttpServletRequest request) {
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = boardShareService.getUser(sessionyn); // 로그인한 사용자의 id값
+		int bno = Integer.parseInt(request.getParameter("bs_bno")); //게시글 번호
+		
+		WarnVO vo = new WarnVO();
+		vo.setBs_bno(bno);
+		vo.setId(id);
+		
+		String msg = boardShareService.warn_check(vo); 
+		if(msg.equals("1"))
+			msg = "success";
+		
+		return msg;
+	}
+	
+	/**
+	  * 댓글 신고 기능
+	  * @param request
+	  * @param session
+	  * @return @ResponseBody String => json
+	 */
+	@ResponseBody
+	@RequestMapping(value="/BSReplyWarn", method=RequestMethod.POST)
+	public String BSReplyWarn(HttpSession session, HttpServletRequest request) {
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = boardShareService.getUser(sessionyn); // 로그인한 사용자의 id값
+		int bsr_rno = Integer.parseInt(request.getParameter("bsr_rno")); //게시글 번호
+		WarnVO vo = new WarnVO();
+		vo.setBsr_rno(bsr_rno);
+		vo.setId(id);
+		
+		String msg = boardShareService.ReplyWarn(vo); 
+		if(msg.equals("1"))
+			msg = "success";
+		
+		return msg;
 	}
 }

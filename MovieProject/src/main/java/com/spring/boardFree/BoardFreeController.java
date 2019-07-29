@@ -117,7 +117,6 @@ public class BoardFreeController {
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
 		int bno = Integer.parseInt(request.getParameter("bf_bno")); //게시글 번호
 		int type = Integer.parseInt(request.getParameter("type")); // 추천:1, 비추천:0
-		System.out.println("type: " + type);
 		ThumbVO vo = new ThumbVO();
 		vo.setBf_bno(bno);
 		vo.setId(id);

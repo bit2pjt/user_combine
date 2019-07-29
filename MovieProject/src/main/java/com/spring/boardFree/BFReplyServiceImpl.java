@@ -60,19 +60,16 @@ public class BFReplyServiceImpl implements BFReplyService {
 	public List<BFReplyVO> getRepliesPaging(Integer bfr_bno, Criteria criteria) {
 		BFReplyDAO bFReplyDAO = sqlSession.getMapper(BFReplyDAO.class);
 		criteria.setBfr_bno(bfr_bno);
-		System.out.println("2222:" + criteria.getBfr_bno()); // 24
-		System.out.println("111:" + criteria.getPage()); // 1
-		System.out.println("333:" + criteria.getPageStart());
-		System.out.println("444:" + criteria.getPerPageNum()); //10
+		System.out.println("4. criteria" + criteria);
+		
 		List<BFReplyVO> list = bFReplyDAO.listPaging(criteria);
-	
+		
 		for(int i=0; i<list.size(); i++) {
 			int id = list.get(i).getId();
 			String nickname = userNickName(id);
 			list.get(i).setNickname(nickname);
 		}
-	
-		System.out.println("list: " + list);
+		
 		return list;
 	}
 

@@ -13,11 +13,43 @@
 <script>
  	$(function() {
  		var session = "${sessionyn}";
- 		var reco = $("#ws-cnt-tup");
- 		var deco = $("#ws-cnt-tdn");
  		var warn = $("#ws-cnt-warning");
- 		var bno = "${boardFreeVO.bf_bno}";
+ 		var bs_bno = "${boardShareVO.bs_bno}";
+ 		
+
+ 		warn.on("click", function() {
+ 		 	if( session == "") {
+ 		 		alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 		location.href="index";
+ 		 		return false;
+ 		 	}
+ 			$.ajax({
+ 				url:"boardShareWarn",
+ 				data: {bs_bno: bs_bno},
+ 				dataType: "text",
+ 				type:"post",
+ 				success: function(data) {
+ 					if(data == "success")
+ 						alert("신고 되었습니다.");
+ 					else
+ 						alert("이미 신고 하셨습니다.");
+ 				},
+ 				error: function() {
+ 					alert("에러");
+ 				}
+ 			});
+ 		});
  	});
+ 	
+	function updateContent(){
+		location.href="boardFreeUpdate";
+	}
+ 	
+ 	function deleteContent() {
+ 		var result = confirm("삭제하시겠습니까?");
+ 		if(result == true)
+ 			location.href="boardFreeDelete";
+ 	}
 </script>
 
 <div class="hero common-hero">
@@ -70,7 +102,7 @@
 	<div class="col-md-12">
 	<!-- 1. 글제목 자리 -->
 		<div class="ws-post-get-title" >
-			<h3> ${boardShareVO.bf_title }</h3>
+			<h3> ${boardShareVO.bs_title }</h3>
 		</div>
 		<!-- 글제목 자리 끝 -->
 		<!-- 2. 글정보+개인정보의 배치 -->
@@ -80,16 +112,16 @@
 				</div>
 				<div class="ws-post-get-info-inner">
 					<div>작성자 : ${memberVO.m_nickname}</div>
-					<div>작성일자 : <fmt:formatDate value="${boardShareVO.bf_reg_date}" pattern="yyyy-MM-dd"/></div>
-					<div>수정일자 : <fmt:formatDate value="${boardShareVO.bf_update_date}" pattern="yyyy-MM-dd"/></div>
-					<div>조회수 : ${boardShareVO.bf_view_counter}</div>
+					<div>작성일자 : <fmt:formatDate value="${boardShareVO.bs_reg_date}" pattern="yyyy-MM-dd"/></div>
+					<div>수정일자 : <fmt:formatDate value="${boardShareVO.bs_update_date}" pattern="yyyy-MM-dd"/></div>
+					<div>조회수 : ${boardShareVO.bs_view_counter}</div>
 					<div>선호장르 : ${memberVO.m_favorite} </div>
 				</div>
 		</div>
 		<!-- 글정보+개인정보의 배치 끝 -->
 		<!-- 3. 글본문 자리 -->
 		<div class="ws-post-get-content">
-			${boardShareVO.bf_content }
+			${boardShareVO.bs_content }
 		</div>
 			<!-- 글본문 자리의 끝 -->
 			<!-- 4. 글신고/글추천/글비추 자리 -->
@@ -268,7 +300,8 @@
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <script>
 	var replyPageNum = 1;
-    var bfr_bno = "${boardFreeVO.bf_bno}";
+    var bs_bno = "${boardShareVO.bs_bno}";
+    alert(bs_bno);
     //getReplies();
     getRepliesPaging(replyPageNum);
   
@@ -276,7 +309,7 @@
     $("#replyAddBtn").on("click", function () {
     	var session = "${sessionyn}";
         var replyText = $("#newReplyText");
-        var bfr_content = replyText.val();
+        var bsr_content = replyText.val();
 		
         if( session == "") {
 		 	alert("로그인 하셔야 이용하실수 있습니다.");
@@ -284,22 +317,22 @@
 		 	return false;
 		}
         
-        if(bfr_content == "") {
+        if(bsr_content == "") {
         	alert("댓글 내용을 입력해주세요!");
         	return false;
         }
         
         $.ajax({
             type : "post",
-            url : "/movie/replies",
+            url : "/movie/replies/bs/",
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "POST"
             },
             dataType : "text",
             data : JSON.stringify({
-            	bfr_bno : bfr_bno,
-                bfr_content : bfr_content
+            	bs_bno : bs_bno,
+            	bsr_content : bsr_content
             }),
             success : function (result) {
                 if (result == "regSuccess") {
@@ -321,75 +354,9 @@
 
     });
     
-    $()
-    
-    $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
-    	var reply = $(this).parent(); // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
-        var present = $(this).parent().find(".ws-btn-thumbs-up");
-        var session = "${sessionyn}";
-        //var bf_rno = $("#replies > li");
-        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
-     	if( session == "") {
- 		 	alert("로그인 하셔야 이용하실수 있습니다.");
- 		 	location.href="index";
- 		 	return false;
- 		 }
- 		$.ajax({
- 			url:"BFReplyReco",
- 			data: {bfr_rno: bfr_rno, type: 1},
- 			dataType: "text",
- 			type:"post",
- 			success: function(data) {
- 				if(data == "fail") {
- 					alert("이미 추천/비추천을 누르셨습니다.");
- 					return false;
- 				}else {
- 					present.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
- 				}
- 			},
- 			error: function() {
- 				alert("에러");
- 			}
- 		});
- 			
-	});
-    
-    $("#replies").on("click", ".replyLi .ws-btn-thumbs-down", function () { // 댓글의 수정 버튼 클릭시
-    	var reply = $(this).parent(); // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
-        var present = $(this).parent().find(".ws-btn-thumbs-down");
-        var session = "${sessionyn}";
-        //var bf_rno = $("#replies > li");
-        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
-     	if( session == "") {
- 		 	alert("로그인 하셔야 이용하실수 있습니다.");
- 		 	location.href="index";
- 		 	return false;
- 		 }
- 		$.ajax({
- 			url:"BFReplyReco",
- 			data: {bfr_rno: bfr_rno, type: 0},
- 			dataType: "text",
- 			type:"post",
- 			success: function(data) {
- 				if(data == "fail") {
- 					alert("이미 추천/비추천을 누르셨습니다.");
- 					return false;
- 				}else {
- 					present.html("<i class='fa fa-thumbs-o-down' aria-hidden='true'></i>  " + data);
- 				}
- 			},
- 			error: function() {
- 				alert("에러");
- 			}
- 		});
- 			
-	});
-    
     $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+        var bsr_rno = reply.attr("data-replyNo"); // 댓글의 번호
         var present = $(this).parent().find(".ws-btn-thumbs-down");
         var session = "${sessionyn}";
         //var bf_rno = $("#replies > li");
@@ -401,8 +368,8 @@
  		 }
      	
  		$.ajax({
- 			url:"BFReplyWarn",
- 			data: {bfr_rno: bfr_rno},
+ 			url:"BSReplyWarn",
+ 			data: {bsr_rno: bsr_rno},
  			dataType: "text",
  			type:"post",
  			success: function(data) {
@@ -424,7 +391,7 @@
         
         $.ajax({
             type : "delete",
-            url : "/movie/replies/" + replyRno,
+            url : "/movie/replies/bs/" + replyRno,
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "DELETE"
@@ -455,18 +422,18 @@
     $(".modalModBtn").on("click", function () {
 
         var reply = $(this).parent().parent();
-        var bfr_rno = reply.find("#replyNo").val();
-        var bfr_content = reply.find("#replyText").val();
+        var bsr_rno = reply.find("#replyNo").val();
+        var bsr_content = reply.find("#replyText").val();
 
         $.ajax({
             type : "put",
-            url : "/movie/replies/" + bfr_rno,
+            url : "/movie/replies/bs/" + bsr_rno,
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "PUT"
             },
             data : JSON.stringify(
-                {bfr_content : bfr_content}
+                {bsr_content : bsr_content}
             ),
             dataType : "text",
             success : function (result) {
@@ -487,7 +454,7 @@
 	var total ="";
 	var id = "${id}";
     function getRepliesPaging(page) {
-        $.getJSON("/movie/replies/" + bfr_bno + "/" + page, function (data) {
+        $.getJSON("/movie/replies/bs/" + bs_bno + "/" + page, function (data) {
            var str = "";
            total = data.pageMaker.totalCount;
            total = total - (page-1)*10;
@@ -497,25 +464,21 @@
            }else {
                 $(data.replies).each(function () {
                 	if(this.id != id) {
-                		str +=	"<li style='display:inline-block; width:100%;'data-replyNo='" + this.bfr_rno + "' class='replyLi'>"
+                		str +=	"<li style='display:inline-block; width:100%;'data-replyNo='" + this.bsr_rno + "' class='replyLi'>"
                     	+	"<input type='hidden' value='" + this.id +"'/>"
          				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
-                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
-                        +	"<p class='replyText' style='word-break:break-all;'>" + this.bfr_content + "</p>"
-                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
-                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
+                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bsr_regdate + "</strong> </span>" + "</div><br>"
+                        +	"<p class='replyText' style='word-break:break-all;'>" + this.bsr_content + "</p>"
                        	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
                         +	"</li>"
                         +	"<hr/>";
                 	}else {
-	                    str +=	"<li data-replyNo='" + this.bfr_rno + "' class='replyLi'>"
+	                    str +=	"<li data-replyNo='" + this.bsr_rno + "' class='replyLi'>"
 	                    	+	"<input type='hidden' value='" + this.id +"'/>"
 	         				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
-	                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
-	                        +	"<p class='replyText' style='word-break:break-all; margin-bottom:20px;'>" + this.bfr_content + "</p>"
+	                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bsr_regdate + "</strong> </span>" + "</div><br>"
+	                        +	"<p class='replyText' style='word-break:break-all; margin-bottom:20px;'>" + this.bsr_content + "</p>"
 	                        +	"<button type='button' id='btn-hjs' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
-	                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
-	                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
 	                       	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
 	                        +	"</li>"
 	                        +	"<hr/>";

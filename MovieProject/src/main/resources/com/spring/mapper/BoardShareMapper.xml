@@ -18,7 +18,7 @@
 	</resultMap>
 	
 	<resultMap type="com.spring.boardFree.WarnVO" id="WarnMap">
-		<result property="bf_bno" column="bf_bno"/>
+		<result property="bs_bno" column="bs_bno"/>
 		<result property="id" column="id"/>
 		<result property="bf_date" column="bf_date"/>
 	</resultMap>
@@ -65,5 +65,33 @@
 		from member
 		where m_email = #{email, jdbcType=VARCHAR}
 	</select>
+	
+	<select id="warn_check" parameterType="int" resultMap="WarnMap">
+		select *
+		from bs_warning
+		where id = #{id}
+	</select>
+	
+	<update id="WarnCount" parameterType="int">
+		update board_share set bs_warn_counter = bs_warn_counter + 1 where bs_bno = #{bno}
+	</update>
+	
+	<insert id="insertWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into bs_warning values(#{id} ,#{bs_bno},sysdate)
+	</insert>
+	
+	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into sr_warning values(#{id}, #{bsr_rno}, sysdate)
+	</insert>
+	
+	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+		select *
+		from sr_warning
+		where bsr_rno = #{bsr_rno} and id = #{id}
+	</select>
+	
+	<update id="ReplyWarnCount" parameterType="int">
+		update bs_reply set bsr_alert = bsr_alert + 1 where bsr_rno = #{rno}
+	</update>
 	
 </mapper>

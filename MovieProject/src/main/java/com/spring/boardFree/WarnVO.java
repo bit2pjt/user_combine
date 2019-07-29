@@ -8,6 +8,8 @@ import lombok.Data;
 public class WarnVO {
 	private int bf_bno;
 	private int bfr_rno;
+	private int bsr_rno;
+	private int bs_bno;
 	private int id;
 	private Date bf_date;
 }
