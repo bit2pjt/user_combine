@@ -21,7 +21,7 @@ import com.spring.member.MemberVO;
 * @  	수정일               	 수정자                  	수정내용
 * @ -----------   ---------   -------------------------------
 * @ 2019. 07. 23         황진석            		최초생성
-* @ 2019. 07. 24	황진석				추천기능 추가 / 신고기능 추가
+* @ 2019. 07. 24	황진석		추천기능 추가 / 신고기능 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -55,7 +55,6 @@ public class BoardFreeController {
 	  * @param model
 	  * @return "boardFreeGet"
 	 */
-	
 	@RequestMapping(value= "/boardFreeGet", method=RequestMethod.GET)
 	public String boardFreeGet(@RequestParam("bno") int bno, HttpSession session, Model model) {
 		String sessionyn = (String)session.getAttribute("m_email");

@@ -16,6 +16,21 @@ import com.spring.boardFree.WarnVO;
 import com.spring.member.MemberService;
 import com.spring.member.MemberVO;
 
+/**
+* @Class Name : BoardShareController.java
+* @Description : BoardShare 게시판
+* @Modification Information
+* @
+* @  	수정일               	 수정자                  	수정내용
+* @ -----------   ---------   -------------------------------
+* @ 2019. 07. 28         황진석            		최초생성
+* @author bit 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by Bit All right reserved.
+*/
 @Controller
 public class BoardShareController {
 
@@ -25,22 +40,34 @@ public class BoardShareController {
 	@Autowired
 	MemberService memberService;
 	
+	/**
+	  * 나눔 게시판 리스트로 이동
+	  * @return "boardFreeList"
+	 */
 	@RequestMapping(value = "/boardShareList", method=RequestMethod.GET)
 	public String getListPage() {
 		return "board/share/boardShareList";
 	}
 	
+	/**
+	  * 나눔 게시판 게시글 상세 조회
+	  * @param bno - 게시글 번호
+	  * @param session - 세션
+	  * @param model
+	  * @return "boardShareGet"
+	 */
 	@RequestMapping(value= "/boardShareGet", method=RequestMethod.GET)
 	public String boardShareGet(@RequestParam("bno") int bno, HttpSession session, Model model) {
 		String sessionyn = (String)session.getAttribute("m_email");
+		
 		if(sessionyn != null) {
 			int id = boardShareService.getUser(sessionyn); // 로그인한 사용자의 id값
 			model.addAttribute("id", id);
 		}
 		
 		BoardShareVO boardShareVO = boardShareService.getContent(bno); // 게시글의 내용
-		MemberVO memberVO = boardShareService.getWriter(boardShareVO.getId()); // 게시물 작성자의 정보
 		
+		MemberVO memberVO = boardShareService.getWriter(boardShareVO.getId()); // 게시물 작성자의 정보
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardShareVO", boardShareVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보

@@ -14,9 +14,8 @@ public interface BoardFreeDAO {
 	
 	int getUser(String email);
 	
+	// 게시글 추천/비추천
 	ThumbVO thumb_check(int id);
-	
-	ThumbVO reply_check(ThumbVO vo);
 	
 	int plusRecommend(ThumbVO vo);
 	
@@ -25,28 +24,33 @@ public interface BoardFreeDAO {
 	void updateRecommend(ThumbVO vo);
 	
 	void updateDecommend(ThumbVO vo);
+
+	int getRecommend(int bno);
+	
+	int getDecommend(int bno);
+	
+	// 댓글 추천/비추천
+	ThumbVO reply_check(ThumbVO vo);
 	
 	void updateReplyRecommend(ThumbVO vo);
 	
 	void updateReplyDecommend(ThumbVO vo);
 	
-	int getRecommend(int bno);
-	
-	int getDecommend(int bno);
-
 	int getReplyRecommend(int bfr_rno);
 	
 	int getReplyDecommend(int bfr_rno);
 	
+	// 게시글 신고
 	int insertWarn(WarnVO vo);
-	
-	int insertReplyWarn(WarnVO vo);
 	
 	WarnVO warn_check(int id);
 	
-	WarnVO ReplyWarn(WarnVO vo);
-	
 	void WarnCount(int bno);
+	
+	// 댓글 신고
+	int insertReplyWarn(WarnVO vo);
+	
+	WarnVO ReplyWarn(WarnVO vo);
 	
 	void ReplyWarnCount(int rno);
 }

@@ -79,8 +79,6 @@
             , bs_bno
             , id
             , bsr_regdate
-            , bsr_like
-            , bsr_dislike
             , bsr_update
             , bsr_alert
             , bsr_content
@@ -92,8 +90,6 @@
             , bs_bno
             , id
             , bsr_regdate
-            , bsr_like
-            , bsr_dislike
             , bsr_update
             , bsr_alert
             , bsr_content
@@ -105,8 +101,6 @@
             , bs_bno
             , id
             , bsr_regdate
-            , bsr_like
-            , bsr_dislike
             , bsr_update
             , bsr_alert
             , bsr_content

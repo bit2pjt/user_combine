@@ -137,8 +137,6 @@ public class BFReplyController {
         try {
             Criteria criteria = new Criteria();
             criteria.setPage(page);
-            System.out.println("1. page:" + criteria.getPage());
-            System.out.println("2. bfr_bno:" + bfr_bno);
             List<BFReplyVO> replies = replyService.getRepliesPaging(bfr_bno, criteria);
             int repliesCount = replyService.countReplies(bfr_bno);
 
