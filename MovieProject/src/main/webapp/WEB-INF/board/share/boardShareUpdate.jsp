@@ -195,7 +195,7 @@
 		<!-- 글쓰기 폼의 시작.-->
 		<div class="movie-items">
 			<div class="container">
-				<div class="col-md-12">
+				<div class="col-md-12" style="width: 100%;">
 					<form name="bsform" action="boardShareUpdateAction.do" method="post"
 						onsubmit="return check()">
 						<!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
@@ -251,7 +251,7 @@
 
 
 
-									<input class="post-title" name="bs_title"
+									<input class="post-title" name="bs_title" maxlength="49"
 									placeholder="제목을 적어주세요" value="${requestScope.selectBoardShare.bs_title }"></span> <span id="counter"></span><span>자
 									남음 </span> <br> <br>
 							</div>
@@ -282,9 +282,12 @@
 
 							<!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
 							<!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
-							
-								<input type="button" value="수정하기" onclick="submitCheck()">
-								<input type="button" class="button" value=" 취 소 " onclick="register_back()">
+							<div style="text-align:center; padding:3%;">
+								<input type="button" class="btn" value="수정하기"
+									onclick="submitCheck()" style="margin-right: 20px;"> 
+								<input type="button"
+									class="btn" value=" 취 소 " onclick="register_back()">
+							</div>
 
 
 

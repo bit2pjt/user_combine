@@ -49,6 +49,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+* {
+	font-family:Nanum Gothic !important;
+}
 @media print {
   *,
   *:before,
