@@ -23,7 +23,7 @@ import com.spring.mypage.OneVO;
  *      Copyright (C) by Bit All right reserved.
  */
 
-@Service("BoardService")
+@Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	
 	@Autowired

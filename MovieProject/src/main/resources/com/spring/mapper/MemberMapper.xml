@@ -68,5 +68,12 @@
 		update member set m_password = #{m_password, jdbcType=VARCHAR} where m_phone = #{m_phone, jdbcType=VARCHAR}
 	</update>
 
+		<select id="getId" parameterType="String" resultType="int">
+		select id
+		from member
+		where 	m_email = #{m_email}
+		and 	m_password = #{m_password}
+	</select>
+
 
 </mapper>

@@ -19,3 +19,7 @@ public class Mml_ContentVO {
 	private String mml_poster;		//나영리 포스터
 	private int mml_warn_count;		//나영리 신고수
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87

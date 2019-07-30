@@ -18,3 +18,7 @@ public class Mml_ReplyVO {
 	private int mml_rep_warn_count;			//댓글 경고 수
 	
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87
