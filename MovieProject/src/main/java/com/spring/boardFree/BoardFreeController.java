@@ -57,14 +57,19 @@ public class BoardFreeController {
 		
 		//비추천 카운트
 		
+		// boardFreeget의 나영리 코드
+		// 나영리 데이커 객체를 이용한. 코드를따온다( id번호따오듯이)
+		// 나영리 패키지와 VO 생성 하기
 		
-		//model.addAttribute("dto", boardfreeService.viewMember(id));
 		
-		//System.out.println("아이디:"+id);
+		
+		
 		
 		return "board/free/boardFreeGet"; 
 		
 	}
+	
+	
 	
 	@RequestMapping(method=RequestMethod.GET, value="/boardFreeGet_reply.do")
 	public String bf_reply( BoardFreeReplyVO vo, Model model, HttpServletRequest request) {
