@@ -7,7 +7,8 @@ import lombok.Data;
 @Data
 public class Mmlr_WarningVO {
 
-	private int mml_num;	//³ª¿µ¸® ÄÚµå
-	private int number;		//½Å°íÀÚ °èÁ¤ÄÚµå
-	private Date mml_date;	//½Å°íÀÏÀÚ
+	private int mml_num;	//ë‚˜ì˜ë¦¬ ì½”ë“œ
+	private int number;		//ì‹ ê³ ì ê³„ì •ì½”ë“œ
+	private Date mml_date;	//ì‹ ê³ ì¼ì
 }
+

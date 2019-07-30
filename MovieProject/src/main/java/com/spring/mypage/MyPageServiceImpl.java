@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.member.MemberVO;
+
 /**
 * @Class Name : MyPageServiceImpl.java
 * @Description :
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Service;
 * @
 * @  수정일     	  수정자                 수정내용
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.17     한유진      최초생성
+* @ 2019.07.17     한유진      최초생성.
+* @ 2019.07.24		박현민		one_get  부분 추가
+* 
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -114,6 +118,15 @@ public class MyPageServiceImpl implements MyPageService{
 		int result = mypageDAO.updateQna(oneVO);
 		
 		return result;
+	}
+
+	// hm| 1:1문의 답변 가져오기 
+	@Override
+	public OneAdVO getQnaAdDetail(int qna_no) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		OneAdVO oneAdVO = mypageDAO.getQnaAdDetail(qna_no);
+		
+		return oneAdVO;
 	}
 
 }

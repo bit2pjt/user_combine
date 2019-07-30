@@ -2,6 +2,8 @@ package com.spring.mypage;
 
 import java.util.List;
 
+import com.spring.member.MemberVO;
+
 /**
 * @Class Name : MyPageDAO.java
 * @Description : 
@@ -10,6 +12,7 @@ import java.util.List;
 * @  수정일     	  수정자                 수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.17     한유진      최초생성
+* @ 2019.07.24		박현민		one_get  부분 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -37,5 +40,9 @@ public interface MyPageDAO {
 	public int insertQna(OneVO oneVO);	//1:1 문의 등록
 	public OneVO getQnaDetail(int qna_no);	//1:1 문의 상세정보 가져오기
 	public int updateQna(OneVO oneVO);	//1:1 문의 상세정보 수정하기
-
+	
+	
+	//hm | 1:1 문의 답변 가져오기
+	public OneAdVO getQnaAdDetail(int qna_no); // 1:1 문의 상세정보 가져오기
+	
 }
