@@ -18,3 +18,4 @@ public class Mml_ReplyVO {
 	private int mml_rep_warn_count;			//댓글 경고 수
 	
 }
+

@@ -2,6 +2,7 @@
 .recommenders/
 RemoteSystemsTempFiles/
 Servers/
+
 *.class
 *.classpath
 target/
