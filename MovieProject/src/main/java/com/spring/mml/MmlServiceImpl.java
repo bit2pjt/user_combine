@@ -1,20 +1,10 @@
 package com.spring.mml;
 
-<<<<<<< HEAD
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.mypage.MyPageDAO;
-
-@Service("mmlService")
-public class MmlServiceImpl implements MmlService {
-	
-	@Autowired
-	private SqlSession sqlSession;
-	
-	@Override
-=======
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -36,7 +26,6 @@ public class MmlServiceImpl implements MmlService {
   ////////////////
   
   @Override
->>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87
 	public Mml_ContentVO getMmlContent(int mml_num) {
 		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
 		Mml_ContentVO mml_ContentVO = mmlDAO.getMmlContent(mml_num);
@@ -56,10 +45,6 @@ public class MmlServiceImpl implements MmlService {
 		int result = mmlDAO.updateMml(mmlContentVO);
 		return result;
 	}
-<<<<<<< HEAD
-}
-=======
-  
   ////////////////
   //웅식 개발부분//
   ////////////////
@@ -154,7 +139,3 @@ public class MmlServiceImpl implements MmlService {
 	}
 }//e_MmlServiceImpl
 
-	
-	
-
->>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87

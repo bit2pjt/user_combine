@@ -29,15 +29,11 @@ public class MmlController {
 	public String mmlGet() {
 		return "mml/mmlGet";
 	}
-	
-<<<<<<< HEAD
-	@RequestMapping(value="/mmlWrite.do", method=RequestMethod.GET)
-=======
+
 	////////////////
   //유진 개발부분//
   ////////////////
   @RequestMapping(value="/mmlWrite.do", method=RequestMethod.GET)
->>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87
 	public String mmlWrite(HttpSession session, Model model) 
 	{
 		String m_email = (String)session.getAttribute("m_email");
@@ -115,23 +111,12 @@ public class MmlController {
 		}
 		return "redirect:/mmlGet.do?mml_num="+mmlContentVO.getMml_num();
 	}
-	
-<<<<<<< HEAD
-	@RequestMapping(value="/mmlFollowList.do", method=RequestMethod.GET)
-	public String mmlFollow() {
-		return "mml/mmlFollowList";
-	}
-	
-=======
-		
->>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87
+
 	@RequestMapping(value="/mmlMemberList.do", method=RequestMethod.GET)
 	public String mmlMember() {
 		return "mml/mmlMemberList";
 	}
-<<<<<<< HEAD
-=======
-  
+
   /////////////////////////////////////
   // 개발부분 : mmlGet.jsp의 서비스들//
   /////////////////////////////////////
@@ -183,6 +168,5 @@ public class MmlController {
 		System.out.println("followers 정보 적재 완료");
 		return "mml/mmlFollowList";
 	}
-  
->>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87
+
 }

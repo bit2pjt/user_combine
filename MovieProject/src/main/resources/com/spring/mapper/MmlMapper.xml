@@ -5,16 +5,12 @@
 	
 <mapper namespace="com.spring.mml.MmlDAO">
 	
-<<<<<<< HEAD
-	<resultMap type="com.spring.mml.Mml_ContentVO" id="mmlMap">
-=======
-  
+
   ////////////////
   //유진 개발부분//
   ////////////////
   
   <resultMap type="com.spring.mml.Mml_ContentVO" id="mmlMap">
->>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87
 		<result property="mml_num" column="mml_num"/>
 		<result property="mi_code" column="mi_code"/>
 		<result property="id" column="id"/>
@@ -41,10 +37,9 @@
 	<select id="getMmlContent" parameterType="int" resultMap="mmlMap">
 		select * from mml_content where mml_num = #{mml_num}
 	</select>
-<<<<<<< HEAD
 
-</mapper>
-=======
+
+
   
   ////////////////
   //웅식 개발부분//
@@ -167,8 +162,4 @@
 	#{item.value}
 		</foreach>
 	</select>
-	
-	
-		
-	
->>>>>>> 28271b0d0e081572f443e04d368e47f64fdb6e87
+</mapper>
