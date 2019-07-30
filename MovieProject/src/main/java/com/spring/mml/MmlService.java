@@ -1,4 +1,5 @@
 
+
 package com.spring.mml;
 
 import java.util.List;
@@ -38,7 +39,4 @@ public interface MmlService {
 
 	public List<MemberVO> getFollowList(int id);
 }
-
-	
-
 

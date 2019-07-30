@@ -5,12 +5,14 @@
 	
 <mapper namespace="com.spring.mml.MmlDAO">
 	
+
   
   ////////////////
   //유진 개발부분//
   ////////////////
   
   <resultMap type="com.spring.mml.Mml_ContentVO" id="mmlMap">
+
 		<result property="mml_num" column="mml_num"/>
 		<result property="mi_code" column="mi_code"/>
 		<result property="id" column="id"/>
@@ -37,6 +39,9 @@
 	<select id="getMmlContent" parameterType="int" resultMap="mmlMap">
 		select * from mml_content where mml_num = #{mml_num}
 	</select>
+
+
+
   
   ////////////////
   //웅식 개발부분//
@@ -163,3 +168,4 @@
 	
 		
 	
+</mapper>

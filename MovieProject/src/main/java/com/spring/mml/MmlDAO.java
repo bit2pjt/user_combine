@@ -1,4 +1,3 @@
-
 package com.spring.mml;
 
 import java.util.List;
@@ -56,6 +55,7 @@ public interface MmlDAO {
 	public List<Integer> getFollowListFromMF_table(int id);
 
 	public List<MemberVO> getFollowers(@Param("list")List<Integer> list);
+
 
 
 }

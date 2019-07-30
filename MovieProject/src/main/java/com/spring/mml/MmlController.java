@@ -29,11 +29,12 @@ public class MmlController {
 	public String mmlGet() {
 		return "mml/mmlGet";
 	}
-	
+
 	////////////////
   //유진 개발부분//
   ////////////////
   @RequestMapping(value="/mmlWrite.do", method=RequestMethod.GET)
+
 	public String mmlWrite(HttpSession session, Model model) 
 	{
 		String m_email = (String)session.getAttribute("m_email");
@@ -112,12 +113,14 @@ public class MmlController {
 		return "redirect:/mmlGet.do?mml_num="+mmlContentVO.getMml_num();
 	}
 	
+
 		
+
 	@RequestMapping(value="/mmlMemberList.do", method=RequestMethod.GET)
 	public String mmlMember() {
 		return "mml/mmlMemberList";
 	}
-  
+
   /////////////////////////////////////
   // 개발부분 : mmlGet.jsp의 서비스들//
   /////////////////////////////////////
@@ -170,4 +173,5 @@ public class MmlController {
 		return "mml/mmlFollowList";
 	}
   
+
 }
