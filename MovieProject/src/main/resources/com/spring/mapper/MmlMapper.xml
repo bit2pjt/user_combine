@@ -6,10 +6,10 @@
 <mapper namespace="com.spring.mml.MmlDAO">
 	
 
-  ////////////////
+ <!--  ////////////////
   //유진 개발부분//
   ////////////////
-  
+   -->
   <resultMap type="com.spring.mml.Mml_ContentVO" id="mmlMap">
 		<result property="mml_num" column="mml_num"/>
 		<result property="mi_code" column="mi_code"/>
@@ -40,11 +40,11 @@
 
 
 
-  
+  <!-- 
   ////////////////
   //웅식 개발부분//
   ////////////////
-  
+   -->
   
 	<update id="upCounter">
 	update mml_content
