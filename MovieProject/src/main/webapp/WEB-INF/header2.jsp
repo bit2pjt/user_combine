@@ -482,17 +482,17 @@
 						<!--  hm |   add : 각 항목의 텍스트 변경-->
 						<li class="dropdown first"><a
 							class="btn btn-default dropdown-toggle lv1"
-							href="movieTicketing.html"> 예매 </a></li>
+							href="movieTicketing.do"> 예매 </a></li>
 						<li class="dropdown first"><a
-							class="btn btn-default dropdown-toggle lv1" href="movieList.html">
-								영화 </a></li>
+							class="btn btn-default dropdown-toggle lv1" href="movieList.do">
+															영화 </a></li>
 
 						<li class="dropdown first"><a
 							class="btn btn-default dropdown-toggle lv1"
-							href="cinemaList.html"> 영화관 </a></li>
+							href="cinemaList.do"> 영화관 </a></li>
 						<li class="dropdown first"><a
 							class="btn btn-default dropdown-toggle lv1"
-							href="boardEventCollection.html"> 이벤트 & 정보 </a></li>
+							href="boardEventCollection.do"> 이벤트 & 정보 </a></li>
 						<li class="dropdown first"><a
 							class="btn btn-default dropdown-toggle lv1"
 							data-toggle="dropdown" data-hover="dropdown"> 커뮤니티<i
@@ -500,8 +500,7 @@
 						</a>
 							<ul class="dropdown-menu level1">
 								<li><a href="boardFreeList.do">자유 게시판</a></li>
-								<li class="it-last"><a
-									href="boardShareList.do">나눔 게시판</a></li>
+								<li class="it-last"><a href="boardShareList.do">나눔 게시판</a></li>
 							</ul></li>
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">

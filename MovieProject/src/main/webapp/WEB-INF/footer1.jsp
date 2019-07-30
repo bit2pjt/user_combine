@@ -7,28 +7,6 @@
 <!--   hm |  footer section-->
 <footer class="ht-footer">
 	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				<a href="index.do"><img class="logo"
-					src="resources/images/logo1.png" alt=""></a>
-			</div>
-
-			<div class="flex-child-ft item2">
-				<h4>
-					<a href="faq_list.html"> 고객센터 </a>
-				</h4>
-			</div>
-			<h4>
-				<a class="termsLink"> 약관보기 </a>
-			</h4>
-			<div class="flex-child-ft item3">
-				<h4>
-					<a href="one_regist.do"> 1:1 문의 </a>
-				</h4>
-			</div>
-
-			<div class="flex-child-ft item4"></div>
-		</div>
 		<div class="ft-copyright">
 			<div class="ft-left">
 				<p>© 2019 Bit 2 Jo. All Rights Reserved.</p>
