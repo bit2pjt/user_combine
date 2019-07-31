@@ -48,13 +48,13 @@ signupLink.on('click', function (event) {
 // close popup for mobile
 var closebt = $(".close");
 closebt.on('click', function (e) {
-	//e.preventDefault();
+	e.preventDefault();
 	/*
 	var overlay = $(".overlay");
 	overlay.removeClass("openform");*/
-	$("#login-content").parent().addClass("openform");
-	$("#id-ok-content").parent().removeClass("openform");
-	$("#id-find-content").parent().removeClass("openform");
+	idfindct.parents(overlay).removeClass("openform");
+	idokct.parents(overlay).removeClass("openform");
+	loginct.parents(overlay).addClass("openform");
 	
 });
 
@@ -607,12 +607,10 @@ function ws_check() { //유효성 검사
 
 //메일 중복체크 
 $('#email_overlap_chk').on('click', function (event) { // link 변경
-	
+	//event.stopimmediatepropagation();
+	//event.stopPropagation();
 	//console.log('이메일 중복체크 눌림');
 	//event.stopimmediatepropagation();
-	preventDefault();
-	event.stopPropagation();
-	alert('눌림');
 	
 	var m_email = joinform.m_email.value;
 	   $.ajax({

@@ -28,10 +28,6 @@
 *  Copyright (C) by bit 2조 All right reserved.
 */-->
 
-
-
-
-
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -190,7 +186,7 @@
 			<!-- listTable 배치 시작 -->
 				<div>
 					<div style="position:relative;top:50px">
-						<button class="ws-btn-reddish-write" value="글쓰기" onClick="location.href='boardFreeWrite.do'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+						<button class="ws-btn-reddish-write" value="글쓰기" onClick="location.href='boardFreeWrite'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
@@ -229,9 +225,9 @@
 							</tr>
 							<!--4.  자유게시판 게시글의 나열 시작 -->
 							<tr class="post">
-							  <td >0024</td>
+							  <td >24</td>
 							  <td>결말해석</td>
-							  <td>고질라 쿠키영상 무슨뜻인가요?</td>
+							  <td><a href="boardFreeGet?bno=24">고질라 쿠키영상 무슨뜻인가요?</a></td>
 							  <td>가모라</td>
 							  <td>2009/01/12</td>
 							  <td>2400</td>

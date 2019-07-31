@@ -75,7 +75,7 @@
     									</c:otherwise>
 									</c:choose>
 								<!-- c:set은 짝짝이 태그 -->
-                           	<a OnClick="location.href ='mmlMemberList.do?id=<c:out value="${followee.id}"/>'">  
+                           	<a OnClick="location.href ='mmlMemberList?id=<c:out value="${followee.id}"/>'">  
                             	&nbsp;<h1 style="display:inline"><c:out value="${followee.m_nickname}"/></h1>
                         	</a>
                         <h1 style="display:inline">&nbsp;'s FollowList</h1>
@@ -93,7 +93,7 @@
  	             <!-- 래퍼. sp_col-md-4부터 반복 시작 -->
  	             <!-- 예시 
  	               <div class="sp_col-md-4">
-    	               <div class="blog-item-style-3" OnClick="location.href ='mmlMemberList.do'" style="padding-left:20px">
+    	               <div class="blog-item-style-3" OnClick="location.href ='mmlMemberList'" style="padding-left:20px">
         	               <div class="blog-it-infor" style="vertical-align:middle">
             	               <img src="<c:url value="/resources/images/sp_image/dog.jfif"/>" class="profile_img" style="width:80px; height:80px;">
                 	           <img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline"><a href="blogdetail_light.html">nickname</a></h3>
@@ -110,7 +110,7 @@
                  
                  	<li class="js-load">
                  		<div class="sp_col-md-4">               	
-                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList.do?id=<c:out value="${follower.id}"/>'" style="padding-left:20px">
+                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px">
                         		<div class="blog-it-infor" style="vertical-align:middle">
                         			<img src="./resources/images/sp_image/<c:out value="${follower.m_image}"/>" class="profile_img" style="width:80px; height:80px;">
                         				<c:set var="level" value="${follower.m_level}"/>

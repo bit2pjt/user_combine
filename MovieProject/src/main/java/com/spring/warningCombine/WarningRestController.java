@@ -10,7 +10,7 @@ public class WarningRestController {
 	@Autowired
 	WarningService warningService;
 	
-	@GetMapping("/warningCombine.do")
+	@GetMapping("/warningCombine")
 	public String warningCombine(WarningCombineVO vo) {
 		String result = warningService.warningCombine(vo);
 		

@@ -65,7 +65,7 @@
 									<img class="ws_memberService" id="ws_following" style="width:65px; height:65px;" src="<c:url value="/resources/images/sp_image/add-user.png"/>">
 								</a>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<span OnClick="location.href ='mmlFollowList.do?id=<c:out value="${member.id}"/>'">
+								<span OnClick="location.href ='mmlFollowList?id=<c:out value="${member.id}"/>'">
 									<h4 style="display:inline">Followers</h4>
 									<h4 id="ws_follower_set" style="display:inline; color: lightcoral" >
 										<!-- 팔로워 수가 들어올 자리지만, 이는 Ajax가 페이지 로딩이 끝난 후 채워준다. 변화가 잦은 영역이기 때문 -->
@@ -110,7 +110,7 @@
 					<textarea style="width: 100%; height: 358px; font-size: 20px;" ><c:out value="${mml_content.mml_view_count}"/>   <c:out value="${mml_content.mml_content}"/></textarea>
 
 					<!-- share link -->
-					<a href="/movie/movieDetail.do?mi_code=<c:out value="${mml_content.mi_code}"/> "> 
+					<a href="/movie/movieDetail?mi_code=<c:out value="${mml_content.mi_code}"/> "> 
 						<img src="<c:url value='${mml_content.mml_poster}'/>" alt="" width="185" height="284">
 					</a> 
 					<a href="#">
@@ -119,7 +119,7 @@
 					<br>
 					<div class="flex-it share-tag" style="width: 100%; float: left;"></div>
 					<button class="submit2" type="button" data-toggle="modal" data-target="#CatModal-post-delete">삭제</button>
-					<form action="/movie/mmlUpdate.do" method="get">			
+					<form action="/movie/mmlUpdate" method="get">			
 						<button class="submit2" type="submit">수정</button> <!-- 이름은 맞는데 값은 모두 0&null -->
 						<input type="hidden" name="mml_num" value="<c:out value="${mml_content.mml_num}"/>">
 						<input type="hidden" name="mml_title" value="<c:out value="${mml_content.mml_title}"/>">
@@ -272,7 +272,7 @@
           <p>게시글을 삭제하시겠습니까?</p>
        </div>
        <div class="modal-footer">
-		<form action="/movie/mmlDelete.do" method="get">
+		<form action="/movie/mmlDelete" method="get">
 			<button onclick="CatDelete()" type="submit" class="btn btn-primary">삭제하기</button>
        		<input type="hidden" name="mml_num" value="${mml_content.mml_num}"/>
         </form>
@@ -308,7 +308,7 @@
     
   	}
 	function replydel() {
-	    location.replace("mmlGet.do");
+	    location.replace("mmlGet");
 	  	}
 	
 	

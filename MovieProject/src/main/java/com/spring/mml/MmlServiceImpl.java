@@ -53,7 +53,7 @@ public class MmlServiceImpl implements MmlService {
 	@Override
 	public Mml_ContentVO getPage(int mml_num) {
 		System.out.println(mml_num); //ok
-		Mml_ContentVO content = mmlDAO.getMmlContent(mml_num); //null값 발생
+		Mml_ContentVO content = mmlDAO.getMmlContent2(mml_num); //null값 발생
 		System.out.println("게시글 조회 반환결과 = "+content);	
 		
 		return content;

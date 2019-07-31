@@ -23,7 +23,7 @@ public interface MemberService {
 	public boolean nickOverlapChk(MemberVO vo);
 
 	public int updatePw(MemberVO vo);
-
+	
 	public int getId(String m_email, String m_password);
 
 }
