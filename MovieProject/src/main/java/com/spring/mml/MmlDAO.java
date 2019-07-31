@@ -23,9 +23,9 @@ public interface MmlDAO {
 
 	public void upCounter(@Param("mml_num") int mml_num);
 
-  public Mml_ContentVO getMmlContent2(int mml_num);
+	public Mml_ContentVO getMmlContent2(int mml_num);
 
-  public MemberVO getMemberInfo(int id);
+	public MemberVO getMemberInfo(int id);
 
 	public int getCountFollower(int id);
 
@@ -59,4 +59,20 @@ public interface MmlDAO {
 
 	public List<MemberVO> getFollowers(@Param("list") List<Integer> list);
 
+//상필이
+	public List<Mml_ContentVO> getMmlList();
+
+	public List<Mml_ContentVO> getMmlList_like();
+
+	public List<Mml_ContentVO> getMmlList_user(int id);
+
+	public int getMemberId(String m_email);
+
+	public String getMemberName(String m_email);
+
+	public String getMemberNickname(String m_email);
+
+	public String getMmlNickname(int id);
+
+	public int getMmlId(int id);
 }

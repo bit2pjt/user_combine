@@ -671,4 +671,3 @@ $('#check_all').on('click', function() {
 	}
 	
 });
-

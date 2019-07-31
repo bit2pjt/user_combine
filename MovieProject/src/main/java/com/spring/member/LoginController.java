@@ -19,17 +19,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
 * @Class Name : LoginController.java
-* @Description : loginê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬ 
+* @Description : login°ü·Ã ÄÁÆ®·Ñ·¯ 
 * @Modification Information
 * @
-* @  	ìˆ˜ì •ì¼               	 ìˆ˜ì •ì                  	ìˆ˜ì •ë‚´ìš©
+* @  	¼öÁ¤ÀÏ               	 ¼öÁ¤ÀÚ                  	¼öÁ¤³»¿ë
 * @ -----------   ---------   -------------------------------
-* @ 2019. 07. 15         í™©ì§„ì„            		ìµœì´ˆìƒì„±
-* @ 2019. 07. 16 	í™©ì§„ì„				ë¡œê·¸ì¸/ë¡œê·¸ì•„ì›ƒ, ì´ë©”ì¼ ì°¾ê¸° ì»¨íŠ¸ë¡¤ëŸ¬ ì¶”ê°€
-* @ 2019. 07. 17 	í™©ì§„ì„				
-* @ 2019. 07. 22	ì´ì›…ì‹			íšŒì›ê°€ì… + ê°€ì…ì‹œ ë©”ì¼&ë‹‰ë„¤ì„ ì¤‘ë³µí™•ì¸ êµ¬í˜„
-* @ 2019. 07. 26	ì´ì›…ì‹			login ì„±ê³µì‹œ id ì½”ë“œë¥¼ ì„¸ì…˜ê°’ì— ì¶”ê°€í•˜ë„ë¡ ìˆ˜ì •
-* @author bit 2ì¡°
+* @ 2019. 07. 15         È²Áø¼®            		ÃÖÃÊ»ı¼º
+* @ 2019. 07. 16 	È²Áø¼®				·Î±×ÀÎ/·Î±×¾Æ¿ô, ÀÌ¸ŞÀÏ Ã£±â ÄÁÆ®·Ñ·¯ Ãß°¡
+* @ 2019. 07. 17 	È²Áø¼®				
+* @ 2019. 07. 22	ÀÌ¿õ½Ä			È¸¿ø°¡ÀÔ + °¡ÀÔ½Ã ¸ŞÀÏ&´Ğ³×ÀÓ Áßº¹È®ÀÎ ±¸Çö
+* @ 2019. 07. 26	ÀÌ¿õ½Ä			login ¼º°ø½Ã id ÄÚµå¸¦ ¼¼¼Ç°ª¿¡ Ãß°¡ÇÏµµ·Ï ¼öÁ¤
+* @author bit 2Á¶
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -49,8 +49,8 @@ public class LoginController {
 	}
    
    /**
-    * ë¡œê·¸ì¸
-    * @param vo - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * ·Î±×ÀÎ
+    * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
     * @param request
     * @param response
     * @param model
@@ -72,7 +72,7 @@ public class LoginController {
          response.setContentType("text/html; charset=utf-8");
          PrintWriter out = response.getWriter();
          out.println("<script>");
-         out.println("alert('ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. í™•ì¸í•´ì£¼ì„¸ìš”!');");
+         out.println("alert('ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù. È®ÀÎÇØÁÖ¼¼¿ä!');");
          out.println("history.go(-1);");
          out.println("</script>");
          out.close();
@@ -81,7 +81,7 @@ public class LoginController {
          response.setContentType("text/html; charset=utf-8");
          PrintWriter out = response.getWriter();
          out.println("<script>");
-         out.println("alert('ì•„ì´ë”” í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. í™•ì¸í•´ì£¼ì„¸ìš”!');");
+         out.println("alert('¾ÆÀÌµğ È¤Àº ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù. È®ÀÎÇØÁÖ¼¼¿ä!');");
          out.println("history.go(-1);");
          out.println("</script>");
          out.close();
@@ -90,7 +90,7 @@ public class LoginController {
    }
    
    /**
-    * ë¡œê·¸ì•„ì›ƒ
+    * ·Î±×¾Æ¿ô
     * @param request
     * @param response
     * @param model
@@ -109,8 +109,8 @@ public class LoginController {
    }
    
    /**
-    * ì´ë©”ì¼ ì°¾ê¸°
-    * @param vo - ì•„ì´ë”” ì°¾ê¸° ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * ÀÌ¸ŞÀÏ Ã£±â
+    * @param vo - ¾ÆÀÌµğ Ã£±â ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
     * @param request
     * @param response
     * @param model
@@ -128,8 +128,8 @@ public class LoginController {
    }
    
    /**
-    * ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
-    * @param vo - ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * ºñ¹Ğ¹øÈ£ Ã£±â
+    * @param vo - ºñ¹Ğ¹øÈ£ Ã£±â ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
     * @param request
     * @param response
     * @param model
@@ -148,8 +148,8 @@ public class LoginController {
 	   }
 	}
    /**
-    * íšŒì›ê°€ì…
-    * @param vo - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * È¸¿ø°¡ÀÔ
+    * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
     * @param request
     * @param response
     * @param model
@@ -165,8 +165,8 @@ public class LoginController {
 	   return "index";
    }
    /**
-    * ë¡œê·¸ì¸
-    * @param vo - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * ·Î±×ÀÎ
+    * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
     * @param request
     * @param response
     * @param model
@@ -177,7 +177,7 @@ public class LoginController {
    public @ResponseBody String emailOverlapChk (@RequestParam(value="m_email") String m_email, HttpServletRequest request, HttpServletResponse response, Model model) {
 	  MemberVO vo = new MemberVO();
 	  vo.setM_email(m_email);
-	  System.out.println("ì…ë ¥ëœ ê°’ì€ =" + vo.getM_email());
+	  System.out.println("ÀÔ·ÂµÈ °ªÀº =" + vo.getM_email());
 	  if( memberService.emailOverlapChk(vo)) {
 		   return "success";
 	   }else {
@@ -185,8 +185,8 @@ public class LoginController {
 	   }
    }
    /**
-    * ë¡œê·¸ì¸
-    * @param vo - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+    * ·Î±×ÀÎ
+    * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
     * @param request
     * @param response
     * @param model
@@ -197,7 +197,7 @@ public class LoginController {
 	   public @ResponseBody String nickOverlapChk (@RequestParam(value="m_nickname") String m_nickname, HttpServletRequest request, HttpServletResponse response, Model model) {
 		  MemberVO vo = new MemberVO();
 		  vo.setM_nickname(m_nickname);
-		  System.out.println("ì…ë ¥ëœ ê°’ì€ =" + vo.getM_nickname());
+		  System.out.println("ÀÔ·ÂµÈ °ªÀº =" + vo.getM_nickname());
 		  if( memberService.nickOverlapChk(vo)) {
 			   return "success";
 		   }else {

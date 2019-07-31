@@ -24,6 +24,10 @@
 <%@ include file="../header1.jsp"%>
 
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
+<<<<<<< HEAD
+<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
+<script src="https://kit.fontawesome.com/bb8498b585.js"></script>
+=======
 
 <link rel="stylesheet" href="./resources/css/sp_style.css">
 <style>
@@ -42,6 +46,7 @@
 <script src="https://kit.fontawesome.com/bb8498b585.js"></script>
 
 
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
 
