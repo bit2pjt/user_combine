@@ -20,17 +20,11 @@ public class MmlController {
 	MmlService mmlServiceImpl;
 	@Autowired
 	MyPageService myPageService;
-	@Autowired
-	Mml_PageService pageService;
-	
 
 
-	@RequestMapping(value = "/mmlList.do/{page}", method = RequestMethod.GET)
-	public String mmlList(@PathVariable("page")int page,Model model)throws Exception {
+	@RequestMapping(value = "/mmlList.do", method = RequestMethod.GET)
+	public String mmlList(Model model)throws Exception {
 
-		
-		Mml_PageResult pageResult = pageService.paging(page);
-		model.addAttribute("pageResult", pageResult);
 		
 		List<Mml_ContentVO> mmlList = mmlServiceImpl.getMmlList();
 		List<Mml_ContentVO> mmlList2 = mmlServiceImpl.getMmlList_like();

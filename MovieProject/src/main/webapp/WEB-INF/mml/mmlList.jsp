@@ -153,26 +153,26 @@ $(function(){
 
 <nav aria-label="Page navigation example">
 						<ul class="pagination">
-							<c:if test="${Mml_PageDTO.startPage }" end="${Mml_PageDTO.endPage }" varStatus="status">
+							
 							<li class="page-item">
 								<a class="page-link" href="#" aria-label="Previous">
 									<span aria-hidden="true">&laquo;</span>
 									<span class="sr-only">Previous</span>
 								</a>
 							</li>
-							</c:if>
-							<c:forEach var="i" begin="${Mml_PageDTO.startPage }" end="${Mml_PageDTO.endPage }" varStatus="status">
-							<li <c:if test="${i eq Mml_PageDTO.currentPage }"> class="page-item"</c:if>><a class="page-link" href="/mmlList/${i}">${i}</a></li>
-							</c:forEach>
+						
 							
-							<c:if test="${Mml_PageDTO.endPage % Mml_PageDTO.pageCount == 0 && Mml_PageDTO.lastPage > Mml_PageDTO.endPage}">
+							<li ><a class="page-link" href="#">1</a></li>
+
+							
+						
 							<li class="page-item">
-								<a class="page-link" href="/mmlList/${Mml_PageDTO.endPage+1}" aria-label="Next">
+								<a class="page-link" href="#" aria-label="Next">
 									<span aria-hidden="true">&raquo;</span>
 									<span class="sr-only">Next</span>
 								</a>
 							</li>
-							</c:if>
+						
 						</ul>
 					</nav>
 
