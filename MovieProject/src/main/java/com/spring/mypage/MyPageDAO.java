@@ -9,10 +9,10 @@ import com.spring.member.MemberVO;
 * @Description : 
 * @Modification Information
 * @
-* @  수정일     	  수정자                 수정내용
+* @  �닔�젙�씪     	  �닔�젙�옄                 �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.17     한유진      최초생성
-* @author bit 2조
+* @ 2019.07.17     �븳�쑀吏�      理쒖큹�깮�꽦
+* @author bit 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -27,17 +27,19 @@ public interface MyPageDAO {
 	void updatePw(MemberVO memberVO);
 	void updateNick(MemberVO memberVO);
 	int checkNick(String m_nickname);
-	//멤버데이터 가져오기, 수정하기, 탈퇴요청하기
-	public String getMemberName(String m_email);	//멤버 이름 가져오기
-	public int getMemberId(String m_email);		//멤버 아이디 가져오기
-	public String getMemberNickname(String m_email);	//멤버 닉네임 가져오기
+	//硫ㅻ쾭�뜲�씠�꽣 媛��졇�삤湲�, �닔�젙�븯湲�, �깉�눜�슂泥��븯湲�
+	public String getMemberName(String m_email);	//硫ㅻ쾭 �씠由� 媛��졇�삤湲�
+	public int getMemberId(String m_email);		//硫ㅻ쾭 �븘�씠�뵒 媛��졇�삤湲�
+	public String getMemberNickname(String m_email);	//硫ㅻ쾭 �땳�꽕�엫 媛��졇�삤湲�
 	
-	//1:1 문의내역 리스트 가져오기
-	public List<OneVO> getQnaList(int id);	//1:1문의 리스트 가져오기
+	//1:1 臾몄쓽�궡�뿭 由ъ뒪�듃 媛��졇�삤湲�
+	public List<OneVO> getQnaList(int id);	//1:1臾몄쓽 由ъ뒪�듃 媛��졇�삤湲�
 	
-	//1:1 문의 등록하기, 가져오기, 수정하기, 삭제하기
-	public int insertQna(OneVO oneVO);	//1:1 문의 등록
-	public OneVO getQnaDetail(int qna_no);	//1:1 문의 상세정보 가져오기
-	public int updateQna(OneVO oneVO);	//1:1 문의 상세정보 수정하기
+	//1:1 臾몄쓽 �벑濡앺븯湲�, 媛��졇�삤湲�, �닔�젙�븯湲�, �궘�젣�븯湲�
+	public int insertQna(OneVO oneVO);	//1:1 臾몄쓽 �벑濡�
+	public OneVO getQnaDetail(int qna_no);	//1:1 臾몄쓽 �긽�꽭�젙蹂� 媛��졇�삤湲�
+	public int updateQna(OneVO oneVO);	//1:1 臾몄쓽 �긽�꽭�젙蹂� �닔�젙�븯湲�
+	public String getMemberNickname(int mml_num);
+	
 
 }

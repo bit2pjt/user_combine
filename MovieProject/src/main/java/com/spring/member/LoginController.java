@@ -61,6 +61,9 @@ public class LoginController {
       if(check == 1){
          session.setAttribute("m_email", email);
          return "index";
+         
+         
+         
       }else if( check == -1) {
          response.setContentType("text/html; charset=utf-8");
          PrintWriter out = response.getWriter();

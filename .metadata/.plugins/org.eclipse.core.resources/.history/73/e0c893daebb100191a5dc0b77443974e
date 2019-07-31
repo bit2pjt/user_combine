@@ -1,0 +1,5 @@
+package com.spring.mml;
+
+public class Mml_PageResult {
+
+}
