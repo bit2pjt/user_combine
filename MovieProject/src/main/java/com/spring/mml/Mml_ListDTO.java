@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Mml_ContentVO {
+public class Mml_ListDTO {
 
 	private int mml_num;			//나영리코드
 	private int mi_code;			//영화코드
@@ -18,4 +18,5 @@ public class Mml_ContentVO {
 	private String mml_content;		//내용
 	private String mml_poster;		//나영리 포스터
 	private int mml_warn_count;		//나영리 신고수
+	private String m_nickname;
 }

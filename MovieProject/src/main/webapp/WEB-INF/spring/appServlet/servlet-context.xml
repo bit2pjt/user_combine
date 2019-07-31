@@ -21,8 +21,23 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+<<<<<<< HEAD
+	
+	
+	<context:component-scan base-package="com.spring.movie" />
+	<context:component-scan base-package="com.spring.mypage" />
+	<context:component-scan base-package="com.spring.mml" />
+	<context:component-scan base-package="com.spring.member" />
+
+
+	
+	
+	
+</beans:beans>
+=======
 	<context:component-scan base-package="com.spring." />
 
 	
 </beans:beans>
 
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
