@@ -15,10 +15,7 @@
 * @  수정일     		     수정자            		수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.06         황진석      		 	최초생성
-<<<<<<< HEAD
-=======
 * @ 2019.07.22    한유진      		 	qnaList 기능 추가
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -50,54 +47,32 @@
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-=======
 <div style="height:5%;"></div>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 <div class="buster-light">
 	<div class="page-single">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
 						<div class="info">
-<<<<<<< HEAD
-							<h2> <strong><%= member.getM_name() %></strong> </h2>
-							<h3> <strong><%= member.getM_email() %></strong></h3>
-=======
 							<h2> <strong><%= member.getM_name() %> 님</strong> </h2>
 							<h3> <%= member.getM_email() %></h3>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 						</div>
 					<div class="user-information-hjs">
 						<div class="user-fav">
 								<ul>
-<<<<<<< HEAD
-									<li><a href="mypage.do">마이페이지</a></li>
-=======
 									<li><a href="mypage">마이페이지</a></li>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 								</ul>
 										
 								<ul>
 									<li>회원 정보</li>
-<<<<<<< HEAD
-									<li><a href="pw_confirm.do?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-									<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
-=======
 									<li><a href="pw_confirm?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
 									<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 								</ul>
 					
 								<ul>
 									<li>고객센터</li>
-<<<<<<< HEAD
-									<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-									<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
-=======
 									<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
 									<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 								</ul>
 							</div>
 					</div>
@@ -128,11 +103,7 @@
 							<div class="div_one">
 								<table class="tb_hjs">
 									<caption class="caption-hjs"> 
-<<<<<<< HEAD
-										<h2>1:1 문의 내역 <a href="one_list.do" class="caption_a"> 더보기 </a></h2>
-=======
 										<h2>1:1 문의 내역 <a href="one_list" class="caption_a"> 더보기 </a></h2>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 									</caption>
 									<colgroup>
 										<col width="10%" />
@@ -148,13 +119,6 @@
 											<th> 답변여부 </th>
 										</tr>
 									</thead>
-<<<<<<< HEAD
-									
-									<tbody>
-										<tr>
-											<td colspan="4">  최근 목록이 없습니다.</td>
-										</tr>	
-=======
 									<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
 									<tbody>
 									<c:choose>
@@ -174,7 +138,6 @@
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 									</tbody>
 								</table>
 							</div>

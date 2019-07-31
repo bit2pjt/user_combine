@@ -52,33 +52,19 @@
 					<div class="user-information-hjs">
 							<div class="user-fav">
 								<ul>
-<<<<<<< HEAD
-									<li><a href="mypage.do">마이페이지</a></li>
-=======
 									<li><a href="mypage">마이페이지</a></li>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 								</ul>
 										
 								<ul>
 									<li>회원 정보</li>
-<<<<<<< HEAD
-									<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-									<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
-=======
 									<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
 									<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 								</ul>
 					
 								<ul>
 									<li>고객센터</li>
-<<<<<<< HEAD
-									<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-									<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
-=======
 									<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
 									<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 								</ul>
 							</div>
 					</div>

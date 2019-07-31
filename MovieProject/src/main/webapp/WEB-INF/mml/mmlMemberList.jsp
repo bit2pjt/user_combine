@@ -74,45 +74,8 @@
 	
 	<c:forEach var="mml3" items="${requestScope.mmlList3 }">
 	<div class="sp_col-md-41">
-<<<<<<< HEAD
 							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/${mml3.mml_poster }"/>" alt="header" />
-=======
-							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
-									<div class="card-info">
-										<div class="card-ho"></div>
-											<div class="ho-info" style="float:left;">									
-												<h1 style="text-align: left;">mml_title</h1>
-												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
-												</div><br>
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
-									
-									</div>
-									
-									</div>
-								  </div>
-					</div>
-						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
-									<div class="card-info">
-										<div class="card-ho"></div>
-											<div class="ho-info" style="float:left;">									
-												<h1 style="text-align: left;">mml_title</h1>
-												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
-												</div><br>
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
-									
-									</div>
-									
-									</div>
-								  </div>
-					</div>
-						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 									<div class="card-info">
 										<div class="card-ho"></div>
 											<div class="ho-info" style="float:left;">									
@@ -120,43 +83,7 @@
 												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
 												<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">${mml3.m_nickname }</h3>
 												</div><br>
-<<<<<<< HEAD
 													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;${mml3.mml_like }&nbsp;<i class="far fa-eye"></i>&nbsp;${mml3.mml_view_count }&nbsp;
-=======
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
-									
-									</div>
-									
-									</div>
-								  </div>
-					</div>
-					<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
-									<div class="card-info">
-										<div class="card-ho"></div>
-											<div class="ho-info" style="float:left;">									
-												<h1 style="text-align: left;">mml_title</h1>
-												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
-												</div><br>
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
-									
-									</div>
-									
-									</div>
-								  </div>
-					</div>
-					<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
-									<div class="card-info">
-										<div class="card-ho"></div>
-											<div class="ho-info" style="float:left;">									
-												<h1 style="text-align: left;">mml_title</h1>
-												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
-												</div><br>
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 									
 									</div>
 									

@@ -23,10 +23,10 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	/**
-	 * ë¡œê·¸ì¸ ì‹œ íšŒì› ì²´í¬
-	 * @param email - ì…ë ¥í•œ email
-	 * @param pw - ì…ë ¥í•œ password
-	 * @return íšŒì› ì—¬ë¶€ ê²°ê³¼
+	 * ·Î±×ÀÎ ½Ã È¸¿ø Ã¼Å©
+	 * @param email - ÀÔ·ÂÇÑ email
+	 * @param pw - ÀÔ·ÂÇÑ password
+	 * @return È¸¿ø ¿©ºÎ °á°ú
 	 */
 	@Override
 	public int userCheck(String email, String pw) {
@@ -36,11 +36,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		if(vo != null) {
 			if(pw.equals(vo.getM_password()))
-				x = 1; // ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ë‘˜ë‹¤ ë§ëŠ”ê²½ìš°
+				x = 1; // ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ µÑ´Ù ¸Â´Â°æ¿ì
 			else
-				x = -1;// ì•„ì´ë””ëŠ” ë§ì§€ë§Œ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¥¸ê²½ìš°
+				x = -1;// ¾ÆÀÌµğ´Â ¸ÂÁö¸¸ ºñ¹Ğ¹øÈ£°¡ ´Ù¸¥°æ¿ì
 		}else 
-			x = 0;  // íšŒì›ì´ ì•„ë‹Œ ê²½ìš°
+			x = 0;  // È¸¿øÀÌ ¾Æ´Ñ °æ¿ì
 		return x;
 	}
 
@@ -88,16 +88,13 @@ public class MemberServiceImpl implements MemberService {
 
 
 	/**
-	 * íšŒì›ê°€ì…
+	 * È¸¿ø°¡ÀÔ
 	 * @param memberVO vo
 	 */
 	@Override
 	public void memberJoin(MemberVO vo) {
 		vo.setM_image("");
-<<<<<<< HEAD
-=======
 		vo.setM_image("defaultprofile.PNG");
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		vo.setM_cert("N");
 		vo.setM_deleteyn("N");
 		vo.setM_following(0);
@@ -109,47 +106,37 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 	/**
-	 * ê³„ì • ì¤‘ë³µí™•ì¸
+	 * °èÁ¤ Áßº¹È®ÀÎ
 	 * @param memberVO vo
 	 */
 	@Override
 	public boolean emailOverlapChk(MemberVO vo) {
 		if (memberDAOglobal.emailOverlapChk(vo.getM_email()) == 0) {
-			System.out.println("ì¼ì¹˜í•˜ëŠ” ë©”ì¼ ì—†ìŒ");
+			System.out.println("ÀÏÄ¡ÇÏ´Â ¸ŞÀÏ ¾øÀ½");
 			return true;
 		} else {
-			System.out.println("ì¼ì¹˜í•˜ëŠ” ë©”ì¼ ì¡´ì¬. 1 on n");
+			System.out.println("ÀÏÄ¡ÇÏ´Â ¸ŞÀÏ Á¸Àç. 1 on n");
 			return false;
 			
 		}
 	}
 
 	/**
-	 * ë‹‰ë„¤ì„ ì¤‘ë³µí™•ì¸
+	 * ´Ğ³×ÀÓ Áßº¹È®ÀÎ
 	 * @param memberVO vo
 	 */
 	@Override
 	public boolean nickOverlapChk(MemberVO vo) {
-<<<<<<< HEAD
-		System.out.println("11111111111111111111111111: " + memberDAOglobal.nickOverlapChk(vo.getM_nickname()));
-=======
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		if (memberDAOglobal.nickOverlapChk(vo.getM_nickname()) == 0) {
-			System.out.println("ì¼ì¹˜í•˜ëŠ” ë‹‰ë„¤ì„ = ì‚¬ìš© ê°€ëŠ¥");
+			System.out.println("ÀÏÄ¡ÇÏ´Â ´Ğ³×ÀÓ = »ç¿ë °¡´É");
 			return true;
 		} else {
-			System.out.println("ì¼ì¹˜í•˜ëŠ” ë‹‰ë„¤ì„ ì¡´ì¬. 1 on n");
+			System.out.println("ÀÏÄ¡ÇÏ´Â ´Ğ³×ÀÓ Á¸Àç. 1 on n");
 			return false;
 			
 		}
 	}
 	
-<<<<<<< HEAD
-	
-
-
-=======
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 	@Override
 	public int updatePw(MemberVO vo) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
@@ -157,13 +144,10 @@ public class MemberServiceImpl implements MemberService {
 		return num;
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public int getId(String m_email, String m_password) {
 		
 		return memberDAOglobal.getId(m_email, m_password);
 	}
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 
 }

@@ -1,27 +1,14 @@
-<<<<<<< HEAD
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<!-- 1. header1.jsp : head  -->
-<%@ include file="/WEB-INF/header1.jsp"%>
-
-=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 	<link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=1.3">
 
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
-<<<<<<< HEAD
-
-=======
 <script>
  	$(function() {
  		var session = "${sessionyn}";
@@ -63,39 +50,23 @@
  			location.href="boardFreeDelete";
  	}
 </script>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-<<<<<<< HEAD
-					<h1> 자유게시판</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">커뮤니티</a></li>
-						<li> <span class="ion-ios-arrow-right"></span> 자유게시판</li>
-=======
 					<h1> 나눔게시판</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="#">커뮤니티</a></li>
 						<li> <span class="ion-ios-arrow-right"></span> 나눔게시판</li>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-
-
-
 		
-
-=======
-		
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 	<div class="buster-light">
 		<div class="movie-items">
 		<!--  베스트 게시물 슬라이더 : 산만해. 우측 바가 더 깔끔할듯 하다 
@@ -127,36 +98,14 @@
 			-->
 <!-- blog detail section-->
 <div class="container">
-<<<<<<< HEAD
-	
-	
-
-	<div class="col-md-12">
-	<!-- 1. 글제목 자리 -->
-		<div class="ws-post-get-title" >
-			<h4> 글제목이 들어올 자리입니다. aaaaa</h4>
-=======
 	<div class="col-md-12">
 	<!-- 1. 글제목 자리 -->
 		<div class="ws-post-get-title" >
 			<h3> ${boardShareVO.bs_title }</h3>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		</div>
 		<!-- 글제목 자리 끝 -->
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
-<<<<<<< HEAD
-			<div class="ws-post-get-info-profile">
-				<img src="./resources/images/customs/ws_img/defaultprofile.PNG">
-			</div>
-			<div class="ws-post-get-info-inner">
-				<span>작성자 : 김시덕이 </span><br>
-				<span>작성일자 : </span><span>19/07/01 13:15</span><br>
-				<span>수정일자 :</span><span>19/07/01 15:15</span><br>
-				<span>조회수 : </span><span>1258</span><br>
-				<span>선호장르 : </span><span> 다큐멘터리</span>
-			</div>
-=======
 				<div class="ws-post-get-info-profile">
 					<img src="${memberVO.m_image}" alt="프로필사진">
 				</div>
@@ -167,29 +116,16 @@
 					<div>조회수 : ${boardShareVO.bs_view_counter}</div>
 					<div>선호장르 : ${memberVO.m_favorite} </div>
 				</div>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		</div>
 		<!-- 글정보+개인정보의 배치 끝 -->
 		<!-- 3. 글본문 자리 -->
 		<div class="ws-post-get-content">
-<<<<<<< HEAD
-			여기는 본문. 최소 높이=200px. 쓰는 만큼 늘어납니다.
-=======
 			${boardShareVO.bs_content }
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		</div>
 			<!-- 글본문 자리의 끝 -->
 			<!-- 4. 글신고/글추천/글비추 자리 -->
 		<center class="ws-post-get-buttons">
 			<div style="float:left">
-<<<<<<< HEAD
-				<button class="ws-btn-warning" id="ws-cnt-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> </button>
-			</div>
-			<div style="float:right;">
-				수정 <button class="ws-btn-update"><i class="fa fa-repeat" aria-hidden="true"></i></button> 
-				삭제 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-post-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
-			</div>
-=======
 				<button class="ws-btn-warning" id="ws-cnt-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
 			</div>
 			<span>
@@ -200,17 +136,12 @@
 					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
 				</div>
 			</c:if>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		</center>
 		<span id="ws-content-msg"></span>
 		<!-- 글신고/글추천/글비추 배치 끝 -->
 		<!-- 5. 댓글 구현부의 시작 -->
 	</div>
-<<<<<<< HEAD
-		<!--  
-=======
 	
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		<div class="ws-get-Rside">
 		<div class="ws-side-best" >
 			<ul>
@@ -248,136 +179,11 @@
 			
 		</div>
 	</div>
-<<<<<<< HEAD
-	-->	
-=======
 		
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		
 		
 	<div class="col-md-12">
 		<br>
-<<<<<<< HEAD
-		<h4>04 Comments</h4>
-		<br>
-		<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
-		<div class="comments" style="border-width:3px 0px;border-style:solid;border-color:#525EAA;">
-			<div class="ws-reply-buffer"></div>	
-			<!-- 댓글2 -->
-			<div class="ws-reply-outer">
-				<div class="author-infor">
-					<div class="flex-it2">
-						<div>
-						<!-- 댓글 좌상단의 작성자 정보부분  -->
-							<div class="ws-reply-info" > 
-								<a href="#">Steve Perrysssssssss</a>
-								<a class="rep-btn" href="#"><i class="fa fa-reply" aria-hidden="true" style="color:#FF6F61;"></i>댓글</a>  
-								<br>
-								등록/수정일 : <span class="time"> - 19/07/08 13:10</span> <span>선호장르 : sf</span>
-							</div>
-							  
-							<!-- 댓글 우상단의 댓글 추비추&신고 -->
-							<div class="ws-reply-btns">
-								<span class="ws-reply-msg"></span>
-								<button class="ws-btn-warning" >	<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 	</button>
-							</div>
-						</div>
-						<!-- 댓글 본문 -->
-						<div class="ws-reply-content">
-							<p>나의 댓글의 경우, 신고 버튼이 없고, 추/비추 대신 수정 삭제 버튼으로 대체
-								<br>ㅁㅁㅁㅁㅁ
-							</p>
-						</div>
-						<!-- 댓글 본문의 끝 -->
-					</div>
-				</div>
-			</div>
-			<!-- 나의 댓글인 경우 -->
-			<div class="ws-reply-outer">
-				<div class="author-infor">
-					<div class="flex-it2">
-					<!-- 댓글작성자 정보부분 -->	
-						<div>
-						<!-- 좌측 댓글러 개인정보 -->
-							<div class="ws-reply-info"> 
-								<a href="#">Steve Perry</a> <a class="rep-btn" href="#"><i class="fa fa-reply" aria-hidden="true" style="color:#FF6F61;"></i>댓글</a> 
-								<br>
-								 등록/수정일 : <span class="time"> - 19/07/08 13:10</span> <span>선호장르 : sf</span>
-							</div>
-							<!-- 우측 버튼들. -->
-								<div class="ws-reply-btns">
-									수정 <button class="ws-btn-update"> <i class="fa fa-repeat" aria-hidden="true"></i></button> 
-									삭제 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-reply-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
-								</div>
-							</div>
-							<!-- 댓글 본문 -->
-							<div class="ws-reply-content">
-								<p>나의 댓글의 경우, 신고 버튼이 없고, 추/비추 대신 수정 삭제 버튼으로 대체
-									<br>
-									<br>
-									<br>asdasd
-								</p>
-							</div>
-							<!-- 댓글 본문의 끝 -->
-						</div>
-					</div>
-				</div>
-				<!-- 기본 탬플릿의 대댓글 양식. 일단은 냅뒀다 -->
-				<div class="cmt-item flex-it reply">
-					<div class="author-infor">
-						<div class="flex-it2">
-							<h6><a href="#">김시덕이</a></h6> <span class="time"> - 27 Mar 2017</span>
-						</div>
-						<p>기존 서식의 댓글입니다(대댓글이지만).</p>
-					</div>
-				</div>
-						
-						<!-- 7. 페이징 : 그대로 따옴 기초 탬플릿의 [ bloglist_ligth.html]  -->
-            	<ul class="pagination">
-            		<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-            		<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-            	</ul>
-				</div>		
-						<!-- 8. 댓글 작성부 -->
-					<div class="blog-detail-ct">	
-					<div class="comment-form">
-						<h4>댓글 남기기</h4>
-						<form action="">
-							<div class="row">
-								<div class="col-md-12">
-									<!-- 댓글 입력창 -->
-									<textarea name="message" id="" placeholder="Message" style="height:100%;min-height:80px;"></textarea>
-								</div>
-							</div>
-							<br>
-							<input class="submit" type="submit" style="float:right;" value="등록">
-						</form>
-					</div>
-					</div>
-					<!-- comment form -->
-				</div>
-			</div>
-			</div>
-		</div>
-<!-- end of  blog detail section-->
-	
-	<!-- 삭제 모달 : 게시글 -->		
-		<div id="CatModal-post-delete" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">게시글 삭제</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-=======
 		<h4> Reply list </h4>
 		<br>
 		<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
@@ -457,7 +263,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">게시글 삭제</h5>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
         </div>
        <div class="modal-body">
           <p>게시글을 삭제하시겠습니까?</p>
@@ -468,14 +273,8 @@
        </div>
       </div>
     </div>
-<<<<<<< HEAD
-</div>
-
-	<!-- 삭제 모달 : 댓글 -->		
-=======
  -->
 	<!-- 삭제 모달 : 댓글 
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		<div id="CatModal-reply-delete" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -494,14 +293,6 @@
        </div>
       </div>
     </div>
-<<<<<<< HEAD
-	
-</div>
-
-<!-- 5. footer1.jsp : footer -->
-<%@ include file="/WEB-INF/footer1.jsp" %>
-
-=======
 	-->		
 
 <!-- 5. footer1.jsp : footer -->
@@ -712,89 +503,10 @@
     });
 	
 </script>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 
 <!-- 6. 페이지별 script 추가 -->
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<<<<<<< HEAD
-<script type="text/javascript">
-
-	function CatDelete() {
-    location.replace("/board/free/boardFreeList.do");
-  	}
-	function replydel() {
-	    location.replace("/board/free/boardFreeList.do");
-	  	}
-	$(document).ready(function() {
-		 
-		//추천 클릭시 메세지 보이는 상태로 : 추천 
-		//향후 중복추천인 경우의 반응으로 이어주면 된다. 현재는 클릭되면 바로 나오게 되어있지만, 나중에는 단독함수 구현 후, 이미 추천한 경우에 함수 호출하는 방식으로,,,
-		$('#ws-cnt-tup').click(function(){
-		       
-			$('#ws-content-msg').css('color', 'blue').css('display','inline').css('clear', 'both').text('중복추천은 불가능합니다.');
-			setTimeout(function(){
-				$('#ws-content-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		});
-		//추천 클릭시 메세지 보이는 상태로 : 비추천 
-		$('#ws-cnt-tdn').click(function(){
-		       
-			$('#ws-content-msg').css('color', 'red').css('display','inline').css('clear', 'both').text('중복비추는 불가능합니다');
-			setTimeout(function(){
-				$('#ws-content-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		
-		});
-		// 추천 클릭시 메세지 보이는 상태로 : 신고
-		$('#ws-cnt-warning').click(function(){
-		      
-			$('#ws-content-msg').css('color', 'orange').css('display','inline').css('clear', 'both').text('이미 신고하셨습니다.');
-			setTimeout(function(){
-				$('#ws-content-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		
-		});
-				
-		//댓글추천 비추천 신고버튼의 중복시 구현
-		//추천 클릭시 메세지 보이는 상태로 : 추천 
-		$('.ws-btn-thumbs-up').click(function(){
-		       
-			$('.ws-reply-msg').css('color', 'blue').css('display','inline').css('clear', 'both').text('중복추천은 불가능합니다.');
-			setTimeout(function(){
-				$('.ws-reply-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		});
-		//추천 클릭시 메세지 보이는 상태로 : 비추천 
-		$('.ws-btn-thumbs-down').click(function(){
-		       
-			$('.ws-reply-msg').css('color', 'red').css('display','inline').css('clear', 'both').text('중복비추는 불가능합니다');
-			setTimeout(function(){
-				$('.ws-reply-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		
-		});
-		// 추천 클릭시 메세지 보이는 상태로 : 신고
-		$('.ws-btn-warning').click(function(){
-		      
-			$('.ws-reply-msg').css('color', 'orange').css('display','inline').css('clear', 'both').text('이미 신고하셨습니다.');
-			setTimeout(function(){
-				$('.ws-reply-msg').css('color', 'red').css('display','none');
-			}, 2500);     
-		
-		});
-			
-		//best 표시 반짝임.
-		// setInterval(function(){
-		//	  $(".ws-best").toggle();
-		//	}, 1200)
-	});		
-</script>
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
-=======
-
-<!-- footer2.jsp : script -->
-<%@ include file="/WEB-INF/footer2.jsp"%>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8

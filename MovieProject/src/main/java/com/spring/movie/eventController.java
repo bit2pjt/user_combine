@@ -23,15 +23,12 @@ public class eventController {
 	public String winner() {
 		return "event/winner";
 	}
-<<<<<<< HEAD
-=======
 
 	@RequestMapping(value="/movieTicketing.do", method=RequestMethod.GET)
 	public String movieTicketing() {
 		return "event/movieTicketing";
 	}
 
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 	
 	
 }

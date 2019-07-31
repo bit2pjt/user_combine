@@ -1,15 +1,5 @@
 /**
 * @Class Name : hm_css.css
-<<<<<<< HEAD
-* @Description : memeber, index css 추가 사항
-* @Modification Information
-* @
-* @  수정일      수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.03   박현민       최초생성
-*
-* @author bit 2조
-=======
 * @Description : memeber, index css 異붽� �궗�빆
 * @Modification Information
 * @
@@ -18,7 +8,6 @@
 * @ 2019.07.03   諛뺥쁽誘�       理쒖큹�깮�꽦
 *
 * @author bit 2議�
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -27,13 +16,8 @@
 */
 
 /* 0702 */
-<<<<<<< HEAD
-/*자동대문자화 취소 - 주석처리*/
-/* 빨강에서 다홍으로 색변경 */
-=======
 /*�옄�룞��臾몄옄�솕 痍⑥냼 - 二쇱꽍泥섎━*/
 /* 鍮④컯�뿉�꽌 �떎�솉�쑝濡� �깋蹂�寃� */
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 /* #DD003F -> #FF6F61 */
     /* 
     * {
@@ -42,11 +26,7 @@
     }
     */
 
-<<<<<<< HEAD
-/* 헤더 배경색 수정 */
-=======
 /* �뿤�뜑 諛곌꼍�깋 �닔�젙 */
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 /*
 header {
       /* background-color: transparent; 
@@ -54,20 +34,6 @@ header {
 }
 */
 
-<<<<<<< HEAD
-/* hm | start | radio 추가 */
-/* fancy checkbox and radio button */
-.fancy-checkbox {
-    margin-right: 10px; 
-    display: inline; 
-    padding:0px;}
-    .fancy-checkbox,
-    .fancy-checkbox label {
-      font-weight: normal; }
-    .fancy-checkbox input[type="checkbox"] {
-      display: none; }
-      .fancy-checkbox input[type="checkbox"] + span {
-=======
 /* hm | start | radio 異붽� */
 /* fancy checkbox and radio button */
 .fancy-checkbox {
@@ -88,93 +54,11 @@ header {
       cursor: pointer;
       position: relative; }
       .fancy-checkbox input[type="checkbox"] + span:before {
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
         display: inline-block;
         vertical-align: middle;
         *vertical-align: auto;
         *zoom: 1;
         *display: inline;
-<<<<<<< HEAD
-        cursor: pointer;
-        position: relative; }
-        .fancy-checkbox input[type="checkbox"] + span:before {
-          display: inline-block;
-          vertical-align: middle;
-          *vertical-align: auto;
-          *zoom: 1;
-          *display: inline;
-          position: relative;
-          bottom: 1px;
-          width: 18px;
-          height: 18px;
-          margin-right: 10px;
-          content: "";
-          border: 1px solid #ccc; }
-      .fancy-checkbox input[type="checkbox"]:checked + span:before {
-        font-family: FontAwesome;
-        content: '\f00c';
-        font-size: 12px;
-        color: #99a1a7;
-        text-align: center;
-        line-height: 16px;
-        background: #ededed;
-        border: 1px solid #ccc; }
-    .fancy-checkbox.custom-color-coral input[type="checkbox"]:checked + span:before {
-      color: #FF6F61;
-      background-color: #fff; }
-    .fancy-checkbox.custom-bgcolor-coral input[type="checkbox"]:checked + span:before {
-      color: #fff;
-      background-color: #FF6F61;
-      border-color: #cf5732; }
-  
-  .fancy-radio {
-    margin-right: 10px; 
-    display: inline; padding: 0px;}
-    .fancy-radio,
-    .fancy-radio label {
-      font-weight: normal; }
-    .fancy-radio input[type="radio"] {
-      display: none; }
-      .fancy-radio input[type="radio"] + span {
-        display: inline-block;
-        margin: 5px;
-        cursor: pointer;
-        position: relative; }
-        .fancy-radio input[type="radio"] + span i {
-          display: inline-block;
-          vertical-align: middle;
-          *vertical-align: auto;
-          *zoom: 1;
-          *display: inline;
-          -webkit-border-radius: 8px;
-          -moz-border-radius: 8px;
-          border-radius: 8px;
-          position: relative;
-          bottom: 1px;
-          content: "";
-          border: 1px solid #ccc;
-          width: 18px;
-          height: 18px;
-          margin-right: 5px; }
-      .fancy-radio input[type="radio"]:checked + span i:after {
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
-        display: block;
-        position: relative;
-        top: 3px;
-        left: 3px;
-        content: '';
-        width: 10px;
-        height: 10px;
-        background-color: #7b848c; }
-    .fancy-radio.custom-color-coral input[type="radio"]:checked + span i:after {
-      background-color: #FF6F61; }
-    .fancy-radio.custom-bgcolor-coral input[type="radio"]:checked + span i {
-      background-color: #FF6F61; }
-      .fancy-radio.custom-bgcolor-coral input[type="radio"]:checked + span i:after {
-        background-color: #fff; }
-=======
         position: relative;
         bottom: 1px;
         width: 18px;
@@ -680,59 +564,11 @@ background-color: rgba( 0, 0, 0, 0.3 );
     background-color: #FF6F61; }
     .fancy-radio.custom-bgcolor-coral input[type="radio"]:checked + span i:after {
       background-color: #fff; }
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 /* hm | end | radio 추가  */
 
 
 /* hm | start | member 모달 css */
 .hm_logtext {
-<<<<<<< HEAD
-  text-align: center;
-}
-  
-.phone input[type="text"]{
-  width:30%; 
-  margin:0px; 
-  display: inline-block;
-}
-
-#signup-content {
-  overflow-y: scroll; 
-  height: 80%;
-}
-
-#email-2, #nickname-2 {
-  width: 79%; 
-  margin: 0px; 
-  display: inline-block;
-}
-
-#overch {
- text-align: center; 
- margin: 0px; 
- display: inline-block; 
- width:19%;
-}
-@media (max-width: 767px) {
-  .overlay #overch, #email-2, #nickname-2 {
-    width:100%;
-    display: inline;
-  }
-  #demo-2{
-    /* visibility: hidden; */
-    display: none;
-  }
-}
-
-#checkall {
-  padding: 0px;
-  text-align: right;
-}
-
-#hm_button2 {
-  display: inline;
-  width: 49%;
-=======
 text-align: center;
 }
 
@@ -778,21 +614,10 @@ text-align: right;
 #hm_button2 {
 display: inline;
 width: 49%;
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 }
 
 /* 이용약관 스타일 */
 .hm_contents {
-<<<<<<< HEAD
-  height:500px;
-  overflow:auto;  
-  padding: 0 0.5em;
-}
-
-#hm_myBtn {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-=======
 height:500px;
 overflow:auto;  
 padding: 0 0.5em;
@@ -801,7 +626,6 @@ padding: 0 0.5em;
 #hm_myBtn {
 font-family: Arial, Helvetica, sans-serif;
 font-size: 20px;
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 display: none;
 position: fixed;
 bottom: 20px;
@@ -825,19 +649,6 @@ background-color: #555;
 
 /* 검색 창 */
 input {
-<<<<<<< HEAD
-	outline: none;
-}
-input[type=search] {
-	-webkit-appearance: textfield;
-	-webkit-box-sizing: content-box;
-	font-family: inherit;
-	font-size: 100%;
-}
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button {
-	display: none; 
-=======
 outline: none;
 }
 input[type=search] {
@@ -849,33 +660,10 @@ font-size: 100%;
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
 display: none; 
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 }
 
 
 input[type=search] {
-<<<<<<< HEAD
-  background: white url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-	border: solid 1px #FF6F61;
-	padding: 1px 10px 3px 32px;
-
-	-webkit-border-radius: 10em;
-	-moz-border-radius: 10em;
-	border-radius: 10em;
-	
-	-webkit-transition: all .5s;
-	-moz-transition: all .5s;
-	transition: all .5s;
-}
-input[type=search]:focus {
-	width: 130px;
-	background-color: #fff;
-	border-color: #FF6F61;
-	
-	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	box-shadow: 0 0 5px rgba(109,207,246,.5);
-=======
 background: white url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
 /* border: solid 1px #FF6F61; */
 padding: 1px 13px 3px 32px;
@@ -896,48 +684,18 @@ border-color: #FF6F61;
 -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
 -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
 box-shadow: 0 0 5px rgba(109,207,246,.5);
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 }
 
 
 input:-moz-placeholder {
-<<<<<<< HEAD
-	color: #999;
-}
-input::-webkit-input-placeholder {
-	color: #999;
-=======
 color: #999;
 }
 input::-webkit-input-placeholder {
 color: #999;
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 }
 
 /* Demo 2 */
 #demo-2 input[type=search] {
-<<<<<<< HEAD
-	width: 15px;
-	padding-left: 10px;
-	color: transparent;
-	cursor: pointer;
-}
-#demo-2 input[type=search]:hover {
-	background-color: #fff;
-}
-#demo-2 input[type=search]:focus {
-	width: 130px;
-	padding-left: 32px;
-	color: #000;
-	background-color: #fff;
-	cursor: auto;
-}
-#demo-2 input:-moz-placeholder {
-	color: transparent;
-}
-#demo-2 input::-webkit-input-placeholder {
-	color: transparent;
-=======
 width: 15px;
 padding-left: 10px;
 color: transparent;
@@ -958,44 +716,11 @@ color: transparent;
 }
 #demo-2 input::-webkit-input-placeholder {
 color: transparent;
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 }
 
 
 /* 리스트 */
 #lr-list{
-<<<<<<< HEAD
-  width:870px;
-  margin: auto;
-}
-#l-list{
-  display: inline-block;
-  width:400px;
-  margin-right:60px;
-
-}
-#r-list{
-  display: inline-block;
-  width:400px;
-
-}
-@media(max-width:850px){
-  #lr-list{
-    width:450px;
-    margin: auto;
-    
-  }
-  #l-list{
-    display: block;
-    width:400px;
-  
-  }
-  #r-list{
-    display: block;
-    width:400px;
-    margin-top: 30px;
-  }
-=======
 width:870px;
 margin: auto;
 }
@@ -1026,7 +751,6 @@ width:400px;
   width:400px;
   margin-top: 30px;
 }
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 }
 
 
@@ -1034,114 +758,6 @@ width:400px;
 /* 약관 */
 
 .overlay2 {
-<<<<<<< HEAD
-  background-color: rgba(0, 0, 0, 0.75);
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  -moz-opacity: 0;
-  -khtml-opacity: 0;
-  -webkit-opacity: 0;
-  opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
-  filter: alpha(opacity=0);
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  -webkit-transition: all 0.35s ease-out;
-  -moz-transition: all 0.35s ease-out;
-  -o-transition: all 0.35s ease-out;
-  transition: all 0.35s ease-out;
-}
-.overlay2.openform2 {
-  -moz-opacity: 1;
-  -khtml-opacity: 1;
-  -webkit-opacity: 1;
-  opacity: 1;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
-  filter: alpha(opacity=100);
-  -webkit-transition: all 0.35s ease-out;
-  -moz-transition: all 0.35s ease-out;
-  -o-transition: all 0.35s ease-out;
-  transition: all 0.35s ease-out;
-  pointer-events: inherit;
-}
-.overlay2 .close {
-  background-color: #FF6F61;
-  color: #ffffff;
-  opacity: 1;
-  padding: 4px 10px 6px 10px;
-  font-size: 16px;
-  display: none;
-  margin-bottom: 0;
-}
-@media (max-width: 767px) {
-  .overlay2 .close {
-    display: block;
-  }
-}
-.overlay2 .login-content2 {
-  width: 430px;
-  padding: 50px;
-  border: 1px solid #e1e1e1;
-  height: auto;
-  background-color: #ffffff;
-}
-@media (max-width: 767px) {
-  .overlay2 .login-content2 {
-    width: 300px;
-    padding: 30px;
-  }
-}
-.overlay2 .login-content2 h3 {
-  font-family: 'Dosis', sans-serif;
-  font-size: 36px;
-  color: #222222;
-  font-weight: 700;
-  /* text-transform: uppercase; */
-  margin-bottom: 45px;
-  text-align: center;
-}
-@media (max-width: 767px) {
-  .overlay2 .login-content2 h3 {
-    margin-bottom: 15px;
-  }
-}
-
-.overlay2 .login-content2 button {
-  font-family: 'Dosis', sans-serif;
-  font-size: 14px;
-  color: #ffffff;
-  font-weight: bold;
-  /* text-transform: uppercase; */
-  border: none;
-  background-color: #FF6F61;
-  height: 42px;
-  width: 100%;
-  cursor: pointer;
-}
-.overlay2 .login-content2 p {
-  color: #222222;
-  margin-top: 35px;
-  margin-bottom: 20px;
-}
-@media (max-width: 767px) {
-  .overlay2 .login-content2 p {
-    margin-bottom: 15px;
-    margin-top: 15px;
-  }
-}
-
-/* 약관 오버레이 끝 */
-=======
 background-color: rgba(0, 0, 0, 0.75);
 bottom: 0;
 left: 0;
@@ -1248,4 +864,3 @@ margin-bottom: 20px;
 }
 
 /* 약관 오버레이 끝 */
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8

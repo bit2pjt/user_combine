@@ -2,9 +2,23 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
-
 <mapper namespace="com.spring.mml.MmlDAO">
+  
+  <resultMap type="com.spring.mml.Mml_ContentVO" id="mmlMap">
+
+		<result property="mml_num" column="mml_num"/>
+		<result property="mi_code" column="mi_code"/>
+		<result property="id" column="id"/>
+		<result property="mml_view_count" column="mml_view_count"/>
+		<result property="mml_write_date" column="mml_write_date"/>
+		<result property="mml_update_date" column="mml_update_date"/>
+		<result property="mml_like" column="mml_like"/>
+		<result property="mml_title" column="mml_title"/>
+		<result property="mml_content" column="mml_content"/>
+		<result property="mml_poster" column="mml_poster"/>
+		<result property="mml_warn_count" column="mml_warn_count"/>
+	</resultMap>
+	
 	<resultMap type="com.spring.member.MemberVO" id="getMemberMap">
 		<result property="id" column="id"/>
 		<result property="m_nickname" column="m_nickname"/>
@@ -27,12 +41,6 @@
 	</resultMap>
 
 	<resultMap type="com.spring.mml.Mml_ListDTO" id="getMmlMap">
-=======
-<mapper namespace="com.spring.mml.MmlDAO">
-  
-  <resultMap type="com.spring.mml.Mml_ContentVO" id="mmlMap">
-
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		<result property="mml_num" column="mml_num"/>
 		<result property="mi_code" column="mi_code"/>
 		<result property="id" column="id"/>
@@ -44,71 +52,9 @@
 		<result property="mml_content" column="mml_content"/>
 		<result property="mml_poster" column="mml_poster"/>
 		<result property="mml_warn_count" column="mml_warn_count"/>
-<<<<<<< HEAD
 		<result property="m_nickname" column="m_nickname"/>
 	</resultMap>
 	
-	
-
-	
-	
-	
-	
-	<!-- <select id="getMmlList" parameterType="String" resultMap="getMmlMap">
-		select mml_content.*, member.m_nickname
-		from mml_content inner join member 
-		on mml_content.id = #{id}
-		order by mml_content.mml_num desc
-	</select> -->
-	
-	<select id="getMmlList" resultMap="getMmlMap">
-		select mml_content.*, member.m_nickname 
-		from mml_content inner JOIN member 
-		on mml_content.id = member.id 
-		ORDER BY mml_content.mml_num desc
-	</select>
-	
-	<select id="getMmlList_like" resultMap="getMmlMap">
-		select mml_content.*, member.m_nickname 
-		from mml_content inner JOIN member 
-		on mml_content.id = member.id 
-		ORDER BY mml_content.mml_like desc
-	</select>
-	
-	<select id="getMmlList_user" resultMap="getMmlMap">
-		select mml_content.*, member.m_nickname 
-		from mml_content inner JOIN member 
-		on mml_content.id = member.id 
-		where member.id=#{id}
-		ORDER BY mml_content.mml_num desc
-	</select>
-	
-	
-	<select id="getMemberName" parameterType="String" resultType="String">
-		select M_NAME from member where M_EMAIL=#{m_email}
-	</select>
-	
-	<select id="getMemberNickname" parameterType="String" resultType="String">
-		select M_NICKNAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
-	</select>
-	
-	<select id="getMemberId" parameterType="String" resultType="int">
-		select ID from member where M_EMAIL=#{m_email}
-	</select>
-	
- 	<select id="getMmlId" parameterType="int" resultType="int">
-		select id from mml_content where mml_num=#{mml_num}
-	</select>
-	
-	<select id="getMmlNickname" parameterType="int" resultType="String">
-		select m_nickname from member where id=(select id from mml_content where mml_num=#{mml_num})
-	</select>
-	
-	
-
-</mapper>
-=======
-	</resultMap>
 	
 	<!-- mi_ccode왜 이름 코드야... 바꿔죵 -->
 	<insert id="insertMml" parameterType="com.spring.mml.Mml_ContentVO">
@@ -249,5 +195,48 @@
 		</foreach>
 	</select>
 	
+	<select id="getMmlList" resultMap="getMmlMap">
+		select mml_content.*, member.m_nickname 
+		from mml_content inner JOIN member 
+		on mml_content.id = member.id 
+		ORDER BY mml_content.mml_num desc
+	</select>
+	
+	<select id="getMmlList_like" resultMap="getMmlMap">
+		select mml_content.*, member.m_nickname 
+		from mml_content inner JOIN member 
+		on mml_content.id = member.id 
+		ORDER BY mml_content.mml_like desc
+	</select>
+	
+	<select id="getMmlList_user" resultMap="getMmlMap">
+		select mml_content.*, member.m_nickname 
+		from mml_content inner JOIN member 
+		on mml_content.id = member.id 
+		where member.id=#{id}
+		ORDER BY mml_content.mml_num desc
+	</select>
+	
+	
+	<select id="getMemberName" parameterType="String" resultType="String">
+		select M_NAME from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<select id="getMemberNickname" parameterType="String" resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
+ 	<select id="getMmlId" parameterType="int" resultType="int">
+		select id from mml_content where mml_num=#{mml_num}
+	</select>
+	
+	<select id="getMmlNickname" parameterType="int" resultType="String">
+		select m_nickname from member where id=(select id from mml_content where mml_num=#{mml_num})
+	</select>
+	
+	
 </mapper>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8

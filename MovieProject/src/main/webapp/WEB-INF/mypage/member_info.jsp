@@ -3,14 +3,6 @@
 <%@ page import="com.spring.member.MemberVO"%>
 <%
 	MemberVO member1 = (MemberVO) request.getAttribute("member1");
-<<<<<<< HEAD
-String phone =  member1.getM_phone();
-String phone1 = member1.getM_phone().substring(0,3);
-String phone2 = member1.getM_phone().substring(3,7);
-String phone3 = member1.getM_phone().substring(7,11);
-String favorite = member1.getM_favorite();	
-
-=======
 	String phone1 = member1.getM_phone().substring(0,3);
 	String phone2 = member1.getM_phone().substring(3,7);
 	String phone3 = member1.getM_phone().substring(7,11);
@@ -18,7 +10,6 @@ String favorite = member1.getM_favorite();
 	System.out.println(phone1);
 	System.out.println(phone2);
 	System.out.println(phone3);
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 %>
 <!--
 /**
@@ -37,101 +28,54 @@ String favorite = member1.getM_favorite();
 *  Copyright (C) by Bit All right reserved.
 */
 -->
+
+<!-- 1. header1.jsp : head  -->
 <%@ include file="../header1.jsp"%>
 
-<%@ include file="../header2.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
+<!-- 2. 여기에 페이지별 css 추가해주세요 -->
+
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+  
+  
 <script type="text/javascript">
-
-
- 
-function pw(form) {
-	var pass1 = form.pw_confirm.value;
-	var pass2 = form.input_pw.value;
-	var newpw1 = form.m_password.value;
-	var newpw2 = form.confirm_pw.value;
-
-	if (pass1 != pass2) {
-		alert("비밀번호가 일치하지 않습니다.");
-		pwform.input_pw.value = "";
-		pwform.input_pw.focus();
-		return false;
-	} else if (newpw1 != newpw2) {
-		alert("비밀번호가 일치하지 않습니다.");
-		pwform.m_password.value = "";
-		pwform.confirm_pw.value = "";
-		pwform.m_password.focus();
-		return false;
-	} else {
-		alert("비밀번호가 수정되었습니다.");
+	function pw(form) {
+		var pass1 = form.pw_confirm.value;
+		var pass2 = form.input_pw.value;
+		var newpw1 = form.m_password.value;
+		var newpw2 = form.confirm_pw.value;
+		if (pass1 != pass2) {
+			alert("비밀번호가 일치하지 않습니다.");
+			pwform.input_pw.value = "";
+			pwform.input_pw.focus();
+			return false;
+		} else if (newpw1 != newpw2) {
+			alert("비밀번호가 일치하지 않습니다.");
+			pwform.m_password.value = "";
+			pwform.confirm_pw.value = "";
+			pwform.m_password.focus();
+			return false;
+		} else {
+			alert("비밀번호가 수정되었습니다.");
+		}
 	}
-
-}
-
-function nick(form){
 	
-	alert("닉네임이 수정되었습니다.");
+	function nick(form){
+		
+		alert("닉네임이 수정되었습니다.");
+		
+		
+	}
 	
-	
-}
-
-function modify(form){
-	
-	var ph;
-	
-	ph = form.user_cell1.value+form.user_cell2.value+form.user_cell3.value;
+	function modify(form){
+		alert(form.m_phone.value);
+		
+	}
 	
 	
-	document.getElementById("modify_phone").value = ph;
 	
-	
-	var fa;
-	fa=$("input:checkbox[name='chkbox']:checked").val();
-	
-	document.getElementById("modify_favorite").value = fa;
-	
-	var sa;
-	var ea;
-	
-	sa = $("input:radio[name='smsyn']:checked").val();
-	ea = $("input:radio[name='emailyn']:checked").val();
-	
-	document.getElementById("modify_sagree").value = sa;
-	document.getElementById("modify_eagree").value = ea;
-	
-	alert("정보가 수정되었습니다.");
-}
-
-
-
 </script>
-
-
-</head>
-<body>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-
-<script type="text/javascript">
-
-
-$(document).ready(function() {
-    //라디오 요소처럼 동작시킬 체크박스 그룹 셀렉터
-    $('input[type="checkbox"][name="chkbox"]').click(function(){
-    	
-    		
-    	//클릭 이벤트 발생한 요소가 체크 상태인 경우
-        if ($(this).prop('checked')) {
-            //체크박스 그룹의 요소 전체를 체크 해제후 클릭한 요소 체크 상태지정
-            $('input[type="checkbox"][name="chkbox"]').prop('checked', false);
-            $(this).prop('checked', true);
-        }
-        	
-    });
-});
-</script>
+<!-- 3. heaer2.jsp : header -->
+<%@ include file="../header2.jsp" %>
 
 <div class="hero user-hero">
 	<div class="container">
@@ -261,13 +205,14 @@ $(document).ready(function() {
 											class="user_cell1" maxlength="4" name="user_cell2" value="<%=phone2%>" type="tel">
 										<span class="dash">-</span> <input class="user_cell1"
 											maxlength="4" name="user_cell3" value="<%=phone3%>" type="tel">
-									
-								
-									
-									
-						
+											<%
+																				
 											
-										<input type="hidden" name="m_phone" id="modify_phone" value="<%=phone%>">
+											%>
+											
+											
+											
+										<input type="hidden" name="m_phone" value="<%=phone1%><%=phone2%><%=phone3%>">
 									</div>
 								</td>
 							</tr>
@@ -276,34 +221,28 @@ $(document).ready(function() {
 								<td>
 									<div class="td-content">
 									
-										<label for="terms-2"> 
-										
-											
-										<label
-											class="fancy-checkbox custom-bgcolor-coral"> 
-											
-											<input name="chkbox" value="공포/호러"
+										<label for="terms-2"> <label
+											class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("공포/호러")){%>checked<%} %> ><span>공포/호러</span>
-										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="멜로/로맨스"
+										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("멜로/로맨스")){%>checked<%} %>><span>멜로/로맨스</span>
-										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="액션"
+										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("액션")){%>checked<%} %>><span>액션 </span>
-										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="코미디"
+										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("코미디")){%>checked<%} %>><span> 코미디 </span>
-										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="범죄"
+										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("범죄")){%>checked<%} %>><span> 범죄 </span>
-										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="스릴러"
+										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("스릴러")){%>checked<%} %>><span> 스릴러 </span>
-										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="느와르"
+										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("느와르")){%>checked<%} %>><span> 느와르 </span>
-										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="가족"
+										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("가족")){%>checked<%} %>><span> 가족 </span>
-										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="애니메이션"
+										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member1.getM_favorite().equals("애니메이션")){%>checked<%} %>><span> 애니메이션 </span>
 										</label>
-										
 										</label>
-										<input type="hidden" name="m_favorite" id="modify_favorite" value="<%=favorite%>">
+										
 									</div>
 								</td>
 							</tr>
@@ -315,23 +254,20 @@ $(document).ready(function() {
 										<label for=""> SMS 수신동의
 											<div class="div-yn">
 												<label class="fancy-radio custom-color-coral"> <input
-													name="smsyn" value="y" type="radio" <%if(member1.getM_sagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
+													name="smsyn" value="Y" type="radio" <%if(member1.getM_sagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
 												</label> <label class="fancy-radio custom-color-coral"> <input
-													name="smsyn" value="n" type="radio" <%if(member1.getM_sagree().equals("n")){%>checked<%} %>><span><i></i>동의
+													name="smsyn" value="N" type="radio" <%if(member1.getM_sagree().equals("n")){%>checked<%} %>><span><i></i>동의
 														안함 </span>
 												</label>
 											</div>
 											<br> 이메일 수신동의
 											<div class="div-yn">
 												<label class="fancy-radio custom-color-coral"> <input
-													name="emailyn" value="y" type="radio" <%if(member1.getM_eagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
+													name="emailyn" value="Y" type="radio" <%if(member1.getM_eagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
 												</label> <label class="fancy-radio custom-color-coral"> <input
-													name="emailyn" value="n" type="radio" <%if(member1.getM_eagree().equals("n")){%>checked<%} %>><span><i></i>동의
+													name="emailyn" value="N" type="radio" <%if(member1.getM_eagree().equals("n")){%>checked<%} %>><span><i></i>동의
 														안함</span>
 												</label>
-												<input type="hidden" name="m_sagree" id="modify_sagree" value="<%=member1.getM_sagree() %>">
-												<input type="hidden" name="m_eagree" id="modify_eagree" value="<%=member1.getM_eagree() %>">
-										
 											</div>
 										</label>
 									</div>
@@ -351,7 +287,11 @@ $(document).ready(function() {
 	</div>
 </div>
 
-<!-- footer section-->
-<%@ include file="../footer.jsp"%>
-</body>
-</html>
+
+<!-- 5. footer1.jsp : footer -->
+<%@ include file="../footer1.jsp"%>
+
+<!-- 6. 페이지별 script 추가해 주세요. -->
+
+<!-- 7. footer2.jsp : script -->
+<%@ include file="../footer2.jsp"%> 

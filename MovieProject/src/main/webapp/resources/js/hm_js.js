@@ -48,15 +48,6 @@ signupLink.on('click', function (event) {
 // close popup for mobile
 var closebt = $(".close");
 closebt.on('click', function (e) {
-<<<<<<< HEAD
-	//e.preventDefault();
-	/*
-	var overlay = $(".overlay");
-	overlay.removeClass("openform");*/
-	$("#login-content").parent().addClass("openform");
-	$("#id-ok-content").parent().removeClass("openform");
-	$("#id-find-content").parent().removeClass("openform");
-=======
 	e.preventDefault();
 	/*
 	var overlay = $(".overlay");
@@ -64,7 +55,6 @@ closebt.on('click', function (e) {
 	idfindct.parents(overlay).removeClass("openform");
 	idokct.parents(overlay).removeClass("openform");
 	loginct.parents(overlay).addClass("openform");
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 	
 });
 
@@ -619,11 +609,8 @@ function ws_check() { //유효성 검사
 $('#email_overlap_chk').on('click', function (event) { // link 변경
 	//event.stopimmediatepropagation();
 	//event.stopPropagation();
-<<<<<<< HEAD
-=======
 	//console.log('이메일 중복체크 눌림');
 	//event.stopimmediatepropagation();
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 	
 	var m_email = joinform.m_email.value;
 	   $.ajax({
@@ -669,8 +656,6 @@ $('#nick_overlap_chk').on('click', function (event) {
 	   });
 });
 
-<<<<<<< HEAD
-=======
 $('#check_all').on('click', function() {
 	$('.chk_box').prop( 'checked', this.checked );
     
@@ -686,5 +671,3 @@ $('#check_all').on('click', function() {
 	}
 	
 });
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
-
