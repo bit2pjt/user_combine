@@ -38,7 +38,7 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 
-	// ���������� ùȭ��
+	// mypage 메인
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Model model, HttpSession session) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
@@ -53,7 +53,7 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 
-	// ���������� - ��й�ȣ ��Ȯ��
+	// 마이페이지 - 비밀번호 확인
 	@RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
 	public String pwConfirm(HttpSession session, Model model) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
@@ -65,15 +65,13 @@ public class MyPageController {
 		return "mypage/pw_confirm";
 	}
 
-	// ���������� - ��й�ȣ ��Ȯ�� - ȸ����� ���
+	// 마이페이지 - 멤버정보
 	@RequestMapping(value = "/member_info")
 	public String memberInfo(MemberVO member, Model model, int id) {
 		MemberVO member1 = myPageService.getMember(id);
 		System.out.println("member1=" + member1);
-		// Ŭ���̾�Ʈ���� �Է��� ��й�ȣ
 		String input_password = member.getM_password();
 		System.out.println("input_pwd=" + input_password);
-		// id�� �˻��� member�� ��й�ȣ
 		String member_password = member1.getM_password();
 		System.out.println("member_pwd=" + member_password);
 
@@ -90,7 +88,7 @@ public class MyPageController {
 		}
 	}
 
-	// ���������� - ��й�ȣ���
+	// 마이페이지 - 비밀번호 수정
 	@RequestMapping(value = "/update_pw")
 	public String updatePw(Model model, MemberVO memberVO, int id) {
 
@@ -104,7 +102,7 @@ public class MyPageController {
 		return "mypage/member_info";
 	}
 
-//	//���������� - ����� �г��� �ߺ� Ȯ��
+//	 // 마이페이지 - 닉네임확인
 //	@RequestMapping(value="/update_checknick")
 //	public String updateCheckNick(Model model, String m_nickname, MemberVO memberVO,int id) {
 //		int check = myPageService.checkNick(m_nickname);
@@ -116,7 +114,7 @@ public class MyPageController {
 //		return "mypage/member_info";
 //	}
 
-	// ���������� - �г��Ӽ��
+	// 마이페이지 - 닉네임 수정
 	@RequestMapping(value = "/update_nick")
 	public String updateNick(Model model, int id, MemberVO memberVO) {
 		MemberVO member1 = myPageService.getMember(id);
@@ -129,7 +127,7 @@ public class MyPageController {
 		return "mypage/member_info";
 	}
 
-	// ���������� - ȸ��������
+	// 마이페이지 - 회원정보 수정
 	@RequestMapping(value = "/member_update")
 	public String updateMember(Model model, HttpServletResponse response, MemberVO memberVO, int id) {
 		MemberVO member1 = myPageService.getMember(id);
@@ -143,7 +141,7 @@ public class MyPageController {
 		try {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('ȸ���������Ϸ�');");
+			out.println("alert('접근 권한이 없습니다.');");
 			out.println("</script>");
 		} catch (IOException e) {
 			e.printStackTrace();
