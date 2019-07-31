@@ -5,4 +5,5 @@ Servers/
 *.class
 *.classpath
 /target/
+/bin/
 .settings/
