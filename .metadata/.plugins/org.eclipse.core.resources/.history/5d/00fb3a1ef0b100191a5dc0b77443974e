@@ -1,0 +1,24 @@
+package com.spring.mml;
+
+import java.util.List;
+
+public class Mml_PageResult {
+
+	public List<Mml_ListDTO> pageList;
+	public Mml_PageDTO pageDTO;
+	
+	public List<Mml_ListDTO> getPageList(){
+		return pageList;
+		
+	}
+	
+	public void setPageList(List<Mml_ListDTO> pageList) {
+		this.pageList=pageList;
+	}
+	public Mml_PageDTO getPageDTO() {
+		return pageDTO;
+	}
+	public void setPageDTO(Mml_PageDTO pageDTO) {
+		this.pageDTO=pageDTO;
+	}
+}

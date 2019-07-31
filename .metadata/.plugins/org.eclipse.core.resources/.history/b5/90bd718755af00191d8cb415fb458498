@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mml.MmlDAO">
+	<resultMap type="com.spring.member.MemberVO" id="getMemberMap">
+		<result property="id" column="id"/>
+		<result property="m_nickname" column="m_nickname"/>
+		<result property="m_image" column="m_image"/>
+		<result property="m_email" column="m_email"/>
+		<result property="m_eagree" column="m_eagree"/>
+		<result property="m_sagree" column="m_sagree"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_phone" column="m_phone"/>
+		<result property="m_cert" column="m_cert"/>
+		<result property="m_password" column="m_password"/>
+		<result property="m_regdate" column="m_regdate"/>
+		<result property="m_update_date" column="m_update_date"/>
+		<result property="m_deleteyn" column="m_deleteyn"/>
+		<result property="m_following" column="m_following"/>
+		<result property="m_follower" column="m_follower"/>
+		<result property="m_level" column="m_level"/>
+		<result property="m_favorite" column="m_favorite"/>
+		<result property="m_blacklist" column="m_blacklist"/>
+	</resultMap>
+
+	<resultMap type="com.spring.mml.Mml_ContentVO" id="getMmlMap">
+		<result property="mml_num" column="mml_num"/>
+		<result property="mml_code" column="mml_code"/>
+		<result property="id" column="id"/>
+		<result property="mml_view_count" column="mml_view_count"/>
+		<result property="mml_write_date" column="mml_write_date"/>
+		<result property="mml_update_date" column="mml_update_date"/>
+		<result property="mml_like" column="mml_like"/>
+		<result property="mml_title" column="mml_title"/>
+		<result property="mml_content" column="mml_content"/>
+		<result property="mml_poster" column="mml_poster"/>
+		<result property="mml_warn_count" column="mml_warn_count"/>
+	</resultMap>
+	
+	
+	<select id="getMmlList" parameterType="int" resultMap="getMmlMap">
+		select * from mml_content order by mml_num desc
+	</select>
+	
+	<select id="getMemberName" parameterType="String" resultType="String">
+		select M_NAME from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<select id="getMemberNickname" parameterType="String" resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<select id="getMmlNum" parameterType="int" resultType="int">
+		select mml_num from mml_content where id=#{id}
+	</select>
+	
+	<select id="getMmlNickname" parameterType="String" resultType="String">
+		select m_nickname from member where id=(select id from mml_content where mml_num=#{mml_num});
+	</select>
+	
+	
+
+</mapper>

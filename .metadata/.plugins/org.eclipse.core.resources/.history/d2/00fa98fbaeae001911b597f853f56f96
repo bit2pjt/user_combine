@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+* @Class Name : MyPageMapper.xml
+* @Description : 1:1문의 페이지에서 필요한 데이터들을 가져오기 위한 mapper
+* @Modification Information
+* @
+* @  수정일     	  수정자                 수정내용
+* @ ===========  ========   ============================
+* @ 2019.07.18     한유진      최초생성
+* @author bit 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by Bit All right reserved.
+*/ 
+-->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mypage.MyPageDAO">
+
+	<resultMap type="com.spring.mypage.OneVO" id="merberQnaMap">
+		<result property="qna_no" column="qna_no"/>
+		<result property="id" column="id"/>
+		<result property="qna_category" column="qna_category"/>
+		<result property="qna_title" column="qna_title"/>
+		<result property="qna_content" column="qna_content"/>
+		<result property="qna_date" column="qna_date"/>
+		<result property="qna_update_date" column="qna_update_date"/>
+		<result property="qna_answer" column="qna_answer"/>
+	</resultMap>
+		
+	<resultMap type="com.spring.member.MemberVO" id="getMemberMap">
+		<result property="id" column="id"/>
+		<result property="m_nickname" column="m_nickname"/>
+		<result property="m_image" column="m_image"/>
+		<result property="m_email" column="m_email"/>
+		<result property="m_eagree" column="m_eagree"/>
+		<result property="m_sagree" column="m_sagree"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_phone" column="m_phone"/>
+		<result property="m_cert" column="m_cert"/>
+		<result property="m_password" column="m_password"/>
+		<result property="m_regdate" column="m_regdate"/>
+		<result property="m_update_date" column="m_update_date"/>
+		<result property="m_deleteyn" column="m_deleteyn"/>
+		<result property="m_following" column="m_following"/>
+		<result property="m_follower" column="m_follower"/>
+		<result property="m_level" column="m_level"/>
+		<result property="m_favorite" column="m_favorite"/>
+		<result property="m_blacklist" column="m_blacklist"/>
+	</resultMap>
+	
+	<select id="getMemberName" parameterType="String" resultType="String">
+		select M_NAME from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<select id="getMemberNickname" parameterType="String" resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<select id="getQnaList" parameterType="int" resultMap="merberQnaMap">
+		select * from board_qna where ID=#{id} order by QNA_NO desc
+	</select>
+	
+	<select id="getMember" parameterType="int" resultMap="getMemberMap">
+		select * from member where id=#{id}
+	</select>
+	
+	
+	<update id="updateMember" parameterType="com.spring.member.MemberVO">
+		update member set m_phone=#{m_phone} where id=#{id}
+	</update>
+	
+	<update id="updatePw" parameterType="com.spring.member.MemberVO">
+		update member set m_password=#{m_password} where id=#{id}
+	</update>
+	
+	<update id="updateNick" parameterType="com.spring.member.MemberVO">
+		update member set m_nickname=#{m_nickname} where id=#{id}
+	</update>
+	
+	<select id="checkNick" parameterType="String" resultType="int">
+		select count(*) from member where m_nickname = #{m_nickname}
+	</select>
+	
+	<insert id="insertQna" parameterType="com.spring.mypage.OneVO">
+		insert into board_qna values (board_qna_no_seq.nextval, #{id}, #{qna_category, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}
+		, #{qna_content, jdbcType=VARCHAR}, sysdate, sysdate, 'N')
+	</insert>
+	
+	<select id="getQnaDetail" parameterType="int" resultMap="merberQnaMap">
+		select * from board_qna where QNA_NO=#{qna_no}
+	</select>
+	
+	<update id="updateQna" parameterType="com.spring.mypage.OneVO">
+		UPDATE board_qna SET QNA_CATEGORY=#{qna_category, jdbcType=VARCHAR}, QNA_TITLE=#{qna_title, jdbcType=VARCHAR}, QNA_CONTENT=#{qna_content, jdbcType=VARCHAR}, QNA_UPDATE_DATE=sysdate WHERE QNA_NO=#{qna_no}
+	</update>
+	
+	
+</mapper>

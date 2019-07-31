@@ -1,0 +1,21 @@
+package com.spring.mml;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class Mml_PageServiceImpl implements Mml_PageService {
+	private static final int displayRow = 4;
+	
+	private static final int pageCount = 3;
+	
+	@Autowired
+	private Mml_PageMapper mml_PageMapper;
+	
+	@Override
+	public Mml_PageResult paging(int page) throws Exception{
+		
+		int rowCount = mml_PageMapper.selectRowCount();
+		
+		Mml_PageDTO pageDTO = this.
+	}
+
+}

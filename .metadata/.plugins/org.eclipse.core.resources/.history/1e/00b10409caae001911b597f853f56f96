@@ -1,0 +1,8 @@
+package com.spring.mml;
+
+import java.util.List;
+
+public interface MmlDAO {
+
+	public List<Mml_ContentVO> getMmlList(int id);
+}
