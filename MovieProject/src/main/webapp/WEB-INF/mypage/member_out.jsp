@@ -47,21 +47,7 @@ var delete_confirm = function ()
 }
 </script>
 
-<div class="hero user-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li> <span class="ion-ios-arrow-right"></span>Rated movies</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<div style="height:5%;"></div>
 <div class="buster-light">
 	<div class="page-single">
 		<div class="container">

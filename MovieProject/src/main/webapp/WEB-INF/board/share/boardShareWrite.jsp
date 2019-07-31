@@ -80,7 +80,6 @@
          //제목과 내용의 앞뒤 공백 제거
          var bs_title = bsform.bs_title.value.trim();
          var bs_content = bsform.bs_content.value.trim();
-
          if (bs_title.length == 0) {
             alert("제목을 입력해주세요.");
             bsform.bs_title.focus();
@@ -91,7 +90,6 @@
             bsform.bf_content.focus();
             return false;
          }
-
          return true;
       }
       function register_back() {
@@ -99,9 +97,7 @@
          if (confirm(msg) != 0) {
             location.href = "boardShareList";
          }
-
       }
-
       function submitCheck() {
          if (confirm("등록하시겠습니까?") == true) { //확인
             document.bsform.submit();
@@ -272,7 +268,6 @@
       $(document)
             .ready(
                   function() {
-
                      $('#summernote').summernote({
                         placeholder : '본문 내용을 입력해 주세요',
                         tabsize : 2,

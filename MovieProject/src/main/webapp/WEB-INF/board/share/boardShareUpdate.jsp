@@ -81,7 +81,6 @@
          //제목과 내용의 앞뒤 공백 제거
          var bs_title = bsform.bs_title.value.trim();
          var bs_content = bsform.bs_content.value.trim();
-
          if (bs_title.length == 0) {
             alert("제목을 입력해주세요.");
             bsform.bs_title.focus();
@@ -92,7 +91,6 @@
             bsform.bf_content.focus();
             return false;
          }
-
          return true;
       }
       function register_back() {
@@ -100,7 +98,6 @@
          if (confirm(msg) != 0) {
             location.href = "boardShareList";
          }
-
       }
       function submitCheck() {
          if (confirm("수정하시겠습니까?") == true) { //확인
@@ -318,7 +315,6 @@
                      });
          $('.post-title').keyup();
       });
-
       $(function() {
          // summernote editor
          $('#summernote').summernote({

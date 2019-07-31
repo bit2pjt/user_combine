@@ -1,4 +1,3 @@
-
 package com.spring.mml;
 
 import java.util.Date;
@@ -11,4 +10,3 @@ public class Mml_WarningVO {
 	private int id;				//신고자
 	private Date mml_date;		//신고일자
 }
-

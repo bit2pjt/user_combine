@@ -38,14 +38,11 @@
   
   
 <script type="text/javascript">
-
-
 	function pw(form) {
 		var pass1 = form.pw_confirm.value;
 		var pass2 = form.input_pw.value;
 		var newpw1 = form.m_password.value;
 		var newpw2 = form.confirm_pw.value;
-
 		if (pass1 != pass2) {
 			alert("비밀번호가 일치하지 않습니다.");
 			pwform.input_pw.value = "";
@@ -60,7 +57,6 @@
 		} else {
 			alert("비밀번호가 수정되었습니다.");
 		}
-
 	}
 	
 	function nick(form){
@@ -81,22 +77,7 @@
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
 
-<div class="hero user-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li><span class="ion-ios-arrow-right"></span>Rated movies</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
+<div style="height:5%;"></div>
 <div class="buster-light">
 	<div class="page-single">
 		<div class="container">
@@ -299,4 +280,3 @@
 
 <!-- 7. footer2.jsp : script -->
 <%@ include file="../footer2.jsp"%> 
-
