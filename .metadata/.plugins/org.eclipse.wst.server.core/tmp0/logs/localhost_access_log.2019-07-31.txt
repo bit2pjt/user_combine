@@ -67,3 +67,12 @@
 0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:49:01 +0900] "GET /movie/mmlFollowList.do HTTP/1.1" 200 59587
 0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:49:01 +0900] "GET /movie/resources/images/sp_image/dog.jfif HTTP/1.1" 304 -
 0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:49:02 +0900] "GET /movie/mmlMemberList.do HTTP/1.1" 200 54628
+127.0.0.1 - - [31/Jul/2019:15:58:51 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:58:53 +0900] "GET /movie/ HTTP/1.1" 200 67129
+0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:58:54 +0900] "GET /movie/resources/css/ajax-loader.gif HTTP/1.1" 404 1121
+0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:58:59 +0900] "GET /movie/mmlList.do HTTP/1.1" 200 66751
+0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:59:06 +0900] "GET /movie/mmlGet.do HTTP/1.1" 200 56497
+0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:59:06 +0900] "GET /movie/resources/images/sp_image/%ED%83%80%EC%9D%B4%ED%83%80%EB%8B%89.jpeg HTTP/1.1" 404 1163
+0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:59:06 +0900] "GET /movie/resources/images/sp_image/%EB%85%B8%ED%8A%B8%EB%B6%81.jpg HTTP/1.1" 404 1153
+0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:59:13 +0900] "GET /movie/mmlFollowList.do HTTP/1.1" 200 59587
+0:0:0:0:0:0:0:1 - - [31/Jul/2019:15:59:16 +0900] "GET /movie/mmlMemberList.do HTTP/1.1" 200 54628

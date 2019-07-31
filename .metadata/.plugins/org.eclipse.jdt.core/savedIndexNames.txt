@@ -49,4 +49,3 @@ INDEX VERSION 1.131+C:\Users\mung\Desktop\git\fork_user_combine\user_combine\.me
 398783802.index
 1303184529.index
 2202167482.index
-526009883.index
