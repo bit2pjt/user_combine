@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\Users\mung\Desktop\git\fork_user_combine\user_combine\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-295524663.index
-488171567.index
-1848732564.index
-2396064812.index
-4228528935.index
-2126068854.index

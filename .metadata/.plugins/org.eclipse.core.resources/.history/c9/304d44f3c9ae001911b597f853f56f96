@@ -1,8 +1,0 @@
-package com.spring.mml;
-
-import java.util.List;
-
-public interface MmlService {
-
-	public List<Mml_ContentVO> getMmlList(int id);
-}
