@@ -94,4 +94,39 @@
 		update bs_reply set bsr_alert = bsr_alert + 1 where bsr_rno = #{rno}
 	</update>
 	
+	<select id="getMemberNickname" parameterType="String"
+		resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email,
+		jdbcType=VARCHAR}
+	</select>
+	
+	<!-- select : 멤버  정보 가져오기-->
+	<select id="getMember" parameterType="int" resultMap="MemberResultMap">
+		select * from member where id=#{id}
+	</select>
+	
+	<!-- select : 멤버  아이디 가져오기-->
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<!-- insert : boardShare -->
+	<insert id="insertBoardShare" parameterType="com.spring.boardShare.BoardShareVO">
+	INSERT INTO board_share VALUES (seq_bs_bno.nextval, #{id}, #{bs_category, jdbcType=VARCHAR},
+	#{bs_content, jdbcType=VARCHAR}, #{bs_title, jdbcType=VARCHAR}, sysdate, sysdate,
+	0, 0, 'N')
+	</insert>
+	
+	<!-- select : boardShare -->
+	<select id="selectBoardShare" parameterType="int" resultMap="BoardShareMap">
+	SELECT * FROM board_share WHERE BS_BNO=#{bs_bno}
+	</select>
+	
+	<!-- update : boardShare -->
+	<update id="updateBoardShare" parameterType="com.spring.boardShare.BoardShareVO">
+		UPDATE board_share SET BS_CATEGORY=#{bs_category, jdbcType=VARCHAR}, 
+		BS_TITLE=#{bs_title, jdbcType=VARCHAR}, BS_CONTENT=#{bs_content, jdbcType=VARCHAR}, 
+		BS_UPDATE_DATE=sysdate WHERE bs_bno=#{bs_bno}
+	</update>
+	
 </mapper>

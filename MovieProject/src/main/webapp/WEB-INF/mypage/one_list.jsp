@@ -22,22 +22,8 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <%@ include file="../header2.jsp"%>
 
-<div class="hero user-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li><span class="ion-ios-arrow-right"></span>Rated movies</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="buster-light">
+<div style="height:5%;"></div>
+<div class="buster-light" style="heignt:100%;">
 	<div class="page-single">
 		<div class="container">
 			<div class="row ipad-width2">

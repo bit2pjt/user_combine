@@ -16,7 +16,7 @@
 
  	if( session == "") {
  		alert("로그인 하셔야 이용하실수 있습니다.");
- 		location.href="index.do";
+ 		location.href="index";
  	}
  	*/
  	$(function() {

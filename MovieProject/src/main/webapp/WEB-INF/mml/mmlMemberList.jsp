@@ -23,7 +23,8 @@
 <%@ include file="../header1.jsp"%>
 
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
-
+<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
+<script src="https://kit.fontawesome.com/bb8498b585.js"></script>
 
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
@@ -70,7 +71,7 @@
 
 				<div class="row1">
 	<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -86,7 +87,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -102,7 +103,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -118,7 +119,7 @@
 								  </div>
 					</div>
 					<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -134,7 +135,7 @@
 								  </div>
 					</div>
 					<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>

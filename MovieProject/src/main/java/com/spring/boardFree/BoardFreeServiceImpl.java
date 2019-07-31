@@ -334,5 +334,53 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		return boardFreeDAO.listAll(); 
 	}
+	
+	@Override
+	public String getMemberNickname(String m_email) {
+		BoardFreeDAO BoardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		String m_nickname = BoardFreeDAO.getMemberNickname(m_email);
+		
+		return m_nickname;
+	}
+
+	@Override
+	public MemberVO getMember(int id) {
+		BoardFreeDAO BoardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		MemberVO member = BoardFreeDAO.getMember(id);
+		
+		return member;
+	}
+
+	@Override
+	public int insertBoardFree(BoardFreeVO freeVO) {
+		BoardFreeDAO BoardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		int result = BoardFreeDAO.insertBoardFree(freeVO);
+		
+		return result;
+	}
+
+	@Override
+	public int updateBoardFree(BoardFreeVO freeVO) {
+		BoardFreeDAO BoardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		int result = BoardFreeDAO.updateBoardFree(freeVO);
+		
+		return result;
+	}
+
+	@Override
+	public BoardFreeVO selectBoardFree(int bf_bno) {
+		BoardFreeDAO BoardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		BoardFreeVO freeVO = BoardFreeDAO.selectBoardFree(bf_bno);
+		
+		return freeVO;
+	}
+
+
+	@Override
+	public int getMemberId(String m_email) {
+		BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		int id = boardDAO.getMemberId(m_email);
+		return id;
+	}
 
 }

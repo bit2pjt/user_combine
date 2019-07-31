@@ -78,7 +78,7 @@
     -->
     <select id="listPaging" resultMap="ReplyResultMap">
 	  <![CDATA[
-		 select 
+		   select rn,
 		 	bfr_rno
             , bfr_bno
             , id
@@ -90,10 +90,22 @@
             , bfr_content
             , bfr_block
 		 from 
+            (select
+            rownum rn
+            , bfr_rno
+            , bfr_bno
+            , id
+            , bfr_regdate
+            , bfr_like
+            , bfr_dislike
+            , bfr_update
+            , bfr_alert
+            , bfr_content
+            , bfr_block
+            from
 		   (
-		    select /*+INDEX(bf_reply PK_BF_REPLY)*/
-		     rownum rn
-		    ,bfr_rno
+		    select
+		    bfr_rno
             , bfr_bno
             , id
             , bfr_regdate
@@ -105,9 +117,9 @@
             , bfr_block
 		    from bf_reply
 		    where bfr_bno =  #{bfr_bno}
-		    and bfr_rno > 0
-		    and rownum <= #{page} * #{perPageNum}
-		   ) where rn > (#{page} -1) * #{perPageNum}
+		    and bfr_rno > 0	    
+            order by bfr_rno desc
+		   )) where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
 		]]>
 	</select>
     

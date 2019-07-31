@@ -18,7 +18,7 @@
 	</resultMap>
 	
 	<resultMap type="com.spring.boardFree.WarnVO" id="WarnMap">
-		<result property="bf_bno" column="bf_bno"/>
+		<result property="bs_bno" column="bs_bno"/>
 		<result property="id" column="id"/>
 		<result property="bf_date" column="bf_date"/>
 	</resultMap>
@@ -65,5 +65,68 @@
 		from member
 		where m_email = #{email, jdbcType=VARCHAR}
 	</select>
+	
+	<select id="warn_check" parameterType="int" resultMap="WarnMap">
+		select *
+		from bs_warning
+		where id = #{id}
+	</select>
+	
+	<update id="WarnCount" parameterType="int">
+		update board_share set bs_warn_counter = bs_warn_counter + 1 where bs_bno = #{bno}
+	</update>
+	
+	<insert id="insertWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into bs_warning values(#{id} ,#{bs_bno},sysdate)
+	</insert>
+	
+	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into sr_warning values(#{id}, #{bsr_rno}, sysdate)
+	</insert>
+	
+	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+		select *
+		from sr_warning
+		where bsr_rno = #{bsr_rno} and id = #{id}
+	</select>
+	
+	<update id="ReplyWarnCount" parameterType="int">
+		update bs_reply set bsr_alert = bsr_alert + 1 where bsr_rno = #{rno}
+	</update>
+	
+	<select id="getMemberNickname" parameterType="String"
+		resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email,
+		jdbcType=VARCHAR}
+	</select>
+	
+	<!-- select : 멤버  정보 가져오기-->
+	<select id="getMember" parameterType="int" resultMap="MemberResultMap">
+		select * from member where id=#{id}
+	</select>
+	
+	<!-- select : 멤버  아이디 가져오기-->
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<!-- insert : boardShare -->
+	<insert id="insertBoardShare" parameterType="com.spring.boardShare.BoardShareVO">
+	INSERT INTO board_share VALUES (seq_bs_bno.nextval, #{id}, #{bs_category, jdbcType=VARCHAR},
+	#{bs_content, jdbcType=VARCHAR}, #{bs_title, jdbcType=VARCHAR}, sysdate, sysdate,
+	0, 0, 'N')
+	</insert>
+	
+	<!-- select : boardShare -->
+	<select id="selectBoardShare" parameterType="int" resultMap="BoardShareMap">
+	SELECT * FROM board_share WHERE BS_BNO=#{bs_bno}
+	</select>
+	
+	<!-- update : boardShare -->
+	<update id="updateBoardShare" parameterType="com.spring.boardShare.BoardShareVO">
+		UPDATE board_share SET BS_CATEGORY=#{bs_category, jdbcType=VARCHAR}, 
+		BS_TITLE=#{bs_title, jdbcType=VARCHAR}, BS_CONTENT=#{bs_content, jdbcType=VARCHAR}, 
+		BS_UPDATE_DATE=sysdate WHERE bs_bno=#{bs_bno}
+	</update>
 	
 </mapper>

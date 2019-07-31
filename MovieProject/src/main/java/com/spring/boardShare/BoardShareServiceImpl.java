@@ -104,5 +104,51 @@ public class BoardShareServiceImpl implements BoardShareService {
 		boardShareDAO.ReplyWarnCount(rno);
 	}
 	
+	@Override
+	public int insertBoardShare(BoardShareVO shareVO) {
+		BoardShareDAO BoardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		int result = BoardShareDAO.insertBoardShare(shareVO);
+		
+		return result;
+	}
+
+	@Override
+	public int updateBoardShare(BoardShareVO shareVO) {
+		BoardShareDAO BoardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		int result = BoardShareDAO.updateBoardShare(shareVO);
+		
+		return result;
+	}
+
+	@Override
+	public BoardShareVO selectBoardShare(int bs_bno) {
+		BoardShareDAO BoardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		BoardShareVO shareVO = BoardShareDAO.selectBoardShare(bs_bno);
+		
+		return shareVO;
+	}
+
+	@Override
+	public int getMemberId(String m_email) {
+		BoardShareDAO BoardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		int id = BoardShareDAO.getMemberId(m_email);
+		return id;
+	}
+	
+	@Override
+	public String getMemberNickname(String m_email) {
+		BoardShareDAO BoardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		String m_nickname = BoardShareDAO.getMemberNickname(m_email);
+		
+		return m_nickname;
+	}
+
+	@Override
+	public MemberVO getMember(int id) {
+		BoardShareDAO BoardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		MemberVO member = BoardShareDAO.getMember(id);
+		
+		return member;
+	}
 	
 }

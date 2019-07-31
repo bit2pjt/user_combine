@@ -28,6 +28,9 @@
 
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 
+<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
+<script src="https://kit.fontawesome.com/bb8498b585.js"></script>
+
 
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
@@ -52,7 +55,7 @@
 					</div>
 					<div style="flex: 2">
 						<button type="button" class="btn-check" style="float:right"
-							OnClick="location.href ='mmlWrite.do'">나영리 작성</button>
+							OnClick="location.href ='mmlWrite'">나영리 작성</button>
 					</div>
 				</div>
 				<br>
@@ -82,7 +85,39 @@
 
 				<div class="row1">
 	<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
+									<div class="card-info">
+										<div class="card-ho"></div>
+											<div class="ho-info" style="float:left;">									
+												<h1 style="text-align: left;"><a href="/movie/mmlGet?mml_num=5">mml_title</a></h1>
+												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
+												</div><br>
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
+									
+									</div>
+									
+									</div>
+								  </div>
+					</div>
+						<div class="sp_col-md-41">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
+									<div class="card-info">
+										<div class="card-ho"></div>
+											<div class="ho-info" style="float:left;">									
+												<h1 style="text-align: left;"><a href="/movie/mmlGet?mml_num=6">mml_title</a></h1>
+												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
+												</div><br>
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
+									
+									</div>
+									
+									</div>
+								  </div>
+					</div>
+						<div class="sp_col-md-41">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -98,7 +133,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -114,7 +149,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -130,7 +165,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -146,7 +181,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -162,7 +197,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -178,7 +213,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -194,7 +229,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -210,7 +245,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -226,7 +261,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -242,7 +277,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -258,7 +293,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -274,7 +309,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -290,39 +325,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
-									<div class="card-info">
-										<div class="card-ho"></div>
-											<div class="ho-info" style="float:left;">									
-												<h1 style="text-align: left;">mml_title</h1>
-												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
-												</div><br>
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
-									
-									</div>
-									
-									</div>
-								  </div>
-					</div>
-						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
-									<div class="card-info">
-										<div class="card-ho"></div>
-											<div class="ho-info" style="float:left;">									
-												<h1 style="text-align: left;">mml_title</h1>
-												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">ninkname</h3>
-												</div><br>
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;15&nbsp;<i class="far fa-eye"></i>&nbsp;238&nbsp;
-									
-									</div>
-									
-									</div>
-								  </div>
-					</div>
-						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>

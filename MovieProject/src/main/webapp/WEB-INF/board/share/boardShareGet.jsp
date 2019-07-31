@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -350,7 +349,6 @@
         var replyText = reply.find(".replyText").text(); //댓글의 내용
         $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
-
     });
     
     $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
@@ -385,7 +383,6 @@
 	});
 	
     $(".modalDelBtn").on("click", function () {
-
         var replyRno = $("#replyNo").val();
         
         $.ajax({
@@ -414,16 +411,12 @@
                 }
             }
         });
-
     });
-
 	
     $(".modalModBtn").on("click", function () {
-
         var reply = $(this).parent().parent();
         var bsr_rno = reply.find("#replyNo").val();
         var bsr_content = reply.find("#replyText").val();
-
         $.ajax({
             type : "put",
             url : "/movie/replies/bs/" + bsr_rno,
@@ -446,7 +439,6 @@
                 }
             }
         });
-
     });
     
     
@@ -490,32 +482,24 @@
            
         });
     }
-
     function printPageNumbers(pageMaker) {
-
         var str = "";
-
         if (pageMaker.prev) {
             str += "<li><a href='"+(pageMaker.startPage-1)+"'>이전</a></li>";
         }
-
         for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
             var strCalss = pageMaker.criteria.page == i ? 'class=active' : '';
             str += "<li "+strCalss+"><a href='"+i+"'>"+i+"</a></li>";
         }
-
         if (pageMaker.next) {
             str += "<li><a href='"+(pageMaker.endPage + 1)+"'>다음</a></li>";
         }
-
         $(".pagination-sm").html(str);
     }
-
     $(".pagination").on("click", "li a", function (event) {
         event.preventDefault();
         replyPageNum = $(this).attr("href");
         getRepliesPaging(replyPageNum);
-
     });
 	
 </script>
@@ -526,4 +510,3 @@
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
-

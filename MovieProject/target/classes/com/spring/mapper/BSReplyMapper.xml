@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.boardShare.BSReplyDAO">
+	
+	 <resultMap type="com.spring.boardShare.BSReplyVO" id="ReplyResultMap">
+        <result property="bsr_rno" column="bsr_rno"/>
+        <result property="bs_bno" column="bs_bno"/>
+        <result property="id" column="id"/>
+        <result property="bsr_regdate" column="bsr_regdate"/>
+        <result property="bsr_update" column="bsr_update"/>
+        <result property="bsr_alert" column="bsr_alert"/>
+        <result property="bsr_content" column="bsr_content"/>
+        <result property="bsr_block" column="bsr_block"/>
+    </resultMap>
+	
+	<select id="list" resultMap="ReplyResultMap">
+        SELECT *
+        FROM bs_reply
+        WHERE bs_bno = #{boardNum}
+        ORDER BY bsr_rno DESC
+    </select>
+
+    <insert id="create">
+	    <selectKey resultType="int" keyProperty="bsr_rno" order="BEFORE">
+	        SELECT SEQ_BS_RNO.NEXTVAL FROM dual        
+	    </selectKey>
+        INSERT INTO bs_reply 
+        VALUES (
+        	#{bsr_rno}
+            , #{bs_bno}
+            , #{id}
+            , sysdate
+            , sysdate
+            , 0
+            , #{bsr_content}
+            , 'N'
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE bs_reply
+        SET bsr_content = #{bsr_content}, bsr_update = sysdate
+        WHERE bsr_rno = #{bsr_rno}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM bs_reply
+        WHERE bsr_rno = #{replyNum}
+    </delete>
+
+
+	<!--  
+    <select id="listPaging" resultMap="ReplyResultMap">
+        SELECT
+            bfr_rno
+            , bfr_bno
+            , id
+            , bfr_regdate
+            , bfr_like
+            , bfr_dislike
+            , bfr_update
+            , bfr_alert
+            , bfr_content
+            , bfr_block
+        FROM bf_reply
+        INNER JOIN member ON id = id
+        WHERE article_no = #{articleNo}
+        ORDER BY reply_no DESC
+        LIMIT #{criteria.pageStart}, #{criteria.perPageNum}
+    </select>
+    -->
+    <select id="listPaging" resultMap="ReplyResultMap">
+	  <![CDATA[
+		 select rn,
+		 	bsr_rno
+            , bs_bno
+            , id
+            , bsr_regdate
+            , bsr_update
+            , bsr_alert
+            , bsr_content
+            , bsr_block
+		 from 
+            (select
+            rownum rn
+            , bsr_rno
+            , bs_bno
+            , id
+            , bsr_regdate
+            , bsr_update
+            , bsr_alert
+            , bsr_content
+            , bsr_block
+            from
+		   (
+		    select
+		   bsr_rno
+            , bs_bno
+            , id
+            , bsr_regdate
+            , bsr_update
+            , bsr_alert
+            , bsr_content
+            , bsr_block
+		    from bs_reply
+		    where bs_bno =  #{bs_bno}
+		    and bsr_rno > 0	    
+            order by bsr_rno desc
+		   )) where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+		]]>
+	</select>
+    
+
+    <select id="countReplies" resultType="int">
+        SELECT
+            COUNT(bs_bno)
+        FROM bs_reply
+        WHERE bs_bno = #{boardNum}
+    </select>
+
+    <select id="getArticleNo" resultType="int">
+        SELECT
+            bs_bno
+        FROM bs_reply
+        WHERE bsr_rno = #{replyNo}
+    </select>
+
+   
+</mapper>

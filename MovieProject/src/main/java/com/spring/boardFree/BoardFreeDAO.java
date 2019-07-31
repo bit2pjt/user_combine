@@ -5,9 +5,19 @@ import java.util.List;
 import com.spring.member.MemberVO;
 
 public interface BoardFreeDAO {
-	 List<BoardFreeVO> listAll();
-	 
-	 
+	List<BoardFreeVO> listAll();
+	
+	String getMemberNickname(String m_email);	//멤버 닉네임 가져오기
+	
+	MemberVO getMember(int id);
+	int getMemberId(String m_email);		//멤버 아이디 가져오기
+	
+	// 자유게시판 등록 / 수정
+	int insertBoardFree(BoardFreeVO freeVO);	 // 자유게시판 등록
+	
+	int updateBoardFree(BoardFreeVO freeVO);	// 자유게시판 수정
+	
+	BoardFreeVO selectBoardFree(int bf_bno);	// 자유게시판 상세정보 가져오기
 	
 	BoardFreeVO getContent(int page);
 	

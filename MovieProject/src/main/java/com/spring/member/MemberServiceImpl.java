@@ -94,6 +94,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void memberJoin(MemberVO vo) {
 		vo.setM_image("");
+		vo.setM_image("defaultprofile.PNG");
 		vo.setM_cert("N");
 		vo.setM_deleteyn("N");
 		vo.setM_following(0);
@@ -126,7 +127,6 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public boolean nickOverlapChk(MemberVO vo) {
-		System.out.println("11111111111111111111111111: " + memberDAOglobal.nickOverlapChk(vo.getM_nickname()));
 		if (memberDAOglobal.nickOverlapChk(vo.getM_nickname()) == 0) {
 			System.out.println("일치하는 닉네임 = 사용 가능");
 			return true;
@@ -137,9 +137,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	
-	
-
-
 	@Override
 	public int updatePw(MemberVO vo) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
@@ -147,5 +144,10 @@ public class MemberServiceImpl implements MemberService {
 		return num;
 	}
 
+	@Override
+	public int getId(String m_email, String m_password) {
+		
+		return memberDAOglobal.getId(m_email, m_password);
+	}
 
 }

@@ -171,5 +171,41 @@
 		from bf_reply
 		where bfr_rno = #{bfr_rno}
 	</select>
+	
+	<select id="getMemberNickname" parameterType="String"
+		resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email,
+		jdbcType=VARCHAR}
+	</select>
+	
+	<!-- select : 멤버  정보 가져오기-->
+	<select id="getMember" parameterType="int" resultMap="MemberResultMap">
+		select * from member where id=#{id}
+	</select>
+	
+	<!-- select : 멤버  아이디 가져오기-->
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<!-- insert : boardFree -->
+	<insert id="insertBoardFree" parameterType="com.spring.boardFree.BoardFreeVO">
+		INSERT INTO board_free VALUES (seq_bf_bno.nextval, #{id}, #{bf_category, jdbcType=VARCHAR}, 
+		#{bf_title, jdbcType=VARCHAR}, sysdate, sysdate, #{bf_source, jdbcType=VARCHAR}, #{bf_content, jdbcType=VARCHAR},
+		0, 0, 'N', 0, 0)
+	</insert>
+	
+	<!-- update : boardFree -->
+	<update id="updateBoardFree" parameterType="com.spring.boardFree.BoardFreeVO">
+		UPDATE board_free SET BF_CATEGORY=#{bf_category, jdbcType=VARCHAR}, 
+		BF_TITLE=#{bf_title, jdbcType=VARCHAR}, BF_SOURCE=#{bf_source, jdbcType=VARCHAR},
+		BF_CONTENT=#{bf_content, jdbcType=VARCHAR}, 
+		BF_UPDATE_DATE=sysdate WHERE BF_BNO=#{bf_bno}
+	</update>
+	
+	<!-- select : boardFree -->
+	<select id="selectBoardFree" parameterType="int" resultMap="BoardFreeMap">
+	SELECT * FROM board_free WHERE BF_BNO=#{bf_bno}
+	</select>
 
 </mapper>

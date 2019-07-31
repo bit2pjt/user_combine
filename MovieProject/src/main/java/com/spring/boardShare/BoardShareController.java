@@ -1,6 +1,7 @@
 package com.spring.boardShare;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,4 +122,76 @@ public class BoardShareController {
 		
 		return msg;
 	}
+	
+	// 나눔게시판 글쓰기
+		@RequestMapping(value = "/boardShareWrite", method = RequestMethod.GET)
+		public String shareWrite(HttpSession session, HttpServletRequest request) {
+			// 사용자 정보
+			String m_email = (String) session.getAttribute("m_email");
+			String m_nickname = boardShareService.getMemberNickname(m_email); // System.out.println("=============MyPageController.java=====================
+																			// nickname : " + m_nickname);
+			request.setAttribute("m_nickname", m_nickname);
+
+			return "board/share/boardShareWrite";
+		}
+
+		// 나눔게시판 글쓰기 - 새글 등록 액션
+		@RequestMapping(value = "/boardShareWriteAction", method = RequestMethod.POST)
+		public String boardShareWriteAction(HttpSession session, HttpServletRequest request, HttpServletResponse response,
+				BoardShareVO shareVO) {
+
+			shareVO.setId(boardShareService.getMemberId((String) session.getAttribute("m_email")));
+
+			// bs_title, bs_content의 앞뒤 공백 제거
+			shareVO.setBs_title(shareVO.getBs_title().trim());
+			shareVO.setBs_content(shareVO.getBs_content().trim());
+
+			try {
+				int result = boardShareService.insertBoardShare(shareVO);
+				if (result == 0) {
+					return "redirect:/boardShareWrite";
+				}
+			} catch (Exception e) {
+				System.out.println("ERROR : boardShareWriteAction - " + e.getMessage());
+			}
+			return "redirect:/boardShareList";
+
+		}
+
+		// 나눔게시판 글수정하기
+		@RequestMapping(value = "/boardShareUpdate", method = RequestMethod.GET)
+		public String boardShareUpdate(HttpSession session, HttpServletRequest request) {
+
+			String m_email = (String) session.getAttribute("m_email");
+
+			// 사용자의 id를 가져옴
+			int id = boardShareService.getMemberId(m_email);
+
+			int bs_bno = Integer.parseInt(request.getParameter("bs_bno"));
+			BoardShareVO selectBoardShare = boardShareService.selectBoardShare(bs_bno);
+
+			request.setAttribute("selectBoardShare", selectBoardShare);
+
+			return "board/share/boardShareUpdate";
+
+		}
+
+		// 나눔게시판 글수정하기 - 수정 액션
+		@RequestMapping(value = "/boardShareUpdateAction", method = RequestMethod.POST)
+		public String boardShareUpdateAction(HttpSession session, HttpServletRequest request, BoardShareVO shareVO) {
+
+			// bs_title, bs_content의 앞뒤 공백 제거
+			shareVO.setBs_title(shareVO.getBs_title().trim());
+			shareVO.setBs_content(shareVO.getBs_content().trim());
+
+			try {
+				int result = boardShareService.updateBoardShare(shareVO);
+				if (result == 0) {
+					return "redirect:/boardShareUpdate?bs_bno=" + shareVO.getBs_bno();
+				}
+			} catch (Exception e) {
+				System.out.println("ERROR : boardShareUpdateAction - " + e.getMessage());
+			}
+			return "redirect:/boardShareGet?bs_bno=" + shareVO.getBs_bno();
+		}
 }

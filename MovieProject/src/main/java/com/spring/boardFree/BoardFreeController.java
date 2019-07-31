@@ -2,13 +2,13 @@
 package com.spring.boardFree;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.member.MemberService;
 import com.spring.member.MemberVO;
@@ -45,7 +45,6 @@ public class BoardFreeController {
 	 */
 	@RequestMapping(value = "/boardFreeList", method=RequestMethod.GET)
 	public String getListPage(Model model) {
-		model.addAttribute("boardFree", boardFreeService.listAll());
 		
 		return "board/free/boardFreeList";
 	}
@@ -79,8 +78,15 @@ public class BoardFreeController {
 	  * 자유게시판 게시글 등록화면으로 이동
 	  * @return "boardFreeWrite"
 	 */
-	@GetMapping("/boardFreeWrite")
-	public String getWritePage() {
+	@RequestMapping(value = "/boardFreeWrite", method = RequestMethod.GET)
+	public String freeWrite(HttpSession session, HttpServletRequest request) {
+
+		// 사용자 정보
+		String m_email = (String) session.getAttribute("m_email");
+		String m_nickname = boardFreeService.getMemberNickname(m_email); // System.out.println("=============MyPageController.java=====================
+																		// nickname : " + m_nickname);
+		request.setAttribute("m_nickname", m_nickname);
+
 		return "board/free/boardFreeWrite";
 	}
 	
@@ -88,8 +94,26 @@ public class BoardFreeController {
 	  * 자유게시판 게시글 수정화면으로 이동
 	  * @return "boardFreeList"
 	 */
-	@GetMapping("/boardFreeUpdate")
-	public String getUpdatePage() {
+	@RequestMapping(value = "/boardFreeUpdate", method = RequestMethod.GET)
+	public String boardFreeUpdate(HttpSession session, HttpServletRequest request) {
+
+		String m_email = (String) session.getAttribute("m_email");
+
+		// 사용자의 id를 가져옴
+		int id = boardFreeService.getMemberId(m_email);
+
+		// bf_bno=?의 작성자와 일치하는지 확인 후 일치하면 수정페이지로, 불일치하면 리스트로
+		int bf_bno = Integer.parseInt(request.getParameter("bf_bno"));
+		
+		BoardFreeVO selectBoardFree = boardFreeService.selectBoardFree(bf_bno);
+
+
+		if (id != selectBoardFree.getId()) {
+			return "redirect:/boardFreeList";
+		}
+		
+		request.setAttribute("selectBoardFree", selectBoardFree);
+
 		return "board/free/boardFreeUpdate";
 	}
 	
@@ -99,7 +123,6 @@ public class BoardFreeController {
 	 */
 	@RequestMapping(value= "/boardFreeDelete", method=RequestMethod.GET)
 	public String boardDelete(@RequestParam("bno") int bno, HttpSession session, Model model) {
-		System.out.println("1111111111");
 		String sessionyn = (String)session.getAttribute("m_email");
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
 		
@@ -210,6 +233,50 @@ public class BoardFreeController {
 		
 		return msg;
 	}
+	
+	// 자유게시판 글쓰기 - 새글 등록 액션
+		@RequestMapping(value = "/boardFreeWriteAction", method = RequestMethod.POST)
+		public String boardFreeWriteAction(HttpSession session, HttpServletRequest request, HttpServletResponse response,
+				BoardFreeVO freeVO) {
+
+			freeVO.setId(boardFreeService.getMemberId((String) session.getAttribute("m_email")));
+
+			// bf_title, bf_source bf_content의 앞뒤 공백 제거
+			freeVO.setBf_title(freeVO.getBf_title().trim());
+			freeVO.setBf_source(freeVO.getBf_source().trim());
+			freeVO.setBf_content(freeVO.getBf_content().trim());
+
+			try {
+				int result = boardFreeService.insertBoardFree(freeVO);
+				if (result == 0) {
+					return "redirect:/boardFreeWrite";
+				}
+			} catch (Exception e) {
+				System.out.println("ERROR : boardFreeWriteAction - " + e.getMessage());
+			}
+			return "redirect:/boardFreeList";
+
+		}
+		
+	// 자유게시판 글수정하기 - 수정 액션
+		@RequestMapping(value = "/boardFreeUpdateAction", method = RequestMethod.POST)
+		public String boardFreeUpdateAction(HttpSession session, HttpServletRequest request, BoardFreeVO freeVO) {
+
+			// bf_title, bf_source bf_content의 앞뒤 공백 제거
+			freeVO.setBf_title(freeVO.getBf_title().trim());
+			freeVO.setBf_source(freeVO.getBf_source().trim());
+			freeVO.setBf_content(freeVO.getBf_content().trim());
+
+			try {
+				int result = boardFreeService.updateBoardFree(freeVO);
+				if (result == 0) {
+					return "redirect:/boardFreeUpdate?bf_bno=" + freeVO.getBf_bno();
+				}
+			} catch (Exception e) {
+				System.out.println("ERROR : boardFreeUpdateAction - " + e.getMessage());
+			}
+			return "redirect:/boardFreeGet?bf_bno=" + freeVO.getBf_bno();
+		}
 	
 	
 }//e_BoardFreeController class
