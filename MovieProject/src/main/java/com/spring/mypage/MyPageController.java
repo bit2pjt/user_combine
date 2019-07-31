@@ -70,10 +70,10 @@ public class MyPageController {
 	public String memberInfo(MemberVO member, Model model, int id) {
 		MemberVO member1 = myPageService.getMember(id);
 		System.out.println("member1=" + member1);
-		// Ŭ���̾�Ʈ���� �Է��� ��й�ȣ
+
 		String input_password = member.getM_password();
 		System.out.println("input_pwd=" + input_password);
-		// id�� �˻��� member�� ��й�ȣ
+
 		String member_password = member1.getM_password();
 		System.out.println("member_pwd=" + member_password);
 

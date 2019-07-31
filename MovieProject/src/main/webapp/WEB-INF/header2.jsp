@@ -503,7 +503,7 @@
                         class="fa fa-angle-down" aria-hidden="true"></i>
                   </a>
                      <ul class="dropdown-menu level1">
-                        <li><a href="boardFreeList">자유 게시판</a></li>
+                        <li><a href="boardFreeListP">자유 게시판</a></li>
                         <li class="it-last"><a href="boardShareList">나눔 게시판</a></li>
                      </ul></li>
                </ul>

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -13,7 +12,6 @@
 <script>
 	/*
 	var session = "${sessionyn}";
-
  	if( session == "") {
  		alert("로그인 하셔야 이용하실수 있습니다.");
  		location.href="index";
@@ -102,7 +100,7 @@
  	});
  	
  	function updateContent(){
-		location.href="boardFreeUpdate";
+		location.href="boardFreeUpdate?bno=${boardFreeVO.bf_bno}";
 	}
  	
  	function deleteContent() {
@@ -184,7 +182,7 @@
 		</div>
 		<!-- 글정보+개인정보의 배치 끝 -->
 		<!-- 3. 글본문 자리 -->
-		<div class="ws-post-get-content">
+		<div class="ws-post-get-content" style="word-break:break-all">
 			${boardFreeVO.bf_content }
 		</div>
 			<!-- 글본문 자리의 끝 -->
@@ -437,7 +435,6 @@
         var replyText = reply.find(".replyText").text(); //댓글의 내용
         $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
-
     });
     
     $()
@@ -538,7 +535,6 @@
 	});
 	
     $(".modalDelBtn").on("click", function () {
-
         var replyRno = $("#replyNo").val();
         
         $.ajax({
@@ -567,16 +563,12 @@
                 }
             }
         });
-
     });
-
 	
     $(".modalModBtn").on("click", function () {
-
         var reply = $(this).parent().parent();
         var bfr_rno = reply.find("#replyNo").val();
         var bfr_content = reply.find("#replyText").val();
-
         $.ajax({
             type : "put",
             url : "/movie/replies/" + bfr_rno,
@@ -600,7 +592,6 @@
                 }
             }
         });
-
     });
     
     
@@ -648,32 +639,24 @@
            
         });
     }
-
     function printPageNumbers(pageMaker) {
-
         var str = "";
-
         if (pageMaker.prev) {
             str += "<li><a href='"+(pageMaker.startPage-1)+"'>이전</a></li>";
         }
-
         for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
             var strCalss = pageMaker.criteria.page == i ? 'class=active' : '';
             str += "<li "+strCalss+"><a href='"+i+"'>"+i+"</a></li>";
         }
-
         if (pageMaker.next) {
             str += "<li><a href='"+(pageMaker.endPage + 1)+"'>다음</a></li>";
         }
-
         $(".pagination-sm").html(str);
     }
-
     $(".pagination").on("click", "li a", function (event) {
         event.preventDefault();
         replyPageNum = $(this).attr("href");
         getRepliesPaging(replyPageNum);
-
     });
 	
 </script>
@@ -684,4 +667,3 @@
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
-

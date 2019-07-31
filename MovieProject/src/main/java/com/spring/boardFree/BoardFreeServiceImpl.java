@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.member.MemberVO;
+import com.spring.paging.Criteria;
+import com.spring.paging.SearchCriteria;
 /**
 * @Class Name : BoardFreeServiceImpl.java
 * @Description : BoardFreeServiceImpl
@@ -382,5 +384,30 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		int id = boardDAO.getMemberId(m_email);
 		return id;
 	}
+
+
+	@Override
+	public List<BoardFreeVO> listCriteria(Criteria criteria) {
+		BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		return boardDAO.listCriteria(criteria);
+	}
+
+	@Override
+	public int countArticles(Criteria criteria) {
+		BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		return boardDAO.countArticles(criteria);
+	}
+	
+	@Override
+    public List<BoardFreeVO> listSearch(SearchCriteria searchCriteria) {
+		BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		return boardDAO.listSearch(searchCriteria);
+    }
+
+    @Override
+    public int countSearchedArticles(SearchCriteria searchCriteria) {
+    	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+    	return boardDAO.countSearchedArticles(searchCriteria);
+    }
 
 }

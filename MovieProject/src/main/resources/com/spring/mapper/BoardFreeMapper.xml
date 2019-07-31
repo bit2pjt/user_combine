@@ -7,7 +7,6 @@
 	<resultMap type="com.spring.boardFree.BoardFreeVO" id="BoardFreeMap">
 		<result property="bf_bno" column="bf_bno"/>
 		<result property="id" column="id"/>
-		<result property="bf_thumb" column="bf_thumb"/>
 		<result property="bf_category" column="bf_category"/>
 		<result property="bf_title" column="bf_title"/>
 		<result property="bf_reg_date" column="bf_reg_date"/>
@@ -17,6 +16,8 @@
 		<result property="bf_warn_counter" column="bf_warn_counter"/>
 		<result property="bf_view_counter" column="bf_view_counter"/>
 		<result property="bf_deleteyn" column="bf_deleteyn"/>
+		<result property="bf_recommend" column="bf_recommend"/>
+		<result property="bf_decommend" column="bf_decommend"/>
 	</resultMap>
 	
 	<resultMap type="com.spring.boardFree.ThumbVO" id="ThumbMap">
@@ -52,7 +53,15 @@
       <result property="m_favorite" column="m_favorite"/>
       <result property="m_blacklist" column="m_blacklist"/>
    </resultMap>
-
+	
+	<select id="listAll" resultMap="BoardFreeMap">
+        <![CDATA[
+        SELECT *  
+        FROM board_free
+        WHERE bf_bno > 0
+        ORDER BY bf_bno DESC
+        ]]>
+    </select>
 	<select id="getContent" parameterType="int" resultMap="BoardFreeMap">
 		select *
 		from board_free
@@ -207,5 +216,139 @@
 	<select id="selectBoardFree" parameterType="int" resultMap="BoardFreeMap">
 	SELECT * FROM board_free WHERE BF_BNO=#{bf_bno}
 	</select>
+	
+	 <select id="countArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(bf_bno)
+	        FROM board_free
+	        WHERE bf_bno > 0
+        ]]>
+    </select>
+    
+     <select id="listCriteria" resultMap="BoardFreeMap">
+        <![CDATA[
+        select
+        	bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+            from
+		   (
+		    select
+		    rownum rn
+		    , bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+		    from board_free
+            order by bf_bno desc
+		   )
+		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
 
+    
+    <sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 't'.toString()">
+                AND bf_title LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'c'.toString()">
+                AND bf_content LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'w'.toString()">
+                AND id LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'tc'.toString()">
+                AND (
+                    bf_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'cw'.toString()">
+                AND (
+                    bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'tcw'.toString()">
+                AND (
+                    bf_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+        </if>
+    </sql>
+	
+	<select id="countSearchedArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(bf_bno)
+		    FROM board_free
+		    WHERE bf_bno > 0
+        ]]>
+        <include refid="search"/>
+    </select>
+    
+     <select id="listSearch" resultMap="BoardFreeMap">
+        <![CDATA[
+        select
+        	bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+            from
+		   (
+		    select
+		    rownum rn
+		    , bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+		    from board_free
+		    WHERE bf_bno > 0
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by bf_bno desc
+		   )
+		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
 </mapper>
