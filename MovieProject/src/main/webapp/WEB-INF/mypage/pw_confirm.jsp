@@ -51,23 +51,7 @@
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
 
-<body>
-<div class="hero user-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li> <span class="ion-ios-arrow-right"></span>Rated movies</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
+<div style="height:5%;"></div>
 <div class="buster-light">
 	<div class="page-single">
 		<div class="container">
@@ -80,19 +64,19 @@
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage.do">마이페이지</a></li>
+								<li><a href="mypage">마이페이지</a></li>
 							</ul>
 										
 							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 					
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
+								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -109,7 +93,7 @@
 					<hr class="hr_style2">
 					<div class="form-style-pw">
 							<div class="form-div">
-								<form id="basic-form" onsubmit="return confirm(this)" action="member_info.do?id=<%= member.getId() %>" method="post">
+								<form id="basic-form" onsubmit="return confirm(this)" action="member_info?id=<%= member.getId() %>" method="post">
 									<div class="form-pw">
 										<span>
 											<strong>이메일: <%= member.getM_email() %> </strong>

@@ -4,7 +4,11 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.spring.member.MemberDAO">
+<<<<<<< HEAD
 	  <resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
+=======
+	 <resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
       <result property="id" column="id"/>
       <result property="m_nickname" column="m_nickname"/>
       <result property="m_image" column="m_image"/>
@@ -32,6 +36,15 @@
 		where m_email = #{email}
 	</select>
 	
+<<<<<<< HEAD
+=======
+	<select id="userNickName" parameterType="int" resultType="String">
+		select m_nickname
+		from member
+		where id = #{id}
+	</select>
+	
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 	<select id="findEmail" parameterType="com.spring.member.MemberVO" resultType="String">
 		select m_email
 		from member
@@ -68,5 +81,14 @@
 		update member set m_password = #{m_password, jdbcType=VARCHAR} where m_phone = #{m_phone, jdbcType=VARCHAR}
 	</update>
 
+<<<<<<< HEAD
+=======
+	<select id="getId" parameterType="String" resultType="int">
+		select id
+		from member
+		where 	m_email = #{m_email}
+		and 	m_password = #{m_password}
+	</select>
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 
 </mapper>

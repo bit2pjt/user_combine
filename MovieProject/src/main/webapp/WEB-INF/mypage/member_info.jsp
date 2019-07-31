@@ -3,12 +3,22 @@
 <%@ page import="com.spring.member.MemberVO"%>
 <%
 	MemberVO member1 = (MemberVO) request.getAttribute("member1");
+<<<<<<< HEAD
 String phone =  member1.getM_phone();
 String phone1 = member1.getM_phone().substring(0,3);
 String phone2 = member1.getM_phone().substring(3,7);
 String phone3 = member1.getM_phone().substring(7,11);
 String favorite = member1.getM_favorite();	
 
+=======
+	String phone1 = member1.getM_phone().substring(0,3);
+	String phone2 = member1.getM_phone().substring(3,7);
+	String phone3 = member1.getM_phone().substring(7,11);
+		
+	System.out.println(phone1);
+	System.out.println(phone2);
+	System.out.println(phone3);
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 %>
 <!--
 /**
@@ -155,20 +165,20 @@ $(document).ready(function() {
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage.do">마이페이지</a></li>
+								<li><a href="mypage">마이페이지</a></li>
 							</ul>
 
 							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
-								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -193,7 +203,7 @@ $(document).ready(function() {
 									<div class="td-content"><%=member1.getM_email()%></div>
 								</td>
 							</tr>
-							<form action="update_pw.do?id=<%=member1.getId()%>" name="pwform"
+							<form action="update_pw?id=<%=member1.getId()%>" name="pwform"
 								onsubmit="return pw(this)" method="post">
 							<tr>
 								<td>비밀번호 변경</td>
@@ -228,7 +238,7 @@ $(document).ready(function() {
 									<div class="td-content"><%=member1.getM_name()%></div>
 								</td>
 							</tr>
-							<form action="update_nick.do?id=<%=member1.getId()%>" onsubmit="return nick(this)" method="post">
+							<form action="update_nick?id=<%=member1.getId()%>" onsubmit="return nick(this)" method="post">
 							<tr>
 								<td>닉네임</td>
 								<td>
@@ -241,7 +251,7 @@ $(document).ready(function() {
 							</tr>
 							</form>
 
-							<form name="modifyform" action="member_update.do?id=<%=member1.getId() %>" onsubmit="return modify(this)" method="post">
+							<form name="modifyform" action="member_update?id=<%=member1.getId() %>" onsubmit="return modify(this)" method="post">
 							<tr>
 								<td>휴대폰 번호</td>
 								<td>

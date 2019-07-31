@@ -28,6 +28,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 * @ 2019. 07. 16 	황진석				로그인/로그아웃, 이메일 찾기 컨트롤러 추가
 * @ 2019. 07. 17 	황진석				
 * @ 2019. 07. 22	이웅식			회원가입 + 가입시 메일&닉네임 중복확인 구현
+<<<<<<< HEAD
+=======
+* @ 2019. 07. 26	이웅식			login 성공시 id 코드를 세션값에 추가하도록 수정
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -42,6 +46,14 @@ public class LoginController {
    @Autowired
    private MemberService memberService;
    
+<<<<<<< HEAD
+=======
+   @RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index() {
+		return "index";
+	}
+   
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    /**
     * 로그인
     * @param vo - 로그인시 입력한 정보가 담긴 MemberVO
@@ -51,7 +63,11 @@ public class LoginController {
     * @return "index"
     * @throws Exception 
     */
+<<<<<<< HEAD
    @RequestMapping(value="/Login.do")
+=======
+   @RequestMapping(value="/Login")
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    public String MemberLogin(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
       String email= vo.getM_email();
       String pw = vo.getM_password();
@@ -60,10 +76,15 @@ public class LoginController {
       int check = memberService.userCheck(email, pw);
       if(check == 1){
          session.setAttribute("m_email", email);
+<<<<<<< HEAD
          return "index";
          
          
          
+=======
+         session.setAttribute("id", memberService.getId(email, pw));
+         return "index";
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
       }else if( check == -1) {
          response.setContentType("text/html; charset=utf-8");
          PrintWriter out = response.getWriter();
@@ -92,13 +113,25 @@ public class LoginController {
     * @param model
     * @return "index"
     */
+<<<<<<< HEAD
    @RequestMapping(value="/Logout.do")
+=======
+   @RequestMapping(value="/Logout")
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    public String MemberLogOut(HttpServletRequest request, HttpServletResponse response, Model model)  {
       HttpSession session = request.getSession();
       session.invalidate();
       return "index";
    }
    
+<<<<<<< HEAD
+=======
+   @RequestMapping(value="/index")
+   public String index(HttpServletRequest request, HttpServletResponse response, Model model)  {
+      return "index";
+   }
+   
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    /**
     * 이메일 찾기
     * @param vo - 아이디 찾기 시 입력한 정보가 담긴 MemberVO
@@ -107,7 +140,11 @@ public class LoginController {
     * @param model
     * @return String
     */
+<<<<<<< HEAD
    @RequestMapping(value="/id_find.do", method=RequestMethod.GET, produces="application/json")
+=======
+   @RequestMapping(value="/id_find", method=RequestMethod.GET, produces="application/json")
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    public @ResponseBody String id_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
 	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
 	   vo.setM_phone(phone);
@@ -126,7 +163,11 @@ public class LoginController {
     * @param model
     * @return String
     */
+<<<<<<< HEAD
    @RequestMapping(value="/pw_find.do", method=RequestMethod.GET)
+=======
+   @RequestMapping(value="/pw_find", method=RequestMethod.GET)
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    public @ResponseBody String pw_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
 	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
 	   vo.setM_phone(phone);
@@ -147,7 +188,11 @@ public class LoginController {
     * @return "index"
     * @throws Exception 
     */
+<<<<<<< HEAD
    @PostMapping("/memberJoin.do") 
+=======
+   @PostMapping("/memberJoin") 
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    String memberJoin(MemberVO vo, HttpServletRequest request, HttpServletResponse response) {
 	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
 	   vo.setM_phone(phone);
@@ -164,7 +209,11 @@ public class LoginController {
     * @return "application/text"
     * @throws Exception 
     */
+<<<<<<< HEAD
    @RequestMapping(value="/email_overlap_chk.do", method=RequestMethod.GET, produces="application/json")
+=======
+   @RequestMapping(value="/email_overlap_chk", method=RequestMethod.GET, produces="application/json")
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    public @ResponseBody String emailOverlapChk (@RequestParam(value="m_email") String m_email, HttpServletRequest request, HttpServletResponse response, Model model) {
 	  MemberVO vo = new MemberVO();
 	  vo.setM_email(m_email);
@@ -184,7 +233,11 @@ public class LoginController {
     * @return "application/text"
     * @throws Exception 
     */
+<<<<<<< HEAD
 	  @RequestMapping(value="/nick_overlap_chk.do", method=RequestMethod.GET, produces="application/json")
+=======
+	  @RequestMapping(value="/nick_overlap_chk", method=RequestMethod.GET, produces="application/json")
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 	   public @ResponseBody String nickOverlapChk (@RequestParam(value="m_nickname") String m_nickname, HttpServletRequest request, HttpServletResponse response, Model model) {
 		  MemberVO vo = new MemberVO();
 		  vo.setM_nickname(m_nickname);
@@ -196,7 +249,11 @@ public class LoginController {
 		   }
 	  }
 
+<<<<<<< HEAD
    @RequestMapping(value="/pw_new.do", method=RequestMethod.GET)
+=======
+   @RequestMapping(value="/pw_new", method=RequestMethod.GET)
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
    public @ResponseBody String pw_new(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {
 	   int count = memberService.updatePw(vo);
 	   
@@ -205,6 +262,7 @@ public class LoginController {
 	   }else {
 		   return "fail";
 	   }
+<<<<<<< HEAD
    }
 
    
@@ -214,3 +272,7 @@ public class LoginController {
    
    
 }
+=======
+}   
+}
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8

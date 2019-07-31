@@ -44,7 +44,11 @@
                	<%
                	for(int i=0; i<10; i++){
                	%>
+<<<<<<< HEAD
                     <div class="movielist-card" onclick="location.href='movieDetail.do'">
+=======
+                    <div class="movielist-card" onclick="location.href='movieDetail'">
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
                         <img src="<c:url value='/resources/images/uploads/mv-it12.jpg' />" width="170" height="261">
                         <h4 class="movie-title">비트와 함께 사라지다.</h4>
                     </div>
@@ -57,6 +61,7 @@
                 <div class="paging">
                     <ul class="pagination">
                         <li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+<<<<<<< HEAD
                         <li class="active"><a href="movieList.do?page=1">1</a></li>
                         <li><a href="movieList.do?page=2">2</a></li>
                         <li><a href="movieList.do?page=3">3</a></li>
@@ -67,6 +72,18 @@
                         <li><a href="movieList.do?page=8">8</a></li>
                         <li><a href="movieList.do?page=9">9</a></li>
                         <li><a href="movieList.do?page=10">10</a></li>
+=======
+                        <li class="active"><a href="movieList?page=1">1</a></li>
+                        <li><a href="movieList?page=2">2</a></li>
+                        <li><a href="movieList?page=3">3</a></li>
+                        <li><a href="movieList?page=4">4</a></li>
+                        <li><a href="movieList?page=5">5</a></li>
+                        <li><a href="movieList?page=6">6</a></li>
+                        <li><a href="movieList?page=7">7</a></li>
+                        <li><a href="movieList?page=8">8</a></li>
+                        <li><a href="movieList?page=9">9</a></li>
+                        <li><a href="movieList?page=10">10</a></li>
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
                         <li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
                     </ul>       
                 </div>

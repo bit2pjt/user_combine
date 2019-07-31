@@ -11,8 +11,14 @@ import com.spring.member.MemberVO;
 * @
 * @  �닔�젙�씪     	  �닔�젙�옄                 �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
+<<<<<<< HEAD
 * @ 2019.07.17     �븳�쑀吏�      理쒖큹�깮�꽦
 * @author bit 2議�
+=======
+* @ 2019.07.17     한유진      최초생성
+* @ 2019.07.24		박현민		one_get  부분 추가
+* @author bit 2조
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -41,5 +47,17 @@ public interface MyPageDAO {
 	public int updateQna(OneVO oneVO);	//1:1 臾몄쓽 �긽�꽭�젙蹂� �닔�젙�븯湲�
 	public String getMemberNickname(int mml_num);
 	
+<<<<<<< HEAD
 
+=======
+	//1:1 문의 등록하기, 가져오기, 수정하기, 삭제하기
+	public int insertQna(OneVO oneVO);	//1:1 문의 등록
+	public OneVO getQnaDetail(int qna_no);	//1:1 문의 상세정보 가져오기
+	public int updateQna(OneVO oneVO);	//1:1 문의 상세정보 수정하기
+	
+	
+	//hm | 1:1 문의 답변 가져오기
+	public OneAdVO getQnaAdDetail(int qna_no); // 1:1 문의 상세정보 가져오기
+	
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 }

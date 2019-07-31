@@ -54,29 +54,29 @@
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
 						<h2>
-							<strong>황진석 님</strong>
+							<strong>${requestScope.m_name } 님</strong>
 						</h2>
 						<h3>
-							<strong>h10046245h@naver.com</strong>
+							<strong>${sessionScope.m_email }</strong>
 						</h3>
 					</div>
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage.do">마이페이지</a></li>
+								<li><a href="mypage">마이페이지</a></li>
 							</ul>
 
 							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
-								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
 					</div>

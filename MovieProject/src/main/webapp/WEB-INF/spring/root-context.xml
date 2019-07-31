@@ -13,8 +13,13 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
+<<<<<<< HEAD
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 		<property name="username" value="blockbuster"></property>
+=======
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="c##blockbuster"></property>
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 		<property name="password" value="1234"></property>
 	</bean>
 	
@@ -28,6 +33,7 @@
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<!-- com.spring 이하의 모든 디렉토리를 기본 스캔범위로 한다면? = 모든 디렉토리를 자동으로 스캔하도록 -->
 	
 	<mybatis-spring:scan base-package="com.spring."/>
 	<context:component-scan base-package="com.spirng."/>

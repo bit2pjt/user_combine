@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 /*mmlGet ¸ð¹ÙÀÏ*/
+=======
+/*mmlGet ëª¨ë°”ì¼*/
+
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 .social-link{
-  width:1258px;
+  width:100%;
   display:flex;
 }
 
@@ -73,7 +78,12 @@
 	 clear: both;
 }
 
+<<<<<<< HEAD
 /*mml list Ä«µåºÎºÐ div¿µ¿ª*/
+=======
+/*mml list ì¹´ë“œë¶€ë¶„ divì˜ì—­*/
+
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 .sp_col-md-41 {
 	
 	
@@ -151,6 +161,52 @@
           align-self: bottom;
   justify-self: right;
 }
+<<<<<<< HEAD
+=======
+
+
+.card-img{
+  width: 250px;
+  height:400px;
+}
+
+
+.card-ho{
+  width:250px;
+  height:400px;
+  top:0;
+  left:25px;
+  position: absolute;
+  background:black;
+  opacity:0;
+  transition:all .2s linear;
+}
+
+
+
+.ho-info{
+
+  position:absolute;
+   top:320px; 
+  background:black;
+   color:white;
+   width: 250px;
+  border-style:double;
+ left:25px;
+  text-align:center;
+  opacity: 0.6;
+  right:5%;
+  transition:all .3s linear;
+}
+
+.card:hover .ho-info{
+  opacity:0.8;
+  transform:scale(1);
+}
+
+
+/*ì¹´ë“œë*/
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 
 
 .card-img{
@@ -440,4 +496,15 @@ input[type="button"].btn-block {
 	 height:100px;
 }
 
+<<<<<<< HEAD
+=======
+/*
+yj(190726)
+add : mmlWriteíŽ˜ì´ì§€ í•˜ë‹¨ ë²„íŠ¼ ì†ì„±  
+*/
+.form-style-1 input{
+	
+}
+
+>>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
 

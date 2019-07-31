@@ -39,7 +39,7 @@
 .user-information-hjs ul li {
   margin-bottom: 15px;
 }
-/** 占쏙옙占쏙옙 **/
+
 .user-information-hjs.info ul li{
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
@@ -48,10 +48,10 @@
   text-transform: uppercase;
 }
 .user-information-hjs ul li a {
-  font-family: 'Dosis', sans-serif;
+  /* font-family: 'Dosis', sans-serif; */
   font-size: 14px;
   color: #ffffff;
-  font-weight: bold;
+  /* font-weight: bold; */
   text-transform: uppercase;
 }
 .user-information-hjs ul li a:hover {
@@ -141,7 +141,7 @@
 }
 .tb_td1 {
   font-size:16px;
-  font-weight: bold;
+ /* font-weight: bold; */
   display:inline-block;
   padding:10px 20px;
   box-sizing: border-box;
@@ -165,8 +165,7 @@
   border-top:4px solid black;
 }
 .btn_m {
-  float:left;
-  margin-left:38%;
+    text-align: center;
 }
 .btn-pw{
   display: inline-block;
@@ -176,6 +175,10 @@
   padding:10px;
   padding-left:20px;
   padding-right:20px;
+}
+.pw-btn {
+	margin-left: auto;
+	margin-right: auto;
 }
 .btn-check{
   display: inline-block;
@@ -331,7 +334,7 @@
   color: #abb7c4;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: #dd003f;
+  background-color: #FF6F61;
   color: #ffffff;
   padding: 13px 25px;
   -webkit-border-radius: 5px;

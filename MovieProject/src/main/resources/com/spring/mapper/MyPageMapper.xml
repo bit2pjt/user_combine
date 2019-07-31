@@ -8,6 +8,7 @@
 * @  수정일     	  수정자                 수정내용
 * @ ===========  ========   ============================
 * @ 2019.07.18     한유진      최초생성
+* @ 2019.07.24		박현민		one_get  부분 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -52,6 +53,17 @@
 		<result property="m_favorite" column="m_favorite"/>
 		<result property="m_blacklist" column="m_blacklist"/>
 	</resultMap>
+	
+	<!-- hm | 1:1문의 답변 resultMap추가  -->
+	<resultMap type="com.spring.mypage.OneAdVO" id="adminQnaMap">
+		<result property="aqna_no" column="aqna_no"/>
+		<result property="qna_no" column="qna_no"/>
+		<result property="aqna_content" column="aqna_content"/>
+		<result property="aqna_date" column="aqna_date"/>
+		<result property="aqna_update_date" column="aqna_update_date"/>
+		<result property="admin_num" column="admin_num"/>
+	</resultMap>
+	<!-- hm | 1:1문의 답변 resultMap추가 끝  -->
 	
 	<select id="getMemberName" parameterType="String" resultType="String">
 		select M_NAME from member where M_EMAIL=#{m_email}
@@ -99,5 +111,14 @@
 		UPDATE board_qna SET QNA_CATEGORY=#{qna_category, jdbcType=VARCHAR}, QNA_TITLE=#{qna_title, jdbcType=VARCHAR}, QNA_CONTENT=#{qna_content, jdbcType=VARCHAR}, QNA_UPDATE_DATE=sysdate WHERE QNA_NO=#{qna_no}
 	</update>
 	
+	<!-- hm | 1:1문의 답변 가져오기 -->
+	<select id="getQnaAdDetail" resultType="com.spring.mypage.OneAdVO" parameterType="com.spring.mypage.OneAdVO">
+		SELECT qna_no, aqna_content, aqna_update_date FROM ad_qna WHERE qna_no = #{qna_no}
+	</select>
+	
+	<!-- hm | 1:1문의 삭제 -->
+	<delete id="deleteQnaDetail" parameterType="String">
+		delete FROM board_qna WHERE qna_no = #{qna_no}
+	</delete>
 	
 </mapper>
