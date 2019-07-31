@@ -1,0 +1,51 @@
+package com.spring.board;
+/**
+* @Class Name : ShareVO.java
+
+* @Description : 나눔게시판 VO
+* @Modification Information
+* @
+* @  수정일     	  수정자                 수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.22     박현민      최초생성
+* @author bit 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by Bit All right reserved.
+*/
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class FreeVO {
+	
+	private int bf_bno;//	BF_BNO
+	private int id;//	ID
+//	BF_CATEGORY
+//	BF_TITLE
+//	BF_REG_DATE
+//	BF_UPDATE_DATE
+//	BF_SOURCE
+//	BF_CONTENT
+//	BF_WARN_COUNTER
+//	BF_VIEW_COUNTER
+//	BF_DELETEYN
+//	BF_RECOMMEND
+//	BF_DECOMMEND
+	
+	
+	private int bf_bno;//	bf_BNO
+	private int id;//	ID
+	private String bf_category;//	bf_CATEGORY
+	private String bf_content;//	bf_CONTENT
+	private String bf_title;//	bf_TITLE
+	private Date bf_reg_date;//	bf_REG_DATE
+	private Date bf_update_date;//	bf_UPDATE_DATE
+	private int bf_view_counter;//	bf_VIEW_COUNTER
+	private int bf_warn_counter;//	bf_WARN_COUNTER
+	private String bf_deleteyn;//	bf_DELETEYN
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /** * @Class Name : BoardMapper.xml * @Description : board write, share에서 
+	필요한 데이터들을 가져오기 위한 mapper * @Modification Information * @ * @ 수정일 수정자 수정내용 
+	* @ =========== ======== ============================ * @ 2019.07.25 박현민 
+	최초생성 * @author bit 2조 * @since 2019. 07.01 * @version 1.0 * @see * * Copyright 
+	(C) by Bit All right reserved. */ -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.board.BoardDAO">
+
+	<resultMap type="com.spring.member.MemberVO" id="getMemberMap">
+		<result property="id" column="id" />
+		<result property="m_nickname" column="m_nickname" />
+		<result property="m_image" column="m_image" />
+		<result property="m_email" column="m_email" />
+		<result property="m_eagree" column="m_eagree" />
+		<result property="m_sagree" column="m_sagree" />
+		<result property="m_name" column="m_name" />
+		<result property="m_phone" column="m_phone" />
+		<result property="m_cert" column="m_cert" />
+		<result property="m_password" column="m_password" />
+		<result property="m_regdate" column="m_regdate" />
+		<result property="m_update_date" column="m_update_date" />
+		<result property="m_deleteyn" column="m_deleteyn" />
+		<result property="m_following" column="m_following" />
+		<result property="m_follower" column="m_follower" />
+		<result property="m_level" column="m_level" />
+		<result property="m_favorite" column="m_favorite" />
+		<result property="m_blacklist" column="m_blacklist" />
+	</resultMap>
+
+	<!-- hm | boardFree resultMap추가 -->
+	<resultMap type="com.spring.board.FreeVO" id="boardFreeMap">
+		<result property="bf_bno" column="bf_bno" />
+		<result property="id" column="id" />
+		<result property="bf_category" column="bf_category" />
+		<result property="bf_title" column="bf_title" />
+		<result property="bf_reg_date" column="bf_reg_date" />
+		<result property="bf_update_date" column="bf_update_date" />
+		<result property="bf_source" column="bf_source" />
+		<result property="bf_content" column="bf_content" />
+		<result property="bf_warn_counter" column="bf_warn_counter" />
+		<result property="bf_view_counter" column="bf_view_counter" />
+		<result property="bf_deleteyn" column="bf_deleteyn" />
+		<result property="bf_recommend" column="bf_recommend" />
+		<result property="bf_decommend" column="bf_decommend" />
+	</resultMap>
+	<!-- hm | boardFree resultMap추가 끝 -->
+
+	<!-- hm | boardShare resultMap추가 -->
+	<resultMap type="com.spring.board.ShareVO" id="boardShareMap">
+		<result property="bs_bno" column="bs_bno" />
+		<result property="id" column="id" />
+		<result property="bs_category" column="bs_category" />
+		<result property="bs_content" column="bs_content" />
+		<result property="bs_title" column="bs_title" />
+		<result property="bs_reg_date" column="bs_reg_date" />
+		<result property="bs_update_date" column="bs_update_date" />
+		<result property="bs_view_counter" column="bs_view_counter" />
+		<result property="bs_warn_counter" column="bs_warn_counter" />
+		<result property="bs_deleteyn" column="bs_deleteyn" />
+	</resultMap>
+	<!-- hm | boardShare resultMap추가끝 -->
+
+	<select id="getMemberNickname" parameterType="String"
+		resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email,
+		jdbcType=VARCHAR}
+	</select>
+
+	<select id="getMember" parameterType="int"
+		resultMap="getMemberMap">
+		select * from member where id=#{id}
+	</select>
+
+</mapper>

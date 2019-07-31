@@ -1,0 +1,83 @@
+package com.spring.board;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring.member.MemberVO;
+import com.spring.mypage.MyPageDAO;
+
+/**
+ * @Class Name : BoardServiceImpl.java
+ * @Description :
+ * @Modification Information
+ * @ @ 수정일 수정자 수정내용 @ --------- --------- ------------------------------- @
+ *   2019.07.25 박현민 최초생성
+ * 
+ * @author bit 2조
+ * @since 2019. 07.01
+ * @version 1.0
+ * @see
+ *
+ *      Copyright (C) by Bit All right reserved.
+ */
+
+@Service("myPageService")
+public class BoardServiceImpl implements BoardService {
+	
+	@Autowired
+	private SqlSession sqlSession;
+
+	@Override
+	public String getMemberNickname(String m_email) {
+		BoardDAO boardDAO = sqlSession.getMapper(BoardDAO.class);
+		String m_nickname = boardDAO.getMemberNickname(m_email);
+		
+		return m_nickname;
+	}
+
+	@Override
+	public MemberVO getMember(int id) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		MemberVO member = mypageDAO.getMember(id);
+		
+		return member;
+	}
+
+	@Override
+	public int insertBoardFree(FreeVO freeVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateBoardFree(FreeVO freeVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public FreeVO selectBoardFree(int bf_bno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertBoardShare(ShareVO shareVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateBoardShare(ShareVO shareVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public FreeVO selectBoardShare(int bs_bno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
