@@ -99,7 +99,7 @@
 	</update>
 	
 	<insert id="insertQna" parameterType="com.spring.mypage.OneVO">
-		insert into board_qna values (board_qna_no_seq.nextval, #{id}, #{qna_category, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}
+		insert into board_qna values (seq_qna_no.nextval, #{id}, #{qna_category, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}
 		, #{qna_content, jdbcType=VARCHAR}, sysdate, sysdate, 'N')
 	</insert>
 	

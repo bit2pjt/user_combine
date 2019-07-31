@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class Member_FollowVO {
 
-	private int mf_code;//ÆÈ·ÎÀ×ÄÚµå
-	private int mf_ing;//ÆÈ·ÎÀ×
-	private int mf_wer;//ÆÈ·Î¿ö
+	private int mf_code;//íŒ”ë¡œì‰ì½”ë“œ
+	private int mf_ing;//íŒ”ë¡œì‰
+	private int mf_wer;//íŒ”ë¡œì›Œ
 	
 }

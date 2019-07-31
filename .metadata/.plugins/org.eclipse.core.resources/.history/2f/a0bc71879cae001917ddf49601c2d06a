@@ -1,0 +1,17 @@
+package com.spring.board;
+
+import lombok.Data;
+
+@Data
+public class ShareVO {
+	private int bs_bno;//	BS_BNO
+	private int id;//	ID
+	private String bs_category;//	BS_CATEGORY
+	private String //	BS_CONTENT
+	private String //	BS_TITLE
+//	BS_REG_DATE
+//	BS_UPDATE_DATE
+	private int //	BS_VIEW_COUNTER
+	private int //	BS_WARN_COUNTER
+	private String //	BS_DELETEYN
+}

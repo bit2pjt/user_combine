@@ -11,36 +11,36 @@ import lombok.Setter;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private SqlSession sqlSession;
-	
-	@Setter(onMethod_ = {@Autowired})
+
+	@Setter(onMethod_ = { @Autowired })
 	private MemberDAO memberDAOglobal;
-	
+
 	@Override
 	public int insertMember(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
 
 	/**
-	 * ·Î±×ÀÎ ½Ã È¸¿ø Ã¼Å©
-	 * @param email - ÀÔ·ÂÇÑ email
-	 * @param pw - ÀÔ·ÂÇÑ password
-	 * @return È¸¿ø ¿©ºÎ °á°ú
+	 * ë¡œê·¸ì¸ ì‹œ íšŒì› ì²´í¬
+	 * 
+	 * @param email - ì…ë ¥í•œ email
+	 * @param pw    - ì…ë ¥í•œ password
+	 * @return íšŒì› ì—¬ë¶€ ê²°ê³¼
 	 */
 	@Override
 	public int userCheck(String email, String pw) {
 		int x = -1;
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		MemberVO vo = memberDAO.userCheck(email);
-		
-		if(vo != null) {
-			if(pw.equals(vo.getM_password()))
-				x = 1; // ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ µÑ´Ù ¸Â´Â°æ¿ì
+
+		if (vo != null) {
+			if (pw.equals(vo.getM_password()))
+				x = 1; // ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ë‘˜ë‹¤ ë§ëŠ”ê²½ìš°
 			else
-				x = -1;// ¾ÆÀÌµğ´Â ¸ÂÁö¸¸ ºñ¹Ğ¹øÈ£°¡ ´Ù¸¥°æ¿ì
-		}else 
-			x = 0;  // È¸¿øÀÌ ¾Æ´Ñ °æ¿ì
+				x = -1;// ì•„ì´ë””ëŠ” ë§ì§€ë§Œ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¥¸ê²½ìš°
+		} else
+			x = 0; // íšŒì›ì´ ì•„ë‹Œ ê²½ìš°
 		return x;
 	}
 
@@ -66,29 +66,28 @@ public class MemberServiceImpl implements MemberService {
 	public String findEmail(MemberVO vo) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		String email = memberDAO.findEmail(vo);
-		
-		if(email != null) { 
+
+		if (email != null) {
 			return email;
-		}
-		else
-			return  "fail";
-					
+		} else
+			return "fail";
+
 	}
 
 	@Override
 	public MemberVO findPw(MemberVO vo) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		MemberVO memberVO = memberDAO.findPw(vo);
-		if(memberVO == null) {
+		if (memberVO == null) {
 			return null;
-		}else {
+		} else {
 			return memberVO;
 		}
 	}
 
-
 	/**
-	 * È¸¿ø°¡ÀÔ
+	 * íšŒì›ê°€ì…
+	 * 
 	 * @param memberVO vo
 	 */
 	@Override
@@ -101,42 +100,44 @@ public class MemberServiceImpl implements MemberService {
 		vo.setM_follower(0);
 		vo.setM_level("BRONZE");
 		vo.setM_blacklist("N");
-		
+
 		memberDAOglobal.memberJoin(vo);
-		}
+	}
 
 	/**
-	 * °èÁ¤ Áßº¹È®ÀÎ
+	 * ê³„ì • ì¤‘ë³µí™•ì¸
+	 * 
 	 * @param memberVO vo
 	 */
 	@Override
 	public boolean emailOverlapChk(MemberVO vo) {
 		if (memberDAOglobal.emailOverlapChk(vo.getM_email()) == 0) {
-			System.out.println("ÀÏÄ¡ÇÏ´Â ¸ŞÀÏ ¾øÀ½");
+			System.out.println("ì¼ì¹˜í•˜ëŠ” ë©”ì¼ ì—†ìŒ");
 			return true;
 		} else {
-			System.out.println("ÀÏÄ¡ÇÏ´Â ¸ŞÀÏ Á¸Àç. 1 on n");
+			System.out.println("ì¼ì¹˜í•˜ëŠ” ë©”ì¼ ì¡´ì¬. 1 on n");
 			return false;
-			
+
 		}
 	}
 
 	/**
-	 * ´Ğ³×ÀÓ Áßº¹È®ÀÎ
+	 * ë‹‰ë„¤ì„ ì¤‘ë³µí™•ì¸
+	 * 
 	 * @param memberVO vo
 	 */
 	@Override
 	public boolean nickOverlapChk(MemberVO vo) {
 		if (memberDAOglobal.nickOverlapChk(vo.getM_nickname()) == 0) {
-			System.out.println("ÀÏÄ¡ÇÏ´Â ´Ğ³×ÀÓ = »ç¿ë °¡´É");
+			System.out.println("ì¼ì¹˜í•˜ëŠ” ë‹‰ë„¤ì„ = ì‚¬ìš© ê°€ëŠ¥");
 			return true;
 		} else {
-			System.out.println("ÀÏÄ¡ÇÏ´Â ´Ğ³×ÀÓ Á¸Àç. 1 on n");
+			System.out.println("ì¼ì¹˜í•˜ëŠ” ë‹‰ë„¤ì„ ì¡´ì¬. 1 on n");
 			return false;
-			
+
 		}
 	}
-	
+
 	@Override
 	public int updatePw(MemberVO vo) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
@@ -146,7 +147,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int getId(String m_email, String m_password) {
-		
+
 		return memberDAOglobal.getId(m_email, m_password);
 	}
 

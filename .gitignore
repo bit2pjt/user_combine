@@ -1,0 +1,23 @@
+
+# spring
+
+.metadata/
+
+
+.recommenders/
+
+
+
+Servers/
+
+
+*.class
+
+
+*.classpath
+
+
+/target/
+
+
+*.settings/

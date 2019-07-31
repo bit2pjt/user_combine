@@ -7,16 +7,18 @@ import lombok.Data;
 @Data
 public class Movie_InfoVO {
 
-	private int mi_code;		//¿µÈ­ ÄÚµå
-	private String mi_ktitle;	//¿µÈ­ÀÌ¸§
-	private String mi_etitle;	//¿µÈ­ÀÌ¸§eng
-	private String mi_director;	//°¨µ¶ÀÌ¸§
-	private String mi_poster;	//Æ÷½ºÅÍ
-	private Date mi_releaseday;	//°³ºÀÀÏ
-	private String mi_ccode;	//±¹°¡¸í
-	private String mi_actor;	//¹è¿ì
-	private String mi_story;	//ÁÙ°Å¸®
-	private String mi_teaser;	//Æ¼Àú
-	private String grade_code;	//½ÉÀÇµî±Ş
-	private String mi_gcode;	//Àå¸£
+
+	private int mi_code;		//ì˜í™” ì½”ë“œ
+	private String mi_ktitle;	//ì˜í™”ì´ë¦„
+	private String mi_etitle;	//ì˜í™”ì´ë¦„eng
+	private String mi_director;	//ê°ë…ì´ë¦„
+	private String mi_poster;	//í¬ìŠ¤í„°
+	private Date mi_releaseday;	//ê°œë´‰ì¼
+	private String mi_ccode;	//êµ­ê°€ëª…
+	private String mi_actor;	//ë°°ìš°
+	private String mi_story;	//ì¤„ê±°ë¦¬
+	private String mi_teaser;	//í‹°ì €
+	private String grade_code;	//ì‹¬ì˜ë“±ê¸‰
+	private String mi_gcode;	//ì¥ë¥´
+	
 }
