@@ -21,15 +21,17 @@ package com.spring.mypage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.member.MemberVO;
 
@@ -44,7 +46,7 @@ public class MyPageController {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
 		MemberVO member = (MemberVO) myPageService.getMember(id);
 		model.addAttribute("member", member);
-		
+
 		// 1:1 문의내역
 		List<OneVO> qnaList = null;
 		qnaList = myPageService.getQnaList(id);
@@ -150,10 +152,72 @@ public class MyPageController {
 		return "mypage/member_info";
 	}
 
-	// 마이페이지 - 회원탈퇴
+	// kgh |
+	// 마이페이지 - 비밀번호 재확인
+	@RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
+	public String pwConfirm(Model model) {
+
+		return "mypage/pw_confirm";
+	}
+
+	// 마이페이지 - 비밀번호 재확인 - 회원정보 수정
+	@RequestMapping(value = "/member_info", method = RequestMethod.GET)
+	public String memberInfo(MemberVO vo, RedirectAttributes rttr, HttpSession session, HttpServletResponse response) {
+		
+		
+		boolean result = myPageService.checkPw(vo.getM_email(), vo.getM_password());
+		if (result) {// 비밀번호가 일치하면 사이트 이동
+			
+			// 아이디값을 가져와지긴 하는데...
+			System.out.println("비밀번호 일치");
+			MemberVO member1 =myPageService.getMember((int)session.getAttribute("id"));
+			System.out.println("member1의 값은 "+member1);
+			session.setAttribute("member1",member1);
+			System.out.println("비밀번호일치시 아이디:"+session.getAttribute("id"));
+			
+			return "mypage/member_info";
+		} else {
+			System.out.println("비밀번호 불일치");
+
+			rttr.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다.");
+
+			return "redirect:/pw_confirm";
+		}
+
+	}
+
+	// 마이페이지 - 회원탈퇴 (링크이동)
 	@RequestMapping(value = "/member_out", method = RequestMethod.GET)
 	public String memberOut() {
 		return "mypage/member_out";
+	}
+
+	// 마이페이지 - 회원탈퇴 (컨트롤러)
+
+	@RequestMapping(value = "/member_delete", method = RequestMethod.GET)
+	public String memberOutController(MemberVO vo, RedirectAttributes rttr, HttpSession session) {
+		//session.setAttribute("m_email", "bit0hyj@gmail.com");
+		//session.setAttribute("m_password", "1234");
+		//session.setAttribute("id", "1");
+		// 임시로 이메일값을 준다.
+
+		String m_email = (String) session.getAttribute("m_email");
+		String m_password = (String) session.getAttribute("m_password");
+		int id = (int)session.getAttribute("id");
+
+		System.out.println("m_email:" + m_email);
+		System.out.println("m_password:" + m_password);
+		System.out.println("id:" + id);
+
+		int num = myPageService.delete_member(m_email);
+		int id_num = myPageService.delete_date(id);
+		
+		rttr.addFlashAttribute("delete_msg", "탈퇴가 왼료되었습니다.");
+
+		// 로그아웃으로 세션들을 초기화시킴
+		session.invalidate();
+
+		return "index";
 	}
 
 	// 마이페이지 - 1:1 문의내역 리스트
@@ -281,20 +345,19 @@ public class MyPageController {
 	// hm | 마이페이지 - FAQ
 	@RequestMapping(value = "/faq", method = RequestMethod.GET)
 	public String faqList(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		
+
 		// 1. 좌측 사용자 정보
 		String m_email = (String) session.getAttribute("m_email");
 		String m_name = myPageService.getMemberName(m_email); // System.out.println("=============MyPageController.java=====================
 		// m_name : " + m_name);
 		request.setAttribute("m_name", m_name);
-		
+
 		return "mypage/faq";
 	}
 
-	
 	// hm | 마이페이지 - one_get
 	@RequestMapping(value = "/one_get", method = RequestMethod.GET)
-	public String oneGet(HttpSession session, HttpServletRequest request,  OneVO oneVO) {
+	public String oneGet(HttpSession session, HttpServletRequest request, OneVO oneVO) {
 		// 1. 사용자 정보
 		String m_email = (String) session.getAttribute("m_email");
 		String m_name = myPageService.getMemberName(m_email);
@@ -313,7 +376,7 @@ public class MyPageController {
 		// 3. 답변내용
 		OneAdVO qnaAdDetail = myPageService.getQnaAdDetail(qna_no);
 		request.setAttribute("qnaAdDetail", qnaAdDetail);
-		
+
 		return "mypage/one_get";
 	}
 

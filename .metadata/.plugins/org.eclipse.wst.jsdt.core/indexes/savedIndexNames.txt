@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+D:\phm_fork\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2600142253.index
-1754422116.index
-1142707383.index
-1311413126.index
-2047831995.index
-976339035.index
-526009883.index
