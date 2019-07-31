@@ -23,9 +23,9 @@ public interface MmlDAO {
   
   public void upCounter(@Param("mml_num")int mml_num);
 
-	public Mml_ContentVO getMmlContent(int mml_num);
+  public Mml_ContentVO getMmlContent2(int mml_num);
 
-	public MemberVO getMemberInfo(int id);
+  public MemberVO getMemberInfo(int id);
 
 	public int getCountFollower(int id);
 

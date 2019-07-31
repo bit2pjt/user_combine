@@ -54,7 +54,7 @@
 	function register_back() {
 		msg = "나영리 작성을 취소하시겠습니까?";
 		if (confirm(msg) != 0) {
-			location.href = "mmlList.do";
+			location.href = "mmlList";
 		}
 	}
 	function openModal(){
@@ -77,7 +77,7 @@
 </div>
 <div class="buster-light" style="min-height: 800px;margin-top: 20px;">
 	<div class="col-md-10">
-		<form name="mml_write_form" action="mmlWriteAction.do" method="post" onsubmit="return check()">
+		<form name="mml_write_form" action="mmlWriteAction" method="post" onsubmit="return check()">
 			<input type="hidden" name="id" value="${requestScope.id }">
 			<!-- start | title -->
 			<div class="mml-write-title">

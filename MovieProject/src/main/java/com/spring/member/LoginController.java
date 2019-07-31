@@ -1,4 +1,3 @@
-
 package com.spring.member;
 
 import java.io.PrintWriter;
@@ -44,6 +43,11 @@ public class LoginController {
    @Autowired
    private MemberService memberService;
    
+   @RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index() {
+		return "index";
+	}
+   
    /**
     * 로그인
     * @param vo - 로그인시 입력한 정보가 담긴 MemberVO
@@ -53,7 +57,7 @@ public class LoginController {
     * @return "index"
     * @throws Exception 
     */
-   @RequestMapping(value="/Login.do")
+   @RequestMapping(value="/Login")
    public String MemberLogin(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
       String email= vo.getM_email();
       String pw = vo.getM_password();
@@ -92,10 +96,15 @@ public class LoginController {
     * @param model
     * @return "index"
     */
-   @RequestMapping(value="/Logout.do")
+   @RequestMapping(value="/Logout")
    public String MemberLogOut(HttpServletRequest request, HttpServletResponse response, Model model)  {
       HttpSession session = request.getSession();
       session.invalidate();
+      return "index";
+   }
+   
+   @RequestMapping(value="/index")
+   public String index(HttpServletRequest request, HttpServletResponse response, Model model)  {
       return "index";
    }
    
@@ -107,7 +116,7 @@ public class LoginController {
     * @param model
     * @return String
     */
-   @RequestMapping(value="/id_find.do", method=RequestMethod.GET, produces="application/json")
+   @RequestMapping(value="/id_find", method=RequestMethod.GET, produces="application/json")
    public @ResponseBody String id_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
 	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
 	   vo.setM_phone(phone);
@@ -126,7 +135,7 @@ public class LoginController {
     * @param model
     * @return String
     */
-   @RequestMapping(value="/pw_find.do", method=RequestMethod.GET)
+   @RequestMapping(value="/pw_find", method=RequestMethod.GET)
    public @ResponseBody String pw_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
 	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
 	   vo.setM_phone(phone);
@@ -147,7 +156,7 @@ public class LoginController {
     * @return "index"
     * @throws Exception 
     */
-   @PostMapping("/memberJoin.do") 
+   @PostMapping("/memberJoin") 
    String memberJoin(MemberVO vo, HttpServletRequest request, HttpServletResponse response) {
 	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
 	   vo.setM_phone(phone);
@@ -164,7 +173,7 @@ public class LoginController {
     * @return "application/text"
     * @throws Exception 
     */
-   @RequestMapping(value="/email_overlap_chk.do", method=RequestMethod.GET, produces="application/json")
+   @RequestMapping(value="/email_overlap_chk", method=RequestMethod.GET, produces="application/json")
    public @ResponseBody String emailOverlapChk (@RequestParam(value="m_email") String m_email, HttpServletRequest request, HttpServletResponse response, Model model) {
 	  MemberVO vo = new MemberVO();
 	  vo.setM_email(m_email);
@@ -184,7 +193,7 @@ public class LoginController {
     * @return "application/text"
     * @throws Exception 
     */
-	  @RequestMapping(value="/nick_overlap_chk.do", method=RequestMethod.GET, produces="application/json")
+	  @RequestMapping(value="/nick_overlap_chk", method=RequestMethod.GET, produces="application/json")
 	   public @ResponseBody String nickOverlapChk (@RequestParam(value="m_nickname") String m_nickname, HttpServletRequest request, HttpServletResponse response, Model model) {
 		  MemberVO vo = new MemberVO();
 		  vo.setM_nickname(m_nickname);
@@ -196,7 +205,7 @@ public class LoginController {
 		   }
 	  }
 
-   @RequestMapping(value="/pw_new.do", method=RequestMethod.GET)
+   @RequestMapping(value="/pw_new", method=RequestMethod.GET)
    public @ResponseBody String pw_new(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {
 	   int count = memberService.updatePw(vo);
 	   
@@ -205,11 +214,5 @@ public class LoginController {
 	   }else {
 		   return "fail";
 	   }
-   }
-
 }   
-   
-   
-   
-   
-   
+}

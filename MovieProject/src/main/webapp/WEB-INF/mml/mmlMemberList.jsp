@@ -71,7 +71,7 @@
 
 				<div class="row1">
 	<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -87,7 +87,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -103,7 +103,7 @@
 								  </div>
 					</div>
 						<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -119,7 +119,7 @@
 								  </div>
 					</div>
 					<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -135,7 +135,7 @@
 								  </div>
 					</div>
 					<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/노트북.jpg"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>

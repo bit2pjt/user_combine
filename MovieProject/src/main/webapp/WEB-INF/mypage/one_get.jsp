@@ -5,7 +5,7 @@
 		System.out.println("m_email : " + (String) session.getAttribute("m_email"));
 		out.println("<script>");
 		out.println("alert('로그인 후 이용해주세요.')");
-		out.println("location.href='index.do'");
+		out.println("location.href='index'");
 		out.println("</script>");
 	}
 %>
@@ -35,7 +35,7 @@
 function deleteQnaDetail(){
 	msg="삭제 하시겠습니까?";
 	if(confirm(msg)!=0){
-		location.href="one_list.do";
+		location.href="one_list";
 	}
 	
 }
@@ -64,18 +64,18 @@ function deleteQnaDetail(){
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage.do">마이페이지</a></li>
+								<li><a href="mypage">마이페이지</a></li>
 							</ul>
 							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
-								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -119,7 +119,7 @@ function deleteQnaDetail(){
 								<br>
 								<div class="btn_m">
 									<input type="button"
-										onClick="location.href='one_update.do?qna_no=${requestScope.qnaDetail.qna_no}'"
+										onClick="location.href='one_update?qna_no=${requestScope.qnaDetail.qna_no}'"
 										class="btn-check-hjs" value="수정"> &nbsp; <input
 										type="reset" class="btn-check-hjs" value="삭제"  onclick="deleteQnaDetail()">
 								</div>
@@ -166,7 +166,7 @@ function deleteQnaDetail(){
 
 								<br>
 								<div class="btn_m">
-									<input type="button" onClick="location.href='one_list.do'"
+									<input type="button" onClick="location.href='one_list'"
 										class="btn-check-hjs" value="> 목록으로 돌아가기">
 								</div>
 							</form>
