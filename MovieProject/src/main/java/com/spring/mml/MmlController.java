@@ -1,5 +1,7 @@
 package com.spring.mml;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spring.movie.MovieService;
+import com.spring.movie.Movie_InfoVO;
 import com.spring.mypage.MyPageService;
 
 @Controller
@@ -19,6 +23,9 @@ public class MmlController {
 	
 	@Autowired
 	private MyPageService myPageService;
+	
+	@Autowired
+	private MovieService movieService;
 	
 	@RequestMapping(value="/mmlList.do", method=RequestMethod.GET)
 	public String mmlList() {
@@ -44,6 +51,10 @@ public class MmlController {
 		int id = myPageService.getMemberId(m_email);
 		model.addAttribute("id", id);
 		
+		List<Movie_InfoVO> movieList = movieService.getMovieList();
+		//System.out.println("=============MmlController.java===================== movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
+		model.addAttribute("movieList", movieList);
+		
 		return "mml/mmlWrite2";
 	}
 	
@@ -63,6 +74,7 @@ public class MmlController {
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR : MmlWriteAction - " + e.getMessage());
+			e.printStackTrace();
 		}
 		//작성자의 개인 mmlList로 이동하게 추후 링크조정
 		return "redirect:/mmlList.do";

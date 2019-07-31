@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!--
 /**
 * @Class Name : mmlWrite2.jsp
@@ -12,6 +13,7 @@
 * @ 2019.07.09    김상필      		 최초생성
 * @ 2019.07.23    한유진      		 back-end 작업
 * @ 2019.07.27    한유진      		 front-end 수정
+* @ 2019.07.29    한유진      		 영화선택 모달창 작업
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -23,12 +25,17 @@
 
 <%@ include file="../header1.jsp"%>
 
-<link rel="stylesheet" href="<c:url value="/resources/css/mml_write.css" />">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/mml_write.css" />">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
 <!-- include summernote css/js-->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
+	rel="stylesheet">
 <script src="<c:url value="/resources/js/yj_js.js" />"></script>
 
 
@@ -57,8 +64,16 @@
 			location.href = "mmlList.do";
 		}
 	}
-	function openModal(){
-		alert('모달 뿅!');
+	function movie_select(mi_code,mi_poster){
+		var mml_body = document.getElementsByClassName("mml-movie-body");
+		mml_body[0].innerHTML = 
+			mml_body[0].innerHTML
+			+"<div class='mml-movie-item'>"
+			+"<input type='hidden' name='mi_code' value='"+ mi_code +"'>"
+			+ "<img src='./upload/" +mi_poster + "'>"
+			+"</div>";
+		var modal = document.getElementById("movie-modal");
+		modal.style.display="none";
 	}
 </script>
 
@@ -75,21 +90,22 @@
 		</div>
 	</div>
 </div>
-<div class="buster-light" style="min-height: 800px;margin-top: 20px;">
+<div class="buster-light" style="min-height: 1000px; margin-top: 20px;">
 	<div class="col-md-10">
-		<form name="mml_write_form" action="mmlWriteAction.do" method="post" onsubmit="return check()">
+		<form name="mml_write_form" action="mmlWriteAction.do" method="post"
+			onsubmit="return check()">
 			<input type="hidden" name="id" value="${requestScope.id }">
 			<!-- start | title -->
 			<div class="mml-write-title">
-				제목<br>
-				<input name="mml_title" class="mml-title"
-						placeholder="제목을 입력해주세요" maxlength="50"><span id="counter">0</span><span>/50자</span>
+				제목<br> <input name="mml_title" class="mml-title"
+					placeholder="제목을 입력해주세요" maxlength="50"><span id="counter">0</span><span>/50자</span>
 			</div>
 			<!-- end | title -->
 			<!-- start | content -->
 			<div class="mml-write-content">
 				<br>내용<br>
-				<textarea name="mml_content" id="summernote" style="border:1 solid;width:100%" placeholder="내용을 입력해주세요"></textarea>
+				<textarea name="mml_content" id="summernote"
+					style="border: 1 solid; width: 100%" placeholder="내용을 입력해주세요"></textarea>
 			</div>
 			<!-- end | content -->
 			<!-- start | movie list -->
@@ -97,15 +113,70 @@
 				<br>영화 리스트<br>
 				<div class="mml-movie-body">
 					<div class="mml-movie-item">
-        				<img src="<c:url value='/resources/images/mml_add.png'/>" alt="영화 추가하기"  onclick="openModal()">
+						<img class="addbtn"
+							src="<c:url value='/resources/images/mml_add.png'/>"
+							alt="영화 추가하기" data-target="#movie-modal" data-toggle="modal"
+							data-backdrop="static">
+						<!-- start | modal -->
+						<%-- <jsp:include page="mmlWriteModal.jsp"/> --%>
+						<div class="modal fade" id="movie-modal" role="dialog">
+							<div class="modal-dialog" style="margin-top: 100px;">
+								<div class="modal-content">
+									<!-- start | modal-header -->
+									<div class="modal-header">
+										<h4 class="modal-title">영화 선택</h4>
+									</div>
+									<!-- end | modal-header -->
+									<!-- start | modal-body -->
+									<div class="modal-body">
+
+										<div class="form-group">
+											<!-- <label for="search" style="margin-bottom: 10px;"><strong>댓글 번호</strong></label> -->
+											<input class="form-control" id="movie-search"
+												name="movie-search">
+										</div>
+										<c:forEach var="movie" items="${requestScope.movieList }"
+											end="5">
+											<div class="movielist-card"
+												onclick="movie_select(${movie.mi_code},'${movie.mi_poster}')"
+												data-dismiss="modal">
+												<img src="./upload/${movie.mi_poster}">
+												<div class="movie-info">
+													<h4 class="movie-ktitle">${movie.mi_ktitle}</h4>
+													<h6 class="movie-etitle">${movie.mi_etitle}</h6>
+													개봉년도 :
+													<c:out value="${fn:substring(movie.mi_releaseday,24,28) }"></c:out>
+													<br> 제작국가 :
+													<c:out value="${movie.mi_ccode }"></c:out>
+													<br> 감독 :
+													<c:out value="${movie.mi_director }"></c:out>
+													<br> 배우 :
+													<c:out value="${movie.mi_actor }"></c:out>
+													<br>
+
+												</div>
+											</div>
+										</c:forEach>
+									</div>
+									<!-- end | modal-body -->
+									<!-- start | modal-footer -->
+									<div class="modal-footer">
+										<button type="button" id='btn-hjs'
+											class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+									</div>
+									<!-- end | modal-footer -->
+								</div>
+							</div>
+						</div>
+						<!-- end | modal -->
 					</div>
 				</div>
 			</div>
 			<!-- end | movie list -->
 			<!-- start | button -->
 			<div class="mml-write-button">
-				<input type="submit" value="등록">
-				<input type="button" value="취소" onclick="register_back()">
+				<input type="submit" value="등록"> <input type="button"
+					value="취소" onclick="register_back()">
 			</div>
 			<!-- end | button -->
 		</form>

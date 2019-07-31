@@ -64,6 +64,7 @@ yj : start | index 페이지 상단의 영화 차트 관련
 	border:1px solid gray;
 	text-align:center;
 	position:relative;
+	margin:10px;
 }
 
 .mml-movie-item img {
@@ -74,7 +75,7 @@ yj : start | index 페이지 상단의 영화 차트 관련
 	height: 100%;
 }
 
-.mml-movie-item .add_btn {
+.mml-movie-item .addbtn {
 	width: 50px;
 	height: 50px;
 	position: absolute;
@@ -100,3 +101,79 @@ yj : start | index 페이지 상단의 영화 차트 관련
 	padding-left:10px;
 	padding-right:10px;
 }
+
+/*modal*/
+
+.modal-dialog {
+    width: 80%;
+    margin: 30px auto;
+}
+
+@media (max-width: 400px){
+	.modal-dialog {
+    	width: 350px;
+    	margin: 20px auto;
+	}
+}
+.modal-body{
+	/* text-align: left; */
+}
+.movielist-top{
+	display: flex;
+}
+
+.movielist-top select{
+	width:150px;
+}
+
+.movielist-top img{
+	width:50px;
+	height:50px;
+}
+
+.modal-footer{
+	text-align: center;
+	padding: 0px;
+    height: 50px;
+}
+
+.modal-footer button{
+	width:100%;
+	height:100%;
+	background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.movielist-card{
+	display: inline-block;
+    background-color: white;
+    width: 300px;
+    height: 150px;
+    margin: 10px;
+    position: relative;
+    border: 1px solid black;
+}
+
+.movielist-card img{
+	max-width:100px;
+	max-height:150px;
+}
+
+.movielist-card .movie-info{
+	position: absolute;
+	text-align: left;
+	left:105px;
+	top:5px;
+}
+
+/* 
+.movielist-card h4{
+	position: absolute;
+	font-size:13px;
+    left: 3px;
+    top: 155px;
+} */
+
+
