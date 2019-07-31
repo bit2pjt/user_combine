@@ -1,0 +1,17 @@
+.metadata/
+
+.recommenders/
+
+RemoteSystemsTempFiles/
+
+Servers/
+
+*.class
+
+*.classpath
+
+/target/
+
+/bin/
+
+*.settings/
