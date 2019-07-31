@@ -294,7 +294,9 @@
 	}
 	.ws-post-get-info-inner {
 		display:inline-block;
-		margin-top:5px;
+		margin-top:15px;
+		margin-left:20px;
+		font-weight:bold;
 	}
 	
 	@media(max-width:450px){

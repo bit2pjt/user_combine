@@ -1,8 +1,13 @@
 package com.spring.boardFree;
 
+import java.util.List;
+
 import com.spring.member.MemberVO;
 
 public interface BoardFreeDAO {
+	 List<BoardFreeVO> listAll();
+	 
+	 
 	
 	BoardFreeVO getContent(int page);
 	

@@ -1,5 +1,7 @@
 package com.spring.boardFree;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -324,6 +326,13 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	public void boardDelete(int bno) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public List<BoardFreeVO> listAll() {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		return boardFreeDAO.listAll(); 
 	}
 
 }

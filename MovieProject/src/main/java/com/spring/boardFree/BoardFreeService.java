@@ -1,9 +1,13 @@
 package com.spring.boardFree;
 
+import java.util.List;
+
 import com.spring.member.MemberVO;
 
 public interface BoardFreeService {
 
+	List<BoardFreeVO> listAll();
+	
 	BoardFreeVO getContent(int page);
 	
 	void boardDelete(int bno);

@@ -26,8 +26,6 @@
  		var warn = $("#ws-cnt-warning");
  		var bno = "${boardFreeVO.bf_bno}";
  		
- 		    
- 		
  		reco.on("click", function() {
  		 	if( session == "") {
  		 		alert("로그인 하셔야 이용하실수 있습니다.");
@@ -109,8 +107,12 @@
  	
  	function deleteContent() {
  		var result = confirm("삭제하시겠습니까?");
- 		if(result == true)
- 			location.href="boardFreeDelete";
+ 		alert(result);
+ 		
+ 		if(result == true) {
+ 			alert("1");
+ 			location.href="boardFreeDelete?bno=${boardFreeVO.bf_bno}";
+ 		}
  	}
 </script>
 
@@ -277,7 +279,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
-                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
+                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn">수정</button>
                             <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
                         </div>
                     </div>
@@ -592,8 +594,9 @@
                 	//getReplies();
                 	getRepliesPaging(replyPageNum);
                     alert("댓글 수정 완료!");
-                    $("#modifyModal").modal("hide");
-                    
+                    $("#modifyModal").removeClass("in");
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");
                 }
             }
         });

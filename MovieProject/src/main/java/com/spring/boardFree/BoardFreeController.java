@@ -44,7 +44,9 @@ public class BoardFreeController {
 	  * @return "boardFreeList"
 	 */
 	@RequestMapping(value = "/boardFreeList", method=RequestMethod.GET)
-	public String getListPage() {
+	public String getListPage(Model model) {
+		model.addAttribute("boardFree", boardFreeService.listAll());
+		
 		return "board/free/boardFreeList";
 	}
 	
@@ -95,12 +97,13 @@ public class BoardFreeController {
 	  * 자유게시판 게시글 삭제
 	  * @return "boardFreeList"
 	 */
-	@GetMapping("/boardFreeDelete")
-	public String boardDelete(@RequestParam("bno") int bno, HttpSession session, HttpServletRequest request) {
+	@RequestMapping(value= "/boardFreeDelete", method=RequestMethod.GET)
+	public String boardDelete(@RequestParam("bno") int bno, HttpSession session, Model model) {
+		System.out.println("1111111111");
 		String sessionyn = (String)session.getAttribute("m_email");
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
 		
-		return "board/free/boardFreeList";
+		return "redirect:/boardFreeList"; 
 	}
 	
 	/**
