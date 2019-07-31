@@ -1,3 +1,23 @@
 
-*.log
-.metadata/ Servers/ *.class *.classpath /target/ /bin/
+# spring
+
+.metadata/
+
+
+.recommenders/
+
+
+
+Servers/
+
+
+*.class
+
+
+*.classpath
+
+
+/target/
+
+
+*.settings/
