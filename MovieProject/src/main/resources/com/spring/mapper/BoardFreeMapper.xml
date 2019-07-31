@@ -87,7 +87,7 @@
 	<select id="thumb_check" parameterType="int" resultMap="ThumbMap">
 		select *
 		from bf_thumb
-		where id = #{id}
+		where id = #{id} and bf_bno= #{bf_bno}
 	</select>
 	
 	<select id="reply_check" parameterType="com.spring.boardFree.ThumbVO" resultMap="ThumbMap">
@@ -135,7 +135,7 @@
 	
 	<update id="updateRecommend" parameterType="com.spring.boardFree.ThumbVO">
 		update board_free set 
-		bf_recommend = (select count(bf_thumb) from bf_thumb where bf_thumb = #{bf_thumb})
+		bf_recommend = (select count(bf_thumb) from bf_thumb where bf_thumb = #{bf_thumb} and bf_bno = #{bf_bno})
 		where bf_bno = #{bf_bno}
 	</update>
 	

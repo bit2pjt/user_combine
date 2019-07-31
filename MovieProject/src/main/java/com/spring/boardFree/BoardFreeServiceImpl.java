@@ -182,7 +182,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	public String thumb_check(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		// bf_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
-		ThumbVO thumbVO = boardFreeDAO.thumb_check(vo.getId()); 
+		ThumbVO thumbVO = boardFreeDAO.thumb_check(vo); 
 		String msg = "";
 		if( thumbVO != null) {// bf_thumb테이블에 해당 아이디가 있으면 중복 추천/비추천 불가
 			msg ="fail";

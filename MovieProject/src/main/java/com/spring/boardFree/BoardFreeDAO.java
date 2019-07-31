@@ -40,7 +40,7 @@ public interface BoardFreeDAO {
 	int getUser(String email);
 	
 	// 게시글 추천/비추천
-	ThumbVO thumb_check(int id);
+	ThumbVO thumb_check(ThumbVO vo);
 	
 	int plusRecommend(ThumbVO vo);
 	
