@@ -67,23 +67,23 @@ public class MyPageController {
 
 	// ���������� - ��й�ȣ ��Ȯ�� - ȸ����� ���
 	@RequestMapping(value = "/member_info")
-	public String memberInfo(MemberVO member, Model model, int id) {
-		MemberVO member1 = myPageService.getMember(id);
-		System.out.println("member1=" + member1);
+	public String memberInfo(Model model, int id) {
+		MemberVO member = myPageService.getMember(id);
+	
 		// Ŭ���̾�Ʈ���� �Է��� ��й�ȣ
 		String input_password = member.getM_password();
 		System.out.println("input_pwd=" + input_password);
 		// id�� �˻��� member�� ��й�ȣ
-		String member_password = member1.getM_password();
+		
+	
+		String member_password = member.getM_password();
 		System.out.println("member_pwd=" + member_password);
 
-		int check = 3;
+	
 
 		if (input_password.equals(member_password)) {
 			model.addAttribute("member", member);
-			model.addAttribute("member1", member1);
-			model.addAttribute("check", check);
-			System.out.println("�ѱ��" + member1);
+			
 			return "mypage/member_info";
 		} else {
 			return "mypage/mypage";

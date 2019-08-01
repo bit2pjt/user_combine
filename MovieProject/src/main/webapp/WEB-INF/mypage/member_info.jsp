@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.member.MemberVO"%>
 <%
-	MemberVO member1 = (MemberVO) request.getAttribute("member1");
-	String phone1 = member1.getM_phone().substring(0,3);
-	String phone2 = member1.getM_phone().substring(3,7);
-	String phone3 = member1.getM_phone().substring(7,11);
+	MemberVO member = (MemberVO) request.getAttribute("member");
+	String phone1 = member.getM_phone().substring(0,3);
+	String phone2 = member.getM_phone().substring(3,7);
+	String phone3 = member.getM_phone().substring(7,11);
 		
 	System.out.println(phone1);
 	System.out.println(phone2);
@@ -100,10 +100,10 @@
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
 						<h2>
-							<strong><%=member1.getM_name()%> 님</strong>
+							<strong><%=member.getM_name()%> 님</strong>
 						</h2>
 						<h3>
-							<strong><%=member1.getM_email()%></strong>
+							<strong><%=member.getM_email()%></strong>
 						</h3>
 					</div>
 					<div class="user-information-hjs">
@@ -144,10 +144,10 @@
 							<tr>
 								<td>이메일</td>
 								<td>
-									<div class="td-content"><%=member1.getM_email()%></div>
+									<div class="td-content"><%=member.getM_email()%></div>
 								</td>
 							</tr>
-							<form action="update_pw?id=<%=member1.getId()%>" name="pwform"
+							<form action="update_pw?id=<%=member.getId()%>" name="pwform"
 								onsubmit="return pw(this)" method="post">
 							<tr>
 								<td>비밀번호 변경</td>
@@ -158,7 +158,7 @@
 												id="user_password" name="input_pw" placeholder="현재 비밀번호"
 												type="password" class="ng-untouched ng-pristine ng-invalid">
 											<input name="pw_confirm" type="hidden"
-												value="<%=member1.getM_password()%>">
+												value="<%=member.getM_password()%>">
 										</div>
 										<div class="inpbx1">
 											<label for="new_password">신규 비밀번호</label> <input
@@ -179,23 +179,23 @@
 							<tr>
 								<td>이름</td>
 								<td>
-									<div class="td-content"><%=member1.getM_name()%></div>
+									<div class="td-content"><%=member.getM_name()%></div>
 								</td>
 							</tr>
-							<form action="update_nick?id=<%=member1.getId()%>" onsubmit="return nick(this)" method="post">
+							<form action="update_nick?id=<%=member.getId()%>" onsubmit="return nick(this)" method="post">
 							<tr>
 								<td>닉네임</td>
 								<td>
 									<div class="td-content">
 										<input type="text" name="m_nickname" style="width: 250px"
-											value="<%=member1.getM_nickname()%>" />
+											value="<%=member.getM_nickname()%>" />
 										<button type="submit" class="btn-check-hjs">닉네임 변경</button>
 									</div>
 								</td>
 							</tr>
 							</form>
 
-							<form name="modifyform" action="member_update?id=<%=member1.getId() %>" onsubmit="return modify(this)" method="post">
+							<form name="modifyform" action="member_update?id=<%=member.getId() %>" onsubmit="return modify(this)" method="post">
 							<tr>
 								<td>휴대폰 번호</td>
 								<td>
@@ -223,23 +223,23 @@
 									
 										<label for="terms-2"> <label
 											class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("공포/호러")){%>checked<%} %> ><span>공포/호러</span>
+												type="checkbox" <%if(member.getM_favorite().equals("공포/호러")){%>checked<%} %> ><span>공포/호러</span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("멜로/로맨스")){%>checked<%} %>><span>멜로/로맨스</span>
+												type="checkbox" <%if(member.getM_favorite().equals("멜로/로맨스")){%>checked<%} %>><span>멜로/로맨스</span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("액션")){%>checked<%} %>><span>액션 </span>
+												type="checkbox" <%if(member.getM_favorite().equals("액션")){%>checked<%} %>><span>액션 </span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("코미디")){%>checked<%} %>><span> 코미디 </span>
+												type="checkbox" <%if(member.getM_favorite().equals("코미디")){%>checked<%} %>><span> 코미디 </span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("범죄")){%>checked<%} %>><span> 범죄 </span>
+												type="checkbox" <%if(member.getM_favorite().equals("범죄")){%>checked<%} %>><span> 범죄 </span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("스릴러")){%>checked<%} %>><span> 스릴러 </span>
+												type="checkbox" <%if(member.getM_favorite().equals("스릴러")){%>checked<%} %>><span> 스릴러 </span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("느와르")){%>checked<%} %>><span> 느와르 </span>
+												type="checkbox" <%if(member.getM_favorite().equals("느와르")){%>checked<%} %>><span> 느와르 </span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("가족")){%>checked<%} %>><span> 가족 </span>
+												type="checkbox" <%if(member.getM_favorite().equals("가족")){%>checked<%} %>><span> 가족 </span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
-												type="checkbox" <%if(member1.getM_favorite().equals("애니메이션")){%>checked<%} %>><span> 애니메이션 </span>
+												type="checkbox" <%if(member.getM_favorite().equals("애니메이션")){%>checked<%} %>><span> 애니메이션 </span>
 										</label>
 										</label>
 										
@@ -254,18 +254,18 @@
 										<label for=""> SMS 수신동의
 											<div class="div-yn">
 												<label class="fancy-radio custom-color-coral"> <input
-													name="smsyn" value="Y" type="radio" <%if(member1.getM_sagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
+													name="smsyn" value="Y" type="radio" <%if(member.getM_sagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
 												</label> <label class="fancy-radio custom-color-coral"> <input
-													name="smsyn" value="N" type="radio" <%if(member1.getM_sagree().equals("n")){%>checked<%} %>><span><i></i>동의
+													name="smsyn" value="N" type="radio" <%if(member.getM_sagree().equals("n")){%>checked<%} %>><span><i></i>동의
 														안함 </span>
 												</label>
 											</div>
 											<br> 이메일 수신동의
 											<div class="div-yn">
 												<label class="fancy-radio custom-color-coral"> <input
-													name="emailyn" value="Y" type="radio" <%if(member1.getM_eagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
+													name="emailyn" value="Y" type="radio" <%if(member.getM_eagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
 												</label> <label class="fancy-radio custom-color-coral"> <input
-													name="emailyn" value="N" type="radio" <%if(member1.getM_eagree().equals("n")){%>checked<%} %>><span><i></i>동의
+													name="emailyn" value="N" type="radio" <%if(member.getM_eagree().equals("n")){%>checked<%} %>><span><i></i>동의
 														안함</span>
 												</label>
 											</div>
