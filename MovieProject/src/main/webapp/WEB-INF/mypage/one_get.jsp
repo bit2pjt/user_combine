@@ -111,7 +111,7 @@ function deleteQnaDetail(){
 									<li class="tb_line">
 
 										<div class="tb_th1">내용</div>
-										<div class="tb_td1">
+										<div class="tb_td1" style="word-break:break-all">
 											${requestScope.qnaDetail.qna_content }</div>
 
 									</li>
@@ -152,7 +152,7 @@ function deleteQnaDetail(){
 											<li class="tb_line"></li>
 											<li class="tb_line">
 												<div class="tb_th1">답변일시</div>
-												<div class="tb_td1">${requestScope.qnaAdDetail.aqna_update_date }</div>
+												<div class="tb_td1" style="word-break:break-all">${requestScope.qnaAdDetail.aqna_update_date }</div>
 											</li>
 											<li class="tb_line">
 												<div class="tb_th1">답변내용</div>

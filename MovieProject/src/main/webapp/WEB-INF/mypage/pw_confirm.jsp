@@ -94,7 +94,7 @@
                   <hr class="hr_style2">
                   <div class="form-style-pw">
                         <div class="form-div">
-                           <form id="basic-form" action="member_info" method="post">
+                           <form id="basic-form" action="member_info" method="get">
                               <div class="form-pw">
                                  <span>
                                     <strong>이메일: ${m_email } </strong>
@@ -103,10 +103,11 @@
                                     <strong>비밀번호: </strong>
                                     
                                  </span>
-                                 <input type="hidden" name="m_email" value="${m_email }"/>
+                                 <input type="hidden" name="m_email" value="bit0hyj@gmail.com"/>
                                  <input type="password" name="m_password"  size="10" placeholder="비밀번호 입력" required/>
                                  <span class="pwchk_msg" style="color:red; font-size: 14px;" > 
                                     <c:out value="${msg }"/>
+                                    
                                  </span> 
                                  <br><br>
                                  
