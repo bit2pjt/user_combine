@@ -12,7 +12,7 @@
 <html lang="en" class="no-js">
 <head>
 	<!-- Basic need -->
-	<title>이벤트창</title>
+	<title>영화예매</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<meta name="keywords" content="">

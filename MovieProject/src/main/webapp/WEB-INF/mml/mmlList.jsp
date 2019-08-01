@@ -94,7 +94,7 @@ $(function(){
 					</div>
 					<div style="flex: 2">
 						<button type="button" class="btn-check" style="float:right"
-							OnClick="location.href ='mmlWrite.do'">나영리 작성</button>
+							OnClick="location.href ='mmlWrite'">나영리 작성</button>
 					</div>
 				</div>
 				<br>
@@ -107,7 +107,7 @@ $(function(){
 				<c:forEach var="mml2" items="${requestScope.mmlList2 }" varStatus="status">
 		
 	<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/${mml2.mml_poster }"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
@@ -130,7 +130,7 @@ $(function(){
 					<div class="row1" id="sort_date">
 				<c:forEach var="mml" items="${requestScope.mmlList}" varStatus="status">
 	<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet.do'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/${mml.mml_poster }"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>

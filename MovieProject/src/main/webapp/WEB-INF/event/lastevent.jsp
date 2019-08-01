@@ -282,11 +282,8 @@ function load(id, cnt, btn) {
                 <ul class="jq_tab tab_menu tab-links tabs-mv">
                     <ul class="last_event" style="float: right;">
                 	<!-- <li style="width: 120px;height: 40px; background-color: #333;"><a style="color: #fff;" href="./lastevent.html">지난이벤트</a></li> -->
-<<<<<<< HEAD
-                	<li style="width: 120px;height: 40px; background-color: #333;"><a style="color: #fff;" href="./winner.do">당첨자확인</a></li>
-=======
+
                 	<li style="width: 120px;height: 40px; background-color: #333;"><a style="color: #fff;" href="./winner">당첨자확인</a></li>
->>>>>>> a94a8023fa5a5843929e830508f93402d459c4a8
                 	</ul>
                 </ul>
     </div>
