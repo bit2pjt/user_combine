@@ -1,5 +1,6 @@
 package com.spring.mypage;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.spring.member.MemberVO;
@@ -9,11 +10,11 @@ import com.spring.member.MemberVO;
 * @Description : 
 * @Modification Information
 * @
-* @  ¼öÁ¤ÀÏ     	  ¼öÁ¤ÀÚ                 ¼öÁ¤³»¿ë
+* @  ìˆ˜ì •ì¼     	  ìˆ˜ì •ì                 ìˆ˜ì •ë‚´ìš©
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.17     ÇÑÀ¯Áø      ÃÖÃÊ»ı¼º
-* @ 2019.07.24		¹ÚÇö¹Î		one_get  ºÎºĞ Ãß°¡
-* @author bit 2Á¶
+* @ 2019.07.17     í•œìœ ì§„      ìµœì´ˆìƒì„±
+* @ 2019.07.24		ë°•í˜„ë¯¼		one_get  ë¶€ë¶„ ì¶”ê°€
+* @author bit 2ì¡°
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -28,21 +29,32 @@ public interface MyPageDAO {
 	void updatePw(MemberVO memberVO);
 	void updateNick(MemberVO memberVO);
 	int checkNick(String m_nickname);
-	//¸â¹öµ¥ÀÌÅÍ °¡Á®¿À±â, ¼öÁ¤ÇÏ±â, Å»Åğ¿äÃ»ÇÏ±â
-	public String getMemberName(String m_email);	//¸â¹ö ÀÌ¸§ °¡Á®¿À±â
-	public int getMemberId(String m_email);		//¸â¹ö ¾ÆÀÌµğ °¡Á®¿À±â
-	public String getMemberNickname(String m_email);	//¸â¹ö ´Ğ³×ÀÓ °¡Á®¿À±â
+	//ë©¤ë²„ë°ì´í„° ê°€ì ¸ì˜¤ê¸°, ìˆ˜ì •í•˜ê¸°, íƒˆí‡´ìš”ì²­í•˜ê¸°
+	public String getMemberName(String m_email);	//ë©¤ë²„ ì´ë¦„ ê°€ì ¸ì˜¤ê¸°
+	public int getMemberId(String m_email);		//ë©¤ë²„ ì•„ì´ë”” ê°€ì ¸ì˜¤ê¸°
+	public String getMemberNickname(String m_email);	//ë©¤ë²„ ë‹‰ë„¤ì„ ê°€ì ¸ì˜¤ê¸°
 	
-	//1:1 ¹®ÀÇ³»¿ª ¸®½ºÆ® °¡Á®¿À±â
-	public List<OneVO> getQnaList(int id);	//1:1¹®ÀÇ ¸®½ºÆ® °¡Á®¿À±â
+	//1:1 ë¬¸ì˜ë‚´ì—­ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
+	public List<OneVO> getQnaList(int id);	//1:1ë¬¸ì˜ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
 	
-	//1:1 ¹®ÀÇ µî·ÏÇÏ±â, °¡Á®¿À±â, ¼öÁ¤ÇÏ±â, »èÁ¦ÇÏ±â
-	public int insertQna(OneVO oneVO);	//1:1 ¹®ÀÇ µî·Ï
-	public OneVO getQnaDetail(int qna_no);	//1:1 ¹®ÀÇ »ó¼¼Á¤º¸ °¡Á®¿À±â
-	public int updateQna(OneVO oneVO);	//1:1 ¹®ÀÇ »ó¼¼Á¤º¸ ¼öÁ¤ÇÏ±â
+	//1:1 ë¬¸ì˜ ë“±ë¡í•˜ê¸°, ê°€ì ¸ì˜¤ê¸°, ìˆ˜ì •í•˜ê¸°, ì‚­ì œí•˜ê¸°
+	public int insertQna(OneVO oneVO);	//1:1 ë¬¸ì˜ ë“±ë¡
+	public OneVO getQnaDetail(int qna_no);	//1:1 ë¬¸ì˜ ìƒì„¸ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+	public int updateQna(OneVO oneVO);	//1:1 ë¬¸ì˜ ìƒì„¸ì •ë³´ ìˆ˜ì •í•˜ê¸°
 	
 	
-	//hm | 1:1 ¹®ÀÇ ´äº¯ °¡Á®¿À±â
-	public OneAdVO getQnaAdDetail(int qna_no); // 1:1 ¹®ÀÇ »ó¼¼Á¤º¸ °¡Á®¿À±â
+	//hm | 1:1 ë¬¸ì˜ ë‹µë³€ ê°€ì ¸ì˜¤ê¸°
+	public OneAdVO getQnaAdDetail(int qna_no); // 1:1 ë¬¸ì˜ ìƒì„¸ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+	
+	//kgh | ë¹„ë°€ë²ˆí˜¸ ë³€ê²½, íƒˆí‡´
+	public int checkPw(HashMap<String,String> map);
+	// ë¹„ë°€ë²ˆí˜¸ ì²´í¬
+	
+	public int delete_member(String m_email);
+	//íšŒì› íƒˆí‡´ì‹ ì²­
+	
+	public int delete_date(int id);
+	
+	
 	
 }

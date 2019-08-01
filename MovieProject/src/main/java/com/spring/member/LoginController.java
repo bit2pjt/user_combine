@@ -9,210 +9,223 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 /**
-* @Class Name : LoginController.java
-* @Description : login°ü·Ã ÄÁÆ®·Ñ·¯ 
-* @Modification Information
-* @
-* @  	¼öÁ¤ÀÏ               	 ¼öÁ¤ÀÚ                  	¼öÁ¤³»¿ë
-* @ -----------   ---------   -------------------------------
-* @ 2019. 07. 15         È²Áø¼®            		ÃÖÃÊ»ı¼º
-* @ 2019. 07. 16 	È²Áø¼®				·Î±×ÀÎ/·Î±×¾Æ¿ô, ÀÌ¸ŞÀÏ Ã£±â ÄÁÆ®·Ñ·¯ Ãß°¡
-* @ 2019. 07. 17 	È²Áø¼®				
-* @ 2019. 07. 22	ÀÌ¿õ½Ä			È¸¿ø°¡ÀÔ + °¡ÀÔ½Ã ¸ŞÀÏ&´Ğ³×ÀÓ Áßº¹È®ÀÎ ±¸Çö
-* @ 2019. 07. 26	ÀÌ¿õ½Ä			login ¼º°ø½Ã id ÄÚµå¸¦ ¼¼¼Ç°ª¿¡ Ãß°¡ÇÏµµ·Ï ¼öÁ¤
-* @author bit 2Á¶
-* @since 2019. 07.01
-* @version 1.0
-* @see
-*
-*  Copyright (C) by Bit All right reserved.
-*/
+ * @Class Name : LoginController.java
+ * @Description : loginê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬
+ * @Modification Information
+ * @ @ ìˆ˜ì •ì¼ ìˆ˜ì •ì ìˆ˜ì •ë‚´ìš© @ ----------- --------- ------------------------------- @
+ * 2019. 07. 15 í™©ì§„ì„ ìµœì´ˆìƒì„± @ 2019. 07. 16 í™©ì§„ì„ ë¡œê·¸ì¸/ë¡œê·¸ì•„ì›ƒ, ì´ë©”ì¼ ì°¾ê¸° ì»¨íŠ¸ë¡¤ëŸ¬ ì¶”ê°€ @ 2019. 07.
+ * 17 í™©ì§„ì„ @ 2019. 07. 22 ì´ì›…ì‹ íšŒì›ê°€ì… + ê°€ì…ì‹œ ë©”ì¼&ë‹‰ë„¤ì„ ì¤‘ë³µí™•ì¸ êµ¬í˜„ @ 2019. 07. 26 ì´ì›…ì‹ login
+ * ì„±ê³µì‹œ id ì½”ë“œë¥¼ ì„¸ì…˜ê°’ì— ì¶”ê°€í•˜ë„ë¡ ìˆ˜ì •
+ * @author bit 2ì¡°
+ * @since 2019. 07.01
+ * @version 1.0
+ * @see
+ *
+ *      Copyright (C) by Bit All right reserved.
+ */
 
 @Controller
 public class LoginController {
-   
-   @Autowired
-   private MemberService memberService;
-   
-   @RequestMapping(value = "/", method = RequestMethod.GET)
+
+	@Autowired
+	private MemberService memberService;
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 		return "index";
 	}
-   
-   /**
-    * ·Î±×ÀÎ
-    * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
-    * @param request
-    * @param response
-    * @param model
-    * @return "index"
-    * @throws Exception 
-    */
-   @RequestMapping(value="/Login")
-   public String MemberLogin(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-      String email= vo.getM_email();
-      String pw = vo.getM_password();
-      HttpSession session = request.getSession();
-      
-      int check = memberService.userCheck(email, pw);
-      if(check == 1){
-         session.setAttribute("m_email", email);
-         session.setAttribute("id", memberService.getId(email, pw));
-         return "index";
-      }else if( check == -1) {
-         response.setContentType("text/html; charset=utf-8");
-         PrintWriter out = response.getWriter();
-         out.println("<script>");
-         out.println("alert('ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù. È®ÀÎÇØÁÖ¼¼¿ä!');");
-         out.println("history.go(-1);");
-         out.println("</script>");
-         out.close();
-         return "index";
-      }else {
-         response.setContentType("text/html; charset=utf-8");
-         PrintWriter out = response.getWriter();
-         out.println("<script>");
-         out.println("alert('¾ÆÀÌµğ È¤Àº ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù. È®ÀÎÇØÁÖ¼¼¿ä!');");
-         out.println("history.go(-1);");
-         out.println("</script>");
-         out.close();
-         return "index";
-      }
-   }
-   
-   /**
-    * ·Î±×¾Æ¿ô
-    * @param request
-    * @param response
-    * @param model
-    * @return "index"
-    */
-   @RequestMapping(value="/Logout")
-   public String MemberLogOut(HttpServletRequest request, HttpServletResponse response, Model model)  {
-      HttpSession session = request.getSession();
-      session.invalidate();
-      return "index";
-   }
-   
-   @RequestMapping(value="/index")
-   public String index(HttpServletRequest request, HttpServletResponse response, Model model)  {
-      return "index";
-   }
-   
-   /**
-    * ÀÌ¸ŞÀÏ Ã£±â
-    * @param vo - ¾ÆÀÌµğ Ã£±â ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
-    * @param request
-    * @param response
-    * @param model
-    * @return String
-    */
-   @RequestMapping(value="/id_find", method=RequestMethod.GET, produces="application/json")
-   public @ResponseBody String id_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
-	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
-	   vo.setM_phone(phone);
-	   String email = memberService.findEmail(vo);
-	   if(email == "fail")
-		  return "fail";
-	   else
-		  return email;
-   }
-   
-   /**
-    * ºñ¹Ğ¹øÈ£ Ã£±â
-    * @param vo - ºñ¹Ğ¹øÈ£ Ã£±â ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
-    * @param request
-    * @param response
-    * @param model
-    * @return String
-    */
-   @RequestMapping(value="/pw_find", method=RequestMethod.GET)
-   public @ResponseBody String pw_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {  
-	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
-	   vo.setM_phone(phone);
-	   MemberVO memberVO = memberService.findPw(vo);
-	   
-	   if(memberVO != null) {
-		   return "success";
-	   }else {
-		   return "fail";
-	   }
-	}
-   /**
-    * È¸¿ø°¡ÀÔ
-    * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
-    * @param request
-    * @param response
-    * @param model
-    * @return "index"
-    * @throws Exception 
-    */
-   @PostMapping("/memberJoin") 
-   String memberJoin(MemberVO vo, HttpServletRequest request, HttpServletResponse response) {
-	   String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2") + request.getParameter("m_phone3");
-	   vo.setM_phone(phone);
-	   memberService.memberJoin(vo);
-	   	   
-	   return "index";
-   }
-   /**
-    * ·Î±×ÀÎ
-    * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
-    * @param request
-    * @param response
-    * @param model
-    * @return "application/text"
-    * @throws Exception 
-    */
-   @RequestMapping(value="/email_overlap_chk", method=RequestMethod.GET, produces="application/json")
-   public @ResponseBody String emailOverlapChk (@RequestParam(value="m_email") String m_email, HttpServletRequest request, HttpServletResponse response, Model model) {
-	  MemberVO vo = new MemberVO();
-	  vo.setM_email(m_email);
-	  System.out.println("ÀÔ·ÂµÈ °ªÀº =" + vo.getM_email());
-	  if( memberService.emailOverlapChk(vo)) {
-		   return "success";
-	   }else {
-		   return "fail";
-	   }
-   }
-   /**
-    * ·Î±×ÀÎ
-    * @param vo - ·Î±×ÀÎ½Ã ÀÔ·ÂÇÑ Á¤º¸°¡ ´ã±ä MemberVO
-    * @param request
-    * @param response
-    * @param model
-    * @return "application/text"
-    * @throws Exception 
-    */
-	  @RequestMapping(value="/nick_overlap_chk", method=RequestMethod.GET, produces="application/json")
-	   public @ResponseBody String nickOverlapChk (@RequestParam(value="m_nickname") String m_nickname, HttpServletRequest request, HttpServletResponse response, Model model) {
-		  MemberVO vo = new MemberVO();
-		  vo.setM_nickname(m_nickname);
-		  System.out.println("ÀÔ·ÂµÈ °ªÀº =" + vo.getM_nickname());
-		  if( memberService.nickOverlapChk(vo)) {
-			   return "success";
-		   }else {
-			   return "fail";
-		   }
-	  }
 
-   @RequestMapping(value="/pw_new", method=RequestMethod.GET)
-   public @ResponseBody String pw_new(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model) {
-	   int count = memberService.updatePw(vo);
-	   
-	   if(count == 1) {
-		   return "success";
-	   }else {
-		   return "fail";
-	   }
-}   
+	/**
+	 * ë¡œê·¸ì¸
+	 * 
+	 * @param vo       - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return "index"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/Login")
+	public String MemberLogin(MemberVO vo, HttpServletRequest request, HttpServletResponse response, Model model)
+			throws Exception {
+		String email = vo.getM_email();
+		String pw = vo.getM_password();
+		HttpSession session = request.getSession();
+
+		int check = memberService.userCheck(email, pw);
+		if (check == 1) {
+			session.setAttribute("m_email", email);
+			session.setAttribute("id", memberService.getId(email, pw));
+			return "index";
+		} else if (check == -1) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. í™•ì¸í•´ì£¼ì„¸ìš”!');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return "index";
+		} else {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('ì•„ì´ë”” í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. í™•ì¸í•´ì£¼ì„¸ìš”!');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return "index";
+		}
+	}
+
+	/**
+	 * ë¡œê·¸ì•„ì›ƒ
+	 * 
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return "index"
+	 */
+	@RequestMapping(value = "/Logout")
+	public String MemberLogOut(HttpServletRequest request, HttpServletResponse response, Model model) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "index";
+	}
+
+	@RequestMapping(value = "/index")
+	public String index(HttpServletRequest request, HttpServletResponse response, Model model) {
+		return "index";
+	}
+
+	/**
+	 * ì´ë©”ì¼ ì°¾ê¸°
+	 * 
+	 * @param vo       - ì•„ì´ë”” ì°¾ê¸° ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return String
+	 */
+	@RequestMapping(value = "/id_find", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String id_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response,
+			Model model) {
+		String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2")
+				+ request.getParameter("m_phone3");
+		vo.setM_phone(phone);
+		String email = memberService.findEmail(vo);
+		if (email == "fail")
+			return "fail";
+		else
+			return email;
+	}
+
+	/**
+	 * ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+	 * 
+	 * @param vo       - ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return String
+	 */
+	@RequestMapping(value = "/pw_find", method = RequestMethod.GET)
+	public @ResponseBody String pw_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response,
+			Model model) {
+		String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2")
+				+ request.getParameter("m_phone3");
+		vo.setM_phone(phone);
+		MemberVO memberVO = memberService.findPw(vo);
+
+		if (memberVO != null) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
+	/**
+	 * íšŒì›ê°€ì…
+	 * 
+	 * @param vo       - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return "index"
+	 * @throws Exception
+	 */
+	@PostMapping("/memberJoin")
+	String memberJoin(MemberVO vo, HttpServletRequest request, HttpServletResponse response) {
+		String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2")
+				+ request.getParameter("m_phone3");
+		vo.setM_phone(phone);
+		memberService.memberJoin(vo);
+
+		return "index";
+	}
+
+	/**
+	 * ë¡œê·¸ì¸
+	 * 
+	 * @param vo       - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return "application/text"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/email_overlap_chk", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String emailOverlapChk(@RequestParam(value = "m_email") String m_email,
+			HttpServletRequest request, HttpServletResponse response, Model model) {
+		MemberVO vo = new MemberVO();
+		vo.setM_email(m_email);
+		System.out.println("ì…ë ¥ëœ ê°’ì€ =" + vo.getM_email());
+		if (memberService.emailOverlapChk(vo)) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
+	/**
+	 * ë¡œê·¸ì¸
+	 * 
+	 * @param vo       - ë¡œê·¸ì¸ì‹œ ì…ë ¥í•œ ì •ë³´ê°€ ë‹´ê¸´ MemberVO
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return "application/text"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/nick_overlap_chk", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String nickOverlapChk(@RequestParam(value = "m_nickname") String m_nickname,
+			HttpServletRequest request, HttpServletResponse response, Model model) {
+		MemberVO vo = new MemberVO();
+		vo.setM_nickname(m_nickname);
+		System.out.println("ì…ë ¥ëœ ê°’ì€ =" + vo.getM_nickname());
+		if (memberService.nickOverlapChk(vo)) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
+	@RequestMapping(value = "/pw_new", method = RequestMethod.GET)
+	public @ResponseBody String pw_new(MemberVO vo, HttpServletRequest request, HttpServletResponse response,
+			Model model) {
+		int count = memberService.updatePw(vo);
+
+		if (count == 1) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 }

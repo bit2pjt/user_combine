@@ -1,5 +1,4 @@
-/*mmlGet ¸ð¹ÙÀÏ*/
-
+/*mmlGet */
 .social-link{
   width:100%;
   display:flex;
@@ -16,8 +15,7 @@
 
 
 
-/*mmlFollowList ¸ð¹ÙÀÏ*/
-
+/*mmlFollowList */
 .blog-item-style-11 {
   display: flex;
   float:left;
@@ -38,9 +36,7 @@
 }
 
 
-/* mmlList ¸ð¹ÙÀÏ Å©±â */
-
-
+/* mmlList  */
   @media(max-width: 767px){
   .row1{
     position: relative;
@@ -74,8 +70,7 @@
 	 clear: both;
 }
 
-/*mml list Ä«µåºÎºÐ div¿µ¿ª*/
-
+/*mml list */
 .sp_col-md-41 {
 	
 	
@@ -97,7 +92,7 @@
   padding-left: 15px;
   padding-right: 5px;
 }
-/*Ä«µå*/
+
 .card {
   width: 250px;
   height: 500px;
@@ -194,11 +189,6 @@
   transform:scale(1);
 }
 
-
-/*Ä«µå³¡*/
-
-/*ÃÖ½Å¼ø ÃßÃµ¼ø ¹öÆ°*/
-
 .mb-3,
 .my-3 {
   margin-bottom: 1rem !important;
@@ -267,10 +257,7 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
-/*ÃÖ½Å¼ø ÃßÃµ¼ø ¹öÆ°³¡*/
 
-
-/*³ª¿µ¸® ¾²±â ¹öÆ° */
 .btn1 {
   display: inline-block;
   font-weight: 200;
@@ -363,9 +350,6 @@ input[type="button"].btn-block {
   text-transform: uppercase;
   border: none;
 }
-/*³ª¿µ¸® ¾²±â ¹öÆ° ³¡*/
-
-/*ÄÁ¼Á »ö»ó ¹öÆ°À» ¸¸µé¾î º¼±î¿ë */
 
 .submit2 {
   background-color:#FF6F61;
@@ -383,7 +367,6 @@ input[type="button"].btn-block {
   border: none;
   float: right;
 }
-/*È«´ç¹«»ö ¹öÆ° ³¡ */
 
 .blog-item-style-31 img {
   -webkit-transition: all 0.5s ease-out;
@@ -444,8 +427,7 @@ input[type="button"].btn-block {
 
 /*
 yj(190726)
-add : mmlWriteÆäÀÌÁö ÇÏ´Ü ¹öÆ° ¼Ó¼º  
 */
 .form-style-1 input{
 	
-}
+}ã„´

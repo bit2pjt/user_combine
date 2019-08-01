@@ -8,59 +8,59 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MmlRestController {
-	
+
 	@Autowired
 	MmlService mmlService;
-	
-	@GetMapping(value="/getCountFollower/{id}", produces= {	MediaType.APPLICATION_XML_VALUE,
-															MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<String> getCountFollower (@PathVariable("id") int id) {
-		//¿Ö  ResponseEntity´Â Integer¸¦ Á¤»óÀûÀ¸·Î ¸ø³Ñ±âÁö? °´Ã¼¿¡ ´ã¾Æ¼­ º¸³»¸é ºÒ¾ÈÇÑµ¥...
-		String result = mmlService.getContFollower(id)+"";
-		return new ResponseEntity<>(result,	HttpStatus.OK);
-	}
-	
-	@GetMapping(value="/getCountLike/{mml_num}", produces= {MediaType.APPLICATION_XML_VALUE,
-															MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<String> getCountLike (@PathVariable("mml_num") int mml_num) {
-		System.out.println(mml_num+" ³Ñ¾î¿È");
-		//¿Ö  ResponseEntity´Â Integer¸¦ Á¤»óÀûÀ¸·Î ¸ø³Ñ±âÁö? °´Ã¼¿¡ ´ã¾Æ¼­ º¸³»¸é ºÒ¾ÈÇÑµ¥...
-		String result = mmlService.getCountLike(mml_num)+"";
-		System.out.println(result+" °á°ú³ª¿È"); 
-	return new ResponseEntity<>(result,	HttpStatus.OK);
+
+	@GetMapping(value = "/getCountFollower/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
+																	MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<String> getCountFollower(@PathVariable("id") int id) {
+		// ì™œ ResponseEntityëŠ” Integerë¥¼ ì •ìƒì ìœ¼ë¡œ ëª»ë„˜ê¸°ì§€? ê°ì²´ì— ë‹´ì•„ì„œ ë³´ë‚´ë©´ ë¶ˆì•ˆí•œë°...
+		String result = mmlService.getContFollower(id) + "";
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
-	@GetMapping(value="/registerFollowRelationship/{id}", produces= {MediaType.APPLICATION_XML_VALUE,
-															MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<String> registerFollowRelationship (@PathVariable("id") int id, HttpSession session) {
-		System.out.println(id+" ³Ñ¾î¿È");
-				int follower =(int) session.getAttribute("id");	// ¼¼¼Çid = ÃßÁ¾ÀÚ
-				System.out.println("¼¼¼Ç¿¡¼­ ¹ŞÀº Á¶È¸ÀÚ id´Â "+id);
-				int followee = id;								// id = °Ô½ÃÀÚ = ÃßÁ¾´ë»ó
-				
-				String result = mmlService.registerFR(followee, follower);
-				System.out.println(result+" °á°ú³ª¿È"); 
-	return new ResponseEntity<>(result,	HttpStatus.OK);
-}
+	@GetMapping(value = "/getCountLike/{mml_num}", produces = { MediaType.APPLICATION_XML_VALUE,
+																	MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<String> getCountLike(@PathVariable("mml_num") int mml_num) {
+		System.out.println(mml_num + " ë„˜ì–´ì˜´");
+		// ì™œ ResponseEntityëŠ” Integerë¥¼ ì •ìƒì ìœ¼ë¡œ ëª»ë„˜ê¸°ì§€? ê°ì²´ì— ë‹´ì•„ì„œ ë³´ë‚´ë©´ ë¶ˆì•ˆí•œë°...
+		String result = mmlService.getCountLike(mml_num) + "";
+		System.out.println(result + " ê²°ê³¼ë‚˜ì˜´");
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 
-	@GetMapping(value="/giveLike/{mml_num}", produces= {MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_UTF8_VALUE })
-		public ResponseEntity<String> giveLike (@PathVariable("mml_num") int mml_num, HttpSession session) {
-		int giver = (int) session.getAttribute("id");// id = ÃßÃµÀÎ
-		
-		//giver´Â ÃßÃµÀÎ, mml_numÀº ´ë»ó °Ô½Ã¹° ¹øÈ£
+	@GetMapping(value = "/registerFollowRelationship/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
+																			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<String> registerFollowRelationship(@PathVariable("id") int id, HttpSession session) {
+		System.out.println(id + " ë„˜ì–´ì˜´");
+		int follower = (int) session.getAttribute("id"); // ì„¸ì…˜id = ì¶”ì¢…ì
+		System.out.println("ì„¸ì…˜ì—ì„œ ë°›ì€ ì¡°íšŒì idëŠ” " + id);
+		int followee = id; // id = ê²Œì‹œì = ì¶”ì¢…ëŒ€ìƒ
+
+		String result = mmlService.registerFR(followee, follower);
+		System.out.println(result + " ê²°ê³¼ë‚˜ì˜´");
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/giveLike/{mml_num}", produces = { MediaType.APPLICATION_XML_VALUE,
+																MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<String> giveLike(@PathVariable("mml_num") int mml_num, HttpSession session) {
+		int giver = (int) session.getAttribute("id");// id = ì¶”ì²œì¸
+
+		// giverëŠ” ì¶”ì²œì¸, mml_numì€ ëŒ€ìƒ ê²Œì‹œë¬¼ ë²ˆí˜¸
 		String result = mmlService.giveLike(giver, mml_num);
-		return new ResponseEntity<>(result,	HttpStatus.OK);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
-	
-	@GetMapping(value="/giveWarning/{mml_num}", produces= {MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_UTF8_VALUE })
-		public ResponseEntity<String> giveWarning (@PathVariable("mml_num") int mml_num, HttpSession session) {
-		int warner = (int) session.getAttribute("id");// id = ½Å°íÀÎ
-		
-		//giver´Â ÃßÃµÀÎ, mml_numÀº ´ë»ó °Ô½Ã¹° ¹øÈ£
+
+	@GetMapping(value = "/giveWarning/{mml_num}", produces = { MediaType.APPLICATION_XML_VALUE,
+																	MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<String> giveWarning(@PathVariable("mml_num") int mml_num, HttpSession session) {
+		int warner = (int) session.getAttribute("id");// id = ì‹ ê³ ì¸
+
+		// giverëŠ” ì¶”ì²œì¸, mml_numì€ ëŒ€ìƒ ê²Œì‹œë¬¼ ë²ˆí˜¸
 		String result = mmlService.giveWarning(warner, mml_num);
-		return new ResponseEntity<>(result,	HttpStatus.OK);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
-	
-}//e_controller
+
+}// e_controller

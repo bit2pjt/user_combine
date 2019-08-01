@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.member.MemberVO"%>
@@ -294,4 +295,5 @@
 <!-- 6. 페이지별 script 추가해 주세요. -->
 
 <!-- 7. footer2.jsp : script -->
+
 <%@ include file="../footer2.jsp"%> 

@@ -1,3 +1,4 @@
+
 package com.spring.mypage;
 /**
  * @Class Name : MyPageController.java
@@ -318,5 +319,6 @@ public class MyPageController {
 		
 		return "mypage/one_get";
 	}
+
 
 }

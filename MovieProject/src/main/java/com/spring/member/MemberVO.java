@@ -6,22 +6,22 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-	private int id;				//¸â¹öID(È¸¿ø ½Äº° ¹øÈ£)
-	private String m_nickname;	//´Ğ³×ÀÓ
-	private String m_image;		//ÇÁ·ÎÇÊ»çÁø
-	private String m_email;		//ÀÌ¸ŞÀÏ
-	private String m_eagree;	//ÀÌ¸ŞÀÏ ¼ö½Åµ¿ÀÇ
-	private String m_sagree;	//sms ¼ö½Åµ¿ÀÇ
-	private String m_name;		//ÀÌ¸§
-	private String m_phone;		//ÀüÈ­¹øÈ£
-	private String m_cert;		//ÀÌ¸ŞÀÏ ÀÎÁõ¿©ºÎ
-	private String m_password;	//ÆĞ½º¿öµå
-	private Date m_regdate;		//È¸¿ø°¡ÀÔÀÏ
-	private Date m_update_date;	//È¸¿øÁ¤º¸ ¼öÁ¤ÀÏ
-	private String m_deleteyn;	//Å»Åğ¿©ºÎ
-	private int m_following;	//ÆÈ·ÎÀ×¼ö
-	private int m_follower;		//ÆÈ·Î¿ö¼ö
-	private String m_level;		//¿¥ºí·³ µî±Ş
-	private String m_favorite;	//¼±È£Àå¸£
-	private String m_blacklist;	//ºí·¢¸®½ºÆ® ¿©ºÎ
+	private int id;				//ë©¤ë²„ID(íšŒì› ì‹ë³„ ë²ˆí˜¸)
+	private String m_nickname;	//ë‹‰ë„¤ì„
+	private String m_image;		//í”„ë¡œí•„ì‚¬ì§„
+	private String m_email;		//ì´ë©”ì¼
+	private String m_eagree;	//ì´ë©”ì¼ ìˆ˜ì‹ ë™ì˜
+	private String m_sagree;	//sms ìˆ˜ì‹ ë™ì˜
+	private String m_name;		//ì´ë¦„
+	private String m_phone;		//ì „í™”ë²ˆí˜¸
+	private String m_cert;		//ì´ë©”ì¼ ì¸ì¦ì—¬ë¶€
+	private String m_password;	//íŒ¨ìŠ¤ì›Œë“œ
+	private Date m_regdate;		//íšŒì›ê°€ì…ì¼
+	private Date m_update_date;	//íšŒì›ì •ë³´ ìˆ˜ì •ì¼
+	private String m_deleteyn;	//íƒˆí‡´ì—¬ë¶€
+	private int m_following;	//íŒ”ë¡œì‰ìˆ˜
+	private int m_follower;		//íŒ”ë¡œì›Œìˆ˜
+	private String m_level;		//ì— ë¸”ëŸ¼ ë“±ê¸‰
+	private String m_favorite;	//ì„ í˜¸ì¥ë¥´
+	private String m_blacklist;	//ë¸”ë™ë¦¬ìŠ¤íŠ¸ ì—¬ë¶€
 }
