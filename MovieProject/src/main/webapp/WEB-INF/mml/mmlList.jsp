@@ -185,4 +185,5 @@ $(function(){
 
 <%@ include file="../footer.jsp"%>
 </body>
+
 </html>
