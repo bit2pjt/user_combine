@@ -20,13 +20,15 @@
 	</resultMap>
 	
 	<!-- mi_ccode왜 이름 코드야... 바꿔죵 -->
+	<!-- ALTER TABLE mml_content DROP CONSTRAINT fk_movie_info_to_mml_content;  //movie_info -> mml_content fk 삭제 -->
+	<!-- ALTER TABLE MML_CONTENT MODIFY (MI_CODE VARCHAR2(100) ); -->
 	<insert id="insertMml" parameterType="com.spring.mml.Mml_ContentVO">
-		insert into mml_content values (seq_mml_num.nextval, 1, #{id}, 0, sysdate, sysdate, 
-		0, #{mml_title, jdbcType=VARCHAR}, #{mml_content, jdbcType=VARCHAR}, 'test.jpeg', 0)
+		insert into mml_content values (seq_mml_num.nextval, #{mi_code, jdbcType=VARCHAR}, #{id}, 0, sysdate, sysdate, 
+		0, #{mml_title, jdbcType=VARCHAR}, #{mml_content, jdbcType=VARCHAR}, #{mml_poster, jdbcType=VARCHAR}, 0)
 	</insert>
 	
 	<update id="updateMml" parameterType="com.spring.mml.Mml_ContentVO">
-		UPDATE mml_content SET MI_CODE=2, MML_TITLE=#{mml_title, jdbcType=VARCHAR}, MML_CONTENT=#{mml_content, jdbcType=VARCHAR}, MML_POSTER='test2.jpg', MML_UPDATE_DATE=sysdate WHERE MML_NUM=#{mml_num}
+		UPDATE mml_content SET MI_CODE=#{mi_code, jdbcType=VARCHAR}, MML_TITLE=#{mml_title, jdbcType=VARCHAR}, MML_CONTENT=#{mml_content, jdbcType=VARCHAR}, MML_POSTER=#{mml_poster, jdbcType=VARCHAR}, MML_UPDATE_DATE=sysdate WHERE MML_NUM=#{mml_num}
 	</update>
 	
 	<select id="getMmlContent" parameterType="int" resultMap="mmlMap">

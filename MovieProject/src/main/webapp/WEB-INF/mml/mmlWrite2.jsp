@@ -44,7 +44,8 @@
 		//제목과 내용의 앞뒤 공백 제거
 		var mml_title = mml_write_form.mml_title.value.trim();
 		var mml_content = mml_write_form.mml_content.value.trim();
-
+		
+		//타이틀, 컨텐츠가 입력되지 않았을 경우를 체
 		if (mml_title.length == 0) {
 			alert("제목을 입력해주세요.");
 			mml_write_form.mml_title.focus();
@@ -56,6 +57,11 @@
 			return false;
 		}
 
+		//var mml_movie_item = document.getElementsByClassName("mml-movie-item");
+		
+		//첫번째로 등록된 영화의 이미지를 대표 썸네일로 사용
+		//var mml_poster=document.getElementsByName("mml_poster");
+		//mml_poster[0].setAttribute("value",mml_movie_item[1].children[1].alt );
 		return true;
 	}
 	function register_back() {
@@ -68,12 +74,18 @@
 		var mml_body = document.getElementsByClassName("mml-movie-body");
 		mml_body[0].innerHTML = 
 			mml_body[0].innerHTML
-			+"<div class='mml-movie-item'>"
+			+"<div class='mml-movie-item' id='"+mi_code+"'>"
 			+"<input type='hidden' name='mi_code' value='"+ mi_code +"'>"
-			+ "<img src='./upload/" +mi_poster + "'>"
+			+ "<img src='./upload/" +mi_poster + "' alt='"+mi_poster+"'>"
+			+"<input type='hidden' name='mml_poster' value='"+ mi_poster +"'>"
+			+"<img src='resources/images/mml_add.png' onclick='movie_delete("+mi_code+")' name='delete_movie' style='width:40px;height:40px;position:absolute;left:127px;top:-20px;transform: rotate(45deg);background: white; border-radius: 50%;'>"
 			+"</div>";
 		var modal = document.getElementById("movie-modal");
 		modal.style.display="none";
+	}
+	function movie_delete(del_num){
+		var del_movie = document.getElementById(del_num);
+		del_movie.remove();
 	}
 </script>
 
@@ -91,10 +103,11 @@
 	</div>
 </div>
 <div class="buster-light" style="min-height: 1000px; margin-top: 20px;">
-	<div class="col-md-10">
+	<div class="col-md-10" style="margin-left:10%;">
 		<form name="mml_write_form" action="mmlWriteAction.do" method="post"
 			onsubmit="return check()">
 			<input type="hidden" name="id" value="${requestScope.id }">
+			<!-- <input type="hidden" name="mml_poster" value="0"> -->
 			<!-- start | title -->
 			<div class="mml-write-title">
 				제목<br> <input name="mml_title" class="mml-title"
@@ -131,9 +144,20 @@
 									<div class="modal-body">
 
 										<div class="form-group">
-											<!-- <label for="search" style="margin-bottom: 10px;"><strong>댓글 번호</strong></label> -->
-											<input class="form-control" id="movie-search"
-												name="movie-search">
+											<div class="movielist-top">
+											
+												<select id="mcategory">
+													<option value="영화 제목" selected="selected">영화 제목</option>
+													<option value="개봉 연도">개봉 연도</option>
+													<option value="제작 국가">제작 국가</option>
+													<option value="영화 감독">영화 감독</option>
+													<option value="영화 배우">영화 배우</option>
+												</select> 
+												<input type="text" id="search_input" placeholder="검색어를 입력해주세요">
+												<button id="search_btn">검색</button>
+												 <!-- <a id="search_btn">검색</a>  -->
+											
+											</div>
 										</div>
 										<c:forEach var="movie" items="${requestScope.movieList }"
 											end="5">
@@ -186,10 +210,6 @@
 
 
 <script>
-
-
-
-
 </script>
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp"%>
