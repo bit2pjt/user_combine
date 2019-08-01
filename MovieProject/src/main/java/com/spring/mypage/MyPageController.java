@@ -39,7 +39,7 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 
-	// ���������� ùȭ��
+	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Model model, HttpSession session) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
@@ -54,7 +54,7 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 
-	// ���������� - ��й�ȣ ��Ȯ��
+	
 	@RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
 	public String pwConfirm(HttpSession session, Model model) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
@@ -66,21 +66,15 @@ public class MyPageController {
 		return "mypage/pw_confirm";
 	}
 
-	// ���������� - ��й�ȣ ��Ȯ�� - ȸ����� ���
+	
 	@RequestMapping(value = "/member_info")
 	public String memberInfo(Model model, int id) {
 		MemberVO member = myPageService.getMember(id);
-	
-		// Ŭ���̾�Ʈ���� �Է��� ��й�ȣ
+
 		String input_password = member.getM_password();
-		System.out.println("input_pwd=" + input_password);
-		// id�� �˻��� member�� ��й�ȣ
-		
-	
+		System.out.println("input_pwd=" + input_password);		
 		String member_password = member.getM_password();
 		System.out.println("member_pwd=" + member_password);
-
-	
 
 		if (input_password.equals(member_password)) {
 			model.addAttribute("member", member);
@@ -91,7 +85,7 @@ public class MyPageController {
 		}
 	}
 
-	// ���������� - ��й�ȣ���
+	/
 	@RequestMapping(value = "/update_pw")
 	public String updatePw(Model model, MemberVO memberVO, int id) {
 

@@ -3,9 +3,19 @@ package com.spring.boardFree;
 import java.util.List;
 
 import com.spring.member.MemberVO;
+import com.spring.paging.Criteria;
+import com.spring.paging.SearchCriteria;
 
 public interface BoardFreeDAO {
 	List<BoardFreeVO> listAll();
+	
+	List<BoardFreeVO> listCriteria(Criteria criteria);
+	
+	List<BoardFreeVO> listSearch(SearchCriteria searchCriteria);
+
+    int countSearchedArticles(SearchCriteria searchCriteria);
+    
+	int countArticles(Criteria criteria);
 	
 	String getMemberNickname(String m_email);	//멤버 닉네임 가져오기
 	
@@ -30,7 +40,7 @@ public interface BoardFreeDAO {
 	int getUser(String email);
 	
 	// 게시글 추천/비추천
-	ThumbVO thumb_check(int id);
+	ThumbVO thumb_check(ThumbVO vo);
 	
 	int plusRecommend(ThumbVO vo);
 	
@@ -58,7 +68,7 @@ public interface BoardFreeDAO {
 	// 게시글 신고
 	int insertWarn(WarnVO vo);
 	
-	WarnVO warn_check(int id);
+	WarnVO warn_check(WarnVO vo);
 	
 	void WarnCount(int bno);
 	

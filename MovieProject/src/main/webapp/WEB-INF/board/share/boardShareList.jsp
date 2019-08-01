@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 
@@ -75,7 +75,7 @@
 							  <th style="width:8%;">글번호</th>
 							  <th style="width:7%;">카테고리</th>
 							  <th style="width:45%;">제목</th>
-							  <th style="width:10%;">글쓴이</th>
+							  <th style="width:10%;">작성자</th>
 							  <th style="width:10%;">최근수정일</th>
 							  <th style="width:10%;">조회수</th>
 							  
@@ -104,209 +104,93 @@
 							  <td>모바일 글제목. </td>
 							</tr>
 							<!--4.  자유게시판 게시글의 나열 시작 -->
-							<tr class="post">
-							  <td >24</td>
-							  <td>결말해석</td>
-							  <td><a href="boardShareGet?bno=24">고질라 쿠키영상 무슨뜻인가요?</a></td>
-							  <td>가모라</td>
-							  <td>2009/01/12</td>
-							  <td>2400</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0023</td>
-							  <td>잡담</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2012/03/29</td>
-							  <td>$433,060</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0022</td>
-							  <td>토론</td>
-							  <td>Tokyo</td>
-							  <td>33</td>
-							  <td>2008/11/28</td>
-							  <td>$162,700</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0020</td>
-							  <td>잡담해석</td>
-							  <td>New York</td>
-							  <td>61</td>
-							  <td>2012/12/02</td>
-							  <td>$372,000</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0019</td>
-							  <td>잡담</td>
-							  <td>San Francisco</td>
-							  <td>59</td>
-							  <td>2012/08/06</td>
-							  <td>$137,500</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0017</td>
-							  <td>유머</td>
-							  <td>Tokyo</td>
-							  <td>55</td>
-							  <td>2010/10/14</td>
-							  <td>$327,900</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0016</td>
-							  <td>토론</td>
-							  <td>San Francisco [13]</td>
-							  <td>39</td>
-							  <td>2009/09/15</td>
-							  <td>$205,500</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0015</td>
-							  <td>결말해석</td>
-							  <td>Edinburgh [13]</td>
-							  <td>23</td>
-							  <td>2008/12/13</td>
-							  <td>$103,600</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0014</td>
-							  <td>결말해석</td>
-							  <td>London</td>
-							  <td>30</td>
-							  <td>2008/12/19</td>
-							  <td>$90,560</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>00013</td>
-							  <td>유머</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2013/03/03</td>
-							  <td>$342,000</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>00013</td>
-							  <td>유머</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2013/03/03</td>
-							  <td>$342,000</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0014</td>
-							  <td>결말해석</td>
-							  <td>London</td>
-							  <td>30</td>
-							  <td>2008/12/19</td>
-							  <td>$90,560</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>00013</td>
-							  <td>유머</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2013/03/03</td>
-							  <td>$342,000</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>00013</td>
-							  <td>유머</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2013/03/03</td>
-							  <td>$342,000</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>0014</td>
-							  <td>결말해석</td>
-							  <td>London</td>
-							  <td>30</td>
-							  <td>2008/12/19</td>
-							  <td>$90,560</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>00013</td>
-							  <td>유머</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2013/03/03</td>
-							  <td>$342,000</td>
-							  <td>모바일 글제목. </td>
-							</tr>
-							<tr class="post">
-							  <td>00013</td>
-							  <td>유머</td>
-							  <td>Edinburgh</td>
-							  <td>22</td>
-							  <td>2013/03/03</td>
-							  <td>$342,000</td>
-							  <td>모바일 글제목. </td>
-							</tr>
+							<c:forEach items="${boardshare}" var="board" varStatus="status">
+								<tr class="post">
+								  <td>${pageMaker.totalCount - ((pageMaker.criteria.page-1) * pageMaker.criteria.perPageNum + status.index) }</td>
+								  <td>${board.bs_category}</td>
+								  <td><a href="boardShareGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bs_bno}">${board.bs_title}</a></td>
+								  <td>${board.nickname}</td>
+								  <td><fmt:formatDate value="${board.bs_update_date}" pattern="yyyy-MM-dd"/></td>
+								  <td>${board.bs_view_counter}</td>
+								  <td>모바일 글제목. </td>
+								</tr>
+							</c:forEach>
 						  </tbody>
 						</table>
 						</div>
 					</div>
 				 </div>
 				 
-				  <!--TableList의 끝-->
-				  
-				 <!--5. 검색바  구현부  -->
-					<center class="col-md-14">
-					<select>
-						<option value="all">전체</option>
-						<option value="ticket">결말해석</option>
-						<option value="snack">유머</option>
-						<option value="snack">잡담</option>
-						
-					</select>
-					&nbsp;&nbsp;
-					<select>
-						<option value="united">제목</option>
-						<option value="saab">글쓴이</option>
-						<option value="saab">전체</option>
-					</select>
-					&nbsp;&nbsp;
-					<span>
-					<input class="list-search" type="text" placeholder="원하시는 내용을 입력하세요">
-					</span>
-					<span>
-					<button class="ws-btn-reddish-search"><i class="fa fa-search" aria-hidden="true"></i></button>
-					</span>
-				</center>
-				
-				<!-- 6. 페이징 : 그대로 따옴 기초 탬플릿의 [ bloglist_ligth.html]  -->
-            	<ul class="pagination">
-            		<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-            		<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">...</a></li>
-					<li><a href="#">21</a></li>
-					<li><a href="#">22</a></li>
-					<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-            	</ul>
+				  <div class="box-footer">
+                        <div class="text-center">
+                            <form id="listPageForm">
+                                <input type="hidden" name="page" value="${pageMaker.criteria.page}">
+                                <input type="hidden" name="perPageNum" value="${pageMaker.criteria.perPageNum}">
+                            </form>
+                            <ul class="pagination">
+                                <c:if test="${pageMaker.prev}">
+                                    <li><a href="${pageMaker.startPage - 1}">이전</a></li>
+                                </c:if>
+                                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                                    <li <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
+                                        <a href="${idx}">${idx}</a>
+                                    </li>
+                                </c:forEach>
+                                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+                                    <li><a href="${pageMaker.endPage + 1}">다음</a></li>
+                                </c:if>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="box-footer" style="display:inline-block; width:100%; margin-left:20%;">
+                        <div class="form-group col-sm-2">
+                            <select class="form-control" name="searchType" id="searchType">
+                                <option value="n" <c:out value="${searchCriteria.searchType == null ? 'selected' : ''}"/>>:::::: 선택 ::::::</option>
+                                <option value="t" <c:out value="${searchCriteria.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+                                <option value="c" <c:out value="${searchCriteria.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+                                <option value="w" <c:out value="${searchCriteria.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+                                <option value="tc" <c:out value="${searchCriteria.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+                                <option value="cw" <c:out value="${searchCriteria.searchType eq 'cw' ? 'selected' : ''}"/>>내용+작성자</option>
+                                <option value="tcw" <c:out value="${searchCriteria.searchType eq 'tcw' ? 'selected' : ''}"/>>제목+내용+작성자</option>
+                            </select>
+                        </div>
+                         <div class="form-group col-sm-10" style="width:50%">
+                            <span class="input-group" style="display:inline-block; width:100%;">
+                                <input type="text" class="form-control" name="keyword" id="keywordInput" value="${searchCriteria.keyword}" placeholder="검색어" style="display:inline-block; width:50%">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary btn-flat" id="btn-hjs">
+                                       		 검색
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>  <!--TableList의 끝-->
 			</div>
 		</div>
 	</div>
 		
 <!--list 페이지 구현의 몸통부 끝. 이하 footer 등-->
+<script>
 
+	$(".pagination li a").on("click", function (event) {
+	    event.preventDefault();
+	
+	    var targetPage = $(this).attr("href");
+	    var listPageForm = $("#listPageForm");
+	    listPageForm.find("[name='page']").val(targetPage);
+	    listPageForm.attr("action", "boardShareListP").attr("method", "get");
+	    listPageForm.submit();
+	});
+	
+
+    $("#btn-hjs").on("click", function (event) {
+        self.location =
+            "boardShareListP${pageMaker.makeQuery(1)}"
+            + "&searchType=" + $("select option:selected").val()
+            + "&keyword=" + encodeURIComponent($("#keywordInput").val());
+    });
+</script>
 
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>

@@ -1,12 +1,17 @@
 package com.spring.boardShare;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.boardFree.BoardFreeDAO;
+import com.spring.boardFree.BoardFreeVO;
 import com.spring.boardFree.WarnVO;
+import com.spring.member.MemberDAO;
 import com.spring.member.MemberVO;
+import com.spring.paging.SearchCriteria;
 
 @Service("boardShareService")
 public class BoardShareServiceImpl implements BoardShareService {
@@ -151,4 +156,27 @@ public class BoardShareServiceImpl implements BoardShareService {
 		return member;
 	}
 	
+	@Override
+    public List<BoardShareVO> listSearch(SearchCriteria searchCriteria) {
+		BoardShareDAO BoardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+		List<BoardShareVO> list = BoardShareDAO.listSearch(searchCriteria);
+		for(int i=0; i<list.size(); i++) {
+			int id = list.get(i).getId();
+			String nickname = userNickName(id);
+			list.get(i).setNickname(nickname);
+		}
+		return list;
+    }
+	
+	private String userNickName(int id) {
+		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
+		String nickname = memberDAO.userNickName(id);
+		return nickname;
+	}
+	
+    @Override
+    public int countSearchedArticles(SearchCriteria searchCriteria) {
+    	BoardShareDAO BoardShareDAO = sqlSession.getMapper(BoardShareDAO.class);
+    	return BoardShareDAO.countSearchedArticles(searchCriteria);
+    }
 }
