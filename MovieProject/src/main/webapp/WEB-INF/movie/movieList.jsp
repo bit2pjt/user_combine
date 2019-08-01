@@ -11,6 +11,7 @@
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.03     한유진      최초생성
 * @ 2019.07.09     한유진      jsp로 변경
+* @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -20,17 +21,9 @@
 *  Copyright (C) by bit 2조 All right reserved.
 */
 -->
-
 <%@ include file="../header1.jsp"%>
-
-<!-- 2. 여기에 페이지별 css 추가해주세요 -->
-
-
-<!-- 3. heaer2.jsp : header -->
-<%@ include file="../header2.jsp" %>
-<head>
 	<link rel="stylesheet" href="<c:url value="/resources/css/yj_style.css" />">
-</head>
+<%@ include file="../header2.jsp" %>
 <!-- yj : 헤더와 본 컨텐츠를 분리하기 위해 section 사용-->
     <section>
         <!-- yj : start | movielist -->
@@ -51,7 +44,7 @@
                	<%
                	for(int i=0; i<10; i++){
                	%>
-                    <div class="movielist-card" onclick="location.href='movieDetail.do'">
+                    <div class="movielist-card" onclick="location.href='movieDetail'">
                         <img src="<c:url value='/resources/images/uploads/mv-it12.jpg' />" width="170" height="261">
                         <h4 class="movie-title">비트와 함께 사라지다.</h4>
                     </div>
@@ -64,16 +57,16 @@
                 <div class="paging">
                     <ul class="pagination">
                         <li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-                        <li class="active"><a href="movieList.do?page=1">1</a></li>
-                        <li><a href="movieList.do?page=2">2</a></li>
-                        <li><a href="movieList.do?page=3">3</a></li>
-                        <li><a href="movieList.do?page=4">4</a></li>
-                        <li><a href="movieList.do?page=5">5</a></li>
-                        <li><a href="movieList.do?page=6">6</a></li>
-                        <li><a href="movieList.do?page=7">7</a></li>
-                        <li><a href="movieList.do?page=8">8</a></li>
-                        <li><a href="movieList.do?page=9">9</a></li>
-                        <li><a href="movieList.do?page=10">10</a></li>
+                        <li class="active"><a href="movieList?page=1">1</a></li>
+                        <li><a href="movieList?page=2">2</a></li>
+                        <li><a href="movieList?page=3">3</a></li>
+                        <li><a href="movieList?page=4">4</a></li>
+                        <li><a href="movieList?page=5">5</a></li>
+                        <li><a href="movieList?page=6">6</a></li>
+                        <li><a href="movieList?page=7">7</a></li>
+                        <li><a href="movieList?page=8">8</a></li>
+                        <li><a href="movieList?page=9">9</a></li>
+                        <li><a href="movieList?page=10">10</a></li>
                         <li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
                     </ul>       
                 </div>
@@ -81,4 +74,5 @@
         <!--end | movielist-->
         </div>
     </section>
-    <%@ include file="../footer.jsp" %>
+<%@ include file="../footer1.jsp"%>
+<%@ include file="../footer2.jsp"%>

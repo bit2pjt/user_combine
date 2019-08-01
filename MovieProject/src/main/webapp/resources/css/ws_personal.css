@@ -256,11 +256,11 @@
 	.ws-top-writer input {
 		width:75%;border-color:#999999; background-color:#FFFFFF; border-style:solid;
        	border-top-width:0px; border-bottom-width:1px; border-left-width:0px;
-       	border-right-width:0px;color:#0000FF;
+       	border-right-width:0px;
 	}
 	<!--/*board/free/write : 3. 글쓰기 공지 부분의 설정 */-->
 	.ws-middle-top-writer {
-		border:1px solid;width:100%;height:80;background-color:#AFCBE8;
+		border:0.1em solid gray;width:100%;height:80;background-color:#AFCBE8;
 	}
 
 
@@ -276,7 +276,6 @@
 	.ws-post-get-title {
 		padding:10px;
 		margin:10px 0px;
-		background-color:#FFDBD8;
 		position:relative;
 		bottom:5px;
 	}
@@ -295,7 +294,9 @@
 	}
 	.ws-post-get-info-inner {
 		display:inline-block;
-		margin-top:5px;
+		margin-top:15px;
+		margin-left:20px;
+		font-weight:bold;
 	}
 	
 	@media(max-width:450px){
@@ -400,27 +401,32 @@
 	
 	<!-- /*board/free/get : 기타. 버튼들 ??*/ -->
 	.ws-btn-warning {
-	min-width:35px;min-height:35px;
+	min-width:35px;min-height:30px;
 	background-color:#ffffff;
 	border-radius:8px;
-	border:1px solid #FF6F61;
-	right:5px;margin:5px;
+	border:white;
+	right:5px;
 	color:orange;
+	padding:0px;
 	}
 	.ws-btn-thumbs-up {
-	min-width:50px;min-height:35px;
+	min-width:50px;min-height:30px;
 	background-color:#ffffff;
 	border-radius:8px;
-	border:1px solid #FF6F61;
-	right:5px;margin:5px;
+	border:white;
+	right:5px;
 	color:blue;
+	padding:0px;
 	}
 	.ws-btn-thumbs-down {
-	min-width:50px;min-height:35px;
+	min-width:50px;min-height:30px;
 	background-color:#ffffff;
 	border-radius:8px;
-	border:1px solid #FF6F61;
-	right:5px;margin:5px;color:red;
+	border:white;
+	right:5px;
+	color:red;
+	padding:0px;
+	margin-left:2px;
 	}
 	.ws-btn-update {
 	width:35px;height:35px;
@@ -549,9 +555,25 @@
 	.ws-reply-msg {
 	font-size:74%;
 	}
-	
-	
-	
-	
-	}
+}
+
+#replyAddBtn{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:10px;
+}
+
+#btn-hjs{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:5px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:13px;
+}
+
 		

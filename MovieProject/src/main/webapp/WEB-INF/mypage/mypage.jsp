@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page import="com.spring.member.MemberVO" %>
+<%
+	MemberVO member = (MemberVO)request.getAttribute("member");
+%>
 <!--
 /**
 * @Class Name : mypage.jsp
@@ -10,6 +15,7 @@
 * @  수정일     		     수정자            		수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.06         황진석      		 	최초생성
+* @ 2019.07.22    한유진      		 	qnaList 기능 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -41,31 +47,32 @@
 		</div>
 	</div>
 </div>
+<div style="height:5%;"></div>
 <div class="buster-light">
 	<div class="page-single">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
 						<div class="info">
-							<h2> <strong>황진석 님</strong> </h2>
-							<h3> <strong>h10046245h@naver.com</strong></h3>
+							<h2> <strong><%= member.getM_name() %> 님</strong> </h2>
+							<h3> <%= member.getM_email() %></h3>
 						</div>
 					<div class="user-information-hjs">
 						<div class="user-fav">
 								<ul>
-									<li><a href="mypage.do">마이페이지</a></li>
+									<li><a href="mypage">마이페이지</a></li>
 								</ul>
 										
 								<ul>
 									<li>회원 정보</li>
-									<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-									<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+									<li><a href="pw_confirm?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+									<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 								</ul>
 					
 								<ul>
 									<li>고객센터</li>
-									<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-									<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+									<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
+									<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 								</ul>
 							</div>
 					</div>
@@ -85,10 +92,10 @@
 								</div>
 								
 								<div class="hjs-info" >
-									<h4> 이름: 황진석</h4> 
-									<h4> 닉네임: 비트코인</h4> 
-									<h4> 이메일: h10046245h@naver.com</h4> 
-									<h4> 선호장르: 공포/호러, 스릴러, 느와르</h4> 
+									<h4> 이름: <%= member.getM_name() %></h4> 
+									<h4> 닉네임: <%= member.getM_nickname() %></h4> 
+									<h4> 이메일: <%= member.getM_email() %></h4> 
+									<h4> 선호장르: <%= member.getM_favorite() %></h4> 
 								</div>
 							</div>
 							
@@ -96,7 +103,7 @@
 							<div class="div_one">
 								<table class="tb_hjs">
 									<caption class="caption-hjs"> 
-										<h2>1:1 문의 내역 <a href="one_list.do" class="caption_a"> 더보기 </a></h2>
+										<h2>1:1 문의 내역 <a href="one_list" class="caption_a"> 더보기 </a></h2>
 									</caption>
 									<colgroup>
 										<col width="10%" />
@@ -112,11 +119,25 @@
 											<th> 답변여부 </th>
 										</tr>
 									</thead>
-									
+									<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
 									<tbody>
-										<tr>
-											<td colspan="4">  최근 목록이 없습니다.</td>
-										</tr>	
+									<c:choose>
+										<c:when test="${requestScope.qnaList[0].qna_no == null}">
+											<tr>
+												<td colspan="4">등록된 문의글이 없습니다.</td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="qna" items="${requestScope.qnaList }" end="4">
+												<tr>
+													<td>${qna.qna_category }</td>
+													<td><a href="one_get?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
+													<td>${qna.qna_date}</td>
+													<td>${qna.qna_answer}</td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 									</tbody>
 								</table>
 							</div>
