@@ -339,6 +339,9 @@ public class MyPageController {
       // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
       // session.setAttribute("m_email", "bit0hyj@gmail.com");
       String m_email = (String) session.getAttribute("m_email");
+      if (m_email == null) {
+			return "redirect:/index";
+		}
       String m_name = myPageService.getMemberName(m_email);
       String m_nickname = myPageService.getMemberNickname(m_email);
 

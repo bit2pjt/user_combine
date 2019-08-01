@@ -107,31 +107,16 @@
     
      <select id="listCriteria" resultMap="merberQnaMap">
         <![CDATA[
-        select
-        	qna_no
-            , id
-            , qna_category
-            , qna_title
-            , qna_content
-            , qna_date
-            , qna_update_date
-            , qna_answer
-            from
-		   (
-		    select
-		    rownum rn
-		    , qna_no
-            , id
-            , qna_category
-            , qna_title
-            , qna_content
-            , qna_date
-            , qna_update_date
-            , qna_answer
-		    from board_qna
-            order by qna_no desc
-		   )
-		   where id=#{id} and rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+			select rn, qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+			from(
+				select rownum rn , qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+				from(
+					select qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+					from board_qna
+					order by qna_no desc
+					)
+				)
+			where id=#{id} and rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
         ]]>
     </select>
 	
