@@ -1,0 +1,36 @@
+/*	
+*	############################################################################################
+*	
+*	DIFFDASH - A Simple and Unique Admin Dashboard Template
+*	---------------------------------------------------------------------
+*
+*	Version: 	1.0
+*	Author: 	The Develovers
+*	Website: 	https://www.themeineed.com
+*	Copyright: 	Copyright 2017 The Develovers
+*	
+*	############################################################################################
+*/
+
+@import "mixins/responsive";
+@import "mixins/clearfix";
+@import "mixins/css3";
+@import "mixins/elements-color-custom";
+
+@import "base/variables";
+@import "base/general";
+
+@import "partials/layout";
+@import "partials/navigation";
+@import "partials/forms";
+@import "partials/authentication";
+@import "partials/buttons";
+@import "partials/elements";
+@import "partials/elements-bootstrap";
+@import "partials/charts";
+@import "partials/social-brands";
+@import "partials/typography";
+@import "partials/helpers";
+
+@import "pages/page-errors";
+@import "pages/page-profile";
