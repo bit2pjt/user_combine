@@ -216,7 +216,7 @@ public class MyPageController {
       // 로그아웃으로 세션들을 초기화시킴
       session.invalidate();
 
-      return "index";
+      return "redirect:/";
    }
 
    // 마이페이지 - 1:1 문의내역 리스트
