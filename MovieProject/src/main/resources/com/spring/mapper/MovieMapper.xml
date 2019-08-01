@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.movie.MovieDAO">
+	
+	<resultMap type="com.spring.movie.Movie_InfoVO" id="movieMap">
+		<result property="mi_code" column="mi_code"/>
+		<result property="mi_ktitle" column="mi_ktitle"/>
+		<result property="mi_etitle" column="mi_etitle"/>
+		<result property="mi_director" column="mi_director"/>
+		<result property="mi_poster" column="mi_poster"/>
+		<result property="mi_releaseday" column="mi_releaseday"/>
+		<result property="mi_ccode" column="mi_ccode"/>
+		<result property="mi_actor" column="mi_actor"/>
+		<result property="mi_story" column="mi_story"/>
+		<result property="mi_teaser" column="mi_teaser"/>
+		<result property="grade_code" column="grade_code"/>
+		<result property="mi_gcode" column="mi_gcode"/>
+	</resultMap>
+
+	<select id="getMovieList" resultMap="movieMap">
+		select * from movie_info
+	</select>
+	
+	<select id="getMovieList_title" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_ktitle like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+		or mi_etitle like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+	</select>
+	
+	<select id="getMovieList_release" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_releaseday like #{search_input, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getMovieList_country" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_ccode like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+	</select>
+	
+	<select id="getMovieList_director" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_director like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+	</select>
+	
+	<select id="getMovieList_actor" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_actor like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+	</select>
+
+</mapper>
