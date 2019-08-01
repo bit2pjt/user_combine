@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+    
 <!--
 /**
 * @Class Name : member_out.jsp
@@ -14,32 +17,37 @@
 * @version 1.0
 * @see
 *
-*  Copyright (C) by Bit All right reserved.
+*  Copyright (C) by Biㅁt All right reserved.
 */
 -->
-<%@ include file="../header1.jsp"%>
-
-<!-- 2. 여기에 페이지별 css 추가해주세요 -->
-
-<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
-<!-- 3. heaer2.jsp : header -->
+<%@ include file="../header1.jsp" %>
 <%@ include file="../header2.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+	
+</head>
+<script>
 
-<div class="hero user-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li> <span class="ion-ios-arrow-right"></span>Rated movies</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+/* 회원탈퇴 클릭 js  */
+var delete_confirm = function ()
+{
+	var deleteyn = confirm('정말 탈퇴하시겠습니까?');
+    if (deleteyn == true) {
+    	// yes
+		alert("탈퇴가 완료되었습니다.");
+    	location.href = "/member_delete";
+    } else {
+    	// no
+    	
+    	return false;
+         
+}
+}
+</script>
+
+<div style="height:5%;"></div>
 <div class="buster-light">
 	<div class="page-single">
 		<div class="container">
@@ -52,19 +60,19 @@
 					<div class="user-information-hjs">
 							<div class="user-fav">
 								<ul>
-									<li><a href="mypage.do">마이페이지</a></li>
+									<li><a href="mypage ">마이페이지</a></li>
 								</ul>
 										
 								<ul>
 									<li>회원 정보</li>
-									<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-									<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+									<li><a href="pw_confirm ">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+									<li><a href="member_out ">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 								</ul>
 					
 								<ul>
 									<li>고객센터</li>
-									<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-									<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+									<li><a href="one_list ">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
+									<li><a href="faq ">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 								</ul>
 							</div>
 					</div>
@@ -124,19 +132,20 @@
 								<dd>(아이디가 여러 개인 경우 최종 가입 아이디 가입일 기준)<br>- 탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.</dd>
 							</dl>
 					</div> <br>
+					<form action="member_delete">
 					<div class="btn_m">
-						<input type="submit" class="btn-check-hjs" value="탈퇴"> &nbsp;
-						<input type="reset" class="btn-check-hjs" value="취소">
+						<input type="submit" class="btn-check" value="탈퇴" onclick="delete_confirm()"> &nbsp;
+						<input type="reset" class="btn-check" value="취소">
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- 5. footer1.jsp : footer -->
-<%@ include file="../footer1.jsp"%>
 
-<!-- 6. 페이지별 script 추가해 주세요. -->
-
-<!-- 7. footer2.jsp : script -->
-<%@ include file="../footer2.jsp"%> 
+<!-- footer section-->
+<%@ include file="../footer1.jsp" %>
+<%@ include file="../footer2.jsp" %>
+</body>
+</html>

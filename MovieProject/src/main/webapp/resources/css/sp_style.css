@@ -1,6 +1,6 @@
-/*mmlGet �����*/
+/*mmlGet */
 .social-link{
-  width:1258px;
+  width:100%;
   display:flex;
 }
 
@@ -15,8 +15,7 @@
 
 
 
-/*mmlFollowList �����*/
-
+/*mmlFollowList */
 .blog-item-style-11 {
   display: flex;
   float:left;
@@ -37,9 +36,7 @@
 }
 
 
-/* mmlList ����� ũ�� */
-
-
+/* mmlList  */
   @media(max-width: 767px){
   .row1{
     position: relative;
@@ -73,7 +70,7 @@
 	 clear: both;
 }
 
-/*mml list ī��κ� div����*/
+/*mml list */
 .sp_col-md-41 {
 	
 	
@@ -95,7 +92,7 @@
   padding-left: 15px;
   padding-right: 5px;
 }
-/*ī��*/
+
 .card {
   width: 250px;
   height: 500px;
@@ -192,11 +189,6 @@
   transform:scale(1);
 }
 
-
-/*ī�峡*/
-
-/*�ֽż� ��õ�� ��ư*/
-
 .mb-3,
 .my-3 {
   margin-bottom: 1rem !important;
@@ -265,10 +257,7 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
-/*�ֽż� ��õ�� ��ư��*/
 
-
-/*������ ���� ��ư */
 .btn1 {
   display: inline-block;
   font-weight: 200;
@@ -361,9 +350,6 @@ input[type="button"].btn-block {
   text-transform: uppercase;
   border: none;
 }
-/*������ ���� ��ư ��*/
-
-/*���� ���� ��ư�� ����� ����� */
 
 .submit2 {
   background-color:#FF6F61;
@@ -381,7 +367,6 @@ input[type="button"].btn-block {
   border: none;
   float: right;
 }
-/*ȫ�繫�� ��ư �� */
 
 .blog-item-style-31 img {
   -webkit-transition: all 0.5s ease-out;
@@ -442,9 +427,7 @@ input[type="button"].btn-block {
 
 /*
 yj(190726)
-add : mmlWrite페이지 하단 버튼 속성  
 */
 .form-style-1 input{
 	
-}
-
+}ㄴ

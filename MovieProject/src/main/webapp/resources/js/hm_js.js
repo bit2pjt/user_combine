@@ -48,13 +48,13 @@ signupLink.on('click', function (event) {
 // close popup for mobile
 var closebt = $(".close");
 closebt.on('click', function (e) {
-	//e.preventDefault();
+	e.preventDefault();
 	/*
 	var overlay = $(".overlay");
 	overlay.removeClass("openform");*/
-	$("#login-content").parent().addClass("openform");
-	$("#id-ok-content").parent().removeClass("openform");
-	$("#id-find-content").parent().removeClass("openform");
+	idfindct.parents(overlay).removeClass("openform");
+	idokct.parents(overlay).removeClass("openform");
+	loginct.parents(overlay).addClass("openform");
 	
 });
 
@@ -135,7 +135,7 @@ idokLink.on('click', function (event) { // link 변경
 //	event.preventDefault();
 	var data = $(".findIdClass").serialize();
 	   $.ajax({
-	      url: "/movie/id_find.do",
+	      url: "/movie/id_find",
 	      data: data,
 	      dataType: "text",
 	      type: "get",
@@ -199,7 +199,7 @@ pwfindLink.on('click', function (event) { // link 변경
 pwokLink.on('click', function (event) { // link 변경
 	var infodata = $(".findPwClass").serialize();
 	   $.ajax({
-	      url: "/movie/pw_find.do",
+	      url: "/movie/pw_find",
 	      data: infodata,
 	      dataType: "text",
 	      type: "get",
@@ -312,7 +312,7 @@ pwcfLink.on('click', function (event) { // link 변경
 //	event.preventDefault();
 		var newdata = $(".newPassword").serialize();
 		$.ajax({
-		      url: "/movie/pw_new.do",
+		      url: "/movie/pw_new",
 		      data: newdata,
 		      dataType: "text",
 		      type: "get",
@@ -462,7 +462,7 @@ $('.terms-content-bt').on('click', function (event) { // link 변경
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
-	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	if (document.body.scrollTop > 20 || documentcumentElement.scrollTop > 20) {
 		document.getElementById("hm_myBtn").style.display = "block";
 	} else {
 		document.getElementById("hm_myBtn").style.display = "none";
@@ -472,7 +472,7 @@ function scrollFunction() {
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
 	document.body.scrollTop = 0;
-	document.documentElement.scrollTop = 0;
+	documentcumentElement.scrollTop = 0;
 }
 
 // 약관 wrapper 수정 중
@@ -609,10 +609,12 @@ function ws_check() { //유효성 검사
 $('#email_overlap_chk').on('click', function (event) { // link 변경
 	//event.stopimmediatepropagation();
 	//event.stopPropagation();
+	//console.log('이메일 중복체크 눌림');
+	//event.stopimmediatepropagation();
 	
 	var m_email = joinform.m_email.value;
 	   $.ajax({
-	      url: "/movie/email_overlap_chk.do",
+	      url: "/movie/email_overlap_chk",
 	      data: {'m_email' : m_email},
 	      dataType: 'text',
 	      type: 'get',
@@ -636,7 +638,7 @@ $('#nick_overlap_chk').on('click', function (event) {
 	
 	var m_nickname = joinform.m_nickname.value;
 	   $.ajax({
-	      url: "/movie/nick_overlap_chk.do",
+	      url: "/movie/nick_overlap_chk",
 	      data: {'m_nickname' : m_nickname},
 	      dataType: 'text',
 	      type: 'get',
@@ -654,4 +656,18 @@ $('#nick_overlap_chk').on('click', function (event) {
 	   });
 });
 
+$('#check_all').on('click', function() {
+	$('.chk_box').prop( 'checked', this.checked );
+    
+});
 
+$('#check_all').on('click', function() {
+	//모든 이벤트가 작동이 안되는듯 하다
+	alert('asdasd');
+	if($('#check_all').is(':checked')) {
+		$('.chk_box').prop('checked', true);
+	}else {
+		$('.chk_box').prop('checked', false);
+	}
+	
+});

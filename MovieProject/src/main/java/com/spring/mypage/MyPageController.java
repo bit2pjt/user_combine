@@ -1,3 +1,4 @@
+
 package com.spring.mypage;
 /**
  * @Class Name : MyPageController.java
@@ -38,8 +39,8 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 
-	// ���������� ùȭ��
-	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Model model, HttpSession session) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
 		MemberVO member = (MemberVO) myPageService.getMember(id);
@@ -53,8 +54,8 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 
-	// ���������� - ��й�ȣ ��Ȯ��
-	@RequestMapping(value = "/pw_confirm.do", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
 	public String pwConfirm(HttpSession session, Model model) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
 
@@ -65,33 +66,27 @@ public class MyPageController {
 		return "mypage/pw_confirm";
 	}
 
-	// ���������� - ��й�ȣ ��Ȯ�� - ȸ����� ���
-	@RequestMapping(value = "/member_info.do")
-	public String memberInfo(MemberVO member, Model model, int id) {
-		MemberVO member1 = myPageService.getMember(id);
-		System.out.println("member1=" + member1);
-		// Ŭ���̾�Ʈ���� �Է��� ��й�ȣ
-		String input_password = member.getM_password();
-		System.out.println("input_pwd=" + input_password);
-		// id�� �˻��� member�� ��й�ȣ
-		String member_password = member1.getM_password();
-		System.out.println("member_pwd=" + member_password);
+	
+	@RequestMapping(value = "/member_info")
+	public String memberInfo(Model model, int id) {
+		MemberVO member = myPageService.getMember(id);
 
-		int check = 3;
+		String input_password = member.getM_password();
+		System.out.println("input_pwd=" + input_password);		
+		String member_password = member.getM_password();
+		System.out.println("member_pwd=" + member_password);
 
 		if (input_password.equals(member_password)) {
 			model.addAttribute("member", member);
-			model.addAttribute("member1", member1);
-			model.addAttribute("check", check);
-			System.out.println("�ѱ��" + member1);
+			
 			return "mypage/member_info";
 		} else {
 			return "mypage/mypage";
 		}
 	}
 
-	// ���������� - ��й�ȣ���
-	@RequestMapping(value = "/update_pw.do")
+	
+	@RequestMapping(value = "/update_pw")
 	public String updatePw(Model model, MemberVO memberVO, int id) {
 
 		MemberVO member1 = myPageService.getMember(id);
@@ -105,7 +100,7 @@ public class MyPageController {
 	}
 
 //	//���������� - ����� �г��� �ߺ� Ȯ��
-//	@RequestMapping(value="/update_checknick.do")
+//	@RequestMapping(value="/update_checknick")
 //	public String updateCheckNick(Model model, String m_nickname, MemberVO memberVO,int id) {
 //		int check = myPageService.checkNick(m_nickname);
 //		MemberVO member = myPageService.getMember(id);
@@ -117,7 +112,7 @@ public class MyPageController {
 //	}
 
 	// ���������� - �г��Ӽ��
-	@RequestMapping(value = "/update_nick.do")
+	@RequestMapping(value = "/update_nick")
 	public String updateNick(Model model, int id, MemberVO memberVO) {
 		MemberVO member1 = myPageService.getMember(id);
 		myPageService.updateNick(memberVO);
@@ -130,7 +125,7 @@ public class MyPageController {
 	}
 
 	// ���������� - ȸ��������
-	@RequestMapping(value = "/member_update.do")
+	@RequestMapping(value = "/member_update")
 	public String updateMember(Model model, HttpServletResponse response, MemberVO memberVO, int id) {
 		MemberVO member1 = myPageService.getMember(id);
 		myPageService.updateMember(memberVO);
@@ -153,13 +148,13 @@ public class MyPageController {
 	}
 
 	// 마이페이지 - 회원탈퇴
-	@RequestMapping(value = "/member_out.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member_out", method = RequestMethod.GET)
 	public String memberOut() {
 		return "mypage/member_out";
 	}
 
 	// 마이페이지 - 1:1 문의내역 리스트
-	@RequestMapping(value = "/one_list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/one_list", method = RequestMethod.GET)
 	public String oneList(HttpServletRequest request, HttpSession session) {
 
 		// 로그인 연동 후 삭제
@@ -182,7 +177,7 @@ public class MyPageController {
 	}
 
 	// 마이페이지 - 1:1 문의내역 리스트 - 1:1문의내역 등록
-	@RequestMapping(value = "/one_register.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/one_register", method = RequestMethod.GET)
 	public String oneRegister(HttpServletRequest request, HttpSession session, OneVO oneVO) {
 
 		// 로그인 연동 후 삭제
@@ -203,7 +198,7 @@ public class MyPageController {
 	}
 
 	// 마이페이지 - 1:1 문의내역 리스트 - 1:1문의내역 등록 액션
-	@RequestMapping(value = "/one_registerAction.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/one_registerAction", method = RequestMethod.POST)
 	public String oneRegisterAction(HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			OneVO oneVO) {
 
@@ -220,17 +215,17 @@ public class MyPageController {
 		try {
 			int result = myPageService.insertQna(oneVO);
 			if (result == 0) {
-				return "redirect:/one_register.do";
+				return "redirect:/one_register";
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR : oneRegisterAction - " + e.getMessage());
 		}
-		return "redirect:/one_list.do";
+		return "redirect:/one_list";
 
 	}
 
 	// 마이페이지 - 1:1 문의내역 수정
-	@RequestMapping(value = "/one_update.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/one_update", method = RequestMethod.GET)
 	public String oneUpdate(HttpSession session, HttpServletRequest request) {
 		// 로그인 연동 후 삭제
 		// 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
@@ -247,7 +242,7 @@ public class MyPageController {
 		OneVO qnaDetail = myPageService.getQnaDetail(qna_no);
 
 		if (id != qnaDetail.getId()) {
-			return "redirect:/one_list.do";
+			return "redirect:/one_list";
 		}
 
 		request.setAttribute("m_name", m_name);
@@ -258,7 +253,7 @@ public class MyPageController {
 	}
 
 	// 마이페이지 - 1:1 문의내역 수정 액션
-	@RequestMapping(value = "/one_updateAction.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/one_updateAction", method = RequestMethod.POST)
 	public String oneUpdateAction(HttpSession session, HttpServletRequest request, OneVO oneVO) {
 
 		// 로그인 연동 후 삭제
@@ -272,16 +267,16 @@ public class MyPageController {
 		try {
 			int result = myPageService.updateQna(oneVO);
 			if (result == 0) {
-				return "redirect:/one_update.do?qna_no=" + oneVO.getQna_no();
+				return "redirect:/one_update?qna_no=" + oneVO.getQna_no();
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR : oneUpdateAction - " + e.getMessage());
 		}
-		return "redirect:/one_get.do?qna_no=" + oneVO.getQna_no();
+		return "redirect:/one_get?qna_no=" + oneVO.getQna_no();
 	}
 
 	// hm | 마이페이지 - FAQ
-	@RequestMapping(value = "/faq.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/faq", method = RequestMethod.GET)
 	public String faqList(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		
 		// 1. 좌측 사용자 정보
@@ -295,7 +290,7 @@ public class MyPageController {
 
 	
 	// hm | 마이페이지 - one_get
-	@RequestMapping(value = "/one_get.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/one_get", method = RequestMethod.GET)
 	public String oneGet(HttpSession session, HttpServletRequest request,  OneVO oneVO) {
 		// 1. 사용자 정보
 		String m_email = (String) session.getAttribute("m_email");
@@ -318,5 +313,6 @@ public class MyPageController {
 		
 		return "mypage/one_get";
 	}
+
 
 }

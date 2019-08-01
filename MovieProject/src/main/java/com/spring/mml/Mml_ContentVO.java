@@ -24,3 +24,4 @@ public class Mml_ContentVO {
 				+", "+mml_like+", "+mml_title+", "+mml_content+", "+mml_poster+", "+mml_warn_count;
 	}
 }
+

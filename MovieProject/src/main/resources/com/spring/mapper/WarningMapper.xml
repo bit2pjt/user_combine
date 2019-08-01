@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.warningCombine.WarningDTO">
+	<!--  
+	<sql id="warningBoardFree">
+	insert into /tableName/
+	</sql>
+	<sql id="warningBoardFreeReply">
+	insert into #{}
+	</sql>
+	<sql id="warningBoardShare">
+	insert into #{}
+	</sql>
+	<sql id="warningBoardShareReply">
+	insert into #{}
+	</sql>
+	<sql id="warningMml">
+	insert into #{}
+	</sql>
+	<sql id="warningMmlReply">
+	insert into #{}
+	</sql>
+	<sql id="warningMovieReview">
+	insert into #{}
+	</sql>
+	<sql id="warningCinemaReview">
+	insert into #{}
+	</sql>
+	-->
+	
+	<insert id="warningCombine">
+	insert into #{TableName}	
+		
+	values(#{contentNum}, #{warner}, #{warn_date})
+	</insert>
+	
+</mapper>

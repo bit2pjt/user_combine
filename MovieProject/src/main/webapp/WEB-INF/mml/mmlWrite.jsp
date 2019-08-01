@@ -52,7 +52,7 @@ function check(){
 function register_back(){
 	msg="나영리 작성을 취소하시겠습니까?";
 	if(confirm(msg)!=0){
-		location.href="mmlList.do";
+		location.href="mmlList";
 	}
 	
 }
@@ -63,7 +63,7 @@ function register_back(){
 <div class="buster-light"
 	style="padding: 75, 600, 75, 600; margin-top: 10%; min-height: 120px;">
 	<!-- 글쓰기 폼의 시작.-->
-	<form name="mml_write_form" action="mmlWriteAction.do" method="post"
+	<form name="mml_write_form" action="mmlWriteAction" method="post"
 		onsubmit="return check()">
 		<input type="hidden" name="id" value=${requestScope.id }>
 		<div id="writer-box" style="padding: 75, 600, 75, 600">
@@ -95,7 +95,7 @@ function register_back(){
 								<div class="slide-it">
 									<div class="movie-item">
 
-										<a href="movieList.do"> </i> <img
+										<a href="movieList"> </i> <img
 											src="<c:url value="/resources/images/sp_image/mv-item1.jpg"/>"
 											alt="" width="185" height="284"> <i
 											class="ion-android-arrow-dropright"></i> Add Movie

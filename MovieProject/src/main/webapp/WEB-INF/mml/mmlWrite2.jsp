@@ -67,7 +67,7 @@
 	function register_back() {
 		msg = "나영리 작성을 취소하시겠습니까?";
 		if (confirm(msg) != 0) {
-			location.href = "mmlList.do";
+			location.href = "mmlList";
 		}
 	}
 	function movie_select(mi_code,mi_poster){
@@ -104,7 +104,7 @@
 </div>
 <div class="buster-light" style="min-height: 1000px; margin-top: 20px;">
 	<div class="col-md-10" style="margin-left:10%;">
-		<form name="mml_write_form" action="mmlWriteAction.do" method="post"
+		<form name="mml_write_form" action="mmlWriteAction" method="post"
 			onsubmit="return check()">
 			<input type="hidden" name="id" value="${requestScope.id }">
 			<!-- <input type="hidden" name="mml_poster" value="0"> -->

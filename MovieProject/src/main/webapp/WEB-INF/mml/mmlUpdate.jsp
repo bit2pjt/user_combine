@@ -60,7 +60,7 @@
 	function update_back() {
 		msg = "나영리 수정을 취소하시겠습니까?";
 		if (confirm(msg) != 0) {
-			location.href = "mmlGet.do"+${requestScope.mmlContentVO.mml_num};
+			location.href = "mmlGet"+${requestScope.mmlContentVO.mml_num};
 		}
 	}
 	function openModal(){
@@ -100,7 +100,8 @@
 </div>
 <div class="buster-light" style="min-height: 1000px;margin-top: 20px;">
 	<div class="col-md-10" style="margin-left:10%;">
-		<form name="mml_update_form" action="mmlUpdateAction.do" method="post" onsubmit="return check()">
+		<form name="mml_update_form" action="mmlUpdateAction" method="post" onsubmit="return check()">
+
 			<input type="hidden" name="mml_num" value="${requestScope.mmlContentVO.mml_num }">
 			<input type="hidden" name="id" value="${requestScope.mmlContentVO.id }">
 			<%-- <input type="hidden" name="mml_poster" value="${requestScope.mmlContentVO.mml_poster }"> --%>
