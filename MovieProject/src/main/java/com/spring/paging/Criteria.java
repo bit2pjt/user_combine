@@ -1,6 +1,7 @@
 package com.spring.paging;
 
 public class Criteria {
+	private int id;
 	private int bfr_bno;
 	private int bs_bno;
     private int page; // 현재 페이지 번호
@@ -10,7 +11,12 @@ public class Criteria {
         this.page = 1;
         this.perPageNum = 10;
     }
-
+    public void setId(int id) {
+    	this.id = id;
+    }
+    public int getId() {
+    	return id;
+    }
     public void setPage(int page) {
 
         if (page <= 0) { // 페이지가 0보다 작은경우 디폴트 1페이지로 지정

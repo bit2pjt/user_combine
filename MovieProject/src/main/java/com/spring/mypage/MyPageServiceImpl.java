@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.boardFree.BoardFreeDAO;
 import com.spring.member.MemberVO;
+import com.spring.paging.Criteria;
 
 /**
 * @Class Name : MyPageServiceImpl.java
@@ -55,6 +57,37 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return qnaList;
 	}
+//	
+//	@Override
+//	public int getTotalCount(int id) {
+//		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+//		int count = mypageDAO.getTotalCount(id);
+//		return count;
+//	}
+//	
+//	@Override
+//	public List<OneVO> getListPaging(int id, int page, int pageSize) {
+//		PagingVO pagingVO = new PagingVO();
+//		pagingVO.setId(id);
+//		pagingVO.setPage(page);
+//		pagingVO.setPageSize(pageSize);
+//		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+//		List<OneVO> list = mypageDAO.getListPaging(pagingVO);
+//		return list;
+//	}
+	
+	@Override
+	public int countArticles(Criteria criteria) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		return myPageDAO.countArticles(criteria);
+	}
+	
+	@Override
+	public List<OneVO> listCriteria(Criteria criteria) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		return myPageDAO.listCriteria(criteria);
+	}
+	
 	
 	@Override
 
