@@ -1,5 +1,4 @@
-/*mmlGet 모바일*/
-
+/*mmlGet */
 .social-link{
   width:100%;
   display:flex;
@@ -16,8 +15,7 @@
 
 
 
-/*mmlFollowList 모바일*/
-
+/*mmlFollowList */
 .blog-item-style-11 {
   display: flex;
   float:left;
@@ -38,9 +36,7 @@
 }
 
 
-/* mmlList 모바일 크기 */
-
-
+/* mmlList  */
   @media(max-width: 767px){
   .row1{
     position: relative;
@@ -74,8 +70,7 @@
 	 clear: both;
 }
 
-/*mml list 카드부분 div영역*/
-
+/*mml list */
 .sp_col-md-41 {
 	
 	
@@ -97,7 +92,7 @@
   padding-left: 15px;
   padding-right: 5px;
 }
-/*카드*/
+
 .card {
   width: 250px;
   height: 500px;
@@ -194,11 +189,6 @@
   transform:scale(1);
 }
 
-
-/*카드끝*/
-
-/*최신순 추천순 버튼*/
-
 .mb-3,
 .my-3 {
   margin-bottom: 1rem !important;
@@ -267,10 +257,7 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
-/*최신순 추천순 버튼끝*/
 
-
-/*나영리 쓰기 버튼 */
 .btn1 {
   display: inline-block;
   font-weight: 200;
@@ -363,9 +350,6 @@ input[type="button"].btn-block {
   text-transform: uppercase;
   border: none;
 }
-/*나영리 쓰기 버튼 끝*/
-
-/*컨셉 색상 버튼을 만들어 볼까용 */
 
 .submit2 {
   background-color:#FF6F61;
@@ -383,7 +367,6 @@ input[type="button"].btn-block {
   border: none;
   float: right;
 }
-/*홍당무색 버튼 끝 */
 
 .blog-item-style-31 img {
   -webkit-transition: all 0.5s ease-out;
@@ -444,10 +427,7 @@ input[type="button"].btn-block {
 
 /*
 yj(190726)
-add : mmlWrite페이지 하단 버튼 속성  
 */
 .form-style-1 input{
 	
-}
-
-
+}ㄴ

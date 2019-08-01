@@ -1,3 +1,4 @@
+
 package com.spring.mypage;
 /**
  * @Class Name : MyPageController.java
@@ -38,7 +39,7 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 
-	// ���������� ùȭ��
+	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Model model, HttpSession session) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
@@ -53,7 +54,7 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 
-	// ���������� - ��й�ȣ ��Ȯ��
+	
 	@RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
 	public String pwConfirm(HttpSession session, Model model) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
@@ -65,32 +66,26 @@ public class MyPageController {
 		return "mypage/pw_confirm";
 	}
 
-	// ���������� - ��й�ȣ ��Ȯ�� - ȸ����� ���
+	
 	@RequestMapping(value = "/member_info")
-	public String memberInfo(MemberVO member, Model model, int id) {
-		MemberVO member1 = myPageService.getMember(id);
-		System.out.println("member1=" + member1);
+	public String memberInfo(Model model, int id) {
+		MemberVO member = myPageService.getMember(id);
 
 		String input_password = member.getM_password();
-		System.out.println("input_pwd=" + input_password);
-
-		String member_password = member1.getM_password();
+		System.out.println("input_pwd=" + input_password);		
+		String member_password = member.getM_password();
 		System.out.println("member_pwd=" + member_password);
-
-		int check = 3;
 
 		if (input_password.equals(member_password)) {
 			model.addAttribute("member", member);
-			model.addAttribute("member1", member1);
-			model.addAttribute("check", check);
-			System.out.println("�ѱ��" + member1);
+			
 			return "mypage/member_info";
 		} else {
 			return "mypage/mypage";
 		}
 	}
 
-	// ���������� - ��й�ȣ���
+	/
 	@RequestMapping(value = "/update_pw")
 	public String updatePw(Model model, MemberVO memberVO, int id) {
 
@@ -318,5 +313,6 @@ public class MyPageController {
 		
 		return "mypage/one_get";
 	}
+
 
 }

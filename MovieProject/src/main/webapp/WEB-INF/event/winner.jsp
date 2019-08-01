@@ -282,6 +282,7 @@ function load(id, cnt, btn) {
 	<div class="jq_tabonoff comm_tab1" style="width: 1200px; margin: 0 auto; margin-top: 40px; " >
                 <ul class="jq_tab tab_menu tab-links tabs-mv">
                     <ul class="last_event" style="float: right;">
+
                 	<li style="width: 120px;height: 40px; background-color: #333;"><a style="color: #fff;" href="./lastevent">지난이벤트</a></li>
                 	<!-- <li style="width: 120px;height: 40px; background-color: #333;"><a style="color: #fff;" href="./winner.html">당첨자확인</a></li> -->
 

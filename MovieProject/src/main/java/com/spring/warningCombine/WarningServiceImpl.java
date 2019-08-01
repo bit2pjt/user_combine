@@ -19,38 +19,38 @@ public class WarningServiceImpl implements WarningService {
 		switch (vo.getBoardCode()) {
 		case 1 :
 			vo.setTableName("free_warning");
-			result = "ÀÚÀ¯°Ô½ÃÆÇ °Ô½Ã±Û  ½Å°í ¿Ï·á";
+			result = "ììœ ê²Œì‹œíŒ ê²Œì‹œê¸€  ì‹ ê³  ì™„ë£Œ";
 			break;
 		case 2 :
 			vo.setTableName("bfr_warning");
-			result = "ÀÚÀ¯°Ô½ÃÆÇ ´ñ±Û ½Å°í ¿Ï·á";
+			result = "ììœ ê²Œì‹œíŒ ëŒ“ê¸€ ì‹ ê³  ì™„ë£Œ";
 			break;
 		case 3 :
 			vo.setTableName("share_warning");
-			result = "³ª´®°Ô½ÃÆÇ °Ô½Ã±Û ½Å°í ¿Ï·á";
+			result = "ë‚˜ëˆ”ê²Œì‹œíŒ ê²Œì‹œê¸€ ì‹ ê³  ì™„ë£Œ";
 			break;
 		case 4 :
 			vo.setTableName("sr_warning");
-			result = "³ª´®°Ô½ÃÆÇ ´ñ±Û ½Å°í ¿Ï·á";
+			result = "ë‚˜ëˆ”ê²Œì‹œíŒ ëŒ“ê¸€ ì‹ ê³  ì™„ë£Œ";
 			break;
 		case 5 :
 			vo.setTableName("mml_warning");
-			result = "³ª¿µ¸® °Ô½ÃÆÇ °Ô½Ã±Û ½Å°í ¿Ï·á";
+			result = "ë‚˜ì˜ë¦¬ ê²Œì‹œíŒ ê²Œì‹œê¸€ ì‹ ê³  ì™„ë£Œ";
 			break;
 		case 6 :
 			vo.setTableName("mmlr_warning");
-			result = "³ª¿µ¸® °Ô½ÃÆÇ ´ñ±Û ½Å°í ¿Ï·á";
+			result = "ë‚˜ì˜ë¦¬ ê²Œì‹œíŒ ëŒ“ê¸€ ì‹ ê³  ì™„ë£Œ";
 			break;
 		case 7 :
 			vo.setTableName("mr_warning");
-			result = "¿µÈ­¸®ºä ½Å°í ¿Ï·á";
+			result = "ì˜í™”ë¦¬ë·° ì‹ ê³  ì™„ë£Œ";
 			break;
 		case 8 :	
 			vo.setTableName("cr_warning");
-			result = "±ØÀå¸®ºä ½Å°í ¿Ï·á";
+			result = "ê·¹ì¥ë¦¬ë·° ì‹ ê³  ì™„ë£Œ";
 			break;
 		default :
-			result = "ÀÏÄ¡ÇÏ´Â °Ô½ÃÆÇ ÄÚµå°¡ ¾ø½À´Ï´Ù.";
+			result = "ì¼ì¹˜í•˜ëŠ” ê²Œì‹œíŒ ì½”ë“œê°€ ì—†ìŠµë‹ˆë‹¤.";
 			return result;
 		}
 		

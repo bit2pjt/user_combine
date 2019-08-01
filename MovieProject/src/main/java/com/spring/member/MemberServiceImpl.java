@@ -11,21 +11,21 @@ import lombok.Setter;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private SqlSession sqlSession;
-	
-	@Setter(onMethod_ = {@Autowired})
+
+	@Setter(onMethod_ = { @Autowired })
 	private MemberDAO memberDAOglobal;
-	
+
 	@Override
 	public int insertMember(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
 
 	/**
 	 * 로그인 시 회원 체크
+	 * 
 	 * @param email - 입력한 email
-	 * @param pw - 입력한 password
+	 * @param pw    - 입력한 password
 	 * @return 회원 여부 결과
 	 */
 	@Override
@@ -33,14 +33,14 @@ public class MemberServiceImpl implements MemberService {
 		int x = -1;
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		MemberVO vo = memberDAO.userCheck(email);
-		
-		if(vo != null) {
-			if(pw.equals(vo.getM_password()))
+
+		if (vo != null) {
+			if (pw.equals(vo.getM_password()))
 				x = 1; // 아이디/비밀번호 둘다 맞는경우
 			else
 				x = -1;// 아이디는 맞지만 비밀번호가 다른경우
-		}else 
-			x = 0;  // 회원이 아닌 경우
+		} else
+			x = 0; // 회원이 아닌 경우
 		return x;
 	}
 
@@ -66,29 +66,28 @@ public class MemberServiceImpl implements MemberService {
 	public String findEmail(MemberVO vo) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		String email = memberDAO.findEmail(vo);
-		
-		if(email != null) { 
+
+		if (email != null) {
 			return email;
-		}
-		else
-			return  "fail";
-					
+		} else
+			return "fail";
+
 	}
 
 	@Override
 	public MemberVO findPw(MemberVO vo) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
 		MemberVO memberVO = memberDAO.findPw(vo);
-		if(memberVO == null) {
+		if (memberVO == null) {
 			return null;
-		}else {
+		} else {
 			return memberVO;
 		}
 	}
 
-
 	/**
 	 * 회원가입
+	 * 
 	 * @param memberVO vo
 	 */
 	@Override
@@ -101,12 +100,13 @@ public class MemberServiceImpl implements MemberService {
 		vo.setM_follower(0);
 		vo.setM_level("BRONZE");
 		vo.setM_blacklist("N");
-		
+
 		memberDAOglobal.memberJoin(vo);
-		}
+	}
 
 	/**
 	 * 계정 중복확인
+	 * 
 	 * @param memberVO vo
 	 */
 	@Override
@@ -117,12 +117,13 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			System.out.println("일치하는 메일 존재. 1 on n");
 			return false;
-			
+
 		}
 	}
 
 	/**
 	 * 닉네임 중복확인
+	 * 
 	 * @param memberVO vo
 	 */
 	@Override
@@ -133,10 +134,10 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			System.out.println("일치하는 닉네임 존재. 1 on n");
 			return false;
-			
+
 		}
 	}
-	
+
 	@Override
 	public int updatePw(MemberVO vo) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
@@ -146,7 +147,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int getId(String m_email, String m_password) {
-		
+
 		return memberDAOglobal.getId(m_email, m_password);
 	}
 

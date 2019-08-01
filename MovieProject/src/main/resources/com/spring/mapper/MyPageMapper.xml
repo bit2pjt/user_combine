@@ -87,7 +87,7 @@
 	
 	
 	<update id="updateMember" parameterType="com.spring.member.MemberVO">
-		update member set m_phone=#{m_phone} where id=#{id}
+		update member set m_phone=#{m_phone},m_favorite=#{m_favorite},m_sagree=#{m_sagree},m_eagree=#{m_eagree} where id=#{id}
 	</update>
 	
 	<update id="updatePw" parameterType="com.spring.member.MemberVO">
@@ -98,12 +98,8 @@
 		update member set m_nickname=#{m_nickname} where id=#{id}
 	</update>
 	
-	<select id="checkNick" parameterType="String" resultType="int">
-		select count(*) from member where m_nickname = #{m_nickname}
-	</select>
-	
 	<insert id="insertQna" parameterType="com.spring.mypage.OneVO">
-		insert into board_qna values (board_qna_no_seq.nextval, #{id}, #{qna_category, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}
+		insert into board_qna values (seq_qna_no.nextval, #{id}, #{qna_category, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}
 		, #{qna_content, jdbcType=VARCHAR}, sysdate, sysdate, 'N')
 	</insert>
 	
@@ -124,5 +120,33 @@
 	<delete id="deleteQnaDetail" parameterType="String">
 		delete FROM board_qna WHERE qna_no = #{qna_no}
 	</delete>
+	
+	<!-- kgh | 비밀번호 변경 -->
+	
+	<!-- kgh | 비밀번호 체크  -->
+	 <select id="checkPw" resultType="Int">
+	 	select 
+	 		count(*)
+	 		from member
+	 		where m_email = #{m_email ,jdbcType=VARCHAR} and m_password = #{m_password ,jdbcType=VARCHAR}
+	 </select>
+	 
+	 <!-- kgh | 회원 탈퇴신청 -->
+	 <update id="delete_member">
+	 	update member
+	 	set 
+	 		m_deleteyn = 'Y'
+	 	where
+	 		m_email = #{m_email, jdbcType=VARCHAR}
+	 </update>
+	 <update id="delete_date">
+	 	 update delete_member
+	 	 set
+	 	 	delete_date = SYSDATE
+	 	 where
+	 	 	id = #{id}
+	 </update>
+	
+	
 	
 </mapper>

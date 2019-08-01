@@ -1,5 +1,6 @@
 package com.spring.mypage;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -128,5 +129,56 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return oneAdVO;
 	}
+	
+	
+	// kgh | 비밀번호 확인 , 탈퇴,
+	
+
+	@Override
+	public boolean checkPw(String m_email, String m_password) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		boolean result = false;
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("m_email", m_email);
+		map.put("m_password", m_password);
+		
+		int count = mypageDAO.checkPw(map);
+		if(count == 1) result = true;
+		return result;
+	}
+	
+
+	@Override
+	public int delete_member(String m_email) {
+		
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int num = mypageDAO.delete_member(m_email);
+		System.out.println("num:"+num);
+		return num;
+		 
+		
+	}
+
+	@Override
+	public int delete_date(int id) {
+		
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int id_num = mypageDAO.delete_date(id);
+		System.out.println("id_num:"+id_num);
+		return id_num;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

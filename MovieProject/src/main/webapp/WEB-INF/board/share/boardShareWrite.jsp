@@ -297,21 +297,6 @@
    </script>
    <!-- </body> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    <!--   hm |  footer section-->
    <footer class="ht-footer">
       <div class="container">

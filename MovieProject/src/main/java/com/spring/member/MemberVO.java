@@ -25,4 +25,3 @@ public class MemberVO {
 	private String m_favorite;	//선호장르
 	private String m_blacklist;	//블랙리스트 여부
 }
-	
