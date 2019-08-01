@@ -55,7 +55,7 @@ closebt.on('click', function (e) {
 	idfindct.parents(overlay).removeClass("openform");
 	idokct.parents(overlay).removeClass("openform");
 	loginct.parents(overlay).addClass("openform");
-	
+
 });
 
 // 여기서부터 추가
@@ -107,12 +107,12 @@ $("#alert-danger").hide();
 
 //pop up for id-find-content 추가
 idfindLink.on('click', function (event) { // link 변경
-	if(pwfindct.parent().hasClass("openform"))
+	if (pwfindct.parent().hasClass("openform"))
 		pwfindct.parent().removeClass("openform");
-	
+
 	idfindct.parent().addClass("openform");
 	event.preventDefault();
-	
+
 	idfindct.parents(overlay).addClass("openform"); // ct 변경
 	$(document).on('click', function (e) {
 		event.stopPropagation();
@@ -132,49 +132,49 @@ idfindLink.on('click', function (event) { // link 변경
 
 //pop up for id-ok-content 추가
 idokLink.on('click', function (event) { // link 변경
-//	event.preventDefault();
+	//	event.preventDefault();
 	var data = $(".findIdClass").serialize();
-	   $.ajax({
-	      url: "/movie/id_find",
-	      data: data,
-	      dataType: "text",
-	      type: "get",
-	      contentType: "application/json; charset=UTF-8",
-	      success: function(data) {
-	    	  if(data == "fail") {
-	    		  $("#id-ok-content > div > span").remove();
-	    		  $("#id-ok-content > div").prepend("<span> <strong>입력하신 정보와 일치하는 <br>아이디가 없습니다. <strong></span>");
-	    		  $("#id-ok-content > div > p > span").text("");
-	    		  $("#id_username").val("");
-	    		  $("#id-find-content input[type=text]").val("");
-	    	  }else {
-	    		  $("#id-ok-content > div > span").remove();
-	    		  $("#id-ok-content > div").prepend("<span> <strong>입력하신 정보와 일치하는 아이디는 <br> 아래와 같습니다.</strong></span>");
-	    		  $("#id-ok-content > div > p > span").text(data);
-	    		  $("#id_username").val("");
-	    		  $("#id-find-content input[type=text]").val("");
-	    	  }
-	      },
-	      error: function(xhr, status, e) {
-	    	  alert("에러");
-	      }
-	   });
-	   
-	   idokct.parents(overlay).addClass("openform"); // ct 변경
-       $(document).on('click', function (e) {
-          var target = $(e.target);
-          if ($(target).hasClass("overlay")) {
-             $(target).find(idokct).each(function () { // ct 변경
-                $(this).removeClass("openform");
-             });
-             /*
-				setTimeout(function () {
-					$(target).removeClass("openform");
-				}, 350);
-				*/
-          }
-       });
-	  
+	$.ajax({
+		url: "/movie/id_find",
+		data: data,
+		dataType: "text",
+		type: "get",
+		contentType: "application/json; charset=UTF-8",
+		success: function (data) {
+			if (data == "fail") {
+				$("#id-ok-content > div > span").remove();
+				$("#id-ok-content > div").prepend("<span> <strong>입력하신 정보와 일치하는 <br>아이디가 없습니다. <strong></span>");
+				$("#id-ok-content > div > p > span").text("");
+				$("#id_username").val("");
+				$("#id-find-content input[type=text]").val("");
+			} else {
+				$("#id-ok-content > div > span").remove();
+				$("#id-ok-content > div").prepend("<span> <strong>입력하신 정보와 일치하는 아이디는 <br> 아래와 같습니다.</strong></span>");
+				$("#id-ok-content > div > p > span").text(data);
+				$("#id_username").val("");
+				$("#id-find-content input[type=text]").val("");
+			}
+		},
+		error: function (xhr, status, e) {
+			alert("에러");
+		}
+	});
+
+	idokct.parents(overlay).addClass("openform"); // ct 변경
+	$(document).on('click', function (e) {
+		var target = $(e.target);
+		if ($(target).hasClass("overlay")) {
+			$(target).find(idokct).each(function () { // ct 변경
+				$(this).removeClass("openform");
+			});
+			/*
+			   setTimeout(function () {
+				   $(target).removeClass("openform");
+			   }, 350);
+			   */
+		}
+	});
+
 });
 //pop up for pw-find-content 추가
 pwfindLink.on('click', function (event) { // link 변경
@@ -198,96 +198,96 @@ pwfindLink.on('click', function (event) { // link 변경
 //pop up for pw-ok-content 추가
 pwokLink.on('click', function (event) { // link 변경
 	var infodata = $(".findPwClass").serialize();
-	   $.ajax({
-	      url: "/movie/pw_find",
-	      data: infodata,
-	      dataType: "text",
-	      type: "get",
-	      contentType: "application/text; charset=UTF-8",
-	      success: function(data) {
-	    	 var phone = $("#pw-find-content input[type=text]:eq(2)").val()+ $("#pw-find-content input[type=text]:eq(3)").val() + $("#pw-find-content input[type=text]:eq(4)").val();
-	    	 $("#pw-ok-content #phone_number").val(phone);
-	    	 if(data == "success") {
-	    		 $("#pw_email").val("");
-	    		 $("#pw-find-content input[type=text]").val("");
-	    		 pwokct.parents(overlay).addClass("openform"); // ct 변경
-	    			$(document).on('click', function (e) {
-	    				var target = $(e.target);
-	    				if ($(target).hasClass("overlay")) {
-	    					$(target).find(pwokct).each(function () { // ct 변경
-	    						$(this).removeClass("openform");
-	    					});
-	    					/*
-	    					setTimeout(function () {
-	    						$(target).removeClass("openform");
-	    					}, 350);
-	    					*/
-	    				}
-	    			});
-	    	 }else {
-	    		 alert("등록된 정보가 없습니다.");
-	    		 $("#pw_email").val("");
-	    		 $("#pw-find-content input[type=text]").val("");
-	    		 $(document).on('click', function (e) {
-	    				var target = $(e.target);
-	    				if ($(target).hasClass("overlay")) {
-	    					$(target).find(pwokct).each(function () { // ct 변경
-	    						$(this).removeClass("openform");
-	    					});
-	    					/*
-	    					setTimeout(function () {
-	    						$(target).removeClass("openform");
-	    					}, 350);
-	    					*/
-	    				}
-	    			});
-	    	 }
-	      },
-	      error:function(request,status,error) {
-	    	  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	      }
-	   });
+	$.ajax({
+		url: "/movie/pw_find",
+		data: infodata,
+		dataType: "text",
+		type: "get",
+		contentType: "application/text; charset=UTF-8",
+		success: function (data) {
+			var phone = $("#pw-find-content input[type=text]:eq(2)").val() + $("#pw-find-content input[type=text]:eq(3)").val() + $("#pw-find-content input[type=text]:eq(4)").val();
+			$("#pw-ok-content #phone_number").val(phone);
+			if (data == "success") {
+				$("#pw_email").val("");
+				$("#pw-find-content input[type=text]").val("");
+				pwokct.parents(overlay).addClass("openform"); // ct 변경
+				$(document).on('click', function (e) {
+					var target = $(e.target);
+					if ($(target).hasClass("overlay")) {
+						$(target).find(pwokct).each(function () { // ct 변경
+							$(this).removeClass("openform");
+						});
+						/*
+						setTimeout(function () {
+							$(target).removeClass("openform");
+						}, 350);
+						*/
+					}
+				});
+			} else {
+				alert("등록된 정보가 없습니다.");
+				$("#pw_email").val("");
+				$("#pw-find-content input[type=text]").val("");
+				$(document).on('click', function (e) {
+					var target = $(e.target);
+					if ($(target).hasClass("overlay")) {
+						$(target).find(pwokct).each(function () { // ct 변경
+							$(this).removeClass("openform");
+						});
+						/*
+						setTimeout(function () {
+							$(target).removeClass("openform");
+						}, 350);
+						*/
+					}
+				});
+			}
+		},
+		error: function (request, status, error) {
+			alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		}
+	});
 });
 
 
 
 
-function checkPassword(password){
+function checkPassword(password) {
 	var pw1 = $("#pw-ok-content #password").val();
 	var pw2 = $("#pw-ok-content #password2").val();
-	
-	if(!/^[a-zA-Z0-9]{8,20}$/.test(password)){
+
+	if (!/^[a-zA-Z0-9]{8,20}$/.test(password)) {
 		$("#pw-ok-content > div > form > div:nth-child(2) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
 		$("#pw-ok-content > div > form > div:nth-child(2) > label > span").css("color", "red");
-		
+
 		$("#alert-success").hide();
 		$("#alert-danger").hide();
-		
+
 		return false;
 	}
 
 	$("#pw-ok-content > div > form > div:nth-child(2) > label > span").text("");
-	
-	if(pw2 != "") {
-		if(pw1 == pw2) {
+
+	if (pw2 != "") {
+		if (pw1 == pw2) {
 			$("#alert-success").show();
 			$("#alert-danger").hide();
-		}else {
+		} else {
 			$("#alert-danger").show();
 			$("#alert-success").hide();
 		}
-	}else {
+	} else {
 		$("#alert-success").hide();
 		$("#alert-danger").hide();
 	}
 	return true;
 }
 
-function checkPasswordConfirm(password){
+function checkPasswordConfirm(password) {
 	var pw1 = $("#pw-ok-content #password").val();
 	var pw2 = $("#pw-ok-content #password2").val();
-	
-	if(!/^[a-zA-Z0-9]{8,20}$/.test(password)){
+
+	if (!/^[a-zA-Z0-9]{8,20}$/.test(password)) {
 		$("#pw-ok-content > div > form > div:nth-child(3) > label > span").text("숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
 		$("#pw-ok-content > div > form > div:nth-child(3) > label > span").css("color", "red");
 		$("#alert-danger").hide();
@@ -296,12 +296,12 @@ function checkPasswordConfirm(password){
 	}
 
 	$("#pw-ok-content > div > form > div:nth-child(3) > label > span").text("");
-	
-	
-	if(pw1 == pw2) {
+
+
+	if (pw1 == pw2) {
 		$("#alert-success").show();
 		$("#alert-danger").hide();
-	}else {
+	} else {
 		$("#alert-danger").show();
 		$("#alert-success").hide();
 	}
@@ -309,24 +309,24 @@ function checkPasswordConfirm(password){
 }
 
 pwcfLink.on('click', function (event) { // link 변경
-//	event.preventDefault();
-		var newdata = $(".newPassword").serialize();
-		$.ajax({
-		      url: "/movie/pw_new",
-		      data: newdata,
-		      dataType: "text",
-		      type: "get",
-		      contentType: "application/text; charset=UTF-8",
-		      success: function(data) {
-		    	alert("변경되었습니다.");
-		    	pwfindct.parent().removeClass("openform");
-		  		pwokct.parent().removeClass("openform");
-		  		idfindct.parent().removeClass("openform");
-		      },
-		      error:function(request,status,error) {
-		    	  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		      }
-	   });
+	//	event.preventDefault();
+	var newdata = $(".newPassword").serialize();
+	$.ajax({
+		url: "/movie/pw_new",
+		data: newdata,
+		dataType: "text",
+		type: "get",
+		contentType: "application/text; charset=UTF-8",
+		success: function (data) {
+			alert("변경되었습니다.");
+			pwfindct.parent().removeClass("openform");
+			pwokct.parent().removeClass("openform");
+			idfindct.parent().removeClass("openform");
+		},
+		error: function (request, status, error) {
+			alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		}
+	});
 });
 
 //pop up for nik-check-content 추가
@@ -348,63 +348,63 @@ nikcheckLink.on('click', function (event) { // link 변경
 	});
 });
 
-$(document).ready(function() {
-    var userInputEmail = getCookie("userInputEmail");
-    var setCookieYN = getCookie("setCookieYN");
-    
-    if(setCookieYN == 'Y') {
-        $("#idSaveCheck").prop("checked", true);
-    } else {
-        $("#idSaveCheck").prop("checked", false);
-    }
-    
-    $("#m_email").val(userInputEmail); 
-    
-    //로그인 버튼 클릭
-    $('#loginbtn').click(function() {
-        if($("#idSaveCheck").is(":checked")){ 
-            var userInputEmail = $("#m_email").val();
-            setCookie("userInputEmail", userInputEmail, 60); 
-            setCookie("setCookieYN", "Y", 60);
-        } else {
-            deleteCookie("userInputEmail");
-            deleteCookie("setCookieYN");
-        }
-        
-        document.LoginForm.submit();
-    });
+$(document).ready(function () {
+	var userInputEmail = getCookie("userInputEmail");
+	var setCookieYN = getCookie("setCookieYN");
+
+	if (setCookieYN == 'Y') {
+		$("#idSaveCheck").prop("checked", true);
+	} else {
+		$("#idSaveCheck").prop("checked", false);
+	}
+
+	$("#m_email").val(userInputEmail);
+
+	//로그인 버튼 클릭
+	$('#loginbtn').click(function () {
+		if ($("#idSaveCheck").is(":checked")) {
+			var userInputEmail = $("#m_email").val();
+			setCookie("userInputEmail", userInputEmail, 60);
+			setCookie("setCookieYN", "Y", 60);
+		} else {
+			deleteCookie("userInputEmail");
+			deleteCookie("setCookieYN");
+		}
+
+		document.LoginForm.submit();
+	});
 });
 
 //쿠키값 Set
-function setCookie(cookieName, value, exdays){
-    var exdate = new Date();
-    exdate.setDate(exdate.getDate() + exdays);
-    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + 
-    exdate.toGMTString());
-    document.cookie = cookieName + "=" + cookieValue;
+function setCookie(cookieName, value, exdays) {
+	var exdate = new Date();
+	exdate.setDate(exdate.getDate() + exdays);
+	var cookieValue = escape(value) + ((exdays == null) ? "" : "; expires=" +
+		exdate.toGMTString());
+	document.cookie = cookieName + "=" + cookieValue;
 }
 
 //쿠키값 Delete
-function deleteCookie(cookieName){
-    var expireDate = new Date();
-    expireDate.setDate(expireDate.getDate() - 1);
-    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+function deleteCookie(cookieName) {
+	var expireDate = new Date();
+	expireDate.setDate(expireDate.getDate() - 1);
+	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
 }
 
 //쿠키값 가져오기
 function getCookie(cookie_name) {
-    var x, y;
-    var val = document.cookie.split(';');
-    
-    for (var i = 0; i < val.length; i++) {
-        x = val[i].substr(0, val[i].indexOf('='));
-        y = val[i].substr(val[i].indexOf('=') + 1);
-        x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
-        
-        if (x == cookie_name) {
-          return unescape(y); // unescape로 디코딩 후 값 리턴
-        }
-    }
+	var x, y;
+	var val = document.cookie.split(';');
+
+	for (var i = 0; i < val.length; i++) {
+		x = val[i].substr(0, val[i].indexOf('='));
+		y = val[i].substr(val[i].indexOf('=') + 1);
+		x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+
+		if (x == cookie_name) {
+			return unescape(y); // unescape로 디코딩 후 값 리턴
+		}
+	}
 }
 
 /* 수정중 */
@@ -462,7 +462,7 @@ $('.terms-content-bt').on('click', function (event) { // link 변경
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
-	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	if (document.body.scrollTop > 20 || documentcumentElement.scrollTop > 20) {
 		document.getElementById("hm_myBtn").style.display = "block";
 	} else {
 		document.getElementById("hm_myBtn").style.display = "none";
@@ -472,7 +472,7 @@ function scrollFunction() {
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
 	document.body.scrollTop = 0;
-	document.documentElement.scrollTop = 0;
+	documentcumentElement.scrollTop = 0;
 }
 
 // 약관 wrapper 수정 중
@@ -488,119 +488,120 @@ loginWrap2.each(function () {
 
 $('.terms-content-bt').click(function () {
 	$('.overlay2').modal("hide");
-	
+
 });
 
 
 //회원가입 제출양식의 유효성 확인
 function ws_check() { //유효성 검사
-		
+
 	var joinform = document.getElementById("joinform");
-	
-	var email 	 = 	joinform.m_email.value;
-	var name	 = 	joinform.m_name.value;
-	var nickname = 	joinform.m_nickname.value; 
-	var password1= 	joinform.m_password.value;	
-		password1= password1 +"";
-	var password2= 	joinform.password.value;
-		password2= password2 +"";
-	var phone	 = 			joinform.m_phone1.value;
-		phone	 = phone + 	joinform.m_phone2.value;
-		phone	 = phone + 	joinform.m_phone3.value;
-	var favorite =	joinform.m_favorite.value;
+
+	var email = joinform.m_email.value;
+	var name = joinform.m_name.value;
+	var nickname = joinform.m_nickname.value;
+	var password1 = joinform.m_password.value;
+	password1 = password1 + "";
+	var password2 = joinform.password.value;
+	password2 = password2 + "";
+	var phone = joinform.m_phone1.value;
+	phone = phone + joinform.m_phone2.value;
+	phone = phone + joinform.m_phone3.value;
+	var favorite = joinform.m_favorite.value;
 	var usage_a = $('input[name="useage_agree"]:checked').val();
-    var info_a = $('input[name="info_agree"]:checked').val();
-    var eagree = $('input[name="m_eagree"]:checked').val();
-    var sagree = $('input[name="m_sagree"]:checked').val();
-   
-	var result	 = false;
-	var msg		 = "";
-	var emailoverlap =$('#email_chk_msg').html(); // 나중에 REST로 연결받아서 반환값 집어넣는다.
-		
+	var info_a = $('input[name="info_agree"]:checked').val();
+	var eagree = $('input[name="m_eagree"]:checked').val();
+	var sagree = $('input[name="m_sagree"]:checked').val();
+
+	var result = false;
+	var msg = "";
+	var emailoverlap = $('#email_chk_msg').html(); // 나중에 REST로 연결받아서 반환값 집어넣는다.
+
 	var nicknameoverlap = $('#nick_chk_msg').html();// 상동
 
 	//1-2. 이메일 계정의 중복검사가 완료되었는지 확인
 	if (emailoverlap == "이미 사용중인 이메일 입니다") {
 		msg += "！중복되는 이메일 계정으로 가입하실 수 없습니다.\n";
-		result =false;
+		result = false;
 	} else if (emailoverlap == "이메일 중복검사를 눌러주세요") {
 		msg += "！이메일 중복검사를 눌러주세요\n";
-		result =false;
+		result = false;
 	} else if (emailoverlap == "사용 가능한 이메일 주소입니다.") {
 		//정상처리시 아무것도 하지 않는다. 단, 정상처리 미구현시 오류를 정상처리로 인식할 수 있음을 유의하여 확인로직 필
-		
-		
+
+
 	}
-	
+
 	//3-2. 닉네임 중복검사 완료 확인
 	if (nicknameoverlap == "이미사용중인 닉네임 입니다") {
 		msg += "！중복되는 별명으로 가입하실 수 없습니다.\n";
-		result =false;
+		result = false;
 	} else if (nicknameoverlap == "닉네임 중복검사를 눌러주세요") {
 		msg = msg + "！별명 중복검사를 눌러주세요\n";
-		result =false;
+		result = false;
 	} else if (nicknameoverlap == "사용 가능한 닉네임 입니다.") {
-//		msg += "！별명 이상 무\n";
-//		result = true;
+		//		msg += "！별명 이상 무\n";
+		//		result = true;
 	}
 
-	
-	
-	
+
+
+
 	//비밀번호 수식 
-//	function chkPwd(password1){
-//
-//		var pw = password1;
-//			alert(password1);
-//			alert(pw);
-//		var num = pw.search(/[0-9]/g);
-//		var eng = pw.search(/[a-z]/ig);
-//		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-//		if(pw.toString().length < 8 ){
-//			msg += "！ 8자리 ~ 20자리 이내로 입력해주세요.\n";
-//			result= false;
-//		}
-//
-//		if(pw.search(/₩s/) != -1){
-//			msg += "！ 비밀번호는 공백업이 입력해주세요.\n";
-//			result= false;
-//		}
-//특수문자 검증
-//		if(num < 0 || eng < 0 || spe < 0 ){
-//			msg += "！영문,숫자, 특수문자를 혼합하여 비밀번호를 입력해주세요.\n";
-//			result= false;
-//		}
-//	}
-//
-//	if(!chkPwd( $.trim($('#mpassword').val()))){
-//	   $('#mpassword').val('');
-//	   $('#mpassword').focus();
-//	   result= false;
-//	}
+	//	function chkPwd(password1){
+	//
+	//		var pw = password1;
+	//			alert(password1);
+	//			alert(pw);
+	//		var num = pw.search(/[0-9]/g);
+	//		var eng = pw.search(/[a-z]/ig);
+	//		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+	//		if(pw.toString().length < 8 ){
+	//			msg += "！ 8자리 ~ 20자리 이내로 입력해주세요.\n";
+	//			result= false;
+	//		}
+	//
+	//		if(pw.search(/₩s/) != -1){
+	//			msg += "！ 비밀번호는 공백업이 입력해주세요.\n";
+	//			result= false;
+	//		}
+	//특수문자 검증
+	//		if(num < 0 || eng < 0 || spe < 0 ){
+	//			msg += "！영문,숫자, 특수문자를 혼합하여 비밀번호를 입력해주세요.\n";
+	//			result= false;
+	//		}
+	//	}
+	//
+	//	if(!chkPwd( $.trim($('#mpassword').val()))){
+	//	   $('#mpassword').val('');
+	//	   $('#mpassword').focus();
+	//	   result= false;
+	//	}
 
-	if(password1!=password2){
+	if (password1 != password2) {
 		msg += "！ 비밀번호 확인란이 일치하지 않습니다.\n";
-		result =false;
+		result = false;
 	}
-		
+
 	//6. 이용악관 동의
 	if (usage_a != 'usage_ok') {
 		msg += "！ 이용약관동의는 필수입니다\n";
-		
-		result =false;
+
+		result = false;
 	}
 	//7. 개인정보 이용 동의
 	if (info_a != 'info_ok') {
 		msg += "！ 개인정보 이용 동의는 필수입니다\n";
-		
-		result =false;
+
+		result = false;
 	}
-	
+
 	//8. 최종 작업
 	if (msg != "") {
 		alert('아래의 사항들이 미흡합니다. 확인해주세요 \n\n' + msg);
-		return false;}
-	else if(msg ==""){
+		return false;
+	}
+	else if (msg == "") {
 		return true;
 	}
 }//e_check
@@ -611,63 +612,63 @@ $('#email_overlap_chk').on('click', function (event) { // link 변경
 	//event.stopPropagation();
 	//console.log('이메일 중복체크 눌림');
 	//event.stopimmediatepropagation();
-	
+
 	var m_email = joinform.m_email.value;
-	   $.ajax({
-	      url: "/movie/email_overlap_chk",
-	      data: {'m_email' : m_email},
-	      dataType: 'text',
-	      type: 'get',
-	      contentType: 'application/text; charset=UTF-8',
-	      success: function(data) {
-	    	 if(data == "success") {
-	    		$('#email_chk_msg').html('사용 가능한 이메일 주소입니다.').css('color', 'blue');
-	       	 }else if (data =="fail") {
-	    		$('#email_chk_msg').html('이미 사용중인 이메일 입니다').css('color', 'red');
-	    	 }
-	      },
-	      error: function(xhr, status, e) {
-	    	  alert("에러!"+status);
-	      }
-	   });
+	$.ajax({
+		url: "/movie/email_overlap_chk",
+		data: { 'm_email': m_email },
+		dataType: 'text',
+		type: 'get',
+		contentType: 'application/text; charset=UTF-8',
+		success: function (data) {
+			if (data == "success") {
+				$('#email_chk_msg').html('사용 가능한 이메일 주소입니다.').css('color', 'blue');
+			} else if (data == "fail") {
+				$('#email_chk_msg').html('이미 사용중인 이메일 입니다').css('color', 'red');
+			}
+		},
+		error: function (xhr, status, e) {
+			alert("에러!" + status);
+		}
+	});
 });
 
 
 $('#nick_overlap_chk').on('click', function (event) {
 	event.stopPropagation();
-	
+
 	var m_nickname = joinform.m_nickname.value;
-	   $.ajax({
-	      url: "/movie/nick_overlap_chk",
-	      data: {'m_nickname' : m_nickname},
-	      dataType: 'text',
-	      type: 'get',
-	      contentType: 'application/text; charset=UTF-8',
-	      success: function(data) {
-	    	 if(data == "success") {
-	    		 $('#nick_chk_msg').html('사용 가능한 닉네임 입니다.').css('color', 'blue');
-	       	 }else if (data =="fail") {
-	       		 $('#nick_chk_msg').html('이미사용중인 닉네임 입니다').css('color', 'red');
-	    	 }
-	      },
-	      error: function(xhr, status, e) {
-	    	  alert("에러!"+status);
-	      }
-	   });
+	$.ajax({
+		url: "/movie/nick_overlap_chk",
+		data: { 'm_nickname': m_nickname },
+		dataType: 'text',
+		type: 'get',
+		contentType: 'application/text; charset=UTF-8',
+		success: function (data) {
+			if (data == "success") {
+				$('#nick_chk_msg').html('사용 가능한 닉네임 입니다.').css('color', 'blue');
+			} else if (data == "fail") {
+				$('#nick_chk_msg').html('이미사용중인 닉네임 입니다').css('color', 'red');
+			}
+		},
+		error: function (xhr, status, e) {
+			alert("에러!" + status);
+		}
+	});
 });
 
-$('#check_all').on('click', function() {
-	$('.chk_box').prop( 'checked', this.checked );
-    
+$('#check_all').on('click', function () {
+	$('.chk_box').prop('checked', this.checked);
+
 });
 
-$('#check_all').on('click', function() {
+$('#check_all').on('click', function () {
 	//모든 이벤트가 작동이 안되는듯 하다
 	alert('asdasd');
-	if($('#check_all').is(':checked')) {
+	if ($('#check_all').is(':checked')) {
 		$('.chk_box').prop('checked', true);
-	}else {
+	} else {
 		$('.chk_box').prop('checked', false);
 	}
-	
+
 });

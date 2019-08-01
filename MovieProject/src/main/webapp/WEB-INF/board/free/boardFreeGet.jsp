@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -13,7 +12,6 @@
 <script>
 	/*
 	var session = "${sessionyn}";
-
  	if( session == "") {
  		alert("로그인 하셔야 이용하실수 있습니다.");
  		location.href="index";
@@ -102,18 +100,18 @@
  	});
  	
  	function updateContent(){
-		location.href="boardFreeUpdate";
+		location.href="boardFreeUpdate?bno=${boardFreeVO.bf_bno}";
 	}
  	
  	function deleteContent() {
  		var result = confirm("삭제하시겠습니까?");
- 		alert(result);
  		
  		if(result == true) {
- 			alert("1");
  			location.href="boardFreeDelete?bno=${boardFreeVO.bf_bno}";
  		}
  	}
+ 	
+ 
 </script>
 
 <div class="hero common-hero">
@@ -184,7 +182,7 @@
 		</div>
 		<!-- 글정보+개인정보의 배치 끝 -->
 		<!-- 3. 글본문 자리 -->
-		<div class="ws-post-get-content">
+		<div class="ws-post-get-content" style="word-break:break-all">
 			${boardFreeVO.bf_content }
 		</div>
 			<!-- 글본문 자리의 끝 -->
@@ -197,13 +195,26 @@
 				<button class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
 				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
+			
+		<form role="form" method="post">
+        	<input type="hidden" name="bno" value="${boardFreeVO.bf_bno}">
+            <input type="hidden" name="page" value="${searchCriteria.page}">
+            <input type="hidden" name="perPageNum" value="${searchCriteria.perPageNum}">
+            <input type="hidden" name="searchType" value="${searchCriteria.searchType}">
+            <input type="hidden" name="keyword" value="${searchCriteria.keyword}">
+         </form>
+        	 
 			<c:if test="${id == boardFreeVO.id }">
 				<div style="float:right;">
 					 <button id='btn-hjs' onclick="updateContent()">수정</button> 
 					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
 				</div>
 			</c:if>
+			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px;">목록</button>
 		</center>
+		
+		
+                        
 		<span id="ws-content-msg"></span>
 		<!-- 글신고/글추천/글비추 배치 끝 -->
 		<!-- 5. 댓글 구현부의 시작 -->
@@ -312,7 +323,7 @@
 					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:200px;"></textarea>
 	 			</div>
 				<div class="pull-right">
-					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 저장</button>
+					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
 				</div>
 			</div>
 		</div>
@@ -437,7 +448,6 @@
         var replyText = reply.find(".replyText").text(); //댓글의 내용
         $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
-
     });
     
     $()
@@ -538,7 +548,6 @@
 	});
 	
     $(".modalDelBtn").on("click", function () {
-
         var replyRno = $("#replyNo").val();
         
         $.ajax({
@@ -567,16 +576,12 @@
                 }
             }
         });
-
     });
-
 	
     $(".modalModBtn").on("click", function () {
-
         var reply = $(this).parent().parent();
         var bfr_rno = reply.find("#replyNo").val();
         var bfr_content = reply.find("#replyText").val();
-
         $.ajax({
             type : "put",
             url : "/movie/replies/" + bfr_rno,
@@ -600,7 +605,6 @@
                 }
             }
         });
-
     });
     
     
@@ -648,32 +652,33 @@
            
         });
     }
-
     function printPageNumbers(pageMaker) {
-
         var str = "";
-
         if (pageMaker.prev) {
             str += "<li><a href='"+(pageMaker.startPage-1)+"'>이전</a></li>";
         }
-
         for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
             var strCalss = pageMaker.criteria.page == i ? 'class=active' : '';
             str += "<li "+strCalss+"><a href='"+i+"'>"+i+"</a></li>";
         }
-
         if (pageMaker.next) {
             str += "<li><a href='"+(pageMaker.endPage + 1)+"'>다음</a></li>";
         }
-
         $(".pagination-sm").html(str);
     }
-
+    
     $(".pagination").on("click", "li a", function (event) {
         event.preventDefault();
         replyPageNum = $(this).attr("href");
         getRepliesPaging(replyPageNum);
-
+    });
+    
+	var formObj = $("form[role='form']");
+ 	
+ 	$(".listBtn").on("click", function () {
+        formObj.attr("action", "/movie/boardFreeListP");
+        formObj.attr("method", "get");
+        formObj.submit();
     });
 	
 </script>
@@ -684,4 +689,3 @@
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
-

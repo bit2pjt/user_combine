@@ -121,4 +121,32 @@
 		delete FROM board_qna WHERE qna_no = #{qna_no}
 	</delete>
 	
+	<!-- kgh | 비밀번호 변경 -->
+	
+	<!-- kgh | 비밀번호 체크  -->
+	 <select id="checkPw" resultType="Int">
+	 	select 
+	 		count(*)
+	 		from member
+	 		where m_email = #{m_email ,jdbcType=VARCHAR} and m_password = #{m_password ,jdbcType=VARCHAR}
+	 </select>
+	 
+	 <!-- kgh | 회원 탈퇴신청 -->
+	 <update id="delete_member">
+	 	update member
+	 	set 
+	 		m_deleteyn = 'Y'
+	 	where
+	 		m_email = #{m_email, jdbcType=VARCHAR}
+	 </update>
+	 <update id="delete_date">
+	 	 update delete_member
+	 	 set
+	 	 	delete_date = SYSDATE
+	 	 where
+	 	 	id = #{id}
+	 </update>
+	
+	
+	
 </mapper>

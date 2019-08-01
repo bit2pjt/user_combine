@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.member.MemberService;
 import com.spring.member.MemberVO;
+import com.spring.paging.PageMaker;
+import com.spring.paging.SearchCriteria;
 
 /**
 * @Class Name : BoardFreeController.java
@@ -43,11 +46,40 @@ public class BoardFreeController {
 	  * 자유게시판 리스트로 이동
 	  * @return "boardFreeList"
 	 */
+	/*
 	@RequestMapping(value = "/boardFreeList", method=RequestMethod.GET)
 	public String getListPage(Model model) {
-		
+		model.addAttribute("boardfree", boardFreeService.listAll());
 		return "board/free/boardFreeList";
 	}
+
+	@RequestMapping(value = "/boardFreeListP", method=RequestMethod.GET)
+	public String getListPageP(Model model, Criteria criteria) {
+		PageMaker pageMaker = new PageMaker();
+		System.out.println("11111: " + criteria.getPage()); // 1
+		System.out.println("22222: " + criteria.getPerPageNum());// 10
+        pageMaker.setCriteria(criteria);
+        pageMaker.setTotalCount(boardFreeService.countArticles(criteria)); // 11
+        model.addAttribute("boardfree", boardFreeService.listCriteria(criteria));
+        model.addAttribute("pageMaker", pageMaker);		
+		return "board/free/boardFreeList";
+	}
+	*/
+	
+	@RequestMapping(value = "/boardFreeListP", method=RequestMethod.GET)
+	public String getListPageP(Model model,@ModelAttribute("searchCriteria") 
+		SearchCriteria searchCriteria) {
+		
+		PageMaker pageMaker = new PageMaker();
+        pageMaker.setCriteria(searchCriteria);
+        pageMaker.setTotalCount(boardFreeService.countSearchedArticles(searchCriteria));
+        
+        model.addAttribute("boardfree", boardFreeService.listSearch(searchCriteria));
+        model.addAttribute("pageMaker", pageMaker);	
+        
+		return "board/free/boardFreeList";
+	}
+	
 	
 	/**
 	  * 자유게시판 게시글 상세 조회
@@ -57,7 +89,8 @@ public class BoardFreeController {
 	  * @return "boardFreeGet"
 	 */
 	@RequestMapping(value= "/boardFreeGet", method=RequestMethod.GET)
-	public String boardFreeGet(@RequestParam("bno") int bno, HttpSession session, Model model) {
+	public String boardFreeGet(@RequestParam("bno") int bno, HttpSession session
+			, Model model, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		if(sessionyn != null) {
 			int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
@@ -79,7 +112,7 @@ public class BoardFreeController {
 	  * @return "boardFreeWrite"
 	 */
 	@RequestMapping(value = "/boardFreeWrite", method = RequestMethod.GET)
-	public String freeWrite(HttpSession session, HttpServletRequest request) {
+	public String freeWrite(@ModelAttribute("searchCriteria") SearchCriteria searchCriteria, HttpSession session, HttpServletRequest request) {
 
 		// 사용자 정보
 		String m_email = (String) session.getAttribute("m_email");
@@ -95,25 +128,22 @@ public class BoardFreeController {
 	  * @return "boardFreeList"
 	 */
 	@RequestMapping(value = "/boardFreeUpdate", method = RequestMethod.GET)
-	public String boardFreeUpdate(HttpSession session, HttpServletRequest request) {
+	public String boardFreeUpdate(@RequestParam("bno") int bno, HttpSession session, HttpServletRequest request
+			, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria) {
 
 		String m_email = (String) session.getAttribute("m_email");
-
 		// 사용자의 id를 가져옴
 		int id = boardFreeService.getMemberId(m_email);
 
 		// bf_bno=?의 작성자와 일치하는지 확인 후 일치하면 수정페이지로, 불일치하면 리스트로
-		int bf_bno = Integer.parseInt(request.getParameter("bf_bno"));
 		
-		BoardFreeVO selectBoardFree = boardFreeService.selectBoardFree(bf_bno);
-
+		BoardFreeVO selectBoardFree = boardFreeService.selectBoardFree(bno);
 
 		if (id != selectBoardFree.getId()) {
-			return "redirect:/boardFreeList";
+			return "redirect:/boardFreeListP";
 		}
 		
 		request.setAttribute("selectBoardFree", selectBoardFree);
-
 		return "board/free/boardFreeUpdate";
 	}
 	
@@ -121,12 +151,19 @@ public class BoardFreeController {
 	  * 자유게시판 게시글 삭제
 	  * @return "boardFreeList"
 	 */
-	@RequestMapping(value= "/boardFreeDelete", method=RequestMethod.GET)
-	public String boardDelete(@RequestParam("bno") int bno, HttpSession session, Model model) {
+	@RequestMapping(value= "/boardFreeDelete", method=RequestMethod.POST)
+	public String boardDelete(@RequestParam("bno") int bno, HttpSession session, Model model
+			,SearchCriteria searchCriteria, RedirectAttributes rttr) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
 		
-		return "redirect:/boardFreeList"; 
+		//boardFreeService.delete(bno);
+		rttr.addAttribute("page", searchCriteria.getPage());
+		rttr.addAttribute("perPageNum", searchCriteria.getPerPageNum());
+		rttr.addAttribute("searchType", searchCriteria.getSearchType());
+		rttr.addAttribute("keyword", searchCriteria.getKeyword());
+		rttr.addFlashAttribute("msg", "delSuccess");
+		return "redirect:/boardFreeListP"; 
 	}
 	
 	/**
@@ -237,7 +274,7 @@ public class BoardFreeController {
 	// 자유게시판 글쓰기 - 새글 등록 액션
 		@RequestMapping(value = "/boardFreeWriteAction", method = RequestMethod.POST)
 		public String boardFreeWriteAction(HttpSession session, HttpServletRequest request, HttpServletResponse response,
-				BoardFreeVO freeVO) {
+				BoardFreeVO freeVO, RedirectAttributes rttr) {
 
 			freeVO.setId(boardFreeService.getMemberId((String) session.getAttribute("m_email")));
 
@@ -254,13 +291,14 @@ public class BoardFreeController {
 			} catch (Exception e) {
 				System.out.println("ERROR : boardFreeWriteAction - " + e.getMessage());
 			}
-			return "redirect:/boardFreeList";
+			return "redirect:/boardFreeListP";
 
 		}
 		
 	// 자유게시판 글수정하기 - 수정 액션
 		@RequestMapping(value = "/boardFreeUpdateAction", method = RequestMethod.POST)
-		public String boardFreeUpdateAction(HttpSession session, HttpServletRequest request, BoardFreeVO freeVO) {
+		public String boardFreeUpdateAction(HttpSession session, HttpServletRequest request
+				, BoardFreeVO freeVO, SearchCriteria searchCriteria, RedirectAttributes rttr ) {
 
 			// bf_title, bf_source bf_content의 앞뒤 공백 제거
 			freeVO.setBf_title(freeVO.getBf_title().trim());
@@ -269,13 +307,17 @@ public class BoardFreeController {
 
 			try {
 				int result = boardFreeService.updateBoardFree(freeVO);
+				rttr.addAttribute("page", searchCriteria.getPage());
+				rttr.addAttribute("perPageNum", searchCriteria.getPerPageNum());
+				rttr.addAttribute("searchType", searchCriteria.getSearchType());
+				rttr.addAttribute("keyword", searchCriteria.getKeyword());
 				if (result == 0) {
 					return "redirect:/boardFreeUpdate?bf_bno=" + freeVO.getBf_bno();
 				}
 			} catch (Exception e) {
 				System.out.println("ERROR : boardFreeUpdateAction - " + e.getMessage());
 			}
-			return "redirect:/boardFreeGet?bf_bno=" + freeVO.getBf_bno();
+			return "redirect:/boardFreeGet?bno=" + freeVO.getBf_bno();
 		}
 	
 	

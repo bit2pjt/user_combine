@@ -74,7 +74,7 @@
 	
 	<c:forEach var="mml3" items="${requestScope.mmlList3 }">
 	<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet'" style="cursor:pointer;">
+							<div class="card" OnClick="location.href ='mmlGet '" style="cursor:pointer;">
 									<img class="card-img" src="<c:url value="/resources/images/sp_image/${mml3.mml_poster }"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>

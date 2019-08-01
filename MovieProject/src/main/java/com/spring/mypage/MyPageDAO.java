@@ -1,5 +1,6 @@
 package com.spring.mypage;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.spring.member.MemberVO;
@@ -44,5 +45,16 @@ public interface MyPageDAO {
 	
 	//hm | 1:1 문의 답변 가져오기
 	public OneAdVO getQnaAdDetail(int qna_no); // 1:1 문의 상세정보 가져오기
+	
+	//kgh | 비밀번호 변경, 탈퇴
+	public int checkPw(HashMap<String,String> map);
+	// 비밀번호 체크
+	
+	public int delete_member(String m_email);
+	//회원 탈퇴신청
+	
+	public int delete_date(int id);
+	
+	
 	
 }

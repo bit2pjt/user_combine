@@ -69,7 +69,7 @@
 	<select id="warn_check" parameterType="int" resultMap="WarnMap">
 		select *
 		from bs_warning
-		where id = #{id}
+		where id = #{id}  and bs_bno= #{bs_bno}
 	</select>
 	
 	<update id="WarnCount" parameterType="int">
@@ -129,4 +129,83 @@
 		BS_UPDATE_DATE=sysdate WHERE bs_bno=#{bs_bno}
 	</update>
 	
+	<sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 't'.toString()">
+                AND bs_title LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'c'.toString()">
+                AND bs_content LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'w'.toString()">
+                AND id LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'tc'.toString()">
+                AND (
+                    bs_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bs_content LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'cw'.toString()">
+                AND (
+                    bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'tcw'.toString()">
+                AND (
+                    bs_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bs_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+        </if>
+    </sql>
+	
+	<select id="countSearchedArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(bs_bno)
+		    FROM board_share
+		    WHERE bs_bno > 0
+        ]]>
+        <include refid="search"/>
+    </select>
+    
+     <select id="listSearch" resultMap="BoardShareMap">
+        <![CDATA[
+        select
+        	bs_bno
+            , id
+            , bs_category
+            , bs_content
+            , bs_title
+            , bs_reg_date
+            , bs_update_date
+            , bs_view_counter
+            , bs_warn_counter
+            , bs_deleteyn
+       from
+		   (
+		    select
+		    rownum rn
+		    , bs_bno
+            , id
+            , bs_category
+            , bs_content
+            , bs_title
+            , bs_reg_date
+            , bs_update_date
+            , bs_view_counter
+            , bs_warn_counter
+            , bs_deleteyn
+		    from board_share
+		    WHERE bs_bno > 0
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by bs_bno desc
+		   )
+		where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
 </mapper>

@@ -1,3 +1,4 @@
+
 package com.spring.mypage;
 /**
  * @Class Name : MyPageController.java
@@ -38,7 +39,7 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 
-	// mypage 메인
+	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Model model, HttpSession session) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
@@ -53,7 +54,7 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 
-	// 마이페이지 - 비밀번호 확인
+	
 	@RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
 	public String pwConfirm(HttpSession session, Model model) {
 		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
@@ -65,30 +66,26 @@ public class MyPageController {
 		return "mypage/pw_confirm";
 	}
 
-	// 마이페이지 - 멤버정보
+	
 	@RequestMapping(value = "/member_info")
-	public String memberInfo(MemberVO member, Model model, int id) {
-		MemberVO member1 = myPageService.getMember(id);
-		System.out.println("member1=" + member1);
-		String input_password = member.getM_password();
-		System.out.println("input_pwd=" + input_password);
-		String member_password = member1.getM_password();
-		System.out.println("member_pwd=" + member_password);
+	public String memberInfo(Model model, int id) {
+		MemberVO member = myPageService.getMember(id);
 
-		int check = 3;
+		String input_password = member.getM_password();
+		System.out.println("input_pwd=" + input_password);		
+		String member_password = member.getM_password();
+		System.out.println("member_pwd=" + member_password);
 
 		if (input_password.equals(member_password)) {
 			model.addAttribute("member", member);
-			model.addAttribute("member1", member1);
-			model.addAttribute("check", check);
-			System.out.println("�ѱ��" + member1);
+			
 			return "mypage/member_info";
 		} else {
 			return "mypage/mypage";
 		}
 	}
 
-	// 마이페이지 - 비밀번호 수정
+	
 	@RequestMapping(value = "/update_pw")
 	public String updatePw(Model model, MemberVO memberVO, int id) {
 
@@ -102,7 +99,7 @@ public class MyPageController {
 		return "mypage/member_info";
 	}
 
-//	 // 마이페이지 - 닉네임확인
+//	//���������� - ����� �г��� �ߺ� Ȯ��
 //	@RequestMapping(value="/update_checknick")
 //	public String updateCheckNick(Model model, String m_nickname, MemberVO memberVO,int id) {
 //		int check = myPageService.checkNick(m_nickname);
@@ -114,7 +111,7 @@ public class MyPageController {
 //		return "mypage/member_info";
 //	}
 
-	// 마이페이지 - 닉네임 수정
+	// ���������� - �г��Ӽ��
 	@RequestMapping(value = "/update_nick")
 	public String updateNick(Model model, int id, MemberVO memberVO) {
 		MemberVO member1 = myPageService.getMember(id);
@@ -127,7 +124,7 @@ public class MyPageController {
 		return "mypage/member_info";
 	}
 
-	// 마이페이지 - 회원정보 수정
+	// ���������� - ȸ��������
 	@RequestMapping(value = "/member_update")
 	public String updateMember(Model model, HttpServletResponse response, MemberVO memberVO, int id) {
 		MemberVO member1 = myPageService.getMember(id);
@@ -141,7 +138,7 @@ public class MyPageController {
 		try {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('접근 권한이 없습니다.');");
+			out.println("alert('ȸ���������Ϸ�');");
 			out.println("</script>");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -316,5 +313,6 @@ public class MyPageController {
 		
 		return "mypage/one_get";
 	}
+
 
 }
