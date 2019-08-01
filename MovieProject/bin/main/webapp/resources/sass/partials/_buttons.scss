@@ -1,0 +1,269 @@
+/* Buttons */
+
+.btn {
+	padding: 8px 25px;
+	
+	&:focus,
+	&.focus {
+		outline: none;
+	}
+
+	&.active,
+	&:active {
+		@include box-shadow(none);
+
+		&:focus,
+		&.focus {
+			outline: none;
+		}
+	}
+
+	i:first-child {
+		margin-right: 5px;
+	}
+
+	span:first-child {
+		margin-right: 5px;
+	}
+}
+
+.btn-sm {
+	padding: 6px 18px;
+}
+
+.btn-xs {
+	padding: 3px 8px;
+}
+
+.btn-primary {
+	background-color: $color-accent;
+	border-color: darken($color-accent, 3%);
+
+	&:hover,
+	&:focus {
+		background-color: darken($color-accent, 3%);
+		border-color: darken($color-accent, 3%);
+	}
+
+	&.active,
+	&:active {
+		&,
+		&:focus,
+		&.focus {
+			background-color: darken($color-accent, 4%);
+			border-color: darken($color-accent, 4%);
+		}
+	}
+}
+
+.btn-default {
+	color: $font-color;
+
+	&:hover,
+	&:focus {
+		background-color: #f9f9f9;
+		border-color: #dcdcdc;
+		color: $font-color;
+	}
+
+	&.active,
+	&:active {
+		&,
+		&:focus,
+		&.focus {
+			background-color: darken(#f9f9f9, 2%);
+			border-color: darken(#dcdcdc, 4%);
+			color: $font-color;
+		}
+	}
+}
+
+.btn-default-dark {
+	background-color: $color-default-dark;
+	border-color: darken($color-default-dark, 3%);
+	color: #fff;
+
+	&:hover,
+	&:focus {
+		background-color: darken($color-default-dark, 5%);
+		border-color: darken($color-default-dark, 7%);
+		color: #fff;
+	}
+
+	&.active,
+	&:active {
+		&,
+		&:focus,
+		&.focus {
+			background-color: darken($color-default-dark, 5%);
+			border-color: darken($color-default-dark, 7%);
+			color: #fff;
+		}
+	}
+}
+
+.btn-info {
+	background-color: $color-info;
+	border-color: darken($color-info, 3%);
+
+	&:hover,
+	&:focus {
+		background-color: darken($color-info, 3%);
+		border-color: darken($color-info, 3%);
+	}
+
+	&.active,
+	&:active {
+		&,
+		&:focus,
+		&.focus {
+			background-color: darken($color-info, 5%);
+			border-color: darken($color-info, 5%);
+		}
+	}
+}
+
+.btn-success {
+	background-color: $color-success;
+	border-color: darken($color-success, 3%);
+
+	&:hover,
+	&:focus {
+		background-color: darken($color-success, 3%);
+		border-color: darken($color-success, 3%);
+	}
+
+	&.active,
+	&:active {
+		&,
+		&:focus,
+		&.focus {
+			background-color: darken($color-success, 4%);
+			border-color: darken($color-success, 4%);
+		}
+	}
+}
+
+.btn-warning {
+	background-color: $color-warning;
+	border-color: darken($color-warning, 2%);
+
+	&:hover,
+	&:focus {
+		background-color: darken($color-warning, 2%);
+		border-color: darken($color-warning, 2%);
+	}
+
+	&.active,
+	&:active {
+		&,
+		&:focus,
+		&.focus {
+			background-color: darken($color-warning, 4%);
+			border-color: darken($color-warning, 4%);
+		}
+	}
+}
+
+.btn-danger {
+	background-color: $color-danger;
+	border-color: darken($color-danger, 3%);
+
+	&:hover,
+	&:focus {
+		background-color: darken($color-danger, 3%);
+		border-color: darken($color-danger, 3%);
+	}
+
+	&.active,
+	&:active {
+		&,
+		&:focus,
+		&.focus {
+			background-color: darken($color-danger, 5%);
+			border-color: darken($color-danger, 5%);
+		}
+	}
+}
+
+.btn-group.open .dropdown-toggle {
+	@include box-shadow(none);
+}
+
+.open > .dropdown-toggle {
+	&.btn-primary {
+		background-color: $color-accent;
+		border-color: darken($color-accent, 3%);
+
+		&:focus,
+		&:hover {
+			background-color: darken($color-accent, 3%);
+			border-color: darken($color-accent, 3%);
+		}
+	}
+
+	&.btn-success {
+		background-color: $color-success;
+		border-color: darken($color-success, 3%);
+
+		&:focus,
+		&:hover {
+			background-color: darken($color-success, 3%);
+			border-color: darken($color-success, 3%);
+		}
+	}
+
+	&.btn-warning {
+		background-color: $color-warning;
+		border-color: darken($color-warning, 2%);
+
+		&:focus,
+		&:hover {
+			background-color: darken($color-warning, 2%);
+			border-color: darken($color-warning, 2%);
+		}
+	}
+
+	&.btn-danger {
+		background-color: $color-danger;
+		border-color: darken($color-danger, 3%);
+
+		&:focus,
+		&:hover {
+			background-color: darken($color-danger, 3%);
+			border-color: darken($color-danger, 3%);
+		}
+	}
+
+	&.btn-default {
+		background-color: $color-default-dark;
+		border-color: darken($color-default-dark, 3%);
+		color: #fff;
+
+		&:focus,
+		&:hover {
+			background-color: #f9f9f9;
+			border-color: #dcdcdc;
+			color: $font-color;
+		}
+	}
+}
+
+.input-group-btn > .btn {
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.action-buttons {
+	.btn {
+		margin-right: 5px;
+	}
+
+	@include max-screen($break-small) {
+		.btn {
+			margin-bottom: 5px;
+		}
+	}
+}
+
+

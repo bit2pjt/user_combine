@@ -1,7 +1,9 @@
 package com.spring.mml;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.movie.MovieService;
+import com.spring.movie.Movie_InfoVO;
 import com.spring.mypage.MyPageService;
 
 @Controller
@@ -26,25 +31,42 @@ public class MmlController {
 
 	@Autowired
 	private MyPageService myPageService;
-
-	@RequestMapping(value = "/mmlList", method = RequestMethod.GET)
-	public String mmlList(Model model) throws Exception {
-
-		List<Mml_ContentVO> mmlList = mmlService.getMmlList();
-		List<Mml_ContentVO> mmlList2 = mmlService.getMmlList_like();
-
-		System.out.println("mmlLlist======================" + mmlList);
-
-		model.addAttribute("mmlList", mmlList);
-		model.addAttribute("mmlList2", mmlList2);
-
-		return "mml/mmlList";
+	
+	@Autowired
+	private MovieService movieService;
+	
+	
+////////////////
+// 유진 개발부분//
+////////////////
+	@ResponseBody
+	@RequestMapping(value="/mmlWriteMovie", method=RequestMethod.POST)
+	public List<Movie_InfoVO> mmlWriteMovie(HttpServletRequest request) {
+		String mcategory = request.getParameter("mcategory");
+		String search_input = request.getParameter("search_input");
+		
+		System.out.println("=============MmlController.java===================== mcategory : " + mcategory);
+		System.out.println("=============MmlController.java===================== search_input : " + search_input);
+		
+		if(mcategory.equals("영화 제목")) {
+			List<Movie_InfoVO> search_list = movieService.getMovieList_title(search_input);
+			//System.out.println("=============MmlController.java===================== search_list.get(0).getMi_releaseday() : " + search_list.get(0).getMi_releaseday());
+			return search_list;
+		}else if(mcategory.equals("개봉 연도")) {
+			List<Movie_InfoVO> search_list = movieService.getMovieList_release(search_input);
+			return search_list;
+		}else if(mcategory.equals("제작 국가")) {
+			List<Movie_InfoVO> search_list = movieService.getMovieList_country(search_input);
+			return search_list;
+		}else if(mcategory.equals("영화 감독")) {
+			List<Movie_InfoVO> search_list = movieService.getMovieList_director(search_input);
+			return search_list;
+		}else { // if(mcategory.equals("영화 배우")) 
+			List<Movie_InfoVO> search_list = movieService.getMovieList_actor(search_input);
+			return search_list;
+		}
 	}
-
-	////////////////
-	// 유진 개발부분//
-	////////////////
-
+	
 	@RequestMapping(value = "/mmlWrite", method = RequestMethod.GET)
 	public String mmlWrite(HttpSession session, Model model) {
 		String m_email = (String) session.getAttribute("m_email");
@@ -56,10 +78,12 @@ public class MmlController {
 			// m_name == null : " + m_email);
 			return "redirect:/index";
 		}
-
 		int id = myPageService.getMemberId(m_email);
 		model.addAttribute("id", id);
-
+		List<Movie_InfoVO> movieList = movieService.getMovieList();
+		//System.out.println("=============MmlController.java===================== movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
+		model.addAttribute("movieList", movieList);
+		
 		return "mml/mmlWrite2";
 	}
 
@@ -73,17 +97,19 @@ public class MmlController {
 		mmlContentVO.setMml_title(mmlContentVO.getMml_title().trim());
 
 		try {
+			System.out.println("===== mmlContentVO ===== " + mmlContentVO.toString());
 			int result = mmlService.insertMml(mmlContentVO);
 			if (result == 0) {
 				return "redirect:/mmlWrite";
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR : MmlWriteAction - " + e.getMessage());
+			e.printStackTrace();
 		}
-		// 작성자의 개인 mmlList로 이동하게 추후 링크조정
-		return "redirect:/mmlList";
+		//작성자의 개인 mmlList로 이동하게 추후 링크조정
+		return "redirect:/mmlGet?mml_num="+mmlContentVO.getMml_num();
 	}
-
+	
 	@RequestMapping(value = "/mmlUpdate", method = RequestMethod.GET)
 	public String mmlUpdate(HttpSession session, HttpServletRequest request, Model model) {
 		String m_email = (String) session.getAttribute("m_email");
@@ -110,10 +136,14 @@ public class MmlController {
 			return "redirect:/mmlGet?mml_num=" + mmlContentVO.getMml_num();
 		}
 		model.addAttribute("mmlContentVO", mmlContentVO);
-
+		
+		List<Movie_InfoVO> movieList = movieService.getMovieList();
+		//System.out.println("=============MmlController.java===================== movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
+		model.addAttribute("movieList", movieList);
+		
 		return "mml/mmlUpdate";
 	}
-
+	
 	@RequestMapping(value = "/mmlUpdateAction", method = RequestMethod.POST)
 	public String mmlUpdateAction(HttpServletRequest request, Mml_ContentVO mmlContentVO) {
 		// System.out.println("=============MyPageController.java -
@@ -129,6 +159,22 @@ public class MmlController {
 			System.out.println("ERROR : mmlUpdateAction - " + e.getMessage());
 		}
 		return "redirect:/mmlGet?mml_num=" + mmlContentVO.getMml_num();
+	}
+////////////////
+//상필 개발부분//
+////////////////
+	@RequestMapping(value = "/mmlList", method = RequestMethod.GET)
+	public String mmlList(Model model) throws Exception {
+
+		List<Mml_ContentVO> mmlList = mmlService.getMmlList();
+		List<Mml_ContentVO> mmlList2 = mmlService.getMmlList_like();
+
+		System.out.println("mmlLlist======================" + mmlList);
+
+		model.addAttribute("mmlList", mmlList);
+		model.addAttribute("mmlList2", mmlList2);
+
+		return "mml/mmlList";
 	}
 
 	@RequestMapping(value = "/mmlMemberList", method = RequestMethod.GET)
