@@ -3,9 +3,36 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.spring.mml.MmlMapper">
+<mapper namespace="com.spring.mml.MmlDAO">
 	
+	<resultMap type="com.spring.mml.Mml_ContentVO" id="mmlMap">
+		<result property="mml_num" column="mml_num"/>
+		<result property="mi_code" column="mi_code"/>
+		<result property="id" column="id"/>
+		<result property="mml_view_count" column="mml_view_count"/>
+		<result property="mml_write_date" column="mml_write_date"/>
+		<result property="mml_update_date" column="mml_update_date"/>
+		<result property="mml_like" column="mml_like"/>
+		<result property="mml_title" column="mml_title"/>
+		<result property="mml_content" column="mml_content"/>
+		<result property="mml_poster" column="mml_poster"/>
+		<result property="mml_warn_count" column="mml_warn_count"/>
+	</resultMap>
 	
+	<!-- mi_ccode왜 이름 코드야... 바꿔죵 -->
+	<!-- ALTER TABLE mml_content DROP CONSTRAINT fk_movie_info_to_mml_content;  //movie_info -> mml_content fk 삭제 -->
+	<!-- ALTER TABLE MML_CONTENT MODIFY (MI_CODE VARCHAR2(100) ); -->
+	<insert id="insertMml" parameterType="com.spring.mml.Mml_ContentVO">
+		insert into mml_content values (seq_mml_num.nextval, #{mi_code, jdbcType=VARCHAR}, #{id}, 0, sysdate, sysdate, 
+		0, #{mml_title, jdbcType=VARCHAR}, #{mml_content, jdbcType=VARCHAR}, #{mml_poster, jdbcType=VARCHAR}, 0)
+	</insert>
 	
+	<update id="updateMml" parameterType="com.spring.mml.Mml_ContentVO">
+		UPDATE mml_content SET MI_CODE=#{mi_code, jdbcType=VARCHAR}, MML_TITLE=#{mml_title, jdbcType=VARCHAR}, MML_CONTENT=#{mml_content, jdbcType=VARCHAR}, MML_POSTER=#{mml_poster, jdbcType=VARCHAR}, MML_UPDATE_DATE=sysdate WHERE MML_NUM=#{mml_num}
+	</update>
+	
+	<select id="getMmlContent" parameterType="int" resultMap="mmlMap">
+		select * from mml_content where mml_num = #{mml_num}
+	</select>
 
 </mapper>
