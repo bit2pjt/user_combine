@@ -68,7 +68,7 @@ public interface BoardFreeDAO {
 	// 게시글 신고
 	int insertWarn(WarnVO vo);
 	
-	WarnVO warn_check(int id);
+	WarnVO warn_check(WarnVO vo);
 	
 	void WarnCount(int bno);
 	

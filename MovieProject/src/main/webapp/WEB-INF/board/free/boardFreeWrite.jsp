@@ -73,39 +73,41 @@
 </head>
 <body>
    <script>
-      function check() {
-         //제목과 내용의 앞뒤 공백 제거
-         var bf_title = bfform.bf_title.value.trim();
-         var bf_content = bfform.bf_content.value.trim();
-
-         if (bf_title.length == 0) {
-            alert("제목을 입력해주세요.");
-            bfform.bf_title.focus();
-            return false;
-         }
-         if (bf_content.length == 0) {
-            alert("내용을 입력하세요.");
-            bfform.bf_content.focus();
-            return false;
-         }
-
-         return true;
-      }
-      function register_back() {
-         msg = "게시글 작성을 취소하시겠습니까?";
-         if (confirm(msg) != 0) {
-            location.href = "boardFreeList";
-         }
-
-      }
-      function submitCheck() {
-         if (confirm("등록하시겠습니까?") == true) { //확인
-            document.bfform.submit();
-         } else { //취소
-            return false;
-         }
-      }
-   </script>
+   $(function() {
+  		var btn = $("#update-btn");
+  		var from = $("#bfform");
+		
+  		btn.on("click", function() {
+  			//alert($(".update-content").text());
+  			if ($(".post-title").val().length == 0) {
+  	            alert("제목을 입력해주세요.");
+  	         	$(".post-title").focus();
+  	            return false;
+  	         }else if ($(".update-content").val().length == 0) {
+  	            alert("내용을 입력하세요.");
+  	        	$(".update-content").focus();
+  	            return false;
+  	         }else {
+  	        	 if (confirm("등록하시겠습니까?") == true) { //확인
+  	        		bfform.submit();
+  	              } else { //취소
+  	                 return false;
+  	             }
+  	        }
+  			
+  		})
+  	});  
+   
+   function register_back() {
+       msg = "게시글 작성을 취소하시겠습니까?";
+       if (confirm(msg) != 0) {
+      	 location.href = "/movie/boardFreeListP?page=${searchCriteria.page}"
+               + "&perPageNum=${searchCriteria.perPageNum}"
+               + "&searchType=${searchCriteria.searchType}"
+               + "&keyword=${searchCriteria.keyword}";
+       }
+    }
+ </script>
    <!-- BEGIN | Header -->
    <header class="ht-header sticky">
       <div class="container">
@@ -231,7 +233,7 @@
                      <!-- 3. 중상단은 텍스트로 고정된 공지사항이 자리잡는다. -->
 
                      <br> <br>
-                     <textarea id="summernote" name="bf_content" style="resize: none;"></textarea>
+                     <textarea id="summernote" name="bf_content" class="update-content" style="resize: none;"></textarea>
 
                      <br>
                      <div class="ws-middle-top-writer">
@@ -252,10 +254,8 @@
                      <!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
                      <!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
                      <div style="text-align:center; padding:3%;">
-                        <input type="button" class="btn" value="작성하기"
-                           onclick="submitCheck()" style="margin-right: 20px;"> 
-                        <input type="button"
-                           class="btn" value=" 취 소 " onclick="register_back()">
+                        <input type="button" id="update-btn" class="btn" value="작성하기" style="margin-right: 20px;"> 
+                        <input type="button" class="btn" value=" 취 소 " onclick="register_back()">
                      </div>
 
 

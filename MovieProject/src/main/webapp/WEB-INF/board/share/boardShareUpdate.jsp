@@ -77,38 +77,43 @@
 <body>
 
    <script>
-      function check() {
-         //제목과 내용의 앞뒤 공백 제거
-         var bs_title = bsform.bs_title.value.trim();
-         var bs_content = bsform.bs_content.value.trim();
-
-         if (bs_title.length == 0) {
-            alert("제목을 입력해주세요.");
-            bsform.bs_title.focus();
-            return false;
-         }
-         if (bs_content.length == 0) {
-            alert("내용을 입력하세요.");
-            bsform.bf_content.focus();
-            return false;
-         }
-
-         return true;
-      }
+	$(function() {
+   		var btn = $("#update-btn");
+   		var from = $("#bsform");
+		
+   		btn.on("click", function() {
+   			//alert($(".update-content").text());
+   			if ($(".post-title").val().length == 0) {
+   	            alert("제목을 입력해주세요.");
+   	         	$(".post-title").focus();
+   	            return false;
+   	         }else if ($(".update-content").val().length == 0) {
+   	            alert("내용을 입력하세요.");
+   	        	$(".update-content").focus();
+   	            return false;
+   	         }else {
+   	        	 if (confirm("수정하시겠습니까?") == true) { //확인
+   	        		bsform.submit();
+   	              } else { //취소
+   	                 return false;
+   	             }
+   	        }
+   			
+   		})
+   	});    
+	
       function register_back() {
          msg = "게시글 작성을 취소하시겠습니까?";
          if (confirm(msg) != 0) {
-            location.href = "boardShareList";
+        	 location.href = "/movie/boardShareGet?page=${searchCriteria.page}"
+                 + "&perPageNum=${searchCriteria.perPageNum}"
+                 + "&searchType=${searchCriteria.searchType}"
+                 + "&keyword=${searchCriteria.keyword}"
+                 + "&bno=${selectBoardShare.bs_bno}";
          }
 
       }
-      function submitCheck() {
-         if (confirm("수정하시겠습니까?") == true) { //확인
-            document.bsform.submit();
-         } else { //취소
-            return false;
-         }
-      }
+ 
    </script>
    <!-- BEGIN | Header -->
    <header class="ht-header sticky">
@@ -177,6 +182,11 @@
    <!-- header 끝 -->
 
    <!-- 서머노트 웹에서 ... 끝-->
+   <input type="hidden" name="bno" value="${selectBoardShare.bs_bno}">
+   <input type="hidden" name="page" value="${searchCriteria.page}">
+   <input type="hidden" name="perPageNum" value="${searchCriteria.perPageNum}">
+   <input type="hidden" name="searchType" value="${searchCriteria.searchType}">
+   <input type="hidden" name="keyword" value="${searchCriteria.keyword}">
    <!-- <body> -->
    <div class="hero common-hero">
       <div class="container">
@@ -198,8 +208,7 @@
       <div class="movie-items">
          <div class="container">
             <div class="col-md-12" style="width: 100%;">
-               <form name="bsform" action="boardShareUpdateAction" method="post"
-                  onsubmit="return check()">
+               <form name="bsform" action="boardShareUpdateAction" method="post">
                   <!--  1. 글쓰기 부분 전체를 감싸는 상자(writer-box)를 만든다  [19/07/03 border:1px solid black; 덜어냄. 더 깔끔하라고-->
                   <div class="ws-writer-box">
                      <div>
@@ -253,8 +262,7 @@
 
 
 
-                           <input class="post-title" name="bs_title" maxlength="49"
-                           placeholder="제목을 적어주세요" value="${requestScope.selectBoardShare.bs_title }"></span> <span id="counter"></span><span>자
+                           <input class="post-title" name="bs_title" maxlength="49" placeholder="제목을 적어주세요" value="${requestScope.selectBoardShare.bs_title }"></span> <span id="counter"></span><span>자
                            남음 </span> <br> <br>
                      </div>
                      <!-- end of top-writer -->
@@ -262,7 +270,7 @@
 
                      <br> <br>
 
-                     <textarea id="summernote" name="bs_content" style="resize: none;">${requestScope.selectBoardShare.bs_content }</textarea>
+                     <textarea id="summernote" class="update-content" name="bs_content" style="resize: none;">${requestScope.selectBoardShare.bs_content }</textarea>
 
 
 
@@ -285,10 +293,8 @@
                      <!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
                      <!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
                      <div style="text-align:center; padding:3%;">
-                        <input type="button" class="btn" value="수정하기"
-                           onclick="submitCheck()" style="margin-right: 20px;"> 
-                        <input type="button"
-                           class="btn" value=" 취 소 " onclick="register_back()">
+                        <input type="button" id="update-btn" class="btn" value="수정하기" style="margin-right: 20px;"> 
+                        <input type="button" class="btn" value=" 취 소 " onclick="register_back()">
                      </div>
 
 

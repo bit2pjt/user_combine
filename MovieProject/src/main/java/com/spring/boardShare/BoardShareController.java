@@ -7,15 +7,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.boardFree.BoardFreeVO;
 import com.spring.boardFree.WarnVO;
 import com.spring.member.MemberService;
 import com.spring.member.MemberVO;
+import com.spring.paging.PageMaker;
+import com.spring.paging.SearchCriteria;
 
 /**
 * @Class Name : BoardShareController.java
@@ -45,8 +49,18 @@ public class BoardShareController {
 	  * 나눔 게시판 리스트로 이동
 	  * @return "boardFreeList"
 	 */
-	@RequestMapping(value = "/boardShareList", method=RequestMethod.GET)
-	public String getListPage() {
+	
+	@RequestMapping(value = "/boardShareListP", method=RequestMethod.GET)
+	public String getListPageP(Model model,@ModelAttribute("searchCriteria") 
+		SearchCriteria searchCriteria) {
+		
+		PageMaker pageMaker = new PageMaker();
+        pageMaker.setCriteria(searchCriteria);
+        pageMaker.setTotalCount(boardShareService.countSearchedArticles(searchCriteria));
+        
+        model.addAttribute("boardshare", boardShareService.listSearch(searchCriteria));
+        model.addAttribute("pageMaker", pageMaker);	
+        
 		return "board/share/boardShareList";
 	}
 	
@@ -58,7 +72,8 @@ public class BoardShareController {
 	  * @return "boardShareGet"
 	 */
 	@RequestMapping(value= "/boardShareGet", method=RequestMethod.GET)
-	public String boardShareGet(@RequestParam("bno") int bno, HttpSession session, Model model) {
+	public String boardShareGet(@RequestParam("bno") int bno, HttpSession session, Model model
+			,  @ModelAttribute("searchCriteria") SearchCriteria searchCriteria) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		
 		if(sessionyn != null) {
@@ -67,8 +82,8 @@ public class BoardShareController {
 		}
 		
 		BoardShareVO boardShareVO = boardShareService.getContent(bno); // 게시글의 내용
-		
 		MemberVO memberVO = boardShareService.getWriter(boardShareVO.getId()); // 게시물 작성자의 정보
+		
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardShareVO", boardShareVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
@@ -125,7 +140,7 @@ public class BoardShareController {
 	
 	// 나눔게시판 글쓰기
 		@RequestMapping(value = "/boardShareWrite", method = RequestMethod.GET)
-		public String shareWrite(HttpSession session, HttpServletRequest request) {
+		public String shareWrite(@ModelAttribute("searchCriteria") SearchCriteria searchCriteria, HttpSession session, HttpServletRequest request) {
 			// 사용자 정보
 			String m_email = (String) session.getAttribute("m_email");
 			String m_nickname = boardShareService.getMemberNickname(m_email); // System.out.println("=============MyPageController.java=====================
@@ -138,7 +153,7 @@ public class BoardShareController {
 		// 나눔게시판 글쓰기 - 새글 등록 액션
 		@RequestMapping(value = "/boardShareWriteAction", method = RequestMethod.POST)
 		public String boardShareWriteAction(HttpSession session, HttpServletRequest request, HttpServletResponse response,
-				BoardShareVO shareVO) {
+				BoardShareVO shareVO, RedirectAttributes rttr) {
 
 			shareVO.setId(boardShareService.getMemberId((String) session.getAttribute("m_email")));
 
@@ -154,22 +169,26 @@ public class BoardShareController {
 			} catch (Exception e) {
 				System.out.println("ERROR : boardShareWriteAction - " + e.getMessage());
 			}
-			return "redirect:/boardShareList";
+			return "redirect:/boardShareListP";
 
 		}
 
 		// 나눔게시판 글수정하기
 		@RequestMapping(value = "/boardShareUpdate", method = RequestMethod.GET)
-		public String boardShareUpdate(HttpSession session, HttpServletRequest request) {
+		public String boardShareUpdate(@RequestParam("bno") int bno, HttpSession session, HttpServletRequest request
+				, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria) {
 
 			String m_email = (String) session.getAttribute("m_email");
 
 			// 사용자의 id를 가져옴
 			int id = boardShareService.getMemberId(m_email);
 
-			int bs_bno = Integer.parseInt(request.getParameter("bs_bno"));
-			BoardShareVO selectBoardShare = boardShareService.selectBoardShare(bs_bno);
-
+			BoardShareVO selectBoardShare = boardShareService.selectBoardShare(bno);
+			
+			if (id != selectBoardShare.getId()) {
+				return "redirect:/boardShareListP";
+			}
+			
 			request.setAttribute("selectBoardShare", selectBoardShare);
 
 			return "board/share/boardShareUpdate";
@@ -178,7 +197,8 @@ public class BoardShareController {
 
 		// 나눔게시판 글수정하기 - 수정 액션
 		@RequestMapping(value = "/boardShareUpdateAction", method = RequestMethod.POST)
-		public String boardShareUpdateAction(HttpSession session, HttpServletRequest request, BoardShareVO shareVO) {
+		public String boardShareUpdateAction(HttpSession session, HttpServletRequest request, BoardShareVO shareVO
+				 ,SearchCriteria searchCriteria, RedirectAttributes rttr) {
 
 			// bs_title, bs_content의 앞뒤 공백 제거
 			shareVO.setBs_title(shareVO.getBs_title().trim());
@@ -186,12 +206,16 @@ public class BoardShareController {
 
 			try {
 				int result = boardShareService.updateBoardShare(shareVO);
+				rttr.addAttribute("page", searchCriteria.getPage());
+				rttr.addAttribute("perPageNum", searchCriteria.getPerPageNum());
+				rttr.addAttribute("searchType", searchCriteria.getSearchType());
+				rttr.addAttribute("keyword", searchCriteria.getKeyword());
 				if (result == 0) {
 					return "redirect:/boardShareUpdate?bs_bno=" + shareVO.getBs_bno();
 				}
 			} catch (Exception e) {
 				System.out.println("ERROR : boardShareUpdateAction - " + e.getMessage());
 			}
-			return "redirect:/boardShareGet?bs_bno=" + shareVO.getBs_bno();
+			return "redirect:/boardShareGet?bno=" + shareVO.getBs_bno();
 		}
 }

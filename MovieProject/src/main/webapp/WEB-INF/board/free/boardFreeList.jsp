@@ -195,7 +195,7 @@
 							  <th style="width:8%;">글번호</th>
 							  <th style="width:7%;">카테고리</th>
 							  <th style="width:45%;">제목</th>
-							  <th style="width:10%;">글쓴이</th>
+							  <th style="width:10%;">작성자</th>
 							  <th style="width:10%;">최근수정일</th>
 							  <th style="width:10%;">조회수</th>
 							  
@@ -224,12 +224,12 @@
 							  <td>모바일 글제목. </td>
 							</tr>
 							<!--4.  자유게시판 게시글의 나열 시작 -->
-							<c:forEach items="${boardfree}" var="board">
+							<c:forEach items="${boardfree}" var="board" varStatus="status">
 								<tr class="post">
-								  <td>${board.bf_bno}</td>
+								  <td>${pageMaker.totalCount - ((pageMaker.criteria.page-1) * pageMaker.criteria.perPageNum + status.index) }</td>
 								  <td>${board.bf_category}</td>
-								  <td><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></td>
-								  <td>${board.id}</td>
+								  <td><a href="boardFreeGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bf_bno}">${board.bf_title}</a></td>
+								  <td>${board.nickname}</td>
 								  <td><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy-MM-dd"/></td>
 								  <td>${board.bf_view_counter}</td>
 								  <td>모바일 글제목. </td>
@@ -264,7 +264,7 @@
                         </div>
                     </div>
                     
-                    <div class="box-footer">
+                    <div class="box-footer" style="display:inline-block; width:100%; margin-left:25%;">
                         <div class="form-group col-sm-2">
                             <select class="form-control" name="searchType" id="searchType">
                                 <option value="n" <c:out value="${searchCriteria.searchType == null ? 'selected' : ''}"/>>:::::: 선택 ::::::</option>
@@ -276,15 +276,15 @@
                                 <option value="tcw" <c:out value="${searchCriteria.searchType eq 'tcw' ? 'selected' : ''}"/>>제목+내용+작성자</option>
                             </select>
                         </div>
-                        <div class="form-group col-sm-10">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="keyword" id="keywordInput" value="${searchCriteria.keyword}" placeholder="검색어">
+                         <div class="form-group col-sm-10" style="width:50%">
+                            <span class="input-group" style="display:inline-block; width:100%;">
+                                <input type="text" class="form-control" name="keyword" id="keywordInput" value="${searchCriteria.keyword}" placeholder="검색어" style="display:inline-block; width:50%">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary btn-flat" id="searchBtn">
-                                        <i class="fa fa-search"></i> 검색
+                                    <button type="button" class="btn btn-primary btn-flat" id="btn-hjs">
+                                        		 검색
                                     </button>
                                 </span>
-                            </div>
+                            </span>
                         </div>
                     </div> 
 				 <!--5. 검색바  구현부  -->
@@ -328,7 +328,7 @@
 	});
 	
 
-    $("#searchBtn").on("click", function (event) {
+    $("#btn-hjs").on("click", function (event) {
         self.location =
             "boardFreeListP${pageMaker.makeQuery(1)}"
             + "&searchType=" + $("select option:selected").val()

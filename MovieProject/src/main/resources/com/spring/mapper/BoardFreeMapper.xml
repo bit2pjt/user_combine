@@ -100,7 +100,7 @@
 	<select id="warn_check" parameterType="int" resultMap="WarnMap">
 		select *
 		from free_warning
-		where id = #{id}
+		where id = #{id} and bf_bno= #{bf_bno}
 	</select>
 	
 	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
@@ -214,7 +214,7 @@
 	
 	<!-- select : boardFree -->
 	<select id="selectBoardFree" parameterType="int" resultMap="BoardFreeMap">
-	SELECT * FROM board_free WHERE BF_BNO=#{bf_bno}
+		SELECT * FROM board_free WHERE BF_BNO=#{bf_bno}
 	</select>
 	
 	 <select id="countArticles" resultType="int">

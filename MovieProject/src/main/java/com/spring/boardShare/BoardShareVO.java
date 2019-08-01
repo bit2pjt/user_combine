@@ -16,4 +16,5 @@ public class BoardShareVO {
 	private int bs_view_counter;
 	private int bs_warn_counter;
 	private String bs_deleteyn;
+	private String nickname;
 }

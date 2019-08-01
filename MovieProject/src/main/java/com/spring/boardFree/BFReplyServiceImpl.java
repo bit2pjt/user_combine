@@ -55,7 +55,6 @@ public class BFReplyServiceImpl implements BFReplyService {
 	 */
 	private String userNickName(int id) {
 		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
-		
 		String nickname = memberDAO.userNickName(id);
 		return nickname;
 	}

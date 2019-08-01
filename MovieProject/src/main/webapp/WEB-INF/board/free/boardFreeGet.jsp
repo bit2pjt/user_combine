@@ -105,13 +105,13 @@
  	
  	function deleteContent() {
  		var result = confirm("삭제하시겠습니까?");
- 		alert(result);
  		
  		if(result == true) {
- 			alert("1");
  			location.href="boardFreeDelete?bno=${boardFreeVO.bf_bno}";
  		}
  	}
+ 	
+ 
 </script>
 
 <div class="hero common-hero">
@@ -195,13 +195,26 @@
 				<button class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
 				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
+			
+		<form role="form" method="post">
+        	<input type="hidden" name="bno" value="${boardFreeVO.bf_bno}">
+            <input type="hidden" name="page" value="${searchCriteria.page}">
+            <input type="hidden" name="perPageNum" value="${searchCriteria.perPageNum}">
+            <input type="hidden" name="searchType" value="${searchCriteria.searchType}">
+            <input type="hidden" name="keyword" value="${searchCriteria.keyword}">
+         </form>
+        	 
 			<c:if test="${id == boardFreeVO.id }">
 				<div style="float:right;">
 					 <button id='btn-hjs' onclick="updateContent()">수정</button> 
 					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
 				</div>
 			</c:if>
+			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px;">목록</button>
 		</center>
+		
+		
+                        
 		<span id="ws-content-msg"></span>
 		<!-- 글신고/글추천/글비추 배치 끝 -->
 		<!-- 5. 댓글 구현부의 시작 -->
@@ -310,7 +323,7 @@
 					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:200px;"></textarea>
 	 			</div>
 				<div class="pull-right">
-					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 저장</button>
+					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
 				</div>
 			</div>
 		</div>
@@ -653,10 +666,19 @@
         }
         $(".pagination-sm").html(str);
     }
+    
     $(".pagination").on("click", "li a", function (event) {
         event.preventDefault();
         replyPageNum = $(this).attr("href");
         getRepliesPaging(replyPageNum);
+    });
+    
+	var formObj = $("form[role='form']");
+ 	
+ 	$(".listBtn").on("click", function () {
+        formObj.attr("action", "/movie/boardFreeListP");
+        formObj.attr("method", "get");
+        formObj.submit();
     });
 	
 </script>

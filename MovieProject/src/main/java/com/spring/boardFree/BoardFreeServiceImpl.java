@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.member.MemberDAO;
 import com.spring.member.MemberVO;
 import com.spring.paging.Criteria;
 import com.spring.paging.SearchCriteria;
@@ -182,6 +183,8 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	public String thumb_check(ThumbVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		// bf_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+		System.out.println("1: " + vo.getBf_bno());
+		System.out.println("2: " + vo.getId());
 		ThumbVO thumbVO = boardFreeDAO.thumb_check(vo); 
 		String msg = "";
 		if( thumbVO != null) {// bf_thumb테이블에 해당 아이디가 있으면 중복 추천/비추천 불가
@@ -248,7 +251,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	@Override
 	public String warn_check(WarnVO vo) {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
-		WarnVO warnVO = boardFreeDAO.warn_check(vo.getId());
+		WarnVO warnVO = boardFreeDAO.warn_check(vo);
 		String msg = "";
 		
 		if(warnVO != null) {
@@ -401,9 +404,21 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	@Override
     public List<BoardFreeVO> listSearch(SearchCriteria searchCriteria) {
 		BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
-		return boardDAO.listSearch(searchCriteria);
+		List<BoardFreeVO> list = boardDAO.listSearch(searchCriteria);
+		for(int i=0; i<list.size(); i++) {
+			int id = list.get(i).getId();
+			String nickname = userNickName(id);
+			list.get(i).setNickname(nickname);
+		}
+		return list;
     }
-
+	
+	private String userNickName(int id) {
+		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);
+		String nickname = memberDAO.userNickName(id);
+		return nickname;
+	}
+	
     @Override
     public int countSearchedArticles(SearchCriteria searchCriteria) {
     	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);

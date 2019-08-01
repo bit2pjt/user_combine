@@ -19,4 +19,5 @@ public class BoardFreeVO {
 	private String bf_deleteyn; // 삭제 유무
 	private int bf_recommend; // 추천
 	private int bf_decommend; // 비추천
+	private String nickname;
 }

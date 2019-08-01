@@ -504,7 +504,7 @@
                   </a>
                      <ul class="dropdown-menu level1">
                         <li><a href="boardFreeListP">자유 게시판</a></li>
-                        <li class="it-last"><a href="boardShareList">나눔 게시판</a></li>
+                        <li class="it-last"><a href="boardShareListP">나눔 게시판</a></li>
                      </ul></li>
                </ul>
                <ul class="nav navbar-nav flex-child-menu menu-right">

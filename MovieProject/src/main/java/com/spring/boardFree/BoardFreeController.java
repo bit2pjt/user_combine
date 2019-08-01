@@ -128,11 +128,10 @@ public class BoardFreeController {
 	  * @return "boardFreeList"
 	 */
 	@RequestMapping(value = "/boardFreeUpdate", method = RequestMethod.GET)
-	public String boardFreeUpdate(@RequestParam("bno") int bno, HttpSession session, HttpServletRequest request) {
+	public String boardFreeUpdate(@RequestParam("bno") int bno, HttpSession session, HttpServletRequest request
+			, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria) {
 
-		System.out.println("1: " + bno);
 		String m_email = (String) session.getAttribute("m_email");
-
 		// 사용자의 id를 가져옴
 		int id = boardFreeService.getMemberId(m_email);
 
@@ -141,11 +140,10 @@ public class BoardFreeController {
 		BoardFreeVO selectBoardFree = boardFreeService.selectBoardFree(bno);
 
 		if (id != selectBoardFree.getId()) {
-			return "redirect:/boardFreeList";
+			return "redirect:/boardFreeListP";
 		}
 		
 		request.setAttribute("selectBoardFree", selectBoardFree);
-
 		return "board/free/boardFreeUpdate";
 	}
 	
@@ -287,7 +285,6 @@ public class BoardFreeController {
 
 			try {
 				int result = boardFreeService.insertBoardFree(freeVO);
-				 rttr.addFlashAttribute("msg", "regSuccess");
 				if (result == 0) {
 					return "redirect:/boardFreeWrite";
 				}
@@ -314,7 +311,6 @@ public class BoardFreeController {
 				rttr.addAttribute("perPageNum", searchCriteria.getPerPageNum());
 				rttr.addAttribute("searchType", searchCriteria.getSearchType());
 				rttr.addAttribute("keyword", searchCriteria.getKeyword());
-				rttr.addFlashAttribute("msg", "modSuccess");
 				if (result == 0) {
 					return "redirect:/boardFreeUpdate?bf_bno=" + freeVO.getBf_bno();
 				}
