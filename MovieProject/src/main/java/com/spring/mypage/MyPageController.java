@@ -85,7 +85,7 @@ public class MyPageController {
 		}
 	}
 
-	/
+	
 	@RequestMapping(value = "/update_pw")
 	public String updatePw(Model model, MemberVO memberVO, int id) {
 

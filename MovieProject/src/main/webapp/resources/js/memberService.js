@@ -4,7 +4,7 @@ function countFollower (id, callback, error) {
 	$.ajax({
 		type 	: 'get',
 		dataType: 'json',	//자동처리 믿지말자. 없으면 success가 작동하지 않는다.
-		url  	: '/movie/getCountFollower/' + id+'.do',
+		url  	: '/movie/getCountFollower/' + id+'',
 		success : function(result) {
 			console.log('countFollower call back  : '+result);
 			if (callback) {
@@ -27,7 +27,7 @@ function countLike (mml_num, callback, error) {
 	$.ajax({
 		type 	: 'get',
 		dataType: 'json',	//자동처리 믿지말자. 없으면 success가 작동하지 않는다.
-		url  	: '/movie/getCountLike/' + mml_num+'.do',
+		url  	: '/movie/getCountLike/' + mml_num+'',
 		success : function(result) {
 			console.log('countLike call back  : '+result);
 			if (callback) {
@@ -72,7 +72,7 @@ $('#ws_following').on('click', function(event, callback, error){
 		$.ajax({
 			type 	: 'get',
 			dataType: 'text',	//컨트롤러에서는 결과처리가 확인되지만, Ajax가 값을 못 받는다면 dataType의 문제다. 원인은 모른다.
-			url  	: '/movie/registerFollowRelationship/' + id+'.do',
+			url  	: '/movie/registerFollowRelationship/' + id+'',
 			success : function(result) {
 				
 				console.log('setFollowRelationship call back  : '+result);
@@ -112,7 +112,7 @@ $('#ws_give_like').on('click', function(event){
 	$.ajax({
 		type 	: 'get',
 		dataType: 'text',	//컨트롤러에서는 결과처리가 확인되지만, Ajax가 값을 못 받는다면 dataType의 문제다. 원인은 모른다.
-		url  	: '/movie/giveLike/' + mml_num+'.do',
+		url  	: '/movie/giveLike/' + mml_num+'',
 		success : function(result) {
 			
 			console.log('setFollowRelationship call back  : '+result);
@@ -148,7 +148,7 @@ $('#ws_give_warning').on('click', function(event){
 	$.ajax({
 		type 	: 'get',
 		dataType: 'text',	//컨트롤러에서는 결과처리가 확인되지만, Ajax가 값을 못 받는다면 dataType의 문제다. 원인은 모른다.
-		url  	: '/movie/giveWarning/' + mml_num+'.do',
+		url  	: '/movie/giveWarning/' + mml_num+'',
 		success : function(result) {
 			
 			console.log('setFollowRelationship call back  : '+result);
