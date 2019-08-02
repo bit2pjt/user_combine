@@ -1,8 +1,10 @@
 package com.spring.mypage;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.spring.member.MemberVO;
+import com.spring.paging.Criteria;
 
 /**
 * @Class Name : MyPageDAO.java
@@ -12,6 +14,7 @@ import com.spring.member.MemberVO;
 * @  수정일     	  수정자                 수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.17     한유진      최초생성
+* @ 2019.07.24		박현민		one_get  부분 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -34,10 +37,29 @@ public interface MyPageDAO {
 	
 	//1:1 문의내역 리스트 가져오기
 	public List<OneVO> getQnaList(int id);	//1:1문의 리스트 가져오기
+//	public int getTotalCount(int id);	//1:1문의 리스트 갯수 카운트
+//	public List<OneVO> getListPaging(PagingVO pagingVO);	// 1:1문의 리스트 가져오기_페이징
+	List<OneVO> listCriteria(Criteria criteria);
+	int countArticles(Criteria criteria);
 	
 	//1:1 문의 등록하기, 가져오기, 수정하기, 삭제하기
 	public int insertQna(OneVO oneVO);	//1:1 문의 등록
 	public OneVO getQnaDetail(int qna_no);	//1:1 문의 상세정보 가져오기
 	public int updateQna(OneVO oneVO);	//1:1 문의 상세정보 수정하기
-
+	
+	
+	//hm | 1:1 문의 답변 가져오기
+	public OneAdVO getQnaAdDetail(int qna_no); // 1:1 문의 상세정보 가져오기
+	
+	//kgh | 비밀번호 변경, 탈퇴
+	public int checkPw(HashMap<String,String> map);
+	// 비밀번호 체크
+	
+	public int delete_member(String m_email);
+	//회원 탈퇴신청
+	
+	public int delete_date(int id);
+	
+	
+	
 }

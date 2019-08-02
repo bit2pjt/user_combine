@@ -5,3 +5,4 @@ Servers/
 *.classpath
 /target/
 *.settings/
+.DS_Store
