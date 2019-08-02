@@ -1,5 +1,6 @@
 package com.spring.mypage;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,7 +16,9 @@ import com.spring.member.MemberVO;
 * @
 * @  수정일     	  수정자                 수정내용
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.17     한유진      최초생성
+* @ 2019.07.17     한유진      최초생성.
+* @ 2019.07.24		박현민		one_get  부분 추가
+* 
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -117,5 +120,65 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return result;
 	}
+
+	// hm| 1:1문의 답변 가져오기 
+	@Override
+	public OneAdVO getQnaAdDetail(int qna_no) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		OneAdVO oneAdVO = mypageDAO.getQnaAdDetail(qna_no);
+		
+		return oneAdVO;
+	}
+	
+	
+	// kgh | 비밀번호 확인 , 탈퇴,
+	
+
+	@Override
+	public boolean checkPw(String m_email, String m_password) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		boolean result = false;
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("m_email", m_email);
+		map.put("m_password", m_password);
+		
+		int count = mypageDAO.checkPw(map);
+		if(count == 1) result = true;
+		return result;
+	}
+	
+
+	@Override
+	public int delete_member(String m_email) {
+		
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int num = mypageDAO.delete_member(m_email);
+		System.out.println("num:"+num);
+		return num;
+		 
+		
+	}
+
+	@Override
+	public int delete_date(int id) {
+		
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int id_num = mypageDAO.delete_date(id);
+		System.out.println("id_num:"+id_num);
+		return id_num;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
