@@ -19,3 +19,9 @@ MovieProject/target/classes/com/spring/mypage/MyPageDAO.class
 *.xml
 MovieProject/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 
+MovieProject/.classpath
+MovieProject/.settings/org.eclipse.core.resources.prefs
+MovieProject/.settings/org.eclipse.jdt.core.prefs
+MovieProject/.settings/org.eclipse.wst.common.component
+MovieProject/.settings/org.eclipse.wst.common.project.facet.core.xml
+MovieProject/pom.xml
