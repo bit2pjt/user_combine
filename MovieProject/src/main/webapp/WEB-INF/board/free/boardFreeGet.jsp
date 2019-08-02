@@ -131,7 +131,7 @@
 </div>
 		
 	<div class="buster-light">
-		<div class="movie-items">
+		<div class="movie-items" >
 		<!--  베스트 게시물 슬라이더 : 산만해. 우측 바가 더 깔끔할듯 하다 
 			<div class="slider movie-items" style="padding:5px;height:140px;">
 				<div class="container">

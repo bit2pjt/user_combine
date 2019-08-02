@@ -172,15 +172,7 @@
 
 <!-- 바탕 : 메인 컨텐츠 시작 -->
 <div class="buster-light">
-	<div class="movie-items">
-		
-		<div class="container">
-			<div class="col-md-14">
-			<!-- 1. listTable 배치 -->
-			<h4>자유 게시판  >_0 </h4>
-			</div>
-		</div>
-		
+	<div class="movie-items" style="margin-top: 100px;">
 		<div class="container">
 			<div class="row">
 			<!-- listTable 배치 시작 -->
@@ -206,7 +198,7 @@
 						  <tbody>
 						   <!-- 3. 공지사항. strong으로 강조를 주며, 게시자의 아이디가 다홍색으로 처리된다. 항상 최상단 노출-->
 							<tr class="notice">
-							  <td><strong>0026</strong></td>
+							  <td><strong>02</strong></td>
 							  <td><strong>공지</strong></td>
 							  <td><strong>비속어 사용과 음란물 게시시 활동정지 처분합니다.</strong></td>
 							  <td ><strong>admin01</strong></td>
@@ -215,7 +207,7 @@
 							  <td>모바일 글제목. </td>
 							  </tr>
 							<tr class="notice">
-							  <td><strong>002</strong></td>
+							  <td><strong>01</strong></td>
 							  <td><strong>공지</strong></td>
 							  <td><strong>정치글은 글삭제 대상입니다.</strong></td>
 							  <td><strong>admin01</strong></td>
@@ -229,7 +221,7 @@
 								  <td>${pageMaker.totalCount - ((pageMaker.criteria.page-1) * pageMaker.criteria.perPageNum + status.index) }</td>
 								  <td>${board.bf_category}</td>
 								  <td><a href="boardFreeGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bf_bno}">${board.bf_title}</a></td>
-								  <td>${board.nickname}</td>
+								  <td style="word-break:break-all">${board.nickname}</td>
 								  <td><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy-MM-dd"/></td>
 								  <td>${board.bf_view_counter}</td>
 								  <td>모바일 글제목. </td>

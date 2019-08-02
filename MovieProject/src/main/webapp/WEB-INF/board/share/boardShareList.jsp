@@ -109,8 +109,8 @@
 								  <td>${pageMaker.totalCount - ((pageMaker.criteria.page-1) * pageMaker.criteria.perPageNum + status.index) }</td>
 								  <td>${board.bs_category}</td>
 								  <td><a href="boardShareGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bs_bno}">${board.bs_title}</a></td>
-								  <td>${board.nickname}</td>
-								  <td><fmt:formatDate value="${board.bs_update_date}" pattern="yyyy-MM-dd"/></td>
+								  <td style="word-break:break-all">${board.nickname}</td>
+								  <td ><fmt:formatDate value="${board.bs_update_date}" pattern="yyyy-MM-dd"/></td>
 								  <td>${board.bs_view_counter}</td>
 								  <td>모바일 글제목. </td>
 								</tr>

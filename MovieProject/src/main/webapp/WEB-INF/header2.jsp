@@ -119,7 +119,7 @@
          <!-- login-content 클래스 변경 X -->
          <a href="#" class="close">x</a>
          <!--  
-            <h6 class="h6one"> 입력하신 정보와 일치하는 아이디는 <br>아래와 같습니다.</h6>
+         <h6 class="h6one"> 입력하신 정보와 일치하는 아이디는 <br>아래와 같습니다.</h6>
          <h6 class="h6two"style="display:none"> 입력하신 정보와 일치하는 <br>아이디가 없습니다.</h6>
          -->
          <!-- 이메일 정보 추가 -->
@@ -239,14 +239,10 @@
             method="post" onsubmit="return ws_check()">
 
             <div class="row">
-
                <label for="email-2"> 이메일 :</br> 
-               <input type="text" name="m_email" id="email-2" placeholder="이메일을 입력하세요" required="required" />
-               <button id="email_overlap_chk" class="overch" style="width:19%;" >중복확인</button>
-               <div id="email_chk_msg">이메일 중복검사를 눌러주세요</div>   
-
+	               <input type="text" name="m_email" id="email-2" placeholder="이메일을 입력하세요" required="required" />
+	               <button id="email_overlap_chk" class="overch" style="width:19%;" >중복확인</button>
                </label>
-               
             </div>
 
             <div class="row">
