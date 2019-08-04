@@ -35,22 +35,25 @@
                     <option>영화 감독</option>
                     <option>영화 배우</option>
                 </select>
-                <input type="text" id="moviesearch" width="50px;">
-                <img src="<c:url value="/resources/images/uploads/cast1.jpg" />">
+                <input type="text" id="moviesearch" width="150px;">
+                <button type="button" id="btn-hjs"> 검색 </button>
             </div>
             <!-- yj : start | movielist-bottom -->
             <div class="movielist-bottom">
                 <div>
-               	<%
-               	for(int i=0; i<10; i++){
-               	%>
-                    <div class="movielist-card" onclick="location.href='movieDetail'">
-                        <img src="<c:url value='/resources/images/uploads/mv-it12.jpg' />" width="170" height="261">
-                        <h4 class="movie-title">비트와 함께 사라지다.</h4>
-                    </div>
-                <%
-               	}
-                %>
+                <c:forEach items="${movieList}" var="list">
+					<div class="movielist-card" onclick="location.href='movieDetail'">
+					<img src="<c:url value='${list.mi_poster }' />" width="190" height="270">
+					<h3 class="movie-title">${list.mi_ktitle }</h3>
+				 </div>
+                </c:forEach>
+                
+                <!--  
+                <div class="movielist-card" onclick="location.href='movieDetail'">
+					<img src="<c:url value='/resources/images/uploads/mv-it12.jpg' />" width="170" height="261">
+					<h4 class="movie-title">비트와 함께 사라지다.</h4>
+				 </div>
+				-->
                 </div>
                 <!-- yj : start | pagination -->
                 <!-- 페이징 버튼 연동은 책보고 참고해서 추가하기 -->

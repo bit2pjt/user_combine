@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Movie_InfoVO {
+public class MovieInfoVO {
 
 	private int mi_code;		//영화코드
 	private String mi_ktitle;	//영화이름_한국어
@@ -19,4 +19,5 @@ public class Movie_InfoVO {
 	private String mi_teaser;	//티저영상 링크
 	private String grade_code;	//심의등급
 	private String mi_gcode;	//장르
+	private String mi_time;	//장르
 }

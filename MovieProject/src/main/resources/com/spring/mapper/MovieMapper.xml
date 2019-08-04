@@ -4,8 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.spring.movie.MovieDAO">
-	
-	<resultMap type="com.spring.movie.Movie_InfoVO" id="movieMap">
+	<resultMap type="com.spring.movie.MovieInfoVO" id="movieMap">
 		<result property="mi_code" column="mi_code"/>
 		<result property="mi_ktitle" column="mi_ktitle"/>
 		<result property="mi_etitle" column="mi_etitle"/>
@@ -18,10 +17,12 @@
 		<result property="mi_teaser" column="mi_teaser"/>
 		<result property="grade_code" column="grade_code"/>
 		<result property="mi_gcode" column="mi_gcode"/>
+		<result property="mi_time" column="mi_time"/>
 	</resultMap>
 
 	<select id="getMovieList" resultMap="movieMap">
 		select * from movie_info
+		order by mi_code ASC
 	</select>
 	
 	<select id="getMovieList_title" parameterType="String" resultMap="movieMap">
