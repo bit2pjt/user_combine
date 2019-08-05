@@ -111,9 +111,6 @@ public class MovieReplyController {
                                                           @PathVariable("page") Integer page) {
         ResponseEntity<Map<String, Object>> entity = null;
         
-        System.out.println("mi_code: " + mi_code);
-        System.out.println("page: " + page);
-        
         try {
             Criteria criteria = new Criteria();
             criteria.setPage(page);
@@ -123,9 +120,6 @@ public class MovieReplyController {
             PageMaker pageMaker = new PageMaker();
             pageMaker.setCriteria(criteria);
             pageMaker.setTotalCount(repliesCount);
-            
-            System.out.println("zaaaaaaaaa:" + replies);
-            System.out.println("111111112323232:" + pageMaker);
             
             Map<String, Object> map = new HashMap<>();
             map.put("replies", replies);

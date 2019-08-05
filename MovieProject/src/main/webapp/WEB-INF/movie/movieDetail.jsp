@@ -272,6 +272,7 @@
 											                        <div class="modal-header">
 											                            <h4 class="modal-title">댓글 수정창</h4>
 											                        </div>
+											                        
 											                        <div class="modal-body">
 												                        <div class="form-group">
 												                            <label for="replyNo" style="margin-bottom:10px;"><strong>댓글 번호</strong></label>
@@ -284,6 +285,7 @@
 											                            </div>
 											
 											                        </div>
+											                        
 											                        <div class="modal-footer">
 											                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
 											                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn">수정</button>
@@ -377,14 +379,15 @@
     });
 	
     $("#replies").on("click", ".replyLi button", function () { // 댓글의 수정 버튼 클릭시
-        var reply = $(this).parent(); // 댓글의 li
+        var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
         var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
+        alert("replyNo: " + reply.attr("data-replyNo"));
         var replyText = reply.find(".replyText").text(); //댓글의 내용
+        alert("replyText: " + replyText);
         $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
     });
     
-    $()
     
     $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li
@@ -451,7 +454,7 @@
 	});
     
     $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
-    	var reply = $(this).parent(); // 댓글의 li
+    	var reply = $(this).parent() // 댓글의 li
         var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
         var present = $(this).parent().find(".ws-btn-thumbs-down");
         var session = "${sessionyn}";
@@ -482,11 +485,10 @@
 	});
 	
     $(".modalDelBtn").on("click", function () {
-        var replyRno = $("#replyNo").val();
-        
+        var mr_code = $("#replyNo").val();
         $.ajax({
             type : "delete",
-            url : "/movie/replies/" + replyRno,
+            url : "/movie/replies/info/" + mr_code,
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "DELETE"
@@ -514,17 +516,17 @@
 	
     $(".modalModBtn").on("click", function () {
         var reply = $(this).parent().parent();
-        var bfr_rno = reply.find("#replyNo").val();
-        var bfr_content = reply.find("#replyText").val();
+        var mr_code = reply.find("#replyNo").val();
+        var mr_content = reply.find("#replyText").val();
         $.ajax({
             type : "put",
-            url : "/movie/replies/" + bfr_rno,
+            url : "/movie/replies/info/" + mr_code,
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "PUT"
             },
             data : JSON.stringify(
-                {bfr_content : bfr_content}
+                {mr_content : mr_content}
             ),
             dataType : "text",
             success : function (result) {
@@ -570,24 +572,25 @@
 		        	 		+	"<div class='user-info' style='margin-right:50px;'> <p><strong>" + this.nickname + "</strong></p> <p> <strong>" + this.mr_write_date + "</strong></p> </div>"
 		        			+	"<div class='user-rate movie-rate movie-rate2' style='margin-top:5px;'>"
 		        			+	arr[this.mr_score-1]
-		        			+	"</div><div class='user-content' style='word-break:break-all'><p>" + this.mr_content + "</p> </div>"
+		        			+	"</div><div class='user-content' style='word-break:break-all'><p class='replyText' style='word-break:break-all;'>" + this.mr_content + "</p> </div>"
 		        			+	"<div class='user-like'> <div class='notmyreview' style='margin-left:50px'> "
 		        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true' ></i> " + this.mr_like + "</button> "
 		        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " + this.mr_dislike + "</button> "
 		        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+		        			+	"</div></div></div></li>";
                 	}else {
                 		str += "<li data-replyNo='" + this.mr_code + "' class='replyLi'>"
 	        	   		+	"<div class='mv-user-review-item' align='center' style='width:100%; '>"
 	        	 		+	"<div class='user-info' style='margin-right:50px;'> <p><strong>" + this.nickname + "</strong></p> <p> <strong>" + this.mr_write_date + "</strong></p> </div>"
 	        			+	"<div class='user-rate movie-rate movie-rate2' style='margin-top:5px;'>"
 	        			+	arr[this.mr_score-1]
-	        			+	"</div><div class='user-content' style='word-break:break-all'><p>" + this.mr_content + "</p> </div>"
+	        			+	"</div><div class='user-content' style='word-break:break-all'><p class='replyText' style='word-break:break-all;'>" + this.mr_content + "</p> </div>"
 	        			+	"<div class='user-like'> <div class='notmyreview' style='margin-left:50px'> "
 	        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true' ></i> " + this.mr_like + "</button> "
 	        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " + this.mr_dislike + "</button> "
 	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
-	        			+	"<div style='float:right;'> <button id='btn-hjs-2' onclick='updateContent()'>수정</button>"
-	        			+	"<button id='btn-hjs-2' onclick='deleteContent()''>삭제</button></div></div></div></div>";
+	        			+	"<button type='button' id='btn-hjs-2' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
+	        			+	"</div></div></div></li>";
                 	}
                    });
              }
