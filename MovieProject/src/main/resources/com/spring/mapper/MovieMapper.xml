@@ -20,11 +20,93 @@
 		<result property="mi_time" column="mi_time"/>
 	</resultMap>
 
-	<select id="getMovieList" resultMap="movieMap">
-		select * from movie_info
-		order by mi_code ASC
+	<select id="getMovieListSerch" resultMap="movieMap">
+		<![CDATA[
+		select *
+        from(select
+        	rownum rn
+        	, mi_code
+            , mi_ktitle
+            , mi_etitle
+            , mi_director
+            , mi_poster
+            , mi_releaseday
+            , mi_ccode
+            , mi_actor
+            , mi_story
+            , mi_teaser
+            , grade_code
+            , mi_gcode
+            , mi_time
+            from
+		   (
+		    select
+		    rownum rn
+		    , mi_code
+            , mi_ktitle
+            , mi_etitle
+            , mi_director
+            , mi_poster
+            , mi_releaseday
+            , mi_ccode
+            , mi_actor
+            , mi_story
+            , mi_teaser
+            , grade_code
+            , mi_gcode
+            , mi_time
+		    from movie_info
+		    WHERE mi_code > 0
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by mi_code ASC
+		   ))
+		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
 	</select>
 	
+	<sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 'n'.toString()">
+                AND mi_ktitle LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'd'.toString()">
+                AND mi_director LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'a'.toString()">
+                AND mi_actor LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+        </if>
+    </sql>
+    
+	<select id="countSearchedMovie" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(mi_code)
+		    FROM movie_info
+		    WHERE mi_code > 0
+        ]]>
+        <include refid="search"/>
+    </select>
+    
+    <select id="getMovieInfo" parameterType="String" resultMap="movieMap">
+		SELECT	*
+		FROM movie_info
+		WHERE mi_ktitle = #{mi_ktitle}
+    </select>
+    
+    <select id="getUser" parameterType="String" resultType="int">
+		select NVL(id, 0)
+		from member
+		where m_email = #{email, jdbcType=VARCHAR}
+	</select>
+    
+    
+    
+    
+    
+    
+    
 	<select id="getMovieList_title" parameterType="String" resultMap="movieMap">
 		select * from movie_info where mi_ktitle like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
 		or mi_etitle like '%'||#{search_input, jdbcType=VARCHAR}||'%' 

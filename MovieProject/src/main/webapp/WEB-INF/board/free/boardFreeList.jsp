@@ -308,7 +308,6 @@
 		</div>
 	</div>
 <script>
-
 	$(".pagination li a").on("click", function (event) {
 	    event.preventDefault();
 	

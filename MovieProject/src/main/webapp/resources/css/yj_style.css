@@ -349,9 +349,13 @@ yj : start | movieDetail 페이지 관련
   font-weight: bold;
   text-transform: none;
   font-size: 27px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-} 
+  margin-bottom: 10px;
+  padding-top:10px;
+}
+.movie-single .movie-single-ct h5{
+  margin-left:15px;
+  font-size:15px;
+}  
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
@@ -493,7 +497,6 @@ yj : start | tab - review
 }
 .movie-single .movie-single-ct .tab.review .mv-user-review-item {
   border-bottom: 1px solid #233a50;
-  padding:5px;
 }
 .mv-user-review-item{
   display: inline-block;
@@ -502,7 +505,7 @@ yj : start | tab - review
 }
 .mv-user-review-item div{
   float: left;
-  height: 120px;
+  /*height: 120px;*/
 }
 .user-info{
   width: 120px;
@@ -521,18 +524,18 @@ yj : start | tab - review
   margin-bottom: 0px;
 }
 .user-content{
-  width: 470px;
+  width: 550px;
   text-align: left;
-  border: 1px solid #696969c7;
+  /*border: 1px solid #696969c7;*/
   margin-right: 10px;
-  margin-left: 10px;
+  margin-left: 40px;
 }
 .user-like{
   width: 150px;
   text-align: center;
 }
 .user-like button{
-  width: 80px;
+  /*width: 80px;*/
   margin-top: 7px;
   background-color: #ffffff;
 }
@@ -627,4 +630,57 @@ yj : start | tab - review
   font-size:13px;
   width:70px;
   margin-left:10px;
+}
+
+#btn-hjs-1{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:9px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:13px;
+  width:100px;
+  margin-left:10px;
+}
+
+#btn-hjs-2{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:6px;
+  font-size:13px;
+  margin-left:8px;
+}
+
+.ws-btn-thumbs-up {
+	/*min-width:50px;*/
+	min-height:30px;
+	background-color:#ffffff;
+	border-radius:8px;
+	border:white;
+	right:5px;
+	color:blue;
+	padding:0px;
+	}
+.ws-btn-thumbs-down {
+	min-width:50px;min-height:30px;
+	background-color:#ffffff;
+	border-radius:8px;
+	border:white;
+	right:5px;
+	color:red;
+	padding:0px;
+	margin-left:2px;
+}
+.ws-btn-warning {
+	min-width:35px;min-height:30px;
+	background-color:#ffffff;
+	border-radius:8px;
+	border:white;
+	right:5px;
+	color:orange;
+	padding:0px;
 }
