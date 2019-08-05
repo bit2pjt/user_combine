@@ -441,7 +441,7 @@ yj : start | tab - review
   vertical-align: middle;
   border: #000000;
   border-width: 1px;
-  margin: auto;
+  margin-right: 20px;
 }
 .review-write-input{
   display:inline-flex;

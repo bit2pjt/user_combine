@@ -19,7 +19,7 @@ import com.spring.paging.Criteria;
 import com.spring.paging.PageMaker;
 
 @Controller
-@RequestMapping("/replies/movieinfo")
+@RequestMapping("/replies/info")
 public class MovieReplyController {
 
 	@Autowired
@@ -110,7 +110,10 @@ public class MovieReplyController {
     public ResponseEntity<Map<String, Object>> listPaging(@PathVariable("mi_code") Integer mi_code,
                                                           @PathVariable("page") Integer page) {
         ResponseEntity<Map<String, Object>> entity = null;
-
+        
+        System.out.println("mi_code: " + mi_code);
+        System.out.println("page: " + page);
+        
         try {
             Criteria criteria = new Criteria();
             criteria.setPage(page);
@@ -120,7 +123,10 @@ public class MovieReplyController {
             PageMaker pageMaker = new PageMaker();
             pageMaker.setCriteria(criteria);
             pageMaker.setTotalCount(repliesCount);
-
+            
+            System.out.println("zaaaaaaaaa:" + replies);
+            System.out.println("111111112323232:" + pageMaker);
+            
             Map<String, Object> map = new HashMap<>();
             map.put("replies", replies);
             map.put("pageMaker", pageMaker);

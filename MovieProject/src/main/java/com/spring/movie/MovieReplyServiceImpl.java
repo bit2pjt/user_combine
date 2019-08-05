@@ -58,7 +58,6 @@ public class MovieReplyServiceImpl implements MovieReplyService {
 		criteria.setMi_code(mi_code);
 		
 		List<MovieReplyVO> list = movieReplyDAO.listPaging(criteria);
-		
 		for(int i=0; i<list.size(); i++) { // 닉네임을 가져와서 저장
 			int id = list.get(i).getId();
 			String nickname = userNickName(id);

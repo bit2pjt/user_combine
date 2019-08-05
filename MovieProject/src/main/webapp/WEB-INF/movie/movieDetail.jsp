@@ -264,7 +264,7 @@
 													<hr class="mv-user-review-hr">
 												</div>
 												
-												 <div class="content-wrapper">		
+												<div class="content-wrapper">		
 													<section class="content container-fluid">
 											            <div class="modal fade" id="modifyModal" role="dialog">
 											                <div class="modal-dialog" style="margin-top:100px;">
@@ -294,7 +294,7 @@
 											            </div>
 														
 											                <div class="box box-primary">
-											                    <div class="box-footer">
+																<div class="box-footer">
 											                        <ul id="replies">
 											
 											                        </ul>
@@ -307,13 +307,13 @@
 											                            </ul>
 											                        </div>
 											                   </div>
+											                   
 											                </div>
 											        </section>
-											     </div>		
+											     </div>	
 											</div>
 										</div>
 									</div>
-								
 							</div>
 						</div>
 					</div>
@@ -333,7 +333,7 @@
         var replyText = $("#newReplyText");
         var mr_content = replyText.val();
         var mr_score = $(".review-write-star input[type='radio']:checked").val();
-		alert(typeof(mr_score));
+        
         if( session == "") {
 		 	alert("로그인 하셔야 이용하실수 있습니다.");
 		 	location.href="index";
@@ -353,7 +353,7 @@
         
         $.ajax({
             type : "post",
-            url : "/movie/replies/movieinfo/",
+            url : "/movie/replies/info/",
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "POST"
@@ -548,7 +548,7 @@
 	var arr = [];
 	arr[0] = "<i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //1
 	arr[1] = "<i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //2
-	arr[2] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i> 0<i class='far fa-star fa-1x'></i> 0<i class='far fa-star fa-1x'></i>";//3
+	arr[2] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//3
 	arr[3] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//4
 	arr[4] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//5
 	arr[5] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//6
@@ -558,7 +558,7 @@
 	arr[9] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i>";//10
 	
     function getRepliesPaging(page) {
-        $.getJSON("/movie/replies/movieinfo/" + mi_code + "/" + page, function (data) {
+        $.getJSON("/movie/replies/info/" + mi_code + "/" + page, function (data) {
            var str = "";
            if(data.replies == "") {
            		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
@@ -610,7 +610,7 @@
         if (pageMaker.next) {
             str += "<li><a href='"+(pageMaker.endPage + 1)+"'>다음</a></li>";
         }
-        $("#pagination-sm").html(str);
+        $(".pagination-sm").html(str);
     }
     
     $(".pagination").on("click", "li a", function (event) {

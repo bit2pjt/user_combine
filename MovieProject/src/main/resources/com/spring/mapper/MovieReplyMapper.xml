@@ -106,9 +106,9 @@
 	
 	 <select id="countReplies" resultType="int">
         SELECT
-            COUNT(mr_code)
+            COUNT(mi_code)
         FROM movie_rev
-        WHERE mr_code = #{mr_code}
+        WHERE mi_code = #{mi_code}
     </select>
     
     <select id="getUser" parameterType="String" resultType="int">
