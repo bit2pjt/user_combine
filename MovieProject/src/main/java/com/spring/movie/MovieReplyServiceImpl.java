@@ -80,4 +80,10 @@ public class MovieReplyServiceImpl implements MovieReplyService {
 		return num;
 	}
 
+	@Override
+	public int sumScore(Integer mi_code) {
+		MovieReplyDAO movieReplyDAO = sqlSession.getMapper(MovieReplyDAO.class);
+		return movieReplyDAO.sumScore(mi_code);
+	}
+
 }

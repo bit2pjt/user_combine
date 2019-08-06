@@ -19,7 +19,21 @@
 		<result property="mi_gcode" column="mi_gcode"/>
 		<result property="mi_time" column="mi_time"/>
 	</resultMap>
-
+	
+	<resultMap type="com.spring.boardFree.ThumbVO" id="ThumbMap">
+		<result property="bf_thumb" column="bf_thumb"/>
+		<result property="bfr_rno" column="bfr_rno"/>
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="mr_code" column="mr_code"/>
+		<result property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.WarnVO" id="WarnMap">
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="id" column="id"/>
+		<result property="bf_date" column="bf_date"/>
+	</resultMap>
+	
 	<select id="getMovieListSerch" resultMap="movieMap">
 		<![CDATA[
 		select *
@@ -101,8 +115,55 @@
 		where m_email = #{email, jdbcType=VARCHAR}
 	</select>
     
+    <!-- 댓글  추천-->
+    <select id="reply_check" parameterType="com.spring.boardFree.ThumbVO" resultMap="ThumbMap">
+		select *
+		from mr_thumb
+		where mr_code = #{mr_code} and id = #{id}
+	</select>
     
+    <insert id="replyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		insert into mr_thumb values(#{bf_thumb}, #{mr_code}, #{id})
+	</insert>
     
+    <update id="updateReplyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update movie_rev set 
+		mr_like = (select count(bf_thumb) from mr_thumb where bf_thumb = #{bf_thumb} and mr_code = #{mr_code})
+		where mr_code = #{mr_code}
+	</update>
+	
+	<update id="updateReplyDecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update movie_rev set 
+		mr_dislike = (select count(bf_thumb) from mr_thumb where bf_thumb = #{bf_thumb} and mr_code = #{mr_code})
+		where mr_code = #{mr_code}
+	</update>
+	
+    <select id="getReplyRecommend" parameterType="int" resultType="int">
+		select mr_like
+		from movie_rev
+		where mr_code = #{mr_code}
+	</select>
+	
+	<select id="getReplyDecommend" parameterType="int" resultType="int">
+		select mr_dislike
+		from movie_rev
+		where mr_code = #{mr_code}
+	</select>
+    
+ 	<!-- 댓글 신고  -->
+ 	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+		select *
+		from mr_warning
+		where mr_code = #{mr_code} and id = #{id}
+	</select>
+    
+    <update id="ReplyWarnCount" parameterType="int">
+		update movie_rev set mr_alert = mr_alert + 1 where mr_code = #{mr_code}
+	</update>
+	
+	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into mr_warning values(#{id}, #{mr_code}, sysdate)
+	</insert>
     
     
     

@@ -111,6 +111,12 @@
         WHERE mi_code = #{mi_code}
     </select>
     
+    <select id="sumScore" resultType="int">
+        SELECT NVL(SUM(mr_score), 0)
+        FROM movie_rev
+        WHERE mi_code = #{mi_code}
+    </select>
+    
     <select id="getUser" parameterType="String" resultType="int">
 		select NVL(id, 0)
 		from member

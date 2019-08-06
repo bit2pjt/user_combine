@@ -118,15 +118,16 @@ body{
 .movielist-card{
   display: inline-block;
   background-color: white;
-  width:170px;
+  width:200px;
   height:300px;
   margin:20px;
   position: relative;
-  border: 6px solid black;
+  border: 3px solid black;
 }
 .movie-title{
-  position: absolute;
+  /*position: absolute;*/
   left: 3px;
+  text-align:center;
 }
 .pagination {
   display: -webkit-flex;
@@ -320,8 +321,25 @@ yj : start | movieDetail 페이지 관련
 }
 .movie-single .movie-single-ct .movie-rate .rate p span {
   color: #000000;
-  font-size: 15px;
+  font-size: 25px;
   font-weight: 400;
+}
+.movie-single .movie-single-ct .movie-rate .rate p {
+	margin-bottom: 0;
+	margin-left: 10px;
+	font-size: 11px;
+	width:100px;
+	margin-top: 20px;
+}
+.movie-single .movie-single-ct .tab h3 {
+	font-family: 'Dosis', sans-serif;
+	font-size: 27px;
+	color: #abb7c4;
+	font-weight: bold;
+	text-transform: none;
+	margin-bottom: 15px;
+	text-align:left;
+	margin-left:10px;
 }
 .total-rate p span {
   color: #000000;
@@ -353,7 +371,7 @@ yj : start | movieDetail 페이지 관련
   padding-top:10px;
 }
 .movie-single .movie-single-ct h5{
-  margin-left:15px;
+  margin-left:13px;
   font-size:15px;
 }  
 
@@ -435,6 +453,7 @@ yj : start | tab - review
 .review-write{
   width: 100%;
   vertical-align: middle;
+  margin-top:30px;
 }
 .review-write-star{
   display:inline-flex;
@@ -514,9 +533,7 @@ yj : start | tab - review
   width: 60px;
   height: 60px;
 }
-.user-info p{
-  height:15px;
-}
+
 .user-rate{
   border: none;
 }
@@ -683,4 +700,23 @@ yj : start | tab - review
 	right:5px;
 	color:orange;
 	padding:0px;
+}
+
+#star-hjs {
+	margin-left:20px; 
+	margin-top:5px; 
+	width:15%;	
+}
+
+#replyContent {
+	word-break:break-all; 
+	float:left; 
+	margin-top:10px; 
+	text-align:left;
+}
+
+#star-score{
+	color:black; 
+	margin-left:10px; 
+	margin-top:1px;
 }

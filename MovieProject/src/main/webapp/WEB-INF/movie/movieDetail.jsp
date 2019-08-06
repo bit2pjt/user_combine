@@ -217,29 +217,25 @@
 													</div>
 												</div>
 												<hr class="mv-user-review-hr">
-												<div class="blockbuster-rate">
-													<h1>블록버스터 평점</h1>
-													<div class="movie-rate">
+												<div class="blockbuster-rate" style="margin-top:20px; margin-bottom:30px;">
+													<h1 style="text-align:left;">블록버스터 평점</h1>
+													<div class="movie-rate" style="margin:auto;">
 														<div class="rate">
 															<!-- <i class="fas fa-star fa-3x"></i> -->
 															<p>
-																<span>8.5</span> /10<br> <span class="rv">56
-																	Reviews</span>
+																<span class="scorediv"> 0 </span> <span style="font-size:15px;">/10</span><br> 
+																<span class="rv"></span>
 															</p>
 														</div>
 														<div class="rate-star" width="600px">
-															<i class="fas fa-star fa-2x"></i> <i
-																class="fas fa-star fa-2x"></i> <i
-																class="fas fa-star fa-2x"></i> <i
-																class="fas fa-star-half-alt fa-2x"></i> <i
-																class="far fa-star fa-2x"></i>
+															
 														</div>
 													</div>
 												</div>
 
 												<hr>
 
-												<div class="review-write col-md-11">
+												<div class="review-write">
 													<h3>리뷰 등록</h3>
 													<div class="review-write-star">
 														<fieldset class="rating">
@@ -265,7 +261,7 @@
 												</div>
 												
 												<div class="content-wrapper">		
-													<section class="content container-fluid">
+													<section>
 											            <div class="modal fade" id="modifyModal" role="dialog">
 											                <div class="modal-dialog" style="margin-top:100px;">
 											                    <div class="modal-content">
@@ -309,7 +305,6 @@
 											                            </ul>
 											                        </div>
 											                   </div>
-											                   
 											                </div>
 											        </section>
 											     </div>	
@@ -324,6 +319,8 @@
 		</div>
 	</div>
 </div>
+
+
 <script>
 	var replyPageNum = 1;
     var mi_code = "${movieInfoVO.mi_code}";
@@ -381,17 +378,15 @@
     $("#replies").on("click", ".replyLi button", function () { // 댓글의 수정 버튼 클릭시
         var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
         var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
-        alert("replyNo: " + reply.attr("data-replyNo"));
         var replyText = reply.find(".replyText").text(); //댓글의 내용
-        alert("replyText: " + replyText);
         $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
     });
     
     
     $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
-    	var reply = $(this).parent(); // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
         var present = $(this).parent().find(".ws-btn-thumbs-up");
         var session = "${sessionyn}";
         //var bf_rno = $("#replies > li");
@@ -402,8 +397,8 @@
  		 	return false;
  		 }
  		$.ajax({
- 			url:"BFReplyReco",
- 			data: {bfr_rno: bfr_rno, type: 1},
+ 			url:"MovieReplyReco",
+ 			data: {mr_code: mr_code, type: 1},
  			dataType: "text",
  			type:"post",
  			success: function(data) {
@@ -411,7 +406,7 @@
  					alert("이미 추천/비추천을 누르셨습니다.");
  					return false;
  				}else {
- 					present.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
+ 					present.html("<i class='far fa-thumbs-up' aria-hidden='true' ></i>  " + data);
  				}
  			},
  			error: function() {
@@ -422,8 +417,8 @@
 	});
     
     $("#replies").on("click", ".replyLi .ws-btn-thumbs-down", function () { // 댓글의 수정 버튼 클릭시
-    	var reply = $(this).parent(); // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
         var present = $(this).parent().find(".ws-btn-thumbs-down");
         var session = "${sessionyn}";
         //var bf_rno = $("#replies > li");
@@ -434,8 +429,8 @@
  		 	return false;
  		 }
  		$.ajax({
- 			url:"BFReplyReco",
- 			data: {bfr_rno: bfr_rno, type: 0},
+ 			url:"MovieReplyReco",
+ 			data: {mr_code: mr_code, type: 0},
  			dataType: "text",
  			type:"post",
  			success: function(data) {
@@ -443,7 +438,7 @@
  					alert("이미 추천/비추천을 누르셨습니다.");
  					return false;
  				}else {
- 					present.html("<i class='fa fa-thumbs-o-down' aria-hidden='true'></i>  " + data);
+ 					present.html("<i class='far fa-thumbs-down' aria-hidden='true' ></i> " + data);
  				}
  			},
  			error: function() {
@@ -454,9 +449,9 @@
 	});
     
     $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
-    	var reply = $(this).parent() // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
-        var present = $(this).parent().find(".ws-btn-thumbs-down");
+    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-warning");
         var session = "${sessionyn}";
         //var bf_rno = $("#replies > li");
         //alert($(this).parent().find(".ws-btn-thumbs-up").text());
@@ -467,8 +462,8 @@
  		 }
      	
  		$.ajax({
- 			url:"BFReplyWarn",
- 			data: {bfr_rno: bfr_rno},
+ 			url:"MovieReplyWarn",
+ 			data: {mr_code: mr_code},
  			dataType: "text",
  			type:"post",
  			success: function(data) {
@@ -544,60 +539,105 @@
     });
     
     
-	var total ="";
 	var id = "${id}";	
-	
 	var arr = [];
-	arr[0] = "<i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //1
-	arr[1] = "<i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //2
-	arr[2] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//3
-	arr[3] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//4
-	arr[4] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//5
-	arr[5] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//6
-	arr[6] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i>";//7
-	arr[7] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//8
-	arr[8] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i>";//9
-	arr[9] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i>";//10
+	arr[0] = "<i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; 	//0
+	arr[1] = "<i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //1
+	arr[2] = "<i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //2
+	arr[3] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//3
+	arr[4] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//4
+	arr[5] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//5
+	arr[6] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//6
+	arr[7] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i>";//7
+	arr[8] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//8
+	arr[9] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i>";//9
+	arr[10] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i>";//10
+	
+	var arr1 = [];
+	arr1[0] = "<i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; 	//0
+	arr1[1] = "<i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; //1
+	arr1[2] = "<i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; //2
+	arr1[3] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//3
+	arr1[4] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//4
+	arr1[5] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//5
+	arr1[6] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//6
+	arr1[7] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i>";//7
+	arr1[8] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//8
+	arr1[9] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i>";//9
+	arr1[10] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i>";//10
 	
     function getRepliesPaging(page) {
         $.getJSON("/movie/replies/info/" + mi_code + "/" + page, function (data) {
-           var str = "";
-           if(data.replies == "") {
+        	var scoreTotal = data.scoreTotal;
+			var total = data.pageMaker.totalCount;
+			var result = 0;
+			
+			if(total != 0)
+				result = (scoreTotal/total).toFixed(1);
+			
+			var str = "";
+			if(data.replies == "") {
            		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
-           }else {
+			}else {
                 $(data.replies).each(function () {
                 	if(this.id != id) {
 	                	str += "<li data-replyNo='" + this.mr_code + "' class='replyLi'>"
-		        	   		+	"<div class='mv-user-review-item' align='center' style='width:100%; '>"
-		        	 		+	"<div class='user-info' style='margin-right:50px;'> <p><strong>" + this.nickname + "</strong></p> <p> <strong>" + this.mr_write_date + "</strong></p> </div>"
-		        			+	"<div class='user-rate movie-rate movie-rate2' style='margin-top:5px;'>"
-		        			+	arr[this.mr_score-1]
-		        			+	"</div><div class='user-content' style='word-break:break-all'><p class='replyText' style='word-break:break-all;'>" + this.mr_content + "</p> </div>"
-		        			+	"<div class='user-like'> <div class='notmyreview' style='margin-left:50px'> "
-		        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true' ></i> " + this.mr_like + "</button> "
-		        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " + this.mr_dislike + "</button> "
-		        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+		        	   		+	"<div class='mv-user-review-item' style='width:100%;'>"
+		        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
+		        			+	arr[this.mr_score] + "<span id='star-score'>" + this.mr_score + "</span></div>" 
+		        			+	"<div class='user-info' style='width:80%'>"
+		        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.mr_write_date + "</strong></span> <br>"
+		        			+	"<span class='replyText' id='replyContent'>" + this.mr_content + "</span></p>"
+		        			+	"<div style='float:right; margin-top:10px;'>"
+		        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true'></i> "+ this.mr_like +"</button>"
+		        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn' style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.mr_dislike + "</button>"
+		        			+	"<button class='ws-btn-warning' id='ws-cnt-warning' style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
 		        			+	"</div></div></div></li>";
                 	}else {
                 		str += "<li data-replyNo='" + this.mr_code + "' class='replyLi'>"
-	        	   		+	"<div class='mv-user-review-item' align='center' style='width:100%; '>"
-	        	 		+	"<div class='user-info' style='margin-right:50px;'> <p><strong>" + this.nickname + "</strong></p> <p> <strong>" + this.mr_write_date + "</strong></p> </div>"
-	        			+	"<div class='user-rate movie-rate movie-rate2' style='margin-top:5px;'>"
-	        			+	arr[this.mr_score-1]
-	        			+	"</div><div class='user-content' style='word-break:break-all'><p class='replyText' style='word-break:break-all;'>" + this.mr_content + "</p> </div>"
-	        			+	"<div class='user-like'> <div class='notmyreview' style='margin-left:50px'> "
-	        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true' ></i> " + this.mr_like + "</button> "
-	        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " + this.mr_dislike + "</button> "
-	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
-	        			+	"<button type='button' id='btn-hjs-2' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
-	        			+	"</div></div></div></li>";
+	        	   		+	"<div class='mv-user-review-item' align='center' style='width:100%;'>"
+	        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
+	        			+	arr[this.mr_score] + "<span id='star-score'>" + this.mr_score + "</span></div>" 
+	        			+	"<div class='user-info' style='width:80%'>"
+	        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.mr_write_date + "</strong></span> <br>"
+	        			+	"<span class='replyText' id='replyContent'>" + this.mr_content + "</span></p>"
+	        			+	"<div style='float:right; margin-top:10px;'>"
+	        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true' ></i> "+ this.mr_like +"</button>"
+	        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn'style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.mr_dislike + "</button>"
+	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+	        			+	"<button type='button' id='btn-hjs-2' style='margin-left:10px;' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal' style='float:right;''>댓글 수정</button></div>"
+	        			+	"</div></div></li>";
                 	}
                    });
              }
-             
-           $("#replies").html(str);
-           printPageNumbers(data.pageMaker);
-           
+			
+			if(result == 10)
+				$(".rate-star").html(arr1[10]);
+			else if(result >= 9.0 && result <= 9.9)
+				$(".rate-star").html(arr1[9]);
+			else if(result >= 8.0 && result <= 8.9)
+				$(".rate-star").html(arr1[8]);
+			else if(result >= 7.0 && result <= 7.9)
+				$(".rate-star").html(arr1[7]);
+			else if(result >= 6.0 && result <= 6.9)
+				$(".rate-star").html(arr1[6]);
+			else if(result >= 5.0 && result <= 5.9)
+				$(".rate-star").html(arr1[5]);
+			else if(result >= 4.0 && result <= 4.9)
+				$(".rate-star").html(arr1[4]);
+			else if(result >= 3.0 && result <= 3.9)
+				$(".rate-star").html(arr1[3]);
+			else if(result >= 2.0 && result <= 2.9)
+				$(".rate-star").html(arr1[2]);
+			else if(result >= 0.1 && result < 2)
+				$(".rate-star").html(arr1[1]);
+			else
+				$(".rate-star").html(arr1[0]);
+			
+			$("#replies").html(str);
+			$(".rv").html(total + " Reviews");
+			$(".scorediv").html(result);
+			printPageNumbers(data.pageMaker);
         });
     }
 	

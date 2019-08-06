@@ -19,5 +19,7 @@ public interface MovieReplyService {
 	//댓글 수
 	public int countReplies(Integer mi_code);
 	
+	public int sumScore(Integer mi_code);
+	
 	public int getUser(String email);
 }

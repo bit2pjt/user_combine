@@ -30,8 +30,6 @@ public class MovieReplyController {
 		ResponseEntity<String> entity = null;
 		String email = (String)session.getAttribute("m_email");
 		int id = movieReplyService.getUser(email); // 로그인한 사용자의 id값
-		System.out.println("reply: " + replyVO);
-		System.out.println("id: " + id);
 		try {
 			replyVO.setId(id);
 			movieReplyService.addReply(replyVO);
@@ -116,12 +114,15 @@ public class MovieReplyController {
             criteria.setPage(page);
             List<MovieReplyVO> replies = movieReplyService.getRepliesPaging(mi_code, criteria);
             int repliesCount = movieReplyService.countReplies(mi_code);
+            int scoreTotal = movieReplyService.sumScore(mi_code);
+            System.out.println("scoreTotal: " + scoreTotal);
             
             PageMaker pageMaker = new PageMaker();
             pageMaker.setCriteria(criteria);
             pageMaker.setTotalCount(repliesCount);
             
             Map<String, Object> map = new HashMap<>();
+            map.put("scoreTotal", scoreTotal);
             map.put("replies", replies);
             map.put("pageMaker", pageMaker);
 

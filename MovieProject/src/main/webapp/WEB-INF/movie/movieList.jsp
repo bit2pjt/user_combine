@@ -44,7 +44,7 @@
                 <div>
                 <c:forEach items="${movieList}" var="list" varStatus="status">
 					<div class="movielist-card" id="${list.mi_ktitle }" onclick="movieInfo(this.id)">
-						<img src="<c:url value='${list.mi_poster }' />" width="190" height="270">
+						<img src="<c:url value='${list.mi_poster }' />" width="200" height="270">
 						<h5 class="movie-title">${list.mi_ktitle }</h5>
 	
 						<input type="hidden" id="title" value="${list.mi_ktitle}"/>
