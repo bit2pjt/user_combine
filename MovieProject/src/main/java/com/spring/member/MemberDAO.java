@@ -21,7 +21,7 @@ public interface MemberDAO {
 	public MemberVO findPw(MemberVO vo);
 	
 
-	public void memberJoin(MemberVO vo);
+	public int memberJoin(MemberVO vo);
 
 	public int emailOverlapChk(String email);
 	

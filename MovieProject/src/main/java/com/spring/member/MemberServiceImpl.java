@@ -15,12 +15,6 @@ public class MemberServiceImpl implements MemberService {
 	@Setter(onMethod_ = { @Autowired })
 	private MemberDAO memberDAOglobal;
 
-	@Override
-	public int insertMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	/**
 	 * 로그인 시 회원 체크
 	 * 
@@ -28,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	 * @param pw    - 입력한 password
 	 * @return 회원 여부 결과
 	 */
+	
 	@Override
 	public int userCheck(String email, String pw) {
 		int x = -1;
@@ -91,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
 	 * @param memberVO vo
 	 */
 	@Override
-	public void memberJoin(MemberVO vo) {
+	public int memberJoin(MemberVO vo) {
 		vo.setM_image("");
 		vo.setM_image("defaultprofile.PNG");
 		vo.setM_cert("N");
@@ -101,7 +96,8 @@ public class MemberServiceImpl implements MemberService {
 		vo.setM_level("BRONZE");
 		vo.setM_blacklist("N");
 
-		memberDAOglobal.memberJoin(vo);
+		int result = memberDAOglobal.memberJoin(vo);
+		return result;
 	}
 
 	/**

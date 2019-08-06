@@ -1,7 +1,6 @@
 package com.spring.member;
 
 public interface MemberService {
-	public int insertMember(MemberVO vo);
 	
 	public int userCheck(String email, String pw);
 	
@@ -16,7 +15,7 @@ public interface MemberService {
 	public MemberVO findPw(MemberVO vo);
 	
 
-	public void memberJoin(MemberVO vo);
+	public int memberJoin(MemberVO vo);
 
 	public boolean emailOverlapChk(MemberVO vo);
 	

@@ -1,5 +1,6 @@
 package com.spring.member;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @ 2019.07.17       황진석 
  * @ 2019.07.22       이웅식        회원가입 + 가입시 메일&닉네임 중복확인 구현 
  * @ 2019.07.26       이웅식        login 성공시 id 코드를 세션값에 추가하도록 수정
+ * @ 2019.08.02       한유진        수정
  * 
  * 
  * @author bit 2조
@@ -132,6 +134,11 @@ public class LoginController {
 		else
 			return email;
 	}
+	
+	@RequestMapping(value="/memberSearchEmailP", method = RequestMethod.GET)
+	String memberSearchEmailP() {
+		return "member/member_search_email";
+	}
 
 	/**
 	 * 비밀번호 찾기
@@ -156,6 +163,11 @@ public class LoginController {
 			return "fail";
 		}
 	}
+	
+	@RequestMapping(value="/memberSearchPwP", method = RequestMethod.GET)
+	public String memberSearchPwP() {
+		return "member/member_search_pw";
+	}
 
 	/**
 	 * 회원가입
@@ -168,7 +180,7 @@ public class LoginController {
 	 * @throws Exception
 	 */
 	@PostMapping("/memberJoin")
-	String memberJoin(MemberVO vo, HttpServletRequest request, HttpServletResponse response) {
+	public String memberJoin(MemberVO vo, HttpServletRequest request, HttpServletResponse response) {
 		String phone = request.getParameter("m_phone1") + request.getParameter("m_phone2")
 				+ request.getParameter("m_phone3");
 		vo.setM_phone(phone);
@@ -177,6 +189,33 @@ public class LoginController {
 		return "index";
 	}
 
+	@RequestMapping(value="/memberJoinP", method = RequestMethod.GET)
+	public String memberJoinP() {
+		return "member/member_join";
+	}
+	
+	@RequestMapping(value="/memberJoinPAction", method = RequestMethod.POST)
+	public String memberJoinActionP(MemberVO memberVO, HttpServletResponse response) throws IOException{
+		System.out.println("memberVO : " + memberVO);
+		try {
+			memberService.memberJoin(memberVO);
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('회원가입이 완료되었습니다.\\n가입한 메일로 인증메일이 발송됩니다.\\n메일함을 확인해주세요.\\n10분내에 메일을 받지못했을 경우 관리자에게 문의해주세요.');");
+			out.println("</script>");
+		}catch (Exception e) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('회원가입에 실패했습니다. 관리자에게 문의해주세요.');");
+			out.println("</script>");
+			return "redirect:/memberJoinP";
+			
+		}
+		return "redirect:/index";
+	}
+	
 	/**
 	 * 로그인
 	 * 

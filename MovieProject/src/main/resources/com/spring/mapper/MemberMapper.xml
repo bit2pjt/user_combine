@@ -53,8 +53,8 @@
 
 	<insert id="memberJoin">
 		insert into member
-		values (seq_member_id.nextval, #{m_nickname}, #{m_image}, #{m_email}, #{m_eagree}, #{m_sagree}, #{m_name},#{m_phone}, #{m_cert}, #{m_password},
-				sysdate, sysdate, #{m_deleteyn}, #{m_following}, #{m_follower}, #{m_level}, #{m_favorite}, #{m_blacklist})
+		values (seq_member_id.nextval, #{m_nickname, jdbcType=VARCHAR}, #{m_image, jdbcType=VARCHAR}, #{m_email, jdbcType=VARCHAR}, #{m_eagree, jdbcType=VARCHAR}, #{m_sagree, jdbcType=VARCHAR}, #{m_name, jdbcType=VARCHAR},#{m_phone, jdbcType=VARCHAR}, #{m_cert, jdbcType=VARCHAR}, #{m_password, jdbcType=VARCHAR},
+				sysdate, sysdate, #{m_deleteyn, jdbcType=VARCHAR}, #{m_following}, #{m_follower}, #{m_level, jdbcType=VARCHAR}, #{m_favorite, jdbcType=VARCHAR}, #{m_blacklist, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="emailOverlapChk" parameterType="String" resultType="int">
@@ -75,10 +75,7 @@
 	</update>
 
 	<select id="getId" parameterType="String" resultType="int">
-		select id
-		from member
-		where 	m_email = #{m_email}
-		and 	m_password = #{m_password}
+		select id from member where m_email = #{m_email} and m_password = #{m_password}
 	</select>
 
 </mapper>
