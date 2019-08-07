@@ -30,8 +30,8 @@ public class MovieController {
 		PageMaker pageMaker = new PageMaker();
         pageMaker.setCriteria(searchCriteria);
         pageMaker.setTotalCount(movieService.countSearchedMovie(searchCriteria));
-        System.out.println("111: " + pageMaker.getTotalCount());
 		List<MovieInfoVO> movieList = movieService.getMovieListSerch(searchCriteria);
+		
 		
 		model.addAttribute("movieList", movieList);
 		model.addAttribute(pageMaker);
@@ -47,7 +47,9 @@ public class MovieController {
 			model.addAttribute("id", id);
 		}
 		MovieInfoVO movieInfoVO = movieService.getMovieInfo(mi_ktitle);
+		List<MovieCrawlVO> movieCrawlVO = movieService.getThumnail(mi_ktitle);
 		
+		model.addAttribute("movieCrawl", movieCrawlVO);
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("movieInfoVO", movieInfoVO);
 		

@@ -1,8 +1,12 @@
 package com.spring.movie;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -215,6 +219,30 @@ public class MovieServiceImpl implements MovieService {
 		}
 		
 		return msg;
+	}
+
+	@Override
+	public List<MovieCrawlVO> getThumnail(String mi_ktitle) {
+		MovieDAO movieDAO = sqlSession.getMapper(MovieDAO.class);
+		String targetUrl  = "https://www.youtube.com/results?search_query=영화+" + mi_ktitle + "+예고편";
+		List<String> thumnail = null;
+		List<MovieCrawlVO> list = new ArrayList<MovieCrawlVO>();
+		try {
+			Document doc = Jsoup.connect(targetUrl).get();
+			
+			thumnail = doc.select(".yt-thumb-simple").select("img").eachAttr("src"); // 썸네일 사진, https://www.youtube.com
+	        for(int i=0; i<5; i++) {
+	        	MovieCrawlVO vo = new MovieCrawlVO();
+	        	vo.setThumnail(thumnail.get(i));
+	        	list.add(vo);
+	        }
+	        	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 	
 }

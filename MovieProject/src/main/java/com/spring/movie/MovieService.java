@@ -13,17 +13,19 @@ public interface MovieService {
 	public MovieInfoVO getMovieInfo(String mi_ktitle);
 	public int getUser(String email);
 	
-	String reply_check(ThumbVO vo);
-	int replyRecommend(ThumbVO vo);
+	public String reply_check(ThumbVO vo);
+	public int replyRecommend(ThumbVO vo);
 	
 	
-	int insertReplyWarn(WarnVO vo);
-	String ReplyWarn(WarnVO vo);
+	public int insertReplyWarn(WarnVO vo);
+	public String ReplyWarn(WarnVO vo);
 	
 	public List<MovieInfoVO> getMovieList_title(String search_input);
 	public List<MovieInfoVO> getMovieList_release(String search_input);
 	public List<MovieInfoVO> getMovieList_country(String search_input);
 	public List<MovieInfoVO> getMovieList_director(String search_input);
 	public List<MovieInfoVO> getMovieList_actor(String search_input);
+	
+	public List<MovieCrawlVO> getThumnail(String mi_ktitle);
 	
 }

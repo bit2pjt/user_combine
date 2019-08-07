@@ -135,29 +135,24 @@
 													</h4>
 												</div>
 												<div class="mvsingle-item media-item">
-													<%
-														for (int i = 0; i < 20; i++) {
-													%>
+													<c:forEach items="${movieCrawl}" var="MovieCrawl" varStatus="status">
 													<div class="vd-item">
 														<div class="vd-it">
 															<img class="vd-img"
-																src="resources/images/uploads/vd-item1.jpg" alt="">
+																src="${MovieCrawl.thumnail}" alt="">
 															<a class="fancybox-media hvr-grow"
 																href="https://www.youtube.com/embed/o-0hcF97wy0"><img
 																src="resources/images/uploads/play-vd.png" alt=""></a>
 														</div>
 														<div class="vd-infor">
 															<h6>
-																<a href="#">Trailer: Watch New Scenes</a>
+																<a href="#"> 동영상 제목</a>
 															</h6>
-															<p class="time">1: 31</p>
+															<p class="time">재생시간</p>
 														</div>
 													</div>
-													<%
-														}
-													%>
+													</c:forEach>
 												</div>
-
 											</div>
 										</div>
 										<!-- end | 비디오 -->
