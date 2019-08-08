@@ -112,14 +112,14 @@ body{
   margin:auto;
   text-align: center;
   display: inline-block;
-  max-width: 1160px;
+  max-width: 1300px;
   margin-top:50px;
 }
 .movielist-card{
   display: inline-block;
   background-color: white;
   width:200px;
-  height:300px;
+  height:278px;
   margin:20px;
   position: relative;
   border: 3px solid black;
@@ -128,6 +128,8 @@ body{
   /*position: absolute;*/
   left: 3px;
   text-align:center;
+  margin-top:10px;
+  font-size:15px;
 }
 .pagination {
   display: -webkit-flex;
@@ -260,13 +262,14 @@ yj : start | movieDetail 페이지 관련
 .movie-info{
   background: #ffffff5e;
   border-radius: 3%;
+  height:100%;
 }
 .movie-info h1, .movie-info h3, .movie-info table{
   color:black;
 }
 
   .movie-img img{
-    max-width: 261px;
+    max-width: 251px;
     max-height: 401px;
   }
   
@@ -703,7 +706,7 @@ yj : start | tab - review
 }
 
 #star-hjs {
-	margin-left:20px; 
+	margin-left:25px; 
 	margin-top:5px; 
 	width:15%;	
 }
@@ -719,4 +722,9 @@ yj : start | tab - review
 	color:black; 
 	margin-left:10px; 
 	margin-top:1px;
+}
+
+.tabs .tab-content {
+	padding-left: 15px;
+	padding-right: 15px;
 }

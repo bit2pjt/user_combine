@@ -39,16 +39,16 @@
                 <input type="text" class="form-control" name="keyword" value="${searchCriteria.keyword}" id="keywordInput" placeholder="검색어" width="150px;">
                 <button type="button" id="btn-hjs"> 검색 </button>
             </div>
+            
             <!-- yj : start | movielist-bottom -->
             <div class="movielist-bottom">
                 <div>
                 <c:forEach items="${movieList}" var="list" varStatus="status">
 					<div class="movielist-card" id="${list.mi_ktitle }" onclick="movieInfo(this.id)">
 						<img src="<c:url value='${list.mi_poster }' />" width="200" height="270">
-						<h5 class="movie-title">${list.mi_ktitle }</h5>
-	
-						<input type="hidden" id="title" value="${list.mi_ktitle}"/>
+				 		<h6 class="movie-title">${list.mi_ktitle }</h6>
 				 	</div>
+				 	<input type="hidden" id="title" value="${list.mi_ktitle}"/>
                 </c:forEach>
                 
                 <!--  
@@ -60,13 +60,13 @@
                 </div>
                 <!-- yj : start | pagination -->
                 <!-- 페이징 버튼 연동은 책보고 참고해서 추가하기 -->
-                <div class="box-footer">
+                <div class="buster-light">
                         <div class="text-center">
                             <form id="listPageForm">
                                 <input type="hidden" name="page" value="${pageMaker.criteria.page}">
                                 <input type="hidden" name="perPageNum" value="${pageMaker.criteria.perPageNum}">
                             </form>
-                            <ul class="pagination">
+                            <ul class="pagination pagination-sm no-margin">
                                 <c:if test="${pageMaker.prev}">
                                     <li><a href="${pageMaker.startPage - 1}">이전</a></li>
                                 </c:if>

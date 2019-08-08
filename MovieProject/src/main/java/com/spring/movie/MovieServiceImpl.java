@@ -3,6 +3,7 @@ package com.spring.movie;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Jsoup;
@@ -223,17 +224,39 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<MovieCrawlVO> getThumnail(String mi_ktitle) {
-		MovieDAO movieDAO = sqlSession.getMapper(MovieDAO.class);
 		String targetUrl  = "https://www.youtube.com/results?search_query=영화+" + mi_ktitle + "+예고편";
 		List<String> thumnail = null;
+		List<String> movieURL = null;
+		List<String> movieTitle  = null;
+		String time = "";
+		String[] str = new String[20];
 		List<MovieCrawlVO> list = new ArrayList<MovieCrawlVO>();
+		
 		try {
 			Document doc = Jsoup.connect(targetUrl).get();
-			
+			int z = 0;
 			thumnail = doc.select(".yt-thumb-simple").select("img").eachAttr("src"); // 썸네일 사진, https://www.youtube.com
-	        for(int i=0; i<5; i++) {
+			movieURL = doc.select(".yt-lockup-title").select("a").eachAttr("href");
+			movieTitle = doc.select(".yt-lockup-title").select("a").eachAttr("title");
+			time = doc.select(".video-time").text();
+			
+			StringTokenizer st = new StringTokenizer(time, " ");
+			while(st.hasMoreTokens()) {
+				str[z] = st.nextToken();
+				z++;
+				if(z == 6)
+					break;
+			}
+			
+			for(int i=0; i<5; i++) {
 	        	MovieCrawlVO vo = new MovieCrawlVO();
-	        	vo.setThumnail(thumnail.get(i));
+	        	if(movieURL.get(i).indexOf("/") == 0 && str[i].length() != 7) {
+	        		vo.setMovieURL("https://www.youtube.com" + movieURL.get(i));
+	        		vo.setThumnail(thumnail.get(i));
+	        		vo.setMovieTitle(movieTitle.get(i));
+		        	vo.setMovieTime(str[i]);
+	        	}
+	        	
 	        	list.add(vo);
 	        }
 	        	

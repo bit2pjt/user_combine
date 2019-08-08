@@ -55,8 +55,8 @@
 							<br>
 						</div>
 					</div>
-					<div class="movie-img">
-						<img src="${movieInfoVO.mi_poster}" alt="">
+					<div class="movie-img" >
+						<img src="${movieInfoVO.mi_poster}" alt="포스터" style="float:right">
 					</div>
 				</div>
 				<div class="col-md-8 col-sm-12 col-xs-12">
@@ -130,28 +130,29 @@
 										<div id="video" class="tab">
 											<div class="row">
 												<div class="title-hd-sm">
-													<h4>
-														Videos <span>(20)</span>
-													</h4>
+													<h3>
+														관련 동영상
+													</h3>
 												</div>
 												<div class="mvsingle-item media-item">
 													<c:forEach items="${movieCrawl}" var="MovieCrawl" varStatus="status">
-													<div class="vd-item">
-														<div class="vd-it">
-															<img class="vd-img"
-																src="${MovieCrawl.thumnail}" alt="">
-															<a class="fancybox-media hvr-grow"
-																href="https://www.youtube.com/embed/o-0hcF97wy0"><img
-																src="resources/images/uploads/play-vd.png" alt=""></a>
-														</div>
-														<div class="vd-infor">
-															<h6>
-																<a href="#"> 동영상 제목</a>
-															</h6>
-															<p class="time">재생시간</p>
-														</div>
-													</div>
+														<c:if test="${ MovieCrawl.thumnail != null}">
+															<div class="vd-item">
+																<div class="vd-it">
+																	<img class="vd-img"
+																		src="${MovieCrawl.thumnail}" alt="">
+																	<a class="fancybox-media hvr-grow" href="${MovieCrawl.movieURL}"></a>
+																</div>
+																<div class="vd-infor">
+																	<h6>
+																		<a href="#"> ${MovieCrawl.movieTitle}</a>
+																	</h6>
+																	<p class="time">${MovieCrawl.movieTime}</p>
+																</div>
+															</div>
+														</c:if>
 													</c:forEach>
+													
 												</div>
 											</div>
 										</div>
@@ -580,7 +581,7 @@
 		        	   		+	"<div class='mv-user-review-item' style='width:100%;'>"
 		        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
 		        			+	arr[this.mr_score] + "<span id='star-score'>" + this.mr_score + "</span></div>" 
-		        			+	"<div class='user-info' style='width:80%'>"
+		        			+	"<div class='user-info' style='width:75%; margin-left:30px;'>"
 		        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.mr_write_date + "</strong></span> <br>"
 		        			+	"<span class='replyText' id='replyContent'>" + this.mr_content + "</span></p>"
 		        			+	"<div style='float:right; margin-top:10px;'>"
@@ -593,7 +594,7 @@
 	        	   		+	"<div class='mv-user-review-item' align='center' style='width:100%;'>"
 	        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
 	        			+	arr[this.mr_score] + "<span id='star-score'>" + this.mr_score + "</span></div>" 
-	        			+	"<div class='user-info' style='width:80%'>"
+	        			+	"<div class='user-info' style='width:75%; margin-left:30px;'>"
 	        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.mr_write_date + "</strong></span> <br>"
 	        			+	"<span class='replyText' id='replyContent'>" + this.mr_content + "</span></p>"
 	        			+	"<div style='float:right; margin-top:10px;'>"

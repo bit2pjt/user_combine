@@ -46,9 +46,11 @@ public class MovieController {
 			int id = movieService.getUser(sessionyn); // 로그인한 사용자의 id값
 			model.addAttribute("id", id);
 		}
+		
 		MovieInfoVO movieInfoVO = movieService.getMovieInfo(mi_ktitle);
 		List<MovieCrawlVO> movieCrawlVO = movieService.getThumnail(mi_ktitle);
 		
+		System.out.println("1111111: " + movieCrawlVO );
 		model.addAttribute("movieCrawl", movieCrawlVO);
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("movieInfoVO", movieInfoVO);

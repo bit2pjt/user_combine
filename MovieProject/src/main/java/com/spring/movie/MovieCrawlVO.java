@@ -6,6 +6,6 @@ import lombok.Data;
 public class MovieCrawlVO {
 	private String thumnail;
 	private String movieURL;
-	private String movieTtitle;
+	private String movieTitle;
 	private String movieTime;
 }
