@@ -82,27 +82,90 @@ function load(id, cnt, btn) {
     $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
 }
 
-	$("#brand option").on("change", function() {
-		alert("클릭");
-	});
-
-	
 	var select1 = $("select[name='local']");
 	
 	function LocalList() {
-		var select1 = $("select[name='local']");
-		select1.empty();
-		select1.append("<option value='1'>전국</option>");
-		select1.append("<option value='2'>서울</option>");
-		select1.append("<option value='3'>인천/경기</option>");
-		select1.append("<option value='4'>대전,충청/강원</option>");
-		select1.append("<option value='5'>대구/울산/경북</option>");
-		select1.append("<option value='6'>광주/전라/제주</option>");
+		var selectBrand = $("select[name='local']");
+		var cc_brand = $("#brand option:selected").val();
+		
+		selectBrand.empty();
+		selectBrand.append("<option value='1'>서울</option>");
+		selectBrand.append("<option value='2'>인천/경기</option>");
+		selectBrand.append("<option value='3'>대전/충청/강원</option>");
+		selectBrand.append("<option value='4'>부산/경남</option>");
+		selectBrand.append("<option value='5'>대구/울산/경북</option>");
+		selectBrand.append("<option value='6'>광주/전라/제주</option>");
 	}
 	
-	function localName() {
+	function LocalName() {
+		var selectBrand = $("select[name='local']");
+		var selectLocal = $("select[name='local_2']");
+		var cc_brand = $("#brand option:selected").val();
+		var cc_localnum = $("#local option:selected").val();
 		
+		$.ajax({
+			url: "cineLocal",
+			data: {cc_brand:cc_brand, cc_localnum:cc_localnum},
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				selectLocal.empty();
+				$.each(data, function(idx, value) {
+					selectLocal.append("<option value='"+idx+"'>"+ data[idx] + "</option>");
+				})
+			},
+			error: function() {
+				alert("에러");
+			}
+		});
 	}
+	
+	function getName() {
+		var cc_brand = $("#brand option:selected").val();
+		var cc_localnum = $("#local option:selected").val();
+		var cc_local_name = $("#local_2 option:selected").text();
+		var selectName = $("select[name='cname']");
+		$.ajax({
+			url: "cineName",
+			data: {cc_brand:cc_brand, cc_localnum:cc_localnum, cc_local_name:cc_local_name},
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				selectName.empty();
+				$.each(data, function(idx, value) {
+					selectName.append("<option value='"+idx+"'>"+ data[idx] + "</option>");
+				})
+			},
+			error: function() {
+				alert("에러");
+			}
+		});
+	}
+	
+	function getCineInfo() {
+		var cc_brand = $("#brand option:selected").val();
+		var cc_localnum = $("#local option:selected").val();
+		var cc_local_name = $("#local_2 option:selected").text();
+		var cc_name = $("#cname option:selected").text();
+		alert(cc_name);
+		
+		$.ajax({
+			url: "getCineInfo",
+			data: {cc_brand:cc_brand, cc_localnum:cc_localnum
+				, cc_local_name:cc_local_name, cc_name: cc_name},
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				var dd = JSON.parse(data);
+				alert(dd);
+				alert(dd.cc_code);
+			},
+			error: function() {
+				alert("에러");
+			}
+		});
+	}
+	
 </script>
 	
 
@@ -120,23 +183,15 @@ function load(id, cnt, btn) {
 	<option value=" 메가박스 "> 메가박스 </option>
 </select>
 
-<select name="local" size="8"  onChange="LocalName()">
-<!--
-	<option value="1">전국</option>
-	<option value="2">서울</option>
-	<option value="3">인천/경기</option>
-	<option value="4">대전,충청/강원</option>
-	<option value="5">부산/경남</option>
-	<option value="6">대구/울산/경북</option>
-	<option value="7">광주/전라/제주</option>
-	 -->	
+<select id="local" name="local" size="8"  onChange="LocalName()">
 </select>
 
-<select name="gp_face" size="8" onChange = "redirect2(this.selectedIndex);">
+<select id="local_2" name="local_2" size="8" onChange = "getName()">
 </select>
 
-<select name="gp_quantity" size="8">
+<select id="cname" name="cname" size="8" onChange="getCineInfo()">
 </select>
+
 </form>
 
 <!-- 영화관 정보 시작 -->
@@ -144,9 +199,10 @@ function load(id, cnt, btn) {
 	<div class="cinema_info_text">
 		<span>CGV</span><span>서울 영화관1호</span><br>
 		<span>인천광역시 중구 운서동 3088-3 예스타워 영종 7층</span><br>
-		<a href="./www.naver.com">홈페이지 이동</a><span>02-444-4444</span><span>|</span><span>상영관 수</span><span>전체 좌석</span>
+		<a href="/www.naver.com" id="home">홈페이지 이동</a><span>02-444-4444</span><span>|</span><span>상영관 수</span><span>전체 좌석</span>
 		<p style="float: right; background-color: #333; color: #fff; width: 120px;line-height: 80px; padding: 10px; margin-top: 30px; text-align: center; vertical-align: middle;">예매정보</p>
 	</div>
+	
 	<div class="cinema_info_map">
 		
 	</div>

@@ -18,4 +18,6 @@ public class CineVO {
 	private String CC_TRANSIT;
 	private String CC_PARKING;
 	private int CC_SCORE;
+	private String CC_REPLOCAL;
+	private int CC_LOCALNUM;
 }

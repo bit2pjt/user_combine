@@ -1,8 +1,15 @@
 package com.spring.cine;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.extern.log4j.Log4j;
 
 @Service("cineService")
 public class CineServiceImpl implements CineService {
@@ -11,8 +18,41 @@ public class CineServiceImpl implements CineService {
 	private SqlSession sqlSession;
 
 	@Override
-	public void getLocalName(CineVO cineVO) {
-		// TODO Auto-generated method stub
+	public List<String> getLocalName(CineVO cineVO) {
+		CineDAO cineDAO = sqlSession.getMapper(CineDAO.class);
+		String sql = sqlSession.getConfiguration().getMappedStatement("com.spring.cine.CineDAO.getLocalName").getBoundSql(cineVO).getSql();
+		System.out.println(sql);
+		List<CineVO> cineList = cineDAO.getLocalName(cineVO);
+		List<String> list = new ArrayList<String>();
+
+		for(int i=0; i<cineList.size(); i++) {
+			list.add(cineList.get(i).getCC_LOCAL_NAME());
+		}
+		return list;
 		
+	}
+
+	@Override
+	public List<String> getName(CineVO cineVO) {
+		CineDAO cineDAO = sqlSession.getMapper(CineDAO.class);
+		
+		List<CineVO> cineList = cineDAO.getName(cineVO);
+		List<String> list = new ArrayList<String>();
+		
+		for(int i=0; i<cineList.size(); i++) {
+			list.add(cineList.get(i).getCC_NAME());
+		}
+		
+		return list;
+	}
+
+	@Override
+	public CineVO getCineInfo(CineVO cineVO) {
+		CineDAO cineDAO = sqlSession.getMapper(CineDAO.class);
+		CineVO vo = cineDAO.getCineInfo(cineVO);
+		
+		System.out.println("aaaaaaa: " + vo);
+		
+		return vo;
 	}
 }

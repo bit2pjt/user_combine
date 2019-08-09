@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.cine.CineDAO">
+	<resultMap type="com.spring.cine.CineVO" id="cineMap">
+		<result property="CC_CODE" column="CC_CODE"/>
+		<result property="CC_LOCAL_NAME" column="CC_LOCAL_NAME"/>
+		<result property="CC_BRAND" column="CC_BRAND"/>
+		<result property="CC_NAME" column="CC_NAME"/>
+		<result property="CC_ADDRESS" column="CC_ADDRESS"/>
+		<result property="CC_LINK" column="CC_LINK"/>
+		<result property="CC_PHONE" column="CC_PHONE"/>
+		<result property="CC_THEATERS" column="CC_THEATERS"/>
+		<result property="CC_SEATS" column="CC_SEATS"/>
+		<result property="CC_MAP_LAT" column="CC_MAP_LAT"/>
+		<result property="CC_MAP_LON" column="CC_MAP_LON"/>
+		<result property="CC_TRANSIT" column="CC_TRANSIT"/>
+		<result property="CC_PARKING" column="CC_PARKING"/>
+		<result property="CC_SCORE" column="CC_SCORE"/>
+		<result property="CC_REPLOCAL" column="CC_REPLOCAL"/>
+		<result property="CC_LOCALNUM" column="CC_LOCALNUM"/>
+	</resultMap>
+	
+	
+	<select id="getLocalName" resultType="com.spring.cine.CineVO">
+		select distinct CC_LOCAL_NAME
+		from cine_info
+		where cc_brand=#{CC_BRAND} and cc_localnum=#{CC_LOCALNUM}
+	</select>
+	
+	<select id="getName" resultType="com.spring.cine.CineVO">
+		select cc_name
+		from cine_info
+		where cc_brand=#{CC_BRAND} and cc_localnum = #{CC_LOCALNUM} and cc_local_name=#{CC_LOCAL_NAME}
+	</select>
+	
+	<select id="getCineInfo" resultMap="cineMap">
+		select *
+		from cine_info
+		where cc_brand=#{CC_BRAND} and cc_localnum = #{CC_LOCALNUM} and cc_local_name=#{CC_LOCAL_NAME}
+		and cc_name=#{CC_NAME}
+	</select>
+	
+	
+</mapper>	
