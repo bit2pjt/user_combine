@@ -232,7 +232,7 @@
 								  <td>${board.nickname}</td>
 								  <td><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy-MM-dd"/></td>
 								  <td>${board.bf_view_counter}</td>
-								  <td>모바일 글제목. </td>
+								  <td><a href="boardFreeGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bf_bno}">${board.bf_title}</a></td>
 								</tr>
 							</c:forEach>
 						  </tbody>

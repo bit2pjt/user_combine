@@ -4,7 +4,6 @@
 <!--
 	/**
 	* @Class Name : member_join.jsp
-	.jsp
 	* @Description : 회원가입 페이지
 	* @Modification Information
 	* @
@@ -55,8 +54,9 @@
 <!-- start | 회원가입 양식 -->
 <div class="container">
 	<div class="row">
-		<div class="col-md-11">
+		<div class="col-md-6">
 			<div class="join_content">
+				<input id="formtype" type="hidden" value="joinform">
 				<form id="joinform" action="memberJoinPAction" method="post" onsubmit="return check()">
 					<div class="join">
 						<h5>이메일</h5>
@@ -79,7 +79,7 @@
 					<div class="join">
 						<h5>비밀번호</h5>
 						<input name="m_password" id="m_password" type="password" placeholder="비밀번호를 입력해주세요." required="required" maxlength="20"/>
-						<div id="password_msg">ㄴ8-20자 이내 영문자, 숫자의 조합으로 입력해주세요.</div>
+						<div id="password_msg">ㄴ8-20자 이내 영문자, 숫자, 특수문자의 조합으로 입력해주세요.</div>
 					</div>
 					<div class="join">
 						<h5>비밀번호 확인</h5>

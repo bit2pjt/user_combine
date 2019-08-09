@@ -33,7 +33,8 @@ function check(){
 	}
 	
 	//비밀번호와 비밀번호 확인 입력값이 일치하지 않을경우
-	if(joinform.pass_chk.value == 0){
+	var pass_rule = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,50}).{8,20}$/;
+	if((pass_rule).test(m_password) == false || joinform.pass_chk.value == 0){
 		alert('비밀번호를 확인해주세요.');
 		return false;
 	}
@@ -86,7 +87,9 @@ function numberMaxLength(e){
 //이메일 input의 값이 변경될 경우 
 $('.join #m_email').on('change keyup paste input', function() {
 	var email_rule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	var m_email = joinform.m_email.value;
+	var formtype = document.getElementById("formtype").value;
+	var form = document.getElementById(formtype);
+	var m_email = form.m_email.value;
 	
 	if(email_rule .test(m_email) == false){
 		$('#email_msg1').html('ㄴ이메일 양식에 맞게 입력해주세요.').css('color', 'black');
@@ -100,8 +103,9 @@ $('.join #m_email').on('change keyup paste input', function() {
 });
 //이메일 중복체크
 $('#email_btn').on('click', function (event) {
-
-	var m_email = joinform.m_email.value;
+	var formtype = document.getElementById("formtype").value;
+	var form = document.getElementById(formtype);
+	var m_email = form.m_email.value;
 	$.ajax({
 		url: "/movie/email_overlap_chk",
 		data: { 'm_email': m_email },
@@ -130,7 +134,7 @@ $('.join #m_nickname').on('change keyup paste input', function() {
 });
 //닉네임 중복체크
 $('#nickname_btn').on('click', function (event) {
-
+	var joinform = document.getElementById("joinform");
 	var m_nickname = joinform.m_nickname.value;
 	$.ajax({
 		url: "/movie/nick_overlap_chk",
@@ -156,8 +160,9 @@ $('#nickname_btn').on('click', function (event) {
 //비밀번호 체크
 $('.join #m_password').on('change keyup paste input', function() {
 	var password_rule = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,50}).{8,20}$/;
-
-	var m_password = joinform.m_password.value;
+	var formtype = document.getElementById("formtype").value;
+	var form = document.getElementById(formtype);
+	var m_password = form.m_password.value;
 	
 	$('#pass_chk_f').css('display', '');
 	$('#pass_chk_t').css('display', 'none');
@@ -171,8 +176,10 @@ $('.join #m_password').on('change keyup paste input', function() {
 });
 //비밀번호 확인 체크
 $('.join #repassword').on('change keyup paste input', function() {
-	var m_password = joinform.m_password.value;
-	var repassword = joinform.repassword.value;
+	var formtype = document.getElementById("formtype").value;
+	var form = document.getElementById(formtype);
+	var m_password = form.m_password.value;
+	var repassword = form.repassword.value;
 	
 	if(m_password != repassword){
 		$('#pass_chk_f').css('display', '');
@@ -200,3 +207,83 @@ $('.chk_box').on('click', function () {
 	}
 });
 
+//아이디 찾기
+$('.search #search_email_btn').on('click', function () {
+	var m_name = $('#search_m_name').val();
+	var m_phone = $('#search_phone1').val()+'-'+$('#search_phone2').val()+'-'+$('#search_phone3').val();
+	$.ajax({
+		url: "/movie/id_find",
+		data: { 'm_name':m_name, 'm_phone':m_phone },
+		dataType: 'text',
+		type: 'get',
+		contentType: 'application/text; charset=UTF-8',
+		success: function (data) {
+			if (data == "fail") {
+				$('#search_email_result').html('결과없음.<br>입력한 정보를 확인해주세요.');
+				$('.search_content_input').css('display','none');
+			} else{
+				var email = data.split('@');	//@를 기준으로 분할
+				var length = email[0].length;	//@앞 아이디의 길이
+				var num = Math.round(length*0.3);	//@앞 아이디 글자수의 30% 값
+				var result = email[0].substr(0,length-num);	
+				for(var i=0; i<num;i++){
+					result+='*';
+				}
+				result = result+'@'+email[1];
+				$('#search_email_result').html(result);
+			}
+			$('.search_content_result').css('display','block');
+		},
+		error: function (xhr, status, e) {
+			//alert("에러!" + status);
+			$('#search_email_result').html('결과 없음.<br>입력한 정보를 확인해주세요.');
+			$('.search_content_result').css('display','block');
+			$('.search_content_input').css('display','none');
+		}
+	});
+});
+
+//비밀번호 찾기
+$('.search #search_pw_btn').on('click', function () {
+	var m_email = $('#search_m_email').val();
+	var m_name = $('#search_m_name').val();
+	var m_phone = $('#search_phone1').val()+'-'+$('#search_phone2').val()+'-'+$('#search_phone3').val();
+	if($('#search_m_email_chk').attr('value') == 1){
+		$.ajax({
+			url: "/movie/pw_find",
+			data: { 'm_email':m_email, 'm_name':m_name, 'm_phone':m_phone },
+			dataType: 'text',
+			type: 'get',
+			contentType: 'application/text; charset=UTF-8',
+			success: function (data) {
+				if (data == "success") {
+					alert("입력한 아이디(이메일)로 임시 비밀번호 발송되었습니다. \n메일함을 확인해주세요.");
+					location.href='index';
+				} else{
+					alert("결과가 없습니다.\n입력한 값을 다시 확인해주세요. " + status);
+				}
+			},
+			error: function (xhr, status, e) {
+				alert("입력한 값을 다시 확인해주세요." + status);
+			}
+		});
+	}else{
+		alert("입력한 값을 다시 확인해주세요.");
+	}
+});
+//비밀번호 찾기 - 이메일 input의 값이 변경될 경우 
+$('.search #search_m_email').on('change keyup paste input', function() {
+	var email_rule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	var m_email = $('#search_m_email').val();
+	
+	if(email_rule .test(m_email) == false){
+		$('#email_msg1').html('ㄴ이메일 양식에 맞게 입력해주세요.').css('color', 'black');
+		$('#email_msg1').css('display', '');
+		$('#email_msg1').css('color', 'red');
+		$('#search_m_email_chk').attr('value', '0');
+		
+	}else{
+		$('#email_msg1').css('display', 'none');
+		$('#search_m_email_chk').attr('value', '1');
+	}
+});

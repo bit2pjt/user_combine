@@ -98,5 +98,93 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+/*
+yj : start | member_search_email cs
+*/
+.search_content{
+	width:100%;
+	/* background-color: #00ff003d; */
+	border: 1px solid #c0c0c0;
+	border-radius:10px;
+	margin-bottom:10%;
+	padding:10px;
+}
+.search_content h6{
+	margin-top : 10px;
+}
+.search_content hr{
+	margin: 10px 0;
+}
+.search_content_result{
+	width:100%;
+	border: 1px solid #c0c0c0;
+	border-radius:10px;
+	margin-bottom:5%;
+	display:none;
+}
+.search_content_result hr{
+	margin-bottom : 20px;
+}
+
+/*search의 가운데정렬을 위해 아래의 내용 추가*/
+@media (min-width: 992px){
+	.col-md-6{
+   		float: none;
+    	margin-left:auto;
+    	margin-right:auto;
+	}
+}
+.search{
+	display: block;
+	margin-bottom:10px;
+}
+.search #search_email_result{
+	text-align:center;
+}
+.search h5{
+	display: block;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.search input{
+	display:inline-block;
+	width:200px;
+}
+.search #search_m_email{
+	width:400px;
+}
+.search .phone{
+	width:100px;
+}
+.search button{
+	display:inline-block;
+	background-color: #FF6F61;
+	border: 1px solid #FF6F61;
+	border-radius: 5px;
+	color:#ffffff;
+	font-weight: bold;
+	width:100%;
+	margin-top : 10px;
+}
+@media(max-width:600px){
+	.search input{
+		display:block;
+		width:70%;
+	}
+	.search #search_m_email{
+		width:90%;
+		max-width:400px;
+	}
+	.search .phone{
+		display:inline-block;
+		width:28%;
+	}
+	.search button{
+		display:block;
+		width:100%;
+		margin: 5px 0;
+	}
+}
+
 
 
