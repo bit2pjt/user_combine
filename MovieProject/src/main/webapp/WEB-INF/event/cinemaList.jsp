@@ -86,9 +86,13 @@ function load(id, cnt, btn) {
 	
 	function LocalList() {
 		var selectBrand = $("select[name='local']");
+		var selectLocal = $("select[name='local_2']");
+		var selectLocalName = $("select[name='cname']");
 		var cc_brand = $("#brand option:selected").val();
-		
+		alert(cc_brand);
 		selectBrand.empty();
+		selectLocal.empty();
+		selectLocalName.empty();
 		selectBrand.append("<option value='1'>서울</option>");
 		selectBrand.append("<option value='2'>인천/경기</option>");
 		selectBrand.append("<option value='3'>대전/충청/강원</option>");
@@ -100,6 +104,7 @@ function load(id, cnt, btn) {
 	function LocalName() {
 		var selectBrand = $("select[name='local']");
 		var selectLocal = $("select[name='local_2']");
+		var selectLocalName = $("select[name='cname']");
 		var cc_brand = $("#brand option:selected").val();
 		var cc_localnum = $("#local option:selected").val();
 		
@@ -110,6 +115,7 @@ function load(id, cnt, btn) {
 			dataType: "json",
 			success: function(data) {
 				selectLocal.empty();
+				selectLocalName.empty();
 				$.each(data, function(idx, value) {
 					selectLocal.append("<option value='"+idx+"'>"+ data[idx] + "</option>");
 				})
@@ -147,7 +153,6 @@ function load(id, cnt, btn) {
 		var cc_localnum = $("#local option:selected").val();
 		var cc_local_name = $("#local_2 option:selected").text();
 		var cc_name = $("#cname option:selected").text();
-		alert(cc_name);
 		
 		$.ajax({
 			url: "getCineInfo",
@@ -156,9 +161,12 @@ function load(id, cnt, btn) {
 			type: "GET",
 			dataType: "json",
 			success: function(data) {
-				var dd = JSON.parse(data);
-				alert(dd);
-				alert(dd.cc_code);
+				$(".cinemaName").text(data.cc_NAME);
+				$(".cinemaAdd").text(data.cc_ADDRESS);
+				$("#home").attr("href", data.cc_LINK);
+				$("#home").html("<strong> 홈페이지 이동 </strong>");
+				$(".cinemaPhone").text(data.cc_PHONE + "  |  ");
+				$(".cinemaTheaters").text(data.cc_THEATERS + "관 / " + data.cc_SEATS + "석");
 			},
 			error: function() {
 				alert("에러");
@@ -180,7 +188,7 @@ function load(id, cnt, btn) {
 <select id="brand" name="brand" size="3" onChange="LocalList()">
 	<option value="CGV"> CGV </option>
 	<option value="롯데시네마"> 롯데시네마 </option>
-	<option value=" 메가박스 "> 메가박스 </option>
+	<option value="메가박스"> 메가박스 </option>
 </select>
 
 <select id="local" name="local" size="8"  onChange="LocalName()">
@@ -197,9 +205,10 @@ function load(id, cnt, btn) {
 <!-- 영화관 정보 시작 -->
 <div class="cinema_info" >
 	<div class="cinema_info_text">
-		<span>CGV</span><span>서울 영화관1호</span><br>
-		<span>인천광역시 중구 운서동 3088-3 예스타워 영종 7층</span><br>
-		<a href="/www.naver.com" id="home">홈페이지 이동</a><span>02-444-4444</span><span>|</span><span>상영관 수</span><span>전체 좌석</span>
+		<span class="cinemaName"></span><br>
+		<span class="cinemaAdd"></span><br>
+		<span class="cinemaPhone"></span><span class="cinemaTheaters"></span>
+		<a href="#" id="home" target="_blank"></a>
 		<p style="float: right; background-color: #333; color: #fff; width: 120px;line-height: 80px; padding: 10px; margin-top: 30px; text-align: center; vertical-align: middle;">예매정보</p>
 	</div>
 	

@@ -728,3 +728,13 @@ yj : start | tab - review
 	padding-left: 15px;
 	padding-right: 15px;
 }
+
+.mv-single-hero {
+	background: linear-gradient(45deg, black, transparent);
+	height: 540px;
+}
+
+.tabs ul.tabs-mv {
+	padding: 20px 0;
+	margin-bottom: 30px;
+}

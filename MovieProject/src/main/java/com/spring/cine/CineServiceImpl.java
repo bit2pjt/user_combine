@@ -20,8 +20,7 @@ public class CineServiceImpl implements CineService {
 	@Override
 	public List<String> getLocalName(CineVO cineVO) {
 		CineDAO cineDAO = sqlSession.getMapper(CineDAO.class);
-		String sql = sqlSession.getConfiguration().getMappedStatement("com.spring.cine.CineDAO.getLocalName").getBoundSql(cineVO).getSql();
-		System.out.println(sql);
+		
 		List<CineVO> cineList = cineDAO.getLocalName(cineVO);
 		List<String> list = new ArrayList<String>();
 
@@ -50,8 +49,6 @@ public class CineServiceImpl implements CineService {
 	public CineVO getCineInfo(CineVO cineVO) {
 		CineDAO cineDAO = sqlSession.getMapper(CineDAO.class);
 		CineVO vo = cineDAO.getCineInfo(cineVO);
-		
-		System.out.println("aaaaaaa: " + vo);
 		
 		return vo;
 	}

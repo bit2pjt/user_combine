@@ -25,7 +25,7 @@ public class CineController {
 	public List<String> cineLocal(@RequestParam("cc_brand") String cc_brand, @RequestParam("cc_localnum") int cc_localnum) {
 		CineVO cineVO = new CineVO();
 		cineVO.setCC_BRAND(cc_brand);
-		cineVO.setCC_LOCALNUM(cc_localnum);;
+		cineVO.setCC_LOCALNUM(cc_localnum);
 		
 		List<String> list = cineService.getLocalName(cineVO);
 		return list;

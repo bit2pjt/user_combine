@@ -98,7 +98,7 @@
 							</table>
 						</div>
 						<div class="movie-tabs">
-							<div class="tabs">
+							<div class="tabs" style="margin-top:10px;">
 								<ul class="tab-links tabs-mv">
 									&nbsp;
 									<li class="active"><a href="#story"> 줄거리 </a></li>
@@ -158,9 +158,10 @@
 										</div>
 										<!-- end | 비디오 -->
 										<!-- start | 리뷰 -->
-
+	
 										<div id="review" class="tab review">
 											<div class="row">
+											<div style="display:none;">
 												<h1>3사 평점</h1>
 												<div class="total-movie-rate">
 													<span class="total-movie-rate-span">cgv</span>
@@ -211,6 +212,7 @@
 															class="fas fa-star-half-alt fa-1x"></i> <i
 															class="far fa-star fa-1x"></i>
 													</div>
+												</div>
 												</div>
 												<hr class="mv-user-review-hr">
 												<div class="blockbuster-rate" style="margin-top:20px; margin-bottom:30px;">
