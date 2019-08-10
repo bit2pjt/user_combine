@@ -1,7 +1,8 @@
-INDEX VERSION 1.4+D:\project_bbb\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3696049046.index
-300501010.index
-3643668815.index
-3219526024.index
-391764239.index
+INDEX VERSION 1.4+C:\Users\Bit\Desktop\git_comb_crawling\user_combine\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1942971179.index
+3777980244.index
+2206295011.index
+3149535937.index
 526009883.index
+469988411.index
+629958053.index
