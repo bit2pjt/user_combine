@@ -89,7 +89,7 @@ function load(id, cnt, btn) {
 		var selectLocal = $("select[name='local_2']");
 		var selectLocalName = $("select[name='cname']");
 		var cc_brand = $("#brand option:selected").val();
-		alert(cc_brand);
+
 		selectBrand.empty();
 		selectLocal.empty();
 		selectLocalName.empty();
@@ -161,18 +161,58 @@ function load(id, cnt, btn) {
 			type: "GET",
 			dataType: "json",
 			success: function(data) {
+				
 				$(".cinemaName").text(data.cc_NAME);
 				$(".cinemaAdd").text(data.cc_ADDRESS);
 				$("#home").attr("href", data.cc_LINK);
 				$("#home").html("<strong> 홈페이지 이동 </strong>");
-				$(".cinemaPhone").text(data.cc_PHONE + "  |  ");
-				$(".cinemaTheaters").text(data.cc_THEATERS + "관 / " + data.cc_SEATS + "석");
+				$(".cinemaPhone").text(data.cc_PHONE + "  |  " + data.cc_THEATERS + "관 / " + data.cc_SEATS + "석");
+				//$(".cinemaTheaters").text(data.cc_THEATERS + "관 / " + data.cc_SEATS + "석");
+				
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
+			
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				
+				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+				var mapTypeControl = new kakao.maps.MapTypeControl();
+				
+				map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+				
+				var zoomControl = new kakao.maps.ZoomControl();
+				map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+				
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch(data.cc_ADDRESS, function(result, status) {
+				
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+				
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				
+				        // 결과값으로 받은 위치를 마커로 표시합니다
+				        var marker = new kakao.maps.Marker({
+				            map: map,
+				            position: coords
+				        });
+				
+				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				        map.setCenter(coords);
+				    } 
+				});  
 			},
 			error: function() {
 				alert("에러");
 			}
 		});
 	}
+	
 	
 </script>
 	
@@ -185,6 +225,7 @@ function load(id, cnt, btn) {
 <section class="section">
 <!-- 지역 영화관 선택 -->	
 <form class="cinema_select" name="frm1">
+
 <select id="brand" name="brand" size="3" onChange="LocalList()">
 	<option value="CGV"> CGV </option>
 	<option value="롯데시네마"> 롯데시네마 </option>
@@ -201,20 +242,17 @@ function load(id, cnt, btn) {
 </select>
 
 </form>
-
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f335bb208b909138d6a0bdf1ab13b4ca&libraries=services,clusterer,drawing"></script>
 <!-- 영화관 정보 시작 -->
 <div class="cinema_info" >
-	<div class="cinema_info_text">
-		<span class="cinemaName"></span><br>
-		<span class="cinemaAdd"></span><br>
-		<span class="cinemaPhone"></span><span class="cinemaTheaters"></span>
-		<a href="#" id="home" target="_blank"></a>
-		<p style="float: right; background-color: #333; color: #fff; width: 120px;line-height: 80px; padding: 10px; margin-top: 30px; text-align: center; vertical-align: middle;">예매정보</p>
+	<div class="cinema_info_text" style="margin-top:35px;">
+		<div class="cinemaName" style="font-size:25px; font-weight:bold; margin-bottom:15px;"></div>
+		<div class="cinemaAdd" style="margin-bottom:5px;"></div>
+		<span class="cinemaPhone"></span>
+		<a href="#" id="home" target="_blank" style="margin-left:10px;"></a>
 	</div>
-	
-	<div class="cinema_info_map">
-		
-	</div>
+	<div id="map" style="width:350px;height:250px;"></div>
 	
 </div>
 
