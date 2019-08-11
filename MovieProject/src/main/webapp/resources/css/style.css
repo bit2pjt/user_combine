@@ -5658,8 +5658,9 @@ ul {
 }
 /*movie single hero*/
 .mv-single-hero {
-  background: url('../images/uploads/hero-bg.jpg') no-repeat;
+  /*background: url('../images/uploads/hero-bg.jpg') no-repeat;*/
   height: 598px;
+  
 }
 /*series single hero*/
 .sr-single-hero {
@@ -5935,7 +5936,7 @@ ul {
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
   border-right: 10px solid #dd003f;
-  /* Tam giác phải được đổ màu */
+  /* Tam gi찼c ph梳즜 휃튼沼즓 휃沼� m횪u */
 }
 .social-btn .hover-bnt:hover .hvr-item {
   -moz-opacity: 1;
