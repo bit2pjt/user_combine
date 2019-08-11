@@ -43,5 +43,11 @@
 		and cc_name=#{CC_NAME}
 	</select>
 	
+	 <select id="getUser" parameterType="String" resultType="int">
+		select NVL(id, 0)
+		from member
+		where m_email = #{email, jdbcType=VARCHAR}
+	</select>
+	
 	
 </mapper>	

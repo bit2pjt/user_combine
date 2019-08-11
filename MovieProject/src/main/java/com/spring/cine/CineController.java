@@ -1,8 +1,12 @@
 package com.spring.cine;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +19,14 @@ public class CineController {
 	CineService cineService;
 	
 	@RequestMapping(value="/cinemaList", method=RequestMethod.GET)
-	public String cinemaList(){
-		
+	public String cinemaList(Model model, HttpSession session){
+		String sessionyn = (String)session.getAttribute("m_email");
+		if(sessionyn != null) {
+			int id = cineService.getUser(sessionyn); // 로그인한 사용자의 id값
+			model.addAttribute("id", id);
+		}
+			
+		model.addAttribute("sessionyn",sessionyn);
 		return "event/cinemaList";
 	}
 	

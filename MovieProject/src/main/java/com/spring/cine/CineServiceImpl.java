@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.movie.MovieDAO;
+
 import lombok.extern.log4j.Log4j;
 
 @Service("cineService")
@@ -51,5 +53,12 @@ public class CineServiceImpl implements CineService {
 		CineVO vo = cineDAO.getCineInfo(cineVO);
 		
 		return vo;
+	}
+
+	@Override
+	public int getUser(String email) {
+		CineDAO cineDAO = sqlSession.getMapper(CineDAO.class);
+		int num = cineDAO.getUser(email);
+		return num;
 	}
 }

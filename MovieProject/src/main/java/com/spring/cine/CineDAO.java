@@ -9,4 +9,6 @@ public interface CineDAO {
 	public List<CineVO> getName(CineVO cineVO);
 	
 	public CineVO getCineInfo(CineVO cineVO);
+	
+	public int getUser(String email);
 }

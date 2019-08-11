@@ -14,74 +14,10 @@
 <%@ include file="../header1.jsp"%>
 	<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 	<link rel="stylesheet" href="<c:url value="/resources/css/kgh_style.css"/>">
+	<link rel="stylesheet" href="<c:url value="/resources/css/yj_style.css" />">
 <%@ include file="../header2.jsp" %>
 
 <script>
-	// 탭기능 
-	// tab menu
-	$(function () {	
-	tab('#tab',0);	
-	});
-
-	function tab(e, num){
-    var num = num || 0;
-    var menu = $(e).children();
-    var con = $(e+'_con').children();
-    var select = $(menu).eq(num);
-    var i = num;
-
-    select.addClass('on');
-    con.eq(num).show();
-
-    menu.click(function(){
-        if(select!==null){
-            select.removeClass("on");
-            con.eq(i).hide();
-        }
-
-        select = $(this);	
-        i = $(this).index();
-
-        select.addClass('on');
-        con.eq(i).show();
-    });
-}
-//2번째
-$(document).ready (function () {
-    //탭(ul) onoff
-    $('.jq_tabonoff>.jq_cont').children().css('display', 'none');
-    $('.jq_tabonoff>.jq_cont div:first-child').css('display', 'block');
-    $('.jq_tabonoff>.jq_tab li:first-child').addClass('on');
-    $('.jq_tabonoff').delegate('.jq_tab>li', 'click', function() {
-        var index = $(this).parent().children().index(this);
-        $(this).siblings().removeClass();
-        $(this).addClass('on');
-        $(this).parent().next('.jq_cont').children().hide().eq(index).show();
-    });
-});
-
-// 더보기 제이커리
-$(window).on('load', function () {
-    load('#js-load', '5');
-    $("#js-btn-wrap .button").on("click", function () {
-        load('#js-load', '5', '#js-btn-wrap');
-    })
-});
-
- 
-function load(id, cnt, btn) {
-    var girls_list = id + " .js-load:not(.active)";
-    var girls_length = $(girls_list).length;
-    var girls_total_cnt;
-    if (cnt < girls_length) {
-        girls_total_cnt = cnt;
-    } else {
-        girls_total_cnt = girls_length;
-        $('.button').hide()
-    }
-    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-}
-
 	var select1 = $("select[name='local']");
 	
 	function LocalList() {
@@ -161,7 +97,6 @@ function load(id, cnt, btn) {
 			type: "GET",
 			dataType: "json",
 			success: function(data) {
-				
 				$(".cinemaName").text(data.cc_NAME);
 				$(".cinemaAdd").text(data.cc_ADDRESS);
 				$("#home").attr("href", data.cc_LINK);
@@ -206,6 +141,346 @@ function load(id, cnt, btn) {
 				        map.setCenter(coords);
 				    } 
 				});  
+				
+				var replyPageNum = 1;
+			    var cc_code = data.cc_CODE;
+			    //getReplies();
+			    getRepliesPaging(replyPageNum);
+				
+			    $("#btn-hjs").on("click", function () {
+			    	var session = "${sessionyn}";
+			        var replyText = $("#newReplyText");
+			        var cr_content = replyText.val();
+			        var cr_score = $(".review-write-star input[type='radio']:checked").val();
+			        
+			        if( session == "") {
+					 	alert("로그인 하셔야 이용하실수 있습니다.");
+					 	location.href="index";
+					 	return false;
+					}
+			        
+			        if(cc_content == "") {
+			        	alert("댓글 내용을 입력해주세요!");
+			        	return false;
+			        }
+			        
+			       
+			        if(typeof(cc_score) == "undefined") {
+			        	alert("별점을 선택해주세요!");
+			        	return false;
+			        }
+			        
+			        $.ajax({
+			            type : "post",
+			            url : "/movie/replies/cine/",
+			            headers : {
+			                "Content-type" : "application/json",
+			                "X-HTTP-Method-Override" : "POST"
+			            },
+			            dataType : "text",
+			            data : JSON.stringify({
+			            	cc_code : cc_code,
+			            	cr_content : cr_content,
+			            	cr_score : cr_score
+			            }),
+			            success : function (result) {
+			                if (result == "regSuccess") {
+			                    alert("댓글 등록 완료!");
+			                }
+			                //getReplies();
+			                getRepliesPaging(replyPageNum);
+			                replyText.val("");
+			                $(".review-write-star input[type='radio']").prop("checked", false);
+			            }
+			        });
+			    });
+				
+			    $("#replies").on("click", ".replyLi button", function () { // 댓글의 수정 버튼 클릭시
+			        var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+			        var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
+			        var replyText = reply.find(".replyText").text(); //댓글의 내용
+			        $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
+			        $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
+			    });
+			    
+			    
+			    $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
+			    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+			        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
+			        var present = $(this).parent().find(".ws-btn-thumbs-up");
+			        var session = "${sessionyn}";
+			        //var bf_rno = $("#replies > li");
+			        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+			     	if( session == "") {
+			 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+			 		 	location.href="index";
+			 		 	return false;
+			 		 }
+			 		$.ajax({
+			 			url:"MovieReplyReco",
+			 			data: {mr_code: mr_code, type: 1},
+			 			dataType: "text",
+			 			type:"post",
+			 			success: function(data) {
+			 				if(data == "fail") {
+			 					alert("이미 추천/비추천을 누르셨습니다.");
+			 					return false;
+			 				}else {
+			 					present.html("<i class='far fa-thumbs-up' aria-hidden='true' ></i>  " + data);
+			 				}
+			 			},
+			 			error: function() {
+			 				alert("에러");
+			 			}
+			 		});
+			 			
+				});
+			    
+			    $("#replies").on("click", ".replyLi .ws-btn-thumbs-down", function () { // 댓글의 수정 버튼 클릭시
+			    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+			        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
+			        var present = $(this).parent().find(".ws-btn-thumbs-down");
+			        var session = "${sessionyn}";
+			        //var bf_rno = $("#replies > li");
+			        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+			     	if( session == "") {
+			 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+			 		 	location.href="index";
+			 		 	return false;
+			 		 }
+			 		$.ajax({
+			 			url:"MovieReplyReco",
+			 			data: {mr_code: mr_code, type: 0},
+			 			dataType: "text",
+			 			type:"post",
+			 			success: function(data) {
+			 				if(data == "fail") {
+			 					alert("이미 추천/비추천을 누르셨습니다.");
+			 					return false;
+			 				}else {
+			 					present.html("<i class='far fa-thumbs-down' aria-hidden='true' ></i> " + data);
+			 				}
+			 			},
+			 			error: function() {
+			 				alert("에러");
+			 			}
+			 		});
+			 			
+				});
+			    
+			    $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
+			    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+			        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
+			        var present = $(this).parent().find(".ws-btn-warning");
+			        var session = "${sessionyn}";
+			        //var bf_rno = $("#replies > li");
+			        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+			     	if( session == "") {
+			 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+			 		 	location.href="index";
+			 		 	return false;
+			 		 }
+			     	
+			 		$.ajax({
+			 			url:"MovieReplyWarn",
+			 			data: {mr_code: mr_code},
+			 			dataType: "text",
+			 			type:"post",
+			 			success: function(data) {
+			 				if(data == "success")
+									alert("신고 되었습니다.");
+								else
+									alert("이미 신고 하셨습니다.");
+			 			},
+			 			error: function() {
+			 				alert("에러");
+			 			}
+			 		});
+			 			
+				});
+				
+			    $(".modalDelBtn").on("click", function () {
+			        var cr_code = $("#replyNo").val();
+			        $.ajax({
+			            type : "delete",
+			            url : "/movie/replies/cine/" + cr_code,
+			            headers : {
+			                "Content-type" : "application/json",
+			                "X-HTTP-Method-Override" : "DELETE"
+			            },
+			            dataType : "text",
+			            success : function (result) {
+			                console.log("result : " + result);
+			                if (result == "delSuccess") {
+			                	//getReplies();
+			                	getRepliesPaging(replyPageNum);
+			                    alert("댓글 삭제 완료!");
+			                    /*
+			                    $("#modifyModal").modal("hide");
+			                    
+			                    $("#modifyModal").removeClass("in");
+			                    $(".modal-backdrop").remove();
+			                    $("body").removeClass("modal-open");*/
+			                   // $(body)
+			                    
+			                   
+			                }
+			            }
+			        });
+			    });
+				
+			    $(".modalModBtn").on("click", function () {
+			        var reply = $(this).parent().parent();
+			        var cr_code = reply.find("#replyNo").val();
+			        var cr_content = reply.find("#replyText").val();
+			        $.ajax({
+			            type : "put",
+			            url : "/movie/replies/cine/" + cr_code,
+			            headers : {
+			                "Content-type" : "application/json",
+			                "X-HTTP-Method-Override" : "PUT"
+			            },
+			            data : JSON.stringify(
+			                {cr_content : cr_content}
+			            ),
+			            dataType : "text",
+			            success : function (result) {
+			                console.log("result : " + result);
+			                if (result == "modSuccess") {
+			                	//getReplies();
+			                	getRepliesPaging(replyPageNum);
+			                    alert("댓글 수정 완료!");
+			                    $("#modifyModal").removeClass("in");
+			                    $(".modal-backdrop").remove();
+			                    $("body").removeClass("modal-open");
+			                }
+			            }
+			        });
+			    });
+			    
+			    
+				var id = "${id}";	
+				var arr = [];
+				arr[0] = "<i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; 	//0
+				arr[1] = "<i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //1
+				arr[2] = "<i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //2
+				arr[3] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//3
+				arr[4] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//4
+				arr[5] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//5
+				arr[6] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//6
+				arr[7] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i>";//7
+				arr[8] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//8
+				arr[9] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i>";//9
+				arr[10] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i>";//10
+				
+				var arr1 = [];
+				arr1[0] = "<i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; 	//0
+				arr1[1] = "<i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; //1
+				arr1[2] = "<i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; //2
+				arr1[3] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//3
+				arr1[4] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//4
+				arr1[5] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//5
+				arr1[6] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//6
+				arr1[7] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i>";//7
+				arr1[8] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//8
+				arr1[9] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i>";//9
+				arr1[10] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i>";//10
+				
+			    function getRepliesPaging(page) {
+			        $.getJSON("/movie/replies/cine/" + cc_code + "/" + page, function (data) {
+			        	var scoreTotal = data.scoreTotal;
+						var total = data.pageMaker.totalCount;
+						var result = 0;
+						
+						if(total != 0)
+							result = (scoreTotal/total).toFixed(1);
+						
+						var str = "";
+						if(data.replies == "") {
+			           		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
+						}else {
+			                $(data.replies).each(function () {
+			                	if(this.id != id) {
+				                	str += "<li data-replyNo='" + this.cc_code + "' class='replyLi'>"
+					        	   		+	"<div class='mv-user-review-item' style='width:100%;'>"
+					        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
+					        			+	arr[this.cr_score] + "<span id='star-score'>" + this.cr_score + "</span></div>" 
+					        			+	"<div class='user-info' style='width:75%; margin-left:30px;'>"
+					        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.cr_write_date + "</strong></span> <br>"
+					        			+	"<span class='replyText' id='replyContent'>" + this.cr_content + "</span></p>"
+					        			+	"<div style='float:right; margin-top:10px;'>"
+					        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true'></i> "+ this.cr_like +"</button>"
+					        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn' style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.cr_dislike + "</button>"
+					        			+	"<button class='ws-btn-warning' id='ws-cnt-warning' style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+					        			+	"</div></div></div></li>";
+			                	}else {
+			                		str += "<li data-replyNo='" + this.cc_code + "' class='replyLi'>"
+				        	   		+	"<div class='mv-user-review-item' align='center' style='width:100%;'>"
+				        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
+				        			+	arr[this.cr_score] + "<span id='star-score'>" + this.cr_score + "</span></div>" 
+				        			+	"<div class='user-info' style='width:75%; margin-left:30px;'>"
+				        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.cr_write_date + "</strong></span> <br>"
+				        			+	"<span class='replyText' id='replyContent'>" + this.cr_content + "</span></p>"
+				        			+	"<div style='float:right; margin-top:10px;'>"
+				        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true' ></i> "+ this.cr_like +"</button>"
+				        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn'style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.cr_dislike + "</button>"
+				        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+				        			+	"<button type='button' id='btn-hjs-2' style='margin-left:10px;' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal' style='float:right;''>댓글 수정</button></div>"
+				        			+	"</div></div></li>";
+			                	}
+			                   });
+			             }
+						
+						if(result == 10)
+							$(".rate-star").html(arr1[10]);
+						else if(result >= 9.0 && result <= 9.9)
+							$(".rate-star").html(arr1[9]);
+						else if(result >= 8.0 && result <= 8.9)
+							$(".rate-star").html(arr1[8]);
+						else if(result >= 7.0 && result <= 7.9)
+							$(".rate-star").html(arr1[7]);
+						else if(result >= 6.0 && result <= 6.9)
+							$(".rate-star").html(arr1[6]);
+						else if(result >= 5.0 && result <= 5.9)
+							$(".rate-star").html(arr1[5]);
+						else if(result >= 4.0 && result <= 4.9)
+							$(".rate-star").html(arr1[4]);
+						else if(result >= 3.0 && result <= 3.9)
+							$(".rate-star").html(arr1[3]);
+						else if(result >= 2.0 && result <= 2.9)
+							$(".rate-star").html(arr1[2]);
+						else if(result >= 0.1 && result < 2)
+							$(".rate-star").html(arr1[1]);
+						else
+							$(".rate-star").html(arr1[0]);
+						
+						$("#replies").html(str);
+						$(".rv").html(total + " Reviews");
+						$(".scorediv").html(result);
+						printPageNumbers(data.pageMaker);
+			        });
+			    }
+				
+			    function printPageNumbers(pageMaker) {
+			        var str = "";
+			        if (pageMaker.prev) {
+			            str += "<li><a href='"+(pageMaker.startPage-1)+"'>이전</a></li>";
+			        }
+			        for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
+			            var strCalss = pageMaker.criteria.page == i ? 'class=active' : '';
+			            str += "<li "+strCalss+"><a href='"+i+"'>"+i+"</a></li>";
+			        }
+			        if (pageMaker.next) {
+			            str += "<li><a href='"+(pageMaker.endPage + 1)+"'>다음</a></li>";
+			        }
+			        $(".pagination-sm").html(str);
+			    }
+			    
+			    $(".pagination").on("click", "li a", function (event) {
+			        event.preventDefault();
+			        replyPageNum = $(this).attr("href");
+			        getRepliesPaging(replyPageNum);
+			    });
 			},
 			error: function() {
 				alert("에러");
@@ -219,9 +494,8 @@ function load(id, cnt, btn) {
 
 </head>
 <body>
-
 <!-- Start | Section -->
-<div style="margin-top:150px;">
+<div class="buster-light" style="margin-top:150px;">
 <section class="section">
 <!-- 지역 영화관 선택 -->	
 <form class="cinema_select" name="frm1">
@@ -246,6 +520,7 @@ function load(id, cnt, btn) {
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f335bb208b909138d6a0bdf1ab13b4ca&libraries=services,clusterer,drawing"></script>
 <!-- 영화관 정보 시작 -->
 <div class="cinema_info" >
+	<input type="hidden" id="cinecode"value=""/>
 	<div class="cinema_info_text" style="margin-top:35px;">
 		<div class="cinemaName" style="font-size:25px; font-weight:bold; margin-bottom:15px;"></div>
 		<div class="cinemaAdd" style="margin-bottom:5px;"></div>
@@ -260,44 +535,509 @@ function load(id, cnt, btn) {
 
 
 <!-- 극장 정보 탭  시작 -->
-<div class="cinema_tab">
-	<div class="tab-wrap">
-    <ul>
-        <li><a href="#tab1">tab1</a></li>
-        <li><a href="#tab2">tab2</a></li>
-    </ul>
+<div id="review" class="review">
+											<div style="display:none;">
+												<h1>3사 평점</h1>
+												<div class="total-movie-rate">
+													<span class="total-movie-rate-span">cgv</span>
+													<div class="total-rate">
+														<!-- <i class="fas fa-star fa-3x"></i> -->
+														<p>
+															<span>8.5</span> /10
+														</p>
+													</div>
+													<div class="total-rate-star" width="600px">
+														<i class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star-half-alt fa-1x"></i> <i
+															class="far fa-star fa-1x"></i>
+													</div>
+												</div>
+												<!-- lotte cinema -->
+												<div class="total-movie-rate">
+													<span class="total-movie-rate-span">롯데시네마</span>
+													<div class="total-rate">
+														<!-- <i class="fas fa-star fa-3x"></i> -->
+														<p>
+															<span>8.5</span> /10
+														</p>
+													</div>
+													<div class="total-rate-star" width="600px">
+														<i class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star-half-alt fa-1x"></i> <i
+															class="far fa-star fa-1x"></i>
+													</div>
+												</div>
+												<!-- megabox -->
+												<div class="total-movie-rate">
+													<span class="total-movie-rate-span">메가박스</span>
+													<div class="total-rate">
+														<!-- <i class="fas fa-star fa-3x"></i> -->
+														<p>
+															<span>8.5</span> /10
+														</p>
+													</div>
+													<div class="total-rate-star" width="600px">
+														<i class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star fa-1x"></i> <i
+															class="fas fa-star-half-alt fa-1x"></i> <i
+															class="far fa-star fa-1x"></i>
+													</div>
+												</div>
+												</div>
+												<hr class="mv-user-review-hr">
+												<div class="blockbuster-rate" style="margin-top:20px; margin-bottom:30px;">
+													<h1 style="text-align:left;">블록버스터 평점</h1>
+													<div class="movie-rate" style="margin:auto;">
+														<div class="rate">
+															<!-- <i class="fas fa-star fa-3x"></i> -->
+															<p>
+																<span class="scorediv"> 0 </span> <span style="font-size:15px;">/10</span><br> 
+																<span class="rv"></span>
+															</p>
+														</div>
+														<div class="rate-star" width="600px">
+															
+														</div>
+													</div>
+												</div>
 
-    <div>
-        <article id="tab1">
-            <h1>극장정보</h1>
-            <div class="cinema_traffic">
-            	<div class="cinema_traffic_info" style="">
-            		<!-- 교통 / 주차 정보 데이터 -->
-            		<p>- 교통편</p>
-            		<p style="width: 1200px; height: 300px; border: 1px solid:#333;">교통편 설명</p>
-            		<p>- 주차</p>
-            		<p style="width: 1200px; height: 300px; border: 1px solid:#333;">교통편 설명</p>
-            	</div>
-            </div>
+												<hr>
 
-        </article>
-        <article id="tab2">
-            <h1>리뷰</h1>
-           	<div class="cinema_review">
-           		<div class="cinema_review_table">
-           			<p>영화 리스트 넣으면됨~</p>
-           		</div>
-           	</div>
-        </article>
-    </div>
-</div>
-</div>
+												<div class="review-write">
+													<h3>리뷰 등록</h3>
+													<div class="review-write-star">
+														<fieldset class="rating">
+															<input type="radio" id="star5" name="rating" value="10" /> <label class="full" for="star5" title="10"></label> 
+															<input type="radio" id="star4half" name="rating" value="9"/> <label class="half" for="star4half" title="9"></label> 
+															<input type="radio" id="star4" name="rating" value="8"/> <label class="full" for="star4" title="8"></label> 
+															<input type="radio" id="star3half" name="rating" value="7"/><label class="half" for="star3half" title="7"></label> 
+															<input type="radio" id="star3" name="rating" value="6"/> <label class="full" for="star3" title="6"></label> 
+															<input type="radio" id="star2half" name="rating" value="5" /> <label class="half" for="star2half" title="5"></label> 
+															<input type="radio" id="star2" name="rating" value="4"/> <label class="full" for="star2" title="4"></label> 
+															<input type="radio" id="star1half" name="rating" value="3"/><label class="half" for="star1half" title="3"></label> 
+															<input type="radio" id="star1" name="rating" value="2"/><label class="full" for="star1" title="2"></label> 
+															<input type="radio" id="starhalf" name="rating" value="1"/><label class="half" for="starhalf" title="1"></label>
+														</fieldset>
+													</div>
+													<div class="review-write-input">
+														<textarea rows="3" id="newReplyText" maxlength="300" name="replyText" placeholder="댓글 내용을 입력해주세요"></textarea>
+													</div>
+													<div class="review-write-button">
+														<button class="btn" id="btn-hjs">등록</button>
+													</div>
+													<hr class="mv-user-review-hr">
+												</div>
+												
+												<div class="content-wrapper">		
+													<section>
+											            <div class="modal fade" id="modifyModal" role="dialog">
+											                <div class="modal-dialog" style="margin-top:100px;">
+											                    <div class="modal-content">
+											                        <div class="modal-header">
+											                            <h4 class="modal-title">댓글 수정창</h4>
+											                        </div>
+											                        
+											                        <div class="modal-body">
+												                        <div class="form-group">
+												                            <label for="replyNo" style="margin-bottom:10px;"><strong>댓글 번호</strong></label>
+												                            <input class="form-control" id="replyNo" name="replyNo" readonly>
+												                        </div>
+											                        
+											                            <div class="form-group">
+											                                <label for="replyText" style="margin-bottom:10px;"><strong>댓글 내용</strong></label>
+											                                <textarea class="form-control" id="replyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; height:100px;"></textarea>
+											                            </div>
+											
+											                        </div>
+											                        
+											                        <div class="modal-footer">
+											                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+											                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn">수정</button>
+											                            <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
+											                        </div>
+											                    </div>
+											                </div>
+											            </div>
+														
+											                <div class="box box-primary">
+																<div class="box-footer">
+											                        <ul id="replies">
+											
+											                        </ul>
+											                    </div>
+											
+											                    <div class="box-footer">
+											                        <div class="text-center">
+											                            <ul class="pagination pagination-sm no-margin">
+											
+											                            </ul>
+											                        </div>
+											                   </div>
+											                </div>
+											        </section>
+											     </div>	
+											</div>
 <!-- 극장 정보 탭  끝 -->
 
 </section>
 </div>
 <!-- END | Section -->
-
+<script>
+	var replyPageNum = 1;
+    var cc_code = $("#cinecode").val();
+    //getReplies();
+    getRepliesPaging(replyPageNum);
+	
+    $("#btn-hjs").on("click", function () {
+    	var session = "${sessionyn}";
+        var replyText = $("#newReplyText");
+        var cc_content = replyText.val();
+        var cc_score = $(".review-write-star input[type='radio']:checked").val();
+        
+        if( session == "") {
+		 	alert("로그인 하셔야 이용하실수 있습니다.");
+		 	location.href="index";
+		 	return false;
+		}
+        
+        if(cc_content == "") {
+        	alert("댓글 내용을 입력해주세요!");
+        	return false;
+        }
+        
+       
+        if(typeof(cc_score) == "undefined") {
+        	alert("별점을 선택해주세요!");
+        	return false;
+        }
+        
+        $.ajax({
+            type : "post",
+            url : "/movie/replies/cine/",
+            headers : {
+                "Content-type" : "application/json",
+                "X-HTTP-Method-Override" : "POST"
+            },
+            dataType : "text",
+            data : JSON.stringify({
+            	cc_code : cc_code,
+            	cc_content : cc_content,
+            	cc_score : cc_score
+            }),
+            success : function (result) {
+                if (result == "regSuccess") {
+                    alert("댓글 등록 완료!");
+                }
+                //getReplies();
+                getRepliesPaging(replyPageNum);
+                replyText.val("");
+                $(".review-write-star input[type='radio']").prop("checked", false);
+            }
+        });
+    });
+	
+    $("#replies").on("click", ".replyLi button", function () { // 댓글의 수정 버튼 클릭시
+        var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+        var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
+        var replyText = reply.find(".replyText").text(); //댓글의 내용
+        $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
+        $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
+    });
+    
+    
+    $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-thumbs-up");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+ 		$.ajax({
+ 			url:"MovieReplyReco",
+ 			data: {mr_code: mr_code, type: 1},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "fail") {
+ 					alert("이미 추천/비추천을 누르셨습니다.");
+ 					return false;
+ 				}else {
+ 					present.html("<i class='far fa-thumbs-up' aria-hidden='true' ></i>  " + data);
+ 				}
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
+    
+    $("#replies").on("click", ".replyLi .ws-btn-thumbs-down", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-thumbs-down");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+ 		$.ajax({
+ 			url:"MovieReplyReco",
+ 			data: {mr_code: mr_code, type: 0},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "fail") {
+ 					alert("이미 추천/비추천을 누르셨습니다.");
+ 					return false;
+ 				}else {
+ 					present.html("<i class='far fa-thumbs-down' aria-hidden='true' ></i> " + data);
+ 				}
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
+    
+    $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+        var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-warning");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+     	
+ 		$.ajax({
+ 			url:"MovieReplyWarn",
+ 			data: {mr_code: mr_code},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "success")
+						alert("신고 되었습니다.");
+					else
+						alert("이미 신고 하셨습니다.");
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
+	
+    $(".modalDelBtn").on("click", function () {
+        var mr_code = $("#replyNo").val();
+        $.ajax({
+            type : "delete",
+            url : "/movie/replies/info/" + mr_code,
+            headers : {
+                "Content-type" : "application/json",
+                "X-HTTP-Method-Override" : "DELETE"
+            },
+            dataType : "text",
+            success : function (result) {
+                console.log("result : " + result);
+                if (result == "delSuccess") {
+                	//getReplies();
+                	getRepliesPaging(replyPageNum);
+                    alert("댓글 삭제 완료!");
+                    /*
+                    $("#modifyModal").modal("hide");
+                    
+                    $("#modifyModal").removeClass("in");
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");*/
+                   // $(body)
+                    
+                   
+                }
+            }
+        });
+    });
+	
+    $(".modalModBtn").on("click", function () {
+        var reply = $(this).parent().parent();
+        var mr_code = reply.find("#replyNo").val();
+        var mr_content = reply.find("#replyText").val();
+        $.ajax({
+            type : "put",
+            url : "/movie/replies/info/" + mr_code,
+            headers : {
+                "Content-type" : "application/json",
+                "X-HTTP-Method-Override" : "PUT"
+            },
+            data : JSON.stringify(
+                {mr_content : mr_content}
+            ),
+            dataType : "text",
+            success : function (result) {
+                console.log("result : " + result);
+                if (result == "modSuccess") {
+                	//getReplies();
+                	getRepliesPaging(replyPageNum);
+                    alert("댓글 수정 완료!");
+                    $("#modifyModal").removeClass("in");
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");
+                }
+            }
+        });
+    });
+    
+    
+	//var id = "${id}";	
+	var arr = [];
+	arr[0] = "<i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; 	//0
+	arr[1] = "<i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //1
+	arr[2] = "<i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>"; //2
+	arr[3] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//3
+	arr[4] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//4
+	arr[5] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//5
+	arr[6] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//6
+	arr[7] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-1x'></i>";//7
+	arr[8] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='far fa-star fa-1x'></i>";//8
+	arr[9] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star-half-alt fa-1x'></i>";//9
+	arr[10] = "<i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i><i class='fas fa-star fa-1x'></i>";//10
+	
+	var arr1 = [];
+	arr1[0] = "<i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; 	//0
+	arr1[1] = "<i class='fas fa-star-half-alt fa-1x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; //1
+	arr1[2] = "<i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>"; //2
+	arr1[3] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//3
+	arr1[4] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//4
+	arr1[5] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//5
+	arr1[6] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//6
+	arr1[7] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i><i class='far fa-star fa-3x'></i>";//7
+	arr1[8] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='far fa-star fa-3x'></i>";//8
+	arr1[9] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star-half-alt fa-3x'></i>";//9
+	arr1[10] = "<i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i><i class='fas fa-star fa-3x'></i>";//10
+	
+    function getRepliesPaging(page) {
+        $.getJSON("/movie/replies/cine/" + cc_code + "/" + page, function (data) {
+        	alert(cc_code);
+        	var scoreTotal = data.scoreTotal;
+			var total = data.pageMaker.totalCount;
+			var result = 0;
+			
+			if(total != 0)
+				result = (scoreTotal/total).toFixed(1);
+			
+			var str = "";
+			if(data.replies == "") {
+           		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
+			}else {
+                $(data.replies).each(function () {
+                	if(this.id != id) {
+	                	str += "<li data-replyNo='" + this.cc_code + "' class='replyLi'>"
+		        	   		+	"<div class='mv-user-review-item' style='width:100%;'>"
+		        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
+		        			+	arr[this.mr_score] + "<span id='star-score'>" + this.cc_score + "</span></div>" 
+		        			+	"<div class='user-info' style='width:75%; margin-left:30px;'>"
+		        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.mr_write_date + "</strong></span> <br>"
+		        			+	"<span class='replyText' id='replyContent'>" + this.cc_content + "</span></p>"
+		        			+	"<div style='float:right; margin-top:10px;'>"
+		        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true'></i> "+ this.mr_like +"</button>"
+		        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn' style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.mr_dislike + "</button>"
+		        			+	"<button class='ws-btn-warning' id='ws-cnt-warning' style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+		        			+	"</div></div></div></li>";
+                	}else {
+                		str += "<li data-replyNo='" + this.cc_code + "' class='replyLi'>"
+	        	   		+	"<div class='mv-user-review-item' align='center' style='width:100%;'>"
+	        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
+	        			+	arr[this.cc_score] + "<span id='star-score'>" + this.cc_score + "</span></div>" 
+	        			+	"<div class='user-info' style='width:75%; margin-left:30px;'>"
+	        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.mr_write_date + "</strong></span> <br>"
+	        			+	"<span class='replyText' id='replyContent'>" + this.cc_content + "</span></p>"
+	        			+	"<div style='float:right; margin-top:10px;'>"
+	        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true' ></i> "+ this.mr_like +"</button>"
+	        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn'style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.mr_dislike + "</button>"
+	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+	        			+	"<button type='button' id='btn-hjs-2' style='margin-left:10px;' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal' style='float:right;''>댓글 수정</button></div>"
+	        			+	"</div></div></li>";
+                	}
+                   });
+             }
+			
+			if(result == 10)
+				$(".rate-star").html(arr1[10]);
+			else if(result >= 9.0 && result <= 9.9)
+				$(".rate-star").html(arr1[9]);
+			else if(result >= 8.0 && result <= 8.9)
+				$(".rate-star").html(arr1[8]);
+			else if(result >= 7.0 && result <= 7.9)
+				$(".rate-star").html(arr1[7]);
+			else if(result >= 6.0 && result <= 6.9)
+				$(".rate-star").html(arr1[6]);
+			else if(result >= 5.0 && result <= 5.9)
+				$(".rate-star").html(arr1[5]);
+			else if(result >= 4.0 && result <= 4.9)
+				$(".rate-star").html(arr1[4]);
+			else if(result >= 3.0 && result <= 3.9)
+				$(".rate-star").html(arr1[3]);
+			else if(result >= 2.0 && result <= 2.9)
+				$(".rate-star").html(arr1[2]);
+			else if(result >= 0.1 && result < 2)
+				$(".rate-star").html(arr1[1]);
+			else
+				$(".rate-star").html(arr1[0]);
+			
+			$("#replies").html(str);
+			$(".rv").html(total + " Reviews");
+			$(".scorediv").html(result);
+			printPageNumbers(data.pageMaker);
+        });
+    }
+	
+    function printPageNumbers(pageMaker) {
+        var str = "";
+        if (pageMaker.prev) {
+            str += "<li><a href='"+(pageMaker.startPage-1)+"'>이전</a></li>";
+        }
+        for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
+            var strCalss = pageMaker.criteria.page == i ? 'class=active' : '';
+            str += "<li "+strCalss+"><a href='"+i+"'>"+i+"</a></li>";
+        }
+        if (pageMaker.next) {
+            str += "<li><a href='"+(pageMaker.endPage + 1)+"'>다음</a></li>";
+        }
+        $(".pagination-sm").html(str);
+    }
+    
+    $(".pagination").on("click", "li a", function (event) {
+        event.preventDefault();
+        replyPageNum = $(this).attr("href");
+        getRepliesPaging(replyPageNum);
+    });
+    
+	var formObj = $("form[role='form']");
+ 	
+ 	$(".listBtn").on("click", function () {
+        formObj.attr("action", "/movie/boardFreeListP");
+        formObj.attr("method", "get");
+        formObj.submit();
+    });
+	
+</script>
 
 <%@ include file="../footer1.jsp"%>
 	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
