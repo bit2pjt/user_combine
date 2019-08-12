@@ -31,7 +31,6 @@
 	href="<c:url value="/resources/css/modifyplugins.css" />">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/yj_style.css" />">
-
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="./header2.jsp" %>
 

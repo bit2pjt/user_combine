@@ -8,6 +8,10 @@ import com.spring.paging.SearchCriteria;
 
 interface BoardFreeService {
 
+	List<BoardFreeVO> boardListDaily();
+	List<BoardFreeVO> boardListWeekly();
+	List<BoardFreeVO> boardListMonthly();
+	
 	List<BoardFreeVO> listAll();
 	
 	List<BoardFreeVO> listCriteria(Criteria criteria);

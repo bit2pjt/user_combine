@@ -424,5 +424,26 @@ public class BoardFreeServiceImpl implements BoardFreeService {
     	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
     	return boardDAO.countSearchedArticles(searchCriteria);
     }
+    
+    @Override
+    public List<BoardFreeVO> boardListDaily() {
+    	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+    	List<BoardFreeVO> result = boardDAO.boardListDaily();
+    	return result;
+    }
+    
+    @Override
+    public List<BoardFreeVO> boardListWeekly() {
+    	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+    	List<BoardFreeVO> result = boardDAO.boardListWeekly();
+    	return result;
+    }
+    
+    @Override
+    public List<BoardFreeVO> boardListMonthly() {
+    	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+    	List<BoardFreeVO> result = boardDAO.boardListMonthly();
+    	return result;
+    }
 
 }

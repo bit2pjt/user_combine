@@ -101,8 +101,6 @@
 	
 	
 	<select id="userNickName" parameterType="int" resultType="String">
-		select m_nickname
-		from member
-		where id = #{id}
+		select m_nickname from member where id = #{id}
 	</select>
 </mapper>

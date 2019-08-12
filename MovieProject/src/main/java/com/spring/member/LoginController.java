@@ -90,38 +90,21 @@ public class LoginController {
 					session.setAttribute("m_email", email);
 					session.setAttribute("id", memberService.getId(email, pw));
 				}else {
-					response.setContentType("text/html; charset=utf-8");
-					PrintWriter out = response.getWriter();
-					out.println("<script>");
-					out.println("alert('탈퇴한 회원입니다. \\n문의사항이 있을 경우 관리자에게 문의해주세요. ');");
-					out.println("history.go(-1);");
-					out.println("</script>");
+					request.setAttribute("msg", "delete");
+					//model.addAttribute("msg","delete");
 				}
-				
 			}else {
-				response.setContentType("text/html; charset=utf-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('메일인증을 진행해주세요. \\n인증이 안될경우 관리자에게 문의해주세요.');");
-				out.println("history.go(-1);");
-				out.println("</script>");
+				request.setAttribute("msg", "cert");
+				//model.addAttribute("msg","cert");
 			}
 		}else if (check == -1) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('비밀번호가 다릅니다. 확인해주세요!');");
-			out.println("history.go(-1);");
-			out.println("</script>");
+			request.setAttribute("msg", "pw");
+			//model.addAttribute("msg","pw");
 		} else {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('아이디 혹은 비밀번호가 다릅니다. 확인해주세요!');");
-			out.println("history.go(-1);");
-			out.println("</script>");
+			request.setAttribute("msg", "idpw");
+			//model.addAttribute("msg","idpw");
 		}
-		return "redirect:/index";
+		return "member/login_alert";
 	}
 
 	//로그아웃 액션
@@ -157,7 +140,7 @@ public class LoginController {
 			out.println("alert('회원가입이 완료되었습니다.\\n가입한 메일로 인증메일이 발송됩니다.\\n메일함을 확인해주세요.\\n10분내에 메일을 받지못했을 경우 관리자에게 문의해주세요.');");
 			out.println("</script>");
 		}catch (Exception e) {
-			response.setContentType("text/html; charset=utf-8");
+			//response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('회원가입에 실패했습니다. 관리자에게 문의해주세요.');");
