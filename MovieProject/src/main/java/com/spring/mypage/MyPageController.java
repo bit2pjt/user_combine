@@ -29,11 +29,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.member.MemberVO;
+import com.spring.paging.Criteria;
+import com.spring.paging.PageMaker;
+import com.spring.paging.SearchCriteria;
 
 @Controller
 public class MyPageController {
@@ -219,6 +223,7 @@ public class MyPageController {
       return "redirect:/";
    }
 
+   /*
    // 마이페이지 - 1:1 문의내역 리스트
    @RequestMapping(value = "/one_list", method = RequestMethod.GET)
    public String oneList(HttpServletRequest request, HttpSession session) {
@@ -232,15 +237,47 @@ public class MyPageController {
       String m_name = myPageService.getMemberName(m_email); // System.out.println("=============MyPageController.java=====================
                                                 // m_name : " + m_name);
       request.setAttribute("m_name", m_name);
-
+      int id = myPageService.getMemberId(m_email); // System.out.println("=============MyPageController.java=====================
+      // id : " + id);
+      
       // 1:1 문의내역
       List<OneVO> qnaList = null;
-      int id = myPageService.getMemberId(m_email); // System.out.println("=============MyPageController.java=====================
-                                          // id : " + id);
+      
       qnaList = myPageService.getQnaList(id);
       request.setAttribute("qnaList", qnaList);
       return "mypage/one_list";
    }
+   */
+   
+   // 마이페이지 - 1:1 문의내역 리스트
+   @RequestMapping(value = "/one_list", method = RequestMethod.GET)
+   public String oneList(HttpServletRequest request, HttpSession session, Model model,@ModelAttribute("criteria") 
+	Criteria criteria) {
+
+      // 로그인 연동 후 삭제
+      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
+      // session.setAttribute("m_email", "bit0hyj@gmail.com");
+
+      // 사용자 정보
+      String m_email = (String) session.getAttribute("m_email");
+      if (m_email == null) {
+			return "redirect:/index";
+		}
+      String m_name = myPageService.getMemberName(m_email); // System.out.println("=============MyPageController.java=====================
+                                                // m_name : " + m_name);
+      request.setAttribute("m_name", m_name);
+      int id = myPageService.getMemberId(m_email); // System.out.println("=============MyPageController.java=====================
+      
+      PageMaker pageMaker = new PageMaker();
+      criteria.setId(id);
+      pageMaker.setCriteria(criteria);
+      pageMaker.setTotalCount(myPageService.countArticles(criteria));
+      
+      model.addAttribute("qnaList", myPageService.listCriteria(criteria));
+      model.addAttribute("pageMaker", pageMaker);	
+      return "mypage/one_list";
+   }
+   
 
    // 마이페이지 - 1:1 문의내역 리스트 - 1:1문의내역 등록
    @RequestMapping(value = "/one_register", method = RequestMethod.GET)
@@ -252,6 +289,11 @@ public class MyPageController {
 
       // 사용자 정보
       String m_email = (String) session.getAttribute("m_email");
+      
+      if (m_email == null) {
+			return "redirect:/index";
+		}
+      
       String m_name = myPageService.getMemberName(m_email);
       String m_nickname = myPageService.getMemberNickname(m_email); // System.out.println("=============MyPageController.java=====================
                                                       // nickname : " + m_nickname);
@@ -297,6 +339,9 @@ public class MyPageController {
       // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
       // session.setAttribute("m_email", "bit0hyj@gmail.com");
       String m_email = (String) session.getAttribute("m_email");
+      if (m_email == null) {
+			return "redirect:/index";
+		}
       String m_name = myPageService.getMemberName(m_email);
       String m_nickname = myPageService.getMemberNickname(m_email);
 

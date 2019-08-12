@@ -1,0 +1,73 @@
+
+/**
+* @Class Name :  boardstyle.css
+* @Description : boardstyle css
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.08.09     한유진      최초생성
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+/* I. FRAMEWORK
+***********************/
+/*!
+ * Bootstrap v3.3.5 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+
+/*
+yj : start | boardFreeList.jsp css
+*/
+
+.tab_yj{
+	background-color: #0f2134;
+}
+.tabs{
+	margin-bottom:0px;
+}
+.tabs ul.tabs-mv{
+	margin-bottom:0px;
+}
+.tabs ul.tabs-mv li .tab_title{
+	font-size: 15px;
+	color:white;
+}
+.tab-table {
+	margin:0 0 0;
+}
+.tab-table td{
+	border-bottom: 1px solid #0F2133;
+	/* border-left: 0.5px solid #0F2133;
+	border-right: 0.5px solid #0F2133; */
+	padding-left:10px;
+}
+.board_btn_right{
+	background-color: #0f2134;
+    border: 1px solid;
+    border-radius: 15px;
+    margin: 10px;
+    height: 40px;
+    float: right;
+    color:white;
+    font-weight: bold;
+}
+.board_btn{
+	background-color: #0f2134;
+    border: 1px solid;
+    border-radius: 15px;
+    margin: 10px;
+    height: 40px;
+    color:white;
+    font-weight: bold;
+}
