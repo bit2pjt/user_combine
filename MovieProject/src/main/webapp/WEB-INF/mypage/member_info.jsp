@@ -3,14 +3,13 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.member.MemberVO"%>
 <%
+	
 	MemberVO member = (MemberVO) request.getAttribute("member");
+
 	String phone1 = member.getM_phone().substring(0,3);
 	String phone2 = member.getM_phone().substring(3,7);
 	String phone3 = member.getM_phone().substring(7,11);
-		
-	System.out.println(phone1);
-	System.out.println(phone2);
-	System.out.println(phone3);
+
 %>
 <!--
 /**
@@ -40,10 +39,10 @@
   
 <script type="text/javascript">
 	function pw(form) {
-		var pass1 = form.pw_confirm.value;
-		var pass2 = form.input_pw.value;
-		var newpw1 = form.m_password.value;
-		var newpw2 = form.confirm_pw.value;
+		var pass1 = form.pw_confirm.value; // 넘어온 현재 패스워드
+		var pass2 = form.input_pw.value; // 내가 입력한 현재 패스워드
+		var newpw1 = form.m_password.value; //새로운 비밀번호
+		var newpw2 = form.confirm_pw.value; // 새로운 비밀번호 확인
 		if (pass1 != pass2) {
 			alert("비밀번호가 일치하지 않습니다.");
 			pwform.input_pw.value = "";
@@ -57,22 +56,18 @@
 			return false;
 		} else {
 			alert("비밀번호가 수정되었습니다.");
+			return true;
 		}
+		
 	}
 	
 	function nick(form){
-		
 		alert("닉네임이 수정되었습니다.");
-		
-		
 	}
 	
 	function modify(form){
 		alert(form.m_phone.value);
-		
 	}
-	
-	
 	
 </script>
 <!-- 3. heaer2.jsp : header -->
@@ -135,7 +130,7 @@
 						</h1>
 					</div>
 
-
+					<form action="update_pw?id=<%=member.getId()%>" name="pwform" onsubmit="return pw(this)" method="post">	
 					<table class="tbinfo_hjs">
 						<colgroup>
 							<col width="10%" />
@@ -148,8 +143,6 @@
 									<div class="td-content"><%=member.getM_email()%></div>
 								</td>
 							</tr>
-							<form action="update_pw?id=<%=member.getId()%>" name="pwform"
-								onsubmit="return pw(this)" method="post">
 							<tr>
 								<td>비밀번호 변경</td>
 								<td>
@@ -201,11 +194,11 @@
 								<td>휴대폰 번호</td>
 								<td>
 									<div class="td-content">
-										<input class="user_te11" maxlength="4" name="user_cell1" value="<%=phone1%>"
+										<input class="user_te11" maxlength="4" name="user_cell1" value="010"
 											type="tel"> <span class="dash">-</span> <input
-											class="user_cell1" maxlength="4" name="user_cell2" value="<%=phone2%>" type="tel">
+											class="user_cell1" maxlength="4" name="user_cell2" value="6639" type="tel">
 										<span class="dash">-</span> <input class="user_cell1"
-											maxlength="4" name="user_cell3" value="<%=phone3%>" type="tel">
+											maxlength="4" name="user_cell3" value="9454" type="tel">
 											<%
 																				
 											
@@ -213,7 +206,7 @@
 											
 											
 											
-										<input type="hidden" name="m_phone" value="<%=phone1%><%=phone2%><%=phone3%>">
+										<input type="hidden" name="m_phone" value="01066399454">
 									</div>
 								</td>
 							</tr>
@@ -222,8 +215,7 @@
 								<td>
 									<div class="td-content">
 									
-										<label for="terms-2"> <label
-											class="fancy-checkbox custom-bgcolor-coral"> <input
+										<label for="terms-2"> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member.getM_favorite().equals("공포/호러")){%>checked<%} %> ><span>공포/호러</span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input
 												type="checkbox" <%if(member.getM_favorite().equals("멜로/로맨스")){%>checked<%} %>><span>멜로/로맨스</span>

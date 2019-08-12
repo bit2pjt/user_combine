@@ -237,7 +237,7 @@ $(function(){
 						  <tbody>
 						   <!-- 3. 공지사항. strong으로 강조를 주며, 게시자의 아이디가 다홍색으로 처리된다. 항상 최상단 노출-->
 							<tr class="notice">
-							  <td><strong>0026</strong></td>
+							  <td><strong>02</strong></td>
 							  <td><strong>공지</strong></td>
 							  <td><strong>비속어 사용과 음란물 게시시 활동정지 처분합니다.</strong></td>
 							  <td ><strong>admin01</strong></td>
@@ -246,7 +246,7 @@ $(function(){
 							  <td>모바일 글제목. </td>
 							  </tr>
 							<tr class="notice">
-							  <td><strong>002</strong></td>
+							  <td><strong>01</strong></td>
 							  <td><strong>공지</strong></td>
 							  <td><strong>정치글은 글삭제 대상입니다.</strong></td>
 							  <td><strong>admin01</strong></td>
@@ -347,7 +347,6 @@ $(function(){
 		</div>
 	</div>
 <script>
-
 	$(".pagination li a").on("click", function (event) {
 	    event.preventDefault();
 	

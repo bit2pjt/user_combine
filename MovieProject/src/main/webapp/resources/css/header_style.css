@@ -6464,8 +6464,8 @@ font-weight
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	margin-left: 30px;
-	border-left: 1px solid #405266;
+	/* margin-left: 30px;
+	border-left: 1px solid #405266; */
 	padding-left: 30px;
 	height: 54px;
 }

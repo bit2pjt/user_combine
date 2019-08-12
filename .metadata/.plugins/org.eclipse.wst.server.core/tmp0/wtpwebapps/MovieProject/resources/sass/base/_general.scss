@@ -1,0 +1,48 @@
+/* General Styles */
+
+body {
+	background-color: #fafafa;
+	font-family: $font-family;
+	font-size: $font-size;
+	color: $font-color;
+}
+
+a {
+	color: $link-color;
+
+	&:hover,
+	&:focus {
+		color: $link-color-hover;
+		text-decoration: none;
+	}
+}
+
+.page-title {
+	margin-top: 0;
+	margin-bottom: 30px;
+	font-size: 24px;
+	font-weight: 400;
+}
+
+footer {
+	padding: 0 30px;
+	padding-bottom: 15px;
+	position: absolute;
+	right: 0;
+
+	@include max-screen($break-small) {
+		position: relative;
+		text-align: center;
+	}
+}
+
+.copyright {
+	margin-bottom: 0;
+	font-size: 13px;
+}
+
+
+
+
+
+

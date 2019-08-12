@@ -9,10 +9,12 @@ import com.spring.paging.SearchCriteria;
 public interface BoardFreeDAO {
 	List<BoardFreeVO> listAll();
 	
+
 	List<BoardFreeVO> boardListDaily();
 	List<BoardFreeVO> boardListWeekly();
 	List<BoardFreeVO> boardListMonthly();
 	
+
 	List<BoardFreeVO> listCriteria(Criteria criteria);
 	
 	List<BoardFreeVO> listSearch(SearchCriteria searchCriteria);

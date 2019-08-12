@@ -333,13 +333,12 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		
 	}
 
-
 	@Override
 	public List<BoardFreeVO> listAll() {
 		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		return boardFreeDAO.listAll(); 
 	}
-	
+
 	@Override
 	public String getMemberNickname(String m_email) {
 		BoardFreeDAO BoardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
@@ -388,7 +387,6 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		return id;
 	}
 
-
 	@Override
 	public List<BoardFreeVO> listCriteria(Criteria criteria) {
 		BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
@@ -424,7 +422,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
     	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
     	return boardDAO.countSearchedArticles(searchCriteria);
     }
-    
+	
     @Override
     public List<BoardFreeVO> boardListDaily() {
     	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
