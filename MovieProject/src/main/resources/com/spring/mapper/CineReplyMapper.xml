@@ -37,7 +37,7 @@
             , #{cr_content}
             , sysdate
             , sysdate
-            , #{mr_score}
+            , #{cr_score}
             , 0
             , 0
             , 0

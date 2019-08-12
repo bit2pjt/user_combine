@@ -36,6 +36,10 @@ public class CineReplyServiceImpl implements CineReplyService {
 	@Override
 	public void addReply(CineReplyVO replyVO) {
 		CineReplyDAO cineReplyDAO = sqlSession.getMapper(CineReplyDAO.class);
+		System.out.println("1: " + replyVO.getCc_code());
+		System.out.println("1: " + replyVO.getCr_code());
+		System.out.println("1: " + replyVO.getCr_content());
+		System.out.println("1: " + replyVO.getCr_score());
 		cineReplyDAO.create(replyVO);
 	}
 

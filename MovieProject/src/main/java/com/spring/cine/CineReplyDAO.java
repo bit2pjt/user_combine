@@ -6,7 +6,7 @@ import com.spring.paging.Criteria;
 public interface CineReplyDAO {
 	
 	//댓글목록
-		public List<CineReplyVO> list(Integer mi_code);
+		public List<CineReplyVO> list(Integer cc_code);
 			
 		public void create(CineReplyVO replyVO); 
 			
@@ -16,9 +16,9 @@ public interface CineReplyDAO {
 			
 		List<CineReplyVO> listPaging(Criteria criteria);
 		//댓글 수
-		public int countReplies(Integer mi_code);
+		public int countReplies(Integer cc_code);
 		
-		public int sumScore(Integer mi_code);
+		public int sumScore(Integer cc_code);
 		
 		public int getUser(String email);
 }

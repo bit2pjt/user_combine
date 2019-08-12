@@ -68,6 +68,48 @@
   float: right;
 }
 }
+
+.blockbuster-rate .movie-rate .rate p span.rv {
+	font-size: 12px;
+	color: #4280bf;
+}
+
+.blockbuster-rate .movie-rate .rate {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.blockbuster-rate .movie-rate .rate-star {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-left: 30px;
+	height: 54px;
+}
+
+.review-write h3 {
+	font-family: 'Dosis', sans-serif;
+	font-size: 27px;
+	color: #020d18;
+	font-weight: bold;
+	text-transform: none;
+	margin-bottom: 15px;
+	text-align:left;
+	margin-left:10px;
+}
+
+.mv-user-review-item {
+  border-bottom: 1px solid #d0dae4;
+  padding: 20px 20px 20px 0;
+}
+
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class

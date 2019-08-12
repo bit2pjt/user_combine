@@ -2,6 +2,7 @@ package com.spring.cine;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.spring.boardFree.ThumbVO;
+import com.spring.boardFree.WarnVO;
 
 @Controller
 public class CineController {
@@ -64,5 +68,58 @@ public class CineController {
 		CineVO list = cineService.getCineInfo(cineVO);
 		
 		return list;
+	}
+	
+	/**
+	  * 댓글 추천/비추천기능
+	  * @param request
+	  * @param session
+	  * @return @ResponseBody String => json
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/CineReplyReco", method=RequestMethod.POST)
+	public String BFReplyReco(HttpSession session, HttpServletRequest request) { 
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = cineService.getUser(sessionyn); // 로그인한 사용자의 id값
+		int cr_code = Integer.parseInt(request.getParameter("cr_code")); //게시글 번호
+		int type = Integer.parseInt(request.getParameter("type")); // 추천:1, 비추천:0
+		
+		ThumbVO vo = new ThumbVO();
+		vo.setCr_code(cr_code); // 댓글 번호
+		vo.setId(id); // 댓글 쓴 사람의 id
+		vo.setCr_thumb(type); // 1: 추천, 0: 비추천
+		
+		if( type == 1) { // 추천을 눌렀을 경우
+			// mr_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+			String msg = cineService.reply_check(vo); 
+			return msg;
+		}else { // 비추천을 눌렀을 경우
+			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+			String msg = cineService.reply_check(vo);
+			return msg;
+		}
+	}
+	
+	/**
+	  * 댓글 신고 기능
+	  * @param request
+	  * @param session
+	  * @return @ResponseBody String => json
+	 */
+	@ResponseBody
+	@RequestMapping(value="/CineReplyWarn", method=RequestMethod.POST)
+	public String BFReplyWarn(HttpSession session, HttpServletRequest request) {
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = cineService.getUser(sessionyn); // 로그인한 사용자의 id값
+		int cr_code = Integer.parseInt(request.getParameter("cr_code")); //게시글 번호
+		WarnVO vo = new WarnVO();
+		vo.setCr_code(cr_code);
+		vo.setId(id);
+		
+		String msg = cineService.ReplyWarn(vo); 
+		if(msg.equals("1"))
+			msg = "success";
+		
+		return msg;
 	}
 }
