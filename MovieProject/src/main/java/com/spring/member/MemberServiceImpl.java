@@ -1,8 +1,17 @@
 package com.spring.member;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.spring.movie.MovieCrawlVO;
+
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
@@ -149,6 +158,35 @@ public class MemberServiceImpl implements MemberService {
 	public int getId(String m_email, String m_password) {
 
 		return memberDAOglobal.getId(m_email, m_password);
+	}
+
+	@Override
+	public List<MovieChartVO> getCGVChart() {
+		String targetUrl  = "http://www.cgv.co.kr/movies/";
+		List<String> thumnail = null;
+		List<String> title = null;
+		List<String> score = null;
+		List<MovieChartVO> list = new ArrayList<MovieChartVO>();
+		
+		try {
+			Document doc = Jsoup.connect(targetUrl).get();
+			thumnail = doc.select(".thumb-image").select("img").eachAttr("src");
+			title = doc.select("div.box-contents > a > strong").eachText();
+			score = doc.select("div.box-contents > div > strong > span").eachText();
+	            
+			for(int i=0; i<7; i++) {
+				MovieChartVO vo = new MovieChartVO();
+	        	vo.setThumnail(thumnail.get(i));
+	        	vo.setMovieTitle(title.get(i));
+		        vo.setScore(score.get(i));
+	        	
+	        	list.add(vo);
+	        }    
+	            
+	     } catch (IOException e) {
+	        e.printStackTrace();
+	     }
+		return list;
 	}
 
 }

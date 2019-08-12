@@ -104,6 +104,36 @@
 				$(".cinemaPhone").text("TEL  " + data.cc_PHONE + "  |  " + data.cc_THEATERS + "관 / " + data.cc_SEATS + "석");
 				//$(".cinemaTheaters").text(data.cc_THEATERS + "관 / " + data.cc_SEATS + "석");
 				
+				if(data.cc_CODE == 1123) {
+					$("#cgvGang").show();
+				}else {
+					$("#cgvGang").hide();
+				}
+				
+				if((data.cc_CODE == 1128) || (data.cc_CODE == 1111)) {
+					$("#cgvjung").show();
+				}else {
+					$("#cgvjung").hide();
+				}
+				
+				if(data.cc_CODE == 1186) {
+					$("#cgvchung").show();
+				}else {
+					$("#cgvchung").hide();
+				}
+				
+				if(data.cc_CODE == 1071) {
+					$("#lottebroad").show();
+				}else {
+					$("#lottebroad").hide();
+				}
+				
+				if(data.cc_CODE == 1003) {
+					$("#megacoex").show();
+				}else {
+					$("#megacoex").hide();
+				}
+				
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = {
 			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -528,15 +558,119 @@
 		<span class="cinemaPhone"></span>
 		<a href="#" id="home" target="_blank" style="margin-left:10px;"></a>
 	</div>
-	<div id="map" style="width:350px;height:250px;"></div>
+	<div id="map" style="width:350px;height:250px; margin-top:40px; margin-right:30px; float:right;"></div>
 	
+	<div class="introbox" style="display:none;" id="cgvGang">
+	    <h2 class="ittit pb30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit2.png" alt="극장소개"></h2>
+	    <p class="ittxt">365일 24시간 꺼지지 않는 젊음과 열정의 중심지! CGV강남<br><br>1. 편리한 접근성<br>강남 문화의 중심지로 자리잡게 될 CGV강남은 지하철 2호선 11번 출구에서 도보로 3분 거리에 있습니다.<br>  <br>2. 차별화된 인테리어<br>장식을 최소화한, 모던하고도 깔끔한 디자인으로 기존의 영화관과는 전혀 다른 편안하고도 안정적인 분위기의 휴식공간을 제공합니다. <br> <br>3. 도심 속의 자연 공간<br>도시의 한 복판에서 만날 수 있는 야외 정원은 삭막한 도심 속에서 깨끗한 자연의 향기를 선사해 드립니다.  <br>     <br>4. Only One 서비스 <br>극장 외부에서도 발권할 수 있는 야외 티켓 매표소 운영<br>천연 편백나무 향공조 시스템으로 산림욕 효과 체감<br>발권 대기 시간을 알려주는 순번 발권 시스템 <br>무료 인터넷 이용 및 XBOX 360 체험 존 오픈 예정<br></p>
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit3.png" alt="교통편 안내"></h2>
+	    <div class="traffic">
+		    <div class="tbus">
+			    - 분당지역<br>  좌석버스 1005-1, 1005-2, 6800, 5500-2<br>  간선버스 408, 462<br>  광역버스 9404, 9408<br><br>-강북지역: 간선버스 140, 144, 145, 471<br><br>-강서지역: 좌석버스 1500, 간선버스 360<br><br>-강동지역: 간선버스 402, 420, 470, 407<br><br>-인근경기지역: 좌석버스 3030, 2002, 2002-1<br>               광역버스 9409, 9500, 9501, <br>                        9503, 9700, 9711<br>
+		    </div>   
+            		    <div class="tsubway">
+			    2호선  강남역 11번 출구<br><br>9호선  신논현역 5번출구<br><br>
+		    </div>
+	    </div>
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit4.png" alt="주차시설"></h2>
+	    <div class="traffic trbor">
+		    <div class="tcar">
+			    CGV강남은 오전 8시~오후 10시 30분까지 발렛 주차 서비스 제공하여, 편리하게 주차 서비스를 받으실 수 있습니다.<br><br>주차비는 영화 관람 티켓 소지 시 발렛비 포함 3시간 5,000원이며 3시간 초과 이용시 1시간당 4,000원씩 추가 요금이 발생합니다. <br><br>단, 주차공간이 협소하여 주차가 어려울 수 있으니 대중교통을 이용 해 주시기 바랍니다 <br>
+		    </div>
+	    </div>   
+	<div class="timeex">
+		<p class="exrf">잘못된 극장 정보는 고객센터로 문의 주시기 바랍니다.</p>
+	</div>
+</div>
+	
+	<div class="introbox" style="display:none;" id="cgvjung">
+	    <h2 class="ittit pb30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit2.png" alt="극장소개"></h2>
+	    <p class="ittxt">1. 패션과 유행의 중심, 압구정! <br>CGV압구정은 최초의 강남지역 CGV로서, CGV만의 서비스와 다양한 이벤트로 명품브랜드 이상의 가치를 느끼실 수 있습니다. <br><br>2. CGV만의 차별화된 서비스와 시설<br>- 4Way 입체음향 시스템<br>- 삼림욕 효과의 편백향 공조 시스템<br>- 24시간 ARS 시스템 및 좌석까지 선택할 수 있는 편리한 인터넷 예매 시스템<br>- 기다림마저 여유로운 각 상영관별 전용 로비<br>- First Class 서비스 그 이상! CGV골드클래스 (6월 오픈 예정) <br><br>3. 차별화된 인테리어 <br>각 상영관 별 개성있고 다양한 테마는 제3의 생활문화공간으로서의 CGV압구정을 경험하실 수 있습니다. <br><br>4. 편리한 접근성<br>3호선 압구정역 3번 출구에서 도보로 1분!  <br></p>
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit3.png" alt="교통편 안내"></h2>
+	    <div class="traffic">
+		    <div class="tbus">
+			    -압구정역(CGV앞) : 간선(B) 147,148<br>-국민은행 압구정지점 : 광역(R) 6800<br>-국민은행 압구정지점 : 간선(B) 147,148<br>-현대백화점(압구정) : 지선(G) 강남07<br>-압구정역 : 지선(G) 강남07, 4419, <br>-압구정역 : 간선(B) 606<br><br>-현대아파트(압구정역) : 광역(R) 9407<br>-현대아파트(압구정역) 간선(B) : 143,148,240,301,361,362,472<br>-현대아파트(압구정역) 지선(G) : 2411,3422,4312,4418,4419,4422<br>-현대아파트(압구정역) 순환(Y) : 41<br>
+		    </div>   
+            		    <div class="tsubway">
+			    - 지하철 3호선 압구정역 3번 출구 이용<br><br><br>
+		    </div>
+	    </div>
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit4.png" alt="주차시설"></h2>
+	    <div class="traffic trbor">
+		    <div class="tcar">
+			    유<br>1. 위치 : CGV압구정 건물 (기계식)<br><br>2. 요금 : 3시간까지 3,500원<br>- 반드시 매표소에서 주차권에 확인도장을 받으셔야 위 요금이 적용됩니다.<br>- 기본요금 초과시 : 15분당 1,000원<br><br>3. 이용시간<br>- 입차 : 당일 첫 영화 상영시간 30분 전<br>- 출차 : 당일 마지막 영화 종영 후 30분<br><br>4. 기타정보<br>- 기계식 주차장으로 SUV, RV차량 및 2,500CC이상 승용차의 경우 입차가 제한 될 수 있사오니,<br>  이 점 꼭 유의해 주십시오.<br>- 주차가 불가능할때에는 인근 공영주차장을 이용해 주십시오.<br>  (공영주차장 : 동호대교 남단, 현대백화점 압구정점 옆 - 단 CGV 이용에 따른 할인혜택은 없습니다.)<br>- 총 주차 가능 대수 : 약 150대<br><br>
+		    </div>
+	    </div>   
+	<div class="timeex">
+		<p class="exrf">잘못된 극장 정보는 고객센터로 문의 주시기 바랍니다.</p>
+	</div>
+	</div>	
+	
+	<div class="introbox" style="display:none;" id="cgvchung">
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit3.png" alt="교통편 안내"></h2>
+	    <div class="traffic">
+		    <div class="tbus">
+			    - 씨네시티 앞<br>  4212번(영동소방파출소, 호림아트센터앞),<br>  145번(씨네시티, 호림아트센터앞)<br><br>- 난타 전용극장 앞<br>  :1411번, 1224번, 2411번, 4312번, 7015번, 4422번, 200번, 361번,     472번, 172번<br><br>- 늘봄공원 앞: 4422번<br><br>- 도산공원 앞: 1011번, 3422번, 405번
+		    </div>   
+            		    <div class="tsubway">
+			    - 분당선 압구정로데오역 5번출구(도보 10분)<br>- 7호선 강남구청역 3번 출구 학동사거리 방면(도보 10분)<br>- 3호선 압구정역 3번 출구(도보 20분)<br>- 3호선 신사역 1번 출구에서 일반버스 환승(4212, 145) 후<br>  호림아트센터 하차<br><br>
+		    </div>
+	    </div>
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit4.png" alt="주차시설"></h2>
+	    <div class="traffic trbor">
+		    <div class="tcar">
+			    유<br>보다 편리한 이용을 위해 대중교통을 이용해 주시고 발렛파킹의 경우 가능한 차량수가 한정적이므로 주변 교통상황에 따라 입,출차 시간이지연될 수 있습니다.<br><br> [요금 안내] <br>1. 발렛파킹 이용 시<br>- 발렛 입차+출차<br>- 주차비3시간 5,000 + 발렛비 5,000 = 10,000원<br>- 3시간 초과 시 10분당 1,000원 부과<br><br>2. 셀프주차(호림아트센터 지하 4층 주차장 이용)이용 시<br>- 5,000원(4시간)(평일 19:00 ~ 23:00, 주말 6:00 ~ 23:00)<br>- 4시간 초과 시 2시간 2,000원<br>- 총 6시간 주차가능<br><br>3. 셔틀버스 이용 시<br>- 5,000원(3시간)<br>- 발렛 입차 Only<br>- 영화 관람 전 발렛직원에게 차를 맡기세요<br>- 관람 후 무료셔틀로 고객님의 차가 주차된 곳까지<br> 안내해 드립니다.(지하주차장 제외)<br><br> [셔틀버스 운행안내] <br>- 평일 PM 3:00 ~ PM10:00 / 주말 PM 2:00 ~ PM 11:00 <br>- 차량 탑승 위치: 청담씨네시티 앞<br>- 차량 하차 위치: 강남파라곤 버스정류장<br>- 소요시간: 약 2분
+		    </div>
+	    </div>   
+	<div class="timeex">
+		<p class="exrf">잘못된 극장 정보는 고객센터로 문의 주시기 바랍니다. </p>
+	</div>
+</div>
+
+<div class="introbox" style="display:none;" id="lottebroad">
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit3.png" alt="교통편 안내"></h2>
+	    <div class="traffic">
+		    <div class="tbus">
+			    순환(노랑) 41<br>지선(녹색) 1141,4212,4417,4421,4422,4424<br>간선(파랑) 145, 405<br>광역(빨강) 9405<br>
+		    </div>   
+            		    <div class="tsubway">
+			    지하철 3호선 신사역 1번 출구 전방 20M
+		    </div>
+	    </div>
+	<div class="timeex">
+		<p class="exrf">잘못된 극장 정보는 고객센터로 문의 주시기 바랍니다.</p>
+	</div>
+</div>
+
+<div class="introbox" style="display:none;" id="megacoex">
+	    <h2 class="ittit pb30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit2.png" alt="극장소개"></h2>
+	    <p class="ittxt">메가박스 코엑스점은 2000년에 개관했다. 멀티플렉스 체인점인 메가박스의 제1호점이다. 개관 당시 국내 최대 규모의 상영관과 초현대식 시설을 갖춰 화제를 불러 모았다. 그리고 많은 관객들을 강남 지역으로 몰리게 하는 데 혁혁한 공을 세웠다. 지금은 멀티플렉스의 대표격 정도로 인식되고 있다. <br><br>총 16개 상영관 중 500석 규모의 대형관이 3개, 중형관(300석) 8개,소형관(200석 이하) 5개로 구성되어 있다. 인터락 시스템을 영사 시설에 도입해 1개 프린트로 6개관에서 동시 상영할 수 있다. 또 국내 최초로 고음과 저음, 그리고 중음을 보강한 3-way 스피커를 설치해 실감나는 음향을 선사한다. 또 음향 시설에 있어 아나로그와 디지털 음향을 완벽하게 재현, 8채널 분리 방식을 채택했다. 그리고 영국제 Perl Lux 스크린을 설치했다. <br> <br>좌석은 스타디움식으로 설계되었는데 계단 높이 330mm, 좌석 간격 전후 1,050mm, 좌석폭을 560m 로 정해 안락한 영화 관람을 돕고 있다. 코엑스 몰에 입점해 있는 다양한 위락시설이 영화 관람을 전후로 해서 원스탑 엔터테인먼트를 제공하다.<br></p>
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit3.png" alt="교통편 안내"></h2>
+	    <div class="traffic">
+		    <div class="tbus">
+			    간선(파랑): <br>143, 146, 301, 361, 362, 401, 640<br><br>지선(초록): <br>2225, 2411,2413, 3217, 3218, 3411,<br>3414, 3415, 3417, 4411, 4418, 4419<br><br>광역(주황): 9407, 9413
+		    </div>   
+            		    <div class="tsubway">
+			    ㆍ지하철<br>2호선 삼성역 5, 6번 출구<br><br>
+		    </div>
+	    </div>
+	    <h2 class="ittit pt30"><img src="//images.maxmovie.com/images/common/htitle/cinema_tit4.png" alt="주차시설"></h2>
+	    <div class="traffic trbor">
+		    <div class="tcar">
+			    ㆍ주차규모<br>2,000 ~ 3,000대<br><br>ㆍ주차요금<br>1)당일 영화 티켓+주차권 제시시 할인권 구매 가능<br>2)구매 장소-극장내[회원 전용 센터]<br>3)구매금액-3시간 4,000원&lt;주간&gt;<br>           3시간 3,000원&lt;야간~22시 이후 입고&gt;<br>4)추가 요금-3시간 이후 15분에 1,000원 적용<br>5)영화 상영시간 30분 전부터 구매 가능<br><br>ㆍ주차장 위치<br>코엑스몰 주차장 이용
+		    </div>
+	    </div>   
+	<div class="timeex">
+		<p class="exrf">잘못된 극장 정보는 고객센터로 문의 주시기 바랍니다.</p>
+	</div>
+</div>
 </div>
 
 <!-- 영화관 정보 끝 -->
 
 
 <!-- 극장 정보 탭  시작 -->
-									<div id="review" class="review">
+									<div id="review" class="review" style="margin-top:150px;">
 											<div style="display:none;">
 												<h1>3사 평점</h1>
 												<div class="total-movie-rate">

@@ -1,5 +1,9 @@
 package com.spring.member;
 
+import java.util.List;
+
+import com.spring.movie.MovieCrawlVO;
+
 public interface MemberService {
 	public int insertMember(MemberVO vo);
 	
@@ -25,5 +29,7 @@ public interface MemberService {
 	public int updatePw(MemberVO vo);
 	
 	public int getId(String m_email, String m_password);
+	
+	public List<MovieChartVO> getCGVChart();
 
 }
