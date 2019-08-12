@@ -79,17 +79,17 @@
                            	<a OnClick="location.href ='mmlMemberList?id=<c:out value="${followee.id}"/>'">  
                             	&nbsp;<h1 style="display:inline"><c:out value="${followee.m_nickname}"/></h1>
                         	</a>
-                        <h1 style="display:inline">&nbsp;'s FollowList</h1>
+                        <h1 style="display:inline">&nbsp;'s FollowingList</h1>
                    	</div>      
  				</div>
                 <div style="float:left;">
-					<h1 style="display:inline">Followers : </h1> <h4 style="display:inline; color: lightcoral" > <c:out value="${followee.m_follower}"/> </h4>
+					<h1 style="display:inline">followings : </h1> <h4 style="display:inline; color: lightcoral" > <c:out value="${followee.m_following}"/> </h4>
 				</div>
                 <div class="blog-detail-ct">
                 	<div class="flex-it share-tag" style="width:100%;"></div>
                 </div>
                 
-                <!-- followers 정보 노출 시작 -->
+                <!-- followings 정보 노출 시작 -->
                 <div class="row1">
  	             <!-- 래퍼. sp_col-md-4부터 반복 시작 -->
  	             <!-- 예시 
@@ -99,7 +99,7 @@
             	               <img src="<c:url value="/resources/images/sp_image/dog.jfif"/>" class="profile_img" style="width:80px; height:80px;">
                 	           <img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h3 style="display:inline"><a href="blogdetail_light.html">nickname</a></h3>
                                <br>
-                               <h1 style="display:inline">Followers : </h1><h4 style="display:inline; color: lightcoral" > 140  </h4>
+                               <h1 style="display:inline">followings : </h1><h4 style="display:inline; color: lightcoral" > 140  </h4>
                            </div>
                        </div>
                     </div>
@@ -108,21 +108,21 @@
   					<div id="js-load" class="main">
     				<ul class="lists">
     				<c:choose>
-    				<c:when test="${requestScope.followers.get(0).getId() == null}">
+    				<c:when test="${requestScope.followings.get(0).getId() == null}">
 											<tr>
-												<td colspan="4">팔로워가 없습니다.</td>
+												<td colspan="4">팔로잉이 없습니다.</td>
 											</tr>
 										</c:when>
     				<c:otherwise>
     				
-                 	<c:forEach items="${followers}" var="follower">
+                 	<c:forEach items="${followings}" var="following">
                  
                  	<li class="js-load">
                  		<div class="sp_col-md-4">               	
-                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px">
+                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${following.id}"/>'" style="padding-left:20px">
                         		<div class="blog-it-infor" style="vertical-align:middle">
-                        			<img src="./resources/images/sp_image/<c:out value="${follower.m_image}"/>" class="profile_img" style="width:80px; height:80px;">
-                        				<c:set var="level" value="${follower.m_level}"/>
+                        			<img src="./resources/images/sp_image/<c:out value="${following.m_image}"/>" class="profile_img" style="width:80px; height:80px;">
+                        				<c:set var="level" value="${following.m_level}"/>
 											<c:choose>
 						    					<c:when test="${level eq 'BRONZE'}">
         											<img class="crown" src="<c:url value="/resources/images/sp_image/helmet.png"/>">
@@ -135,10 +135,10 @@
     											</c:otherwise>
 											</c:choose>
 										<!-- c:set은 짝짝이 태그 -->
-                        				&nbsp;<h3 style="display:inline"><a href="blogdetail_light.html"></a><c:out value="${follower.m_nickname}"/></h3>
+                        				&nbsp;<h3 style="display:inline"><a href="blogdetail_light.html"></a><c:out value="${following.m_nickname}"/></h3>
                         				
                         				<br>
-                        				<h1 style="display:inline">Followers : </h1><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_follower}"/>   </h4>
+                        				<h1 style="display:inline">followings : </h1><h4 style="display:inline; color: lightcoral" ><c:out value="${following.m_following}"/>   </h4>
                         			 </div>
                        			</div>
                     		</div>
@@ -152,7 +152,7 @@
                        </div>
     		
     		<!-- 위의 c:forEach는 아래의 코드를 참조함. -코드로 배우는 웹 프로젝트(?)
-    		 	<c:forEach items="${followers}" var="follower">  			
+    		 	<c:forEach items="${followings}" var="following">  			
                    	<c:out value="${board.bno}"/></td>
                    	<td><a class='move' href='<c:out value="${board.bno}"/>'>
                    	<c:out value="${board.title}"/></a></td>
@@ -178,9 +178,9 @@
 
 <script>
 $(window).on('load', function () {
-    load('#js-load', '1');
+    load('#js-load', '2');
     $("#js-btn-wrap .button").on("click", function () {
-        load('#js-load', '1', '#js-btn-wrap');
+        load('#js-load', '2', '#js-btn-wrap');
     });
 });
 

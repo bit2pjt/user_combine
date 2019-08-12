@@ -15,6 +15,7 @@
 * @  수정일     		     수정자            		수정내용
 * @ ---------   ---------   -------------------------------
 * @ 2019.07.06         황진석      		 	최초생성
+* @ 2019.07.22    한유진      		 	qnaList 기능 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -31,46 +32,32 @@
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
 
-<div class="hero user-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li> <span class="ion-ios-arrow-right"></span>Rated movies</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<div style="height:5%;"></div>
 <div class="buster-light">
 	<div class="page-single">
 		<div class="container">
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
 						<div class="info">
-							<h2> <strong><%= member.getM_name() %></strong> </h2>
-							<h3> <strong><%= member.getM_email() %></strong></h3>
+							<h2> <strong><%= member.getM_name() %> 님</strong> </h2>
+							<h3> <%= member.getM_email() %></h3>
 						</div>
 					<div class="user-information-hjs">
 						<div class="user-fav">
 								<ul>
-									<li><a href="mypage.do">마이페이지</a></li>
+									<li><a href="mypage">마이페이지</a></li>
 								</ul>
 										
 								<ul>
 									<li>회원 정보</li>
-									<li><a href="pw_confirm.do?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-									<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+									<li><a href="pw_confirm?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+									<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 								</ul>
 					
 								<ul>
 									<li>고객센터</li>
-									<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
-									<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+									<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
+									<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 								</ul>
 							</div>
 					</div>
@@ -101,7 +88,7 @@
 							<div class="div_one">
 								<table class="tb_hjs">
 									<caption class="caption-hjs"> 
-										<h2>1:1 문의 내역 <a href="one_list.do" class="caption_a"> 더보기 </a></h2>
+										<h2>1:1 문의 내역 <a href="one_list" class="caption_a"> 더보기 </a></h2>
 									</caption>
 									<colgroup>
 										<col width="10%" />
@@ -117,11 +104,25 @@
 											<th> 답변여부 </th>
 										</tr>
 									</thead>
-									
+									<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
 									<tbody>
-										<tr>
-											<td colspan="4">  최근 목록이 없습니다.</td>
-										</tr>	
+									<c:choose>
+										<c:when test="${requestScope.qnaList[0].qna_no == null}">
+											<tr>
+												<td colspan="4">등록된 문의글이 없습니다.</td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="qna" items="${requestScope.qnaList }" end="4">
+												<tr>
+													<td>${qna.qna_category }</td>
+													<td><a href="one_get?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
+													<td>${qna.qna_date}</td>
+													<td>${qna.qna_answer}</td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 									</tbody>
 								</table>
 							</div>
@@ -129,7 +130,7 @@
 							<div class="div_one">
 									<table class="tb_hjs">
 										<caption class="caption-hjs"> 
-											<h2> 나의 팔로잉/팔로워 <a href="#" class="caption_a"> 더보기 </a> </h2></caption>
+											<h2> 나의 팔로잉/팔로워 <a href="folfol_list?id=${requestScope.member.id}" class="caption_a"> 더보기 </a> </h2></caption>
 												
 											<colgroup>
 												<col width="25%" />
@@ -137,14 +138,27 @@
 											</colgroup>
 											<thead>
 												<tr>
-													<th colspan="2" class="th_border"> 팔로잉 ID </th>
-													<th colspan="2"> 팔로워 ID </th>
+													<th colspan="2" class="th_border"> 팔로잉 닉네임 </th>
+													<th colspan="2"> 팔로워 닉네임 </th>
 												</tr>
 											</thead>
 											
 											<tbody>
 												<tr>
-													<td colspan="4">  팔로잉/팔로워가 없습니다. </td>	
+													<td colspan="2" style="padding:0px;">
+													<c:forEach var="foling" items="${requestScope.following }" end="4">
+													<div style="padding:2px; border:1px solid rgba(51, 51, 51, 0.1)">
+													<a href="mmlMemberList?id=${foling.id}">${foling.m_nickname }</a><br>
+													</div>
+													</c:forEach>
+													 </td>
+													<td colspan="2" style="padding:0px;">
+													<c:forEach var="foler" items="${requestScope.follower }" end="4">
+													<div style="padding:2px; border:1px solid rgba(51, 51, 51, 0.1)">
+													<a href="mmlMemberList?id=${foler.id}"> ${foler.m_nickname}</a> <br>
+													 </div>
+												</c:forEach>
+													 </td>
 												</tr>
 											</tbody>
 									</table>

@@ -30,7 +30,7 @@
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
 						<h2>
-							<strong>${requestScope.m_name } 님</strong>
+							<strong>${requestScope.member.m_name } 님</strong>
 						</h2>
 						<h3>
 							<strong>${sessionScope.m_email }</strong>
@@ -60,24 +60,12 @@
 				<div class="col-md-9 col-sm-12 col-xs-12">
 					<div class="info_update" style="width: 100%;">
 						<h1>
-							<strong>1:1 문의내역</strong>
+							<strong>팔로잉 / 팔로워 리스트</strong>
 						</h1>
 					</div>
 					<br>
-					<div>
-						<ul>
-							<li>
-								<p class="inq_txt">
-									<strong>상담시간</strong>
-							</li>
-							<li>평일(월 ~ 금) 10:00 ~ 17:00</li>
-							<li>(Off-time 12:00 ~ 14:00, 토/일/공휴일 휴무)</li>
-						</ul>
-					</div>
-					<div class="btn_t">
-						<button type="button" class="btn-check-hjs"
-							onclick="location.href='one_register'">1:1 문의쓰기</button>
-					</div>
+				
+					
 
 					<div class="static-table-list">
 						<div class="card mb-3">
@@ -85,30 +73,37 @@
 								<table class="one_table">
 									<thead>
 										<tr>
-											<th style="width: 10%;" class="th_border">구분</th>
-											<th style="width: 30%;" class="th_border">상담제목</th>
-											<th style="width: 20%;" class="th_border">작성일</th>
-											<th style="width: 10%;">답변유무</th>
+											<th style="width: 50%;" class="th_border"><a href="mmlFollowingList?id=${member.id}" style="color:white;">팔로잉</a></th>
+											<th style="width: 50%;" class="th_border"><a href="mmlFollowList?id=${member.id}" style="color:white;">팔로워</a></th>
 										</tr>
 									</thead>
 									<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
 									<tbody>
 									<c:choose>
-										<c:when test="${requestScope.qnaList[0].qna_no == null}">
+										<c:when test="${requestScope.follower[0].m_nickname == null && requestScope.following[0].m_nickname == null }">
 											<tr>
-												<td colspan="4">등록된 문의글이 없습니다.</td>
+												<td colspan="4">팔로잉 팔로워가 없습니다.</td>
 											</tr>
 										</c:when>
 										<c:otherwise>
-											<c:forEach var="qna" items="${requestScope.qnaList}">
+										
 												<tr>
-					
-													<td>${qna.qna_category }</td>
-													<td><a href="one_get?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
-													<td>${qna.qna_date}</td>
-													<td>${qna.qna_answer}</td>
+													<td style="width:50%; padding:0px;">
+													<c:forEach var="foling" items="${requestScope.following}" >
+													<div style="padding:2px; border:1px solid rgba(51, 51, 51, 0.1)">
+													<a href="mmlMemberList?id=${foling.id}">${foling.m_nickname }</a><br>
+													</div>
+													</c:forEach>
+													 </td>
+													<td style="width:50%; padding:0px;">
+													<c:forEach var="foler" items="${requestScope.follower }" >
+													<div style="padding:2px; border:1px solid rgba(51, 51, 51, 0.1)">
+													<a href="mmlMemberList?id=${foler.id}"> ${foler.m_nickname} </a><br>
+													 </div>
+													</c:forEach>
+													 </td>
 												</tr>
-											</c:forEach>
+									
 										</c:otherwise>
 									</c:choose>
 									</tbody>
