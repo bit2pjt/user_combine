@@ -211,8 +211,7 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.9.6</version>
-        </dependency>
-        
+    </dependency>
         <!-- 웅식 : 크롤링 JSOP -->
         <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
 		<dependency>
@@ -248,8 +247,6 @@
  	   <artifactId>json</artifactId>
  	   <version>20160810</version>
 	</dependency>
-	
-        
 	</dependencies>
     <build>
         <plugins>
