@@ -1,0 +1,198 @@
+/* Charts */
+
+.number-chart {
+	padding: 18px 0;
+	border: 1px solid $line-color;
+	text-align: center;
+
+	@include max-screen($break-medium) {
+		width: auto;
+		margin-bottom: 30px;
+	}
+
+	.number {
+		font-weight: 600;
+
+		@include max-screen($break-xsmall) {
+			float: none !important;
+			text-align: center;
+			height: 70px;
+		}
+		
+		> span {
+			font-size: 22px;
+			line-height: 1.4;
+
+			+ span {
+				display: block;
+				font-size: 14px;
+				font-weight: normal;
+				line-height: 2;
+				font-weight: 600;
+				color: #929292;
+			}
+		}
+
+		i {
+			font-size: 12px;
+		}
+	}
+
+	.mini-stat {
+		margin-bottom: 15px;
+
+		p {
+			margin-bottom: 0;
+			margin-top: 5px;
+			font-size: 11px;
+		}
+
+		i {
+			margin-right: 2px;
+			font-size: 18px;
+			position: relative;
+			top: 2px;
+		}
+	}
+}
+
+/* sparkline chart */
+#jqstooltip {
+	background-color: #fff;
+	border-color: #ddd;
+	color: $font-color;
+
+	.jqsfield {
+		color: $font-color;
+	}
+}
+
+/* chartist */
+$ct-series-colors: (
+	a: #82b2f9,
+	b: #96c125,
+	c: #f4c63d,
+	d: #AB7DF6,
+	e: #5cc196,
+	f: #d17905,
+	g: #453d3f,
+	h: #59922b,
+	i: #0544d3,
+	j: #6b0392,
+	k: #f05b4f,
+	l: #dda458,
+	m: #eacf7d,
+	n: #86797d,
+	o: #b2c326,
+);
+
+.ct-chart {
+	position: relative;
+}
+
+.ct-label {
+	font-size: 1.5rem;
+	color: $font-color;
+}
+
+.ct-series {
+	.ct-line {
+		stroke-width: 3px;
+	}
+
+	.ct-bar {
+		stroke-width: 15px;
+	}
+
+	.ct-point {
+		stroke-width: 10px;
+		stroke-linecap: circle;
+	}
+}
+
+@each $series-name, $series-color in $ct-series-colors {
+	.ct-series-#{$series-name} {
+		.ct-line,
+		.ct-bar,
+		.ct-point {
+			stroke: $series-color;
+		}
+
+		.ct-area, 
+		.ct-slice-donut-solid, 
+		.ct-slice-pie,
+		.ct-bar {
+			fill: $series-color;
+		}
+	}
+}
+
+.chartist-tooltip {
+	@include border-radius(3px);
+
+	min-width: 3.5em;
+	background: #5a5a5a;
+	color: #fff;
+
+	&:before {
+		margin-left: -8px;
+		border-width: 8px;
+		border-top-color: #5a5a5a;
+	}
+}
+
+.ct-axis-title {
+	fill: #9a9a9a;
+}
+
+.ct-legend {
+	position: relative;
+	left: 10px;
+	z-index: 10;
+
+	li {
+		@include inline-block;
+
+		position: relative;
+		padding-left: 18px;
+		margin-bottom: 3px;
+		margin-right: 20px;
+		list-style-type: none;
+	}
+
+	li:before {
+		width: 12px;
+		height: 12px;
+		position: absolute;
+		top: 5px;
+		left: 0;
+		content: '';
+		border: 3px solid transparent;
+		border-radius: 2px;
+	}
+
+	li.inactive:before {
+		background: transparent;
+	}
+
+	&.ct-legend-inside {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	$i: 0;
+	@each $series-name, $series-color in $ct-series-colors {
+		.ct-series-#{$i}:before {
+			background-color: $series-color;
+			border-color: $series-color;
+		}
+
+		$i: $i + 1;
+	}
+}
+
+
+
+
+

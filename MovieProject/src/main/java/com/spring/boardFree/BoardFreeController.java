@@ -1,6 +1,9 @@
 
 package com.spring.boardFree;
 
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,10 +24,12 @@ import com.spring.paging.SearchCriteria;
 * @Description : BoardFree 게시판
 * @Modification Information
 * @
-* @  	수정일               	 수정자                  	수정내용
+* @  	수정일        수정자                수정내용
 * @ -----------   ---------   -------------------------------
-* @ 2019. 07. 23         황진석            		최초생성
+* @ 2019. 07. 23    황진석                최초생성
 * @ 2019. 07. 24	황진석		추천기능 추가 / 신고기능 추가
+* @ 2019. 08. 09	한유진				  수정
+
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -76,11 +81,32 @@ public class BoardFreeController {
         
         model.addAttribute("boardfree", boardFreeService.listSearch(searchCriteria));
         model.addAttribute("pageMaker", pageMaker);	
+        model.addAttribute("boardListDaily", boardListDaily());
         
 		return "board/free/boardFreeList";
 	}
 	
+
+	@ResponseBody
+	@RequestMapping(value = "/boardListDaily", method=RequestMethod.POST)
+	public List<BoardFreeVO> boardListDaily () {
+		List<BoardFreeVO> result = boardFreeService.boardListDaily();
+		return result;
+	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/boardListWeekly", method=RequestMethod.POST)
+	public List<BoardFreeVO> boardListWeekly () {
+		List<BoardFreeVO> result = boardFreeService.boardListWeekly();
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/boardListMonthly", method=RequestMethod.POST)
+	public List<BoardFreeVO> boardListMonthly () {
+		List<BoardFreeVO> result = boardFreeService.boardListMonthly();
+		return result;
+	}
 	/**
 	  * 자유게시판 게시글 상세 조회
 	  * @param bno - 게시글 번호
@@ -103,7 +129,9 @@ public class BoardFreeController {
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardFreeVO", boardFreeVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
-		
+		model.addAttribute("boardListDaily", boardListDaily());
+		//상필쓰 추천순 mml가져오는 부분 코드 가져와서 모델추가해주기
+
 		return "board/free/boardFreeGet"; 
 	}
 	

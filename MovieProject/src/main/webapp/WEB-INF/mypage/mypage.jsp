@@ -86,9 +86,14 @@
 						<div style="display:block;">
 							<div class="information-hjs">
 								<div class="user-img">
-									<a href="#"><img src="resources/images/uploads/user-img.png" alt="사진등록"><br></a><br>
-									<a href="#" class="redbtn1">사진 등록</a>
-									<br>
+									<%if(member.getM_image() == null || member.getM_image().equals("")) {%>
+										<img src="resources/images/person.png" style="width:120px;height:120px;">
+									<%}else{ %>
+									<img src="./profile/${requestScope.member.m_image }" style="width:120px;height:120px;">
+									<%} %>
+									<form name="goodsform" action="./profileAddAction" method="post" enctype="multipart/form-data">
+										<a href="#" class="red-btn">사진 변경</a>
+									</form>
 								</div>
 								
 								<div class="hjs-info" >

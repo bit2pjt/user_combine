@@ -24,4 +24,10 @@ public class MemberVO {
 	private String m_level;		//엠블럼 등급
 	private String m_favorite;	//선호장르
 	private String m_blacklist;	//블랙리스트 여부
+	private String m_authkey;		//인증키
+	
+	public String toString() {
+		return id + ", " + m_nickname + ", " + m_email + ", " + m_eagree + ", " + m_sagree + ", " 
+				+ m_name + ", " + m_phone + ", " + m_cert + ", " + m_password + ", " + m_favorite ;
+	}
 }

@@ -1,0 +1,250 @@
+
+/**
+* @Class Name :  modifystyle.css
+* @Description : modifystyle css
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.2     한유진      최초생성
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+/* I. FRAMEWORK
+***********************/
+/*!
+ * Bootstrap v3.3.5 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+
+/*
+yj : start | index 페이지 상단의 영화 차트 관련
+*/
+
+.tabs ul.tab-links li a:hover,
+.tabs ul.tab-links-2 li a:hover,
+.tabs ul.tab-links-3 li a:hover {
+  color: #FF6F61;
+}
+.tabs ul.tab-links li.active a,
+.tabs ul.tab-links-2 li.active a,
+.tabs ul.tab-links-3 li.active a {
+  color: #FF6F61;
+}
+ 
+.tabs ul.tabs-mv li.active a,
+.tabs ul.tabs-mv li:hover a {
+  border-bottom: 3px solid #FF6F61;
+}
+
+.tabs{
+  margin-top: 30px;
+  text-align: center;
+  align-content: center;
+
+}
+#moviechart-ul{
+  background-color: black;
+  margin: auto;
+  text-align: center;
+}
+.movie-ranking{
+  position: absolute;
+  background-color: #FF6F61;
+  color: white;
+  width:40px;
+  height:40px;
+  font-weight: bold;
+  font-size: 25px;
+  top:10px;
+  left:0px;
+}
+/*
+.tabs li{
+  margin:auto;
+  text-align: center;
+}*/
+
+
+/*
+yj : start | movieList 페이지 관련
+*/
+body{
+  display: inline;
+}
+.movielist{
+  text-align: center;
+}
+.mt-15{
+  margin-top: 150px;
+}
+.movielist-top{
+  text-align: center;
+}
+.movielist-top select{
+  display:inline;
+  height: 40px; 
+  width:100px;
+}
+.movielist-top input{
+  display:inline;
+  height: 40px; 
+  width:50%;
+  min-width: 70px;
+  max-width: 250px;;
+}
+.movielist-top image{
+  display:inline; 
+}   
+.movielist-bottom{
+  width:90%;
+  margin:auto;
+  text-align: center;
+  display: inline-block;
+  max-width: 1160px;
+}
+.movielist-card{
+  display: inline-block;
+  background-color: white;
+  width:170px;
+  height:300px;
+  margin:20px;
+  position: relative;
+  border: 1px solid black;
+}
+.movie-title{
+  position: absolute;
+  left: 3px;
+}
+.pagination {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+@media (max-width: 767px) {
+  .pagination {
+    flex-wrap: wrap;
+  }
+  .pagination li {
+    margin-bottom: 15px;
+  }
+}
+.pagination li {
+  margin-right: 15px;
+}
+.pagination li a {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  color: #abb7c4;
+  font-weight: 300;
+  text-transform: none;
+  height: 33px;
+  width: 33px;
+  border: 1px solid #405266;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination li a:hover {
+  color: #FF6F61;
+  border: 1px solid #FF6F61;
+}
+.pagination li.active a {
+  color: #FF6F61;
+  border: 1px solid #FF6F61;
+}
+
+/*
+yj : start | movieDetail_ver2 페이지 관련
+*/
+.moviedetail{
+  text-align: center;
+  background-color: pink;
+}
+.moviedetail-top{
+  background-color: springgreen;
+
+}
+.moviedetail-poster{
+  display: inline-block;
+}
+.moviedetail-info{
+  text-align: left;
+  display: inline-block;
+  background-color: sandybrown;
+  height: 250px;
+}
+.moviedetail-info table{
+  width:450px;
+  text-align: center;
+}
+.moviedetail-info span{
+  font-weight: bold;
+}
+.moviedetail-info2{
+  display: inline-block;
+  background-color: slateblue;
+}
+.moviedetail-bottom{
+  background-color: yellow;
+  display: block;
+}
+.moviedetail-story{
+  background-color: crimson;  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.moviedetail-video{
+  background-color: darkgray;
+  display: block;
+}
+.moviedetail-review{
+  background-color: lightseagreen;
+  display: block;
+}
+#moviedetail-ul{
+  width: 370px;
+  background-color: black;
+  margin: auto;
+  text-align: center;
+}
+
+/*
+yj : start | movieDetail 페이지 관련
+*/
+.movie-single-ct table, .movie-single-ct h3 {
+  color: white;
+}
+.movie-single-ct table span{
+  font-weight: bold;
+}
+.movie-single2 {
+  margin-top: -490px;
+}
+.buster-light .tabs ul.tabs-mv li.active a, .buster-light .tabs ul.tabs-mv li:hover a {
+  color: #FF6F61;
+}
+.tabs ul.tab-links li a, .tabs ul.tab-links-2 li a, .tabs ul.tab-links-3 li a {
+  font-family: 'Dosis', sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
