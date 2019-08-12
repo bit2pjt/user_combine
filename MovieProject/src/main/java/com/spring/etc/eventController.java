@@ -240,6 +240,22 @@ public class eventController {
 		cgv_alliance.select("li").attr("class", "lists__item js-load3");
 		System.out.println("cgv_alliance:"+cgv_alliance); // doc 객체들 불러오는것 확인
 		
+		// 제휴 클로링 href = 링크걸어주기
+		// a 태그들 불러오기
+		
+		Elements alliance_a = doc.select("div.sect-evt-entlist").select("li").select("a");
+		
+		String alliance_href = doc.select("div.sect-evt-entlist").select("li").select("a").attr("href");
+		
+		// 어레이리스트에 a 태그들 담고 링크 속성 넣어주기
+		ArrayList<Element> alliance_link = new ArrayList<Element>();
+		for(Element alliance_link2 : alliance_a ) {
+			alliance_link.add(alliance_link2);
+			String a = alliance_link2.attr("href");
+			Element b = alliance_link2.attr("href", "http://www.cgv.co.kr"+a);
+		}
+		
+		
 		// arrayList 객체생성호 타입을 element
 		ArrayList<Element> cgv_alliance_list = new ArrayList<Element>();
 		for(Element cgv_alliance_2 : cgv_alliance.select("li")) {
@@ -259,6 +275,19 @@ public class eventController {
 		Elements cgv_alliance2 = doc.select("div.sect-evt-entlist"); 
 		cgv_alliance2.select("li").attr("class", "lists__item js-load3");
 		System.out.println("cgv_alliance2:"+cgv_alliance2); // 테스트용
+		
+		Elements alliance2_a = doc.select("div.sect-evt-entlist").select("li").select("a");
+		
+		String alliance2_href = doc.select("div.sect-evt-entlist").select("li").select("a").attr("href");
+		// 어레이리스트 a태그 담고 속성 넣어주기
+		
+		ArrayList<Element> alliance2_link = new ArrayList<Element>();
+		for(Element alliance2_link2 : alliance2_a ) {
+			alliance2_link.add(alliance2_link2);
+			String a = alliance2_link2.attr("href");
+			Element b = alliance2_link2.attr("href", "http://www.cgv.co.kr"+a);
+		}
+		
 		
 		// arraylist객체 생성호
 		ArrayList<Element> cgv_alliance_list2 = new ArrayList<Element>();
