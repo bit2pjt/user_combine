@@ -11,30 +11,12 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html lang="en" class="no-js">
 <head>
-	<!-- Basic need -->
-	<title>이벤트창</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
-	<link rel="profile" href="#">
-
-    <!--Google Font-->
-    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
-	<!-- Mobile specific meta -->
-	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="format-detection" content="telephone-no">
-
-	<!-- CSS files -->
-	<!-- c:url jstl 추가부분  -->
+<%@ include file="../header1.jsp"%>
 	<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 	<link rel="stylesheet" href="<c:url value="/resources/css/kgh_style.css"/>">
-	<link rel="stylesheet" href="<c:url value="/resources/css/plugins.css"/>">
-	
-	<!-- 제이쿼리  -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-	</script>
-	<script>
+<%@ include file="../header2.jsp" %>
+
+<script>
 	// 탭기능 
 	// tab menu
 	$(function () {	
@@ -100,213 +82,177 @@ function load(id, cnt, btn) {
     $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
 }
 
+	var select1 = $("select[name='local']");
+	
+	function LocalList() {
+		var selectBrand = $("select[name='local']");
+		var selectLocal = $("select[name='local_2']");
+		var selectLocalName = $("select[name='cname']");
+		var cc_brand = $("#brand option:selected").val();
 
-
+		selectBrand.empty();
+		selectLocal.empty();
+		selectLocalName.empty();
+		selectBrand.append("<option value='1'>서울</option>");
+		selectBrand.append("<option value='2'>인천/경기</option>");
+		selectBrand.append("<option value='3'>대전/충청/강원</option>");
+		selectBrand.append("<option value='4'>부산/경남</option>");
+		selectBrand.append("<option value='5'>대구/울산/경북</option>");
+		selectBrand.append("<option value='6'>광주/전라/제주</option>");
+	}
+	
+	function LocalName() {
+		var selectBrand = $("select[name='local']");
+		var selectLocal = $("select[name='local_2']");
+		var selectLocalName = $("select[name='cname']");
+		var cc_brand = $("#brand option:selected").val();
+		var cc_localnum = $("#local option:selected").val();
+		
+		$.ajax({
+			url: "cineLocal",
+			data: {cc_brand:cc_brand, cc_localnum:cc_localnum},
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				selectLocal.empty();
+				selectLocalName.empty();
+				$.each(data, function(idx, value) {
+					selectLocal.append("<option value='"+idx+"'>"+ data[idx] + "</option>");
+				})
+			},
+			error: function() {
+				alert("에러");
+			}
+		});
+	}
+	
+	function getName() {
+		var cc_brand = $("#brand option:selected").val();
+		var cc_localnum = $("#local option:selected").val();
+		var cc_local_name = $("#local_2 option:selected").text();
+		var selectName = $("select[name='cname']");
+		$.ajax({
+			url: "cineName",
+			data: {cc_brand:cc_brand, cc_localnum:cc_localnum, cc_local_name:cc_local_name},
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				selectName.empty();
+				$.each(data, function(idx, value) {
+					selectName.append("<option value='"+idx+"'>"+ data[idx] + "</option>");
+				})
+			},
+			error: function() {
+				alert("에러");
+			}
+		});
+	}
+	
+	function getCineInfo() {
+		var cc_brand = $("#brand option:selected").val();
+		var cc_localnum = $("#local option:selected").val();
+		var cc_local_name = $("#local_2 option:selected").text();
+		var cc_name = $("#cname option:selected").text();
+		
+		$.ajax({
+			url: "getCineInfo",
+			data: {cc_brand:cc_brand, cc_localnum:cc_localnum
+				, cc_local_name:cc_local_name, cc_name: cc_name},
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				
+				$(".cinemaName").text(data.cc_NAME);
+				$(".cinemaAdd").text(data.cc_ADDRESS);
+				$("#home").attr("href", data.cc_LINK);
+				$("#home").html("<strong> 홈페이지 이동 </strong>");
+				$(".cinemaPhone").text(data.cc_PHONE + "  |  " + data.cc_THEATERS + "관 / " + data.cc_SEATS + "석");
+				//$(".cinemaTheaters").text(data.cc_THEATERS + "관 / " + data.cc_SEATS + "석");
+				
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
+			
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				
+				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+				var mapTypeControl = new kakao.maps.MapTypeControl();
+				
+				map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+				
+				var zoomControl = new kakao.maps.ZoomControl();
+				map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+				
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch(data.cc_ADDRESS, function(result, status) {
+				
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+				
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				
+				        // 결과값으로 받은 위치를 마커로 표시합니다
+				        var marker = new kakao.maps.Marker({
+				            map: map,
+				            position: coords
+				        });
+				
+				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				        map.setCenter(coords);
+				    } 
+				});  
+			},
+			error: function() {
+				alert("에러");
+			}
+		});
+	}
+	
+	
 </script>
 	
 
-
 </head>
 <body>
-<!--preloading-->
-<div id="preloader">
-	
-
-
-    <img class="logo" src="/resources/images/logo1.png" alt="" width="119" height="58">
-    <div id="status">
-        <span></span>
-        <span></span>
-    </div>
-</div>
-<!--end of preloading-->
-<!--login form popup-->
-<div class="login-wrapper" id="login-content">
-    <div class="login-content">
-        <a href="#" class="close">x</a>
-        <h3>Login</h3>
-        <form method="post" action="login.php">
-        	<div class="row">
-        		 <label for="username">
-                    Username:
-                    <input type="text" name="username" id="username" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
-        	</div>
-           
-            <div class="row">
-            	<label for="password">
-                    Password:
-                    <input type="password" name="password" id="password" placeholder="******" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-            <div class="row">
-            	<div class="remember">
-					<div>
-						<input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
-					</div>
-            		<a href="#">Forget password ?</a>
-            	</div>
-            </div>
-           <div class="row">
-           	 <button type="submit">Login</button>
-           </div>
-        </form>
-        <div class="row">
-        	<p>Or via social</p>
-            <div class="social-btn-2">
-            	<a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
-            	<a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end of login form popup-->
-<!--signup form popup-->
-<div class="login-wrapper"  id="signup-content">
-    <div class="login-content">
-        <a href="#" class="close">x</a>
-        <h3>sign up</h3>
-        <form method="post" action="signup.php">
-            <div class="row">
-                 <label for="username-2">
-                    Username:
-                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
-            </div>
-           
-            <div class="row">
-                <label for="email-2">
-                    your email:
-                    <input type="password" name="email" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-             <div class="row">
-                <label for="password-2">
-                    Password:
-                    <input type="password" name="password" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-             <div class="row">
-                <label for="repassword-2">
-                    re-type Password:
-                    <input type="password" name="password" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-           <div class="row">
-             <button type="submit">sign up</button>
-           </div>
-        </form>
-    </div>
-</div>
-<!--end of signup form popup-->
-
-<!-- BEGIN | Header -->
-<header class="ht-header" style="position: relative;">
-	<div class="container">
-		<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header logo">
-				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					    <span class="sr-only">Toggle navigation</span>
-					    <div id="nav-icon1">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-				    </div>
-				    <a href="index.html"><img class="logo" src="/resources/images/logo1.png" alt="" width="119" height="58"></a>
-			    </div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<li class="hidden">
-							<a href="#page-top"></a>
-						</li>
-						<!-- add : 각 항목의 텍스트 변경-->
-						<li class="dropdown first">
-								<a class="btn btn-default dropdown-toggle lv1" href="movieTicketing.html">
-								예매
-								</a>
-							</li>
-							<li class="dropdown first">
-								<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-								영화<i class="fa fa-angle-down" aria-hidden="true"></i>
-								</a>
-								<ul class="dropdown-menu level1">		
-									<li><a href="movieChart.html">영화 차트</a></li>
-									<li class="it-last"><a href="movieList.html">영화 목록</a></li>
-								</ul>
-							</li>
-							<li class="dropdown first">
-								<a class="btn btn-default dropdown-toggle lv1" href="cinemaList.html">
-								영화관
-								</a>
-							</li>
-							<li class="dropdown first">
-								<a class="btn btn-default dropdown-toggle lv1" href="boardEventCollection.html">
-								이벤트&정보
-								</a>
-							</li>
-							<li class="dropdown first">
-								<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-								커뮤니티<i class="fa fa-angle-down" aria-hidden="true"></i>
-								</a>
-								<ul class="dropdown-menu level1">
-									<li><a href="boardFreeList.html">자유 게시판</a></li>
-									<li class="it-last"><a href="boardShreList.html">나눔 게시판</a></li>
-								</ul>
-							</li>
-					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" href="mmlList.html">
-							나영리
-							</a>
-						</li>                
-						<li><a href="mypage.html">마이페이지</a></li>
-						<li class="loginLink"><a href="#">로그인</a></li>
-						<li class="btn signupLink"><a href="#">회원가입</a></li>
-					</ul>
-				</div>
-			<!-- /.navbar-collapse -->
-	    </nav>
-	    
-	    
-	</div>
-</header>
-<!-- END | Header -->
 
 <!-- Start | Section -->
+<div style="margin-top:150px;">
 <section class="section">
 <!-- 지역 영화관 선택 -->	
-<form class="cinema_select" name="frm1" >
-<select name="gd_code" size="3" onChange="redirect(this.selectedIndex);">
-<option value="1">CGV</option>
-<option value="2">롯데시네마</option>
-<option value="3">메가박스</option>
+<form class="cinema_select" name="frm1">
+
+<select id="brand" name="brand" size="3" onChange="LocalList()">
+	<option value="CGV"> CGV </option>
+	<option value="롯데시네마"> 롯데시네마 </option>
+	<option value="메가박스"> 메가박스 </option>
 </select>
 
-<select name="gp_color" size="8" onChange="redirect1(this.selectedIndex);">
+<select id="local" name="local" size="8"  onChange="LocalName()">
 </select>
 
-<select name="gp_face" size="8" onChange = "redirect2(this.selectedIndex);">
+<select id="local_2" name="local_2" size="8" onChange = "getName()">
 </select>
 
-<select name="gp_quantity" size="8">
+<select id="cname" name="cname" size="8" onChange="getCineInfo()">
 </select>
+
 </form>
-
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f335bb208b909138d6a0bdf1ab13b4ca&libraries=services,clusterer,drawing"></script>
 <!-- 영화관 정보 시작 -->
-<div class="cinema_info" style="">
-	<div class="cinema_info_text">
-		<span>CGV</span><span>서울 영화관1호</span><br>
-		<span>인천광역시 중구 운서동 3088-3 예스타워 영종 7층</span><br>
-		<a href="./www.naver.com">홈페이지 이동</a><span>02-444-4444</span><span>|</span><span>상영관 수</span><span>전체 좌석</span>
-		<p style="float: right; background-color: #333; color: #fff; width: 120px;line-height: 80px; padding: 10px; margin-top: 30px; text-align: center; vertical-align: middle;">예매정보</p>
+<div class="cinema_info" >
+	<div class="cinema_info_text" style="margin-top:35px;">
+		<div class="cinemaName" style="font-size:25px; font-weight:bold; margin-bottom:15px;"></div>
+		<div class="cinemaAdd" style="margin-bottom:5px;"></div>
+		<span class="cinemaPhone"></span>
+		<a href="#" id="home" target="_blank" style="margin-left:10px;"></a>
 	</div>
-	<div class="cinema_info_map">
-		<img src="./images/.png">지도
-	</div>
+	<div id="map" style="width:350px;height:250px;"></div>
 	
 </div>
 
@@ -349,59 +295,11 @@ function load(id, cnt, btn) {
 <!-- 극장 정보 탭  끝 -->
 
 </section>
-
+</div>
 <!-- END | Section -->
 
 
+<%@ include file="../footer1.jsp"%>
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<%@ include file="../footer2.jsp"%>
 
-        <!--tabs end--> 
-<!-- footer section-->
-<footer class="ht-footer">
-	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				 <a href="index.html"><img class="logo" src="images/logo1.png" alt=""></a>
-			</div>
-			
-			<div class="flex-child-ft item2">
-				<a href="faq_list.html"><h4>고객센터 </h4></a>
-			</div>
-			
-			<div class="flex-child-ft item3">
-				<a href="one_regist.html"><h4>1:1 문의</h4></a>
-			</div>
-
-			<div class="flex-child-ft item4">
-				<h4></h4>
-			</div>
-		</div>		
-	<div class="ft-copyright">
-		<div class="ft-left">
-			<p>© 2019 Bit 2 Jo. All Rights Reserved.</p>
-		</div>
-		<div class="backtotop">
-			<p><a href="#" id="back-to-top">맨 위로  <i class="ion-ios-arrow-thin-up"></i></a></p>
-		</div>
-	</div>
-
-
-
-        <!--tabs end--> 
-<!-- footer section-->
-
-<!-- end of footer section-->
-
-
-<!-- end of footer section-->
-<!-- <link rel="stylesheet" href="<c:url value="/resources/js/jquery.js"/>"> -->
-<script src="<c:url value="/resources/js/jquery.js" />"></script>
-<script src="<c:url value="/resources/js/plugins.js" />"></script>
-<script src="<c:url value="/resources/js/plugins2.js" />"></script>
-<script src="<c:url value="/resources/js/custom.js" />"></script>
-
-<!-- <script src="js/jquery.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/plugins2.js"></script>
-<script src="js/custom.js"></script> -->
-</body>
-</html>

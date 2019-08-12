@@ -8,10 +8,6 @@ import com.spring.paging.SearchCriteria;
 
 interface BoardFreeService {
 
-	List<BoardFreeVO> listAll();
-	
-	List<BoardFreeVO> listCriteria(Criteria criteria);
-	
 	List<BoardFreeVO> listSearch(SearchCriteria searchCriteria);
 
 	int countSearchedArticles(SearchCriteria searchCriteria);

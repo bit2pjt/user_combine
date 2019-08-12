@@ -3,6 +3,7 @@ package com.spring.paging;
 public class Criteria {
 	private int bfr_bno;
 	private int bs_bno;
+	private int mi_code;
     private int page; // 현재 페이지 번호
     private int perPageNum; // 한페이지당 보여줄 게시물의 개수
 
@@ -66,4 +67,14 @@ public class Criteria {
 	public void setBs_bno(int bs_bno) {
 		this.bs_bno = bs_bno;
 	}
+
+	public int getMi_code() {
+		return mi_code;
+	}
+
+	public void setMi_code(int mi_code) {
+		this.mi_code = mi_code;
+	}
+	
+	
 }
