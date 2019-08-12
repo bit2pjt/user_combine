@@ -1,3 +1,4 @@
+
 package com.spring.mml;
 
 import java.util.Date;
@@ -19,4 +20,4 @@ public class Mml_ListDTO {
 	private String mml_poster;		//나영리 포스터
 	private int mml_warn_count;		//나영리 신고수
 	private String m_nickname;
-}
+-

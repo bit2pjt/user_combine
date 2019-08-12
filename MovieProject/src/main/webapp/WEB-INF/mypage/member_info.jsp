@@ -1,13 +1,16 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.member.MemberVO"%>
 <%
+
 	MemberVO member = (MemberVO)request.getAttribute("member");
 String phone =  member.getM_phone();
 String phone1 = member.getM_phone().substring(0,3);
 String phone2 = member.getM_phone().substring(3,7);
 String phone3 = member.getM_phone().substring(7,11);
 String favorite = member.getM_favorite();	
+
 
 %>
 <!--
@@ -36,6 +39,7 @@ String favorite = member.getM_favorite();
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script type="text/javascript">
 
+
  
 function pw(form) {
 	var pass1 = form.pw_confirm.value;
@@ -63,6 +67,7 @@ function pw(form) {
 
 
 function modify(form){
+
 	
 	var ph;
 	
@@ -170,7 +175,9 @@ $(document).ready(function() {
 									<div class="td-content"><%=member.getM_email()%></div>
 								</td>
 							</tr>
+
 						<form action="update_pw?id=<%=member.getId()%>" name="pwform"
+
 								onsubmit="return pw(this)" method="post">
 							<tr>
 								<td>비밀번호 변경</td>
@@ -205,13 +212,16 @@ $(document).ready(function() {
 									<div class="td-content"><%=member.getM_name()%></div>
 								</td>
 							</tr>
+
 						<form id="nickChkform" action="update_nick?id=<%=member.getId()%>" method="post">
 							<input type="hidden" name="id" value=<%=member.getId() %>>
 							
+
 							<tr>
 								<td>닉네임</td>
 								<td>
 									<div class="td-content">
+
 										<input type="text" id="nicknameVal" name="m_nickname" style="width: 250px"
 											value="<%=member.getM_nickname()%>" /><br>
 										<button id="nick_chk" class="btn-check-hjs">닉네임 변경</button>
@@ -220,6 +230,7 @@ $(document).ready(function() {
 								</td>
 							</tr>
 						</form>
+
 							<form name="modifyform" action="member_update?id=<%=member.getId() %>" onsubmit="return modify(this)" method="post">
 							<tr>
 								<td>휴대폰 번호</td>
@@ -245,6 +256,7 @@ $(document).ready(function() {
 								<td>
 									<div class="td-content">
 									
+
 										<label for="terms-2"> 
 										
 											
@@ -269,6 +281,7 @@ $(document).ready(function() {
 												type="checkbox" <%if(member.getM_favorite().equals("가족")){%>checked<%} %>><span> 가족 </span>
 										</label> <label class="fancy-checkbox custom-bgcolor-coral"> <input name="chkbox" value="애니메이션"
 												type="checkbox" <%if(member.getM_favorite().equals("애니메이션")){%>checked<%} %>><span> 애니메이션 </span>
+
 										</label>
 										
 										</label>
@@ -284,18 +297,22 @@ $(document).ready(function() {
 										<label for=""> SMS 수신동의
 											<div class="div-yn">
 												<label class="fancy-radio custom-color-coral"> <input
+
 													name="smsyn" value="y" type="radio" <%if(member.getM_sagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
 												</label> <label class="fancy-radio custom-color-coral"> <input
 													name="smsyn" value="n" type="radio" <%if(member.getM_sagree().equals("n")){%>checked<%} %>><span><i></i>동의
+
 														안함 </span>
 												</label>
 											</div>
 											<br> 이메일 수신동의
 											<div class="div-yn">
 												<label class="fancy-radio custom-color-coral"> <input
+
 													name="emailyn" value="y" type="radio" <%if(member.getM_eagree().equals("y")){%>checked<%} %>><span><i></i>동의함</span>
 												</label> <label class="fancy-radio custom-color-coral"> <input
 													name="emailyn" value="n" type="radio" <%if(member.getM_eagree().equals("n")){%>checked<%} %>><span><i></i>동의
+
 														안함</span>
 												</label>
 												<input type="hidden" name="m_sagree" id="modify_sagree" value="<%=member.getM_sagree() %>">
@@ -319,6 +336,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+
 
 <!-- footer section-->
 <%@ include file="../footer.jsp"%>

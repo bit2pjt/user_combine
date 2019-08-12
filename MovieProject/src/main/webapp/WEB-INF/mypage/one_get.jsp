@@ -32,6 +32,7 @@
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script>
+
 function deleteQnaDetail(form){
 	
 	var qno = qform.qna_no.value; 
@@ -40,6 +41,7 @@ function deleteQnaDetail(form){
 		
 		location.href="one_delete?qna_no="+qno;
 	} 
+
 	
 }
 </script>
@@ -92,7 +94,9 @@ function deleteQnaDetail(form){
 							</h1>
 						</div>
 						<div>
+
 							<form name="qform">
+
 								<ul>
 									<li class="tb_line">
 										<div class="tb_th1">상담구분</div>
@@ -114,7 +118,9 @@ function deleteQnaDetail(form){
 									<li class="tb_line">
 
 										<div class="tb_th1">내용</div>
+
 										<div class="tb_td1" style="word-break:break-all">
+
 											${requestScope.qnaDetail.qna_content }</div>
 
 									</li>
@@ -125,7 +131,9 @@ function deleteQnaDetail(form){
 										onClick="location.href='one_update?qna_no=${requestScope.qnaDetail.qna_no}'"
 										class="btn-check-hjs" value="수정"> &nbsp; <input
 										type="reset" class="btn-check-hjs" value="삭제"  onclick="deleteQnaDetail()">
+
 										<input type="hidden" name="qna_no" value="${requestScope.qnaDetail.qna_no}">
+
 								</div>
 								<br>
 							</form>
@@ -156,7 +164,9 @@ function deleteQnaDetail(form){
 											<li class="tb_line"></li>
 											<li class="tb_line">
 												<div class="tb_th1">답변일시</div>
+
 												<div class="tb_td1" style="word-break:break-all">${requestScope.qnaAdDetail.aqna_update_date }</div>
+
 											</li>
 											<li class="tb_line">
 												<div class="tb_th1">답변내용</div>

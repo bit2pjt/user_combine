@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -148,4 +149,5 @@ var delete_confirm = function ()
 <%@ include file="../footer1.jsp" %>
 <%@ include file="../footer2.jsp" %>
 </body>
+
 </html>

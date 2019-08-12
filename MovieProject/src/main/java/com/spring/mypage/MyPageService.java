@@ -23,7 +23,9 @@ import com.spring.paging.SearchCriteria;
 public interface MyPageService {
 
 	public MemberVO getMember(int id);
+
 	public List<MemberVO> getMembers();
+
 	void updateMember(MemberVO memberVO);
 
 	void updatePw(MemberVO memberVO);
@@ -48,8 +50,10 @@ public interface MyPageService {
 	public OneVO getQnaDetail(int qna_no); // 1:1 문의 상세정보 가져오기
 
 	public int updateQna(OneVO oneVO); // 1:1 문의 상세정보 수정하기
+
 	
 	public int deleteQna(int qna_no); // 1:1 문의 삭제하기
+
 
 	// hm| 1:1문의 답변 가져오기
 	public OneAdVO getQnaAdDetail(int qna_no); // 1:1문의 답변 상세정보 가져오기
@@ -57,6 +61,14 @@ public interface MyPageService {
 	// kgh | 비밀번호 체크, 탈퇴, 신청시간
 	// 회원 비밀번호 체크
 	public boolean checkPw(String m_email, String m_password);
+
+
+	public int delete_member(String m_email);
+	// 회원 탈퇴신청
+
+	public int delete_date(int id);
+	// 회원 탈퇴 신청시간
+
 
 	public int delete_member(String m_email);
 	// 회원 탈퇴신청

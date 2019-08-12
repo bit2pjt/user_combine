@@ -1,6 +1,6 @@
-/*mmlGet 모바일*/
+/*mmlGet */
 .social-link{
-  width:1258px;
+  width:100%;
   display:flex;
 }
 
@@ -15,8 +15,7 @@
 
 
 
-/*mmlFollowList 모바일*/
-
+/*mmlFollowList */
 .blog-item-style-11 {
   display: flex;
   float:left;
@@ -37,9 +36,7 @@
 }
 
 
-/* mmlList 모바일 크기 */
-
-
+/* mmlList  */
   @media(max-width: 767px){
   .row1{
     position: relative;
@@ -73,7 +70,7 @@
 	 clear: both;
 }
 
-/*mml list 카드부분 div영역*/
+/*mml list */
 .sp_col-md-41 {
 	
 	
@@ -95,10 +92,10 @@
   padding-left: 15px;
   padding-right: 5px;
 }
-/*카드*/
+
 .card {
-  width: 350px;
-  height: 400px;
+  width: 250px;
+  height: 500px;
   margin-left:10px
 }
 
@@ -151,9 +148,46 @@
           align-self: bottom;
   justify-self: right;
 }
-/*카드끝*/
 
-/*최신순 추천순 버튼*/
+
+.card-img{
+  width: 250px;
+  height:400px;
+}
+
+
+.card-ho{
+  width:250px;
+  height:400px;
+  top:0;
+  left:25px;
+  position: absolute;
+  background:black;
+  opacity:0;
+  transition:all .2s linear;
+}
+
+
+
+.ho-info{
+
+  position:absolute;
+   top:320px; 
+  background:black;
+   color:white;
+   width: 250px;
+  border-style:double;
+ left:25px;
+  text-align:center;
+  opacity: 0.6;
+  right:5%;
+  transition:all .3s linear;
+}
+
+.card:hover .ho-info{
+  opacity:0.8;
+  transform:scale(1);
+}
 
 .mb-3,
 .my-3 {
@@ -162,7 +196,7 @@
 
 .btn-lg, .btn-group-lg > .btn {
   padding: 0.5rem 1rem;
-  font-size: 2.09375rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
@@ -181,18 +215,18 @@
 .btn-brand.btn-lg i + span, .btn-group-lg > .btn-brand.btn i + span {
   margin-left: 2rem;
 }
-
 .btn-secondary {
-  color: #23282c;
-  background-color: #c8ced3;
-  border-color: #c8ced3;
+  color:white;
+  background-color:black;
+  border-color:gray;
 }
 
 .btn-secondary:hover {
-  color: #23282c;
-  background-color: #b3bbc2;
-  border-color: #acb5bc;
+  color: #FF6F61;
+  background-color:black;
+  border-color: white;
 }
+
 
 .btn-secondary:focus, .btn-secondary.focus {
   box-shadow: 0 0 0 0.2rem rgba(175, 181, 186, 0.5);
@@ -223,13 +257,10 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
-/*최신순 추천순 버튼끝*/
 
-
-/*나영리 쓰기 버튼 */
 .btn1 {
   display: inline-block;
-  font-weight: 400;
+  font-weight: 200;
   color: #23282c;
   text-align: center;
   vertical-align: middle;
@@ -238,17 +269,17 @@ input[type="button"].btn-block {
   -ms-user-select: none;
   user-select: none;
   background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
+  border: 0.5px solid transparent;
+  padding: 0.375rem 0.5rem;
+  font-size: 0.5rem;
+  line-height: 1;
+  border-radius: 0.15rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
 }
 
 .btn-square {
-  border-radius: 0;
+  border-radius: 0.5;
 }
 
 
@@ -307,11 +338,11 @@ input[type="button"].btn-block {
 .btn-check{
   display: inline-block;
   background-color:#FF6F61;
-  padding: 0 45px;
+  padding: 0 25px;
   height: 46px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  border-radius: 30px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #ffffff;
@@ -319,13 +350,11 @@ input[type="button"].btn-block {
   text-transform: uppercase;
   border: none;
 }
-/*나영리 쓰기 버튼 끝*/
 
-/*컨셉 색상 버튼을 만들어 볼까용 */
-
-.blog-detail-ct .comment-form form button.submit2 {
+.submit2 {
   background-color:#FF6F61;
-  padding: 0 45px;
+  padding: 15px 45px;
+  border: 15px;
   height: 46px;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
@@ -336,8 +365,8 @@ input[type="button"].btn-block {
   font-weight: bold;
   text-transform: uppercase;
   border: none;
+  float: right;
 }
-/*홍당무색 버튼 끝 */
 
 .blog-item-style-31 img {
   -webkit-transition: all 0.5s ease-out;
@@ -369,4 +398,36 @@ input[type="button"].btn-block {
   color: #dcf836;
 }
 
+.getheart{
+	color:red;
+	font-size:35px;
 
+}
+
+.getfol{
+	color:black;
+	font-size:35px;
+}
+
+.mml_crown{
+	width:25px;
+	height:25px;
+}
+
+.crown{
+	width:45px;
+	height:45px;
+}
+
+.profile_img{
+	border-radius:50%;
+	 width:100px;
+	 height:100px;
+}
+
+/*
+yj(190726)
+*/
+.form-style-1 input{
+	
+}ㄴ

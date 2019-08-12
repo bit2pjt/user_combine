@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!--
 /**
 * @Class Name : mmlWrite2.jsp
@@ -13,7 +15,9 @@
 * @ 2019.07.09    김상필      		 최초생성
 * @ 2019.07.23    한유진      		 back-end 작업
 * @ 2019.07.27    한유진      		 front-end 수정
+
 * @ 2019.07.29    한유진      		 영화선택 모달창 작업
+
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -24,6 +28,7 @@
 -->
 
 <%@ include file="../header1.jsp"%>
+
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/mml_write.css" />">
@@ -44,8 +49,9 @@
 		//제목과 내용의 앞뒤 공백 제거
 		var mml_title = mml_write_form.mml_title.value.trim();
 		var mml_content = mml_write_form.mml_content.value.trim();
-		
+
 		//타이틀, 컨텐츠가 입력되지 않았을 경우를 체
+
 		if (mml_title.length == 0) {
 			alert("제목을 입력해주세요.");
 			mml_write_form.mml_title.focus();
@@ -57,11 +63,13 @@
 			return false;
 		}
 
+
 		//var mml_movie_item = document.getElementsByClassName("mml-movie-item");
 		
 		//첫번째로 등록된 영화의 이미지를 대표 썸네일로 사용
 		//var mml_poster=document.getElementsByName("mml_poster");
 		//mml_poster[0].setAttribute("value",mml_movie_item[1].children[1].alt );
+
 		return true;
 	}
 	function register_back() {
@@ -70,6 +78,7 @@
 			location.href = "mmlList";
 		}
 	}
+
 	function movie_select(mi_code,mi_poster){
 		var mml_body = document.getElementsByClassName("mml-movie-body");
 		mml_body[0].innerHTML = 
@@ -86,6 +95,7 @@
 	function movie_delete(del_num){
 		var del_movie = document.getElementById(del_num);
 		del_movie.remove();
+
 	}
 </script>
 
@@ -102,6 +112,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="buster-light" style="min-height: 1000px; margin-top: 20px;">
 	<div class="col-md-10" style="margin-left:10%;">
 		<form name="mml_write_form" action="mmlWriteAction" method="post"
@@ -112,13 +123,16 @@
 			<div class="mml-write-title">
 				제목<br> <input name="mml_title" class="mml-title"
 					placeholder="제목을 입력해주세요" maxlength="50"><span id="counter">0</span><span>/50자</span>
+
 			</div>
 			<!-- end | title -->
 			<!-- start | content -->
 			<div class="mml-write-content">
 				<br>내용<br>
+
 				<textarea name="mml_content" id="summernote"
 					style="border: 1 solid; width: 100%" placeholder="내용을 입력해주세요"></textarea>
+
 			</div>
 			<!-- end | content -->
 			<!-- start | movie list -->
@@ -126,6 +140,7 @@
 				<br>영화 리스트<br>
 				<div class="mml-movie-body">
 					<div class="mml-movie-item">
+
 						<img class="addbtn"
 							src="<c:url value='/resources/images/mml_add.png'/>"
 							alt="영화 추가하기" data-target="#movie-modal" data-toggle="modal"
@@ -193,14 +208,17 @@
 							</div>
 						</div>
 						<!-- end | modal -->
+
 					</div>
 				</div>
 			</div>
 			<!-- end | movie list -->
 			<!-- start | button -->
 			<div class="mml-write-button">
+
 				<input type="submit" value="등록"> <input type="button"
 					value="취소" onclick="register_back()">
+
 			</div>
 			<!-- end | button -->
 		</form>
@@ -210,6 +228,7 @@
 
 
 <script>
+
 </script>
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp"%>

@@ -1,3 +1,4 @@
+
 package com.spring.mml;
 
 import java.util.List;
@@ -69,4 +70,3 @@ public interface MmlService {
 	
 	int countSearchedArticles2(SearchCriteria searchCriteria);
 	List<Mml_ListDTO> listSearch2(SearchCriteria searchCriteria);
-}

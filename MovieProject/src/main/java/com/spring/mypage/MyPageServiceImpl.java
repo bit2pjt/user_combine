@@ -175,6 +175,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 	
 	
+
 	@Override
 	public int deleteQna(int qna_no) {
 		
@@ -228,7 +229,4 @@ public class MyPageServiceImpl implements MyPageService{
 			
 			return list;
 	    }
-	
-	
-
 }

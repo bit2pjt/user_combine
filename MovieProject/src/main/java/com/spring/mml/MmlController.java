@@ -1,3 +1,4 @@
+
 package com.spring.mml;
 
 
@@ -293,7 +294,6 @@ public class MmlController {
 
 		return "mml/mmlFollowingList";
 	}
-	
 	
 
 }
