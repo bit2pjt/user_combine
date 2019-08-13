@@ -72,7 +72,7 @@
 			mml_body[0].innerHTML
 			+"<div class='mml-movie-item' id='"+mi_code+"'>"
 			+"<input type='hidden' name='mi_code' value='"+ mi_code +"'>"
-			+ "<img src='./upload/poster/" +mi_poster + "' alt='"+mi_poster+"'>"
+			+ "<img src='" +mi_poster + "' alt='"+mi_poster+"'>"
 			+"<input type='hidden' name='mml_poster' value='"+ mi_poster +"'>"
 			+"<img src='resources/images/mml_add.png' onclick='movie_delete("+mi_code+")' name='delete_movie' style='width:40px;height:40px;position:absolute;left:127px;top:-20px;transform: rotate(45deg);background: white; border-radius: 50%;'>"
 			+"</div>";
@@ -207,7 +207,7 @@
 					<c:forTokens items="${requestScope.mmlContentVO.mi_code }" delims="," var="mi_code" varStatus="i">
     					<div class='mml-movie-item' id='${mi_code }'>
 							<input type='hidden' name='mi_code' value='${mi_code }'>
-							<img src='./upload/poster/${mml_poster[i.index]}' alt='${mml_poster[i.index]}'>
+							<img src='${mml_poster[i.index]}' alt='${mml_poster[i.index]}'>
 							<input type='hidden' name='mml_poster' value='${mml_poster[i.index]}'>
 							<img src='resources/images/mml_add.png' onclick='movie_delete(${mi_code })' name='delete_movie' style='width:40px;height:40px;position:absolute;left:127px;top:-20px;transform: rotate(45deg);background: white; border-radius: 50%;'>
 						</div>
