@@ -61,16 +61,16 @@ function check(){
 	
 	//이메일 수신동의 체크
 	if(joinform.m_eagree_chk.checked == true){
-		m_eagree.setAttribute("value","Y");
+		$('#m_eagree').attr('value','Y');
 	}else{
-		m_eagree.setAttribute("value","N");
+		$('#m_eagree').attr('value','N');
 	}
 	
 	//sms 수신동의 체크
 	if(joinform.m_sagree_chk.checked == true){
-		m_sagree.setAttribute("value","Y");
+		$('#m_sagree').attr('value','Y');
 	}else{
-		m_sagree.setAttribute("value","N");
+		$('#m_sagree').attr('value','N');
 	}
 	
 	//모든 항목을 통과했을 경우
@@ -235,7 +235,7 @@ $('.search #search_email_btn').on('click', function () {
 			$('.search_content_result').css('display','block');
 		},
 		error: function (xhr, status, e) {
-			//alert("에러!" + status);
+			alert("에러!" + status);
 			$('#search_email_result').html('결과 없음.<br>입력한 정보를 확인해주세요.');
 			$('.search_content_result').css('display','block');
 			$('.search_content_input').css('display','none');

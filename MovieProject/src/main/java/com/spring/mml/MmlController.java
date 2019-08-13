@@ -109,7 +109,7 @@ public class MmlController {
 		}
 		//작성자의 개인 mmlList로 이동하게 추후 링크조정
 		int mml_num = mmlService.getMmlNum(mmlContentVO);
-		return "redirect:/mmlGet?mml_num="+mmlContentVO.getMml_num();
+		return "redirect:/mmlGet?mml_num="+mml_num;
 	}
 	
 	@RequestMapping(value = "/mmlUpdate", method = RequestMethod.GET)
