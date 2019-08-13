@@ -56,207 +56,161 @@ public class MyPageController {
       qnaList = myPageService.getQnaList(id);
       model.addAttribute("qnaList", qnaList);
 
+      List<FolFolDTO> followerList = null;
+      followerList = myPageService.getfollower(id);
+      model.addAttribute("follower", followerList);
+      System.out.println(followerList);
+      
+      List<FolFolDTO> followingList = null;
+      followingList = myPageService.getfollowing(id);
+      model.addAttribute("following", followingList);
+      System.out.println(followingList);
+
       return "mypage/mypage";
    }
 
-   // 마이페이지 - 비밀번호 확인
-   @RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
-   public String pwConfirm(HttpSession session, Model model) {
-      int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
-      MemberVO member = myPageService.getMember(id);
-      model.addAttribute("member", member);
+	// 마이페이지 - 회원정보 수정
+	@RequestMapping(value = "/member_update")
+	public String updateMember(Model model, HttpServletResponse response, MemberVO memberVO, int id) {
 
-      return "mypage/pw_confirm";
-   }
+		MemberVO member = myPageService.getMember(id);
+		myPageService.updateMember(memberVO);
+		member = myPageService.getMember(id);
+		model.addAttribute("member", member);
 
-   // 마이페이지 - 멤버정보
-   @RequestMapping(value = "/member_info")
-   public String memberInfo(MemberVO member, Model model, int id) {
-      MemberVO member1 = myPageService.getMember(id);
-      System.out.println("member1=" + member1);
-      String input_password = member.getM_password();
-      System.out.println("input_pwd=" + input_password);
-      String member_password = member1.getM_password();
-      System.out.println("member_pwd=" + member_password);
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('접근 권한이 없습니다.');");
+			out.println("</script>");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-      int check = 3;
+		return "mypage/member_info";
+	}
+	
+	// 마이페이지 - 비밀번호 수정
+	@RequestMapping(value = "/update_pw")
+	public String updatePw(Model model, MemberVO memberVO, int id) {
 
-      if (input_password.equals(member_password)) {
-         model.addAttribute("member", member);
-         model.addAttribute("member1", member1);
-         model.addAttribute("check", check);
-         System.out.println("�ѱ��" + member1);
-         return "mypage/member_info";
-      } else {
-         return "mypage/mypage";
-      }
-   }
+		MemberVO member = myPageService.getMember(id);
+		myPageService.updatePw(memberVO);
+		member = myPageService.getMember(id);
 
-   // 마이페이지 - 비밀번호 수정
-   @RequestMapping(value = "/update_pw")
-   public String updatePw(Model model, MemberVO memberVO, int id) {
-
-      MemberVO member1 = myPageService.getMember(id);
-
-      myPageService.updatePw(memberVO);
-
-      member1 = myPageService.getMember(id);
-
-      model.addAttribute("member1", member1);
-      return "mypage/member_info";
-   }
-
-//    // 마이페이지 - 닉네임확인
-//   @RequestMapping(value="/update_checknick")
-//   public String updateCheckNick(Model model, String m_nickname, MemberVO memberVO,int id) {
-//      int check = myPageService.checkNick(m_nickname);
-//      MemberVO member = myPageService.getMember(id);
-//      
-//      model.addAttribute("check", check);
-//      model.addAttribute("member1",member);
-//      System.out.println("�ߺ�üũ " +check);
-//      return "mypage/member_info";
-//   }
-
-   // 마이페이지 - 닉네임 수정
-   @RequestMapping(value = "/update_nick")
-   public String updateNick(Model model, int id, MemberVO memberVO) {
-      MemberVO member1 = myPageService.getMember(id);
-      myPageService.updateNick(memberVO);
-
-      member1 = myPageService.getMember(id);
-
-      model.addAttribute("member1", member1);
-
-      return "mypage/member_info";
-   }
-
-   // 마이페이지 - 회원정보 수정
-   @RequestMapping(value = "/member_update")
-   public String updateMember(Model model, HttpServletResponse response, MemberVO memberVO, int id) {
-      MemberVO member1 = myPageService.getMember(id);
-      myPageService.updateMember(memberVO);
-
-      member1 = myPageService.getMember(id);
-
-      model.addAttribute("member1", member1);
-
-      response.setContentType("text/html; charset=UTF-8");
-      try {
-         PrintWriter out = response.getWriter();
-         out.println("<script>");
-         out.println("alert('접근 권한이 없습니다.');");
-         out.println("</script>");
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return "mypage/member_info";
-   }
-
-   /*
-    * // kgh | // 마이페이지 - 비밀번호 재확인
-    * 
-    * @RequestMapping(value = "/pw_confirm", method = RequestMethod.GET) public
-    * String pwConfirm(Model model) {
-    * 
-    * return "mypage/pw_confirm"; }
-    */
-
-   // 마이페이지 - 비밀번호 재확인 - 회원정보 수정
-   @RequestMapping(value = "/member_info", method = RequestMethod.GET)
-   public String memberInfo(MemberVO vo, RedirectAttributes rttr, HttpSession session, HttpServletResponse response) {
-      
-      
-      boolean result = myPageService.checkPw(vo.getM_email(), vo.getM_password());
-      if (result) {// 비밀번호가 일치하면 사이트 이동
-         
-         // 아이디값을 가져와지긴 하는데...
-         System.out.println("비밀번호 일치");
-         MemberVO member1 =myPageService.getMember((int)session.getAttribute("id"));
-         System.out.println("member1의 값은 "+member1);
-         session.setAttribute("member1",member1);
-         System.out.println("비밀번호일치시 아이디:"+session.getAttribute("id"));
-         
-         return "mypage/member_info";
-      } else {
-         System.out.println("비밀번호 불일치");
-
-         rttr.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다.");
-
-         return "redirect:/pw_confirm";
-      }
-
-   }
-
-   // 마이페이지 - 회원탈퇴 (링크이동)
-   @RequestMapping(value = "/member_out", method = RequestMethod.GET)
-   public String memberOut() {
-      return "mypage/member_out";
-   }
-
-   // 마이페이지 - 회원탈퇴 (컨트롤러)
-
-   @RequestMapping(value = "/member_delete", method = RequestMethod.GET)
-   public String memberOutController(MemberVO vo, RedirectAttributes rttr, HttpSession session) {
-      //session.setAttribute("m_email", "bit0hyj@gmail.com");
-      //session.setAttribute("m_password", "1234");
-      //session.setAttribute("id", "1");
-      // 임시로 이메일값을 준다.
-
-      String m_email = (String) session.getAttribute("m_email");
-      String m_password = (String) session.getAttribute("m_password");
-      int id = (int)session.getAttribute("id");
-
-      System.out.println("m_email:" + m_email);
-      System.out.println("m_password:" + m_password);
-      System.out.println("id:" + id);
-
-      int num = myPageService.delete_member(m_email);
-      int id_num = myPageService.delete_date(id);
-      
-      rttr.addFlashAttribute("delete_msg", "탈퇴가 왼료되었습니다.");
-
-      // 로그아웃으로 세션들을 초기화시킴
-      session.invalidate();
-
-      return "redirect:/";
-   }
-
-   /*
-   // 마이페이지 - 1:1 문의내역 리스트
-   @RequestMapping(value = "/one_list", method = RequestMethod.GET)
-   public String oneList(HttpServletRequest request, HttpSession session) {
-
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
-
-      // 사용자 정보
-      String m_email = (String) session.getAttribute("m_email");
-      String m_name = myPageService.getMemberName(m_email); // System.out.println("=============MyPageController.java=====================
-                                                // m_name : " + m_name);
-      request.setAttribute("m_name", m_name);
-      int id = myPageService.getMemberId(m_email); // System.out.println("=============MyPageController.java=====================
-      // id : " + id);
-      
-      // 1:1 문의내역
-      List<OneVO> qnaList = null;
-      
-      qnaList = myPageService.getQnaList(id);
-      request.setAttribute("qnaList", qnaList);
-      return "mypage/one_list";
-   }
-   */
+		model.addAttribute("member", member);
+		return "mypage/member_info";
+	}
    
+// 마이페이지 - 닉네임 수정
+	@RequestMapping(value = "/update_nick")
+	public String updateNick(Model model, MemberVO memberVO, HttpServletResponse response) throws Exception {
+
+		List<MemberVO> memberList = myPageService.getMembers();
+		System.out.println("memberlist=" + memberList);
+		for (int i = 0; i < memberList.size(); i++) {
+			MemberVO member = memberList.get(i);
+
+			String nick = member.getM_nickname();
+			System.out.println("nick=" + nick);
+
+			if (memberVO.getM_nickname().equals(nick)) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('중복된 닉네임입니다!');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				out.close();
+				return null;
+			}
+		}
+
+		myPageService.updateNick(memberVO);
+		MemberVO member = myPageService.getMember(memberVO.getId());
+		model.addAttribute("member", member);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('닉네임이 변경되었습니다.!');");
+		out.println("history.go(-1);");
+		out.println("</script>");
+		out.close();
+
+		return "mypage/member_info";
+
+	}
+ 
+	// 마이페이지 - 비밀번호 재확인 - 회원정보 수정
+	@RequestMapping(value = "/member_info", method = RequestMethod.POST)
+	public String memberInfo(MemberVO vo, RedirectAttributes rttr, Model model, HttpServletResponse response,
+			HttpSession session) {
+
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		boolean result = myPageService.checkPw(vo.getM_email(), vo.getM_password());
+
+		System.out.println(vo.getM_email());
+		System.out.println(vo.getM_password());
+
+		if (result) {// 비밀번호가 일치하면 사이트 이동
+			MemberVO member = myPageService.getMember(id);
+			// 아이디값을 가져와지긴 하는데...
+			System.out.println("비밀번호 일치");
+			System.out.println("member의 값은 " + member);
+			model.addAttribute("member", member);
+
+			return "mypage/member_info";
+		} else {
+			System.out.println("비밀번호 불일치");
+			rttr.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다.");
+
+			return "redirect:/pw_confirm";
+		}
+
+	}
+
+	// 마이페이지 - 비밀번호 확인
+	@RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
+	public String pwConfirm(HttpSession session, Model model) {
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		MemberVO member = myPageService.getMember(id);
+		model.addAttribute("member", member);
+
+		return "mypage/pw_confirm";
+	}
+	
+	// 마이페이지 - 회원탈퇴 (링크이동)
+	@RequestMapping(value = "/member_out", method = RequestMethod.GET)
+	public String memberOut() {
+		return "mypage/member_out";
+	}
+
+	
+	// 마이페이지 - 회원탈퇴 (컨트롤러)
+	@RequestMapping(value = "/member_delete", method = RequestMethod.GET)
+	public String memberOutController(MemberVO vo, RedirectAttributes rttr, HttpSession session) {
+
+		String m_email = (String) session.getAttribute("m_email");
+		String m_password = (String) session.getAttribute(vo.getM_password());
+		int id = (int) session.getAttribute("id");
+
+		System.out.println("m_email:" + m_email);
+		System.out.println("m_password:" + m_password);
+		System.out.println("id:" + id);
+
+		rttr.addFlashAttribute("delete_msg", "탈퇴가 왼료되었습니다.");
+		// 로그아웃으로 세션들을 초기화시킴
+		session.invalidate();
+
+		return "redirect:/";
+	}
+
    // 마이페이지 - 1:1 문의내역 리스트
    @RequestMapping(value = "/one_list", method = RequestMethod.GET)
    public String oneList(HttpServletRequest request, HttpSession session, Model model,@ModelAttribute("criteria") 
 	Criteria criteria) {
-
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
 
       // 사용자 정보
       String m_email = (String) session.getAttribute("m_email");
@@ -283,24 +237,17 @@ public class MyPageController {
    @RequestMapping(value = "/one_register", method = RequestMethod.GET)
    public String oneRegister(HttpServletRequest request, HttpSession session, OneVO oneVO) {
 
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
-
       // 사용자 정보
       String m_email = (String) session.getAttribute("m_email");
-      
       if (m_email == null) {
 			return "redirect:/index";
-		}
+      }
       
       String m_name = myPageService.getMemberName(m_email);
       String m_nickname = myPageService.getMemberNickname(m_email); // System.out.println("=============MyPageController.java=====================
                                                       // nickname : " + m_nickname);
       request.setAttribute("m_name", m_name);
       request.setAttribute("m_nickname", m_nickname);
-
-//      myPageService.insertQna(oneVO);
 
       return "mypage/one_register";
    }
@@ -309,11 +256,7 @@ public class MyPageController {
    @RequestMapping(value = "/one_registerAction", method = RequestMethod.POST)
    public String oneRegisterAction(HttpSession session, HttpServletRequest request, HttpServletResponse response,
          OneVO oneVO) {
-
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
-
+	   
       oneVO.setId(myPageService.getMemberId((String) session.getAttribute("m_email")));
 
       // qna_title, qna_content의 앞뒤 공백 제거
@@ -335,9 +278,7 @@ public class MyPageController {
    // 마이페이지 - 1:1 문의내역 수정
    @RequestMapping(value = "/one_update", method = RequestMethod.GET)
    public String oneUpdate(HttpSession session, HttpServletRequest request) {
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
+	   
       String m_email = (String) session.getAttribute("m_email");
       if (m_email == null) {
 			return "redirect:/index";
@@ -366,11 +307,6 @@ public class MyPageController {
    // 마이페이지 - 1:1 문의내역 수정 액션
    @RequestMapping(value = "/one_updateAction", method = RequestMethod.POST)
    public String oneUpdateAction(HttpSession session, HttpServletRequest request, OneVO oneVO) {
-
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
-
       // qna_title, qna_content의 앞뒤 공백 제거
       oneVO.setQna_title(oneVO.getQna_title().trim());
       oneVO.setQna_content(oneVO.getQna_content().trim());
@@ -423,5 +359,37 @@ public class MyPageController {
 
       return "mypage/one_get";
    }
+   
+   // qna 삭제용
+	@RequestMapping(value = "/one_delete", method = RequestMethod.GET)
+	public String deleteQna(int qna_no) {
+
+		myPageService.deleteQna(qna_no);
+
+		return "redirect:/one_list";
+
+	}
+   
+	// 팔로잉 팔로워 더보기
+	@RequestMapping(value = "/folfol_list", method = RequestMethod.GET)
+	public String folfol_list(Model model, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria,
+			HttpServletRequest request, HttpSession session) {
+
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		MemberVO member = (MemberVO) myPageService.getMember(id);
+		model.addAttribute("member", member);
+
+		List<FolFolDTO> followerList = null;
+		followerList = myPageService.getfollower(id);
+		model.addAttribute("follower", followerList);
+		System.out.println(followerList);
+
+		List<FolFolDTO> followingList = null;
+		followingList = myPageService.getfollowing(id);
+		model.addAttribute("following", followingList);
+		System.out.println(followingList);
+
+		return "mypage/folfol_list";
+	}
 
 }
