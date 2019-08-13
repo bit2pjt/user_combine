@@ -2,6 +2,9 @@ package com.spring.mml;
 
 
 import com.spring.mypage.MyPageDAO;
+import com.spring.mypage.OneVO;
+import com.spring.paging.SearchCriteria;
+
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -42,12 +45,6 @@ public class MmlServiceImpl implements MmlService {
 		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
 		int result = mmlDAO.updateMml(mmlContentVO);
 		return result;
-	}
-	
-	@Override
-	public int getMmlNum(Mml_ContentVO mmlContentVO) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 	////////////////
 	// 웅식 개발부분//
@@ -148,6 +145,20 @@ public class MmlServiceImpl implements MmlService {
 		System.out.println("반환된 데이터는 다음과 같다." + result);
 		return result;
 	}
+	
+	
+	@Override
+	@Transactional
+	public List<MemberVO> getFollowingList(int id) {
+		// 1. 게시자 id를 기준으로 팔로워 명단을 뽑는다.
+		List<Integer> list = mmlDAO.getFollowingListFromMF_table(id);
+		System.out.println(id + "회원이 따르는 놈팽이들은" + list);
+		System.out.println("가보자!!!! 일단 List형태로 데이터 in");
+		// 2. 배열같은 자료구조를 넣어서 여러 값을 호출... 어떻게??
+		List<MemberVO> result = mmlDAO.getFollowers(list);
+		System.out.println("반환된 데이터는 다음과 같다." + result);
+		return result;
+	}
 
 	////////////////
 	// 상필 개발부분//
@@ -210,5 +221,42 @@ public class MmlServiceImpl implements MmlService {
 		int id = mmlDAO.getMmlId(mml_num);
 		return id;
 	}
+
+	@Override
+	public int getMmlContentNum(int id) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		int mml_num = mmlDAO.getMmlContentNum(id);
+		return mml_num;
+	}
+	
+	
+	 @Override
+	    public int countSearchedArticles(SearchCriteria searchCriteria) {
+		 MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+	    	return mmlDAO.countSearchedArticles(searchCriteria);
+	    }
+	
+	 @Override
+	    public List<Mml_ListDTO> listSearch(SearchCriteria searchCriteria) {
+		 MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+			List<Mml_ListDTO> list = mmlDAO.listSearch(searchCriteria);
+			
+			return list;
+	    }
+	    
+	    @Override
+	    public int countSearchedArticles2(SearchCriteria searchCriteria) {
+		 MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+	    	return mmlDAO.countSearchedArticles2(searchCriteria);
+	    }
+	
+	 @Override
+	    public List<Mml_ListDTO> listSearch2(SearchCriteria searchCriteria) {
+		 MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+			List<Mml_ListDTO> list = mmlDAO.listSearch2(searchCriteria);
+			
+			return list;
+	    }
+	
 
 }// e_MmlServiceImpl

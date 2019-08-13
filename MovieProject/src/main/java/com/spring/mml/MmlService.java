@@ -3,6 +3,8 @@ package com.spring.mml;
 import java.util.List;
 
 import com.spring.member.MemberVO;
+import com.spring.mypage.OneVO;
+import com.spring.paging.SearchCriteria;
 
 public interface MmlService {
 
@@ -10,12 +12,12 @@ public interface MmlService {
 	// 유진 개발부분//
 	////////////////
 	public Mml_ContentVO getMmlContent(int mml_num); // mmlContent 가져오기
+	
+	public int getMmlContentNum(int id);
 
 	public int insertMml(Mml_ContentVO mmlContentVO); // mmlContent 등록하기
 
 	public int updateMml(Mml_ContentVO mmlContentVO); // mmlContent 수정하기
-	
-	public int getMmlNum(Mml_ContentVO mmlContentVO);	//등록한 mmlContent의 글번호 가져오기
 
 	////////////////
 	// 웅식 개발부분//
@@ -39,6 +41,8 @@ public interface MmlService {
 	public void mmlDelete(int mml_num);
 
 	public List<MemberVO> getFollowList(int id);
+	
+	public List<MemberVO> getFollowingList(int id);
 
 	////////////////
 	// 상필 개발부분//
@@ -59,4 +63,10 @@ public interface MmlService {
 
 	public int getMmlId(int id);
 
+	
+	int countSearchedArticles(SearchCriteria searchCriteria);
+	List<Mml_ListDTO> listSearch(SearchCriteria searchCriteria);
+	
+	int countSearchedArticles2(SearchCriteria searchCriteria);
+	List<Mml_ListDTO> listSearch2(SearchCriteria searchCriteria);
 }

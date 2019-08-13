@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.cine.CineDAO">
+	<resultMap type="com.spring.cine.CineVO" id="cineMap">
+		<result property="CC_CODE" column="CC_CODE"/>
+		<result property="CC_LOCAL_NAME" column="CC_LOCAL_NAME"/>
+		<result property="CC_BRAND" column="CC_BRAND"/>
+		<result property="CC_NAME" column="CC_NAME"/>
+		<result property="CC_ADDRESS" column="CC_ADDRESS"/>
+		<result property="CC_LINK" column="CC_LINK"/>
+		<result property="CC_PHONE" column="CC_PHONE"/>
+		<result property="CC_THEATERS" column="CC_THEATERS"/>
+		<result property="CC_SEATS" column="CC_SEATS"/>
+		<result property="CC_MAP_LAT" column="CC_MAP_LAT"/>
+		<result property="CC_MAP_LON" column="CC_MAP_LON"/>
+		<result property="CC_TRANSIT" column="CC_TRANSIT"/>
+		<result property="CC_PARKING" column="CC_PARKING"/>
+		<result property="CC_SCORE" column="CC_SCORE"/>
+		<result property="CC_REPLOCAL" column="CC_REPLOCAL"/>
+		<result property="CC_LOCALNUM" column="CC_LOCALNUM"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.ThumbVO" id="ThumbMap">
+		<result property="bf_thumb" column="bf_thumb"/>
+		<result property="cr_thumb" column="cr_thumb"/>
+		<result property="bfr_rno" column="bfr_rno"/>
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="mr_code" column="mr_code"/>
+		<result property="cr_code" column="cr_code"/>
+		<result property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.WarnVO" id="WarnMap">
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="id" column="id"/>
+		<result property="bf_date" column="bf_date"/>
+		<result property="cr_code" column="cr_code"/>
+	</resultMap>
+	
+	
+	<select id="getLocalName" resultType="com.spring.cine.CineVO">
+		select distinct CC_LOCAL_NAME
+		from cine_info
+		where cc_brand=#{CC_BRAND} and cc_localnum=#{CC_LOCALNUM}
+	</select>
+	
+	<select id="getName" resultType="com.spring.cine.CineVO">
+		select cc_name
+		from cine_info
+		where cc_brand=#{CC_BRAND} and cc_localnum = #{CC_LOCALNUM} and cc_local_name=#{CC_LOCAL_NAME}
+	</select>
+	
+	<select id="getCineInfo" resultMap="cineMap">
+		select *
+		from cine_info
+		where cc_brand=#{CC_BRAND} and cc_localnum = #{CC_LOCALNUM} and cc_local_name=#{CC_LOCAL_NAME}
+		and cc_name=#{CC_NAME}
+	</select>
+	
+	 <select id="getUser" parameterType="String" resultType="int">
+		select NVL(id, 0)
+		from member
+		where m_email = #{email, jdbcType=VARCHAR}
+	</select>
+	
+	
+	
+	  
+    <!-- 댓글  추천-->
+    <select id="reply_check" parameterType="com.spring.boardFree.ThumbVO" resultMap="ThumbMap">
+		select *
+		from cr_thumb
+		where cr_code = #{cr_code} and id = #{id}
+	</select>
+    
+    <insert id="replyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		insert into cr_thumb values(#{cr_thumb}, #{id}, #{cr_code})
+	</insert>
+    
+    <update id="updateReplyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update cine_rev set 
+		cr_like = (select count(cr_thumb) from cr_thumb where cr_thumb = #{cr_thumb} and cr_code = #{cr_code})
+		where cr_code = #{cr_code}
+	</update>
+	
+	<update id="updateReplyDecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update cine_rev set 
+		cr_dislike = (select count(cr_thumb) from cr_thumb where cr_thumb = #{cr_thumb} and cr_code = #{cr_code})
+		where cr_code = #{cr_code}
+	</update>
+	
+    <select id="getReplyRecommend" parameterType="int" resultType="int">
+		select cr_like
+		from cine_rev
+		where cr_code = #{cr_code}
+	</select>
+	
+	<select id="getReplyDecommend" parameterType="int" resultType="int">
+		select cr_dislike
+		from cine_rev
+		where cr_code = #{cr_code}
+	</select>
+	
+	
+	
+	<!-- 댓글 신고  -->
+ 	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+		select *
+		from cr_warning
+		where cr_code = #{cr_code} and id = #{id}
+	</select>
+    
+    <update id="ReplyWarnCount" parameterType="int">
+		update cine_rev set cr_alert = cr_alert + 1 where cr_code = #{cr_code}
+	</update>
+	
+	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into cr_warning values(#{id}, #{cr_code}, sysdate)
+	</insert>
+	
+</mapper>	

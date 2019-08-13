@@ -8,6 +8,7 @@
 * @  수정일     	  수정자                 수정내용
 * @ ===========  ========   ============================
 * @ 2019.07.18     한유진      최초생성
+* @ 2019.07.24		박현민		one_get  부분 추가
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -53,6 +54,25 @@
 		<result property="m_blacklist" column="m_blacklist"/>
 	</resultMap>
 	
+	<!-- hm | 1:1문의 답변 resultMap추가  -->
+	<resultMap type="com.spring.mypage.OneAdVO" id="adminQnaMap">
+		<result property="aqna_no" column="aqna_no"/>
+		<result property="qna_no" column="qna_no"/>
+		<result property="aqna_content" column="aqna_content"/>
+		<result property="aqna_date" column="aqna_date"/>
+		<result property="aqna_update_date" column="aqna_update_date"/>
+		<result property="admin_num" column="admin_num"/>
+	</resultMap>
+	<!-- hm | 1:1문의 답변 resultMap추가 끝  -->
+	
+	
+	<resultMap type="com.spring.mypage.folfolDTO" id="getfolMap">
+		<result property="id" column="id"/>
+		<result property="m_nickname" column="m_nickname"/>
+		<result property="mf_ing" column="mf_ing"/>
+		<result property="mf_wer" column="mf_wer"/>
+	</resultMap>
+	
 	<select id="getMemberName" parameterType="String" resultType="String">
 		select M_NAME from member where M_EMAIL=#{m_email}
 	</select>
@@ -73,9 +93,13 @@
 		select * from member where id=#{id}
 	</select>
 	
+	<select id="getMembers" resultType="com.spring.member.MemberVO">
+		select * from member
+	</select>
+	
 	
 	<update id="updateMember" parameterType="com.spring.member.MemberVO">
-		update member set m_phone=#{m_phone} where id=#{id}
+		update member set m_phone=#{m_phone},m_favorite=#{m_favorite},m_sagree=#{m_sagree},m_eagree=#{m_eagree} where id=#{id}
 	</update>
 	
 	<update id="updatePw" parameterType="com.spring.member.MemberVO">
@@ -86,12 +110,8 @@
 		update member set m_nickname=#{m_nickname} where id=#{id}
 	</update>
 	
-	<select id="checkNick" parameterType="String" resultType="int">
-		select count(*) from member where m_nickname = #{m_nickname}
-	</select>
-	
 	<insert id="insertQna" parameterType="com.spring.mypage.OneVO">
-		insert into board_qna values (board_qna_no_seq.nextval, #{id}, #{qna_category, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}
+		insert into board_qna values (seq_qna_no.nextval, #{id}, #{qna_category, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}
 		, #{qna_content, jdbcType=VARCHAR}, sysdate, sysdate, 'N')
 	</insert>
 	
@@ -103,5 +123,163 @@
 		UPDATE board_qna SET QNA_CATEGORY=#{qna_category, jdbcType=VARCHAR}, QNA_TITLE=#{qna_title, jdbcType=VARCHAR}, QNA_CONTENT=#{qna_content, jdbcType=VARCHAR}, QNA_UPDATE_DATE=sysdate WHERE QNA_NO=#{qna_no}
 	</update>
 	
+	<!-- hm | 1:1문의 답변 가져오기 -->
+	<select id="getQnaAdDetail" resultType="com.spring.mypage.OneAdVO" parameterType="com.spring.mypage.OneAdVO">
+		SELECT qna_no, aqna_content, aqna_update_date FROM ad_qna WHERE qna_no = #{qna_no}
+	</select>
+	
+	<!-- hm | 1:1문의 삭제 -->
+	<delete id="deleteQna">
+		delete FROM board_qna WHERE qna_no = #{qna_no}
+	</delete>
+	
+	<!-- kgh | 비밀번호 변경 -->
+	
+	<!-- kgh | 비밀번호 체크  -->
+	 <select id="checkPw" resultType="Int">
+	 	select 
+	 		count(*)
+	 		from member
+	 		where m_email = #{m_email ,jdbcType=VARCHAR} and m_password = #{m_password ,jdbcType=VARCHAR}
+	 </select>
+	 
+	 <!-- kgh | 회원 탈퇴신청 -->
+	 <update id="delete_member">
+	 	update member
+	 	set 
+	 		m_deleteyn = 'Y'
+	 	where
+	 		m_email = #{m_email, jdbcType=VARCHAR}
+	 </update>
+	 <update id="delete_date">
+	 	 update delete_member
+	 	 set
+	 	 	delete_date = SYSDATE
+	 	 where
+	 	 	id = #{id}
+	 </update>
+	
+	<select id="checkNick" parameterType="String" resultType="int">
+		select count(m_nickname)
+		from member
+		where m_nickname = #{m_nickname}
+	</select>
+	
+	<select id="getfollower" resultMap="getfolMap">
+		select id,m_nickname from member where id in(
+        select mf_wer from member_follow where mf_ing=#{id})
+	
+	</select>
+	
+	<select id="getfollowing" resultMap="getfolMap">
+		select id,m_nickname from member where id in(
+        select mf_ing from member_follow where mf_wer=#{id})
+	
+	</select>
+	
+	<sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 't'.toString()">
+                AND bf_title LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'c'.toString()">
+                AND bf_content LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'w'.toString()">
+                AND id LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'tc'.toString()">
+                AND (
+                    bf_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'cw'.toString()">
+                AND (
+                    bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'tcw'.toString()">
+                AND (
+                    bf_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+        </if>
+    </sql>
+	
+	 <select id="countSearchedArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(qna_no)
+	        FROM board_qna
+	        WHERE qna_no > 0
+        ]]>
+    </select>
+    
+     <select id="listCriteria" resultMap="merberQnaMap">
+        <![CDATA[
+        select
+        	qna_no
+            , id
+            , qna_category
+            , qna_title
+            , qna_content
+            , qna_date
+            , qna_update_date
+            , qna_answer
+            from
+		   (
+		    select
+		    rownum rn
+		   ,qna_no
+            , id
+            , qna_category
+            , qna_title
+            , qna_content
+            , qna_date
+            , qna_update_date
+            , qna_answer
+		    from board_qna
+            order by qna_no desc
+		   )
+		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
+	
+	<select id="listSearch" resultMap="merberQnaMap">
+        <![CDATA[
+        select
+        	qna_no
+            , id
+            , qna_category
+            , qna_title
+            , qna_content
+            , qna_date
+            , qna_update_date
+            , qna_answer
+            from
+		   (
+		    select
+		    rownum rn
+		   ,qna_no
+            , id
+            , qna_category
+            , qna_title
+            , qna_content
+            , qna_date
+            , qna_update_date
+            , qna_answer
+		    from board_qna
+		    WHERE qna_no > 0
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by qna_no desc
+		   )
+		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
 	
 </mapper>

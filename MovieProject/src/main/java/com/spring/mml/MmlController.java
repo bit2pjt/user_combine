@@ -3,9 +3,9 @@ package com.spring.mml;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,15 +14,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.member.MemberVO;
 import com.spring.movie.MovieInfoVO;
 import com.spring.movie.MovieService;
 import com.spring.movie.Movie_InfoVO;
 import com.spring.mypage.MyPageService;
+import com.spring.paging.PageMaker;
+import com.spring.paging.SearchCriteria;
 
 @Controller
 public class MmlController {
@@ -35,6 +39,11 @@ public class MmlController {
 	
 	@Autowired
 	private MovieService movieService;
+	
+	@Inject
+	public MmlController(MmlService mmlService) {
+		this.mmlService = mmlService;
+	}
 	
 	
 ////////////////
@@ -89,7 +98,7 @@ public class MmlController {
 	}
 
 	@RequestMapping(value = "/mmlWriteAction", method = RequestMethod.POST)
-	public String mmlWriteAction(Mml_ContentVO mmlContentVO) {
+	public String mmlWriteAction(Mml_ContentVO mmlContentVO) throws Exception {
 		// mml 작성이 성공적으로 완료되면 작성했던글을 볼 수 있게 연결
 		// 넘어온 값을 토대로 db에 넣는 작업 진행
 		// System.out.println("=============MmlController.java=====================
@@ -97,19 +106,16 @@ public class MmlController {
 		// mml_title, mml_content의 앞뒤 공백 제거
 		mmlContentVO.setMml_title(mmlContentVO.getMml_title().trim());
 
-		try {
-			System.out.println("===== mmlContentVO ===== " + mmlContentVO.toString());
 			int result = mmlService.insertMml(mmlContentVO);
-			if (result == 0) {
+			System.out.println("===== InsertmmlContentVOResult ===== " + result);
+			
+			if (result==1) {
+				//작성자의 개인 mmlList로 이동하게 추후 링크조정
+				int mml_num = mmlService.getMmlContentNum(mmlContentVO.getId());
+				return "redirect:/mmlGet?mml_num="+mml_num;
+			} else {				
 				return "redirect:/mmlWrite";
 			}
-		} catch (Exception e) {
-			System.out.println("ERROR : MmlWriteAction - " + e.getMessage());
-			e.printStackTrace();
-		}
-		//작성자의 개인 mmlList로 이동하게 추후 링크조정
-		int mml_num = mmlService.getMmlNum(mmlContentVO);
-		return "redirect:/mmlGet?mml_num="+mmlContentVO.getMml_num();
 	}
 	
 	@RequestMapping(value = "/mmlUpdate", method = RequestMethod.GET)
@@ -166,29 +172,49 @@ public class MmlController {
 //상필 개발부분//
 ////////////////
 	@RequestMapping(value = "/mmlList", method = RequestMethod.GET)
-	public String mmlList(Model model) throws Exception {
+	public String mmlList(Model model,@ModelAttribute("searchCriteria") 
+	SearchCriteria searchCriteria) throws Exception {
 
-		List<Mml_ContentVO> mmlList = mmlService.getMmlList();
-		List<Mml_ContentVO> mmlList2 = mmlService.getMmlList_like();
+		
+		
+//		List<Mml_ContentVO> mmlList = mmlService.getMmlList();
+//		List<Mml_ContentVO> mmlList2 = mmlService.getMmlList_like();
+//
+//		System.out.println("mmlLlist======================" + mmlList);
 
-		System.out.println("mmlLlist======================" + mmlList);
-
-		model.addAttribute("mmlList", mmlList);
-		model.addAttribute("mmlList2", mmlList2);
+//		model.addAttribute("mmln", mmlList);
+//		model.addAttribute("mmlList2", mmlList2);
+		
+		PageMaker pageMaker = new PageMaker();
+	      pageMaker.setCriteria(searchCriteria);
+	      pageMaker.setTotalCount(mmlService.countSearchedArticles(searchCriteria));
+	      model.addAttribute("mmlList", mmlService.listSearch(searchCriteria));
+	      System.out.println("pageMaker="+pageMaker);
+	      model.addAttribute("pageMaker", pageMaker);
+	      
+	      PageMaker pageMaker2 = new PageMaker();
+	      pageMaker2.setCriteria(searchCriteria);
+	      pageMaker2.setTotalCount(mmlService.countSearchedArticles2(searchCriteria));
+	      model.addAttribute("mmlList2", mmlService.listSearch2(searchCriteria));
+	      System.out.println("pageMaker2="+pageMaker2);
+	      model.addAttribute("pageMaker2", pageMaker2);
 
 		return "mml/mmlList";
 	}
 
+	
+	
+	
 	@RequestMapping(value = "/mmlMemberList", method = RequestMethod.GET)
-	public String mmlMember(Model model, HttpSession session) {
-
-		String e_mail = (String) session.getAttribute("m_email");
-
-		int id = myPageService.getMemberId(e_mail);
-
+	public String mmlMember(Model model, HttpSession session,@RequestParam("id") int id) {
+		
+		MemberVO member = myPageService.getMember(id);
+		
 		List<Mml_ContentVO> mmlList3 = mmlService.getMmlList_user(id);
 
 		model.addAttribute("mmlList3", mmlList3);
+		
+		model.addAttribute("follower", member);
 
 		return "mml/mmlMemberList";
 	}
@@ -199,14 +225,19 @@ public class MmlController {
 
 	// 1. getpage
 	@RequestMapping(value = "/mmlGet", method = RequestMethod.GET)
-	public String mmlGet(@RequestParam("mml_num") int mml_num, Model model) {
+	public String mmlGet(@RequestParam("mml_num") int mml_num, Model model, HttpSession session) {
 		System.out.println("나영리 게시글 " + mml_num + " 넘어옴");
 		mmlService.upCounter(mml_num);// 조회수 1 증가
 		Mml_ContentVO content = mmlService.getPage(mml_num); // 참조변수이므로 null값이 들어오면 문제된다
-
 		model.addAttribute("mml_content", content); // 반환값이 null이면, null값을 그대로 요소에 담아 보낸다
 		model.addAttribute("member", mmlService.getMemberInfo(content.getId()));
-
+		
+		String m_email = (String) session.getAttribute("m_email");
+		int id = myPageService.getMemberId(m_email);
+		
+		System.out.println("view id" + id);
+		
+		model.addAttribute("vid", id);
 		return "mml/mmlGet";
 	}
 
@@ -240,10 +271,30 @@ public class MmlController {
 	public String mmlFollow(@RequestParam("id") int id, Model model) {
 		model.addAttribute("followee", mmlService.getMemberInfo(id));
 		System.out.println("followee 정보 적재 완료");
-		model.addAttribute("followers", mmlService.getFollowList(id));
-		System.out.println("followers 정보 적재 완료");
+		
+		List<MemberVO> result = mmlService.getFollowList(id);
+		
+		model.addAttribute("followers", result);
+		System.out.println("followers 정보 적재 완료"+result);
+		System.out.println(result.get(0).getId());
 
 		return "mml/mmlFollowList";
 	}
+	
+	@RequestMapping(value = "/mmlFollowingList", method = RequestMethod.GET)
+	public String mmlFollowing(@RequestParam("id") int id, Model model) {
+		model.addAttribute("followee", mmlService.getMemberInfo(id));
+		System.out.println("followee 정보 적재 완료");
+		
+		List<MemberVO> result = mmlService.getFollowingList(id);
+		
+		model.addAttribute("followings", result);
+		System.out.println("followings 정보 적재 완료"+result);
+		System.out.println(result.get(0).getId());
+
+		return "mml/mmlFollowingList";
+	}
+	
+	
 
 }

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!--
 /**
 * @Class Name : one_list.jsp
@@ -102,81 +100,38 @@
 											</tr>
 										</c:when>
 										<c:otherwise>
-											<%-- <c:forEach var="qna" items="${requestScope.qnaList }">
+											<c:forEach var="qna" items="${requestScope.qnaList}">
 												<tr>
+					
 													<td>${qna.qna_category }</td>
 													<td><a href="one_get?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
 													<td>${qna.qna_date}</td>
 													<td>${qna.qna_answer}</td>
 												</tr>
-											</c:forEach> --%>
-											<c:forEach items="${requestScope.qnaList }" var="qna" varStatus="status">
-								<tr class="post">
-								  <%-- <td>${pageMaker.totalCount - ((pageMaker.criteria.page-1) * pageMaker.criteria.perPageNum + status.index) }</td> --%>
-								  <td>${qna.qna_category}</td>
-								  <td><a href="one_get${pageMaker.makeSearch(pageMaker.criteria.page)}&qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
-								  <td>${qna.qna_date}</td>
-								  <td>${qna.qna_answer}</td>
-								</tr>
-							</c:forEach>
+											</c:forEach>
 										</c:otherwise>
 									</c:choose>
 									</tbody>
 									
-									<%-- 
-									<tbody>
-									<%
-										for(int i=0; i<10; i++){
-									%>
-										<tr>
-											<td>결말해석</td>
-											<td><a href="one_get">고질라 쿠키영상 무슨뜻인가요?</a></td>
-											<td>2011/04/25</td>
-											<td>N</td>
-										</tr>
-									<%
-										}
-									%>
-									</tbody> --%>
+								
 									
 								</table>
 
-								<!-- <ul class="pagination">
-									<li class="icon-prev"><a href="#"><i
+								<ul class="pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class="icon-prev"><a href="one_list${pageMaker.makeQuery(pageMaker.startPage-1) }"><i
 											class="ion-ios-arrow-left"></i></a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">...</a></li>
-									<li><a href="#">21</a></li>
-									<li><a href="#">22</a></li>
-									<li class="icon-next"><a href="#"><i
+								</c:if>
+								
+								<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="index">
+									<li <c:if test="${index eq pageMaker.criteria.page }">class="active"</c:if>><a href="one_list${pageMaker.makeQuery(index)}">${index}</a></li>
+								</c:forEach>
+								
+								<c:if test="${pageMaker.next }">
+									<li class="icon-next"><a href="one_list${pageMaker.makeQuery(pageMaker.endPage+1) }"><i
 											class="ion-ios-arrow-right"></i></a></li>
-								</ul> -->
-								<!-- start | pagination -->
-								<div class="box-footer">
-                        <div class="text-center">
-                            <form id="listPageForm">
-                                <input type="hidden" name="page" value="${pageMaker.criteria.page}">
-                                <input type="hidden" name="perPageNum" value="${pageMaker.criteria.perPageNum}">
-                            </form>
-                            <ul class="pagination">
-                                <c:if test="${pageMaker.prev}">
-                                    <li><a href="${pageMaker.startPage - 1}">이전</a></li>
-                                </c:if>
-                                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                    <li <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
-                                        <a href="${idx}">${idx}</a>
-                                    </li>
-                                </c:forEach>
-                                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li><a href="${pageMaker.endPage + 1}">다음</a></li>
-                                </c:if>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- end | pagination -->
+											</c:if>
+								</ul>
 							</div>
 						</div>
 
@@ -186,17 +141,6 @@
 		</div>
 	</div>
 </div>
-<script>
-$(".pagination li a").on("click", function (event) {
-    event.preventDefault();
-
-    var targetPage = $(this).attr("href");
-    var listPageForm = $("#listPageForm");
-    listPageForm.find("[name='page']").val(targetPage);
-    listPageForm.attr("action", "one_list").attr("method", "get");
-    listPageForm.submit();
-});
-</script>
 <%@ include file="../footer1.jsp"%>
 <%@ include file="../footer2.jsp"%>
 

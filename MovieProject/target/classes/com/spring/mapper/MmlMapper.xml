@@ -73,7 +73,6 @@
 	</select>
 
 
-
   <!-- 
   ////////////////
   //웅식 개발부분//
@@ -90,6 +89,12 @@
 		select *
 		from mml_content
 		where mml_num = #{mml_num}
+	</select>
+	
+	<select id="getMmlContentNum" resultType="int">
+		select max(mml_num)
+		from mml_content
+		where id = #{id}
 	</select>
 	
 	<select id="getMemberInfo" parameterType="INTEGER" resultType="com.spring.member.MemberVO">
@@ -113,7 +118,7 @@
 <!--  =================================mml 팔로우 추가 매퍼 3종 -->		
 	<insert id="registerFR">
 		insert into member_follow
-		values (1,#{mf_ing},#{mf_wer})
+		values (seq_mf_code.nextval,#{mf_ing},#{mf_wer})
 	
 	</insert>
 
@@ -178,22 +183,28 @@
 	where mml_num = #{mml_num}
 	</delete>
 
-<!-- ==================================== mml 게시글 삭제 -->	
 
 	<select id="getFollowListFromMF_table" resultType="INTEGER">
 	select mf_wer
 	from member_follow
 	where mf_ing = #{id}
-	</select>	
+	</select>
+
+	<select id="getFollowingListFromMF_table" resultType="INTEGER">
+	select mf_ing
+	from member_follow
+	where mf_wer = #{id}
+	</select>
 	
-<!-- ==================================== mml 게시글 삭제 -->	
+	
+	
 
 	<select id="getFollowers" parameterType="list" resultType="com.spring.member.MemberVO">
 	select *
 	from member
 	where id in 
 		<foreach item="item" index="index" separator="," collection="list" open="(" close=")">
-	#{item.value}
+	#{item.value} 
 		</foreach>
 	</select>
 	
@@ -239,6 +250,217 @@
 	<select id="getMmlNickname" parameterType="int" resultType="String">
 		select m_nickname from member where id=(select id from mml_content where mml_num=#{mml_num})
 	</select>
+	
+	<sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 't'.toString()">
+                AND mml_title LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'c'.toString()">
+                AND mml_content LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'w'.toString()">
+                AND m_nickname LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'tc'.toString()">
+                AND (
+                    mml_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR mml_content LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'cw'.toString()">
+                AND (
+                    mml_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'tcw'.toString()">
+                AND (
+                    mml_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR mml_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+        </if>
+    </sql>
+	
+	 <select id="countSearchedArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(mml_num)
+	        FROM mml_content
+	        WHERE mml_num > 0
+        ]]>
+    </select>
+    
+     <select id="countSearchedArticles2" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(mml_num)
+	        FROM mml_content
+	        WHERE mml_num > 0
+        ]]>
+    </select>
+    
+     <select id="listCriteria" resultMap="getMmlMap">
+        <![CDATA[
+         select
+        	mml_num
+            , mi_code
+            , id
+            , mml_view_count
+            , mml_write_date
+            , mml_update_date
+            , mml_like
+            , mml_title
+            , mml_content
+            , mml_poster
+            , mml_warn_count
+            , m_nickname
+            from
+		   (
+		    select
+		    row_number() over(order by mml_num desc) as num,
+		   content.mml_num
+            , content.mi_code
+            , content.id
+            , content.mml_view_count
+            , content.mml_write_date
+            , content.mml_update_date
+            , content.mml_like
+            , content.mml_title
+            , content.mml_content
+            , content.mml_poster
+            , content.mml_warn_count
+            , member.m_nickname
+   		    from mml_content content, member member
+		    WHERE mml_num > 0 and content.id = member.id
+            order by mml_num desc
+		   )
+		   where num > (#{page} -1) *#{perPageNum} and num <= #{page} * #{perPageNum}
+        ]]>
+    </select>
+    
+     <select id="listCriteria2" resultMap="getMmlMap">
+        <![CDATA[
+         select
+        	mml_num
+            , mi_code
+            , id
+            , mml_view_count
+            , mml_write_date
+            , mml_update_date
+            , mml_like
+            , mml_title
+            , mml_content
+            , mml_poster
+            , mml_warn_count
+            , m_nickname
+            from
+		   (
+		    select
+		    row_number() over(order by mml_like desc) as num,
+		   content.mml_num
+            , content.mi_code
+            , content.id
+            , content.mml_view_count
+            , content.mml_write_date
+            , content.mml_update_date
+            , content.mml_like
+            , content.mml_title
+            , content.mml_content
+            , content.mml_poster
+            , content.mml_warn_count
+            , member.m_nickname
+   		    from mml_content content, member member
+		    WHERE mml_num > 0 and content.id = member.id
+            order by mml_like desc
+		   )
+		   where num > (#{page} -1) *#{perPageNum} and num <= #{page} * #{perPageNum}
+        ]]>
+    </select>
+	
+	<select id="listSearch" resultMap="getMmlMap">
+        <![CDATA[
+         select
+        	mml_num
+            , mi_code
+            , id
+            , mml_view_count
+            , mml_write_date
+            , mml_update_date
+            , mml_like
+            , mml_title
+            , mml_content
+            , mml_poster
+            , mml_warn_count
+            , m_nickname
+            from
+		   (
+		    select
+		   row_number() over(order by mml_num desc) as num,
+		   content.mml_num
+            , content.mi_code
+            , content.id
+            , content.mml_view_count
+            , content.mml_write_date
+            , content.mml_update_date
+            , content.mml_like
+            , content.mml_title
+            , content.mml_content
+            , content.mml_poster
+            , content.mml_warn_count
+            , member.m_nickname
+   		    from mml_content content, member member
+		    WHERE mml_num > 0 and content.id = member.id
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by mml_num desc
+		   )
+		   where num > (#{page} -1) *#{perPageNum} and num <= #{page} * #{perPageNum}
+        ]]>
+    </select>
+    
+    <select id="listSearch2" resultMap="getMmlMap">
+        <![CDATA[
+        select
+        	mml_num
+            , mi_code
+            , id
+            , mml_view_count
+            , mml_write_date
+            , mml_update_date
+            , mml_like
+            , mml_title
+            , mml_content
+            , mml_poster
+            , mml_warn_count
+            , m_nickname
+            from
+		   (
+		    select
+		 row_number() over(order by mml_like desc) as num,
+		   content.mml_num
+            , content.mi_code
+            , content.id
+            , content.mml_view_count
+            , content.mml_write_date
+            , content.mml_update_date
+            , content.mml_like
+            , content.mml_title
+            , content.mml_content
+            , content.mml_poster
+            , content.mml_warn_count
+            , member.m_nickname
+   		    from mml_content content, member member
+		    WHERE mml_num > 0 and content.id = member.id
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by mml_like desc
+		   )
+		   where num > (#{page} -1) *#{perPageNum} and num <= #{page} * #{perPageNum}
+        ]]>
+    </select>
 	
 	
 </mapper>

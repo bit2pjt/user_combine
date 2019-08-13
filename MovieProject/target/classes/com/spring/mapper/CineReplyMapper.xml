@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.cine.CineReplyDAO">
+	<resultMap type="com.spring.cine.CineReplyVO" id="CineReplyMap">
+        <result property="cr_code" column="cr_code"/>
+        <result property="id" column="id"/>
+        <result property="cc_code" column="cc_code"/>
+        <result property="cr_content" column="cr_content"/>
+        <result property="cr_write_date" column="cr_write_date"/>
+        <result property="cr_update_date" column="cr_update_date"/>
+        <result property="cr_score" column="cr_score"/>
+        <result property="cr_like" column="cr_like"/>
+        <result property="cr_dislike" column="cr_dislike"/>
+        <result property="cr_alert" column="cr_alert"/>
+    </resultMap>
+    
+ <select id="list" resultMap="CineReplyMap">
+        SELECT *
+        FROM cine_rev
+        WHERE cc_code = #{cc_code}
+        ORDER BY cr_code DESC
+    </select>
+
+    <insert id="create">
+	    <selectKey resultType="int" keyProperty="cr_code" order="BEFORE">
+	        SELECT SEQ_CR_CODE.NEXTVAL FROM dual        
+	    </selectKey>
+	    
+        INSERT INTO cine_rev 
+        VALUES (
+        	#{cr_code}
+            , #{id}
+            , #{cc_code}
+            , #{cr_content}
+            , sysdate
+            , sysdate
+            , #{cr_score}
+            , 0
+            , 0
+            , 0
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE cine_rev
+        SET cr_content = #{cr_content}, cr_update_date = sysdate
+        WHERE cr_code = #{cr_code}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM cine_rev
+        WHERE cr_code = #{cr_code}
+    </delete>
+    
+    
+    <select id="listPaging" resultMap="CineReplyMap">
+	  <![CDATA[
+		   select rn,
+		 	cr_code
+            , id
+            , cc_code
+            , cr_content
+            , cr_write_date
+            , cr_update_date
+            , cr_score
+            , cr_like
+            , cr_dislike
+            , cr_alert
+		 from 
+            (select
+            rownum rn
+            , cr_code
+            , id
+            , cc_code
+            , cr_content
+            , cr_write_date
+            , cr_update_date
+            , cr_score
+            , cr_like
+            , cr_dislike
+            , cr_alert
+            from
+		   (
+		    select
+		   	cr_code
+            , id
+            , cc_code
+            , cr_content
+            , cr_write_date
+            , cr_update_date
+            , cr_score
+            , cr_like
+            , cr_dislike
+            , cr_alert
+		    from cine_rev
+		    where cc_code =  #{cc_code}
+		    and cr_code > 0	    
+            order by cr_code desc
+		   )) where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+		]]>
+	</select>  
+	
+	 <select id="countReplies" resultType="int">
+        SELECT
+            COUNT(cc_code)
+        FROM cine_rev
+        WHERE cc_code = #{cc_code}
+    </select>
+    
+    <select id="sumScore" resultType="int">
+        SELECT NVL(SUM(cr_score), 0)
+        FROM cine_rev
+        WHERE cc_code = #{cc_code}
+    </select>
+    
+    <select id="getUser" parameterType="String" resultType="int">
+		select NVL(id, 0)
+		from member
+		where m_email = #{email, jdbcType=VARCHAR}
+	</select>   
+</mapper>

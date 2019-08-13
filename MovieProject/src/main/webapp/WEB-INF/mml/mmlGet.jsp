@@ -37,11 +37,17 @@
 <%@ include file="/WEB-INF//header2.jsp" %>
 
 
-<%String email = (String) session.getAttribute("m_email");%>
+<%
+	String email = (String) session.getAttribute("m_email");
+	int vid = (int)request.getAttribute("vid");
+
+
+%>
 <input id="ws_email_session" type=hidden value=<c:out value="${m_email}"/>>
 <input id="ws_id" type=hidden value=<c:out value="${member.id}"/>>
 <input id="ws_mml_content_num" type=hidden value=<c:out value="${mml_content.mml_num}"/>>
 <input id="ws_mmlGet_nickname" type=hidden value=<c:out value="${member.m_nickname}"/>>
+
 <!-- 세션객체에서 id 추출 후, Javascript로 넘긴다. 왜 바로 못넘길까... -->
 
 <br>
@@ -58,7 +64,7 @@
 						<div class="social-link">
 
 							<div style="flex: 2;">
-								<h1 class="mmlTitle"><c:out value="${mml_content.mml_title}"/></h1>
+								<h1 class="mmlTitle"><c:out value="${mml_content.mml_title}"/></h1> 
 							</div>
 							<div style=" flex: 2;">
 								<a href="#">
@@ -118,9 +124,16 @@
 					</a>  
 					<br>
 					<div class="flex-it share-tag" style="width: 100%; float: left;"></div>
+					
+						
+					<c:if test="${member.id eq vid}">
 					<button class="submit2" type="button" data-toggle="modal" data-target="#CatModal-post-delete">삭제</button>
 					<form action="/movie/mmlUpdate" method="get">			
 						<button class="submit2" type="submit">수정</button> <!-- 이름은 맞는데 값은 모두 0&null -->
+			
+					</c:if>
+			
+					
 						<input type="hidden" name="mml_num" value="<c:out value="${mml_content.mml_num}"/>">
 						<input type="hidden" name="mml_title" value="<c:out value="${mml_content.mml_title}"/>">
 						<input type="hidden" name="mml_content" value="<c:out value="${mml_content.mml_content}"/>">
@@ -129,128 +142,78 @@
 					<br>
 	 			</div>
 	 		</div>
-	 	
-	 		<div class="row">
-				<br>
-				<h4>04 Comments</h4>
-				<br>
+	 	<!-- 진석코드 -->
+	 	<div class="row">
+		<br>
+		<h4> Reply list </h4>
+		<br>
 		<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
-			<div class="comments" style="border-width:3px 0px;border-style:solid;border-color:#525EAA;">
-				<div class="ws-reply-buffer"></div>	
+		<div class="comments" style="border-width:3px 0px;border-style:solid;">
+			<div class="ws-reply-buffer"></div>	
 			<!-- 댓글2 -->
-					<div class="ws-reply-outer">
-						<div class="author-infor">
-							<div class="flex-it2">
-								<div>
-								<!-- 댓글 좌상단의 작성자 정보부분  -->
-									<div class="ws-reply-info" > 
-										<a href="#">Steve Perrysssssssss</a>
-										<a class="rep-btn" href="#"><i class="fa fa-reply" aria-hidden="true" style="color:#FF6F61;"></i>댓글</a>  
-										<span class="ws-best"><strong> BEST !</strong></span>
-										<br>
-										등록/수정일 : 
-										<span class="time"> - 19/07/08 13:10</span>
-										<span>선호장르 : sf</span>
-									</div>
-							  		<!-- 댓글 우상단의 댓글 추비추&신고 -->
-									<div class="ws-reply-btns">
-										<span class="ws-reply-msg"></span>
-										<button class="ws-btn-warning" >
-											<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-										</button>
-										<button class="ws-btn-thumbs-up">
-											<i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> 5
-										</button> 
-										<button class="ws-btn-thumbs-down">	
-											<i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 1		
-										</button>
-									</div>
-								</div>
-								<!-- 댓글 본문 -->
-								<div class="ws-reply-content">
-									<p>나의 댓글의 경우, 신고 버튼이 없고, 추/비추 대신 수정 삭제 버튼으로 대체
-										<br>ㅁㅁㅁㅁㅁ
-									</p>
-								</div>
-								<!-- 댓글 본문의 끝 -->
-							</div>
-						</div>
-					</div>
-					<!-- 나의 댓글인 경우 -->
-					<div class="ws-reply-outer">
-						<div class="author-infor">
-							<div class="flex-it2">
-							<!-- 댓글작성자 정보부분 -->	
-								<div>
-								<!-- 좌측 댓글러 개인정보 -->
-									<div class="ws-reply-info"> 
-										<a href="#">Steve Perry</a> 
-										<a class="rep-btn" href="#">
-											<i class="fa fa-reply" aria-hidden="true" style="color:#FF6F61;"></i>댓글
-										</a> 
-										<br>
-								 		등록/수정일 : 
-								 		<span class="time"> - 19/07/08 13:10</span>
-								 		<span>선호장르 : sf</span>
-									</div>
-									<!-- 우측 버튼들. -->
-									<div class="ws-reply-btns">
-										수정 <button class="ws-btn-update"> <i class="fa fa-repeat" aria-hidden="true"></i></button> 
-										삭제 <button class="ws-btn-delete" data-toggle="modal" data-target="#CatModal-reply-delete"><i class="fa fa-times" aria-hidden="true"></i></button>
-									</div>
-								</div>
-							<!-- 댓글 본문 -->
-								<div class="ws-reply-content">
-									<p>나의 댓글의 경우, 신고 버튼이 없고, 추/비추 대신 수정 삭제 버튼으로 대체
-										<br>
-										<br>
-										<br>asdasd
-									</p>
-								</div>
-								<!-- 댓글 본문의 끝 -->
-							</div>
-						</div>
-					</div>
-					<!-- 기본 탬플릿의 대댓글 양식. 일단은 냅뒀다 -->
-					<div class="cmt-item flex-it reply">
-						<div class="author-infor">
-							<div class="flex-it2">
-								<h6><a href="#">김시덕이</a></h6> <span class="time"> - 27 Mar 2017</span>
-							</div>
-							<p>기존 서식의 댓글입니다(대댓글이지만).</p>
-						</div>
-					</div>
-					<!-- 7. 페이징 : 그대로 따옴 기초 탬플릿의 [ bloglist_ligth.html]  -->
-            		<ul class="pagination">
-            			<li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-            			<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">6</a></li>
-						<li><a href="#">7</a></li>
-						<li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-            		</ul>
-				</div>		
-				<!-- 8. 댓글 작성부 -->
-					<div class="blog-detail-ct">	
-						<div class="comment-form">
-							<h4>댓글 남기기</h4>
-							<form action="">
-							<div class="row">
-								<div class="col-md-12">
-									<!-- 댓글 입력창 -->
-									<textarea name="message" id="" placeholder="Message" style="height:100%;min-height:80px;"></textarea>
-								</div>
-							</div>
-							<br>
-							<input class="submit" type="submit" style="float:right;" value="등록">
-						</form>
-					</div>
-					</div>
-					<!-- comment form -->
+	<div class="content-wrapper">		
+		<section class="content container-fluid">
+            <div class="modal fade" id="modifyModal" role="dialog">
+                <div class="modal-dialog" style="margin-top:100px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">댓글 수정창</h4>
+                        </div>
+                        <div class="modal-body">
+	                        <div class="form-group">
+	                            <label for="replyNo" style="margin-bottom:10px;"><strong>댓글 번호</strong></label>
+	                            <input class="form-control" id="replyNo" name="replyNo" readonly>
+	                        </div>
+                        
+                            <div class="form-group">
+                                <label for="replyText" style="margin-bottom:10px;"><strong>댓글 내용</strong></label>
+                                <textarea class="form-control" id="replyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; height:100px;"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn">수정</button>
+                            <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+                <div class="box box-primary">
+                    <div class="box-footer">
+                        <ul id="replies">
+
+                        </ul>
+                    </div>
+
+                    <div class="box-footer">
+                        <div class="text-center">
+                            <ul class="pagination pagination-sm no-margin">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </section>
+     </div>		
+		</div>
+		
+		<div class="box-header with-border" style="margin-top:30px;">
+			<h3 class="box-title">댓글 작성</h3>
+			<div class="box-body">
+				<div class="form-group">
+					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:200px;"></textarea>
+	 			</div>
+				<div class="pull-right">
+					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 저장</button>
 				</div>
+			</div>
+		</div>
+		
+	</div>
+	 		
+	 	
 	 		
 	 		</div>
 	 	</div>
@@ -342,6 +305,321 @@
 			
 	});
 	
+	
+</script>
+<script>
+	var replyPageNum = 1;
+    var mml_reply_code = "${Mml_ReplyVO.mml_reply_code}";
+    //getReplies();
+    getRepliesPaging(replyPageNum);
+  
+    
+    function getReplies() {
+        $.getJSON("/movie/mmlreplies/all/" + mml_reply_code, function (data) {
+            var str = "";
+            if(data == "") {
+            	str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
+            }else {
+            	 $(data).each(function () {
+                 	str +=	"<li data-replyNo='" + this.mml_reply_code + "' class='replyLi'>"
+     					+	"No.<p class='replyRno' style='display:inline-block;'> " + data.length-- + "</p>"
+                      	+	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
+                        +	"<p class='replyText' style='word-break:break-all;'>" + this.mml_reply_content + "</p>"
+                        +	"<button type='button' class='btn btn-xs btn-success modifyModal' data-value='"+this.mml_reply_code+"' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
+                        +	"</li>"
+                        +	"<hr/>";
+                 });
+            }
+            $("#replies").html(str);
+         });
+    }
+	
+	
+    $("#replyAddBtn").on("click", function (mml_num) {
+    	var session = "${sessionyn}";
+        var replyText = $("#newReplyText");
+        var mml_reply_content = replyText.val();
+        
+       
+		
+       /*  if( session == "") {
+		 	alert("로그인 하셔야 이용하실수 있습니다.");
+		 	location.href="index";
+		 	return false;
+		} */
+        
+        if(mml_reply_content == "") {
+        	alert("댓글 내용을 입력해주세요!");
+        	return false;
+        }
+        
+        $.ajax({
+            type : "post",
+            url : "/movie/mmlreplies/"+mml_num+"/1",
+            headers : {
+                "Content-type" : "application/json",
+                "X-HTTP-Method-Override" : "POST"
+            },
+            dataType : "text",
+            data : JSON.stringify({
+            	mml_num : mml_num,
+            	mml_reply_content : mml_reply_content
+            }),
+            success : function (result) {
+                if (result == "regSuccess") {
+                    alert("댓글 등록 완료!");
+                }
+                //getReplies();
+                getRepliesPaging(replyPageNum);
+                replyText.val("");
+            }
+        });
+    });
+	
+    $("#replies").on("click", ".replyLi button", function () { // 댓글의 수정 버튼 클릭시
+        var reply = $(this).parent(); // 댓글의 li
+        var replyNo = reply.attr("data-replyNo"); // 댓글의 번호
+        var replyText = reply.find(".replyText").text(); //댓글의 내용
+        $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
+        $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
+
+    });
+    
+    $()
+    
+    $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent(); // 댓글의 li
+        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-thumbs-up");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+ 		$.ajax({
+ 			url:"BFReplyReco",
+ 			data: {bfr_rno: bfr_rno, type: 1},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "fail") {
+ 					alert("이미 추천/비추천을 누르셨습니다.");
+ 					return false;
+ 				}else {
+ 					present.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
+ 				}
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
+    
+    $("#replies").on("click", ".replyLi .ws-btn-thumbs-down", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent(); // 댓글의 li
+        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-thumbs-down");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+ 		$.ajax({
+ 			url:"BFReplyReco",
+ 			data: {bfr_rno: bfr_rno, type: 0},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "fail") {
+ 					alert("이미 추천/비추천을 누르셨습니다.");
+ 					return false;
+ 				}else {
+ 					present.html("<i class='fa fa-thumbs-o-down' aria-hidden='true'></i>  " + data);
+ 				}
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
+    
+    $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
+    	var reply = $(this).parent(); // 댓글의 li
+        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-thumbs-down");
+        var session = "${sessionyn}";
+        //var bf_rno = $("#replies > li");
+        //alert($(this).parent().find(".ws-btn-thumbs-up").text());
+     	if( session == "") {
+ 		 	alert("로그인 하셔야 이용하실수 있습니다.");
+ 		 	location.href="index";
+ 		 	return false;
+ 		 }
+     	
+ 		$.ajax({
+ 			url:"BFReplyWarn",
+ 			data: {bfr_rno: bfr_rno},
+ 			dataType: "text",
+ 			type:"post",
+ 			success: function(data) {
+ 				if(data == "success")
+						alert("신고 되었습니다.");
+					else
+						alert("이미 신고 하셨습니다.");
+ 			},
+ 			error: function() {
+ 				alert("에러");
+ 			}
+ 		});
+ 			
+	});
+	
+    $(".modalDelBtn").on("click", function () {
+
+        var replyRno = $("#replyNo").val();
+        
+        $.ajax({
+            type : "delete",
+            url : "/movie/replies/" + replyRno,
+            headers : {
+                "Content-type" : "application/json",
+                "X-HTTP-Method-Override" : "DELETE"
+            },
+            dataType : "text",
+            success : function (result) {
+                console.log("result : " + result);
+                if (result == "delSuccess") {
+                	//getReplies();
+                	getRepliesPaging(replyPageNum);
+                    alert("댓글 삭제 완료!");
+                    /*
+                    $("#modifyModal").modal("hide");
+                    
+                    $("#modifyModal").removeClass("in");
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");*/
+                   // $(body)
+                    
+                   
+                }
+            }
+        });
+
+    });
+
+	
+    $(".modalModBtn").on("click", function () {
+
+        var reply = $(this).parent().parent();
+        var bfr_rno = reply.find("#replyNo").val();
+        var bfr_content = reply.find("#replyText").val();
+
+        $.ajax({
+            type : "put",
+            url : "/movie/replies/" + bfr_rno,
+            headers : {
+                "Content-type" : "application/json",
+                "X-HTTP-Method-Override" : "PUT"
+            },
+            data : JSON.stringify(
+                {bfr_content : bfr_content}
+            ),
+            dataType : "text",
+            success : function (result) {
+                console.log("result : " + result);
+                if (result == "modSuccess") {
+                	//getReplies();
+                	getRepliesPaging(replyPageNum);
+                    alert("댓글 수정 완료!");
+                    $("#modifyModal").removeClass("in");
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");
+                }
+            }
+        });
+
+    });
+    
+    
+	var total ="";
+	var id = "${id}";
+    function getRepliesPaging(page) {
+        $.getJSON("/movie/getMmlReplies/" + 52 + "/" + 1, function (data) {
+           var str = "";
+           total = data.pageMaker.totalCount;
+           total = total - (page-1)*10;
+         
+           if(data.replies == "") {
+           		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
+           }else {
+                $(data.replies).each(function () {
+                	if(this.id != id) {
+                		str +=	"<li style='display:inline-block; width:100%;'data-replyNo='" + this.mml_repliy_code + "' class='replyLi'>"
+                    	+	"<input type='hidden' value='" + this.id +"'/>"
+         				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
+                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.mml_reply_write_date + "</strong> </span>" + "</div><br>"
+                        +	"<p class='replyText' style='word-break:break-all;'>" + this.mml_reply_content + "</p>"
+                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.mml_reply_dislike + "</button>"
+                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.mml_reply_like + "</button>" 
+                       	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+                        +	"</li>"
+                        +	"<hr/>";
+                	}else {
+	                    str +=	"<li data-replyNo='" + this.mml_repliy_code + "' class='replyLi'>"
+	                    	+	"<input type='hidden' value='" + this.id +"'/>"
+	         				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
+	                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.mml_reply_write_date + "</strong> </span>" + "</div><br>"
+	                        +	"<p class='replyText' style='word-break:break-all; margin-bottom:20px;'>" + this.mml_reply_content + "</p>"
+	                        +	"<button type='button' id='btn-hjs' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
+	                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.mml_reply_dislike + "</button>"
+	                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.mml_reply_like + "</button>" 
+	                       	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+	                        +	"</li>"
+	                        +	"<hr/>";
+                	}     
+                   });
+             }
+             
+           $("#replies").html(str);
+           printPageNumbers(data.pageMaker);
+           
+        });
+    }
+
+    function printPageNumbers(pageMaker) {
+
+        var str = "";
+
+        if (pageMaker.prev) {
+            str += "<li><a href='"+(pageMaker.startPage-1)+"'>이전</a></li>";
+        }
+
+        for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
+            var strCalss = pageMaker.criteria.page == i ? 'class=active' : '';
+            str += "<li "+strCalss+"><a href='"+i+"'>"+i+"</a></li>";
+        }
+
+        if (pageMaker.next) {
+            str += "<li><a href='"+(pageMaker.endPage + 1)+"'>다음</a></li>";
+        }
+
+        $(".pagination-sm").html(str);
+    }
+
+    $(".pagination").on("click", "li a", function (event) {
+        event.preventDefault();
+        replyPageNum = $(this).attr("href");
+        getRepliesPaging(replyPageNum);
+
+    });
 	
 </script>
 

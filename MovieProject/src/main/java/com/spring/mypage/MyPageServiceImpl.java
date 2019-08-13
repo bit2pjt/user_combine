@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.boardFree.BoardFreeDAO;
+import com.spring.boardFree.BoardFreeVO;
+import com.spring.member.MemberDAO;
 import com.spring.member.MemberVO;
-import com.spring.paging.Criteria;
+import com.spring.paging.SearchCriteria;
 
 /**
 * @Class Name : MyPageServiceImpl.java
@@ -57,37 +59,6 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return qnaList;
 	}
-//	
-//	@Override
-//	public int getTotalCount(int id) {
-//		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-//		int count = mypageDAO.getTotalCount(id);
-//		return count;
-//	}
-//	
-//	@Override
-//	public List<OneVO> getListPaging(int id, int page, int pageSize) {
-//		PagingVO pagingVO = new PagingVO();
-//		pagingVO.setId(id);
-//		pagingVO.setPage(page);
-//		pagingVO.setPageSize(pageSize);
-//		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
-//		List<OneVO> list = mypageDAO.getListPaging(pagingVO);
-//		return list;
-//	}
-	
-	@Override
-	public int countArticles(Criteria criteria) {
-		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
-		return myPageDAO.countArticles(criteria);
-	}
-	
-	@Override
-	public List<OneVO> listCriteria(Criteria criteria) {
-		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
-		return myPageDAO.listCriteria(criteria);
-	}
-	
 	
 	@Override
 
@@ -204,13 +175,59 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 	
 	
+	@Override
+	public int deleteQna(int qna_no) {
+		
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int delete = mypageDAO.deleteQna(qna_no);
+		
+		return delete; 
+	}
+
+	@Override
+	public List<MemberVO> getMembers() {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		System.out.println("dao member start!============");
+		List<MemberVO> memberList = mypageDAO.getMembers();
+		System.out.println("memberlsitdao="+memberList);
+		return memberList;
+	}
 	
 	
+	@Override
+	public List<folfolDTO> getfollower(int id){
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		System.out.println("dao follow follow me");
+		List<folfolDTO> followerList = mypageDAO.getfollower(id);
+		System.out.println("FOLLOWER LIST"+followerList);
+		
+		return followerList;
+	}
 	
+	@Override
+	public List<folfolDTO> getfollowing(int id){
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		System.out.println("dao follow follow you");
+		List<folfolDTO> followingList = mypageDAO.getfollowing(id);
+		System.out.println("FOLLOWER LIST"+followingList);
+		
+		return followingList;
+	}
 	
+	 @Override
+	    public int countSearchedArticles(SearchCriteria searchCriteria) {
+		 MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+	    	return mypageDAO.countSearchedArticles(searchCriteria);
+	    }
 	
-	
-	
+	 @Override
+	    public List<OneVO> listSearch(SearchCriteria searchCriteria) {
+		 MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+			List<OneVO> list = mypageDAO.listSearch(searchCriteria);
+			
+			return list;
+	    }
 	
 	
 
