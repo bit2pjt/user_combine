@@ -162,7 +162,7 @@
 					<!-- CGV->전체 -->
 					<div class="cont" style="width: 1200px; margin: 0 auto;">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 전체 이벤트</strong>
+							<strong>CGV -> 전체 입니다.</strong>
 						</div>
 
 
@@ -224,7 +224,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭1-2 -->
 					<div class="cont" style="width: 100%;">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 영화이벤트</strong>
+							<strong>CGV -> 영화</strong>
 
 						</div>
 						<!-- 영화 포스터  -->
@@ -247,7 +247,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭1-3 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 3사 이벤트</strong>
+							<strong>CGV -> 3사 이벤트</strong>
 
 						</div>
 
@@ -270,7 +270,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭1-4 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 시사회</strong>
+							<strong>CGV -> 시사회</strong>
 						</div>
 						<!-- 탭 : 시사회 뷰단 -->
 						<div class="table-responsive">
@@ -301,7 +301,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!--탭 1-5 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 제휴</strong>
+							<strong>CGV -> 제휴</strong>
 
 						</div>
 
