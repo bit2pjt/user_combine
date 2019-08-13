@@ -170,8 +170,7 @@ $(document).ready(function() {
 									<div class="td-content"><%=member.getM_email()%></div>
 								</td>
 							</tr>
-						<form action="update_pw?id=<%=member.getId()%>" name="pwform"
-								onsubmit="return pw(this)" method="post">
+						<form action="update_pw?id=<%=member.getId()%>" name="pwform" onsubmit="return pw(this)" method="post">
 							<tr>
 								<td>비밀번호 변경</td>
 								<td>
@@ -311,7 +310,7 @@ $(document).ready(function() {
 					</table>
 					<div class="btn_m">
 						<input type="submit" class="btn-check-hjs" value="수정">
-						&nbsp; <input type="reset" class="btn-check-hjs" value="취소">
+						&nbsp; <input type="button" onClick="location.href='mypage'" class="btn-check-hjs" value="취소">
 					</div>
 					</form>
 				</div>

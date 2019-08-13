@@ -68,7 +68,14 @@ public class LoginController {
 	//index 페이지
 	@RequestMapping(value = "/index")
 	public String index(HttpServletRequest request, HttpServletResponse response, Model model, Model model1) throws IOException {
-
+		List<MovieChartVO> getCGV = memberService.getCGV();
+		List<MovieChartVO> getNaver = memberService.getNaver();
+		List<MovieChartVO> getDaum = memberService.getDaum();
+		
+		model.addAttribute("cgvList", getCGV);
+		model.addAttribute("naverList", getNaver);
+		model.addAttribute("daumList", getDaum);
+		
 		return "index";
 	}
 	

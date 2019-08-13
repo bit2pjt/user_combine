@@ -98,7 +98,7 @@
                                     
                                  <div class="pw-btn">
                                     <input type="submit" class="btn-pw" value="확인"> &nbsp;
-                                    <input type="reset" class="btn-pw" value="취소">
+                                    <input type="button" onclick="location.href='mypage'" class="btn-pw" value="취소">
                                  </div>
                               </div>
                            </form>
