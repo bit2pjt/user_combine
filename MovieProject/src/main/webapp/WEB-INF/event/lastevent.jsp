@@ -254,9 +254,4 @@ div.box-image {
 	<%@ include file="../footer1.jsp"%> 
 	<!-- 7. footer2.jsp : script -->
 	<%@ include file="../footer2.jsp"%>
-<style>
-	/*kgh: 임시로 배경색지정 */
-	.contents{
-		height: 1000px;
-	}
-</style>
+
