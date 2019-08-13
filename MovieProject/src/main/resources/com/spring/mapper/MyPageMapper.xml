@@ -66,7 +66,7 @@
 	<!-- hm | 1:1문의 답변 resultMap추가 끝  -->
 	
 	<select id="getMemberName" parameterType="String" resultType="String">
-		select M_NAME from member where M_EMAIL=#{m_email}
+		select M_NAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getMemberNickname" parameterType="String" resultType="String">
@@ -74,7 +74,7 @@
 	</select>
 	
 	<select id="getMemberId" parameterType="String" resultType="int">
-		select ID from member where M_EMAIL=#{m_email}
+		select ID from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getQnaList" parameterType="int" resultMap="merberQnaMap">
@@ -85,6 +85,40 @@
 		select * from member where id=#{id}
 	</select>
 	
+	<!--  
+	public int getTotalCount(int id);	//1:1문의 리스트 갯수 카운트
+	public List<OneVO> getListPaging(PagingVO pagingVO);	// 1:1문의 리스트 가져오기_페이징
+	
+	<select id="getTotalCount" parameterType="int" resultType="int">
+		select count(*) from board_qna where id=#{id}
+	</select>
+	
+	<select id="getQnaList" parameterType="com.spring.mypage.PagingVO" resultMap="merberQnaMap">
+		select * from board_qna where ID=#{id} order by QNA_NO desc
+	</select>
+	-->
+	<select id="countArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(qna_no)
+	        FROM board_qna
+	        WHERE id=#{id} and qna_no > 0
+        ]]>
+    </select>
+    
+     <select id="listCriteria" resultMap="merberQnaMap">
+        <![CDATA[
+			select rn, qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+			from(
+				select rownum rn , qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+				from(
+					select qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+					from board_qna
+					order by qna_no desc
+					)
+				)
+			where id=#{id} and rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
 	
 	<update id="updateMember" parameterType="com.spring.member.MemberVO">
 		update member set m_phone=#{m_phone},m_favorite=#{m_favorite},m_sagree=#{m_sagree},m_eagree=#{m_eagree} where id=#{id}

@@ -1,4 +1,5 @@
 
+
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -211,6 +212,7 @@ ul.jq_tab.tab_menu li a{
   
 
 }
+
 /*-------------------CinemaList 스타일------------------------*/
 /**
 * @Class Name : EgovSampleService.java
@@ -256,9 +258,6 @@ ul.jq_tab.tab_menu li a{
   width: 60%;
   height: 160px;
   display: inline-block;
-  
-  
-  
 }
 .cinema_info div.cinema_info_map{
   width: 38%;
@@ -284,6 +283,48 @@ ul.jq_tab.tab_menu li a{
   float: right;
 }
 }
+
+.blockbuster-rate .movie-rate .rate p span.rv {
+	font-size: 12px;
+	color: #4280bf;
+}
+
+.blockbuster-rate .movie-rate .rate {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.blockbuster-rate .movie-rate .rate-star {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-left: 30px;
+	height: 54px;
+}
+
+.review-write h3 {
+	font-family: 'Dosis', sans-serif;
+	font-size: 27px;
+	color: #020d18;
+	font-weight: bold;
+	text-transform: none;
+	margin-bottom: 15px;
+	text-align:left;
+	margin-left:10px;
+}
+
+.mv-user-review-item {
+  border-bottom: 1px solid #d0dae4;
+  padding: 20px 20px 20px 0;
+}
+
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -300,66 +341,6 @@ ul.jq_tab.tab_menu li a{
 *
 *  Copyright (C) by bit 2조 All right reserved.
 */
-
- .tab-wrap * { 
-    margin: 0px; 
-    padding: 0px; 
-}
-.tab-wrap { 
-    position: relative; 
-    padding-top: 30px; 
-}
-.tab-wrap li { 
-    z-index: 2; 
-    position: absolute; 
-    top: 0px; 
-    width: 140px; 
-    height: 30px; 
-    text-indent: -9999%; 
-}
-.tab-wrap li:nth-of-type(1) { 
-    left: 0px; 
-}
-.tab-wrap li:nth-of-type(2) { 
-    left: 140px; 
-}
-.tab-wrap li a { 
-    display: block; 
-    width: 100%; 
-    height: 100%; 
-}
-.tab-wrap article h1 { 
-    position: absolute; 
-    top: 0px; 
-    width: 140px; 
-    height: 30px; 
-    line-height: 30px; 
-    box-sizing: border-box; 
-    border: 1px solid #ddd; 
-    text-align: center; 
-    font-size: 12px; 
-}
-.tab-wrap article p { 
-    border: 1px solid #ddd; 
-    
-}
-.tab-wrap article:target h1 { 
-    background-color: #333;
-    color: #fff; 
-}
-.tab-wrap article:nth-of-type(1) h1 { 
-    left: 0px; 
-}
-.tab-wrap article:nth-of-type(2) h1 { 
-    left: 140px; 
-}
-.tab-wrap article p { 
-    display: none; 
-}
-.tab-wrap article:target p { 
-    display: block; 
-}
-
 
 
 /*-------------manageReviewGet.html--------------------*/

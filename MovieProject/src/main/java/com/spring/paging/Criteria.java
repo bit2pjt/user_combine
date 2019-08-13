@@ -1,9 +1,11 @@
 package com.spring.paging;
 
 public class Criteria {
+	private int id;
 	private int bfr_bno;
 	private int bs_bno;
 	private int mi_code;
+	private int cc_code;
     private int page; // 현재 페이지 번호
     private int perPageNum; // 한페이지당 보여줄 게시물의 개수
 
@@ -11,7 +13,12 @@ public class Criteria {
         this.page = 1;
         this.perPageNum = 10;
     }
-
+    public void setId(int id) {
+    	this.id = id;
+    }
+    public int getId() {
+    	return id;
+    }
     public void setPage(int page) {
 
         if (page <= 0) { // 페이지가 0보다 작은경우 디폴트 1페이지로 지정
@@ -74,6 +81,14 @@ public class Criteria {
 
 	public void setMi_code(int mi_code) {
 		this.mi_code = mi_code;
+	}
+
+	public int getCc_code() {
+		return cc_code;
+	}
+
+	public void setCc_code(int cc_code) {
+		this.cc_code = cc_code;
 	}
 	
 	

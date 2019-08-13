@@ -76,7 +76,7 @@
 			mml_body[0].innerHTML
 			+"<div class='mml-movie-item' id='"+mi_code+"'>"
 			+"<input type='hidden' name='mi_code' value='"+ mi_code +"'>"
-			+ "<img src='./upload/" +mi_poster + "' alt='"+mi_poster+"'>"
+			+ "<img src='" +mi_poster + "' alt='"+mi_poster+"'>"
 			+"<input type='hidden' name='mml_poster' value='"+ mi_poster +"'>"
 			+"<img src='resources/images/mml_add.png' onclick='movie_delete("+mi_code+")' name='delete_movie' style='width:40px;height:40px;position:absolute;left:127px;top:-20px;transform: rotate(45deg);background: white; border-radius: 50%;'>"
 			+"</div>";
@@ -164,7 +164,7 @@
 											<div class="movielist-card"
 												onclick="movie_select(${movie.mi_code},'${movie.mi_poster}')"
 												data-dismiss="modal">
-												<img src="./upload/${movie.mi_poster}">
+												<img src="${movie.mi_poster}">
 												<div class="movie-info">
 													<h4 class="movie-ktitle">${movie.mi_ktitle}</h4>
 													<h6 class="movie-etitle">${movie.mi_etitle}</h6>
