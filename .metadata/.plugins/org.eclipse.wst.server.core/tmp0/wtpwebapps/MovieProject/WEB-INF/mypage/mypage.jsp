@@ -32,21 +32,6 @@
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
 
-<div class="hero user-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li> <span class="ion-ios-arrow-right"></span>Rated movies</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <div style="height:5%;"></div>
 <div class="buster-light">
 	<div class="page-single">
@@ -145,7 +130,7 @@
 							<div class="div_one">
 									<table class="tb_hjs">
 										<caption class="caption-hjs"> 
-											<h2> 나의 팔로잉/팔로워 <a href="#" class="caption_a"> 더보기 </a> </h2></caption>
+											<h2> 나의 팔로잉/팔로워 <a href="folfol_list?id=${requestScope.member.id}" class="caption_a"> 더보기 </a> </h2></caption>
 												
 											<colgroup>
 												<col width="25%" />
@@ -153,14 +138,27 @@
 											</colgroup>
 											<thead>
 												<tr>
-													<th colspan="2" class="th_border"> 팔로잉 ID </th>
-													<th colspan="2"> 팔로워 ID </th>
+													<th colspan="2" class="th_border"> 팔로잉 닉네임 </th>
+													<th colspan="2"> 팔로워 닉네임 </th>
 												</tr>
 											</thead>
 											
 											<tbody>
 												<tr>
-													<td colspan="4">  팔로잉/팔로워가 없습니다. </td>	
+													<td colspan="2" style="padding:0px;">
+													<c:forEach var="foling" items="${requestScope.following }" end="4">
+													<div style="padding:2px; border:1px solid rgba(51, 51, 51, 0.1)">
+													<a href="mmlMemberList?id=${foling.id}">${foling.m_nickname }</a><br>
+													</div>
+													</c:forEach>
+													 </td>
+													<td colspan="2" style="padding:0px;">
+													<c:forEach var="foler" items="${requestScope.follower }" end="4">
+													<div style="padding:2px; border:1px solid rgba(51, 51, 51, 0.1)">
+													<a href="mmlMemberList?id=${foler.id}"> ${foler.m_nickname}</a> <br>
+													 </div>
+												</c:forEach>
+													 </td>
 												</tr>
 											</tbody>
 									</table>

@@ -34,14 +34,14 @@
 var delete_confirm = function ()
 {
    var deleteyn = confirm('정말 탈퇴하시겠습니까?');
-    if (deleteyn == true) {
-       // yes
-      alert("탈퇴가 완료되었습니다.");
-       location.href = "/member_delete";
-    } else {
+    if (deleteyn == false) {
+
+       	return false;
        // no
-       
-       return false;
+    } else {
+      alert("탈퇴가 완료되었습니다.");
+       location.href = "member_delete";
+       // yes
          
 }
 }
@@ -134,8 +134,8 @@ var delete_confirm = function ()
                </div> <br>
                <form action="member_delete">
                <div class="btn_m">
-                  <input type="submit" class="btn-check" value="탈퇴" onclick="delete_confirm()"> &nbsp;
-                  <input type="reset" class="btn-check" value="취소">
+                  <input type="button" class="btn-check" value="탈퇴" onclick="delete_confirm()"> &nbsp;
+                  <input type="button" class="btn-check" value="취소" onclick="location.href='mypage'">
                </div>
                </form>
             </div>

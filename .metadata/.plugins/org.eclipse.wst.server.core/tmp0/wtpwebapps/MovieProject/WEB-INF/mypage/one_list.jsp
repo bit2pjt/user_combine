@@ -100,8 +100,9 @@
 											</tr>
 										</c:when>
 										<c:otherwise>
-											<c:forEach var="qna" items="${requestScope.qnaList }">
+											<c:forEach var="qna" items="${requestScope.qnaList}">
 												<tr>
+					
 													<td>${qna.qna_category }</td>
 													<td><a href="one_get?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
 													<td>${qna.qna_date}</td>
@@ -112,36 +113,24 @@
 									</c:choose>
 									</tbody>
 									
-									<%-- 
-									<tbody>
-									<%
-										for(int i=0; i<10; i++){
-									%>
-										<tr>
-											<td>결말해석</td>
-											<td><a href="one_get">고질라 쿠키영상 무슨뜻인가요?</a></td>
-											<td>2011/04/25</td>
-											<td>N</td>
-										</tr>
-									<%
-										}
-									%>
-									</tbody> --%>
+								
 									
 								</table>
 
 								<ul class="pagination">
-									<li class="icon-prev"><a href="#"><i
+								<c:if test="${pageMaker.prev}">
+									<li class="icon-prev"><a href="one_list${pageMaker.makeQuery(pageMaker.startPage-1) }"><i
 											class="ion-ios-arrow-left"></i></a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">...</a></li>
-									<li><a href="#">21</a></li>
-									<li><a href="#">22</a></li>
-									<li class="icon-next"><a href="#"><i
+								</c:if>
+								
+								<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="index">
+									<li <c:if test="${index eq pageMaker.criteria.page }">class="active"</c:if>><a href="one_list${pageMaker.makeQuery(index)}">${index}</a></li>
+								</c:forEach>
+								
+								<c:if test="${pageMaker.next }">
+									<li class="icon-next"><a href="one_list${pageMaker.makeQuery(pageMaker.endPage+1) }"><i
 											class="ion-ios-arrow-right"></i></a></li>
+											</c:if>
 								</ul>
 							</div>
 						</div>
