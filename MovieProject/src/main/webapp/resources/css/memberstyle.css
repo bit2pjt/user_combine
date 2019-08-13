@@ -48,12 +48,13 @@ yj : start | member_join cs
 }
 .join input{
 	display:inline-block;
-	width:50%;
+	width:460px;
 }
 .join .phone{
 	width:100px;
 }
 .join button{
+	height:34px;
 	display:inline-block;
 	background-color: #FF6F61;
 	border: 1px solid #FF6F61;
@@ -75,6 +76,7 @@ yj : start | member_join cs
 	border-radius: 5px;
 	color:#ffffff;
 	font-weight: bold;
+	margin-top: 20px;
 }
 @media(max-width:600px){
 	.join input{
@@ -86,6 +88,7 @@ yj : start | member_join cs
 		width:80px;
 	}
 	.join button{
+	
 	display:block;
 	width:100%;
 	margin: 5px 0;
