@@ -60,6 +60,8 @@
 				<input id="formtype" type="hidden" value="joinform">
 				<form id="joinform" action="memberJoinPAction" method="post" onsubmit="return check()">
 					<div class="join">
+						<h4>회원가입</h4>
+						<hr>
 						<h5>이메일</h5>
 						<input name="m_cert" type="hidden" value="N" /> 
 						<input name="m_email" id="m_email" type="text" placeholder="인증메일 수신이 가능한 이메일을 입력해주세요." required="required"/>
