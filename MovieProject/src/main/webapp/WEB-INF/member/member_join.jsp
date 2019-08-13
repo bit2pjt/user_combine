@@ -152,8 +152,11 @@
 						</label>
 						
 					</div>
-					<div class="join">
-						<input class="join_btn" type="submit" value="가입하기">
+					<div style="background-color:#333; color: #fff; text-align: center; line-height: 100px; vertical-align: middle; margin-top: 20px;">
+						<img class="logo" src="resources/images/logo1.png" alt="" width="119" height="58">
+					</div>
+					<div class="join" >
+						<input style="height: 60px;" class="join_btn" type="submit" value="가입하기">
 					</div>
 				</form>
 				
