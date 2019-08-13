@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!--
 /**
 * @Class Name : mmlList.jsp
@@ -108,7 +109,8 @@ $(function(){
 		
 	<div class="sp_col-md-41">
 							<div class="card" OnClick="location.href ='mmlGet '" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/${mml2.mml_poster }"/>" alt="header" />
+									<c:set var="poster_one" value="${fn:split(mml2.mml_poster,',')}" />
+									<img class="card-img" src="<c:url value="${poster_one[0] }"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
 											<div class="ho-info" style="float:left;">									
@@ -131,7 +133,8 @@ $(function(){
 				<c:forEach var="mml" items="${requestScope.mmlList}" varStatus="status">
 	<div class="sp_col-md-41">
 							<div class="card" OnClick="location.href ='mmlGet '" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/${mml.mml_poster }"/>" alt="header" />
+									<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
+									<img class="card-img" src="<c:url value="${poster_one[0] }"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
 											<div class="ho-info" style="float:left;">									
@@ -183,6 +186,7 @@ $(function(){
 	<!-- end of celebrity grid v2 section-->
 </div>
 
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <%@ include file="../footer.jsp"%>
 </body>
 
