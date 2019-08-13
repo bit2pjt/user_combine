@@ -1,4 +1,218 @@
 
+
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.02   김광희      탭 기능에 css 
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+ul.jq_tab.tab_menu li{
+  vertical-align:top;
+  display:block;
+  float:left;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  
+}
+
+li:hover{background: #ccc;}
+li:active a { text-decoration:none; color: #dd003f; font-weight: bold }
+/*메뉴 글씨색 변경.*/
+ul.jq_tab.tab_menu li.on a{
+  color: red;
+}
+ul.jq_tab.tab_menu li a{
+  color: #fff;
+}
+.jq_tab.tab_menu{
+
+}
+
+
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.02   김광희      더보기 기능 css 
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+.js-load {
+    display: none;
+}
+.js-load.active {
+    display: block;
+}
+.is_comp.js-load:after {
+    display: none;
+}
+
+.btn-wrap a{
+  color: #fff;
+}
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.lists {
+    margin-bottom: 5rem;
+    font-size: 0;
+}
+.lists li{
+    list-style-type: none;
+    float: left;
+
+}
+.lists__item {
+    /*포스터 나오는거*/
+    
+    width: 240px;
+    height: 340px;
+    padding: 20px;
+    background: #fff;
+}
+
+.btn-wrap {
+	background-color:#333;
+	line-height: 80px;
+    font-weight: bold;
+    text-align: center;
+}
+.box-contents{
+	font-size: 14px;
+}
+.box-contents strong{
+	display: block;
+}
+.txt-lightblue{
+	display:block;
+}
+
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.02   김광희      3사 이벤트 더보기 하기
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+
+
+
+
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.02   김광희     포스터 float left 영역 채우기
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+.clear {
+ clear: both;
+}
+.main{
+  overflow: hidden;
+}
+.main:after {
+ content:""; clear:both; display:block; 
+}
+
+
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.02   김광희      탭 클릭시 색변경
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+.jq_tabonoff ul > li > a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 5px 10px;
+  background-color: #333;
+ }
+ .jq_tabonoff ul > li:hover > a,
+ .jq_tabonoff ul > li:focus > a,
+ .jq_tabonoff ul > li:active > a,
+ .jq_tabonoff ul > li.active >a {
+  color: red;
+  background-color: #000;
+ }
+
+
+@media(max-width: 1200px){
+  .jq_tab li .tit{
+    vertical-align:top;
+    display:block;
+    width: 100px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+  }
+  ul.jq_tab.tab_menu li{
+    width: 100px;
+    background-color: #fff;
+    
+  }
+  
+  
+
+}
+
 /*-------------------CinemaList 스타일------------------------*/
 /**
 * @Class Name : EgovSampleService.java
@@ -31,6 +245,7 @@
   height: 200px;
   display: inline-block;
   vertical-align: top;
+  border-style: none
 }
 .cinema_info {
   margin-bottom: 40px;
@@ -128,9 +343,6 @@
 */
 
 
-
-
-
 /*-------------manageReviewGet.html--------------------*/
 /**
 * @Class Name : EgovSampleService.java
@@ -156,3 +368,102 @@
     left: 0%;
   }
 }
+/*-------------lastevent.jsp--------------------*/
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.08   김광희      @media 처리
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+.box-image{
+	height: 180px;
+	display: inline-block;
+}
+.box-contents .txt-lightblue{
+	display: bloack;	
+}
+
+
+/*-------------winner.jsp--------------------*/
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.08   김광희      		클로링 표수정
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+.winner_cwal{
+	
+}
+.winner_cwal th{
+	background-color: #333;
+	color:#fff;
+	font-weight: bold;
+}
+
+.add_button{
+	background-color: #333;
+	color:#fff;
+	text-align: center;
+	line-height: 60px;
+}
+.add_button a{
+	color : #fff;
+}
+
+
+
+
+.js-load {
+    display: none;
+}
+.js-load.active {
+    display: block;
+}
+.is_comp.js-load:after {
+    display: none;
+}
+
+/* 탭 안에 tbody 수정 */
+.cont th{
+	background-color: #333;
+	color:#fff;
+}
+.cont th:nth-child(1){
+	width:14%;
+	background-color: #333;
+	color:#fff;
+}
+
+
+/* 페이징  */
+#pagination a {
+display:inline-block;
+margin-right:5px;
+cursor:pointer;
+}
+
+
+
+
