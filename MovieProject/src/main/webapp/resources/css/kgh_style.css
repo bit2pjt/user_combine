@@ -1,207 +1,4 @@
 
-/**
-* @Class Name : EgovSampleService.java
-* @Description : EgovSampleService Class
-* @Modification Information
-* @
-* @  수정일      수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      탭 기능에 css 
-*
-* @author BIT 116기 2조
-* @since 2019. 07.01
-* @version 1.0
-* @see
-*
-*  Copyright (C) by bit 2조 All right reserved.
-*/
-
-ul.jq_tab.tab_menu li{
-  vertical-align:top;
-  display:block;
-  float:left;
-  width: 150px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  background-color: #333;
-  color: #fff;
-  
-}
-
-li:hover{background: #ccc;}
-li:active a { text-decoration:none; color: #dd003f; font-weight: bold }
-/*메뉴 글씨색 변경.*/
-ul.jq_tab.tab_menu li.on a{
-  color: red;
-}
-ul.jq_tab.tab_menu li a{
-  color: #fff;
-}
-.jq_tab.tab_menu{
-
-}
-
-
-/**
-* @Class Name : EgovSampleService.java
-* @Description : EgovSampleService Class
-* @Modification Information
-* @
-* @  수정일      수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      더보기 기능 css 
-*
-* @author BIT 116기 2조
-* @since 2019. 07.01
-* @version 1.0
-* @see
-*
-*  Copyright (C) by bit 2조 All right reserved.
-*/
-.js-load {
-    display: none;
-}
-.js-load.active {
-    display: block;
-}
-.is_comp.js-load:after {
-    display: none;
-}
-.btn-wrap, .lists, .main {
-    background-color: #333;
-    line-height: 60px;
-    display: block;
-}
-.btn-wrap a{
-  color: #fff;
-}
-.main {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.lists {
-    margin-bottom: 5rem;
-}
-.lists li{
-    list-style-type: none;
-    float: left;
-
-}
-.lists__item {
-    /*포스터 나오는거*/
-    
-    width: 240px;
-    height: 400px;
-    padding: 20px;
-    background: #fff;
-}
-
-.btn-wrap {
-    font-weight: bold;
-    text-align: center;
-}
-/**
-* @Class Name : EgovSampleService.java
-* @Description : EgovSampleService Class
-* @Modification Information
-* @
-* @  수정일      수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      3사 이벤트 더보기 하기
-*
-* @author BIT 116기 2조
-* @since 2019. 07.01
-* @version 1.0
-* @see
-*
-*  Copyright (C) by bit 2조 All right reserved.
-*/
-
-
-
-
-
-/**
-* @Class Name : EgovSampleService.java
-* @Description : EgovSampleService Class
-* @Modification Information
-* @
-* @  수정일      수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희     포스터 float left 영역 채우기
-*
-* @author BIT 116기 2조
-* @since 2019. 07.01
-* @version 1.0
-* @see
-*
-*  Copyright (C) by bit 2조 All right reserved.
-*/
-
-.clear {
- clear: both;
-}
-.main{
-  overflow: hidden;
-}
-.main:after {
- content:""; clear:both; display:block; 
-}
-
-
-/**
-* @Class Name : EgovSampleService.java
-* @Description : EgovSampleService Class
-* @Modification Information
-* @
-* @  수정일      수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.02   김광희      탭 클릭시 색변경
-*
-* @author BIT 116기 2조
-* @since 2019. 07.01
-* @version 1.0
-* @see
-*
-*  Copyright (C) by bit 2조 All right reserved.
-*/
-
-.jq_tabonoff ul > li > a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 5px 10px;
-  background-color: #333;
- }
- .jq_tabonoff ul > li:hover > a,
- .jq_tabonoff ul > li:focus > a,
- .jq_tabonoff ul > li:active > a,
- .jq_tabonoff ul > li.active >a {
-  color: red;
-  background-color: #000;
- }
-
-
-@media(max-width: 1200px){
-  .jq_tab li .tit{
-    vertical-align:top;
-    display:block;
-    width: 100px;
-    line-height: 40px;
-    text-align: center;
-    background-color: #333;
-    color: #fff;
-  }
-  ul.jq_tab.tab_menu li{
-    width: 100px;
-    background-color: #fff;
-    
-  }
-  
-  
-
-}
 /*-------------------CinemaList 스타일------------------------*/
 /**
 * @Class Name : EgovSampleService.java
@@ -246,9 +43,6 @@ ul.jq_tab.tab_menu li a{
   width: 60%;
   height: 160px;
   display: inline-block;
-  
-  
-  
 }
 .cinema_info div.cinema_info_map{
   width: 38%;
@@ -274,6 +68,48 @@ ul.jq_tab.tab_menu li a{
   float: right;
 }
 }
+
+.blockbuster-rate .movie-rate .rate p span.rv {
+	font-size: 12px;
+	color: #4280bf;
+}
+
+.blockbuster-rate .movie-rate .rate {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.blockbuster-rate .movie-rate .rate-star {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-left: 30px;
+	height: 54px;
+}
+
+.review-write h3 {
+	font-family: 'Dosis', sans-serif;
+	font-size: 27px;
+	color: #020d18;
+	font-weight: bold;
+	text-transform: none;
+	margin-bottom: 15px;
+	text-align:left;
+	margin-left:10px;
+}
+
+.mv-user-review-item {
+  border-bottom: 1px solid #d0dae4;
+  padding: 20px 20px 20px 0;
+}
+
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -290,66 +126,6 @@ ul.jq_tab.tab_menu li a{
 *
 *  Copyright (C) by bit 2조 All right reserved.
 */
-
- .tab-wrap * { 
-    margin: 0px; 
-    padding: 0px; 
-}
-.tab-wrap { 
-    position: relative; 
-    padding-top: 30px; 
-}
-.tab-wrap li { 
-    z-index: 2; 
-    position: absolute; 
-    top: 0px; 
-    width: 140px; 
-    height: 30px; 
-    text-indent: -9999%; 
-}
-.tab-wrap li:nth-of-type(1) { 
-    left: 0px; 
-}
-.tab-wrap li:nth-of-type(2) { 
-    left: 140px; 
-}
-.tab-wrap li a { 
-    display: block; 
-    width: 100%; 
-    height: 100%; 
-}
-.tab-wrap article h1 { 
-    position: absolute; 
-    top: 0px; 
-    width: 140px; 
-    height: 30px; 
-    line-height: 30px; 
-    box-sizing: border-box; 
-    border: 1px solid #ddd; 
-    text-align: center; 
-    font-size: 12px; 
-}
-.tab-wrap article p { 
-    border: 1px solid #ddd; 
-    
-}
-.tab-wrap article:target h1 { 
-    background-color: #333;
-    color: #fff; 
-}
-.tab-wrap article:nth-of-type(1) h1 { 
-    left: 0px; 
-}
-.tab-wrap article:nth-of-type(2) h1 { 
-    left: 140px; 
-}
-.tab-wrap article p { 
-    display: none; 
-}
-.tab-wrap article:target p { 
-    display: block; 
-}
-
 
 
 
