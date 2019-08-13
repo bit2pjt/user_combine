@@ -14,6 +14,8 @@ public interface MmlService {
 	public int insertMml(Mml_ContentVO mmlContentVO); // mmlContent 등록하기
 
 	public int updateMml(Mml_ContentVO mmlContentVO); // mmlContent 수정하기
+	
+	public int getMmlNum(Mml_ContentVO mmlContentVO);	//등록한 mmlContent의 글번호 가져오기
 
 	////////////////
 	// 웅식 개발부분//
