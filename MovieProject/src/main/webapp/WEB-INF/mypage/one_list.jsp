@@ -22,22 +22,8 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <%@ include file="../header2.jsp"%>
 
-<div class="hero user-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li><span class="ion-ios-arrow-right"></span>Rated movies</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="buster-light">
+<div style="height:5%;"></div>
+<div class="buster-light" style="heignt:100%;">
 	<div class="page-single">
 		<div class="container">
 			<div class="row ipad-width2">
@@ -53,20 +39,20 @@
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage.do">마이페이지</a></li>
+								<li><a href="mypage">마이페이지</a></li>
 							</ul>
 
 							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
-								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -90,7 +76,7 @@
 					</div>
 					<div class="btn_t">
 						<button type="button" class="btn-check-hjs"
-							onclick="location.href='one_register.do'">1:1 문의쓰기</button>
+							onclick="location.href='one_register'">1:1 문의쓰기</button>
 					</div>
 
 					<div class="static-table-list">
@@ -114,10 +100,11 @@
 											</tr>
 										</c:when>
 										<c:otherwise>
-											<c:forEach var="qna" items="${requestScope.qnaList }">
+											<c:forEach var="qna" items="${requestScope.qnaList}">
 												<tr>
+					
 													<td>${qna.qna_category }</td>
-													<td><a href="one_get.do?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
+													<td><a href="one_get?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
 													<td>${qna.qna_date}</td>
 													<td>${qna.qna_answer}</td>
 												</tr>
@@ -126,36 +113,24 @@
 									</c:choose>
 									</tbody>
 									
-									<%-- 
-									<tbody>
-									<%
-										for(int i=0; i<10; i++){
-									%>
-										<tr>
-											<td>결말해석</td>
-											<td><a href="one_get.do">고질라 쿠키영상 무슨뜻인가요?</a></td>
-											<td>2011/04/25</td>
-											<td>N</td>
-										</tr>
-									<%
-										}
-									%>
-									</tbody> --%>
+								
 									
 								</table>
 
 								<ul class="pagination">
-									<li class="icon-prev"><a href="#"><i
+								<c:if test="${pageMaker.prev}">
+									<li class="icon-prev"><a href="one_list${pageMaker.makeQuery(pageMaker.startPage-1) }"><i
 											class="ion-ios-arrow-left"></i></a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">...</a></li>
-									<li><a href="#">21</a></li>
-									<li><a href="#">22</a></li>
-									<li class="icon-next"><a href="#"><i
+								</c:if>
+								
+								<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="index">
+									<li <c:if test="${index eq pageMaker.criteria.page }">class="active"</c:if>><a href="one_list${pageMaker.makeQuery(index)}">${index}</a></li>
+								</c:forEach>
+								
+								<c:if test="${pageMaker.next }">
+									<li class="icon-next"><a href="one_list${pageMaker.makeQuery(pageMaker.endPage+1) }"><i
 											class="ion-ios-arrow-right"></i></a></li>
+											</c:if>
 								</ul>
 							</div>
 						</div>
