@@ -129,8 +129,6 @@ public class MovieServiceImpl implements MovieService {
 		
 		int num=0;
 		
-		System.out.println("bf_thumb: " + vo.getBf_thumb());
-		
 		if(vo.getBf_thumb() == 1) {
 			updateReplyRecommend(vo); // bf_reply update
 			num = getReplyRecommend(vo.getMr_code());

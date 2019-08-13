@@ -2,7 +2,10 @@ package com.spring.mypage;
 
 import java.util.List;
 
+import com.spring.boardFree.BoardFreeVO;
 import com.spring.member.MemberVO;
+import com.spring.paging.Criteria;
+import com.spring.paging.SearchCriteria;
 
 /**
  * @Class Name : MyPageService.java
@@ -39,6 +42,10 @@ public interface MyPageService {
 
 	// 1:1 문의내역 리스트 가져오기
 	public List<OneVO> getQnaList(int id); // 1:1문의 리스트 가져오기
+//	public int getTotalCount(int id);	//1:1문의 리스트 갯수 카운트
+//	public List<OneVO> getListPaging(int id, int page, int pageSize);	// 1:1문의 리스트 가져오기_페이징
+	List<OneVO> listCriteria(Criteria criteria);
+	int countArticles(Criteria criteria);
 
 	// 1:1 문의 등록하기, 가져오기, 수정하기, 삭제하기
 	public int insertQna(OneVO oneVO); // 1:1 문의 등록

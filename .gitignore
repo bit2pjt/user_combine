@@ -4,5 +4,7 @@ RemoteSystemsTempFiles/
 Servers/
 *.class
 *.classpath
-target/
-.settings/
+/target/
+*.settings/
+.DS_Store
+

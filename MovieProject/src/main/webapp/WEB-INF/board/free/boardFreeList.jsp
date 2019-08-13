@@ -6,6 +6,7 @@
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 해당 페이지의 커스텀 css 설정입니다. -->
 <link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=4">
+<link rel="stylesheet" href="./resources/css/boardstyle.css">
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
@@ -15,10 +16,11 @@
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      			수정자 				             수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.2     이웅식                    			최초 생성
-* @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
+* @     수정일      	  수정자 				   수정내용
+* @ -------------   ---------   -------------------------------
+* @ 2019. 07. 02     이웅식                  최초 생성
+* @ 2019. 07. 22     한유진    	 header, footer 수정(1,2 버전으로 변경)
+* @ 2019. 08. 09	 한유진				     수정
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -27,7 +29,139 @@
 *
 *  Copyright (C) by bit 2조 All right reserved.
 */-->
+<script>
+$(function(){
+	
+	var tab_weekly = $("#weekly");
+		tab_weekly.on("click", function(event) {
+			event.preventDefault();
+			var test = 'test';
+			$.ajax({
+				url : "/movie/boardListWeekly",
+				dataType : "json",
+				type : "post",
+				success : function(data) {
+					$('#table-tbody').html('');
+					$.each(data, function(index, item) {
+						if (index % 2 == 0) {
+							if(data[index] != null && data[index+1] != null){
+								$('#table-tbody').html(
+									$('#table-tbody').html() + '<tr>'
+											+ '<td><a href="boardFreeGet?bno='
+											+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
+											+ data[index].bf_title
+											+ '</a></td>'
+											+ '<td><a href="boardFreeGet?bno='
+											+ data[index + 1].bf_bno + '">['+(index+2)+'위]&nbsp;'
+											+ data[index + 1].bf_title
+											+ '</a></td>' + '</tr>');
+							}else if(data[index] != null && data[index+1] == null){
+								$('#table-tbody').html(
+										$('#table-tbody').html() + '<tr>'
+												+ '<td><a href="boardFreeGet?bno='
+												+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
+												+ data[index].bf_title
+												+ '</a></td><td></td>'
+												+ '</tr>');
+							}else{
+								$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
+							}
+						}
+					});
+				},
+				error : function() {
+					$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
+				}
+			});
+		});
+		var tab_daily = $("#daily");
+		tab_daily.on("click", function(event) {
+			event.preventDefault();
+			var test = 'test';
+			$.ajax({
+				url : "/movie/boardListDaily",
+				dataType : "json",
+				type : "post",
+				success : function(data) {
+					$('#table-tbody').html('');
+					$.each(data, function(index, item) {
+						if (index % 2 == 0) {
+							if(data[index] != null && data[index+1] != null){
+								$('#table-tbody').html(
+									$('#table-tbody').html() + '<tr>'
+											+ '<td><a href="boardFreeGet?bno='
+											+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
+											+ data[index].bf_title
+											+ '</a></td>'
+											+ '<td><a href="boardFreeGet?bno='
+											+ data[index + 1].bf_bno + '">['+(index+2)+'위]&nbsp;'
+											+ data[index + 1].bf_title
+											+ '</a></td>' + '</tr>');
+							}else if(data[index] != null && data[index+1] == null){
+								$('#table-tbody').html(
+										$('#table-tbody').html() + '<tr>'
+												+ '<td><a href="boardFreeGet?bno='
+												+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
+												+ data[index].bf_title
+												+ '</a></td><td></td>'
+												+ '</tr>');
+							}else{
+								$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
+							}
+						}
 
+					});
+				},
+				error : function() {
+					$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
+				}
+			});
+		});
+		var tab_monthly = $("#monthly");
+		tab_monthly.on("click", function(event) {
+			event.preventDefault();
+			var test = 'test';
+			$.ajax({
+				url : "/movie/boardListMonthly",
+				dataType : "json",
+				type : "post",
+				success : function(data) {
+					$('#table-tbody').html('');
+					$.each(data, function(index, item) {
+						if (index % 2 == 0) {
+							if(data[index] != null && data[index+1] != null){
+								$('#table-tbody').html(
+									$('#table-tbody').html() + '<tr>'
+											+ '<td><a href="boardFreeGet?bno='
+											+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
+											+ data[index].bf_title
+											+ '</a></td>'
+											+ '<td><a href="boardFreeGet?bno='
+											+ data[index + 1].bf_bno + '">['+(index+2)+'위]&nbsp;'
+											+ data[index + 1].bf_title
+											+ '</a></td>' + '</tr>');
+							}else if(data[index] != null && data[index+1] == null){
+								$('#table-tbody').html(
+										$('#table-tbody').html() + '<tr>'
+												+ '<td><a href="boardFreeGet?bno='
+												+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
+												+ data[index].bf_title
+												+ '</a></td><td></td>'
+												+ '</tr>');
+							}else{
+								$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
+							}
+						}
+
+					});
+				},
+				error : function() {
+					$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
+				}
+			});
+		});
+	});
+</script>
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -45,140 +179,45 @@
 </div>
 
 <!-- 상단 베스트 게시물 슬라이더 -->
-<center class="slider sliderv2">
-	<div class="container">
-		<div class="row">
-	    	<div class="slider-single-item" >
-	    		<!-- 낱장 슬라이더는 movie-item으로 분류되는듟 하다 -->
-	    		<div class="movie-item"  >
-	    			<div class="row">
-	    				<h4>실시간 급상승 추천 게시물.</h4>
-						<br>
-						<table class="ws_table_best">
-						<thead>	
-						<!-- 2. 최초의 행. 열의 종류 구분 -->
+
+	<div class="container container_yj">
+		<div class="row" >
+			<div class="movie-single-ct main-content">
+				<div class="movie-tabs">
+					<div class="tabs">
+						<ul class="tab-links tabs-mv tab_yj">
+							<li class="active"><a class="tab_title" id="daily">일간 베스트</a></li>
+							<li><a class="tab_title" id="weekly">주간 베스트</a></li>
+							<li><a class="tab_title" id="monthly">월간 베스트 </a></li>
+						</ul>
+					</div>
+				</div>
+				<table class="tab-table">
+					<tbody id="table-tbody">
+						<c:forEach items="${boardListDaily}" var="board" varStatus="status" step="2">
 							<tr>
-								<th>제  목</th>
-								<th>제  목</th>
+								<td><a href="boardFreeGet?bno=${boardListDaily[status.index].bf_bno}">[${status.index+1}위]&nbsp;${boardListDaily[status.index].bf_title}</a></td>
+								<td>
+									<c:if test="${boardListDaily[status.index+1] != null}"><a href="boardFreeGet?bno=${boardListDaily[status.index+1].bf_bno}">[${status.index+2}위]&nbsp;${boardListDaily[status.index+1].bf_title}</a></c:if>
+								</td>
 							</tr>
-						</thead>
-						<!-- 향후 core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-						<tbody>
-							<tr>
-								<td>추천 수 n 이상의 게시물을 시간순서로 밀어내기. top10만 잘라내서 보여준다.</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-						</tbody>
-						</table>
-	   				 </div>	
-	    		</div>
-	    		<div class="movie-item">
-	    			<div class="row">
-	    				<h4>주간 베스트.</h4>
-						<br>
-						<table class="ws_table_best" >
-						<thead>
-						<!-- 2. 최초의 행. 열의 종류 구분 -->
-							<tr>
-								<th>제  목</th>
-								<th>제  목</th>
-							</tr>
-						</thead>
-						<!-- 향후 core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-						<tbody>
-							<tr>
-								<td>1주일 이내의 기간 중 가장 추천을 많이 받은 게시물 top 10</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-						</tbody>
-					</table>
-	    			</div>	
-	    		</div>
-	   			 <div class="movie-item">
-	    			<div class="row">
-	    			<h4>랜덤 베스트.</h4>
-					<br>
-						<table class="ws_table_best">
-						<thead>
-					<!-- 2. 최초의 행. 열의 종류 구분 -->
-							<tr>
-								<th>제  목</th>
-								<th>제  목</th>
-							</tr>
-						</thead>
-					<!-- 향후 core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-						<tbody>
-							<tr>
-								<td>추천 수 n 이상의 게시물을 중 무작위 게시글을 가져온다(6개월 이내??)</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-							<tr>
-								<td>고질라 쿠키영상</td>
-								<td>고질라 결말해석[74]</td>
-							</tr>
-						</tbody>
-					</table>
-	    		</div>	
-	    	</div>
-	    </div>
-	 </div>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
-</center>
 
 
 <!-- 바탕 : 메인 컨텐츠 시작 -->
 <div class="buster-light">
-	<div class="movie-items" style="margin-top: 100px;">
+	<div class="movie-items">
 		<div class="container">
 			<div class="row">
 			<!-- listTable 배치 시작 -->
 				<div>
 					<div style="position:relative;top:50px">
-						<button class="ws-btn-reddish-write" value="글쓰기" onClick="location.href='boardFreeWrite'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+						<button class="board_btn_right" value="글쓰기" onClick="location.href='boardFreeWrite'">글쓰기</button><!-- <i class="fa fa-pencil" aria-hidden="true"></i> -->
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
@@ -221,10 +260,10 @@
 								  <td>${pageMaker.totalCount - ((pageMaker.criteria.page-1) * pageMaker.criteria.perPageNum + status.index) }</td>
 								  <td>${board.bf_category}</td>
 								  <td><a href="boardFreeGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bf_bno}">${board.bf_title}</a></td>
-								  <td style="word-break:break-all">${board.nickname}</td>
+								  <td>${board.nickname}</td>
 								  <td><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy-MM-dd"/></td>
 								  <td>${board.bf_view_counter}</td>
-								  <td>모바일 글제목. </td>
+								  <td><a href="boardFreeGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bf_bno}">${board.bf_title}</a></td>
 								</tr>
 							</c:forEach>
 						  </tbody>

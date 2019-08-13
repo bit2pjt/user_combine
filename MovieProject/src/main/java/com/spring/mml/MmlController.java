@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.movie.MovieService;
 import com.spring.movie.MovieInfoVO;
+import com.spring.movie.MovieService;
+import com.spring.movie.Movie_InfoVO;
 import com.spring.mypage.MyPageService;
 
 @Controller
@@ -107,6 +108,7 @@ public class MmlController {
 			e.printStackTrace();
 		}
 		//작성자의 개인 mmlList로 이동하게 추후 링크조정
+		int mml_num = mmlService.getMmlNum(mmlContentVO);
 		return "redirect:/mmlGet?mml_num="+mmlContentVO.getMml_num();
 	}
 	

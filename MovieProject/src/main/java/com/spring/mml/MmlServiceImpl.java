@@ -43,6 +43,12 @@ public class MmlServiceImpl implements MmlService {
 		int result = mmlDAO.updateMml(mmlContentVO);
 		return result;
 	}
+	
+	@Override
+	public int getMmlNum(Mml_ContentVO mmlContentVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	////////////////
 	// 웅식 개발부분//
 	////////////////
