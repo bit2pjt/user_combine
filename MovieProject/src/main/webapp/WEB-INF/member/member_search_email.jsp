@@ -81,7 +81,7 @@
 					<input class="phone" id="search_phone3" type="number" required="required" maxlength="4" oninput="numberMaxLength(this);"/>
 				</div>
 				<div class="search">
-					<button class="search_btn" type="button" id="search_pw_btn">확인</button>
+					<button class="search_btn" type="button" id="search_email_btn">확인</button>
 				</div>
 			</div>
 		</div>
