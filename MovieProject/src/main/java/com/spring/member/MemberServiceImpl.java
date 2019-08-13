@@ -237,14 +237,66 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public List<MovieChartVO> getCGV() {
-		// TODO Auto-generated method stub
-		return null;
+		String targetUrl  = "http://www.cgv.co.kr/movies/";
+		List<String> thumnail = null;
+		List<String> title = null;
+		List<String> yema = null;
+		List<MovieChartVO> list = new ArrayList<MovieChartVO>();
+
+		try {
+            Document doc = Jsoup.connect(targetUrl).get();
+            thumnail = doc.select(".box-image").select("img").eachAttr("src");
+            title = doc.select("div.box-contents > a > strong").eachText();
+            yema = doc.select("div.box-contents > div.score > strong.percent > span").eachText();
+            yema.add("0.4%");
+            
+            for(int i=0; i<7; i++) {
+            	MovieChartVO vo = new MovieChartVO();
+	        	vo.setThumnail(thumnail.get(i));
+	        	vo.setMovieTitle(title.get(i));
+	        	vo.setScore(yema.get(i));
+	        	
+	        	list.add(vo);
+	        }
+	        	
+	      }catch (IOException e) {
+            e.printStackTrace();
+	      }
+		
+		return list;
 	}
 
 	@Override
 	public List<MovieChartVO> getNaver() {
-		// TODO Auto-generated method stub
-		return null;
+		String targetUrl  = "https://movie.naver.com/movie/running/current.nhn";
+		List<String> thumnail = null;
+		List<String> title = null;
+		List<String> yema = null;
+		List<String> star = null;
+		List<MovieChartVO> list = new ArrayList<MovieChartVO>();
+
+		try {
+            Document doc = Jsoup.connect(targetUrl).get();
+            thumnail = doc.select(".thumb").select("img").eachAttr("src");
+            title = doc.select(".thumb").select("img").eachAttr("alt");
+            yema = doc.select("dd.star > dl.info_exp > dd > div > span.num").eachText();
+            star = doc.select("dd.star > dl.info_star > dd > div > a > span.num").eachText();
+                      
+            for(int i=0; i<8; i++) {
+            	MovieChartVO vo = new MovieChartVO();
+	        	vo.setThumnail(thumnail.get(i));
+	        	vo.setMovieTitle(title.get(i));
+	        	vo.setStar(star.get(i));
+	        	vo.setScore(yema.get(i)+"%"); // 예매
+	        		
+	        	list.add(vo);
+	        }
+	        	
+	      }catch (IOException e) {
+            e.printStackTrace();
+	      }
+		
+		return list;
 	}
 
 	@Override
@@ -274,7 +326,7 @@ public class MemberServiceImpl implements MemberService {
             	MovieChartVO vo = new MovieChartVO();
 	        	vo.setThumnail(thumnail.get(i));
 	        	vo.setMovieTitle(title.get(i));
-	        	vo.setScore(star.get(i));
+	        	vo.setStar(star.get(i));
 	        		
 	        	list.add(vo);
 	        }

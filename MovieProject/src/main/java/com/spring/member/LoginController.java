@@ -3,6 +3,7 @@ package com.spring.member;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -51,13 +52,22 @@ public class LoginController {
 
 	//index 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(HttpServletRequest request, HttpServletResponse response) {
+	public String index(HttpServletRequest request, HttpServletResponse response, Model model) {
 		
+		List<MovieChartVO> getCGV = memberService.getCGV();
+		List<MovieChartVO> getNaver = memberService.getNaver();
+		List<MovieChartVO> getDaum = memberService.getDaum();
+		
+		model.addAttribute("cgvList", getCGV);
+		model.addAttribute("naverList", getNaver);
+		model.addAttribute("daumList", getDaum);
+		
+		System.out.println("1: " + getCGV);
 		return "index";
 	}
 	//index 페이지
 	@RequestMapping(value = "/index")
-	public String index(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+	public String index(HttpServletRequest request, HttpServletResponse response, Model model, Model model1) throws IOException {
 
 		return "index";
 	}
