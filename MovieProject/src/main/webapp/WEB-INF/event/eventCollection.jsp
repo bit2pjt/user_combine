@@ -195,9 +195,9 @@ Copyright (C) by bit 2조 All right reserved.
 							<table style="margin-bottom: 100px;">
 								<tbody class="total_event_tbody">
 									<tr>
-										<th style="width: 14%">구분</th>
-										<th>제목</th>
-										<th style="width: 24%">이벤트 기간</th>
+										<th style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">구분</th>
+										<th style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;" >제목</th>
+										<th style="width: 24%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">이벤트 기간</th>
 									</tr>
 									<!-- eventcontrllor 에서 가져오기 -->
 									${total_td } ${total_td2}
@@ -278,10 +278,10 @@ Copyright (C) by bit 2조 All right reserved.
 							<table class="class="tabletable-borderedtable-hover">
 								<thead>
 									<tr>
-										<th>번호</th>
-										<th>제목</th>
-										<th>등록일</th>
-										<th style="width: 14%;">조회수</th>
+										<th style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">번호</th>
+										<th style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">제목</th>
+										<th style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">등록일</th>
+										<th style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">조회수</th>
 									</tr>
 								</thead>
 								<tbody>
