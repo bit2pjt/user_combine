@@ -199,9 +199,9 @@
 	
 	<!-- insert : boardFree -->
 	<insert id="insertBoardFree" parameterType="com.spring.boardFree.BoardFreeVO">
-		INSERT INTO board_free VALUES (seq_bf_bno.nextval, #{id}, #{bf_category, jdbcType=VARCHAR}, 
+		INSERT INTO board_free VALUES (seq_bf_bno.nextval, #{id}, 0, 0, #{bf_category, jdbcType=VARCHAR}, 
 		#{bf_title, jdbcType=VARCHAR}, sysdate, sysdate, #{bf_source, jdbcType=VARCHAR}, #{bf_content, jdbcType=VARCHAR},
-		0, 0, 'N', 0, 0)
+		0, 0, 'N')
 	</insert>
 	
 	<!-- update : boardFree -->

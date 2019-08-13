@@ -167,7 +167,10 @@
     
     
     
-    
+    <select id="getMovieList" parameterType="String" resultMap="movieMap">
+		select * from movie_info
+	</select>
+	
 	<select id="getMovieList_title" parameterType="String" resultMap="movieMap">
 		select * from movie_info where mi_ktitle like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
 		or mi_etitle like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
