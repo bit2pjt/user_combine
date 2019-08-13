@@ -188,9 +188,9 @@ public class eventController {
 		System.out.println("3사 뮤비 tobdy:"+movie_3);
 		
 
-		// CGV 시사회
+		// 시사회
 		
-		// cgv시사회 링크
+		// 시사회 링크
 		String premiere = "http://www.cgv.co.kr/culture-event/event/preview/?menu=7";
 		System.out.println("premiere:"+premiere); // 시사회 링크주소
 		
@@ -219,6 +219,33 @@ public class eventController {
 		Elements premiere_tbody_tr = doc.select("tbody").select("tr");
 		
 		System.out.println("premiere_tbody_tr:" + premiere_tbody_tr); //시사회 tr 
+		
+		// 시사회 링크 2
+		
+		String premiere2 = "http://www.cgv.co.kr/culture-event/event/preview/default.aspx?page=2&searchtext=";
+		System.out.println("premiere2:"+premiere2); // 시사회 링크주소 2
+		
+		try {
+			doc = Jsoup.connect(premiere2).get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} // 시사회 url 연결
+		
+		Elements premiere2_tbody = doc.select("tbody");
+		
+		Elements premiere2_href = doc.select("tbody").select("tr").select("td").select("a");
+		
+		String premiere2_href_attr = doc.select("tbody").select("tr").select("td").select("a").attr("href");
+		
+		// 어레이 리스트에 href _ 속성 추가하기
+		ArrayList<Element> premiere2_href_link = new ArrayList<Element>();
+		for(Element premiere2_href_link2 : premiere2_href) {
+			
+		}
+		
+		
+		
+		
 		
 		
 		// cgv 제휴 클롤링
