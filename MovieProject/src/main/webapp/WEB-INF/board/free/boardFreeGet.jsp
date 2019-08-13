@@ -41,7 +41,7 @@
  						alert("이미 추천/비추천을 누르셨습니다.");
  						return false;
  					}else {
- 						reco.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
+ 						reco.html("<i class='far fa-thumbs-up' aria-hidden='true' ></i>  " + data);
  					}
  				},
  				error: function() {
@@ -66,7 +66,7 @@
  						alert("이미 추천/비추천을 누르셨습니다.");
  						return false;
  					}else {
- 						deco.html("<i class='fa fa-thumbs-o-down' aria-hidden='true'></i>  " + data);
+ 						deco.html("<i class='far fa-thumbs-down' aria-hidden='true'></i>  " + data);
  					}
  				},
  				error: function() {
@@ -145,7 +145,7 @@
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
 				<div class="ws-post-get-info-profile">
-					<img src="${memberVO.m_image}" alt="프로필사진">
+					<img src="resources/images/customs/ws_img/${memberVO.m_image}" alt="프로필사진">
 				</div>
 				<div class="ws-post-get-info-inner">
 					<div>작성자 : ${memberVO.m_nickname}</div>

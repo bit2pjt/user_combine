@@ -1,9 +1,17 @@
 
 package com.spring.etc;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class eventController {
@@ -32,6 +40,7 @@ public class eventController {
 			movie_list_link.add(movie_list_link2);
 			String a = movie_list_link2.attr("href");
 			Element b = movie_list_link2.attr("href","http://www.cgv.co.kr"+a);
+			Element f = movie_list_link2.attr("target", "_blank");
 			
 		}
 		ArrayList<Element> list = new ArrayList<Element>();
@@ -101,6 +110,7 @@ public class eventController {
 			href_a_link.add(href_a_link2);
 			String a = href_a_link2.attr("href");
 			Element b = href_a_link2.attr("href","http://www.cgv.co.kr"+a);
+			Element f = href_a_link2.attr("target", "_blank");
 			System.out.println("a:"+a);
 			System.out.println("b:"+b);
 		}
@@ -133,6 +143,7 @@ public class eventController {
 			href_c_link.add(href_c_link2);
 			String c = href_c_link2.attr("href");
 			Element d = href_c_link2.attr("href","http://www.cgv.co.kr"+c);
+			Element f = href_c_link2.attr("target", "_blank");
 		}
 		
 		Elements element8 = doc.select("tbody").select("tr");
@@ -164,6 +175,7 @@ public class eventController {
 			movie_3_link.add(movie_3_link2);
 			String a = movie_3_link2.attr("href");
 			Element b = movie_3_link2.attr("href", "http://www.cgv.co.kr"+a);
+			Element c = movie_3_link2.attr("target", "_blank");
 		}
 		
 		Elements movie_3 = doc.select("div.sect-evt-entlist");
@@ -206,6 +218,7 @@ public class eventController {
 			premiere_href_link.add(premiere_href_link2);
 			String a = premiere_href_link2.attr("href");
 			Element b = premiere_href_link2.attr("href", "http://www.cgv.co.kr"+a);
+			Element c = premiere_href_link2.attr("target", "_blank");
 		}
 		Elements premiere_tbody_tr = doc.select("tbody").select("tr");
 		
@@ -271,6 +284,7 @@ public class eventController {
 			alliance_link.add(alliance_link2);
 			String a = alliance_link2.attr("href");
 			Element b = alliance_link2.attr("href", "http://www.cgv.co.kr"+a);
+			Element c = alliance_link2.attr("target", "_blank");
 		}
 		
 		
@@ -304,6 +318,7 @@ public class eventController {
 			alliance2_link.add(alliance2_link2);
 			String a = alliance2_link2.attr("href");
 			Element b = alliance2_link2.attr("href", "http://www.cgv.co.kr"+a);
+			Element c = alliance2_link2.attr("target", "_blank");
 		}
 		
 		
@@ -343,6 +358,5 @@ public class eventController {
 		model.setViewName("event/eventCollection");
 
 		return model;
-	
-	
+}
 }
