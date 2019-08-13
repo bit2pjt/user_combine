@@ -42,12 +42,8 @@ public class LoginController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
-		List<MovieChartVO> movieChartVO = memberService.getCGVChart();
-		
-		model.addAttribute("movieChartVO", movieChartVO);
 		return "index";
 	}
-
 	/**
 	 * 로그인
 	 * 

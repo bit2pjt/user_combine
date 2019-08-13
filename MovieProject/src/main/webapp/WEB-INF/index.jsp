@@ -31,7 +31,6 @@
 	href="<c:url value="/resources/css/modifyplugins.css" />">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/yj_style.css" />">
-
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="./header2.jsp" %>
 
@@ -46,36 +45,32 @@
 					<ul id="moviechart-ul" class="tab-links tabs-mv">
 						<li class="active"><a href="#total">통합</a></li>
 						<li><a href="#cgv"> CGV</a></li>
-						<li><a href="#naver"> 네이버 </a></li>
-						<li><a href="#daum"> 다음 </a></li>
+						<li><a href="#lottecinema"> 롯데시네마 </a></li>
+						<li><a href="#megabox"> 메가박스</a></li>
 					</ul>
-					
 					<div class="moviechart">
 						<!-- yj : start | total tab-->
 						<div id="total" class="tab active">
 							<div class="slick-multiItemSlider">
-							<c:forEach items="${movieChartVO}" var="charVO" varStatus="status">
 								<div class="movie-item">
 									<div class="mv-img">
 										<a href="#"><img
-											src="${charVO.thumnail}" alt="" width="285"
+											src="resources/images/uploads/slider1.jpg" alt="" width="285"
 											height="437"></a>
 									</div>
 									<div class="title-in">
 										<h6>
-											<a href="#">${charVO.movieTitle}</a>
+											<a href="#">movie title</a>
 										</h6>
 										<p>
 											<i class="ion-android-star"></i>평점<span>0</span> /10
 										</p>
 										<p>
-											<i class="ion-android-star"></i>예매율<span>${charVO.score}</span>
+											<i class="ion-android-star"></i>예매율<span>00%</span>
 										</p>
 									</div>
-									<div class="movie-ranking">${status.count}</div>
+									<div class="movie-ranking">1</div>
 								</div>
-							</c:forEach>
-								<!--  
 								<div class="movie-item">
 									<div class="mv-img">
 										<a href="#"><img
@@ -209,10 +204,8 @@
 									</div>
 									<div class="movie-ranking">8</div>
 								</div>
-								-->
 							</div>
 						</div>
-						
 						<!-- yj : start | cgv tab-->
 						<div id="cgv" class="tab review">
 							<div class="slick-multiItemSlider">
