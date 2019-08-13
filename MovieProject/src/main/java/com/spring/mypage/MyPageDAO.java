@@ -26,6 +26,7 @@ import com.spring.paging.Criteria;
 public interface MyPageDAO {
 
 	public MemberVO getMember(int id);
+	List<MemberVO> getMembers();
 	void updateMember(MemberVO memberVO);
 	void updatePw(MemberVO memberVO);
 	void updateNick(MemberVO memberVO);
@@ -37,8 +38,6 @@ public interface MyPageDAO {
 	
 	//1:1 문의내역 리스트 가져오기
 	public List<OneVO> getQnaList(int id);	//1:1문의 리스트 가져오기
-//	public int getTotalCount(int id);	//1:1문의 리스트 갯수 카운트
-//	public List<OneVO> getListPaging(PagingVO pagingVO);	// 1:1문의 리스트 가져오기_페이징
 	List<OneVO> listCriteria(Criteria criteria);
 	int countArticles(Criteria criteria);
 	
@@ -46,20 +45,23 @@ public interface MyPageDAO {
 	public int insertQna(OneVO oneVO);	//1:1 문의 등록
 	public OneVO getQnaDetail(int qna_no);	//1:1 문의 상세정보 가져오기
 	public int updateQna(OneVO oneVO);	//1:1 문의 상세정보 수정하기
+	public int deleteQna(int qna_no);
 	
 	
 	//hm | 1:1 문의 답변 가져오기
 	public OneAdVO getQnaAdDetail(int qna_no); // 1:1 문의 상세정보 가져오기
 	
 	//kgh | 비밀번호 변경, 탈퇴
-	public int checkPw(HashMap<String,String> map);
 	// 비밀번호 체크
+	public int checkPw(HashMap<String,String> map);
 	
-	public int delete_member(String m_email);
 	//회원 탈퇴신청
+	public int delete_member(String m_email);
 	
 	public int delete_date(int id);
 	
+	public List<FolFolDTO> getfollower(int id);
+	public List<FolFolDTO> getfollowing(int id);
 	
 	
 }

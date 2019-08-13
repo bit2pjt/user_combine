@@ -33,10 +33,13 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script>
 function deleteQnaDetail(){
+	
+	var qno = qform.qna_no.value; 
 	msg="삭제 하시겠습니까?";
-	if(confirm(msg)!=0){
-		location.href="one_list";
-	}
+	 if(confirm(msg)!=0){
+		
+		location.href="one_delete?qna_no="+qno;
+	} 
 	
 }
 </script>
@@ -122,6 +125,7 @@ function deleteQnaDetail(){
 										onClick="location.href='one_update?qna_no=${requestScope.qnaDetail.qna_no}'"
 										class="btn-check-hjs" value="수정"> &nbsp; <input
 										type="reset" class="btn-check-hjs" value="삭제"  onclick="deleteQnaDetail()">
+										<input type="hidden" name="qna_no" value="${requestScope.qnaDetail.qna_no}">
 								</div>
 								<br>
 							</form>
