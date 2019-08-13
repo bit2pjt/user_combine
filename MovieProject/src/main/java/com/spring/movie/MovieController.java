@@ -50,7 +50,6 @@ public class MovieController {
 		MovieInfoVO movieInfoVO = movieService.getMovieInfo(mi_ktitle);
 		List<MovieCrawlVO> movieCrawlVO = movieService.getThumnail(mi_ktitle);
 		
-		System.out.println("1111111: " + movieCrawlVO );
 		model.addAttribute("movieCrawl", movieCrawlVO);
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("movieInfoVO", movieInfoVO);

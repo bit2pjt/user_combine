@@ -13,4 +13,5 @@ public class WarnVO { // 신고 공통 VO
 	private int id;
 	private Date bf_date;
 	private int mr_code;
+	private int cr_code;
 }

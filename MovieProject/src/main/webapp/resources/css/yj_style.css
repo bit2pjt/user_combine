@@ -327,7 +327,20 @@ yj : start | movieDetail 페이지 관련
   font-size: 25px;
   font-weight: 400;
 }
+
+.movie-rate .rate p span {
+  color: #000000;
+  font-size: 25px;
+  font-weight: 400;
+}
 .movie-single .movie-single-ct .movie-rate .rate p {
+	margin-bottom: 0;
+	margin-left: 10px;
+	font-size: 11px;
+	width:100px;
+	margin-top: 20px;
+}
+.movie-rate .rate p {
 	margin-bottom: 0;
 	margin-left: 10px;
 	font-size: 11px;
@@ -364,7 +377,32 @@ yj : start | movieDetail 페이지 관련
   max-width:310px;
 }
 
+.blockbuster-rate .movie-rate {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* border-top: 1px solid #405266;
+  border-bottom: 1px solid #405266; */
+  border-top: none;
+  border-bottom: none;
+  margin-bottom: 0px;
+  max-width:310px;
+}
+
 .movie-single .movie-single-ct h1{
+  font-family: 'Dosis', sans-serif;
+  color: #000000;
+  font-weight: bold;
+  text-transform: none;
+  font-size: 27px;
+  margin-bottom: 10px;
+  padding-top:10px;
+}
+
+.blockbuster-rate h1{
   font-family: 'Dosis', sans-serif;
   color: #000000;
   font-weight: bold;
@@ -738,3 +776,4 @@ yj : start | tab - review
 	padding: 20px 0;
 	margin-bottom: 30px;
 }
+
