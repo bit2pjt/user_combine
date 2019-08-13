@@ -60,7 +60,7 @@
 	function update_back() {
 		msg = "나영리 수정을 취소하시겠습니까?";
 		if (confirm(msg) != 0) {
-			location.href = "mmlGet"+${requestScope.mmlContentVO.mml_num};
+			location.href = "mmlGet?mml_num="+${requestScope.mmlContentVO.mml_num};
 		}
 	}
 	function openModal(){
