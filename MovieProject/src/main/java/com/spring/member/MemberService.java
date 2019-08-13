@@ -1,5 +1,7 @@
 package com.spring.member;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import javax.mail.MessagingException;
 
 
@@ -21,5 +23,8 @@ public interface MemberService {
 	
 	public boolean emailOverlapChk(MemberVO vo);	//이메일 중복체크
 	public boolean nickOverlapChk(MemberVO vo);		//닉네임 중복체크
-
+	
+	public List<MovieChartVO> getCGV();
+	public List<MovieChartVO> getNaver();
+	public List<MovieChartVO> getDaum();
 }

@@ -65,7 +65,6 @@ public class LoginController {
 	//로그인 액션
 	/**
 	 * 로그인
-	 * 
 	 * @param vo       - 로그인시 입력한 정보가 담긴 MemberVO
 	 * @param request
 	 * @param response

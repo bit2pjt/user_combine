@@ -528,7 +528,7 @@
 <div class="buster-light" style="margin-top:150px;">
 <section class="section">
 <!-- 지역 영화관 선택 -->	
-<form class="cinema_select" name="frm1">
+<form class="cinema" name="frm1">
 <h1 style="margin-bottom:20px;"> 극장정보 </h1>
 <select id="brand" name="brand" size="3" onChange="LocalList()">
 	<option value="CGV"> CGV </option>
@@ -724,7 +724,7 @@
 													</div>
 												</div>
 												</div>
-												<hr class="mv-user-review-hr">
+												
 												<div class="blockbuster-rate" style="margin-top:20px; margin-bottom:30px;">
 													<h1 style="text-align:left;">영화관 평점</h1>
 													<div class="movie-rate" style="margin:auto;">

@@ -8,7 +8,7 @@ import lombok.Data;
 public class Mml_ListDTO {
 
 	private int mml_num;			//나영리코드
-	private int mi_code;			//영화코드
+	private String mi_code;			//영화코드
 	private int id;					//ID
 	private int mml_view_count;		//조회수
 	private Date mml_write_date;	//등록일
