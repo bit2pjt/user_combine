@@ -32,13 +32,15 @@
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script>
-function deleteQnaDetail(){
-	msg="삭제 하시겠습니까?";
-	if(confirm(msg)!=0){
-		location.href="one_list";
+function deleteQna(){
+	var result = confirm("삭제하시겠습니까?");
+	
+	if(result == true) {
+		location.href="one_delete?qna_no=${requestScope.qnaDetail.qna_no}";
 	}
 	
 }
+	
 </script>
 
 
@@ -73,8 +75,7 @@ function deleteQnaDetail(){
 							</ul>
 							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
-										문의내역</a></li>
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
 								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 							</ul>
 						</div>
@@ -94,8 +95,7 @@ function deleteQnaDetail(){
 									<li class="tb_line">
 										<div class="tb_th1">상담구분</div>
 										<div class="tb_td1">
-											${requestScope.qnaDetail.qna_category }
-										</div>
+											${requestScope.qnaDetail.qna_category }</div>
 									</li>
 									<li class="tb_line">
 										<div class="tb_th1">닉네임</div>
@@ -111,7 +111,7 @@ function deleteQnaDetail(){
 									<li class="tb_line">
 
 										<div class="tb_th1">내용</div>
-										<div class="tb_td1" style="word-break:break-all">
+										<div class="tb_td1" style="word-break: break-all">
 											${requestScope.qnaDetail.qna_content }</div>
 
 									</li>
@@ -121,7 +121,8 @@ function deleteQnaDetail(){
 									<input type="button"
 										onClick="location.href='one_update?qna_no=${requestScope.qnaDetail.qna_no}'"
 										class="btn-check-hjs" value="수정"> &nbsp; <input
-										type="reset" class="btn-check-hjs" value="삭제"  onclick="deleteQnaDetail()">
+										type="reset" class="btn-check-hjs" value="삭제"
+										onclick="deleteQna()">
 								</div>
 								<br>
 							</form>
@@ -142,7 +143,7 @@ function deleteQnaDetail(){
 											<li class="tb_line"></li>
 											<li class="tb_line">
 												<div class="tb_th1">답변내용</div>
-												<div class="tb_th1" style="width:80%">답변이 아직 없습니다.</div>
+												<div class="tb_th1" style="width: 80%">답변이 아직 없습니다.</div>
 											</li>
 										</ul>
 										<br>
@@ -152,7 +153,7 @@ function deleteQnaDetail(){
 											<li class="tb_line"></li>
 											<li class="tb_line">
 												<div class="tb_th1">답변일시</div>
-												<div class="tb_td1" style="word-break:break-all">${requestScope.qnaAdDetail.aqna_update_date }</div>
+												<div class="tb_td1" style="word-break: break-all">${requestScope.qnaAdDetail.aqna_update_date }</div>
 											</li>
 											<li class="tb_line">
 												<div class="tb_th1">답변내용</div>

@@ -163,6 +163,12 @@ public class MyPageServiceImpl implements MyPageService{
 		return oneAdVO;
 	}
 	
+	@Override
+	public void deleteQna(int qna_no) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		mypageDAO.deleteQna(qna_no);
+		
+	}; // 삭제하기
 	
 	// kgh | 비밀번호 확인 , 탈퇴,
 	

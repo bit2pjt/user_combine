@@ -56,7 +56,9 @@ public interface MyPageService {
 
 	// hm| 1:1문의 답변 가져오기
 	public OneAdVO getQnaAdDetail(int qna_no); // 1:1문의 답변 상세정보 가져오기
-
+	
+	public void deleteQna(int qna_no); // 삭제하기
+	
 	// kgh | 비밀번호 체크, 탈퇴, 신청시간
 	// 회원 비밀번호 체크
 	public boolean checkPw(String m_email, String m_password);
