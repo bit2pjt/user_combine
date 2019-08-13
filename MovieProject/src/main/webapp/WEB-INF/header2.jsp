@@ -103,7 +103,7 @@
                      href="cinemaList"> 영화관 </a></li>
                   <li class="dropdown first"><a
                      class="btn btn-default dropdown-toggle lv1"
-                     href="boardEventCollection"> 이벤트 & 정보 </a></li>
+                     href="eventCollection"> 이벤트 & 정보 </a></li>
                   <li class="dropdown first"><a
                      class="btn btn-default dropdown-toggle lv1"
                      data-toggle="dropdown" data-hover="dropdown"> 커뮤니티<i
