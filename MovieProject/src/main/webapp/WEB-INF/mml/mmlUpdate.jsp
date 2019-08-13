@@ -72,7 +72,7 @@
 			mml_body[0].innerHTML
 			+"<div class='mml-movie-item' id='"+mi_code+"'>"
 			+"<input type='hidden' name='mi_code' value='"+ mi_code +"'>"
-			+ "<img src='./upload/" +mi_poster + "' alt='"+mi_poster+"'>"
+			+ "<img src='./upload/poster/" +mi_poster + "' alt='"+mi_poster+"'>"
 			+"<input type='hidden' name='mml_poster' value='"+ mi_poster +"'>"
 			+"<img src='resources/images/mml_add.png' onclick='movie_delete("+mi_code+")' name='delete_movie' style='width:40px;height:40px;position:absolute;left:127px;top:-20px;transform: rotate(45deg);background: white; border-radius: 50%;'>"
 			+"</div>";
@@ -162,7 +162,7 @@
 											<div class="movielist-card"
 												onclick="movie_select(${movie.mi_code},'${movie.mi_poster}')"
 												data-dismiss="modal">
-												<img src="./upload/${movie.mi_poster}">
+												<img src="./upload/poster/${movie.mi_poster}">
 												<div class="movie-info">
 													<h4 class="movie-ktitle">${movie.mi_ktitle}</h4>
 													<h6 class="movie-etitle">${movie.mi_etitle}</h6>
@@ -199,7 +199,7 @@
 					<c:forEach var="result" items="${mi_code}" varStatus="status">
 						<div class='mml-movie-item'>
 							<input type='hidden' name='mi_code' value='<c:out value="${result }"></c:out>'>
-							<img src='./upload/' alt=''>
+							<img src='./upload/poster/' alt=''>
 							<input type='hidden' name='mml_poster' value='${mml_poster[0]}'>
 						</div>
 					</c:forEach> --%>
@@ -207,7 +207,7 @@
 					<c:forTokens items="${requestScope.mmlContentVO.mi_code }" delims="," var="mi_code" varStatus="i">
     					<div class='mml-movie-item' id='${mi_code }'>
 							<input type='hidden' name='mi_code' value='${mi_code }'>
-							<img src='./upload/${mml_poster[i.index]}' alt='${mml_poster[i.index]}'>
+							<img src='./upload/poster/${mml_poster[i.index]}' alt='${mml_poster[i.index]}'>
 							<input type='hidden' name='mml_poster' value='${mml_poster[i.index]}'>
 							<img src='resources/images/mml_add.png' onclick='movie_delete(${mi_code })' name='delete_movie' style='width:40px;height:40px;position:absolute;left:127px;top:-20px;transform: rotate(45deg);background: white; border-radius: 50%;'>
 						</div>

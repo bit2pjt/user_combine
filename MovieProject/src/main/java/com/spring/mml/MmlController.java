@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.movie.MovieService;
-import com.spring.movie.MovieInfoVO;
+import com.spring.movie.Movie_InfoVO;
 import com.spring.mypage.MyPageService;
 
 @Controller
@@ -41,7 +41,7 @@ public class MmlController {
 ////////////////
 	@ResponseBody
 	@RequestMapping(value="/mmlWriteMovie", method=RequestMethod.POST)
-	public List<MovieInfoVO> mmlWriteMovie(HttpServletRequest request) {
+	public List<Movie_InfoVO> mmlWriteMovie(HttpServletRequest request) {
 		String mcategory = request.getParameter("mcategory");
 		String search_input = request.getParameter("search_input");
 		
@@ -49,20 +49,20 @@ public class MmlController {
 		System.out.println("=============MmlController.java===================== search_input : " + search_input);
 		
 		if(mcategory.equals("영화 제목")) {
-			List<MovieInfoVO> search_list = movieService.getMovieList_title(search_input);
+			List<Movie_InfoVO> search_list = movieService.getMovieList_title(search_input);
 			//System.out.println("=============MmlController.java===================== search_list.get(0).getMi_releaseday() : " + search_list.get(0).getMi_releaseday());
 			return search_list;
 		}else if(mcategory.equals("개봉 연도")) {
-			List<MovieInfoVO> search_list = movieService.getMovieList_release(search_input);
+			List<Movie_InfoVO> search_list = movieService.getMovieList_release(search_input);
 			return search_list;
 		}else if(mcategory.equals("제작 국가")) {
-			List<MovieInfoVO> search_list = movieService.getMovieList_country(search_input);
+			List<Movie_InfoVO> search_list = movieService.getMovieList_country(search_input);
 			return search_list;
 		}else if(mcategory.equals("영화 감독")) {
-			List<MovieInfoVO> search_list = movieService.getMovieList_director(search_input);
+			List<Movie_InfoVO> search_list = movieService.getMovieList_director(search_input);
 			return search_list;
 		}else { // if(mcategory.equals("영화 배우")) 
-			List<MovieInfoVO> search_list = movieService.getMovieList_actor(search_input);
+			List<Movie_InfoVO> search_list = movieService.getMovieList_actor(search_input);
 			return search_list;
 		}
 	}
@@ -80,7 +80,7 @@ public class MmlController {
 		}
 		int id = myPageService.getMemberId(m_email);
 		model.addAttribute("id", id);
-		List<MovieInfoVO> movieList = movieService.getMovieList();
+		List<Movie_InfoVO> movieList = movieService.getMovieList();
 		//System.out.println("=============MmlController.java===================== movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
 		model.addAttribute("movieList", movieList);
 		
@@ -137,7 +137,7 @@ public class MmlController {
 		}
 		model.addAttribute("mmlContentVO", mmlContentVO);
 		
-		List<MovieInfoVO> movieList = movieService.getMovieList();
+		List<Movie_InfoVO> movieList = movieService.getMovieList();
 		//System.out.println("=============MmlController.java===================== movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
 		model.addAttribute("movieList", movieList);
 		
