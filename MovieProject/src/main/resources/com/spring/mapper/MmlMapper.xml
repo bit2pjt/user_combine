@@ -224,7 +224,7 @@
 	
 	
 	<select id="getMemberName" parameterType="String" resultType="String">
-		select M_NAME from member where M_EMAIL=#{m_email}
+		select M_NAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getMemberNickname" parameterType="String" resultType="String">
@@ -232,7 +232,7 @@
 	</select>
 	
 	<select id="getMemberId" parameterType="String" resultType="int">
-		select ID from member where M_EMAIL=#{m_email}
+		select ID from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
 	
  	<select id="getMmlId" parameterType="int" resultType="int">
