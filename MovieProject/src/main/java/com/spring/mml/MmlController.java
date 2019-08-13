@@ -108,7 +108,9 @@ public class MmlController {
 			e.printStackTrace();
 		}
 		//작성자의 개인 mmlList로 이동하게 추후 링크조정
+		System.out.println("mmlWriteAction test : " + mmlContentVO.getId() +", " + mmlContentVO.getMi_code()+", "+ mmlContentVO.getMml_title());
 		int mml_num = mmlService.getMmlNum(mmlContentVO);
+		System.out.println("mml_num : " + mml_num);
 		return "redirect:/mmlGet?mml_num="+mml_num;
 	}
 	

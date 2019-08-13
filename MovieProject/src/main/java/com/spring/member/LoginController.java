@@ -65,6 +65,7 @@ public class LoginController {
 	//로그인 액션
 	/**
 	 * 로그인
+	 * 
 	 * @param vo       - 로그인시 입력한 정보가 담긴 MemberVO
 	 * @param request
 	 * @param response
@@ -88,19 +89,25 @@ public class LoginController {
 				if(deleteyn.equals("N")) {
 					session.setAttribute("m_email", email);
 					session.setAttribute("id", memberService.getId(email, pw));
+					request.setAttribute("msg", "login_success");
+					request.setAttribute("rlink", "index");
 				}else {
-					request.setAttribute("msg", "delete");
+					request.setAttribute("msg", "login_delete");
+					request.setAttribute("rlink", "index");
 					//model.addAttribute("msg","delete");
 				}
 			}else {
-				request.setAttribute("msg", "cert");
+				request.setAttribute("msg", "login_cert");
+				request.setAttribute("rlink", "index");
 				//model.addAttribute("msg","cert");
 			}
 		}else if (check == -1) {
-			request.setAttribute("msg", "pw");
+			request.setAttribute("msg", "login_pw");
+			request.setAttribute("rlink", "index");
 			//model.addAttribute("msg","pw");
 		} else {
-			request.setAttribute("msg", "idpw");
+			request.setAttribute("msg", "login_idpw");
+			request.setAttribute("rlink", "index");
 			//model.addAttribute("msg","idpw");
 		}
 		return "member/login_alert";
@@ -129,25 +136,29 @@ public class LoginController {
 	}
 	//회원가입 액션
 	@RequestMapping(value="/memberJoinPAction", method = RequestMethod.POST)
-	public String memberJoinActionP(MemberVO memberVO, HttpServletResponse response) throws IOException{
+	public String memberJoinActionP(MemberVO memberVO, HttpServletResponse response, HttpServletRequest request) throws IOException{
 		System.out.println("memberVO : " + memberVO);
 		try {
 			memberService.memberJoin(memberVO);
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('회원가입이 완료되었습니다.\\n가입한 메일로 인증메일이 발송됩니다.\\n메일함을 확인해주세요.\\n10분내에 메일을 받지못했을 경우 관리자에게 문의해주세요.');");
-			out.println("</script>");
+//			response.setContentType("text/html; charset=utf-8");
+//			PrintWriter out = response.getWriter();
+//			out.println("<script>");
+//			out.println("alert('회원가입이 완료되었습니다.\\n가입한 메일로 인증메일이 발송됩니다.\\n메일함을 확인해주세요.\\n10분내에 메일을 받지못했을 경우 관리자에게 문의해주세요.');");
+//			out.println("</script>");
+			request.setAttribute("msg", "join_success");
+			request.setAttribute("rlink", "index");
 		}catch (Exception e) {
 			//response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('회원가입에 실패했습니다. 관리자에게 문의해주세요.');");
-			out.println("</script>");
-			return "redirect:/memberJoinP";
+//			PrintWriter out = response.getWriter();
+//			out.println("<script>");
+//			out.println("alert('회원가입에 실패했습니다. 관리자에게 문의해주세요.');");
+//			out.println("</script>");
+			request.setAttribute("msg", "join_fail");
+			request.setAttribute("rlink", "memberJoinP");
+			//return "redirect:/memberJoinP";
 			
 		}
-		return "redirect:/index";
+		return "member/login_alert";
 	}
 	
 	//이메일 찾기 페이지

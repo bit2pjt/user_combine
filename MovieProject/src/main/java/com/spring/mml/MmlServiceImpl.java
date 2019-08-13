@@ -47,7 +47,9 @@ public class MmlServiceImpl implements MmlService {
 	@Override
 	public int getMmlNum(Mml_ContentVO mmlContentVO) {
 		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
-		int result = mmlDAO.updateMml(mmlContentVO);
+		int result = mmlDAO.getMmlNum(mmlContentVO);
+		System.out.println("mmlWriteAction test : " + mmlContentVO.getId() +", " + mmlContentVO.getMi_code()+", "+ mmlContentVO.getMml_title());
+		System.out.println("result : " + result);
 		return result;
 	}
 	////////////////
