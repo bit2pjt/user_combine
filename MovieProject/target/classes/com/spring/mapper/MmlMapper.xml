@@ -71,7 +71,10 @@
 	<select id="getMmlContent" parameterType="int" resultMap="mmlMap">
 		select * from mml_content where mml_num = #{mml_num}
 	</select>
-
+	
+	<update id="getMmlNum" parameterType="com.spring.mml.Mml_ContentVO">
+		select mml_num from mml_content where id=#{id} and MI_CODE=#{mi_code, jdbcType=VARCHAR} and MML_TITLE=#{mml_title, jdbcType=VARCHAR} and MML_POSTER=#{mml_poster, jdbcType=VARCHAR}
+	</update>
 
 
   <!-- 
