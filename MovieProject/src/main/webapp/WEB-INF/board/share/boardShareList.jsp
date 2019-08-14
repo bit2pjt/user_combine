@@ -7,6 +7,7 @@
 
 <!-- 해당 페이지의 커스텀 css 설정입니다. -->
 <link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=4">
+<link rel="stylesheet" href="./resources/css/boardstyle.css">
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
@@ -16,10 +17,11 @@
 * @Description : EgovSampleService Class
 * @Modification Information
 * @
-* @  수정일      			수정자 				             수정내용
+* @  수정일      		수정자 				수정내용
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.2     이웅식                    			최초 생성
+* @ 2019.07.2     이웅식                최초 생성
 * @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
+* @ 2019. 08. 13	 한유진				수정
 *
 * @author BIT 116기 2조
 * @since 2019. 07.01
@@ -53,20 +55,12 @@
 <!-- 컨텐츠 시작 -->
 <div class="buster-light">
 	<div class="movie-items">
-		
-		<div class="container">
-			<div class="col-md-14">
-			<!-- 1. listTable 배치 -->
-			<h4>나눔 게시판 </h4>
-			</div>
-		</div>
-		
 		<div class="container">
 			<div class="row">
 			<!-- listTable 배치 시작 -->
 				<div>
 					<div style="position:relative;top:50px">
-						<button class="ws-btn-reddish-write" value="글쓰기" onClick="location.href='boardShareWrite'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+						<button class="board_btn_right" value="글쓰기" onClick="location.href='boardShareWrite'">글쓰기</button>
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
@@ -112,7 +106,7 @@
 								  <td style="word-break:break-all">${board.nickname}</td>
 								  <td ><fmt:formatDate value="${board.bs_update_date}" pattern="yyyy-MM-dd"/></td>
 								  <td>${board.bs_view_counter}</td>
-								  <td>모바일 글제목. </td>
+								  <td><a href="boardShareGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bs_bno}">${board.bs_title}</a></td>
 								</tr>
 							</c:forEach>
 						  </tbody>

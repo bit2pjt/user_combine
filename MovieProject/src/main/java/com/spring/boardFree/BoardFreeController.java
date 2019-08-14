@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.member.MemberService;
 import com.spring.member.MemberVO;
+import com.spring.mml.MmlService;
 import com.spring.paging.PageMaker;
 import com.spring.paging.SearchCriteria;
 
@@ -46,6 +47,9 @@ public class BoardFreeController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	MmlService mmlService;
 	
 	/**
 	  * 자유게시판 리스트로 이동
@@ -87,6 +91,7 @@ public class BoardFreeController {
 	}
 	
 
+	//일간베스
 	@ResponseBody
 	@RequestMapping(value = "/boardListDaily", method=RequestMethod.POST)
 	public List<BoardFreeVO> boardListDaily () {
@@ -94,6 +99,7 @@ public class BoardFreeController {
 		return result;
 	}
 	
+	//주간베스
 	@ResponseBody
 	@RequestMapping(value = "/boardListWeekly", method=RequestMethod.POST)
 	public List<BoardFreeVO> boardListWeekly () {
@@ -101,6 +107,7 @@ public class BoardFreeController {
 		return result;
 	}
 	
+	//월간베스트
 	@ResponseBody
 	@RequestMapping(value = "/boardListMonthly", method=RequestMethod.POST)
 	public List<BoardFreeVO> boardListMonthly () {
@@ -129,8 +136,10 @@ public class BoardFreeController {
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardFreeVO", boardFreeVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
-		model.addAttribute("boardListDaily", boardListDaily());
-		//상필쓰 추천순 mml가져오는 부분 코드 가져와서 모델추가해주기
+		model.addAttribute("boardListDaily", boardListDaily());//오른쪽의 실시간 베스트5
+		
+		model.addAttribute("mmlTop2", mmlService.getMmlList_like_top2(boardFreeVO.getId()));
+		
 
 		return "board/free/boardFreeGet"; 
 	}
