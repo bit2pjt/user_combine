@@ -54,6 +54,15 @@ public class MmlServiceImpl implements MmlService {
 		System.out.println("result : " + result);
 		return result;
 	}
+	
+	@Override
+	public List<Mml_ContentVO> getMmlList_like_top2(int id) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		List<Mml_ContentVO> mmlList = mmlDAO.getMmlList_like_top2(id);
+
+		return mmlList;
+	}
+	
 	////////////////
 	// 웅식 개발부분//
 	////////////////
