@@ -34,7 +34,7 @@
 	href="<c:url value="/resources/css/memberstyle.css" />">
 
 <!-- 3. heaer2.jsp : header -->
-<%@ include file="../header2.jsp" %>
+<%@ include file="../header2.jsp"%>
 <div class="hero common-hero">
 	<div class="container">
 		<div class="row">
@@ -55,24 +55,38 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="search_content search_content_input">
-				<h4>비밀번호 찾기</h4>
+				<h1>비밀번호 찾기</h1>
 				<hr>
 				<div class="search">
 					<h5>아이디</h5>
-					<input id="search_m_email_chk" type="hidden" value='0'>
-					<input name="m_email" id="search_m_email" type="text" placeholder="아이디를 입력해주세요." required="required"/>
+					<input id="search_m_email_chk" type="hidden" value='0'> <input
+						name="m_email" id="search_m_email" type="text"
+						placeholder="아이디를 입력해주세요." required="required" />
 					<div id="email_msg1">ㄴ이메일 양식에 맞게 입력해주세요.</div>
 				</div>
 				<div class="search">
 					<h5>이름</h5>
-					<input name="m_name" id="search_m_name" type="text" placeholder="이름을 입력해주세요." required="required"/>
+					<input name="m_name" id="search_m_name" type="text"
+						placeholder="이름을 입력해주세요." required="required" />
 				</div>
 				<div class="search">
 					<h5>전화번호</h5>
-					<input class="phone" id="search_phone1" type="number" required="required" maxlength="3" oninput="numberMaxLength(this);"/>&nbsp;-&nbsp;
-					<input class="phone" id="search_phone2" type="number" required="required" maxlength="4" oninput="numberMaxLength(this);"/>&nbsp;-&nbsp;
-					<input class="phone" id="search_phone3" type="number" required="required" maxlength="4" oninput="numberMaxLength(this);"/>
+					<input class="phone" id="search_phone1" type="number"
+						required="required" maxlength="3" oninput="numberMaxLength(this);" />&nbsp;-&nbsp;
+					<input class="phone" id="search_phone2" type="number"
+						required="required" maxlength="4" oninput="numberMaxLength(this);" />&nbsp;-&nbsp;
+					<input class="phone" id="search_phone3" type="number"
+						required="required" maxlength="4" oninput="numberMaxLength(this);" />
 				</div>
+				<div>
+					<p>휴대전화로 계정 정보 요청 시, 카카오톡으로 전송되며 카카오톡 APP 미설치, 알림톡 받지 않기로 설정되어 있는 경우 문자메시지(SMS)로 전송됩니다.</p>
+					<div
+						style="background-color: #333; color: #fff; text-align: center; line-height: 100px; vertical-align: middle; margin-top: 20px;">
+						<img class="logo" src="resources/images/logo1.png" alt=""
+							width="119" height="58">
+					</div>
+				</div>
+
 				<div class="search">
 					<button class="search_btn" type="button" id="search_pw_btn">확인</button>
 				</div>

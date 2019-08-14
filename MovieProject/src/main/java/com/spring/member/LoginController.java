@@ -169,6 +169,8 @@ public class LoginController {
 	@RequestMapping(value = "/id_find", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String id_find(MemberVO vo, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
+		System.out.println(vo.getM_name());
+		System.out.println(vo.getM_phone());
 		String email = memberService.findEmail(vo);
 		if (email.equals("fail"))
 			return "fail";
@@ -234,7 +236,7 @@ public class LoginController {
 			memberVO.setM_cert("Y");
 			memberService.updateCert(memberVO);
 			memberService.deleteAuthkey(memberVO);
-			model.addAttribute("confirm", "seccess");
+			model.addAttribute("confirm", "success");
 		}else {
 			String m_cert = memberService.getCertById(memberVO.getId());
 			if(m_cert.equals("Y")) {
