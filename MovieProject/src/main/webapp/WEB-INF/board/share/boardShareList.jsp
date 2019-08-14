@@ -41,7 +41,7 @@
 					<h1> 나눔 게시판</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="#">커뮤니티</a></li>
-						<li> <span class="ion-ios-arrow-right"></span> 자유 게시판</li>
+						<li> <span class="ion-ios-arrow-right"></span> 나눔 게시판</li>
 					</ul>
 				</div>
 			</div>
