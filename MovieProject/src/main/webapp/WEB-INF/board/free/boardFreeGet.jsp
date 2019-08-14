@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
@@ -211,27 +213,30 @@
 			<div class="ws-get-mmlbest-title">
 				${memberVO.m_nickname} 님의 가장 핫한 나영리
 			</div>
+			<c:forEach items="${mmlTop2}" var="mml" varStatus="status">
 			<!-- 상필오빠 mml 추천순으로 정렬한거에서 추천수 제일많은거 1개  컨트롤러에 model로 추가해주기 -->
 			<div class="ws-get-mmlbest-poster" >
 				<!-- 나영리 이미지 -->
-				<img src="./upload/${mmlVO.mml_poster}">
+				<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
+				<img src="<c:url value="${poster_one[0] }"/>">
 			</div>
 			<div class="ws-get-mmlbest-title"> 
 				<!-- 나영리 타이틀 -->
-				${mmlVO.mml_title}
+				제목 : ${mml.mml_title}
 				<br>
 				<!-- 나영리 좋아요수 -->
-				${mmlVO.mml_like}
+				좋아요수 : ${mml.mml_like}
 			</div>
+			</c:forEach>
 		</div>
 		
-		<div class="ws-side-recomend">
+		<!-- <div class="ws-side-recomend"> -->
 		<!-- 여기는 어떤기준으로 컨텐츠를 넣을지....정답을 알려조오~!! -->
-			당신이 좋아할 수도 있는 나영리
+			<!-- 당신이 좋아할 수도 있는 나영리
 			<img src="https://t1.daumcdn.net/cfile/tistory/999A89485C3193F72F">
 			괴수물 덕후 모여봐라 <br>
 			조회수 : 24232
-		</div>
+		</div> -->
 	</div>
 		
 		
@@ -296,7 +301,7 @@
 			<h3 class="box-title">댓글 작성</h3>
 			<div class="box-body">
 				<div class="form-group">
-					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:200px;"></textarea>
+					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:100px;"></textarea>
 	 			</div>
 				<div class="pull-right">
 					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
@@ -311,44 +316,6 @@
 					<!-- comment form -->
 				</div>
 	
-<!-- end of  blog detail section-->
-	<!-- 
-    <div id="CatModal-post-delete" class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">게시글 삭제</h5>
-        </div>
-       <div class="modal-body">
-          <p>게시글을 삭제하시겠습니까?</p>
-       </div>
-       <div class="modal-footer">
-          <button onclick="CatDelete()" type="button" class="btn btn-primary">삭제하기</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-       </div>
-      </div>
-    </div>
- -->
-	<!-- 삭제 모달 : 댓글 
-		<div id="CatModal-reply-delete" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">댓글 삭제</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-       <div class="modal-body">
-          <p>댓글을 삭제하시겠습니까?</p>
-       </div>
-       <div class="modal-footer">
-          <button onclick="replydel()" type="button" class="btn btn-primary">삭제하기</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-       </div>
-      </div>
-    </div>
-	-->		
-
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <script>

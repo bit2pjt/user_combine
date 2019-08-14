@@ -6,7 +6,7 @@ import com.spring.member.MemberVO;
 import com.spring.paging.Criteria;
 import com.spring.paging.SearchCriteria;
 
-interface BoardFreeService {
+public interface BoardFreeService {
 
 
 	List<BoardFreeVO> boardListDaily();
