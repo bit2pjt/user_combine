@@ -62,7 +62,6 @@ public class LoginController {
 		model.addAttribute("naverList", getNaver);
 		model.addAttribute("daumList", getDaum);
 		
-		System.out.println("1: " + getCGV);
 		return "index";
 	}
 	//index 페이지

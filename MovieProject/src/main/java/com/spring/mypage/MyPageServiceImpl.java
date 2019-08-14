@@ -219,7 +219,37 @@ public class MyPageServiceImpl implements MyPageService{
 		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
 		return myPageDAO.listCriteria(criteria);
 	}
+
+	@Override
+	public int getMyBoardCount(int id) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int freeCount = myPageDAO.getFreeCount(id);
+		int shareCount = myPageDAO.getShareCount(id);
+		return freeCount + shareCount;
+	}
+
+	@Override
+	public List<MyBoardDTO> getMyBoard(Criteria criteria) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		List<MyBoardDTO> list1 = getFreeBoard(criteria);
+		List<MyBoardDTO> list2 = getShareBoard(criteria);
+		 
+		return null;
+	}
 	
+	private List<MyBoardDTO> getFreeBoard(Criteria criteria) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		List<MyBoardDTO> list = myPageDAO.getFreeBoard(criteria);
+		return list;
+	}
+	
+	private List<MyBoardDTO> getShareBoard(Criteria criteria) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		List<MyBoardDTO> list = myPageDAO.getFreeBoard(criteria);
+		return list;
+	}
 	
 	
 	

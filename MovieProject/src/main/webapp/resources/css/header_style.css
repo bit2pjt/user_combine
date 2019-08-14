@@ -4196,8 +4196,8 @@ ul {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	margin-left: 30px;
-	margin-bottom: 20px;
+	/*margin-left: 30px;
+	margin-bottom: 20px;*/
 	bottom: 0;
 	left: 0;
 	position: absolute;
@@ -7645,7 +7645,12 @@ p.ceb-single {
 }
 
 .slider .movie-item .title-in {
-	margin-bottom: 45px;
+	/*margin-bottom: 45px;*/
+	width:100%;
+	background-color: rgba(0, 0, 0, 0.53);
+	padding-bottom:15px;
+	padding-top:15px;
+	padding-left:15px;
 }
 
 .slider .movie-item .title-in h6 a {

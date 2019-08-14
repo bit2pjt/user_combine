@@ -160,8 +160,8 @@ $(function(){
 		slidesToScroll: 4,
 		arrows: false,
 		draggable:true,
-		// autoplay: true,
-		// autoplaySpeed: 2000,
+		autoplay: true,
+		autoplaySpeed: 2000,
 		dots: true,
 		responsive: [
 	    {
@@ -198,7 +198,7 @@ $(function(){
 		arrows: false,
 		draggable:true,
 		autoplay: true,
-		autoplaySpeed: 1000,
+		autoplaySpeed: 2000,
 		pauseOnHover:true, /* 마우스 호버시 슬라이드 이동 멈춤 */
 		dots: true,
 		responsive: [

@@ -41,22 +41,21 @@
             </div>
             
             <!-- yj : start | movielist-bottom -->
-            <div class="movielist-bottom">
+            <div class="movielist-bottom" >
                 <div>
-                <c:forEach items="${movieList}" var="list" varStatus="status">
-					<div class="movielist-card" id="${list.mi_ktitle }" onclick="movieInfo(this.id)">
-						<img src="<c:url value='${list.mi_poster }' />" width="200" height="270">
-				 		<h6 class="movie-title">${list.mi_ktitle }</h6>
-				 	</div>
-				 	<input type="hidden" id="title" value="${list.mi_ktitle}"/>
-                </c:forEach>
-                
-                <!--  
-                <div class="movielist-card" onclick="location.href='movieDetail'">
-					<img src="<c:url value='/resources/images/uploads/mv-it12.jpg' />" width="170" height="261">
-					<h4 class="movie-title">비트와 함께 사라지다.</h4>
-				 </div>
-				-->
+	                <c:forEach items="${movieList}" var="list" varStatus="status">
+						<div class="movielist-card" id="${list.mi_ktitle }" onclick="movieInfo(this.id)">
+							<img src="<c:url value='${list.mi_poster }' />" width="200" height="270">
+					 		<h6 class="movie-title">${list.mi_ktitle }</h6>
+					 	</div>
+					 	<input type="hidden" id="title" value="${list.mi_ktitle}"/>
+					 	
+					 	<div class="sover">		
+							<p class="sage"><a href="/Movie/M000111289">${list.mi_ktitle} </a></p>		
+							<p class="spl"><a href="#"></a></p><p class="slbtn"><a href="//ticket.maxmovie.com/Reserve/Movie/M000111289">상세보기</a></p>
+						</div>
+						
+	                </c:forEach>
                 </div>
                 <!-- yj : start | pagination -->
                 <!-- 페이징 버튼 연동은 책보고 참고해서 추가하기 -->

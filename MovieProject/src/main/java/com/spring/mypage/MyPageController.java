@@ -232,6 +232,31 @@ public class MyPageController {
       return "mypage/one_list";
    }
    
+// 마이페이지
+   @RequestMapping(value = "/myinfo", method = RequestMethod.GET)
+   public String myinfo(HttpServletRequest request, HttpSession session, Model model,@ModelAttribute("criteria") 
+	Criteria criteria) {
+	   String m_email = (String) session.getAttribute("m_email");
+	   if (m_email == null) {
+		   return "redirect:/index";
+	   }
+	   
+	   String m_name = myPageService.getMemberName(m_email);
+	   request.setAttribute("m_name", m_name);
+	   int id = myPageService.getMemberId(m_email); 
+	   
+	   PageMaker pageMaker = new PageMaker();
+	   criteria.setId(id);
+	   
+	   int boardcount = myPageService.getMyBoardCount(id);
+	   pageMaker.setCriteria(criteria);
+	   pageMaker.setTotalCount(boardcount);
+	      
+	   model.addAttribute("boardList", myPageService.getMyBoard(criteria));
+	   model.addAttribute("pageMaker", pageMaker);	
+      return "mypage/myinfo";
+   }
+   
 
    // 마이페이지 - 1:1 문의내역 리스트 - 1:1문의내역 등록
    @RequestMapping(value = "/one_register", method = RequestMethod.GET)

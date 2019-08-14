@@ -115,6 +115,16 @@ body{
   max-width: 1300px;
   margin-top:50px;
 }
+
+.movielist-bottom .sover {
+	position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 185px;
+    height: 295px;
+}
+
 .movielist-card{
   display: inline-block;
   background-color: white;
@@ -123,6 +133,9 @@ body{
   margin:20px;
   position: relative;
   border: 3px solid black;
+}
+.movielist-card:hover {
+	background-color:black;
 }
 .movie-title{
   /*position: absolute;*/

@@ -44,6 +44,8 @@
 					<ul id="moviechart-ul" class="tab-links tabs-mv">
 						<li style="display:none;"><a href="#total">통합</a></li>
 						<li class="active"><a href="#cgv"> CGV </a></li>
+						<li><a href="#lotte"> 롯데시네마  </a></li>
+						<li><a href="#megabox"> 메가박스  </a></li>
 						<li><a href="#naver"> 네이버  </a></li>
 						<li><a href="#daum"> 다음  </a></li>
 					</ul>
@@ -65,6 +67,52 @@
 										</h6>
 										<p>
 											<i class="ion-android-star"></i>예매율<span>${cgvChart.score}</span>
+										</p>
+									</div>
+									<div class="movie-ranking">${status.count }</div>
+								</div>
+							</c:forEach>
+							</div>
+						</div>
+						
+						<div id="lotte" class="tab">
+							<div class="slick-multiItemSlider">
+								<c:forEach items="${daumList }" var="daumChart" varStatus="status">
+								<div class="movie-item">
+									<div class="mv-img">
+										<a href="#"><img
+											src="${daumChart.thumnail}" alt="" width="285"
+											height="437"></a>
+									</div>
+									<div class="title-in">
+										<h6>
+											<a href="movieDetail?mi_ktitle=${daumChart.movieTitle}">${daumChart.movieTitle}</a>
+										</h6>
+										<p>
+											<i class="ion-android-star"></i>평점<span>${daumChart.star}</span> /10
+										</p>
+									</div>
+									<div class="movie-ranking">${status.count }</div>
+								</div>
+							</c:forEach>
+							</div>
+						</div>
+						
+						<div id="megabox" class="tab">
+							<div class="slick-multiItemSlider">
+								<c:forEach items="${daumList }" var="daumChart" varStatus="status">
+								<div class="movie-item">
+									<div class="mv-img">
+										<a href="#"><img
+											src="${daumChart.thumnail}" alt="" width="285"
+											height="437"></a>
+									</div>
+									<div class="title-in">
+										<h6>
+											<a href="movieDetail?mi_ktitle=${daumChart.movieTitle}">${daumChart.movieTitle}</a>
+										</h6>
+										<p>
+											<i class="ion-android-star"></i>평점<span>${daumChart.star}</span> /10
 										</p>
 									</div>
 									<div class="movie-ranking">${status.count }</div>
