@@ -55,7 +55,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="search_content search_content_input">
-				<h4>비밀번호 찾기</h4>
+				<h1>비밀번호 찾기</h1>
 				<hr>
 				<div class="search">
 					<h5>아이디</h5>
