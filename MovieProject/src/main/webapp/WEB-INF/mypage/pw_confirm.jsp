@@ -85,6 +85,7 @@
 									<li>고객센터</li>
 									<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
 									<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+                  <li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 								</ul>
 							</div>
 						</div>
@@ -113,8 +114,6 @@
 
 										</span> <br>
 										<br>
-
-
 										<div class="pw-btn">
 											<input type="submit" class="btn-pw" value="확인">
 											&nbsp; <input type="reset" class="btn-pw" value="취소">
@@ -129,7 +128,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- footer section-->
 	<%@ include file="../footer1.jsp"%>
 	<%@ include file="../footer2.jsp"%>

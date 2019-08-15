@@ -41,6 +41,13 @@ public interface MyPageDAO {
 	List<OneVO> listCriteria(Criteria criteria);
 	int countArticles(Criteria criteria);
 	
+	// 내가 쓴 게시물
+	public int getFreeCount(int id);
+	public int getShareCount(int id);
+	List<MyBoardDTO> getMyBoard(Criteria criteria);
+	List<MyBoardDTO> getFreeBoard(Criteria criteria);
+	List<MyBoardDTO> getShareBoard(Criteria criteria);
+	
 	//1:1 문의 등록하기, 가져오기, 수정하기, 삭제하기
 	public int insertQna(OneVO oneVO);	//1:1 문의 등록
 	public OneVO getQnaDetail(int qna_no);	//1:1 문의 상세정보 가져오기

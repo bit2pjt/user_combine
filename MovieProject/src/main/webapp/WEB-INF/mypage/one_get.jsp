@@ -32,7 +32,7 @@
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script>
-function deleteQnaDetail(){
+function deleteQnaDetail(form){
 	
 	var qno = qform.qna_no.value; 
 	msg="삭제 하시겠습니까?";
@@ -79,6 +79,7 @@ function deleteQnaDetail(){
 								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
 								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 							</ul>
 						</div>
 					</div>
@@ -92,7 +93,7 @@ function deleteQnaDetail(){
 							</h1>
 						</div>
 						<div>
-							<form>
+							<form name="qform">
 								<ul>
 									<li class="tb_line">
 										<div class="tb_th1">상담구분</div>

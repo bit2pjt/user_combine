@@ -146,6 +146,7 @@ $(document).ready(function() {
 								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
 								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 							</ul>
 						</div>
 					</div>
@@ -170,8 +171,7 @@ $(document).ready(function() {
 									<div class="td-content"><%=member.getM_email()%></div>
 								</td>
 							</tr>
-						<form action="update_pw?id=<%=member.getId()%>" name="pwform"
-								onsubmit="return pw(this)" method="post">
+						<form action="update_pw?id=<%=member.getId()%>" name="pwform" onsubmit="return pw(this)" method="post">
 							<tr>
 								<td>비밀번호 변경</td>
 								<td>
@@ -311,7 +311,7 @@ $(document).ready(function() {
 					</table>
 					<div class="btn_m">
 						<input type="submit" class="btn-check-hjs" value="수정">
-						&nbsp; <input type="reset" class="btn-check-hjs" value="취소">
+						&nbsp; <input type="button" onClick="location.href='mypage'" class="btn-check-hjs" value="취소">
 					</div>
 					</form>
 				</div>

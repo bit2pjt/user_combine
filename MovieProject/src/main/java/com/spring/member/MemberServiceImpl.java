@@ -1,13 +1,21 @@
 package com.spring.member;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
 import org.apache.ibatis.session.SqlSession;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import com.spring.movie.MovieCrawlVO;
+
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
@@ -62,7 +70,7 @@ public class MemberServiceImpl implements MemberService {
 
 		sendMail.setSubject("[BlockBuster] 회원가입 이메일 인증");
 		sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>").append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-				.append("<a href='http://localhost:8080/movie/joinConfirm?id=").append(id).append("&m_email=")
+				.append("<a href='http://localhost/movie/joinConfirm?id=").append(id).append("&m_email=")
 				.append(vo.getM_email()).append("&m_authkey=").append(m_authkey)
 				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 		sendMail.setFrom("bit0hyj@gmail.com", "BlockBuster Admin");
@@ -224,5 +232,109 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("일치하는 닉네임 존재. 1 on n");
 			return false;
 		}
+	}
+
+	
+	@Override
+	public List<MovieChartVO> getCGV() {
+		String targetUrl  = "http://www.cgv.co.kr/movies/";
+		List<String> thumnail = null;
+		List<String> title = null;
+		List<String> yema = null;
+		List<MovieChartVO> list = new ArrayList<MovieChartVO>();
+
+		try {
+            Document doc = Jsoup.connect(targetUrl).get();
+            thumnail = doc.select(".box-image").select("img").eachAttr("src");
+            title = doc.select("div.box-contents > a > strong").eachText();
+            yema = doc.select("div.box-contents > div.score > strong.percent > span").eachText();
+            yema.add("0.4%");
+            
+            for(int i=0; i<7; i++) {
+            	MovieChartVO vo = new MovieChartVO();
+	        	vo.setThumnail(thumnail.get(i));
+	        	vo.setMovieTitle(title.get(i));
+	        	vo.setScore(yema.get(i));
+	        	
+	        	list.add(vo);
+	        }
+	        	
+	      }catch (IOException e) {
+            e.printStackTrace();
+	      }
+		
+		return list;
+	}
+
+	@Override
+	public List<MovieChartVO> getNaver() {
+		String targetUrl  = "https://movie.naver.com/movie/running/current.nhn";
+		List<String> thumnail = null;
+		List<String> title = null;
+		List<String> yema = null;
+		List<String> star = null;
+		List<MovieChartVO> list = new ArrayList<MovieChartVO>();
+
+		try {
+            Document doc = Jsoup.connect(targetUrl).get();
+            thumnail = doc.select(".thumb").select("img").eachAttr("src");
+            title = doc.select(".thumb").select("img").eachAttr("alt");
+            yema = doc.select("dd.star > dl.info_exp > dd > div > span.num").eachText();
+            star = doc.select("dd.star > dl.info_star > dd > div > a > span.num").eachText();
+                      
+            for(int i=0; i<8; i++) {
+            	MovieChartVO vo = new MovieChartVO();
+	        	vo.setThumnail(thumnail.get(i));
+	        	vo.setMovieTitle(title.get(i));
+	        	vo.setStar(star.get(i));
+	        	vo.setScore(yema.get(i)+"%"); // 예매
+	        		
+	        	list.add(vo);
+	        }
+	        	
+	      }catch (IOException e) {
+            e.printStackTrace();
+	      }
+		
+		return list;
+	}
+
+	@Override
+	public List<MovieChartVO> getDaum() {
+		String targetUrl  = "https://movie.daum.net/boxoffice/weekly";
+		List<String> thumnail = null;
+		List<String> title = null;
+		List<String> yema = null;
+		List<String> yema1 = null;
+		List<MovieChartVO> list = new ArrayList<MovieChartVO>();
+		
+		try {
+            Document doc = Jsoup.connect(targetUrl).get();
+            thumnail = doc.select(".thumb_movie").select("img").eachAttr("src");
+            title = doc.select(".thumb_movie").select("img").eachAttr("alt");
+            yema = doc.select("span.wrap_grade.grade_netizen > span:nth-child(2)").eachText();
+            yema1 = doc.select("span.wrap_grade.grade_netizen > span:nth-child(4)").eachText();
+            List<String> star = new ArrayList<String>();
+            
+            for(int i=0; i<yema.size(); i++) {
+            	yema.set(i,yema.get(i).substring(1));
+            	yema1.set(i, yema1.get(i).substring(1));
+            	star.add(yema.get(i)+"."+yema1.get(i));
+            }
+            
+            for(int i=0; i<8; i++) {
+            	MovieChartVO vo = new MovieChartVO();
+	        	vo.setThumnail(thumnail.get(i));
+	        	vo.setMovieTitle(title.get(i));
+	        	vo.setStar(star.get(i));
+	        		
+	        	list.add(vo);
+	        }
+	        	
+	      }catch (IOException e) {
+            e.printStackTrace();
+	      }
+		
+		return list;
 	}
 }

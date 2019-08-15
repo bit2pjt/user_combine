@@ -201,6 +201,20 @@
         ]]>
     </select>
     
+	<select id="getFreeCount" parameterType="int">
+		select count(*)
+		from board_free;
+	</select>
 	
+	<select id="getShareCount" parameterType="int">
+		select count(*)
+		from board_share;
+	</select>
+	
+	<select id="getFreeBoard">
+		select bf_category, bf_title, bf_reg_date
+		from board_free
+		where id=45;
+	</select>
 	
 </mapper>
