@@ -71,7 +71,7 @@
 						<ul>
 							<li>
 								<p class="inq_txt">
-									<strong>내가 쓴 모든 게시물을 볼 수 있습니다.</strong>
+									<strong>내가 쓴 모든 게시물을 확인 하실 수 있습니다.</strong>
 								</p>
 							</li>
 						</ul>
