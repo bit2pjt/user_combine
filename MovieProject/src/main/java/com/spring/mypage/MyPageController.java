@@ -245,15 +245,26 @@ public class MyPageController {
 	   request.setAttribute("m_name", m_name);
 	   int id = myPageService.getMemberId(m_email); 
 	   
-	   PageMaker pageMaker = new PageMaker();
+	   PageMaker pageMaker1 = new PageMaker();
+	   PageMaker pageMaker2 = new PageMaker();
+	   
 	   criteria.setId(id);
 	   
-	   int boardcount = myPageService.getMyBoardCount(id);
-	   pageMaker.setCriteria(criteria);
-	   pageMaker.setTotalCount(boardcount);
+	   int freecount = myPageService.getFreeCount(id);
+	   int sharecount = myPageService.getShareCount(id);
+	   
+	   pageMaker1.setCriteria(criteria);
+	   pageMaker2.setCriteria(criteria);
+	   
+	   pageMaker1.setTotalCount(freecount);
+	   pageMaker2.setTotalCount(sharecount);
 	      
-	   model.addAttribute("boardList", myPageService.getMyBoard(criteria));
-	   model.addAttribute("pageMaker", pageMaker);	
+	   model.addAttribute("freeList", myPageService.freeBoard(criteria));
+	   model.addAttribute("shareList", myPageService.shareBoard(criteria));
+	   
+	   model.addAttribute("pageMaker1", pageMaker1);	
+	   model.addAttribute("pageMaker2", pageMaker2);	
+	   
       return "mypage/myinfo";
    }
    

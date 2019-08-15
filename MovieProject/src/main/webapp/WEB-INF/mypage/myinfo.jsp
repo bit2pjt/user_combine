@@ -76,90 +76,132 @@
 							</li>
 						</ul>
 					</div>
-
-					<div class="static-table-list">
-						<div class="card mb-3">
-							<div class="card-body">
-								<table class="one_table">
-									<thead>
-										<tr>
-											<th style="width: 15%;" class="th_border">구분</th>
-											<th style="width: 50%;" class="th_border">게시글 제목</th>
-											<th style="width: 20%;" class="th_border">작성일</th>
-										</tr>
-									</thead>
-									<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-									<tbody>
-									<c:choose>
-										<c:when test="${requestScope.qnaList[0].qna_no == null}">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#tab1" data-toggle="tab">자유게시판</a></li>
+						<li><a href="#tab2" data-toggle="tab">나눔게시판</a></li>
+					</ul>
+					
+					<div class="tab-content">
+						<div class="tab-pane active"id= "tab1">
+							<div class="static-table-list1">
+							<div class="card mb-3">
+								<div class="card-body">
+									<table class="one_table">
+										<thead>
 											<tr>
-												<td colspan="3"> 등록된 게시글이 없습니다.</td>
+												<th style="width: 10%;" class="th_border">카테고리</th>
+												<th style="width: 30%;" class="th_border">게시글 제목</th>
+												<th style="width: 20%;" class="th_border">작성일</th>
 											</tr>
-										</c:when>
-										<c:otherwise>
-											<%-- <c:forEach var="qna" items="${requestScope.qnaList }">
+										</thead>
+										<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
+										<tbody>
+										<c:choose>
+											<c:when test="${freeList == null}">
 												<tr>
-													<td>${qna.qna_category }</td>
-													<td><a href="one_get?qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
-													<td>${qna.qna_date}</td>
-													<td>${qna.qna_answer}</td>
+													<td colspan="3"> 등록된 게시글이 없습니다.</td>
 												</tr>
-											</c:forEach> --%>
-											<c:forEach items="${requestScope.qnaList }" var="qna" varStatus="status">
-												<tr class="post">
-												  <%-- <td>${pageMaker.totalCount - ((pageMaker.criteria.page-1) * pageMaker.criteria.perPageNum + status.index) }</td> --%>
-												  <td>${qna.qna_category}</td>
-												  <td><a href="one_get${pageMaker.makeSearch(pageMaker.criteria.page)}&qna_no=${qna.qna_no}">${qna.qna_title}</a></td>
-												  <td>${qna.qna_date}</td>
-												</tr>
-											</c:forEach>
-										</c:otherwise>
-									</c:choose>
-									</tbody>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${freeList}" var="freeList" varStatus="status">
+													<tr>
+													  <td>${freeList.category}</td>
+													  <td><a href="boardFreeGet?bno=${freeList.bno}">${freeList.title}</a></td>
+													  <td><fmt:formatDate value="${freeList.reg_date}" pattern="yyyy-MM-dd"/></td>
+													</tr>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
+										</tbody>
+										
+									</table>
 									
-									<%-- 
-									<tbody>
-									<%
-										for(int i=0; i<10; i++){
-									%>
-										<tr>
-											<td>결말해석</td>
-											<td><a href="one_get">고질라 쿠키영상 무슨뜻인가요?</a></td>
-											<td>2011/04/25</td>
-											<td>N</td>
-										</tr>
-									<%
-										}
-									%>
-									</tbody> --%>
-									
-								</table>
-								<div class="box-footer">
-                        <div class="text-center">
-                            <form id="listPageForm">
-                                <input type="hidden" name="page" value="${pageMaker.criteria.page}">
-                                <input type="hidden" name="perPageNum" value="${pageMaker.criteria.perPageNum}">
-                            </form>
-                            <ul class="pagination">
-                                <c:if test="${pageMaker.prev}">
-                                    <li><a href="${pageMaker.startPage - 1}">이전</a></li>
-                                </c:if>
-                                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                    <li <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
-                                        <a href="${idx}">${idx}</a>
-                                    </li>
-                                </c:forEach>
-                                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li><a href="${pageMaker.endPage + 1}">다음</a></li>
-                                </c:if>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- end | pagination -->
+									<div class="box-footer">
+				                        <div class="text-center">
+				                            <form id="listPageForm">
+				                                <input type="hidden" name="page" value="${pageMaker1.criteria.page}">
+				                                <input type="hidden" name="perPageNum" value="${pageMaker1.criteria.perPageNum}">
+				                            </form>
+				                            <ul class="pagination">
+				                                <c:if test="${pageMaker1.prev}">
+				                                    <li><a href="${pageMaker1.startPage - 1}">이전</a></li>
+				                                </c:if>
+				                                <c:forEach begin="${pageMaker1.startPage}" end="${pageMaker1.endPage}" var="idx">
+				                                    <li <c:out value="${pageMaker1.criteria.page == idx ? 'class=active' : ''}"/>>
+				                                        <a href="${idx}">${idx}</a>
+				                                    </li>
+				                                </c:forEach>
+				                                <c:if test="${pageMaker1.next && pageMaker1.endPage > 0}">
+				                                    <li><a href="${pageMaker1.endPage + 1}">다음</a></li>
+				                                </c:if>
+				                            </ul>
+				                        </div>
+				                    </div>
+	                    <!-- end | pagination -->
+								</div>
 							</div>
 						</div>
-
 					</div>
+						
+					<div class="tab-pane" id="tab2">
+						<div class="static-table-list2">
+							<div class="card mb-3">
+								<div class="card-body">
+									<table class="one_table">
+										<thead>
+											<tr>
+												<th style="width: 10%;" class="th_border">카테고리</th>
+												<th style="width: 30%;" class="th_border">게시글 제목</th>
+												<th style="width: 20%;" class="th_border">작성일</th>
+											</tr>
+										</thead>
+										<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
+										<tbody>
+										<c:choose>
+											<c:when test="${shareList == null}">
+												<tr>
+													<td colspan="3"> 등록된 게시글이 없습니다.</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${shareList}" var="shareList" varStatus="status">
+													<tr class="post">
+													  <td>${shareList.category}</td>
+													  <td><a href="boardShareGet?bno=${shareList.bno}">${shareList.title}</a></td>
+													  <td><fmt:formatDate value="${shareList.reg_date}" pattern="yyyy-MM-dd"/></td>
+													</tr>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
+										</tbody>
+									</table>
+									<div class="box-footer">
+				                        <div class="text-center">
+				                            <form id="listPageForm">
+				                                <input type="hidden" name="page" value="${pageMaker2.criteria.page}">
+				                                <input type="hidden" name="perPageNum" value="${pageMaker2.criteria.perPageNum}">
+				                            </form>
+				                            <ul class="pagination">
+				                                <c:if test="${pageMaker2.prev}">
+				                                    <li><a href="${pageMaker2.startPage - 1}">이전</a></li>
+				                                </c:if>
+				                                <c:forEach begin="${pageMaker2.startPage}" end="${pageMaker2.endPage}" var="idx">
+				                                    <li <c:out value="${pageMaker2.criteria.page == idx ? 'class=active' : ''}"/>>
+				                                        <a href="${idx}">${idx}</a>
+				                                    </li>
+				                                </c:forEach>
+				                                <c:if test="${pageMaker2.next && pageMaker.endPage > 0}">
+				                                    <li><a href="${pageMaker2.endPage + 1}">다음</a></li>
+				                                </c:if>
+				                            </ul>
+				                        </div>
+				                    </div>
+	                    <!-- end | pagination -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -172,7 +214,7 @@ $(".pagination li a").on("click", function (event) {
     var targetPage = $(this).attr("href");
     var listPageForm = $("#listPageForm");
     listPageForm.find("[name='page']").val(targetPage);
-    listPageForm.attr("action", "one_list").attr("method", "get");
+    listPageForm.attr("action", "myinfo").attr("method", "get");
     listPageForm.submit();
 });
 </script>

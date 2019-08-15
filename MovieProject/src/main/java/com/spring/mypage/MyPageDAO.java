@@ -44,7 +44,6 @@ public interface MyPageDAO {
 	// 내가 쓴 게시물
 	public int getFreeCount(int id);
 	public int getShareCount(int id);
-	List<MyBoardDTO> getMyBoard(Criteria criteria);
 	List<MyBoardDTO> getFreeBoard(Criteria criteria);
 	List<MyBoardDTO> getShareBoard(Criteria criteria);
 	

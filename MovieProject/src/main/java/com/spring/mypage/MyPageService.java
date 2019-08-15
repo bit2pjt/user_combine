@@ -70,7 +70,9 @@ public interface MyPageService {
 	public List<FolFolDTO> getfollower(int id);
 	public List<FolFolDTO> getfollowing(int id);
 	
-	public int getMyBoardCount(int id);
-	List<MyBoardDTO> getMyBoard(Criteria criteria);
+	public int getFreeCount(int id);
+	public int getShareCount(int id);
+	public List<MyBoardDTO> freeBoard(Criteria criteria);
+	public List<MyBoardDTO> shareBoard(Criteria criteria);
 
 }
