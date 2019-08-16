@@ -39,26 +39,26 @@
 <body>
 	<!-- 비밀번호불치치 얼럿 -->
 
-	<div class="hero user-hero">
-		<div class="container" style="margin-top: -180px;">
+	<div class="hero user-hero" >
+		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="hero-ct">
-						<h1 style="margin-left: 0px; margin-top: -84px;">비밀번호 재확인</h1>
+					<div class="hero-ct" >
+						<h1 style="margin-left: 0px; margin-top: -80px;">비밀번호 재확인</h1>
 						<ul style="margin-left: 0px;" class="breadcumb">
 							<li class="active"><a href="index">마이페이지</a></li>
 							<li><span class="ion-ios-arrow-right"></span> 비밀번호 재확인</li>
 						</ul>
 					</div>
 				</div>
-				`
+				
 			</div>
 		</div>
 	</div>
 
 	<div class="buster-light">
-		<div class="page-single">
-			<div class="container">
+		<div class="page-single" style="margin-top: 0px;">
+			<div class="container" style="margin-top:-180px;">
 				<div class="row ipad-width2">
 					<div class="col-md-3 col-sm-12 col-xs-12">
 						<div class="info">
@@ -85,11 +85,11 @@
 									<li>고객센터</li>
 									<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
 									<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
-                 					<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 								</ul>
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-md-9 col-sm-12 col-xs-12">
 						<div class="pw_info">
 							<span>
@@ -114,6 +114,8 @@
 
 										</span> <br>
 										<br>
+
+
 										<div class="pw-btn">
 											<input type="submit" class="btn-pw" value="확인">
 											&nbsp; <input type="reset" class="btn-pw" value="취소">
@@ -127,6 +129,9 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div style="height: 90px;">>
+	
 	</div>
 	<!-- footer section-->
 	<%@ include file="../footer1.jsp"%>
