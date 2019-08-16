@@ -93,6 +93,7 @@
 								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
 								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 							</ul>
 						</div>
 					</div>
