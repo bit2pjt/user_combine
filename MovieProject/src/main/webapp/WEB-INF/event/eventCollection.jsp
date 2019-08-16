@@ -129,7 +129,7 @@
 
 <!-- 2번 탭 -->
 
-<div class="hero user-hero">
+<div class="hero user-hero" style="z-index: -1;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -147,7 +147,7 @@
 	</div>
  
 <div class="jq_tabonoff comm_tab1"
-	style="width: 1200px; margin: 0 auto; ">
+	style="width: 1200px; margin: 0 auto; margin-top: -145px; ">
 	<ul class="jq_tab tab_menu tab-links tabs-mv">
 		<li class="active"><a href="javascript:;" class="tit"> CGV</a></li>
 		<li><a href="javascript:;" class="tit">LotteCinema</a></li>
