@@ -116,15 +116,6 @@ body{
   margin-top:50px;
 }
 
-.movielist-bottom .sover {
-	position: absolute;
-    left: 0;
-    top: 0;
-    display: none;
-    width: 185px;
-    height: 295px;
-}
-
 .movielist-card{
   display: inline-block;
   background-color: white;
@@ -133,9 +124,17 @@ body{
   margin:20px;
   position: relative;
   border: 3px solid black;
+  position: relative;
 }
 .movielist-card:hover {
 	background-color:black;
+}
+.movielist-card:hover .movieImage {
+	opacity: 0.4;
+}
+	
+.movielist-card:hover .desc {
+	opacity: 1;
 }
 .movie-title{
   /*position: absolute;*/
@@ -143,7 +142,35 @@ body{
   text-align:center;
   margin-top:10px;
   font-size:15px;
+  margin-bottom: 10px;
+  font-size:18px; 
+  color:#fff;
 }
+
+.movie-in {
+	color:#999;
+	font-size:11px;
+}
+.movieImage {
+	  opacity: 1;
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	  transition: .5s ease;
+	  backface-visibility: hidden;
+}
+	
+.desc {
+	  transition: .5s ease;
+	  opacity: 0;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  -ms-transform: translate(-50%, -50%);
+	  text-align: center;
+}
+	
 .pagination {
   display: -webkit-flex;
   display: -moz-box;
@@ -153,6 +180,7 @@ body{
   justify-content: center;
   margin-top: 60px;
 }
+
 @media (max-width: 767px) {
   .pagination {
     flex-wrap: wrap;
@@ -714,6 +742,20 @@ yj : start | tab - review
   font-size:13px;
   width:100px;
   margin-left:10px;
+}
+
+.btn-hjs-1{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:9px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:13px;
+  width:100px;
+  margin-left:10px;
+  margin-top: 20px;
 }
 
 #btn-hjs-2{

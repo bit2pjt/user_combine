@@ -21,6 +21,7 @@
 *  Copyright (C) by bit 2조 All right reserved.
 */
 -->
+
 <%@ include file="../header1.jsp"%>
 	<link rel="stylesheet" href="<c:url value="/resources/css/yj_style.css" />">
 <%@ include file="../header2.jsp" %>
@@ -42,21 +43,20 @@
             
             <!-- yj : start | movielist-bottom -->
             <div class="movielist-bottom" >
-                <div>
 	                <c:forEach items="${movieList}" var="list" varStatus="status">
-						<div class="movielist-card" id="${list.mi_ktitle }" onclick="movieInfo(this.id)">
-							<img src="<c:url value='${list.mi_poster }' />" width="200" height="270">
-					 		<h6 class="movie-title">${list.mi_ktitle }</h6>
+						<div class="movielist-card" id="${list.mi_ktitle }" >
+							<img src="<c:url value='${list.mi_poster }' />" class="movieImage" width="200" height="270">
+					 		<span class="desc">
+						 		<h6 class="movie-title">${list.mi_ktitle }</h6>
+						 		<span class="movie-in">상영 ${list.mi_time } </span> <br>
+						 		<span class="movie-in">${list.grade_code } </span>
+						 		<button type="button" class="btn-hjs-1" id="${list.mi_ktitle}" onclick="movieInfo(this.id)"> 상세보기 </button>
+					 		</span>
 					 	</div>
+					
 					 	<input type="hidden" id="title" value="${list.mi_ktitle}"/>
-					 	
-					 	<div class="sover">		
-							<p class="sage"><a href="/Movie/M000111289">${list.mi_ktitle} </a></p>		
-							<p class="spl"><a href="#"></a></p><p class="slbtn"><a href="//ticket.maxmovie.com/Reserve/Movie/M000111289">상세보기</a></p>
-						</div>
-						
+
 	                </c:forEach>
-                </div>
                 <!-- yj : start | pagination -->
                 <!-- 페이징 버튼 연동은 책보고 참고해서 추가하기 -->
                 <div class="buster-light">
