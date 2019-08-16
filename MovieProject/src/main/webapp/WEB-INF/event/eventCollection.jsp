@@ -123,11 +123,6 @@
 		}
 		$(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
 	}
-
-
-	
-	
-	
 </script>
 
 <!-- 이벤트 섹션 시작 -->
@@ -136,7 +131,7 @@
 
 <div class="jq_tabonoff comm_tab1"
 	style="width: 1200px; margin: 0 auto; margin-top: 120px;">
-	<ul class="jq_tab tab_menu tab-links tabs-mv" style="display:none;">
+	<ul class="jq_tab tab_menu tab-links tabs-mv">
 		<li class="active"><a href="javascript:;" class="tit"> CGV</a></li>
 		<li><a href="javascript:;" class="tit">LotteCinema</a></li>
 		<li><a href="javascript:;" class="tit">MegaBox</a></li>
@@ -162,7 +157,7 @@
 					<!-- CGV->전체 -->
 					<div class="cont" style="width: 1200px; margin: 0 auto;">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 전체이벤트.</strong>
+							<strong>이벤트 & 정보 -> 전체이벤트.</strong>
 						</div>
 
 
@@ -195,9 +190,13 @@ Copyright (C) by bit 2조 All right reserved.
 							<table style="margin-bottom: 100px;">
 								<tbody class="total_event_tbody">
 									<tr>
-										<th style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">구분</th>
-										<th style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;" >제목</th>
-										<th style="width: 24%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">이벤트 기간</th>
+										<th
+											style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">구분</th>
+										<th
+											style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">제목</th>
+										<th
+											style="width: 24%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">이벤트
+											기간</th>
 									</tr>
 									<!-- eventcontrllor 에서 가져오기 -->
 									${total_td } ${total_td2}
@@ -224,7 +223,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭1-2 -->
 					<div class="cont" style="width: 100%;">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 영화이벤트</strong>
+							<strong>이벤트 & 정보 -> 영화이벤트</strong>
 
 						</div>
 						<!-- 영화 포스터  -->
@@ -247,17 +246,15 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭1-3 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 3사 이벤트</strong>
+							<strong>이벤트 & 정보 -> 3사 이벤트</strong>
 
 						</div>
 
 						<!-- 3 이벤트 리스트 공간 -->
 						<div id="contents" style="overflow: hidden;">
 							<div id="js-load2" class="main">
-								<ul class="lists">
+								<ul class="lists">${movie_3 }
 
-									${movie_3 }
-									
 								</ul>
 								<div id="js-btn-wrap" class="btn-wrap">
 									<a href="javascript:;" class="button">더보기</a>
@@ -270,7 +267,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭1-4 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 시사회</strong>
+							<strong>이벤트 & 정보 -> 시사회</strong>
 						</div>
 						<!-- 탭 : 시사회 뷰단 -->
 						<div class="table-responsive">
@@ -278,10 +275,14 @@ Copyright (C) by bit 2조 All right reserved.
 							<table class="class="tabletable-borderedtable-hover">
 								<thead>
 									<tr>
-										<th style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">번호</th>
-										<th style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">제목</th>
-										<th style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">등록일</th>
-										<th style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">조회수</th>
+										<th
+											style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">번호</th>
+										<th
+											style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">제목</th>
+										<th
+											style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">등록일</th>
+										<th
+											style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">조회수</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -301,7 +302,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!--탭 1-5 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>블록버스터 -> 제휴</strong>
+							<strong>이벤트 & 정보 -> 제휴</strong>
 
 						</div>
 
@@ -312,15 +313,435 @@ Copyright (C) by bit 2조 All right reserved.
 
 									<!-- cgv 제휴 이벤트 컨틀롤러에서 가져오는것 -->
 									<!-- li 10개 목록 -->
-									${cgv_alliance_list } ${cgv_alliance_list2 }
+
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0711/240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
 
 
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0801/06__240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!--  3-->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0807/CGV_1908_020_w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!--  4-->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0315/1903_040w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 5 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0329/1903_067_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 6 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0401/1903_091_w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 7 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0201/240.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 8 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0201/1901_133_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 9 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0725/240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 10 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0102/1812_129_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 11 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0121/240_200_1.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 12 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0121/240x200_190116.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 13 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0829/1708_106_weblist.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 14 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/1115/kb_wlist_.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 15 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1102/1810_120_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 16 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1231/1707_021_wlist.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 17 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0728/gs_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 18 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0828/happy_w_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 19 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1206/1702_144_nh_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 20 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0314/[CGV_1703_064]w_b.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
+												target="_blank"> <em class="txt-lightblue"
+												style="margin-top: 20px;">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
 
 
 								</ul>
-								<div id="js-btn-wrap" class="btn-wrap">
-									<a href="javascript:;" class="button">더보기</a>
-								</div>
 							</div>
 						</div>
 						<!-- 영화 카드형 리스트 end -->
@@ -349,7 +770,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭2-1 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>LotteCinema -> 전체 </strong><br> <br>
+							<strong>이벤트 & 정보 > LotteCinema 전체 </strong><br> <br>
 
 						</div>
 
@@ -380,487 +801,41 @@ Copyright (C) by bit 2조 All right reserved.
 
 
 
+						<div>
 
+							<table style="margin-bottom: 100px;">
+								<tbody class="total_event_tbody">
+									<tr>
+										<th
+											style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">구분</th>
+										<th
+											style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">제목</th>
+										<th
+											style="width: 24%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">이벤트
+											기간</th>
+									</tr>
+									<!-- eventcontrllor 에서 가져오기 -->
+									${total_td } ${total_td2}
+
+									<!-- <tr>
+										<td>하이</td>
+										<td>하이2</td>
+										<td>하이3</td>
+									</tr> -->
+								</tbody>
+
+							</table>
+							<!-- li태그로 만들어보기 -->
+
+
+
+						</div>
 
 
 
 
 						<!-- 바탕 : 흰색 -->
 
-						<div class="buster-light">
-
-
-
-
-
-
-
-
-							<div class="container">
-
-								<div class="row">
-
-									<!-- listTable 배치 시작 -->
-
-									<div style="width: 1500px;">
-
-										<div style="position: relative;">
-
-
-
-											<div style="width: 1000px;">
-
-												<div>
-
-													<!-- 1. listTable 배치 -->
-
-													<table
-														style="display: relative; top: 50px; margin: 0 auto;">
-
-														<thead>
-
-															<!-- 2. 최초의 행. 열의 종류 구분 -->
-
-															<tr
-																style="background-color: #717F9A; color: #ffffff; width: 1100px;">
-
-																<th style="width: 75px; text-align: center;">글번호</th>
-
-																<th style="width: 100px; text-align: center;">카테고리</th>
-
-																<th style="width: 350px; text-align: center;">제목</th>
-
-																<th style="width: 100px; text-align: center;">글쓴이</th>
-
-																<th style="width: 100px; text-align: center;">최근수정일</th>
-
-																<th style="width: 100px; text-align: center;">조회수</th>
-
-															</tr>
-
-														</thead>
-
-
-
-														<!-- 향후 core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-
-														<tbody>
-
-															<!-- 3. 공지사항. strong으로 강조를 주며, 게시자의 아이디가 다홍색으로 처리된다. 항상 최상단 노출-->
-
-															<tr style="background-color: #DFE5F5;">
-
-																<td><strong>0026</strong></td>
-
-																<td><strong>공지</strong></td>
-
-																<td><strong>비속어 사용과 음란물 게시시 활동정지 처분합니다.</strong></td>
-
-																<td style="color: #FF6F61;"><strong>admin01</strong></td>
-
-																<td><strong>2011/04/25</strong></td>
-
-																<td><strong>84200</strong></td>
-
-															</tr>
-
-															<tr style="background-color: #DFE5F5;">
-
-																<td><strong>002</strong></td>
-
-																<td><strong>공지</strong></td>
-
-																<td><strong>정치글은 글삭제 대상입니다.</strong></td>
-
-																<td><strong>admin01</strong></td>
-
-																<td><strong>2011/07/25</strong></td>
-
-																<td><strong>16847</strong></td>
-
-															</tr>
-
-															<!--4. 자유게시판 게시글의 나열 시작 -->
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0024</td>
-
-																<td>결말해석</td>
-
-																<td>고질라 쿠키영상 무슨뜻인가요?</td>
-
-																<td>가모라</td>
-
-																<td>2009/01/12</td>
-
-																<td>2400</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0023</td>
-
-																<td>잡담</td>
-
-																<td>Edinburgh</td>
-
-																<td>22</td>
-
-																<td>2012/03/29</td>
-
-																<td>$433,060</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0022</td>
-
-																<td>토론</td>
-
-																<td>Tokyo</td>
-
-																<td>33</td>
-
-																<td>2008/11/28</td>
-
-																<td>$162,700</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0020</td>
-
-																<td>잡담해석</td>
-
-																<td>New York</td>
-
-																<td>61</td>
-
-																<td>2012/12/02</td>
-
-																<td>$372,000</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0019</td>
-
-																<td>잡담</td>
-
-																<td>San Francisco</td>
-
-																<td>59</td>
-
-																<td>2012/08/06</td>
-
-																<td>$137,500</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0017</td>
-
-																<td>유머</td>
-
-																<td>Tokyo</td>
-
-																<td>55</td>
-
-																<td>2010/10/14</td>
-
-																<td>$327,900</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0016</td>
-
-																<td>토론</td>
-
-																<td>San Francisco</td>
-
-																<td>39</td>
-
-																<td>2009/09/15</td>
-
-																<td>$205,500</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0015</td>
-
-																<td>결말해석</td>
-
-																<td>Edinburgh</td>
-
-																<td>23</td>
-
-																<td>2008/12/13</td>
-
-																<td>$103,600</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0014</td>
-
-																<td>결말해석</td>
-
-																<td>London</td>
-
-																<td>30</td>
-
-																<td>2008/12/19</td>
-
-																<td>$90,560</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>00013</td>
-
-																<td>유머</td>
-
-																<td>Edinburgh</td>
-
-																<td>22</td>
-
-																<td>2013/03/03</td>
-
-																<td>$342,000</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>00013</td>
-
-																<td>유머</td>
-
-																<td>Edinburgh</td>
-
-																<td>22</td>
-
-																<td>2013/03/03</td>
-
-																<td>$342,000</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0014</td>
-
-																<td>결말해석</td>
-
-																<td>London</td>
-
-																<td>30</td>
-
-																<td>2008/12/19</td>
-
-																<td>$90,560</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>00013</td>
-
-																<td>유머</td>
-
-																<td>Edinburgh</td>
-
-																<td>22</td>
-
-																<td>2013/03/03</td>
-
-																<td>$342,000</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>00013</td>
-
-																<td>유머</td>
-
-																<td>Edinburgh</td>
-
-																<td>22</td>
-
-																<td>2013/03/03</td>
-
-																<td>$342,000</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>0014</td>
-
-																<td>결말해석</td>
-
-																<td>London</td>
-
-																<td>30</td>
-
-																<td>2008/12/19</td>
-
-																<td>$90,560</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>00013</td>
-
-																<td>유머</td>
-
-																<td>Edinburgh</td>
-
-																<td>22</td>
-
-																<td>2013/03/03</td>
-
-																<td>$342,000</td>
-
-															</tr>
-
-															<tr style="background-color: #C3D8F5;">
-
-																<td>00013</td>
-
-																<td>유머</td>
-
-																<td>Edinburgh</td>
-
-																<td>22</td>
-
-																<td>2013/03/03</td>
-
-																<td>$342,000</td>
-
-															</tr>
-
-														</tbody>
-
-													</table>
-
-												</div>
-
-											</div>
-
-										</div>
-
-										<!--TableList의 끝-->
-
-
-
-										<!--5. 검색바 구현부 -->
-
-										<div class="form-style-1"
-											style="display: -webkit-flex; position: relative; top: 40px; width: 1400px; background-color: #ffffff;">
-
-											<!-- display: -webkit-flex등등... 왜인지 모르게 relative 설정을 누군가 잡아먹는다. 강제로 줄띄기 설정 ㅜ -->
-
-
-
-
-
-
-											<select
-												style="width: 90px; display: inline-block; border: 2px solid #020d18; color: #2F2F2F;">
-
-
-
-												<option value="united">전체</option>
-
-												<option value="saab">결말해석</option>
-
-												<option value="saab">토론</option>
-
-												<option value="saab">유머</option>
-
-												<option value="saab">잡담</option>
-
-
-
-											</select> &nbsp;&nbsp; <select
-												style="width: 90px; display: inline-block; border: 2px solid #020d18; color: #2F2F2F;">
-
-
-
-												<option value="united">제목</option>
-
-												<option value="saab">글쓴이</option>
-
-												<option value="saab">전체</option>
-
-
-
-											</select> &nbsp;&nbsp; <span> <input type="text"
-												placeholder="원하시는 내용을 입력하세요"
-												style="width: 670px; border: 2px solid #020d18; color: #2F2F2F;">
-
-											</span> <span> &nbsp;&nbsp; <input type="button"
-												class="submit" value="검색"
-												style="background-color: #FF6F61; width: 70px;">
-
-											</span>
-
-										</div>
-
-
-
-										<!-- 6. 페이징 : 그대로 따옴 기초 탬플릿의 [ bloglist_ligth.html] -->
-
-										<ul class="pagination" style="width: 1000px;">
-
-											<li class="icon-prev"><a href="#"><i
-													class="ion-ios-arrow-left"></i></a></li>
-
-											<li class="active"><a href="#">1</a></li>
-
-											<li><a href="#">2</a></li>
-
-											<li><a href="#">3</a></li>
-
-											<li><a href="#">4</a></li>
-
-											<li><a href="#">...</a></li>
-
-											<li><a href="#">21</a></li>
-
-											<li><a href="#">22</a></li>
-
-											<li class="icon-next"><a href="#"><i
-													class="ion-ios-arrow-right"></i></a></li>
-
-										</ul>
-
-									</div>
-
-
-
-
-
-								</div>
-
-							</div>
-
-						</div>
 
 						<!--list 페이지 구현의 몸통부 끝. 이하 footer 등-->
 
@@ -872,65 +847,14 @@ Copyright (C) by bit 2조 All right reserved.
 					<div class="cont">
 
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>LotteCinema -> 영화</strong><br> <br>
+							<strong>이벤트 & 정보 > LotteCinema 영화</strong><br> <br>
 
 						</div>
 
 						<!-- 영화 카드형 리스트 start -->
 						<div id="contents" style="overflow: hidden;">
 							<div id="js-load2" class="main">
-								<ul class="lists">
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-
+								<ul class="lists">${movie_3 }
 
 								</ul>
 								<div id="js-btn-wrap" class="btn-wrap">
@@ -945,65 +869,14 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭2-3 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>LotteCinema -> 3사 이벤트</strong><br> <br>
+							<strong>이벤트 & 정보 > LotteCinema 3사 이벤트</strong><br> <br>
 
 						</div>
 
 						<!-- 영화 카드형 리스트 start -->
 						<div id="contents" style="overflow: hidden;">
 							<div id="js-load2" class="main">
-								<ul class="lists">
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-
+								<ul class="lists">${movie_3 }
 
 								</ul>
 								<div id="js-btn-wrap" class="btn-wrap">
@@ -1016,7 +889,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭2-4 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>LotteCinema -> 3사 시사회</strong><br> <br>
+							<strong>이벤트 & 정보 > LotteCinema 3사 시사회</strong><br> <br>
 
 						</div>
 
@@ -1030,116 +903,22 @@ Copyright (C) by bit 2조 All right reserved.
 								</div>
 								<div class="card-body" style="width: 100%;">
 									<div class="table-responsive">
-										<table width="900px" cellspacing="0">
+										<table class="class="tabletable-borderedtable-hover">
 											<thead>
 												<tr>
-													<th style="width: 75px;">글번호</th>
-													<th style="width: 100px;">카테고리</th>
-													<th style="width: 350px;">글제목</th>
-													<th style="width: 100px;">글쓴이</th>
-													<th style="width: 100px;">최근수정일</th>
-													<th style="width: 100px;">조회수</th>
+													<th
+														style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">번호</th>
+													<th
+														style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">제목</th>
+													<th
+														style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">등록일</th>
+													<th
+														style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">조회수</th>
 												</tr>
 											</thead>
-
-											<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
 											<tbody>
-												<tr>
-													<td><strong>0026</strong></td>
-													<td><strong>공지</strong></td>
-													<td><strong>비속어 사용과 음란물 게시시 활동정지 처분합니다.</strong></td>
-													<td><strong>admin01</strong></td>
-													<td><strong>2011/04/25</strong></td>
-													<td><strong>84200</strong></td>
-												</tr>
-												<tr>
-													<td><strong>002</strong></td>
-													<td><strong>공지</strong></td>
-													<td><strong>정치글은 글삭제 대상입니다.</strong></td>
-													<td><strong>admin01</strong></td>
-													<td><strong>2011/07/25</strong></td>
-													<td><strong>16847</strong></td>
-												</tr>
-												<tr>
-													<td>0024</td>
-													<td>결말해석</td>
-													<td>고질라 쿠키영상 무슨뜻인가요?</td>
-													<td>가모라</td>
-													<td>2009/01/12</td>
-													<td>2400</td>
-												</tr>
-												<tr>
-													<td>0023</td>
-													<td>잡담</td>
-													<td>Edinburgh</td>
-													<td>22</td>
-													<td>2012/03/29</td>
-													<td>433,060</td>
-												</tr>
-												<tr>
-													<td>0022</td>
-													<td>토론</td>
-													<td>Tokyo</td>
-													<td>33</td>
-													<td>2008/11/28</td>
-													<td>162,700</td>
-												</tr>
-												<tr>
-													<td>0020</td>
-													<td>잡담해석</td>
-													<td>New York</td>
-													<td>61</td>
-													<td>2012/12/02</td>
-													<td>372,000</td>
-												</tr>
-												<tr>
-													<td>0019</td>
-													<td>잡담</td>
-													<td>San Francisco</td>
-													<td>59</td>
-													<td>2012/08/06</td>
-													<td>137,500</td>
-												</tr>
-												<tr>
-													<td>0017</td>
-													<td>유머</td>
-													<td>Tokyo</td>
-													<td>55</td>
-													<td>2010/10/14</td>
-													<td>327,900</td>
-												</tr>
-												<tr>
-													<td>0016</td>
-													<td>토론</td>
-													<td>San Francisco</td>
-													<td>39</td>
-													<td>2009/09/15</td>
-													<td>205,500</td>
-												</tr>
-												<tr>
-													<td>0015</td>
-													<td>결말해석</td>
-													<td>Edinburgh</td>
-													<td>23</td>
-													<td>2008/12/13</td>
-													<td>103,600</td>
-												</tr>
-												<tr>
-													<td>0014</td>
-													<td>결말해석</td>
-													<td>London</td>
-													<td>30</td>
-													<td>2008/12/19</td>
-													<td>90,560</td>
-												</tr>
-												<tr>
-													<td>00013</td>
-													<td>유머</td>
-													<td>Edinburgh</td>
-													<td>22</td>
-													<td>2013/03/03</td>
-													<td>342,000</td>
-												</tr>
+												<!--시사회 tr 내용물이들어올 곡ㅇ간 -->
+												${premiere_tbody_tr }
 
 											</tbody>
 										</table>
@@ -1153,7 +932,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭2-5 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>LotteCinema -> 3사 제휴</strong><br> <br>
+							<strong>이벤트 & 정보 > 3사 제휴</strong><br> <br>
 
 						</div>
 
@@ -1161,59 +940,439 @@ Copyright (C) by bit 2조 All right reserved.
 						<div id="contents" style="overflow: hidden;">
 							<div id="js-load2" class="main">
 								<ul class="lists">
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
+
+									<!-- cgv 제휴 이벤트 컨틀롤러에서 가져오는것 -->
+									<!-- li 10개 목록 -->
+
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0711/240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0801/06__240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!--  3-->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0807/CGV_1908_020_w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!--  4-->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0315/1903_040w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 5 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0329/1903_067_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 6 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0401/1903_091_w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 7 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0201/240.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 8 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0201/1901_133_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 9 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0725/240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 10 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0102/1812_129_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 11 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0121/240_200_1.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 12 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0121/240x200_190116.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 13 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0829/1708_106_weblist.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 14 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/1115/kb_wlist_.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 15 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1102/1810_120_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 16 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1231/1707_021_wlist.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 17 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0728/gs_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 18 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0828/happy_w_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 19 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1206/1702_144_nh_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 20 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0314/[CGV_1703_064]w_b.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
+												target="_blank"> <em class="txt-lightblue"
+												style="margin-top: 20px;">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
 
 
 								</ul>
+
 								<div id="js-btn-wrap" class="btn-wrap">
 									<a href="javascript:;" class="button">더보기</a>
 								</div>
@@ -1243,138 +1402,40 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭3-1 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>MegaBox -> 전체 </strong><br> <br>
+							<strong>이벤트 & 정보 > MegaBox 전체 </strong><br> <br>
 
 						</div>
+						<div>
 
+							<table style="margin-bottom: 100px;">
+								<tbody class="total_event_tbody">
+									<tr>
+										<th
+											style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">구분</th>
+										<th
+											style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">제목</th>
+										<th
+											style="width: 24%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">이벤트
+											기간</th>
+									</tr>
+									<!-- eventcontrllor 에서 가져오기 -->
+									${total_td } ${total_td2}
+
+									<!-- <tr>
+										<td>하이</td>
+										<td>하이2</td>
+										<td>하이3</td>
+									</tr> -->
+								</tbody>
+
+							</table>
+							<!-- li태그로 만들어보기 -->
+
+
+
+						</div>
 						<!-- 게시판 형태 -->
-						<div class="static-table-list">
-							<div class="card mb-3">
-								<div class="card-header">
-									<h2></h2>
 
-
-								</div>
-								<div class="card-body" style="width: 100%;">
-									<div class="table-responsive">
-										<table width="900px" cellspacing="0">
-											<thead>
-												<tr>
-													<th style="width: 75px;">글번호</th>
-													<th style="width: 100px;">카테고리</th>
-													<th style="width: 350px;">글제목</th>
-													<th style="width: 100px;">글쓴이</th>
-													<th style="width: 100px;">최근수정일</th>
-													<th style="width: 100px;">조회수</th>
-												</tr>
-											</thead>
-
-											<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-											<tbody>
-												<tr>
-													<td><strong>0026</strong></td>
-													<td><strong>공지</strong></td>
-													<td><strong>비속어 사용과 음란물 게시시 활동정지 처분합니다.</strong></td>
-													<td><strong>admin01</strong></td>
-													<td><strong>2011/04/25</strong></td>
-													<td><strong>84200</strong></td>
-												</tr>
-												<tr>
-													<td><strong>002</strong></td>
-													<td><strong>공지</strong></td>
-													<td><strong>정치글은 글삭제 대상입니다.</strong></td>
-													<td><strong>admin01</strong></td>
-													<td><strong>2011/07/25</strong></td>
-													<td><strong>16847</strong></td>
-												</tr>
-												<tr>
-													<td>0024</td>
-													<td>결말해석</td>
-													<td>고질라 쿠키영상 무슨뜻인가요?</td>
-													<td>가모라</td>
-													<td>2009/01/12</td>
-													<td>2400</td>
-												</tr>
-												<tr>
-													<td>0023</td>
-													<td>잡담</td>
-													<td>Edinburgh</td>
-													<td>22</td>
-													<td>2012/03/29</td>
-													<td>433,060</td>
-												</tr>
-												<tr>
-													<td>0022</td>
-													<td>토론</td>
-													<td>Tokyo</td>
-													<td>33</td>
-													<td>2008/11/28</td>
-													<td>162,700</td>
-												</tr>
-												<tr>
-													<td>0020</td>
-													<td>잡담해석</td>
-													<td>New York</td>
-													<td>61</td>
-													<td>2012/12/02</td>
-													<td>372,000</td>
-												</tr>
-												<tr>
-													<td>0019</td>
-													<td>잡담</td>
-													<td>San Francisco</td>
-													<td>59</td>
-													<td>2012/08/06</td>
-													<td>137,500</td>
-												</tr>
-												<tr>
-													<td>0017</td>
-													<td>유머</td>
-													<td>Tokyo</td>
-													<td>55</td>
-													<td>2010/10/14</td>
-													<td>327,900</td>
-												</tr>
-												<tr>
-													<td>0016</td>
-													<td>토론</td>
-													<td>San Francisco</td>
-													<td>39</td>
-													<td>2009/09/15</td>
-													<td>205,500</td>
-												</tr>
-												<tr>
-													<td>0015</td>
-													<td>결말해석</td>
-													<td>Edinburgh</td>
-													<td>23</td>
-													<td>2008/12/13</td>
-													<td>103,600</td>
-												</tr>
-												<tr>
-													<td>0014</td>
-													<td>결말해석</td>
-													<td>London</td>
-													<td>30</td>
-													<td>2008/12/19</td>
-													<td>90,560</td>
-												</tr>
-												<tr>
-													<td>00013</td>
-													<td>유머</td>
-													<td>Edinburgh</td>
-													<td>22</td>
-													<td>2013/03/03</td>
-													<td>342,000</td>
-												</tr>
-
-											</tbody>
-										</table>
-									</div>
-								</div>
-
-							</div>
-						</div>
 						<!-- 게시판형태 끗 -->
 					</div>
 					<!-- 탭3-1// -->
@@ -1382,65 +1443,15 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭3-2 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>MegaBox -> 영화</strong><br> <br>
+							<strong>이벤트 & 정보 > MegaBox 영화</strong><br> <br>
 
 						</div>
 
 						<!-- 영화 카드형 리스트 start -->
+						<br>
 						<div id="contents" style="overflow: hidden;">
 							<div id="js-load2" class="main">
-								<ul class="lists">
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-
+								<ul class="lists">${movie_3 }
 
 								</ul>
 								<div id="js-btn-wrap" class="btn-wrap">
@@ -1455,65 +1466,14 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭3-3 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>MegaBox -> 3사 이벤트</strong><br> <br>
+							<strong>이벤트 & 정보 > MegaBox 3사 이벤트</strong><br> <br>
 
 						</div>
 
 						<!-- 영화 카드형 리스트 start -->
 						<div id="contents" style="overflow: hidden;">
 							<div id="js-load2" class="main">
-								<ul class="lists">
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-
+								<ul class="lists">${movie_3 }
 
 								</ul>
 								<div id="js-btn-wrap" class="btn-wrap">
@@ -1526,144 +1486,41 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭3-4 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>MegaBox -> 3사 시사회</strong><br> <br>
+							<strong>이벤트 & 정보 > MegaBox 3사 시사회</strong><br> <br>
 
 						</div>
 
 						<!-- 게시판 형태 -->
-						<div class="static-table-list">
-							<div class="card mb-3">
-								<div class="card-header">
-									<h2></h2>
+						<div class="table-responsive">
 
+							<table class="class="tabletable-borderedtable-hover">
+								<thead>
+									<tr>
+										<th
+											style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">번호</th>
+										<th
+											style="background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">제목</th>
+										<th
+											style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">등록일</th>
+										<th
+											style="width: 14%; background-color: #333; color: #fff; text-align: center; border-right: 1px solid gray;">조회수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!--시사회 tr 내용물이들어올 곡ㅇ간 -->
+									${premiere_tbody_tr }
 
-								</div>
-								<div class="card-body" style="width: 100%;">
-									<div class="table-responsive">
-										<table width="900px" cellspacing="0">
-											<thead>
-												<tr>
-													<th style="width: 75px;">글번호</th>
-													<th style="width: 100px;">카테고리</th>
-													<th style="width: 350px;">글제목</th>
-													<th style="width: 100px;">글쓴이</th>
-													<th style="width: 100px;">최근수정일</th>
-													<th style="width: 100px;">조회수</th>
-												</tr>
-											</thead>
-
-											<!-- core jstl의 foreach로 게시글의 목록이 올 자리다 -->
-											<tbody>
-												<tr>
-													<td><strong>0026</strong></td>
-													<td><strong>공지</strong></td>
-													<td><strong>비속어 사용과 음란물 게시시 활동정지 처분합니다.</strong></td>
-													<td><strong>admin01</strong></td>
-													<td><strong>2011/04/25</strong></td>
-													<td><strong>84200</strong></td>
-												</tr>
-												<tr>
-													<td><strong>002</strong></td>
-													<td><strong>공지</strong></td>
-													<td><strong>정치글은 글삭제 대상입니다.</strong></td>
-													<td><strong>admin01</strong></td>
-													<td><strong>2011/07/25</strong></td>
-													<td><strong>16847</strong></td>
-												</tr>
-												<tr>
-													<td>0024</td>
-													<td>결말해석</td>
-													<td>고질라 쿠키영상 무슨뜻인가요?</td>
-													<td>가모라</td>
-													<td>2009/01/12</td>
-													<td>2400</td>
-												</tr>
-												<tr>
-													<td>0023</td>
-													<td>잡담</td>
-													<td>Edinburgh</td>
-													<td>22</td>
-													<td>2012/03/29</td>
-													<td>433,060</td>
-												</tr>
-												<tr>
-													<td>0022</td>
-													<td>토론</td>
-													<td>Tokyo</td>
-													<td>33</td>
-													<td>2008/11/28</td>
-													<td>162,700</td>
-												</tr>
-												<tr>
-													<td>0020</td>
-													<td>잡담해석</td>
-													<td>New York</td>
-													<td>61</td>
-													<td>2012/12/02</td>
-													<td>372,000</td>
-												</tr>
-												<tr>
-													<td>0019</td>
-													<td>잡담</td>
-													<td>San Francisco</td>
-													<td>59</td>
-													<td>2012/08/06</td>
-													<td>137,500</td>
-												</tr>
-												<tr>
-													<td>0017</td>
-													<td>유머</td>
-													<td>Tokyo</td>
-													<td>55</td>
-													<td>2010/10/14</td>
-													<td>327,900</td>
-												</tr>
-												<tr>
-													<td>0016</td>
-													<td>토론</td>
-													<td>San Francisco</td>
-													<td>39</td>
-													<td>2009/09/15</td>
-													<td>205,500</td>
-												</tr>
-												<tr>
-													<td>0015</td>
-													<td>결말해석</td>
-													<td>Edinburgh</td>
-													<td>23</td>
-													<td>2008/12/13</td>
-													<td>103,600</td>
-												</tr>
-												<tr>
-													<td>0014</td>
-													<td>결말해석</td>
-													<td>London</td>
-													<td>30</td>
-													<td>2008/12/19</td>
-													<td>90,560</td>
-												</tr>
-												<tr>
-													<td>00013</td>
-													<td>유머</td>
-													<td>Edinburgh</td>
-													<td>22</td>
-													<td>2013/03/03</td>
-													<td>342,000</td>
-												</tr>
-
-											</tbody>
-										</table>
-									</div>
-								</div>
-
-							</div>
+								</tbody>
+							</table>
+							<ul class="pagination">
+							</ul>
 						</div>
 						<!-- 게시판형태 끗 -->
 					</div>
 					<!-- //탭3-5 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>MegaBox -> 3사 시사회</strong><br> <br>
+							<strong>이벤트 & 정보 > MegaBox 3사 시사회</strong><br> <br>
 
 						</div>
 
@@ -1671,56 +1528,435 @@ Copyright (C) by bit 2조 All right reserved.
 						<div id="contents" style="overflow: hidden;">
 							<div id="js-load2" class="main">
 								<ul class="lists">
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
-									<li class="lists__item js-load2"><img
-										style="width: 240px; height: 200px; border: 1px solid #720a1b;"
-										src="./images/.png">
-										<p>영화명</p>
-										<p>기간 2019.07.03</p></li>
+
+									<!-- cgv 제휴 이벤트 컨틀롤러에서 가져오는것 -->
+									<!-- li 10개 목록 -->
+
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0711/240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0801/06__240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!--  3-->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0807/CGV_1908_020_w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!--  4-->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0315/1903_040w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 5 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0329/1903_067_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 6 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0401/1903_091_w.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 7 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0201/240.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 8 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0201/1901_133_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 9 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0725/240x200.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 10 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0102/1812_129_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 11 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0121/240_200_1.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 12 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2019/0121/240x200_190116.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 13 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0829/1708_106_weblist.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 14 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/1115/kb_wlist_.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 15 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1102/1810_120_wb.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+
+									<!-- 16 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1231/1707_021_wlist.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 17 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0728/gs_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 18 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0828/happy_w_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 19 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2018/1206/1702_144_nh_list.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
+												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
+
+									<!-- 20 -->
+									<li class="lists__item js-load3">
+										<div class="box-image" style="display: block;">
+											<a id="tile_2"
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
+												target="_blank"><img
+												src="http://img.cgv.co.kr/Event/Event/2017/0314/[CGV_1703_064]w_b.jpg"
+												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
+										</div>
+										<div class="box-contents">
+											<a
+												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
+												target="_blank"> <em class="txt-lightblue"
+												style="margin-top: 20px;">멤버십</em> <strong>
+													&lt;알라딘&gt; 4DX 첫 100만 관객 돌파 기념 이벤트 <!--알라딘-->
+											</strong>
+											</a> <em class="date"> <span>기간: </span> 2019.07.29 ~
+												2019.08.04
+											</em>
+										</div>
+									</li>
 
 
 								</ul>
