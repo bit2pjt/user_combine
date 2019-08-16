@@ -32,10 +32,26 @@
 
 <!-- 4. 여기에 페이지별 본문을 추가해주세요 -->
 
-<div style="height:5%;"></div>
-<div class="buster-light">
-	<div class="page-single">
+<div class="hero user-hero" >
 		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct" >
+						<h1 style="margin-left: 0px; margin-top: -80px;">FAQ</h1>
+						<ul style="margin-left: 0px;" class="breadcumb">
+							<li class="active"><a href="index">마이페이지</a></li>
+							<li><span class="ion-ios-arrow-right"></span>FAQ</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+<div class="buster-light">
+	<div class="page-single" style="margin-top: 0px;">
+		<div class="container" style="margin-top:-180px;">
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
@@ -49,20 +65,20 @@
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage">마이페이지</a></li>
+								<li style="font-weight: bold;"><a style="font-size: 18px;" href="mypage">마이페이지</a></li>
 							</ul>
 
-							<ul>
+							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 								<li>회원 정보</li>
 								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
 								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
-							<ul>
+							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 								<li>고객센터</li>
-								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1문의내역</a></li>
+								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
+										문의내역</a></li>
 								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
-								<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 							</ul>
 						</div>
 					</div>
@@ -145,6 +161,10 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div style="width:1920px; height: 80px;">
+	
 </div>
 
 <!-- 5. footer1.jsp : footer -->
