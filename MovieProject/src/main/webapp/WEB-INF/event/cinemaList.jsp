@@ -657,7 +657,7 @@
 </head>
 <body>
 	<!-- Start | Section -->
-	<div class="hero user-hero" style="margin-top: -180px;">
+	<div class="hero user-hero" style="margin-top: -190px;">
 		<div class="container" >
 			<div class="row">
 				<div class="col-md-12">
