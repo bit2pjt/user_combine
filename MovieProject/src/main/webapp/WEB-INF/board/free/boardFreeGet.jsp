@@ -186,11 +186,11 @@
         	 
 			<c:if test="${id == boardFreeVO.id }">
 				<div style="float:right;">
-					 <button id='btn-hjs' onclick="updateContent()">수정</button> 
-					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
+					 <button style="width:100px; height: 40px;" id='btn-hjs' onclick="updateContent()">수정</button> 
+					 <button style="width:100px; height: 40px;" id='btn-hjs' onclick="deleteContent()">삭제</button>
 				</div>
 			</c:if>
-			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px;">목록</button>
+			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px; width:100px; height: 40px;">목록</button>
 		</center>
 		
 		
@@ -203,7 +203,7 @@
 		<div class="ws-get-Rside">
 		<div class="ws-side-best" >
 			<ul>
-				<li >추천수 급상승 Best 5</li>
+				<li style="padding: 10px;">추천수 급상승 Best 5</li>
 				<c:forEach items="${boardListDaily}" var="board" varStatus="status" end="4">
 					<li><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></li>
 				</c:forEach>
