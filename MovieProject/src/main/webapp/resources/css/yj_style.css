@@ -149,7 +149,8 @@ body{
 
 .movie-in {
 	color:#999;
-	font-size:11px;
+	font-size:12px;
+	font-weight:bold;
 }
 .movieImage {
 	  opacity: 1;
