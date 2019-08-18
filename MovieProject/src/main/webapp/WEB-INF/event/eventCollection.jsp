@@ -340,6 +340,8 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+											
+											<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -361,6 +363,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -382,6 +385,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -404,6 +408,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -426,6 +431,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -448,6 +454,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -469,6 +476,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -490,6 +498,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -511,6 +520,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -532,6 +542,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -554,6 +565,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -575,6 +587,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -596,6 +609,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -617,6 +631,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -639,6 +654,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -661,6 +677,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -682,6 +699,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -703,6 +721,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -724,6 +743,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -745,6 +765,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
 												target="_blank"> <em class="txt-lightblue"
@@ -949,7 +970,7 @@ Copyright (C) by bit 2조 All right reserved.
 					<!-- //탭2-5 -->
 					<div class="cont">
 						<div style="margin-top: 40px; margin-bottom: 40px;">
-							<strong>이벤트 & 정보 > 3사 제휴</strong><br> <br>
+							<strong>이벤트 & 정보 > LotteCinema 제휴</strong><br> <br>
 
 						</div>
 
@@ -970,6 +991,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -991,6 +1013,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1012,6 +1035,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1034,6 +1058,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1056,6 +1081,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1078,6 +1104,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1099,6 +1126,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1120,6 +1148,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1141,6 +1170,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1162,6 +1192,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1184,6 +1215,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1205,6 +1237,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1226,6 +1259,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1247,6 +1281,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1269,6 +1304,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1291,6 +1327,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1312,6 +1349,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1333,6 +1371,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1354,6 +1393,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1375,6 +1415,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
 												target="_blank"> <em class="txt-lightblue"
@@ -1558,6 +1599,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19781&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1579,6 +1621,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19896&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1600,6 +1643,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19923&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1622,6 +1666,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19326&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1644,6 +1689,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19389&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1666,6 +1712,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19394&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1687,6 +1734,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19185&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1708,6 +1756,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19190&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1729,6 +1778,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19215&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1750,6 +1800,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19060&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1772,6 +1823,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19132&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1793,6 +1845,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=19133&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1814,6 +1867,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16674&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1835,6 +1889,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=17104&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1857,6 +1912,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=18739&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1879,6 +1935,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16473&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1900,6 +1957,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16530&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1921,6 +1979,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16669&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1942,6 +2001,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15662&menu=4"
 												target="_blank"> <em class="txt-lightblue">멤버십</em> <strong>
@@ -1963,6 +2023,7 @@ Copyright (C) by bit 2조 All right reserved.
 												alt="스마일페이 결제 시 즉.시.할.인" style="height: 200px;"></a>
 										</div>
 										<div class="box-contents">
+										<br>
 											<a
 												href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=15755&menu=4"
 												target="_blank"> <em class="txt-lightblue"
