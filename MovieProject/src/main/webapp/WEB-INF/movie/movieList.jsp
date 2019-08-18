@@ -27,8 +27,27 @@
 <%@ include file="../header2.jsp" %>
 <!-- yj : 헤더와 본 컨텐츠를 분리하기 위해 section 사용-->
     <section>
-        <!-- yj : start | movielist -->
-        <div class="movielist mt-15">
+
+
+	<div class="hero user-hero">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						<h1 style="margin-left: 0px; margin-top: -100px;">영화 목록</h1>
+						<ul style="margin-left: 0px;" class="breadcumb">
+							<li class="active"><a href="index">영화</a></li>
+							<li><span class="ion-ios-arrow-right"></span>영화 목록</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- yj : start | movielist -->
+        <div class="movielist mt-15" style="margin-top: -120px;">
             <!-- yj : start | movielist-search -->
             <div class="movielist-top">
                 <select class="form-control" name="searchType" id="searchType">

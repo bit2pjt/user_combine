@@ -129,8 +129,25 @@
 
 <!-- 2번 탭 -->
 
+<div class="hero user-hero" style="z-index: -1;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						<h1 style="margin-left: 0px; margin-top: -100px;">이벤트</h1>
+						<ul style="margin-left: 0px;" class="breadcumb">
+							<li class="active"><a href="index">이벤트 &정보</a></li>
+							<li><span class="ion-ios-arrow-right"></span>이벤트</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+ 
 <div class="jq_tabonoff comm_tab1"
-	style="width: 1200px; margin: 0 auto; margin-top: 120px;">
+	style="width: 1200px; margin: 0 auto; margin-top: -145px; ">
 	<ul class="jq_tab tab_menu tab-links tabs-mv">
 		<li class="active"><a href="javascript:;" class="tit"> CGV</a></li>
 		<li><a href="javascript:;" class="tit">LotteCinema</a></li>
@@ -1974,7 +1991,6 @@ Copyright (C) by bit 2조 All right reserved.
 		<!-- 탭3// -->
 	</div>
 </div>
-
 
 
 <!--tabs end-->

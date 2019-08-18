@@ -23,7 +23,7 @@
 * @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 * @ 2019. 08. 13	 한유진				수정
 *
-* @author BIT 116기 2조
+* @author BIT 116기 2조ㄱ
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -60,7 +60,7 @@
 			<!-- listTable 배치 시작 -->
 				<div>
 					<div style="position:relative;top:50px">
-						<button class="board_btn_right" value="글쓰기" onClick="location.href='boardShareWrite'">글쓰기</button>
+						<button style="width: 160px; height: 40px;" class="board_btn_right" value="글쓰기" onClick="location.href='boardShareWrite'">글쓰기</button>
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
