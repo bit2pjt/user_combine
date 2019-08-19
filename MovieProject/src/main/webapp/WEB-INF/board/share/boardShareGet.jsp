@@ -197,9 +197,9 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
-                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
-                            <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
                         </div>
                     </div>
                 </div>

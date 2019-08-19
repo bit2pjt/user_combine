@@ -18,6 +18,29 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/yj_style.css" />">
 <%@ include file="../header2.jsp"%>
+
+
+<style type="text/css">
+div ::-webkit-scrollbar {
+	width: 16px;
+}
+
+div ::-webkit-scrollbar-track {
+	background-color: #ccc;
+}
+
+div ::-webkit-scrollbar-thumb {
+	background-color: #333;
+	border-radius: 10px;
+}
+
+div ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	width: 16px;
+	height: 16px;
+	background: #ccc;
+}
+</style>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f335bb208b909138d6a0bdf1ab13b4ca&libraries=services,clusterer,drawing"></script>
 <script>
@@ -658,14 +681,16 @@
 <body>
 	<!-- Start | Section -->
 	<div class="hero user-hero" style="margin-top: -190px;">
-		<div class="container" >
+		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="hero-ct">
-						<h1 style="margin-left: 0px; margin-top: 0px; text-align: left;">영화관 목록</h1>
+						<h1 style="margin-left: 0px; margin-top: 0px; text-align: left;">영화관
+							목록</h1>
 						<ul style="margin-left: 0px;" class="breadcumb">
-							<li  class="active"><a style="color:#ccc; href="index">영화관</a></li>
-							<li style="color:#ccc;"><span class="ion-ios-arrow-right"></span>영화관 목록</li>
+							<li class="active"><a style="color: #ccc;"index">영화관</a></li>
+							<li style="color: #ccc;"><span class="ion-ios-arrow-right"></span>영화관
+								목록</li>
 						</ul>
 					</div>
 				</div>
@@ -678,9 +703,10 @@
 	<div class="buster-light" style="margin-top: 100px;">
 		<section class="section">
 			<!-- 지역 영화관 선택 -->
-			<form class="cinema" name="frm1">
+			<form class="cinema" name="frm1" style="margin-top: -70px;">
 				<h1 style="margin-bottom: 20px;">극장정보</h1>
-				<select id="brand" name="brand" size="3" onChange="LocalList()">
+				<select id="brand" name="brand" size="3" onChange="LocalList()"
+					style="">
 					<option value="CGV">CGV</option>
 					<option value="롯데시네마">롯데시네마</option>
 					<option value="메가박스">메가박스</option>
@@ -691,6 +717,12 @@
 				</select>
 
 			</form>
+			<!-- select box 수정 -->
+			<br>
+			<div style="width:1168px; height: 320px; background-color: #333; color: #fff; overflow: hidden; ">
+				<img style="width:1168px; border: 1px solid #333;" src="http://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg">
+			</div>
+				
 			<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 
 			<!-- 영화관 정보 시작 -->
@@ -704,23 +736,26 @@
 						target="_blank" style="margin-left: 10px;"></a>
 				</div>
 				<div id="map"
-					style="width: 350px; height: 250px; margin-top: 40px; margin-right: 30px; float: right;"></div>
+					style="width: 1168px; height: 250px; margin-top: 40px; margin-right: 30px;  clear:both; float: right;"></div>
 
 				<div class="introbox" style="display: none;" id="cgvGang">
 					<h2 class="ittit pb30">
+						<br>
+						<br>
 						<img
 							src="//images.maxmovie.com/images/common/htitle/cinema_tit2.png"
 							alt="극장소개">
 					</h2>
 					<p class="ittxt">
-						365일 24시간 꺼지지 않는 젊음과 열정의 중심지! CGV강남<br> <br>1. 편리한 접근성<br>강남
-						문화의 중심지로 자리잡게 될 CGV강남은 지하철 2호선 11번 출구에서 도보로 3분 거리에 있습니다.<br>
-						<br>2. 차별화된 인테리어<br>장식을 최소화한, 모던하고도 깔끔한 디자인으로 기존의 영화관과는
-						전혀 다른 편안하고도 안정적인 분위기의 휴식공간을 제공합니다. <br> <br>3. 도심 속의 자연
-						공간<br>도시의 한 복판에서 만날 수 있는 야외 정원은 삭막한 도심 속에서 깨끗한 자연의 향기를 선사해
-						드립니다. <br> <br>4. Only One 서비스 <br>극장 외부에서도 발권할 수
-						있는 야외 티켓 매표소 운영<br>천연 편백나무 향공조 시스템으로 산림욕 효과 체감<br>발권 대기
-						시간을 알려주는 순번 발권 시스템 <br>무료 인터넷 이용 및 XBOX 360 체험 존 오픈 예정<br>
+						365일 24시간 꺼지지 않는 젊음과 열정의 중심지! CGV강남<br>
+						<br> 1. 편리한 접근성<br> 강남 문화의 중심지로 자리잡게 될 CGV강남은 지하철 2호선
+						11번 출구에서 도보로 3분 거리에 있습니다.<br> <br> 2. 차별화된 인테리어<br>
+						장식을 최소화한, 모던하고도 깔끔한 디자인으로 기존의 영화관과는 전혀 다른 편안하고도 안정적인 분위기의 휴식공간을
+						제공합니다. <br> <br> 3. 도심 속의 자연 공간<br>도시의 한 복판에서 만날 수
+						있는 야외 정원은 삭막한 도심 속에서 깨끗한 자연의 향기를 선사해 드립니다. <br> <br>4.
+						Only One 서비스 <br>극장 외부에서도 발권할 수 있는 야외 티켓 매표소 운영<br>천연
+						편백나무 향공조 시스템으로 산림욕 효과 체감<br>발권 대기 시간을 알려주는 순번 발권 시스템 <br>무료
+						인터넷 이용 및 XBOX 360 체험 존 오픈 예정<br>
 					</p>
 					<h2 class="ittit pt30">
 						<img
@@ -760,6 +795,7 @@
 
 				<div class="introbox" style="display: none;" id="cgvjung">
 					<h2 class="ittit pb30">
+					<br><br>
 						<img
 							src="//images.maxmovie.com/images/common/htitle/cinema_tit2.png"
 							alt="극장소개">
@@ -816,7 +852,10 @@
 
 				<div class="introbox" style="display: none;" id="cgvchung">
 					<h2 class="ittit pt30">
-						<img
+						<br>
+						<br>
+						<br>
+						<br> <img
 							src="//images.maxmovie.com/images/common/htitle/cinema_tit3.png"
 							alt="교통편 안내">
 					</h2>
@@ -879,6 +918,7 @@
 
 				<div class="introbox" style="display: none;" id="megacoex">
 					<h2 class="ittit pb30">
+					<br><br>
 						<img
 							src="//images.maxmovie.com/images/common/htitle/cinema_tit2.png"
 							alt="극장소개">
@@ -934,7 +974,7 @@
 
 
 			<!-- 극장 정보 탭  시작 -->
-			<div id="review" class="review" style="margin-top: 150px;">
+			<div id="review" class="review" style="margin-top: 0px;">
 				<div style="display: none;">
 					<h1>3사 평점</h1>
 					<div class="total-movie-rate">
