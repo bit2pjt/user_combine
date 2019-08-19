@@ -256,8 +256,8 @@
                      <!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
                      <!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
                      <div style="text-align:center; padding:3%;">
-                        <input style="width:200px; height: 50px;" type="button" id="update-btn" class="board_btn" value="작성하기" style="margin-right: 20px;"> 
-                        <input style="width:200px; height: 50px;" type="button" class="board_btn" value=" 취 소 " onclick="register_back()">
+                        <input type="button" id="update-btn" class="board_btn" value="작성하기" style="width:200px; height: 50px; margin-right: 20px; border-radius: 6px;"> 
+                        <input style="width:200px; height: 50px; border-radius: 6px;" type="button" class="board_btn" value=" 취 소 " onclick="register_back()">
                      </div>
 
 
