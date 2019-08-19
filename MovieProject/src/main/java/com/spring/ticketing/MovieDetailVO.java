@@ -11,5 +11,6 @@ public class MovieDetailVO {
 	private String opendateLast;
 	private String genre;
 	private String grade;
+	private String rate;
 	
 }

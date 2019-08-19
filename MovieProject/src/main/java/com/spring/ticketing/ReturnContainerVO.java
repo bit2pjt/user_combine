@@ -9,4 +9,5 @@ public class ReturnContainerVO {
 
 	private MovieDetailVO detail;
 	private List<CineInfoVO> cineMeta;
+	private OutterRateVO oRate;
 }

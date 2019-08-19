@@ -36,6 +36,7 @@ public class TicketingRestController {
 		System.out.println("오늘 날짜는"+today);
 		
 		MovieDetailVO detail = ticketingService.getDetailViaMaxmovie(mvCode);
+		OutterRateVO orate= ticketingService.getOutterRate(detail.getName());
 		
 		ArrayList<CineInfoVO> cineMeta = ticketingService.getCineListViaMaxmovie(mvCode, today);
 		//헉! 두 개의 VO는 어떻게 보내지?? 우선 별도의 VO를 하나 더 만들어서 감싸기로...
@@ -43,9 +44,33 @@ public class TicketingRestController {
 		ReturnContainerVO result = new ReturnContainerVO();
 		result.setDetail(detail);
 		result.setCineMeta(cineMeta);
+		result.setORate(orate);
 		
 		return result;
 	}
 
-
+	@GetMapping("/linkToRealTicketing")
+	public String linkToRealTicketing (	String day, String brand,
+									 	String cine, String movieName,
+									 	String startTime, String initDay) {
+		
+		
+		String result = null;
+		
+		if (brand.equals("CGV")) {
+			result =  ticketingService.linkToCGV(day, cine, movieName, startTime);
+		}else if(brand.equals("LOTTE")) {
+			result =  ticketingService.linkToLotte(day, cine, movieName, startTime);
+		}else if(brand.equals("CINUS")) {
+			result =  ticketingService.linkToMegaBox(day, cine, movieName, startTime, initDay);
+		}else {
+			result="3사 외의 영화관";
+		}
+		
+		
+		
+		return result;
+	}
+	
+	
 }
