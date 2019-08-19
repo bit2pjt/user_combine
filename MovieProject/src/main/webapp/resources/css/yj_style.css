@@ -123,7 +123,7 @@ body{
   height:278px;
   margin:20px;
   position: relative;
-  border: 3px solid black;
+  border: 2px solid black;
   position: relative;
 }
 .movielist-card:hover {
@@ -149,7 +149,8 @@ body{
 
 .movie-in {
 	color:#999;
-	font-size:11px;
+	font-size:12px;
+	font-weight:bold;
 }
 .movieImage {
 	  opacity: 1;

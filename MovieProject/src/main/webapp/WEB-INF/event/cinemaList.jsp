@@ -702,9 +702,10 @@
 					<div class="cinemaAdd" style="margin-bottom: 5px;"></div>
 					<span class="cinemaPhone"></span> <a href="#" id="home"
 						target="_blank" style="margin-left: 10px;"></a>
+						
+					<div id="map" style="width: 350px; height: 250px; margin-top: 40px; margin-right: 30px; float: right;"></div>
 				</div>
-				<div id="map"
-					style="width: 350px; height: 250px; margin-top: 40px; margin-right: 30px; float: right;"></div>
+				
 
 				<div class="introbox" style="display: none;" id="cgvGang">
 					<h2 class="ittit pb30">
