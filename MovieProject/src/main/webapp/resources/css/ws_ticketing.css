@@ -23,13 +23,13 @@
 	width:50%;
 	padding-top:3px;
 	display:inline-block;
-	margin-left:6.5%;
+	
 	
 }
 
 #ws_multi_eval {
 	display:inline-block;
-	width:43%;
+	width:49%;
 	text-align:left;
 }
 
@@ -63,7 +63,7 @@
 }
 
 #ws_ticketing_movies {
-	width:20%;
+	width:25%;
 	padding-top:3px;
 	display:inline-block;
 }
@@ -85,13 +85,13 @@
 }
 
 #ws_ticketing_cines {
-	width:30%;
+	width:33%;
 	padding-top:3px;
 	display:inline-block;
 }
 
 #ws_ticketing_screens {
-	width:18%;
+	width:20%;
 	padding-top:3px;
 	display:inline-block;
 }
@@ -185,7 +185,7 @@
 	/*/기타정보 자리//*/
 	/*//////////*/	
 #ws_total_info_tab {
-	width:18%;
+	width:20%;
 	padding-top:3px;
 	display:inline-block;
 	
@@ -204,42 +204,7 @@
 	display:none;
 }
 
-	/*//////////*/
-	/*/지리정보 자리//*/
-	/*//////////*/
-	
-#map {
-	width:20%;
-	min-height:250px;
-	padding:15px;
-	border:1px solid;
-	margin-left:6%;
-	margin-top:2%;
-	display:inline-block;
-	float:left;
-	background-color:white;
-}
 
-
-	
-	/*//////////*/
-	/*/3사평점 자리//*/
-	/*//////////*/	
-
-#ws_outer_star {
-	width:24%;
-	min-height:250px;
-	padding:15px;
-	border:1px solid;
-	margin-left:2%;
-	margin-top:2%;
-	display:inline-block;
-	background-color:white;
-}	
-	
-	/*//////////*/
-	/*/자체리뷰 자리//*/
-	/*//////////*/	
 
 .scrollbar
 {
