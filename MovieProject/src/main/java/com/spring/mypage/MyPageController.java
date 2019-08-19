@@ -18,10 +18,15 @@ package com.spring.mypage;
  *  Copyright (C) by Bit All right reserved.
  */
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,6 +37,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.member.MemberVO;
@@ -43,6 +50,9 @@ import com.spring.paging.SearchCriteria;
 public class MyPageController {
    @Autowired
    private MyPageService myPageService;
+   
+   @Autowired
+   ServletContext context;
 
    // mypage 메인
    @RequestMapping(value = "/mypage", method = RequestMethod.GET)
@@ -68,6 +78,67 @@ public class MyPageController {
 
       return "mypage/mypage";
    }
+   
+   
+   //web.xml, servlet-context.xml, 서버의 server.xml, context.xml 모두 추가사항있음
+   @RequestMapping(value="/profileAddAction", method=RequestMethod.POST)
+   public String profileAddAction(HttpServletRequest request,HttpServletResponse response, RequestModel model) throws Exception{
+	   	String realPath = "";
+		String realPath_t = "";
+		String savePath="/upload";
+		int maxSize = 5 * 1024 * 1024;
+		
+		realPath = context.getRealPath(savePath);//서버 지우고나서 재시동시 기존의 사진자료들이 날아감, 테스트를 위해 아래코드로 저장경로를 로컬로 설정. -> 서버랑 로컬에 모두 저장! 
+		//서버의 사진이 날아가면 로컬에 저장된 사진들을 서버로 복붙해서 테스트하면 됩니당.
+		
+		//******아래의 경로, server.xml, servlet-context.xml의 모든 경로를 바꿔주세용******
+		realPath_t="/Users/yujeen/Desktop/bitcamp2019/2019bitPro/upload";
+		
+//		System.out.println("================= profileAddAction | realPath ===================="+realPath);
+//		System.out.println("================= profileAddAction | realPath_t ===================="+realPath);
+		
+		List saveFiles = new ArrayList();
+		try {
+			MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)request;
+			Iterator it = mhsr.getFileNames();
+			MultipartFile mFile = null;
+			String fieldName = "";
+//			System.out.println("================= profileAddAction | it.hasNext() ===================="+it.hasNext());
+			while(it.hasNext()) {
+				fieldName = (String)it.next();
+				mFile = mhsr.getFile(fieldName);
+				if(mFile.getOriginalFilename().equals("")) {
+					break;
+				}
+				System.out.println("mFile : " + mFile.getOriginalFilename());
+				String originalFileExtension = mFile.getOriginalFilename().substring(
+						mFile.getOriginalFilename().lastIndexOf("."));
+				System.out.println("originalFileExtension : " + originalFileExtension);
+				String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+				System.out.println("storedFileName : " + storedFileName);
+				if(mFile.getSize() != 0) {
+					mFile.transferTo(new File(realPath + "/" + storedFileName));
+					mFile.transferTo(new File(realPath_t + "/" + storedFileName));
+				}
+				
+				if(it.hasNext()){
+					//지금 가져온 이름 다음 이름이 더 있으면
+					//즉, 지금 enumeration에서 가져온 이름이 마지막 요소가 아니면
+					saveFiles.add(storedFileName+",");
+				}else{
+					saveFiles.add(storedFileName);
+				}
+			}
+			StringBuffer fl=new StringBuffer();
+			for(int i=0;i<saveFiles.size();i++){
+				fl.append(saveFiles.get(i));	
+			}
+			int result = myPageService.insertProfileImage(Integer.parseInt(request.getParameter("id")),fl.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/mypage"; 
+		}
 
 	// 마이페이지 - 회원정보 수정
 	@RequestMapping(value = "/member_update")

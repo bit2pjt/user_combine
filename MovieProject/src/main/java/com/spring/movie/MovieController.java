@@ -39,6 +39,30 @@ public class MovieController {
 		return "movie/movieList";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/mmlWriteMovie", method=RequestMethod.GET)
+	public List<MovieInfoVO> mmlWriteMovie(Model model, HttpServletRequest request,SearchCriteria searchCriteria) {
+		//System.out.println("mmlWriteMovie  ===========>   " + searchCriteria.getSearchType() + ", " +searchCriteria.getKeyword());
+		PageMaker pageMaker = new PageMaker();
+        pageMaker.setCriteria(searchCriteria);
+        pageMaker.setTotalCount(movieService.countSearchedMovie(searchCriteria));
+        System.out.println("searchCriteria  ===========>   " + searchCriteria.toString());
+		List<MovieInfoVO> movieList = movieService.getMovieListSerch(searchCriteria);
+		
+		if(movieList.size() == 0) {
+			System.out.println("결과 : 검색결과가 없네용");
+		}else {
+			System.out.println("결과 : 검색결과가 있네용");
+		}
+		for(int i=0; i<movieList.size(); i++) {
+			System.out.println("mmlWriteMovie  getMi_ktitle ===========>   " +movieList.get(i).getMi_ktitle());
+		}
+//		model.addAttribute("movieList", movieList);
+//		model.addAttribute("pageMaker", pageMaker);
+		return movieList;
+	}
+	
+	
 	@RequestMapping(value="/movieDetail", method=RequestMethod.GET)
 	public String moveDetail(@RequestParam("mi_ktitle") String mi_ktitle, Model model, HttpSession session) {
 		String sessionyn = (String)session.getAttribute("m_email");

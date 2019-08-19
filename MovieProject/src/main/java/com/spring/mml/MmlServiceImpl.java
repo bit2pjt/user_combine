@@ -56,9 +56,9 @@ public class MmlServiceImpl implements MmlService {
 	}
 	
 	@Override
-	public List<Mml_ContentVO> getMmlList_like_top2(int id) {
+	public List<Mml_ContentVO> getMmlList_like_top3(int id) {
 		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
-		List<Mml_ContentVO> mmlList = mmlDAO.getMmlList_like_top2(id);
+		List<Mml_ContentVO> mmlList = mmlDAO.getMmlList_like_top3(id);
 
 		return mmlList;
 	}
