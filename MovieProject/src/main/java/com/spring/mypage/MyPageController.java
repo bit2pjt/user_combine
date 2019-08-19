@@ -303,6 +303,42 @@ public class MyPageController {
       return "mypage/one_list";
    }
    
+// 마이페이지
+   @RequestMapping(value = "/myinfo", method = RequestMethod.GET)
+   public String myinfo(HttpServletRequest request, HttpSession session, Model model,@ModelAttribute("criteria") 
+	Criteria criteria) {
+	   String m_email = (String) session.getAttribute("m_email");
+	   if (m_email == null) {
+		   return "redirect:/index";
+	   }
+	   
+	   String m_name = myPageService.getMemberName(m_email);
+	   request.setAttribute("m_name", m_name);
+	   int id = myPageService.getMemberId(m_email); 
+	   
+	   PageMaker pageMaker1 = new PageMaker();
+	   PageMaker pageMaker2 = new PageMaker();
+	   
+	   criteria.setId(id);
+	   
+	   int freecount = myPageService.getFreeCount(id);
+	   int sharecount = myPageService.getShareCount(id);
+	   
+	   pageMaker1.setCriteria(criteria);
+	   pageMaker2.setCriteria(criteria);
+	   
+	   pageMaker1.setTotalCount(freecount);
+	   pageMaker2.setTotalCount(sharecount);
+	      
+	   model.addAttribute("freeList", myPageService.freeBoard(criteria));
+	   model.addAttribute("shareList", myPageService.shareBoard(criteria));
+	   
+	   model.addAttribute("pageMaker1", pageMaker1);	
+	   model.addAttribute("pageMaker2", pageMaker2);	
+	   
+      return "mypage/myinfo";
+   }
+   
 
    // 마이페이지 - 1:1 문의내역 리스트 - 1:1문의내역 등록
    @RequestMapping(value = "/one_register", method = RequestMethod.GET)

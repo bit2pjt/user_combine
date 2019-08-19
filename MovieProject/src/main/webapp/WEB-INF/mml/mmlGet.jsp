@@ -111,7 +111,7 @@
 						</div>
 					</div>
 					
-					<textarea style="width: 100%; height: 358px; font-size: 20px;" ><c:out value="${mml_content.mml_view_count}"/>   <c:out value="${mml_content.mml_content}"/></textarea>
+					<textarea style="width: 100%; height: 358px; font-size: 20px;" ><c:out value="${mml_content.mml_content}"/></textarea>
 
 					<!-- share link -->
 					<a href="/movie/movieDetail?mi_code=<c:out value="${mml_content.mi_code}"/> "> 

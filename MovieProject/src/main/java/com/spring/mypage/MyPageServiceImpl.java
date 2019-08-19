@@ -1,5 +1,6 @@
 package com.spring.mypage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -227,7 +228,39 @@ public class MyPageServiceImpl implements MyPageService{
 		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
 		return myPageDAO.listCriteria(criteria);
 	}
+
+	@Override
+	public int getFreeCount(int id) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int freeCount = myPageDAO.getFreeCount(id);
+		return freeCount;
+	}
 	
+	@Override
+	public int getShareCount(int id) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		
+		int shareCount = myPageDAO.getShareCount(id);
+		return shareCount;
+	}
+
+
+	@Override
+	public List<MyBoardDTO> freeBoard(Criteria criteria) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		List<MyBoardDTO> list1 = myPageDAO.getFreeBoard(criteria);
+		
+		return list1;
+	}
+
+	@Override
+	public List<MyBoardDTO> shareBoard(Criteria criteria) {
+		MyPageDAO myPageDAO = sqlSession.getMapper(MyPageDAO.class);
+		List<MyBoardDTO> list2 = myPageDAO.getShareBoard(criteria);
+		
+		return list2;
+	}
 	
 	
 	

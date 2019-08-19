@@ -225,11 +225,11 @@
         	 
 			<c:if test="${id == boardFreeVO.id }">
 				<div style="float:right;">
-					 <button id='btn-hjs' onclick="updateContent()">수정</button> 
-					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
+					 <button style="width:100px; height:40px;" id='btn-hjs' onclick="updateContent()">수정</button> 
+					 <button style="width:100px; height:40px;" id='btn-hjs' onclick="deleteContent()">삭제</button>
 				</div>
 			</c:if>
-			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px;">목록</button>
+			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px; width:100px; height: 40px;">목록</button>
 		</center>
 		
 		
@@ -238,7 +238,6 @@
 		<!-- 글신고/글추천/글비추 배치 끝 -->
 		<!-- 5. 댓글 구현부의 시작 -->
 	</div>
-
 			<div class="ws-get-Rside">
 				<div class="ws-side-best">
 					<ul>
@@ -339,7 +338,7 @@
 					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:100px;"></textarea>
 	 			</div>
 				<div class="pull-right">
-					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
+					<button style="width:160px;" type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
 				</div>
 			</div>
 		</div>

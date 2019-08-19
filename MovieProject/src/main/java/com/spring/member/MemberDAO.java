@@ -1,5 +1,7 @@
 package com.spring.member;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface MemberDAO {
@@ -29,5 +31,5 @@ public interface MemberDAO {
 	public void deleteMember(String email);
 	public String userNickName(int id);
 	
-
+	public List<MovieChartVO> getMovieChart();
 }

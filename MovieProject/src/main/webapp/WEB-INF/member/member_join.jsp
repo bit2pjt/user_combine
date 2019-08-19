@@ -60,7 +60,7 @@
 				<input id="formtype" type="hidden" value="joinform">
 				<form id="joinform" action="memberJoinPAction" method="post" onsubmit="return check()">
 					<div class="join">
-						<h4>회원가입</h4>
+						<h1>회원가입</h1>
 						<hr>
 						<h5>이메일</h5>
 						<input name="m_cert" type="hidden" value="N" /> 

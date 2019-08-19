@@ -30,7 +30,6 @@ ul.jq_tab.tab_menu li{
   
 }
 
-li:hover{background: #ccc;}
 li:active a { text-decoration:none; color: #dd003f; font-weight: bold }
 /*메뉴 글씨색 변경.*/
 ul.jq_tab.tab_menu li.on a{
@@ -240,26 +239,23 @@ ul.jq_tab.tab_menu li a{
   }
 }
 
-.cinema_select select{
+
+.cinema select{
   width: 24%;
   height: 200px;
   display: inline-block;
   vertical-align: top;
-  border-style: none
 }
 .cinema_info {
   margin-bottom: 40px;
 }
-.cinema_info div{
-  
 
-}
-.cinema_info div.cinema_info_text{
+.cinema div.cinema_info_text{
   width: 60%;
   height: 160px;
   display: inline-block;
 }
-.cinema_info div.cinema_info_map{
+.cinema div.cinema_info_map{
   width: 38%;
   height: 160px;
   display: inline-block;
@@ -267,10 +263,7 @@ ul.jq_tab.tab_menu li a{
   background-color: #cfc;
 }
 
-.cinema_ticket_info{
-  margin-top: 70px;
-  float: right;
-}
+
 @media(max-width: 1200px){
   .cinema_select select{
   width: 100%;

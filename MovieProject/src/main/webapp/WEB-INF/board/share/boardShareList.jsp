@@ -23,7 +23,7 @@
 * @ 2019.07.22     한유진    	 header, footer 수정(1,2 버전으로 변경)
 * @ 2019. 08. 13	 한유진				수정
 *
-* @author BIT 116기 2조
+* @author BIT 116기 2조ㄱ
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -43,7 +43,7 @@
 					<h1> 나눔 게시판</h1>
 					<ul class="breadcumb">
 						<li class="active"><a href="#">커뮤니티</a></li>
-						<li> <span class="ion-ios-arrow-right"></span> 자유 게시판</li>
+						<li> <span class="ion-ios-arrow-right"></span> 나눔 게시판</li>
 					</ul>
 				</div>
 			</div>
@@ -60,18 +60,18 @@
 			<!-- listTable 배치 시작 -->
 				<div>
 					<div style="position:relative;top:50px">
-						<button class="board_btn_right" value="글쓰기" onClick="location.href='boardShareWrite'">글쓰기</button>
+						<button style="width: 160px; height: 40px;" class="board_btn_right" value="글쓰기" onClick="location.href='boardShareWrite'">글쓰기</button>
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
 							<!-- 2. 최초의 행. 열의 종류 구분 -->
 							<tr>
-							  <th style="width:8%;">글번호</th>
-							  <th style="width:7%;">카테고리</th>
-							  <th style="width:45%;">제목</th>
-							  <th style="width:10%;">작성자</th>
-							  <th style="width:10%;">최근수정일</th>
-							  <th style="width:10%;">조회수</th>
+							  <th style="width:8%;border-right: 1px solid gray;">글번호</th>
+							  <th style="width:7%;border-right: 1px solid gray;">카테고리</th>
+							  <th style="width:45%;border-right: 1px solid gray;">제목</th>
+							  <th style="width:10%;border-right: 1px solid gray;">작성자</th>
+							  <th style="width:10%;border-right: 1px solid gray;">최근수정일</th>
+							  <th style="width:10%;border-right: 1px solid gray;">조회수</th>
 							  
 							</tr>
 						  </thead>

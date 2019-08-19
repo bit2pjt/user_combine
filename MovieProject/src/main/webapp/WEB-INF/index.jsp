@@ -35,7 +35,6 @@
 <%@ include file="./header2.jsp" %>
 
 <!-- 4. 페이지별 본문 -->
-
 <div class="slider movie-items">
 	<div class="container">
 		<div class="row">
@@ -43,638 +42,131 @@
 			<div class="movie-tabs">
 				<div class="tabs">
 					<ul id="moviechart-ul" class="tab-links tabs-mv">
-						<li class="active"><a href="#total">통합</a></li>
-						<li><a href="#cgv"> CGV</a></li>
-						<li><a href="#lottecinema"> 롯데시네마 </a></li>
-						<li><a href="#megabox"> 메가박스</a></li>
+						<li style="display:none;"><a href="#total">통합</a></li>
+						<li class="active"><a href="#cgv"> CGV </a></li>
+						<li><a href="#lotte"> 롯데시네마  </a></li>
+						<li><a href="#megabox"> 메가박스  </a></li>
+						<li><a href="#naver"> 네이버  </a></li>
+						<li><a href="#daum"> 다음  </a></li>
 					</ul>
 					<div class="moviechart">
 						<!-- yj : start | total tab-->
-						<div id="total" class="tab active">
+						<!-- yj : start | cgv tab-->
+						<div id="cgv" class="tab active">
 							<div class="slick-multiItemSlider">
+							<c:forEach items="${cgvList }" var="cgvChart" varStatus="status">
 								<div class="movie-item">
 									<div class="mv-img">
 										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
+											src="${cgvChart.thumnail}" alt="" width="285"
 											height="437"></a>
 									</div>
 									<div class="title-in">
 										<h6>
-											<a href="#">movie title</a>
+											<a href="movieDetail?mi_ktitle=${cgvChart.movieTitle}">${cgvChart.movieTitle}</a>
 										</h6>
 										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
+											<i class="ion-android-star"></i>예매율<span>${cgvChart.score}</span>
 										</p>
 									</div>
-									<div class="movie-ranking">1</div>
+									<div class="movie-ranking">${status.count }</div>
 								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">2</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">3</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">4</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">5</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">6</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">7</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">8</div>
-								</div>
+							</c:forEach>
 							</div>
 						</div>
-						<!-- yj : start | cgv tab-->
-						<div id="cgv" class="tab review">
+						
+						<div id="lotte" class="tab">
 							<div class="slick-multiItemSlider">
+								<c:forEach items="${daumList }" var="daumChart" varStatus="status">
 								<div class="movie-item">
 									<div class="mv-img">
 										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
+											src="${daumChart.thumnail}" alt="" width="285"
 											height="437"></a>
 									</div>
 									<div class="title-in">
 										<h6>
-											<a href="#">movie title</a>
+											<a href="movieDetail?mi_ktitle=${daumChart.movieTitle}">${daumChart.movieTitle}</a>
 										</h6>
 										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
+											<i class="ion-android-star"></i>평점<span>${daumChart.star}</span> /10
 										</p>
 									</div>
-									<div class="movie-ranking">1</div>
+									<div class="movie-ranking">${status.count }</div>
 								</div>
+							</c:forEach>
+							</div>
+						</div>
+						
+						<div id="megabox" class="tab">
+							<div class="slick-multiItemSlider">
+								<c:forEach items="${daumList }" var="daumChart" varStatus="status">
 								<div class="movie-item">
 									<div class="mv-img">
 										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
+											src="${daumChart.thumnail}" alt="" width="285"
 											height="437"></a>
 									</div>
 									<div class="title-in">
 										<h6>
-											<a href="#">movie title</a>
+											<a href="movieDetail?mi_ktitle=${daumChart.movieTitle}">${daumChart.movieTitle}</a>
 										</h6>
 										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
+											<i class="ion-android-star"></i>평점<span>${daumChart.star}</span> /10
 										</p>
 									</div>
-									<div class="movie-ranking">2</div>
+									<div class="movie-ranking">${status.count }</div>
 								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">3</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">4</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">5</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">6</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">7</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">8</div>
-								</div>
+							</c:forEach>
 							</div>
 						</div>
 						<!-- yj : start | lottecinema tab-->
-						<div id="lottecinema" class="tab">
+						<div id="naver" class="tab">
 							<div class="slick-multiItemSlider">
+							<c:forEach items="${naverList }" var="naverChart" varStatus="status">
 								<div class="movie-item">
 									<div class="mv-img">
 										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
+											src="${naverChart.thumnail}" alt="" width="285"
 											height="437"></a>
 									</div>
 									<div class="title-in">
 										<h6>
-											<a href="#">movie title</a>
+											<a href="movieDetail?mi_ktitle=${naverChart.movieTitle}">${naverChart.movieTitle}</a>
 										</h6>
 										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
+											<i class="ion-android-star"></i>평점<span>${naverChart.star}</span> /10
 										</p>
 										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
+											<i class="ion-android-star"></i>예매율<span>${naverChart.score}</span>
 										</p>
 									</div>
-									<div class="movie-ranking">1</div>
+									<div class="movie-ranking">${status.count }</div>
 								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">2</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">3</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">4</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">5</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">6</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">7</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">8</div>
-								</div>
+							</c:forEach>
 							</div>
 						</div>
 						<!-- yj : start | megabox tab-->
-						<div id="megabox" class="tab">
+						<div id="daum" class="tab">
 							<div class="slick-multiItemSlider">
+								<c:forEach items="${daumList }" var="daumChart" varStatus="status">
 								<div class="movie-item">
 									<div class="mv-img">
 										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
+											src="${daumChart.thumnail}" alt="" width="285"
 											height="437"></a>
 									</div>
 									<div class="title-in">
 										<h6>
-											<a href="#">movie title</a>
+											<a href="movieDetail?mi_ktitle=${daumChart.movieTitle}">${daumChart.movieTitle}</a>
 										</h6>
 										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
+											<i class="ion-android-star"></i>평점<span>${daumChart.star}</span> /10
 										</p>
 									</div>
-									<div class="movie-ranking">1</div>
+									<div class="movie-ranking">${status.count }</div>
 								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">2</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">3</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">4</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">5</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">6</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">7</div>
-								</div>
-								<div class="movie-item">
-									<div class="mv-img">
-										<a href="#"><img
-											src="resources/images/uploads/slider1.jpg" alt="" width="285"
-											height="437"></a>
-									</div>
-									<div class="title-in">
-										<h6>
-											<a href="#">movie title</a>
-										</h6>
-										<p>
-											<i class="ion-android-star"></i>평점<span>0</span> /10
-										</p>
-										<p>
-											<i class="ion-android-star"></i>예매율<span>00%</span>
-										</p>
-									</div>
-									<div class="movie-ranking">8</div>
-								</div>
+							</c:forEach>
 							</div>
 						</div>
 					</div>

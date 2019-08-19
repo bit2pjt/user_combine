@@ -211,18 +211,18 @@ $(function(){
 			<!-- listTable 배치 시작 -->
 				<div>
 					<div style="position:relative;top:50px">
-						<button class="board_btn_right" value="글쓰기" onClick="location.href='boardFreeWrite'">글쓰기</button><!-- <i class="fa fa-pencil" aria-hidden="true"></i> -->
+						<button style="width: 160px; height: 40px;" class="board_btn_right" value="글쓰기" onClick="location.href='boardFreeWrite'">글쓰기</button><!-- <i class="fa fa-pencil" aria-hidden="true"></i> -->
 						<!-- 1. listTable 배치 -->
 						<table class="ws_table">
 						  <thead>
 							<!-- 2. 최초의 행. 열의 종류 구분 -->
 							<tr>
-							  <th style="width:8%;">글번호</th>
-							  <th style="width:7%;">카테고리</th>
-							  <th style="width:45%;">제목</th>
-							  <th style="width:10%;">작성자</th>
-							  <th style="width:10%;">최근수정일</th>
-							  <th style="width:10%;">조회수</th>
+							  <th style="width:8%;border-right: 1px solid gray;">글번호</th>
+							  <th style="width:7%;border-right: 1px solid gray; ">카테고리</th>
+							  <th style="width:45%;border-right: 1px solid gray; ">제목</th>
+							  <th style="width:10%;border-right: 1px solid gray;">작성자</th>
+							  <th style="width:10%;border-right: 1px solid gray;">최근수정일</th>
+							  <th style="width:10%;border-right: 1px solid gray;">조회수</th>
 							  
 							</tr>
 						  </thead>

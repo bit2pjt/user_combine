@@ -11,9 +11,9 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.spring.moive">
+<!-- 	<logger name="com.spring.moive">
 		<level value="info" />
-	</logger>
+	</logger>  -->
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
@@ -34,7 +34,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="trace" />
 		<appender-ref ref="console" />
 	</root>
 	

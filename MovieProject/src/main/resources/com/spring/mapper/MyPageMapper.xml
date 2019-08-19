@@ -72,6 +72,18 @@
 		<result property="mf_wer" column="mf_wer"/>
 	</resultMap>
 	
+	<resultMap type="com.spring.mypage.MyBoardDTO" id="boardDTOMap">
+		<result property="id" column="id"/>
+		<result property="bno" column="bf_bno"/>
+		<result property="category" column="bf_category"/>
+		<result property="title" column="bf_title"/>
+		<result property="reg_date" column="bf_reg_date"/>
+		<result property="bno" column="bs_bno"/>
+		<result property="category" column="bs_category"/>
+		<result property="title" column="bs_title"/>
+		<result property="reg_date" column="bs_reg_date"/>
+	</resultMap>
+	
 	<select id="getMemberName" parameterType="String" resultType="String">
 		select M_NAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
@@ -205,6 +217,46 @@
         ]]>
     </select>
     
+	<select id="getFreeCount" parameterType="int" resultType="int">
+		select count(*)
+		from board_free
+		where id=#{id}
+	</select>
 	
+	<select id="getShareCount" parameterType="int" resultType="int">
+		select count(*)
+		from board_share
+		where id=#{id}
+	</select>
+	
+	<select id="getFreeBoard" resultMap="boardDTOMap">
+		<![CDATA[
+		select rn, id, bf_bno, bf_category, bf_title, bf_reg_date
+		from (
+			select rownum rn, id, bf_bno, bf_category, bf_title, bf_reg_date
+			from(
+				select id, bf_bno, bf_category, bf_title, bf_reg_date
+				from board_free
+				order by bf_reg_date
+				)
+			)
+		where id=#{id} and rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="getShareBoard" resultMap="boardDTOMap">
+		<![CDATA[
+		select rn, id, bs_bno, bs_category, bs_title, bs_reg_date
+		from (
+			select rownum rn, id, bs_bno, bs_category, bs_title, bs_reg_date
+			from(
+				select id, bs_bno, bs_category, bs_title, bs_reg_date
+				from board_share
+				order by bs_reg_date
+				)
+			)
+		where id=#{id} and rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+		]]>
+	</select>
 	
 </mapper>

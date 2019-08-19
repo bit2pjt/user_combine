@@ -162,7 +162,7 @@
 											<div class="movielist-card"
 												onclick="movie_select(${movie.mi_code},'${movie.mi_poster}')"
 												data-dismiss="modal">
-												<img src="./upload/poster/${movie.mi_poster}">
+												<img src="${movie.mi_poster}">
 												<div class="movie-info">
 													<h4 class="movie-ktitle">${movie.mi_ktitle}</h4>
 													<h6 class="movie-etitle">${movie.mi_etitle}</h6>
