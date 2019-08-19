@@ -66,12 +66,12 @@
 						  <thead>
 							<!-- 2. 최초의 행. 열의 종류 구분 -->
 							<tr>
-							  <th style="width:8%;">글번호</th>
-							  <th style="width:7%;">카테고리</th>
-							  <th style="width:45%;">제목</th>
-							  <th style="width:10%;">작성자</th>
-							  <th style="width:10%;">최근수정일</th>
-							  <th style="width:10%;">조회수</th>
+							  <th style="width:8%;border-right: 1px solid gray;">글번호</th>
+							  <th style="width:7%;border-right: 1px solid gray;">카테고리</th>
+							  <th style="width:45%;border-right: 1px solid gray;">제목</th>
+							  <th style="width:10%;border-right: 1px solid gray;">작성자</th>
+							  <th style="width:10%;border-right: 1px solid gray;">최근수정일</th>
+							  <th style="width:10%;border-right: 1px solid gray;">조회수</th>
 							  
 							</tr>
 						  </thead>

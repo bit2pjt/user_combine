@@ -1,4 +1,5 @@
 
+
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -29,7 +30,6 @@ ul.jq_tab.tab_menu li{
   
 }
 
-li:hover{background: #ccc;}
 li:active a { text-decoration:none; color: #dd003f; font-weight: bold }
 /*메뉴 글씨색 변경.*/
 ul.jq_tab.tab_menu li.on a{
@@ -68,11 +68,7 @@ ul.jq_tab.tab_menu li a{
 .is_comp.js-load:after {
     display: none;
 }
-.btn-wrap, .lists, .main {
-    background-color: #333;
-    line-height: 60px;
-    display: block;
-}
+
 .btn-wrap a{
   color: #fff;
 }
@@ -82,6 +78,7 @@ ul.jq_tab.tab_menu li a{
 }
 .lists {
     margin-bottom: 5rem;
+    font-size: 0;
 }
 .lists li{
     list-style-type: none;
@@ -92,15 +89,27 @@ ul.jq_tab.tab_menu li a{
     /*포스터 나오는거*/
     
     width: 240px;
-    height: 400px;
+    height: 340px;
     padding: 20px;
     background: #fff;
 }
 
 .btn-wrap {
+	background-color:#333;
+	line-height: 80px;
     font-weight: bold;
     text-align: center;
 }
+.box-contents{
+	font-size: 14px;
+}
+.box-contents strong{
+	display: block;
+}
+.txt-lightblue{
+	display:block;
+}
+
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -202,6 +211,7 @@ ul.jq_tab.tab_menu li a{
   
 
 }
+
 /*-------------------CinemaList 스타일------------------------*/
 /**
 * @Class Name : EgovSampleService.java
@@ -229,29 +239,23 @@ ul.jq_tab.tab_menu li a{
   }
 }
 
-.cinema_select select{
+
+.cinema select{
   width: 24%;
   height: 200px;
   display: inline-block;
   vertical-align: top;
-  border-style: none
 }
 .cinema_info {
   margin-bottom: 40px;
 }
-.cinema_info div{
-  
 
-}
-.cinema_info div.cinema_info_text{
+.cinema div.cinema_info_text{
   width: 60%;
   height: 160px;
   display: inline-block;
-  
-  
-  
 }
-.cinema_info div.cinema_info_map{
+.cinema div.cinema_info_map{
   width: 38%;
   height: 160px;
   display: inline-block;
@@ -259,10 +263,7 @@ ul.jq_tab.tab_menu li a{
   background-color: #cfc;
 }
 
-.cinema_ticket_info{
-  margin-top: 70px;
-  float: right;
-}
+
 @media(max-width: 1200px){
   .cinema_select select{
   width: 100%;
@@ -275,6 +276,48 @@ ul.jq_tab.tab_menu li a{
   float: right;
 }
 }
+
+.blockbuster-rate .movie-rate .rate p span.rv {
+	font-size: 12px;
+	color: #4280bf;
+}
+
+.blockbuster-rate .movie-rate .rate {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.blockbuster-rate .movie-rate .rate-star {
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-left: 30px;
+	height: 54px;
+}
+
+.review-write h3 {
+	font-family: 'Dosis', sans-serif;
+	font-size: 27px;
+	color: #020d18;
+	font-weight: bold;
+	text-transform: none;
+	margin-bottom: 15px;
+	text-align:left;
+	margin-left:10px;
+}
+
+.mv-user-review-item {
+  border-bottom: 1px solid #d0dae4;
+  padding: 20px 20px 20px 0;
+}
+
 /**
 * @Class Name : EgovSampleService.java
 * @Description : EgovSampleService Class
@@ -291,69 +334,6 @@ ul.jq_tab.tab_menu li a{
 *
 *  Copyright (C) by bit 2조 All right reserved.
 */
-
- .tab-wrap * { 
-    margin: 0px; 
-    padding: 0px; 
-}
-.tab-wrap { 
-    position: relative; 
-    padding-top: 30px; 
-}
-.tab-wrap li { 
-    z-index: 2; 
-    position: absolute; 
-    top: 0px; 
-    width: 140px; 
-    height: 30px; 
-    text-indent: -9999%; 
-}
-.tab-wrap li:nth-of-type(1) { 
-    left: 0px; 
-}
-.tab-wrap li:nth-of-type(2) { 
-    left: 140px; 
-}
-.tab-wrap li a { 
-    display: block; 
-    width: 100%; 
-    height: 100%; 
-}
-.tab-wrap article h1 { 
-    position: absolute; 
-    top: 0px; 
-    width: 140px; 
-    height: 30px; 
-    line-height: 30px; 
-    box-sizing: border-box; 
-    border: 1px solid #ddd; 
-    text-align: center; 
-    font-size: 12px; 
-}
-.tab-wrap article p { 
-    border: 1px solid #ddd; 
-    
-}
-.tab-wrap article:target h1 { 
-    background-color: #333;
-    color: #fff; 
-}
-.tab-wrap article:nth-of-type(1) h1 { 
-    left: 0px; 
-}
-.tab-wrap article:nth-of-type(2) h1 { 
-    left: 140px; 
-}
-.tab-wrap article p { 
-    display: none; 
-}
-.tab-wrap article:target p { 
-    display: block; 
-}
-
-
-
-
 
 
 /*-------------manageReviewGet.html--------------------*/
@@ -381,3 +361,102 @@ ul.jq_tab.tab_menu li a{
     left: 0%;
   }
 }
+/*-------------lastevent.jsp--------------------*/
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.08   김광희      @media 처리
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+.box-image{
+	height: 180px;
+	display: inline-block;
+}
+.box-contents .txt-lightblue{
+	display: bloack;	
+}
+
+
+/*-------------winner.jsp--------------------*/
+/**
+* @Class Name : EgovSampleService.java
+* @Description : EgovSampleService Class
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.08   김광희      		클로링 표수정
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+.winner_cwal{
+	
+}
+.winner_cwal th{
+	background-color: #333;
+	color:#fff;
+	font-weight: bold;
+}
+
+.add_button{
+	background-color: #333;
+	color:#fff;
+	text-align: center;
+	line-height: 60px;
+}
+.add_button a{
+	color : #fff;
+}
+
+
+
+
+.js-load {
+    display: none;
+}
+.js-load.active {
+    display: block;
+}
+.is_comp.js-load:after {
+    display: none;
+}
+
+/* 탭 안에 tbody 수정 */
+.cont th{
+	background-color: #333;
+	color:#fff;
+}
+.cont th:nth-child(1){
+	width:14%;
+	background-color: #333;
+	color:#fff;
+}
+
+
+/* 페이징  */
+#pagination a {
+display:inline-block;
+margin-right:5px;
+cursor:pointer;
+}
+
+
+
+

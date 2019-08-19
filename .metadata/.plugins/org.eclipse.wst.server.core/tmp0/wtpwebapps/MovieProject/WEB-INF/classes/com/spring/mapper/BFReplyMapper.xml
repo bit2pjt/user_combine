@@ -27,7 +27,7 @@
 
     <insert id="create">
 	    <selectKey resultType="int" keyProperty="bfr_rno" order="BEFORE">
-	        SELECT SEQ_BFR_RNO.NEXTVAL FROM dual        
+	        SELECT SEQ_BF_RNO.NEXTVAL FROM dual        
 	    </selectKey>
         INSERT INTO bf_reply 
         VALUES (
