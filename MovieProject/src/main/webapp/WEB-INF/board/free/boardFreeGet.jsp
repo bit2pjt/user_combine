@@ -393,7 +393,6 @@
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
     });
     
-    $()
     
     $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li
