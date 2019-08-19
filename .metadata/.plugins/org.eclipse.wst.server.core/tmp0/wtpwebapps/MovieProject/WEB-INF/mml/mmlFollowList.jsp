@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.spring.member.MemberVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--
 /**
@@ -106,6 +107,14 @@
                  	<div id="contents">
   					<div id="js-load" class="main">
     				<ul class="lists">
+    				<c:choose>
+    				<c:when test="${requestScope.followers.get(0).getId() == null}">
+											<tr>
+												<td colspan="4">팔로워가 없습니다.</td>
+											</tr>
+										</c:when>
+    				<c:otherwise>
+    				
                  	<c:forEach items="${followers}" var="follower">
                  
                  	<li class="js-load">
@@ -136,6 +145,8 @@
                        </li>
                        
                         </c:forEach>
+                        </c:otherwise>
+                        </c:choose>
     					</ul>
                        </div>
                        </div>
@@ -150,9 +161,7 @@
                     <td><fmt:formatDate pattern="yyyy-MM-dd" value=	"${board.updateDate}"/></td>
                 </c:forEach>   
             -->                       
-                </div>
-
-     					
+                </div>	
                     <center>
                         <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
                         <!--  <button type="button" class="btn-check" OnClick="location.href = '#'"> 더보기 </button>-->
@@ -169,9 +178,9 @@
 
 <script>
 $(window).on('load', function () {
-    load('#js-load', '2');
+    load('#js-load', '1');
     $("#js-btn-wrap .button").on("click", function () {
-        load('#js-load', '2', '#js-btn-wrap');
+        load('#js-load', '1', '#js-btn-wrap');
     });
 });
 

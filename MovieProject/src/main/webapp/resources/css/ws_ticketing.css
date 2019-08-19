@@ -20,11 +20,42 @@
 
 
 #ws_ticketing_date {
-	width:60%;
+	width:50%;
 	padding-top:3px;
-	display:block;
-	margin-left:7%;
+	display:inline-block;
+	margin-left:6.5%;
+	
 }
+
+#ws_multi_eval {
+	display:inline-block;
+	width:43%;
+	text-align:left;
+}
+
+#ws_multi_eval img {
+	height:30px;
+	}
+
+.star-rating {
+	width:205px; 
+}  
+
+.star-rating,.star-rating span { 
+	display:inline-block;
+	height:39px; 
+	overflow:hidden; 
+	background:url('/movie/resources/images/customs/ws_img/doubleStar.png')no-repeat; 
+	
+	
+} 
+
+.star-rating span{ 
+	background-position:left bottom; 
+	line-height:0; 
+	vertical-align:top; 
+} 
+
 
 #ws_ticketing_date li {
 	font-weight:bold;
@@ -220,7 +251,35 @@
 	overflow-y: scroll;
 	margin-bottom: 25px;
 }
+	/*//////////*/
+	/*/스케쥴표 자리//*/
+	/*//////////*/	
+
+.ws_cine_schedule{
+	background-color:#dad2b4;
+	font-weight:bold;
+	
+}
 
 
+.ws_schedule_header {
+	text-align:left;
+	font-weight:bold;
+}
+
+.ws_schedule_box{
+	margin-bottom:10px;
+	
+}
+
+.ws_ticketing_detail {
+	background-color:#0F2133;
+	color:white;
+	border-radius:8px;
+	margin-left:5px;
+	margin-right:5px;
+	
+	padding:3px;
+}
 
 
