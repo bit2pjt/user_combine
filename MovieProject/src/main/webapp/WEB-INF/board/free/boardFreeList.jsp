@@ -35,6 +35,9 @@ $(function(){
 	var tab_weekly = $("#weekly");
 		tab_weekly.on("click", function(event) {
 			event.preventDefault();
+			$('#li1').attr('class','');
+			$('#li2').attr('class','active');
+			$('#li3').attr('class','');
 			var test = 'test';
 			$.ajax({
 				url : "/movie/boardListWeekly",
@@ -43,30 +46,30 @@ $(function(){
 				success : function(data) {
 					$('#table-tbody').html('');
 					$.each(data, function(index, item) {
-						if (index % 2 == 0) {
-							if(data[index] != null && data[index+1] != null){
-								$('#table-tbody').html(
-									$('#table-tbody').html() + '<tr>'
-											+ '<td><a href="boardFreeGet?bno='
-											+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
-											+ data[index].bf_title
-											+ '</a></td>'
-											+ '<td><a href="boardFreeGet?bno='
-											+ data[index + 1].bf_bno + '">['+(index+2)+'위]&nbsp;'
-											+ data[index + 1].bf_title
-											+ '</a></td>' + '</tr>');
-							}else if(data[index] != null && data[index+1] == null){
-								$('#table-tbody').html(
-										$('#table-tbody').html() + '<tr>'
-												+ '<td><a href="boardFreeGet?bno='
-												+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
-												+ data[index].bf_title
-												+ '</a></td><td></td>'
-												+ '</tr>');
-							}else{
-								$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
-							}
-						}
+						var formattedDate = new Date(data[index].bf_update_date); 
+						var d = formattedDate.getDate(); 
+						var m = formattedDate.getMonth(); 
+						m += 1; // JavaScript months are 0-11 
+						var y = formattedDate.getFullYear();
+
+						$('#table-tbody').html(
+								$('#table-tbody').html() + '<tr>'
+								+ '<td style="width:8%;">'+(index+1)+'위</td>'
+								+ '<td style="width:45%;"><a href="boardFreeGet?bno='
+								+ data[index].bf_bno + '&bt=w">'
+								+ data[index].bf_title
+								+ '</a></td>'
+								+ '<td style="width:15%;">'+data[index].nickname+'</td>'
+								+ '<td style="width:15%;">'+y+'/'+m+'/'+d+'</td> '
+				);
+						
+						/*
+						<td style="width:8%;">[${status.index+1}위]&nbsp;</td>
+								<td style="width:10%;">${board.bf_category}</td>
+								<td style="width:45%;"><a href="boardFreeGet?bno=${boardListDaily[status.index].bf_bno}">${boardListDaily[status.index].bf_title}</a></td>
+								<td style="width:15%;">${board.nickname}</td>
+								<td style="width:15%;"><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy/MM/dd"/></td>  
+								*/
 					});
 				},
 				error : function() {
@@ -77,6 +80,9 @@ $(function(){
 		var tab_daily = $("#daily");
 		tab_daily.on("click", function(event) {
 			event.preventDefault();
+			$('#li1').attr('class','active');
+			$('#li2').attr('class','');
+			$('#li3').attr('class','');
 			var test = 'test';
 			$.ajax({
 				url : "/movie/boardListDaily",
@@ -85,31 +91,23 @@ $(function(){
 				success : function(data) {
 					$('#table-tbody').html('');
 					$.each(data, function(index, item) {
-						if (index % 2 == 0) {
-							if(data[index] != null && data[index+1] != null){
-								$('#table-tbody').html(
-									$('#table-tbody').html() + '<tr>'
-											+ '<td><a href="boardFreeGet?bno='
-											+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
-											+ data[index].bf_title
-											+ '</a></td>'
-											+ '<td><a href="boardFreeGet?bno='
-											+ data[index + 1].bf_bno + '">['+(index+2)+'위]&nbsp;'
-											+ data[index + 1].bf_title
-											+ '</a></td>' + '</tr>');
-							}else if(data[index] != null && data[index+1] == null){
-								$('#table-tbody').html(
-										$('#table-tbody').html() + '<tr>'
-												+ '<td><a href="boardFreeGet?bno='
-												+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
-												+ data[index].bf_title
-												+ '</a></td><td></td>'
-												+ '</tr>');
-							}else{
-								$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
-							}
-						}
+						/* var StartDate = $.fullCalendar.formatDate(start, 'yyyy/MM/dd'); */
+						var formattedDate = new Date(data[index].bf_update_date); 
+						var d = formattedDate.getDate(); 
+						var m = formattedDate.getMonth(); 
+						m += 1; // JavaScript months are 0-11 
+						var y = formattedDate.getFullYear();
 
+						$('#table-tbody').html(
+								$('#table-tbody').html() + '<tr>'
+										+ '<td style="width:8%;">'+(index+1)+'위</td>'
+										+ '<td style="width:45%;"><a href="boardFreeGet?bno='
+										+ data[index].bf_bno + '&bt=d">'
+										+ data[index].bf_title
+										+ '</a></td>'
+										+ '<td style="width:15%;">'+data[index].nickname+'</td>'
+										+ '<td style="width:15%;">'+y+'/'+m+'/'+d+'</td> '
+						);
 					});
 				},
 				error : function() {
@@ -120,6 +118,9 @@ $(function(){
 		var tab_monthly = $("#monthly");
 		tab_monthly.on("click", function(event) {
 			event.preventDefault();
+			$('#li1').attr('class','');
+			$('#li2').attr('class','');
+			$('#li3').attr('class','active');
 			var test = 'test';
 			$.ajax({
 				url : "/movie/boardListMonthly",
@@ -128,31 +129,22 @@ $(function(){
 				success : function(data) {
 					$('#table-tbody').html('');
 					$.each(data, function(index, item) {
-						if (index % 2 == 0) {
-							if(data[index] != null && data[index+1] != null){
-								$('#table-tbody').html(
-									$('#table-tbody').html() + '<tr>'
-											+ '<td><a href="boardFreeGet?bno='
-											+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
-											+ data[index].bf_title
-											+ '</a></td>'
-											+ '<td><a href="boardFreeGet?bno='
-											+ data[index + 1].bf_bno + '">['+(index+2)+'위]&nbsp;'
-											+ data[index + 1].bf_title
-											+ '</a></td>' + '</tr>');
-							}else if(data[index] != null && data[index+1] == null){
-								$('#table-tbody').html(
-										$('#table-tbody').html() + '<tr>'
-												+ '<td><a href="boardFreeGet?bno='
-												+ data[index].bf_bno + '">['+(index+1)+'위]&nbsp;'
-												+ data[index].bf_title
-												+ '</a></td><td></td>'
-												+ '</tr>');
-							}else{
-								$('#table-tbody').html('<tr>' + '<td colspan=2>결과 없음<td>' + '<tr>');
-							}
-						}
+						var formattedDate = new Date(data[index].bf_update_date); 
+						var d = formattedDate.getDate(); 
+						var m = formattedDate.getMonth(); 
+						m += 1; // JavaScript months are 0-11 
+						var y = formattedDate.getFullYear();
 
+						$('#table-tbody').html(
+								$('#table-tbody').html() + '<tr>'
+								+ '<td style="width:8%;">'+(index+1)+'위</td>'
+								+ '<td style="width:45%;"><a href="boardFreeGet?bno='
+								+ data[index].bf_bno + '&bt=m">'
+								+ data[index].bf_title
+								+ '</a></td>'
+								+ '<td style="width:15%;">'+data[index].nickname+'</td>'
+								+ '<td style="width:15%;">'+y+'/'+m+'/'+d+'</td> '
+				);
 					});
 				},
 				error : function() {
@@ -185,10 +177,11 @@ $(function(){
 			<div class="movie-single-ct main-content">
 				<div class="movie-tabs">
 					<div class="tabs">
+						
 						<ul class="tab-links tabs-mv tab_yj">
-							<li class="active"><a class="tab_title" id="daily">일간 베스트</a></li>
-							<li><a class="tab_title" id="weekly">주간 베스트</a></li>
-							<li><a class="tab_title" id="monthly">월간 베스트 </a></li>
+							<li id="li1" class="active"><div id="box1"><a class="tab_title" id="daily">Today</a></div></li>
+							<li id="li2" ><div id="box2"><a class="tab_title" id="weekly">Weekly</a></div></li>
+							<li id="li3" ><div id="box3"><a class="tab_title" id="monthly">Monthly</a></div></li>
 						</ul>
 					</div>
 				</div>
@@ -196,10 +189,11 @@ $(function(){
 					<tbody id="table-tbody">
 						<c:forEach items="${boardListDaily}" var="board" varStatus="status" step="2">
 							<tr>
-								<td><a href="boardFreeGet?bno=${boardListDaily[status.index].bf_bno}">[${status.index+1}위]&nbsp;${boardListDaily[status.index].bf_title}</a></td>
-								<td>
-									<c:if test="${boardListDaily[status.index+1] != null}"><a href="boardFreeGet?bno=${boardListDaily[status.index+1].bf_bno}">[${status.index+2}위]&nbsp;${boardListDaily[status.index+1].bf_title}</a></c:if>
-								</td>
+								<td style="width:8%;">[${status.index+1}위]&nbsp;</td>
+								<td style="width:10%;">${board.bf_category}</td>
+								<td style="width:45%;"><a href="boardFreeGet?bno=${boardListDaily[status.index].bf_bno}">${boardListDaily[status.index].bf_title}</a></td>
+								<td style="width:15%;">${board.nickname}</td>
+								<td style="width:15%;"><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy/MM/dd"/></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -261,7 +255,7 @@ $(function(){
 								  <td>${board.bf_category}</td>
 								  <td><a href="boardFreeGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bf_bno}">${board.bf_title}</a></td>
 								  <td>${board.nickname}</td>
-								  <td><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy-MM-dd"/></td>
+								  <td><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy/MM/dd"/></td>
 								  <td>${board.bf_view_counter}</td>
 								  <td><a href="boardFreeGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bf_bno}">${board.bf_title}</a></td>
 								</tr>
@@ -370,6 +364,7 @@ $(function(){
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <!-- 6. 페이지별 script 추가 -->	
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
 

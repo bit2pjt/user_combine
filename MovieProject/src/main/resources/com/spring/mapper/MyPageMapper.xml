@@ -80,6 +80,10 @@
 		select M_NICKNAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
 	
+	<update id="insertProfileImage" >
+		update member set m_image=#{m_image, jdbcType=VARCHAR} where id=#{id}
+	</update>
+	
 	<select id="getMemberId" parameterType="String" resultType="int">
 		select ID from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>

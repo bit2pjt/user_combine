@@ -35,7 +35,6 @@ public class MemberServiceImpl implements MemberService {
 	public int memberJoin(MemberVO vo) throws MessagingException, UnsupportedEncodingException {
 		System.out
 				.println("=============MemberServiceImpl.java - memberJoin() =====================\n memberVO : " + vo);
-		vo.setM_image("defaultprofile.PNG");
 		vo.setM_cert("N");
 		vo.setM_deleteyn("N");
 		vo.setM_following(0);

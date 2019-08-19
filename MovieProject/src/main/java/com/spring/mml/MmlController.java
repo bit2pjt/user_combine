@@ -44,9 +44,12 @@ public class MmlController {
 ////////////////
 // 유진 개발부분//
 ////////////////
+	
+	/*
 	@ResponseBody
 	@RequestMapping(value="/mmlWriteMovie", method=RequestMethod.POST)
-	public List<MovieInfoVO> mmlWriteMovie(HttpServletRequest request) {
+	public List<MovieInfoVO> mmlWriteMovie(HttpServletRequest request,SearchCriteria searchCriteria) {
+		
 		String mcategory = request.getParameter("mcategory");
 		String search_input = request.getParameter("search_input");
 		
@@ -66,14 +69,21 @@ public class MmlController {
 		}else if(mcategory.equals("영화 감독")) {
 			List<MovieInfoVO> search_list = movieService.getMovieList_director(search_input);
 			return search_list;
-		}else { // if(mcategory.equals("영화 배우")) 
+		}else{ // if(mcategory.equals("영화 배우")) 
 			List<MovieInfoVO> search_list = movieService.getMovieList_actor(search_input);
 			return search_list;
 		}
+		
+		PageMaker pageMaker = new PageMaker();
+        pageMaker.setCriteria(searchCriteria);
+        pageMaker.setTotalCount(movieService.countSearchedMovie(searchCriteria));
+		List<MovieInfoVO> movieList = movieService.getMovieListSerch(searchCriteria);
+		return movieList;
 	}
+	*/
 	
 	@RequestMapping(value = "/mmlWrite", method = RequestMethod.GET)
-	public String mmlWrite(HttpSession session, Model model) {
+	public String mmlWrite(HttpSession session, Model model,SearchCriteria searchCriteria) {
 		String m_email = (String) session.getAttribute("m_email");
 		// System.out.println("=============MmlController.java=====================
 		// m_email : " + m_email);
@@ -85,9 +95,15 @@ public class MmlController {
 		}
 		int id = myPageService.getMemberId(m_email);
 		model.addAttribute("id", id);
-		List<MovieInfoVO> movieList = movieService.getMovieList();
+		//List<MovieInfoVO> movieList = movieService.getMovieList();
 		//System.out.println("=============MmlController.java===================== movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
+		//model.addAttribute("movieList", movieList);
+		PageMaker pageMaker = new PageMaker();
+        pageMaker.setCriteria(searchCriteria);
+        pageMaker.setTotalCount(movieService.countSearchedMovie(searchCriteria));
+		List<MovieInfoVO> movieList = movieService.getMovieListSerch(searchCriteria);
 		model.addAttribute("movieList", movieList);
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "mml/mmlWrite2";
 	}

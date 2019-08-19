@@ -3,6 +3,8 @@ package com.spring.mypage;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.member.MemberVO;
 import com.spring.paging.Criteria;
 
@@ -35,7 +37,7 @@ public interface MyPageDAO {
 	public String getMemberName(String m_email);	//멤버 이름 가져오기
 	public int getMemberId(String m_email);		//멤버 아이디 가져오기
 	public String getMemberNickname(String m_email);	//멤버 닉네임 가져오기
-	
+	public int insertProfileImage(@Param("id") int id, @Param("m_image")String m_image);	//프로필 사진 등록하기
 	//1:1 문의내역 리스트 가져오기
 	public List<OneVO> getQnaList(int id);	//1:1문의 리스트 가져오기
 	List<OneVO> listCriteria(Criteria criteria);

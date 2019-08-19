@@ -107,6 +107,14 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 	
 	@Override
+	public int insertProfileImage(int id, String m_image) {
+		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
+		int result = mypageDAO.insertProfileImage(id, m_image);
+		
+		return result;
+	}
+	
+	@Override
 	public OneVO getQnaDetail(int qna_no) {
 		MyPageDAO mypageDAO = sqlSession.getMapper(MyPageDAO.class);
 		OneVO oneVO = mypageDAO.getQnaDetail(qna_no);

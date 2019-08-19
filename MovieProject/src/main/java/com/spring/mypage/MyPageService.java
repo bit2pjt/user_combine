@@ -40,6 +40,7 @@ public interface MyPageService {
 
 	public String getMemberNickname(String m_email); // 멤버 닉네임 가져오기
 
+	public int insertProfileImage(int id, String m_image);	//프로필 사진 등록하기
 	// 1:1 문의내역 리스트 가져오기
 	public List<OneVO> getQnaList(int id); // 1:1문의 리스트 가져오기
 	List<OneVO> listCriteria(Criteria criteria);
