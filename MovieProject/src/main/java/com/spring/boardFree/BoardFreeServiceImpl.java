@@ -334,6 +334,12 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	}
 
 	@Override
+	public List<BoardFreeVO> listAll() {
+		BoardFreeDAO boardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		return boardFreeDAO.listAll(); 
+	}
+
+	@Override
 	public String getMemberNickname(String m_email) {
 		BoardFreeDAO BoardFreeDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		String m_nickname = BoardFreeDAO.getMemberNickname(m_email);
@@ -382,6 +388,12 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	}
 
 	@Override
+	public List<BoardFreeVO> listCriteria(Criteria criteria) {
+		BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+		return boardDAO.listCriteria(criteria);
+	}
+
+	@Override
 	public int countArticles(Criteria criteria) {
 		BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
 		return boardDAO.countArticles(criteria);
@@ -409,6 +421,27 @@ public class BoardFreeServiceImpl implements BoardFreeService {
     public int countSearchedArticles(SearchCriteria searchCriteria) {
     	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
     	return boardDAO.countSearchedArticles(searchCriteria);
+    }
+	
+    @Override
+    public List<BoardFreeVO> boardListDaily() {
+    	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+    	List<BoardFreeVO> result = boardDAO.boardListDaily();
+    	return result;
+    }
+    
+    @Override
+    public List<BoardFreeVO> boardListWeekly() {
+    	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+    	List<BoardFreeVO> result = boardDAO.boardListWeekly();
+    	return result;
+    }
+    
+    @Override
+    public List<BoardFreeVO> boardListMonthly() {
+    	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
+    	List<BoardFreeVO> result = boardDAO.boardListMonthly();
+    	return result;
     }
 
 }

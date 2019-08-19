@@ -1,6 +1,9 @@
 
 package com.spring.boardFree;
 
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.member.MemberService;
 import com.spring.member.MemberVO;
+import com.spring.mml.MmlService;
 import com.spring.paging.PageMaker;
 import com.spring.paging.SearchCriteria;
 
@@ -21,10 +25,12 @@ import com.spring.paging.SearchCriteria;
 * @Description : BoardFree 게시판
 * @Modification Information
 * @
-* @  	수정일               	 수정자                  	수정내용
+* @  	수정일        수정자                수정내용
 * @ -----------   ---------   -------------------------------
-* @ 2019. 07. 23         황진석            		최초생성
+* @ 2019. 07. 23    황진석                최초생성
 * @ 2019. 07. 24	황진석		추천기능 추가 / 신고기능 추가
+* @ 2019. 08. 09	한유진				  수정
+
 * @author bit 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -41,6 +47,9 @@ public class BoardFreeController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	MmlService mmlService;
 	
 	/**
 	  * 자유게시판 리스트로 이동
@@ -76,11 +85,35 @@ public class BoardFreeController {
         
         model.addAttribute("boardfree", boardFreeService.listSearch(searchCriteria));
         model.addAttribute("pageMaker", pageMaker);	
+        model.addAttribute("boardListDaily", boardListDaily());
         
 		return "board/free/boardFreeList";
 	}
 	
+
+	//일간베스
+	@ResponseBody
+	@RequestMapping(value = "/boardListDaily", method=RequestMethod.POST)
+	public List<BoardFreeVO> boardListDaily () {
+		List<BoardFreeVO> result = boardFreeService.boardListDaily();
+		return result;
+	}
 	
+	//주간베스
+	@ResponseBody
+	@RequestMapping(value = "/boardListWeekly", method=RequestMethod.POST)
+	public List<BoardFreeVO> boardListWeekly () {
+		List<BoardFreeVO> result = boardFreeService.boardListWeekly();
+		return result;
+	}
+	
+	//월간베스트
+	@ResponseBody
+	@RequestMapping(value = "/boardListMonthly", method=RequestMethod.POST)
+	public List<BoardFreeVO> boardListMonthly () {
+		List<BoardFreeVO> result = boardFreeService.boardListMonthly();
+		return result;
+	}
 	/**
 	  * 자유게시판 게시글 상세 조회
 	  * @param bno - 게시글 번호
@@ -103,7 +136,11 @@ public class BoardFreeController {
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardFreeVO", boardFreeVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
+		model.addAttribute("boardListDaily", boardListDaily());//오른쪽의 실시간 베스트5
 		
+		model.addAttribute("mmlTop2", mmlService.getMmlList_like_top2(boardFreeVO.getId()));
+		
+
 		return "board/free/boardFreeGet"; 
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.member.MemberVO;
+import com.spring.paging.SearchCriteria;
 
 public interface MmlDAO {
 
@@ -12,10 +13,16 @@ public interface MmlDAO {
 	// 유진 개발부분//
 	////////////////
 	public Mml_ContentVO getMmlContent(int mml_num); // mmlContent 가져오기
+	
+	public int getMmlContentNum(int id);	//mmlContent mml_num 가져오기
 
 	public int insertMml(Mml_ContentVO mmlContentVO); // mmlContent 등록하기
 
 	public int updateMml(Mml_ContentVO mmlContentVO); // mmlContent 수정하기
+	
+	public int getMmlNum(Mml_ContentVO mmlContentVO);	//등록한 mmlContent의 글번호 가져오기
+	
+	public List<Mml_ContentVO> getMmlList_like_top2(int id);//mml 좋아요순으로 top2가져오기
 
 	////////////////
 	// 웅식 개발부분//
@@ -58,6 +65,8 @@ public interface MmlDAO {
 	public List<Integer> getFollowListFromMF_table(int id);
 
 	public List<MemberVO> getFollowers(@Param("list") List<Integer> list);
+	
+	public List<Integer> getFollowingListFromMF_table(int id);
 
 //상필이
 	public List<Mml_ContentVO> getMmlList();
@@ -75,4 +84,10 @@ public interface MmlDAO {
 	public String getMmlNickname(int id);
 
 	public int getMmlId(int id);
+	
+	int countSearchedArticles(SearchCriteria searchCriteria);
+	List<Mml_ListDTO> listSearch(SearchCriteria searchCriteria);
+	
+	int countSearchedArticles2(SearchCriteria searchCriteria);
+	List<Mml_ListDTO> listSearch2(SearchCriteria searchCriteria);
 }

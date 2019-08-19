@@ -72,27 +72,27 @@
 							</div>
 							<table>
 								<tr>
-									<td width="100px">심의등급 :</td>
+									<td width="100px">심의등급 </td>
 									<td><span>${movieInfoVO.grade_code}</span></td>
 								</tr>
 								<tr>
-									<td>감독 :</td>
+									<td>감독 </td>
 									<td><span>${movieInfoVO.mi_director}</span></td>
 								</tr>
 								<tr>
-									<td>배우 :</td>
+									<td>배우 </td>
 									<td><span>${movieInfoVO.mi_actor}</span></td>
 								</tr>
 								<tr>
-									<td>장르 :</td>
+									<td>장르 </td>
 									<td><span>${movieInfoVO.mi_gcode}</span></td>
 								</tr>
 								<tr>
-									<td>상영시간 :</td>
+									<td>상영시간 </td>
 									<td><span>${movieInfoVO.mi_time}</span></td>
 								</tr>
 								<tr>
-									<td>제작국가 :</td>
+									<td>제작국가 </td>
 									<td><span>${movieInfoVO.mi_ccode}</span></td>
 								</tr>
 							</table>
@@ -579,18 +579,18 @@
 			}else {
                 $(data.replies).each(function () {
                 	if(this.id != id) {
-	                	str += "<li data-replyNo='" + this.mr_code + "' class='replyLi'>"
-		        	   		+	"<div class='mv-user-review-item' style='width:100%;'>"
-		        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
-		        			+	arr[this.mr_score] + "<span id='star-score'>" + this.mr_score + "</span></div>" 
-		        			+	"<div class='user-info' style='width:75%; margin-left:30px;'>"
-		        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.mr_write_date + "</strong></span> <br>"
-		        			+	"<span class='replyText' id='replyContent'>" + this.mr_content + "</span></p>"
-		        			+	"<div style='float:right; margin-top:10px;'>"
-		        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true'></i> "+ this.mr_like +"</button>"
-		        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn' style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.mr_dislike + "</button>"
-		        			+	"<button class='ws-btn-warning' id='ws-cnt-warning' style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
-		        			+	"</div></div></div></li>";
+                		str += "<li data-replyNo='" + this.mr_code + "' class='replyLi'>"
+	        	   		+	"<div class='mv-user-review-item' style='width:100%;'>"
+	        	 		+	"<div class='user-rate movie-rate movie-rate2' id='star-hjs'>"
+	        			+	arr[this.mr_score] + "<span id='star-score'>" + this.mr_score + "</span></div>" 
+	        			+	"<div class='user-info' style='width:75%; margin-left:30px;'>"
+	        			+	"<p> <span style='float:left; font-size:15px;'><strong>"+ this.nickname +"</strong></span> <span style='float:right;'><strong>" + this.mr_write_date + "</strong></span> <br>"
+	        			+	"<span class='replyText' id='replyContent'>" + this.mr_content + "</span></p>"
+	        			+	"<div style='float:right; margin-top:10px;'>"
+	        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true'></i> "+ this.mr_like +"</button>"
+	        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn' style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.mr_dislike + "</button>"
+	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning' style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
+	        			+	"</div></div></div></li>";
                 	}else {
                 		str += "<li data-replyNo='" + this.mr_code + "' class='replyLi'>"
 	        	   		+	"<div class='mv-user-review-item' align='center' style='width:100%;'>"

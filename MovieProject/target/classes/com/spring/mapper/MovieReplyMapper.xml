@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.movie.MovieReplyDAO">
+	<resultMap type="com.spring.movie.MovieReplyVO" id="MovieReplyMap">
+        <result property="mr_code" column="mr_code"/>
+        <result property="id" column="id"/>
+        <result property="mi_code" column="mi_code"/>
+        <result property="mr_write_date" column="mr_write_date"/>
+        <result property="mr_like" column="mr_like"/>
+        <result property="mr_dislike" column="mr_dislike"/>
+        <result property="mr_update_date" column="mr_update_date"/>
+        <result property="mr_score" column="mr_score"/>
+        <result property="mr_content" column="mr_content"/>
+        <result property="mr_alert" column="mr_alert"/>
+    </resultMap>
+
+	
+	<select id="list" resultMap="MovieReplyMap">
+        SELECT *
+        FROM movie_rev
+        WHERE mi_code = #{mi_code}
+        ORDER BY mr_code DESC
+    </select>
+
+    <insert id="create">
+	    <selectKey resultType="int" keyProperty="mr_code" order="BEFORE">
+	        SELECT SEQ_MR_CODE.NEXTVAL FROM dual        
+	    </selectKey>
+	    
+        INSERT INTO movie_rev 
+        VALUES (
+        	#{mr_code}
+            , #{id}
+            , #{mi_code}
+            , sysdate
+            , 0
+            , 0
+            , sysdate
+            , #{mr_score}
+            , #{mr_content}
+            , 0
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE movie_rev
+        SET mr_content = #{mr_content}, mr_update_date = sysdate
+        WHERE mr_code = #{mr_code}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM movie_rev
+        WHERE mr_code = #{mr_code}
+    </delete>
+    
+    
+    <select id="listPaging" resultMap="MovieReplyMap">
+	  <![CDATA[
+		   select rn,
+		 	mr_code
+            , id
+            , mi_code
+            , mr_write_date
+            , mr_like
+            , mr_dislike
+            , mr_update_date
+            , mr_score
+            , mr_content
+            , mr_alert
+		 from 
+            (select
+            rownum rn
+            , mr_code
+            , id
+            , mi_code
+            , mr_write_date
+            , mr_like
+            , mr_dislike
+            , mr_update_date
+            , mr_score
+            , mr_content
+            , mr_alert
+            from
+		   (
+		    select
+		   	mr_code
+            , id
+            , mi_code
+            , mr_write_date
+            , mr_like
+            , mr_dislike
+            , mr_update_date
+            , mr_score
+            , mr_content
+            , mr_alert
+		    from movie_rev
+		    where mi_code =  #{mi_code}
+		    and mr_code > 0	    
+            order by mr_code desc
+		   )) where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+		]]>
+	</select>  
+	
+	 <select id="countReplies" resultType="int">
+        SELECT
+            COUNT(mi_code)
+        FROM movie_rev
+        WHERE mi_code = #{mi_code}
+    </select>
+    
+    <select id="sumScore" resultType="int">
+        SELECT NVL(SUM(mr_score), 0)
+        FROM movie_rev
+        WHERE mi_code = #{mi_code}
+    </select>
+    
+    <select id="getUser" parameterType="String" resultType="int">
+		select NVL(id, 0)
+		from member
+		where m_email = #{email, jdbcType=VARCHAR}
+	</select>
+</mapper>

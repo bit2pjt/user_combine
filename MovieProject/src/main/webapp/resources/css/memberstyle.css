@@ -1,0 +1,198 @@
+
+/**
+* @Class Name :  memberstyle.css
+* @Description : memberstyle css
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.08.03     한유진      최초생성
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+/* I. FRAMEWORK
+***********************/
+/*!
+ * Bootstrap v3.3.5 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+
+/*
+yj : start | member_join cs
+*/
+.join_content{
+	width:100%;
+	/* background-color: #00ff003d; */
+	/* border: 1px solid #c0c0c0;
+	border-radius:10px; */
+	margin-bottom:10%;
+}
+.join{
+	display: block;
+	margin-bottom:10px;
+}
+.join h5{
+	font-size: 14px;
+	display: block;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.join input{
+	display:inline-block;
+	width:460px;
+}
+.join .phone{
+	width:100px;
+}
+.join button{
+	height:34px;
+	display:inline-block;
+	background-color: #333;
+	border: 1px solid #333;
+	border-radius: 5px;
+	color:#ffffff;
+	font-weight: bold;
+}
+.join div{
+	display: block;
+	color:black;
+	font-size:12px;
+}
+.join .join_btn{
+	width:100%;
+	margin:10px 0;
+	height:40px;
+	background-color: #333;
+	border: 1px solid #333;
+	border-radius: 5px;
+	color:#ffffff;
+	font-weight: bold;
+	margin-top: 20px;
+}
+@media(max-width:600px){
+	.join input{
+	display:block;
+	width:100%;
+	}
+	.join .phone{
+		display:inline-block;
+		width:80px;
+	}
+	.join button{
+	
+	display:block;
+	width:100%;
+	margin: 5px 0;
+	}
+}
+
+/*input number 오른쪽 증감버튼 없애기*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*
+yj : start | member_search_email cs
+*/
+.search_content{
+	width:100%;
+	height:645px;
+	/* background-color: #00ff003d; */
+	/* border: 1px solid #c0c0c0; */
+	border-radius:10px;
+	margin-bottom:10%;
+	padding:10px;
+}
+.search_content h6{
+	margin-top : 10px;
+}
+.search_content hr{
+	margin: 10px 0;
+}
+.search_content_result{
+	width:100%;
+	height:580px;
+	/* border: 1px solid #c0c0c0; */
+	margin-bottom:5%;
+	display:none;
+}
+.search_content_result hr{
+	margin-bottom : 20px;
+}
+
+/*search의 가운데정렬을 위해 아래의 내용 추가*/
+@media (min-width: 992px){
+	.col-md-6{
+   		float: none;
+    	margin-left:auto;
+    	margin-right:auto;
+	}
+}
+.search{
+	display: block;
+	margin-bottom:10px;
+}
+.search #search_email_result{
+	text-align:center;
+}
+.search h5{
+	font-size:14px;
+	display: block;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.search input{
+	display:inline-block;
+	width:200px;
+	margin-top: 10px;
+}
+.search #search_m_email{
+	width:400px;
+}
+.search .phone{
+	width:100px;
+}
+.search button{
+	display:inline-block;
+	height:60px;
+	background-color: #333;
+	border: 1px solid #333;
+	border-radius: 5px;
+	color:#ffffff;
+	font-weight: bold;
+	width:100%;
+	margin-top : 40px;
+}
+@media(max-width:600px){
+	.search input{
+		display:block;
+		width:70%;
+	}
+	.search #search_m_email{
+		width:90%;
+		max-width:400px;
+	}
+	.search .phone{
+		display:inline-block;
+		width:28%;
+	}
+	.search button{
+		display:block;
+		width:100%;
+		margin: 5px 0;
+	}
+}
+
+
+

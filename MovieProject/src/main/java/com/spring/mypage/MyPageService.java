@@ -2,7 +2,10 @@ package com.spring.mypage;
 
 import java.util.List;
 
+import com.spring.boardFree.BoardFreeVO;
 import com.spring.member.MemberVO;
+import com.spring.paging.Criteria;
+import com.spring.paging.SearchCriteria;
 
 /**
  * @Class Name : MyPageService.java
@@ -21,7 +24,7 @@ import com.spring.member.MemberVO;
 public interface MyPageService {
 
 	public MemberVO getMember(int id);
-
+	public List<MemberVO> getMembers();
 	void updateMember(MemberVO memberVO);
 
 	void updatePw(MemberVO memberVO);
@@ -39,6 +42,8 @@ public interface MyPageService {
 
 	// 1:1 문의내역 리스트 가져오기
 	public List<OneVO> getQnaList(int id); // 1:1문의 리스트 가져오기
+	List<OneVO> listCriteria(Criteria criteria);
+	int countArticles(Criteria criteria);
 
 	// 1:1 문의 등록하기, 가져오기, 수정하기, 삭제하기
 	public int insertQna(OneVO oneVO); // 1:1 문의 등록
@@ -46,6 +51,8 @@ public interface MyPageService {
 	public OneVO getQnaDetail(int qna_no); // 1:1 문의 상세정보 가져오기
 
 	public int updateQna(OneVO oneVO); // 1:1 문의 상세정보 수정하기
+	
+	public int deleteQna(int qna_no); // 1:1 문의 삭제하기
 
 	// hm| 1:1문의 답변 가져오기
 	public OneAdVO getQnaAdDetail(int qna_no); // 1:1문의 답변 상세정보 가져오기
@@ -54,10 +61,18 @@ public interface MyPageService {
 	// 회원 비밀번호 체크
 	public boolean checkPw(String m_email, String m_password);
 
-	public int delete_member(String m_email);
 	// 회원 탈퇴신청
+	public int delete_member(String m_email);
 
-	public int delete_date(int id);
 	// 회원 탈퇴 신청시간
+	public int delete_date(int id);
+	
+	public List<FolFolDTO> getfollower(int id);
+	public List<FolFolDTO> getfollowing(int id);
+	
+	public int getFreeCount(int id);
+	public int getShareCount(int id);
+	public List<MyBoardDTO> freeBoard(Criteria criteria);
+	public List<MyBoardDTO> shareBoard(Criteria criteria);
 
 }

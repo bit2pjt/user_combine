@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 	<link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=1.3">
+<link rel="stylesheet" href="./resources/css/boardstyle.css">
 
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
@@ -40,7 +43,7 @@
  						alert("이미 추천/비추천을 누르셨습니다.");
  						return false;
  					}else {
- 						reco.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
+ 						reco.html("<i class='far fa-thumbs-up' aria-hidden='true' ></i>  " + data);
  					}
  				},
  				error: function() {
@@ -65,7 +68,7 @@
  						alert("이미 추천/비추천을 누르셨습니다.");
  						return false;
  					}else {
- 						deco.html("<i class='fa fa-thumbs-o-down' aria-hidden='true'></i>  " + data);
+ 						deco.html("<i class='far fa-thumbs-down' aria-hidden='true'></i>  " + data);
  					}
  				},
  				error: function() {
@@ -131,34 +134,8 @@
 </div>
 		
 	<div class="buster-light">
-		<div class="movie-items" >
-		<!--  베스트 게시물 슬라이더 : 산만해. 우측 바가 더 깔끔할듯 하다 
-			<div class="slider movie-items" style="padding:5px;height:140px;">
-				<div class="container">
-					<div class="row" style="margin:-40px;">
-					<h3 style="top:15px;">베스트 게시물</h3>
-						<div  class="slick-multiItemSlider" style="padding:5px;min-width:300px;">
-	    					<span><a href="#">여초에서 난리난 고질라 쿠키영상1</a></span>
-	    					<span>페북에서 난리난 고질라 쿠키영상2</span>
-	    					<span>고질라 쿠키영상3</span>
-	    					<span>고질라 쿠키영상4</span>
-	    					<span>고질라 쿠키영상5</span>
-	    					<span>고질라 쿠키영상6</span>
-	    					<span>고질라 쿠키영상7</span>
-	    					<span>고질라 쿠키영상8</span>
-	    					<span>고질라 쿠키영상9</span>
-	    					<span>고질라 쿠키영상10</span>
-	    					<span>고질라 쿠키영상11</span>
-	    					<span>고질라 쿠키영상12</span>
-	    					<span>고질라 쿠키영상13</span>
-	    					<span>고질라 쿠키영상14</span>
-	    					<span>고질라 쿠키영상15</span>
-	    					<span>고질라 쿠키영상16</span>
-	    				</div>
-	    			</div>
-				</div>
-			</div>
-			-->
+		<div class="movie-items">
+		
 <!-- blog detail section-->
 <div class="container">
 	<div class="col-md-12">
@@ -170,7 +147,7 @@
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
 				<div class="ws-post-get-info-profile">
-					<img src="${memberVO.m_image}" alt="프로필사진">
+					<img src="resources/images/customs/ws_img/${memberVO.m_image}" alt="프로필사진">
 				</div>
 				<div class="ws-post-get-info-inner">
 					<div>작성자 : ${memberVO.m_nickname}</div>
@@ -189,11 +166,14 @@
 			<!-- 4. 글신고/글추천/글비추 자리 -->
 		<center class="ws-post-get-buttons">
 			<div style="float:left">
-				<button class="ws-btn-warning" id="ws-cnt-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
+				<%-- <button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
+							data-backdrop="static"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
+							<jsp:include page="../../modal_warning.jsp"/> --%>
+							<button class="ws-btn-warning" id="ws-cnt-warning" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
 			</div>
 			<span>
-				<button class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="fa fa-thumbs-o-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
-				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
+				<button class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="far fa-thumbs-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
+				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="far fa-thumbs-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
 			
 		<form role="form" method="post">
@@ -206,11 +186,11 @@
         	 
 			<c:if test="${id == boardFreeVO.id }">
 				<div style="float:right;">
-					 <button id='btn-hjs' onclick="updateContent()">수정</button> 
-					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
+					 <button style="width:100px; height:40px;" id='btn-hjs' onclick="updateContent()">수정</button> 
+					 <button style="width:100px; height:40px;" id='btn-hjs' onclick="deleteContent()">삭제</button>
 				</div>
 			</c:if>
-			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px;">목록</button>
+			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px; width:100px; height: 40px;">목록</button>
 		</center>
 		
 		
@@ -223,39 +203,40 @@
 		<div class="ws-get-Rside">
 		<div class="ws-side-best" >
 			<ul>
-				<li >추천수 급상승 Best 10</li>
-				<li >감자튀김 사서 갔다가 입뺀 당한 후기[487]</li>
-				<li >개지리는 마술[4]</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
+				<li style="padding: 10px;">추천수 급상승 Best 5</li>
+				<c:forEach items="${boardListDaily}" var="board" varStatus="status" end="4">
+					<li><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></li>
+				</c:forEach>
 			</ul>	
 		</div>
 		<div class="ws-get-mmlbest" >
 			<div class="ws-get-mmlbest-title">
-				김시덕이 님의 가장 핫한 나영리
+				${memberVO.m_nickname} 님의 가장 핫한 나영리
 			</div>
+			<c:forEach items="${mmlTop2}" var="mml" varStatus="status">
+			<!-- 상필오빠 mml 추천순으로 정렬한거에서 추천수 제일많은거 1개  컨트롤러에 model로 추가해주기 -->
 			<div class="ws-get-mmlbest-poster" >
-				<img src="https://t1.daumcdn.net/movie/676b7dbf7a2cf721d01efc61708493080d2a9d8e" >
+				<!-- 나영리 이미지 -->
+				<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
+				<img src="<c:url value="${poster_one[0] }"/>">
 			</div>
 			<div class="ws-get-mmlbest-title"> 
-				여름 스릴러 추천
+				<!-- 나영리 타이틀 -->
+				제목 : ${mml.mml_title}
 				<br>
-				누적 추천수 : 48742
+				<!-- 나영리 좋아요수 -->
+				좋아요수 : ${mml.mml_like}
 			</div>
+			</c:forEach>
 		</div>
 		
-		<div class="ws-side-recomend">
-			당신이 좋아할 수도 있는 나영리
+		<!-- <div class="ws-side-recomend"> -->
+		<!-- 여기는 어떤기준으로 컨텐츠를 넣을지....정답을 알려조오~!! -->
+			<!-- 당신이 좋아할 수도 있는 나영리
 			<img src="https://t1.daumcdn.net/cfile/tistory/999A89485C3193F72F">
 			괴수물 덕후 모여봐라 <br>
 			조회수 : 24232
-			
-		</div>
+		</div> -->
 	</div>
 		
 		
@@ -320,10 +301,10 @@
 			<h3 class="box-title">댓글 작성</h3>
 			<div class="box-body">
 				<div class="form-group">
-					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:200px;"></textarea>
+					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:100px;"></textarea>
 	 			</div>
 				<div class="pull-right">
-					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
+					<button style="width:160px;" type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
 				</div>
 			</div>
 		</div>
@@ -335,44 +316,6 @@
 					<!-- comment form -->
 				</div>
 	
-<!-- end of  blog detail section-->
-	<!-- 
-    <div id="CatModal-post-delete" class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">게시글 삭제</h5>
-        </div>
-       <div class="modal-body">
-          <p>게시글을 삭제하시겠습니까?</p>
-       </div>
-       <div class="modal-footer">
-          <button onclick="CatDelete()" type="button" class="btn btn-primary">삭제하기</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-       </div>
-      </div>
-    </div>
- -->
-	<!-- 삭제 모달 : 댓글 
-		<div id="CatModal-reply-delete" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">댓글 삭제</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-       <div class="modal-body">
-          <p>댓글을 삭제하시겠습니까?</p>
-       </div>
-       <div class="modal-footer">
-          <button onclick="replydel()" type="button" class="btn btn-primary">삭제하기</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-       </div>
-      </div>
-    </div>
-	-->		
-
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <script>
@@ -474,7 +417,7 @@
  					alert("이미 추천/비추천을 누르셨습니다.");
  					return false;
  				}else {
- 					present.html("<i class='fa fa-thumbs-o-up' aria-hidden='true' ></i>  " + data);
+ 					present.html("<i class='far fa-thumbs-up' aria-hidden='true' ></i>  " + data);
  				}
  			},
  			error: function() {
@@ -506,7 +449,7 @@
  					alert("이미 추천/비추천을 누르셨습니다.");
  					return false;
  				}else {
- 					present.html("<i class='fa fa-thumbs-o-down' aria-hidden='true'></i>  " + data);
+ 					present.html("<i class='far fa-thumbs-down' aria-hidden='true'></i>  " + data);
  				}
  			},
  			error: function() {
@@ -626,8 +569,8 @@
          				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
                         +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
                         +	"<p class='replyText' style='word-break:break-all;'>" + this.bfr_content + "</p>"
-                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
-                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
+                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='far fa-thumbs-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
+                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='far fa-thumbs-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
                        	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
                         +	"</li>"
                         +	"<hr/>";
@@ -638,8 +581,8 @@
 	                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
 	                        +	"<p class='replyText' style='word-break:break-all; margin-bottom:20px;'>" + this.bfr_content + "</p>"
 	                        +	"<button type='button' id='btn-hjs' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
-	                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='fa fa-thumbs-o-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
-	                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='fa fa-thumbs-o-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
+	                        +   "<button style='float:right' class='ws-btn-thumbs-down' id='reply-cnt-tdn'><i class='far fa-thumbs-down' aria-hidden='true'></i> " + this.bfr_dislike + "</button>"
+	                        +	"<button style='float:right' class='ws-btn-thumbs-up' id='reply-cnt-tup'><i class='far fa-thumbs-up' aria-hidden='true' ></i> "+ this.bfr_like + "</button>" 
 	                       	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
 	                        +	"</li>"
 	                        +	"<hr/>";
@@ -686,6 +629,7 @@
 <!-- 6. 페이지별 script 추가 -->
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>

@@ -115,6 +115,7 @@ body{
   max-width: 1300px;
   margin-top:50px;
 }
+
 .movielist-card{
   display: inline-block;
   background-color: white;
@@ -122,7 +123,18 @@ body{
   height:278px;
   margin:20px;
   position: relative;
-  border: 3px solid black;
+  border: 2px solid black;
+  position: relative;
+}
+.movielist-card:hover {
+	background-color:black;
+}
+.movielist-card:hover .movieImage {
+	opacity: 0.4;
+}
+	
+.movielist-card:hover .desc {
+	opacity: 1;
 }
 .movie-title{
   /*position: absolute;*/
@@ -130,7 +142,36 @@ body{
   text-align:center;
   margin-top:10px;
   font-size:15px;
+  margin-bottom: 10px;
+  font-size:18px; 
+  color:#fff;
 }
+
+.movie-in {
+	color:#999;
+	font-size:12px;
+	font-weight:bold;
+}
+.movieImage {
+	  opacity: 1;
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	  transition: .5s ease;
+	  backface-visibility: hidden;
+}
+	
+.desc {
+	  transition: .5s ease;
+	  opacity: 0;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  -ms-transform: translate(-50%, -50%);
+	  text-align: center;
+}
+	
 .pagination {
   display: -webkit-flex;
   display: -moz-box;
@@ -140,6 +181,7 @@ body{
   justify-content: center;
   margin-top: 60px;
 }
+
 @media (max-width: 767px) {
   .pagination {
     flex-wrap: wrap;
@@ -327,7 +369,20 @@ yj : start | movieDetail 페이지 관련
   font-size: 25px;
   font-weight: 400;
 }
+
+.movie-rate .rate p span {
+  color: #000000;
+  font-size: 25px;
+  font-weight: 400;
+}
 .movie-single .movie-single-ct .movie-rate .rate p {
+	margin-bottom: 0;
+	margin-left: 10px;
+	font-size: 11px;
+	width:100px;
+	margin-top: 20px;
+}
+.movie-rate .rate p {
 	margin-bottom: 0;
 	margin-left: 10px;
 	font-size: 11px;
@@ -364,7 +419,32 @@ yj : start | movieDetail 페이지 관련
   max-width:310px;
 }
 
+.blockbuster-rate .movie-rate {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* border-top: 1px solid #405266;
+  border-bottom: 1px solid #405266; */
+  border-top: none;
+  border-bottom: none;
+  margin-bottom: 0px;
+  max-width:310px;
+}
+
 .movie-single .movie-single-ct h1{
+  font-family: 'Dosis', sans-serif;
+  color: #000000;
+  font-weight: bold;
+  text-transform: none;
+  font-size: 27px;
+  margin-bottom: 10px;
+  padding-top:10px;
+}
+
+.blockbuster-rate h1{
   font-family: 'Dosis', sans-serif;
   color: #000000;
   font-weight: bold;
@@ -665,6 +745,20 @@ yj : start | tab - review
   margin-left:10px;
 }
 
+.btn-hjs-1{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:9px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:13px;
+  width:100px;
+  margin-left:10px;
+  margin-top: 20px;
+}
+
 #btn-hjs-2{
   display: inline-block;
   background-color: black;
@@ -738,3 +832,4 @@ yj : start | tab - review
 	padding: 20px 0;
 	margin-bottom: 30px;
 }
+

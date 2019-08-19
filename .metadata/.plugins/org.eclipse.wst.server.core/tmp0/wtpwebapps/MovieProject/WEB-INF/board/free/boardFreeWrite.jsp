@@ -15,9 +15,10 @@
 * @Description : 자유게시판 작성
 * @Modification Information
 * @
-* @  수정일               수정자                          수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2019.07.24   박현민   최초생성
+* @    수정일           수정자                 수정내용
+* @ -------------   ---------   -------------------------------
+* @ 2019. 07. 24      박현민   				최초생성
+* @ 2019. 08. 09      한유진				     수정
 * @author BIT 116기 2조
 * @since 2019. 07.01
 * @version 1.0
@@ -70,6 +71,7 @@
 <!-- 썸머노트 헤더 끝 -->
 
 <!-- 추가 헤더 -->
+<link rel="stylesheet" href="./resources/css/boardstyle.css">
 </head>
 <body>
    <script>
@@ -254,8 +256,8 @@
                      <!-- 다홍색 단추를 가져오긴 했는데... 스타일만 가져오겠지? 기존의 것은 submit버튼의 양식 -->
                      <!-- ticket의 단추 가져오기 실패. <a>에만 쓸 수 있는 스타일이다 -->
                      <div style="text-align:center; padding:3%;">
-                        <input type="button" id="update-btn" class="btn" value="작성하기" style="margin-right: 20px;"> 
-                        <input type="button" class="btn" value=" 취 소 " onclick="register_back()">
+                        <input style="width:200px; height: 50px;" type="button" id="update-btn" class="board_btn" value="작성하기" style="margin-right: 20px;"> 
+                        <input style="width:200px; height: 50px;" type="button" class="board_btn" value=" 취 소 " onclick="register_back()">
                      </div>
 
 
