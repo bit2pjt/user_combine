@@ -123,7 +123,7 @@ public class BoardFreeController {
 	 */
 	@RequestMapping(value= "/boardFreeGet", method=RequestMethod.GET)
 	public String boardFreeGet(@RequestParam("bno") int bno, HttpSession session
-			, Model model, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria) {
+			, Model model, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria, HttpServletRequest request) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		if(sessionyn != null) {
 			int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
@@ -136,9 +136,25 @@ public class BoardFreeController {
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardFreeVO", boardFreeVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
-		model.addAttribute("boardListDaily", boardListDaily());//오른쪽의 실시간 베스트5
+		if(request.getParameter("bt") != null) {
+			String bt = request.getParameter("bt");
+			if(bt.equals("d")) {
+				model.addAttribute("boardListDaily", boardListDaily());
+				model.addAttribute("bt_type","Today");
+			}else if(bt.equals("w")) {
+				model.addAttribute("boardListDaily", boardListWeekly());
+				model.addAttribute("bt_type","Weekly");
+			}else if(bt.equals("m")) {
+				model.addAttribute("boardListDaily", boardListMonthly());
+				model.addAttribute("bt_type","Monthly");
+			}
+		}else {
+			model.addAttribute("boardListDaily", boardListDaily());//오른쪽의 실시간 베스트5
+			model.addAttribute("bt_type","Today");
+		}
 		
-		model.addAttribute("mmlTop2", mmlService.getMmlList_like_top2(boardFreeVO.getId()));
+		
+		model.addAttribute("mmlTop3", mmlService.getMmlList_like_top3(boardFreeVO.getId()));
 		
 
 		return "board/free/boardFreeGet"; 

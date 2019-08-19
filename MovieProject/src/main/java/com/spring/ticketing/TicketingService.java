@@ -16,6 +16,14 @@ public interface TicketingService {
 
 	public MovieDetailVO getDetailViaMaxmovie(String mvCode);
 
+	String linkToCGV(String day, String cinema, String title, String startTime);
+
+	String linkToLotte(String day, String cinema, String title, String startTime);
+
+	String linkToMegaBox(String day, String cinema, String title, String startTime, String initDay);
+
+	OutterRateVO getOutterRate(String name);
+
 	
 
 	

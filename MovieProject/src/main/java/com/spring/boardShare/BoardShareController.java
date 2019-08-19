@@ -98,9 +98,9 @@ public class BoardShareController {
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardShareVO", boardShareVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
-		model.addAttribute("boardListDaily", boardFreeService.boardListDaily());
-		
-		model.addAttribute("mmlTop2", mmlService.getMmlList_like_top2(boardShareVO.getId()));
+		model.addAttribute("boardListDaily", boardFreeService.boardListDaily());//오른쪽의 실시간 베스트5
+		model.addAttribute("bt_type","Today");
+		model.addAttribute("mmlTop3", mmlService.getMmlList_like_top3(boardShareVO.getId()));
 		return "board/share/boardShareGet"; 
 	}
 	

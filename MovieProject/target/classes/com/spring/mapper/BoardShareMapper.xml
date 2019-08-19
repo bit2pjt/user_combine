@@ -81,7 +81,7 @@
 	</insert>
 	
 	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
-		insert into sr_warning values(#{id}, #{bsr_rno}, sysdate)
+		insert into bsr_warning values(#{id}, #{bsr_rno}, sysdate)
 	</insert>
 	
 	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">

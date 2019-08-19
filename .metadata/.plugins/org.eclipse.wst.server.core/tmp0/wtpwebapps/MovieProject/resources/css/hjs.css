@@ -72,9 +72,11 @@
 }
 .buster-light .user-information-hjs .user-fav {
   border-color: #d0dae4;
+  background-color: #333;
+  color: #fff;
 }
 .buster-light .user-information-hjs ul li a {
-  color: #020d18;
+  color: #fff;
 }
 .buster-light .user-information-hjs ul li a:hover {
   color: #dd003f;
@@ -686,3 +688,24 @@
         width: 100%;
 }
 /* HM| FAQ 아코디언 추가 끝 */
+ul.jq_tab.tab_menu li{
+  vertical-align:top;
+  display:block;
+  float:left;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  
+}
+
+li:active a { text-decoration:none; color: #dd003f; font-weight: bold }
+/*메뉴 글씨색 변경.*/
+ul.jq_tab.tab_menu li.on a{
+  color: red;
+}
+ul.jq_tab.tab_menu li a{
+  color: #fff;
+}

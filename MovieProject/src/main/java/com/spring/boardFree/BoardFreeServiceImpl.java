@@ -1,5 +1,8 @@
 package com.spring.boardFree;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -427,6 +430,23 @@ public class BoardFreeServiceImpl implements BoardFreeService {
     public List<BoardFreeVO> boardListDaily() {
     	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
     	List<BoardFreeVO> result = boardDAO.boardListDaily();
+    	for(int i=0; i<result.size(); i++) {
+			int id = result.get(i).getId();
+			String nickname = userNickName(id);
+			result.get(i).setNickname(nickname);
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+//			String date = sdf.format(result.get(i).getBf_update_date());
+//			Date update_Date;
+//			try {
+//				update_Date = new java.text.SimpleDateFormat("yyyy/MM/dd").parse(date);
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				update_Date = null;
+//			}
+//			System.out.println(date + ", " + update_Date);
+
+			
+		}
     	return result;
     }
     
@@ -434,6 +454,11 @@ public class BoardFreeServiceImpl implements BoardFreeService {
     public List<BoardFreeVO> boardListWeekly() {
     	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
     	List<BoardFreeVO> result = boardDAO.boardListWeekly();
+    	for(int i=0; i<result.size(); i++) {
+			int id = result.get(i).getId();
+			String nickname = userNickName(id);
+			result.get(i).setNickname(nickname);
+		}
     	return result;
     }
     
@@ -441,6 +466,11 @@ public class BoardFreeServiceImpl implements BoardFreeService {
     public List<BoardFreeVO> boardListMonthly() {
     	BoardFreeDAO boardDAO = sqlSession.getMapper(BoardFreeDAO.class);
     	List<BoardFreeVO> result = boardDAO.boardListMonthly();
+    	for(int i=0; i<result.size(); i++) {
+			int id = result.get(i).getId();
+			String nickname = userNickName(id);
+			result.get(i).setNickname(nickname);
+		}
     	return result;
     }
 
