@@ -59,7 +59,12 @@
 		<filter-class>org.springframework.web.multipart.support.MultipartFilter
 		</filter-class>
 	</filter>
-
+	<!-- 아래의 multipart filter(filter-mapping)도 꼭 있어야함! -->
+	<filter-mapping>
+    	<filter-name>MultipartFilter</filter-name>
+    	<url-pattern>*</url-pattern>
+	</filter-mapping>
+	
 	<filter>
 		<filter-name>hiddenHttpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter
@@ -70,4 +75,6 @@
 		<filter-name>hiddenHttpMethodFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+
 </web-app>

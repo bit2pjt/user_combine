@@ -20,7 +20,7 @@ public interface MmlService {
 	
 	public int getMmlNum(Mml_ContentVO mmlContentVO);	//등록한 mmlContent의 글번호 가져오기
 	
-	public List<Mml_ContentVO> getMmlList_like_top2(int id);//mml 좋아요순으로 top2가져오기
+	public List<Mml_ContentVO> getMmlList_like_top3(int id);//mml 좋아요순으로 top2가져오기
 
 	////////////////
 	// 웅식 개발부분//
