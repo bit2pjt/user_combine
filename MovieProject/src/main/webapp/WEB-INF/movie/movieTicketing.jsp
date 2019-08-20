@@ -36,9 +36,9 @@
 	
 	<div class="hero mv-single-hero" style="height:170px;background-color:#DAD2B4;"> <!-- <<style.css에서 배경이미지 주석처리+배경색 변경 -->
 		<div class="ws_brand_selector">
-			
 		</div>
 	</div>
+<div class="container" >	
 	<div class="col-md-12" style="background-color:white;">
 	<div id="ws_ticketing_box" >
 	
@@ -325,6 +325,7 @@
 	
 
 	
+</div>
 </div>
 
 <!-- 영화관 정보 끝 -->	
