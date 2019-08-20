@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.boardFree.BoardFreeDAO">
+	<resultMap type="com.spring.boardFree.BoardFreeVO" id="BoardFreeMap">
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="id" column="id"/>
+		<result property="bf_category" column="bf_category"/>
+		<result property="bf_title" column="bf_title"/>
+		<result property="bf_reg_date" column="bf_reg_date"/>
+		<result property="bf_update_date" column="bf_update_date"/>
+		<result property="bf_source" column="bf_source"/>
+		<result property="bf_content" column="bf_content"/>
+		<result property="bf_warn_counter" column="bf_warn_counter"/>
+		<result property="bf_view_counter" column="bf_view_counter"/>
+		<result property="bf_deleteyn" column="bf_deleteyn"/>
+		<result property="bf_recommend" column="bf_recommend"/>
+		<result property="bf_decommend" column="bf_decommend"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.ThumbVO" id="ThumbMap">
+		<result property="bf_thumb" column="bf_thumb"/>
+		<result property="bfr_rno" column="bfr_rno"/>
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.WarnVO" id="WarnMap">
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="id" column="id"/>
+		<result property="bf_date" column="bf_date"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
+      <result property="id" column="id"/>
+      <result property="m_nickname" column="m_nickname"/>
+      <result property="m_image" column="m_image"/>
+      <result property="m_email" column="m_email"/>
+      <result property="m_eagree" column="m_eagree"/>
+      <result property="m_sagree" column="m_sagree"/>
+      <result property="m_name" column="m_name"/>
+      <result property="m_phone" column="m_phone"/>
+      <result property="m_cert" column="m_cert"/>
+      <result property="m_password" column="m_password"/>
+      <result property="m_regdate" column="m_regdate"/>
+      <result property="m_update_date" column="m_update_date"/>
+      <result property="m_deleteyn" column="m_deleteyn"/>
+      <result property="m_following" column="m_following"/>
+      <result property="m_follower" column="m_follower"/>
+      <result property="m_level" column="m_level"/>
+      <result property="m_favorite" column="m_favorite"/>
+      <result property="m_blacklist" column="m_blacklist"/>
+   </resultMap>
+	
+	<select id="listAll" resultMap="BoardFreeMap">
+        <![CDATA[
+        SELECT *  
+        FROM board_free
+        WHERE bf_bno > 0
+        ORDER BY bf_bno DESC
+        ]]>
+    </select>
+	<select id="getContent" parameterType="int" resultMap="BoardFreeMap">
+		select *
+		from board_free
+		where bf_bno = #{page}
+	</select>
+	
+	<update id="updateViewCnt">
+  		update board_free set bf_view_counter = bf_view_counter + 1 where  bf_bno = #{page}
+  	</update>
+  	
+	<select id="getWriter" parameterType="int" resultMap="MemberResultMap">
+		select *
+		from member
+		where id = #{id}
+	</select>
+	
+	<select id="getUser" parameterType="String" resultType="int">
+		select NVL(id, 0)
+		from member
+		where m_email = #{email, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="thumb_check" parameterType="int" resultMap="ThumbMap">
+		select *
+		from bf_thumb
+		where id = #{id} and bf_bno= #{bf_bno}
+	</select>
+	
+	<select id="reply_check" parameterType="com.spring.boardFree.ThumbVO" resultMap="ThumbMap">
+		select *
+		from br_thumb
+		where bfr_rno = #{bfr_rno} and id = #{id}
+	</select>
+
+	
+	<select id="warn_check" parameterType="int" resultMap="WarnMap">
+		select *
+		from free_warning
+		where id = #{id} and bf_bno= #{bf_bno}
+	</select>
+	
+	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+		select *
+		from bfr_warning
+		where bfr_rno = #{bfr_rno} and id = #{id}
+	</select>
+	
+	<insert id="plusRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		insert into bf_thumb values(#{bf_thumb}, #{bf_bno}, #{id})
+	</insert>
+	
+	<insert id="replyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		insert into br_thumb values(#{bf_thumb}, #{bfr_rno}, #{id})
+	</insert>
+	
+	<insert id="insertWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into free_warning values(#{bf_bno}, #{id}, sysdate)
+	</insert>
+	
+	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into bfr_warning values(#{bfr_rno}, #{id}, sysdate)
+	</insert>
+	
+	<update id="WarnCount" parameterType="int">
+		update board_free set bf_warn_counter = bf_warn_counter + 1 where bf_bno = #{bno}
+	</update>
+	
+	<update id="ReplyWarnCount" parameterType="int">
+		update bf_reply set bfr_alert = bfr_alert + 1 where bfr_rno = #{rno}
+	</update>
+	
+	<update id="updateRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update board_free set 
+		bf_recommend = (select count(bf_thumb) from bf_thumb where bf_thumb = #{bf_thumb} and bf_bno = #{bf_bno})
+		where bf_bno = #{bf_bno}
+	</update>
+	
+	<update id="updateDecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update board_free set 
+		bf_decommend = (select count(bf_thumb) from bf_thumb where bf_thumb = #{bf_thumb})
+		where bf_bno = #{bf_bno}
+	</update>
+	
+	<update id="updateReplyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update bf_reply set 
+		bfr_like = (select count(bf_thumb) from br_thumb where bf_thumb = #{bf_thumb} and bfr_rno = #{bfr_rno})
+		where bfr_rno = #{bfr_rno}
+	</update>
+	
+	<update id="updateReplyDecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update bf_reply set 
+		bfr_dislike = (select count(bf_thumb) from br_thumb where bf_thumb = #{bf_thumb} and bfr_rno = #{bfr_rno})
+		where bfr_rno = #{bfr_rno}
+	</update>
+	
+	<select id="getRecommend" parameterType="int" resultType="int">
+		select bf_recommend
+		from board_free
+		where bf_bno = #{bno}
+	</select>
+	
+	<select id="getDecommend" parameterType="int" resultType="int">
+		select bf_decommend
+		from board_free
+		where bf_bno = #{bno}
+	</select>
+	
+	<select id="getReplyRecommend" parameterType="int" resultType="int">
+		select bfr_like
+		from bf_reply
+		where bfr_rno = #{bfr_rno}
+	</select>
+	
+	<select id="getReplyDecommend" parameterType="int" resultType="int">
+		select bfr_dislike
+		from bf_reply
+		where bfr_rno = #{bfr_rno}
+	</select>
+	
+	<select id="getMemberNickname" parameterType="String"
+		resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email,
+		jdbcType=VARCHAR}
+	</select>
+	
+	<!-- select : 멤버  정보 가져오기-->
+	<select id="getMember" parameterType="int" resultMap="MemberResultMap">
+		select * from member where id=#{id}
+	</select>
+	
+	<!-- select : 멤버  아이디 가져오기-->
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<!-- insert : boardFree -->
+	<insert id="insertBoardFree" parameterType="com.spring.boardFree.BoardFreeVO">
+		INSERT INTO board_free VALUES (seq_bf_bno.nextval, #{id}, 0, 0, #{bf_category, jdbcType=VARCHAR}, 
+		#{bf_title, jdbcType=VARCHAR}, sysdate, sysdate, #{bf_source, jdbcType=VARCHAR}, #{bf_content, jdbcType=VARCHAR},
+		0, 0, 'N')
+	</insert>
+	
+	<!-- update : boardFree -->
+	<update id="updateBoardFree" parameterType="com.spring.boardFree.BoardFreeVO">
+		UPDATE board_free SET BF_CATEGORY=#{bf_category, jdbcType=VARCHAR}, 
+		BF_TITLE=#{bf_title, jdbcType=VARCHAR}, BF_SOURCE=#{bf_source, jdbcType=VARCHAR},
+		BF_CONTENT=#{bf_content, jdbcType=VARCHAR}, 
+		BF_UPDATE_DATE=sysdate WHERE BF_BNO=#{bf_bno}
+	</update>
+	
+	<!-- select : boardFree -->
+	<select id="selectBoardFree" parameterType="int" resultMap="BoardFreeMap">
+		SELECT * FROM board_free WHERE BF_BNO=#{bf_bno}
+	</select>
+	
+	 <select id="countArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(bf_bno)
+	        FROM board_free
+	        WHERE bf_bno > 0
+        ]]>
+    </select>
+    
+     <select id="listCriteria" resultMap="BoardFreeMap">
+        <![CDATA[
+        select
+        	bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+            from
+		   (
+		    select
+		    rownum rn
+		    , bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+		    from board_free
+            order by bf_bno desc
+		   )
+		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
+
+    
+    <sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 't'.toString()">
+                AND bf_title LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'c'.toString()">
+                AND bf_content LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'w'.toString()">
+                AND id LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'tc'.toString()">
+                AND (
+                    bf_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'cw'.toString()">
+                AND (
+                    bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'tcw'.toString()">
+                AND (
+                    bf_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+        </if>
+    </sql>
+	
+	<select id="countSearchedArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(bf_bno)
+		    FROM board_free
+		    WHERE bf_bno > 0
+        ]]>
+        <include refid="search"/>
+    </select>
+    
+     <select id="listSearch" resultMap="BoardFreeMap">
+        <![CDATA[
+        select
+        	bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+            from
+		   (
+		    select
+		    rownum rn
+		    , bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+		    from board_free
+		    WHERE bf_bno > 0
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by bf_bno desc
+		   )
+		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
+    
+    <select id="boardListDaily" resultMap="BoardFreeMap">
+    	<![CDATA[
+    	select * from (select * from board_free 
+    	where bf_recommend >=3 and to_char(bf_reg_date, 'YYYYMMDD') = to_char(sysdate, 'YYYYMMDD') order by bf_recommend desc)
+		where rownum <= 10
+		]]>
+    </select>
+    
+    <select id="boardListWeekly" resultMap="BoardFreeMap">
+    	<![CDATA[
+    	select * from (
+    	select * from board_free where  bf_recommend >=3 and bf_reg_date 
+    	between to_char(TRUNC(sysdate, 'iw'), 'yyyymmdd') and to_char(TRUNC(sysdate, 'iw')+6, 'yyyymmdd') 
+    	order by bf_recommend desc)where rownum <= 10
+		]]>
+    </select>
+    
+    <select id="boardListMonthly" resultMap="BoardFreeMap">
+    	<![CDATA[
+    	select * from (select * from board_free 
+    	where  bf_recommend >=3 and to_char(bf_reg_date, 'YYYYMM') = to_char(sysdate, 'YYYYMM') order by bf_recommend desc)
+		where rownum <= 10
+		]]>
+    </select>
+</mapper>

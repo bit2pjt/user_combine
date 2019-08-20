@@ -5658,8 +5658,9 @@ ul {
 }
 /*movie single hero*/
 .mv-single-hero {
-  background: url('../images/uploads/hero-bg.jpg') no-repeat;
+  /*background: url('../images/uploads/hero-bg.jpg') no-repeat;*/
   height: 598px;
+  
 }
 /*series single hero*/
 .sr-single-hero {
@@ -5672,14 +5673,14 @@ ul {
 }
 .common-hero {
   height: 250px;
-  background: url('../images/uploads/user-hero-bg.jpg') no-repeat;
+  background: url('../images/uploads/user-hero-bg.png') no-repeat;
 }
 .common-hero:before {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .user-hero {
   height: 385px;
-  background: url('../images/uploads/user-hero-bg.jpg') no-repeat;
+  background: url('../images/uploads/user-hero-bg.png') no-repeat;
 }
 .user-hero .hero-ct {
   padding-top: 225px;
@@ -5711,7 +5712,7 @@ ul {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .landing-hero {
-  background-image: url('../images/uploads/user-hero-bg.jpg');
+  background-image: url('../images/uploads/user-hero-bg.png');
   box-shadow: inset 0 0 1000px rgba(0, 0, 0, 0.5);
   text-align: center;
   padding: 110px 0;
@@ -5935,7 +5936,7 @@ ul {
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
   border-right: 10px solid #dd003f;
-  /* Tam giác phải được đổ màu */
+  /* Tam gi찼c ph梳즜 휃튼沼즓 휃沼� m횪u */
 }
 .social-btn .hover-bnt:hover .hvr-item {
   -moz-opacity: 1;

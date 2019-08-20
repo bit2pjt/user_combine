@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.movie.MovieDAO">
+	<resultMap type="com.spring.movie.MovieInfoVO" id="movieMap">
+		<result property="mi_code" column="mi_code"/>
+		<result property="mi_ktitle" column="mi_ktitle"/>
+		<result property="mi_etitle" column="mi_etitle"/>
+		<result property="mi_director" column="mi_director"/>
+		<result property="mi_poster" column="mi_poster"/>
+		<result property="mi_releaseday" column="mi_releaseday"/>
+		<result property="mi_ccode" column="mi_ccode"/>
+		<result property="mi_actor" column="mi_actor"/>
+		<result property="mi_story" column="mi_story"/>
+		<result property="mi_teaser" column="mi_teaser"/>
+		<result property="grade_code" column="grade_code"/>
+		<result property="mi_gcode" column="mi_gcode"/>
+		<result property="mi_time" column="mi_time"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.ThumbVO" id="ThumbMap">
+		<result property="bf_thumb" column="bf_thumb"/>
+		<result property="bfr_rno" column="bfr_rno"/>
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="mr_code" column="mr_code"/>
+		<result property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.WarnVO" id="WarnMap">
+		<result property="bf_bno" column="bf_bno"/>
+		<result property="id" column="id"/>
+		<result property="bf_date" column="bf_date"/>
+	</resultMap>
+	
+	<select id="getMovieListSerch" resultMap="movieMap">
+		<![CDATA[
+		select *
+        from(select
+        	rownum rn
+        	, mi_code
+            , mi_ktitle
+            , mi_etitle
+            , mi_director
+            , mi_poster
+            , mi_releaseday
+            , mi_ccode
+            , mi_actor
+            , mi_story
+            , mi_teaser
+            , grade_code
+            , mi_gcode
+            , mi_time
+            from
+		   (
+		    select
+		    rownum rn
+		    , mi_code
+            , mi_ktitle
+            , mi_etitle
+            , mi_director
+            , mi_poster
+            , mi_releaseday
+            , mi_ccode
+            , mi_actor
+            , mi_story
+            , mi_teaser
+            , grade_code
+            , mi_gcode
+            , mi_time
+		    from movie_info
+		    WHERE mi_code > 0
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by mi_releaseday desc
+		   ))
+		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+	</select>
+	
+	<sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 'n'.toString()">
+                AND mi_ktitle LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'd'.toString()">
+                AND mi_director LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'a'.toString()">
+                AND mi_actor LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+        </if>
+    </sql>
+    
+	<select id="countSearchedMovie" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(mi_code)
+		    FROM movie_info
+		    WHERE mi_code > 0
+        ]]>
+        <include refid="search"/>
+    </select>
+    
+    <select id="getMovieInfo" parameterType="String" resultMap="movieMap">
+		SELECT	*
+		FROM movie_info
+		WHERE mi_ktitle = #{mi_ktitle}
+    </select>
+    
+    <select id="getUser" parameterType="String" resultType="int">
+		select NVL(id, 0)
+		from member
+		where m_email = #{email, jdbcType=VARCHAR}
+	</select>
+    
+    <!-- 댓글  추천-->
+    <select id="reply_check" parameterType="com.spring.boardFree.ThumbVO" resultMap="ThumbMap">
+		select *
+		from mr_thumb
+		where mr_code = #{mr_code} and id = #{id}
+	</select>
+    
+    <insert id="replyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		insert into mr_thumb values(#{bf_thumb}, #{mr_code}, #{id})
+	</insert>
+    
+    <update id="updateReplyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update movie_rev set 
+		mr_like = (select count(bf_thumb) from mr_thumb where bf_thumb = #{bf_thumb} and mr_code = #{mr_code})
+		where mr_code = #{mr_code}
+	</update>
+	
+	<update id="updateReplyDecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update movie_rev set 
+		mr_dislike = (select count(bf_thumb) from mr_thumb where bf_thumb = #{bf_thumb} and mr_code = #{mr_code})
+		where mr_code = #{mr_code}
+	</update>
+	
+    <select id="getReplyRecommend" parameterType="int" resultType="int">
+		select mr_like
+		from movie_rev
+		where mr_code = #{mr_code}
+	</select>
+	
+	<select id="getReplyDecommend" parameterType="int" resultType="int">
+		select mr_dislike
+		from movie_rev
+		where mr_code = #{mr_code}
+	</select>
+    
+ 	<!-- 댓글 신고  -->
+ 	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+		select *
+		from mr_warning
+		where mr_code = #{mr_code} and id = #{id}
+	</select>
+    
+    <update id="ReplyWarnCount" parameterType="int">
+		update movie_rev set mr_alert = mr_alert + 1 where mr_code = #{mr_code}
+	</update>
+	
+	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into mr_warning values(#{id}, #{mr_code}, sysdate)
+	</insert>
+    
+    
+    
+    <select id="getMovieList" parameterType="String" resultMap="movieMap">
+		select * from movie_info
+	</select>
+	
+	<select id="getMovieList_title" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_ktitle like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+		or mi_etitle like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+	</select>
+	
+	<select id="getMovieList_release" parameterType="String" resultMap="movieMap">
+		<!-- select * from movie_info where mi_releaseday like #{search_input, jdbcType=VARCHAR} -->
+		select * from movie_info where to_char(mi_releaseday,'YYYY') like #{search_input, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getMovieList_country" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_ccode like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+	</select>
+	
+	<select id="getMovieList_director" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_director like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+	</select>
+	
+	<select id="getMovieList_actor" parameterType="String" resultMap="movieMap">
+		select * from movie_info where mi_actor like '%'||#{search_input, jdbcType=VARCHAR}||'%' 
+	</select>
+
+</mapper>

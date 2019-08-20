@@ -80,7 +80,17 @@
     		<version>1.4</version>
 		</dependency>
 		<!-- File Upload 끝 -->
-		
+		<!-- Mail -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -202,6 +212,51 @@
 			<version>1.18.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.9.6</version>
+    </dependency>
+        <!-- 웅식 : 크롤링 JSOP -->
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+ 		   <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.11.1</version>
+		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<!-- selenium -->
+		<dependency>
+  		 <groupId>org.seleniumhq.selenium</groupId>
+ 		  <artifactId>selenium-java</artifactId>
+		   <version>3.5.3</version>
+		</dependency>
+		<dependency>
+ 		     <groupId>org.seleniumhq.selenium</groupId>
+		      <artifactId>selenium-server</artifactId>
+ 		     <version>3.5.3</version>
+		</dependency>
+		<dependency>
+		     <groupId>org.seleniumhq.selenium</groupId>
+ 		    <artifactId>selenium-chrome-driver</artifactId>
+ 		    <version>3.5.3</version>
+		</dependency>
+		<dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>22.0</version>
+</dependency>
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
+	<dependency>
+  	  <groupId>org.json</groupId>
+ 	   <artifactId>json</artifactId>
+ 	   <version>20160810</version>
+	</dependency>
 	</dependencies>
     <build>
         <plugins>

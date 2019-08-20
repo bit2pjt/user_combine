@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.boardShare.BoardShareDAO">
+	<resultMap type="com.spring.boardShare.BoardShareVO" id="BoardShareMap">
+		<result property="bs_bno" column="bs_bno"/>
+		<result property="id" column="id"/>
+		<result property="bs_category" column="bs_category"/>
+		<result property="bs_content" column="bs_content"/>
+		<result property="bs_title" column="bs_title"/>
+		<result property="bs_reg_date" column="bs_reg_date"/>
+		<result property="bs_update_date" column="bs_update_date"/>
+		<result property="bs_view_counter" column="bs_view_counter"/>
+		<result property="bs_warn_counter" column="bs_warn_counter"/>
+		<result property="bs_deleteyn" column="bs_deleteyn"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.WarnVO" id="WarnMap">
+		<result property="bs_bno" column="bs_bno"/>
+		<result property="id" column="id"/>
+		<result property="bf_date" column="bf_date"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
+      <result property="id" column="id"/>
+      <result property="m_nickname" column="m_nickname"/>
+      <result property="m_image" column="m_image"/>
+      <result property="m_email" column="m_email"/>
+      <result property="m_eagree" column="m_eagree"/>
+      <result property="m_sagree" column="m_sagree"/>
+      <result property="m_name" column="m_name"/>
+      <result property="m_phone" column="m_phone"/>
+      <result property="m_cert" column="m_cert"/>
+      <result property="m_password" column="m_password"/>
+      <result property="m_regdate" column="m_regdate"/>
+      <result property="m_update_date" column="m_update_date"/>
+      <result property="m_deleteyn" column="m_deleteyn"/>
+      <result property="m_following" column="m_following"/>
+      <result property="m_follower" column="m_follower"/>
+      <result property="m_level" column="m_level"/>
+      <result property="m_favorite" column="m_favorite"/>
+      <result property="m_blacklist" column="m_blacklist"/>
+   </resultMap>
+
+	<select id="getContent" parameterType="int" resultMap="BoardShareMap">
+		select *
+		from board_share
+		where bs_bno = #{page}
+	</select>
+	
+	<update id="updateViewCnt">
+  		update board_share set bs_view_counter = bs_view_counter + 1 where  bs_bno = #{page}
+  	</update>
+  	
+	<select id="getWriter" parameterType="int" resultMap="MemberResultMap">
+		select *
+		from member
+		where id = #{id}
+	</select>
+	
+	<select id="getUser" parameterType="String" resultType="int">
+		select id
+		from member
+		where m_email = #{email, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="warn_check" parameterType="int" resultMap="WarnMap">
+		select *
+		from bs_warning
+		where id = #{id}  and bs_bno= #{bs_bno}
+	</select>
+	
+	<update id="WarnCount" parameterType="int">
+		update board_share set bs_warn_counter = bs_warn_counter + 1 where bs_bno = #{bno}
+	</update>
+	
+	<insert id="insertWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into bs_warning values(#{id} ,#{bs_bno},sysdate)
+	</insert>
+	
+	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into bsr_warning values(#{id}, #{bsr_rno}, sysdate)
+	</insert>
+	
+	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+		select *
+		from sr_warning
+		where bsr_rno = #{bsr_rno} and id = #{id}
+	</select>
+	
+	<update id="ReplyWarnCount" parameterType="int">
+		update bs_reply set bsr_alert = bsr_alert + 1 where bsr_rno = #{rno}
+	</update>
+	
+	<select id="getMemberNickname" parameterType="String"
+		resultType="String">
+		select M_NICKNAME from member where M_EMAIL=#{m_email,
+		jdbcType=VARCHAR}
+	</select>
+	
+	<!-- select : 멤버  정보 가져오기-->
+	<select id="getMember" parameterType="int" resultMap="MemberResultMap">
+		select * from member where id=#{id}
+	</select>
+	
+	<!-- select : 멤버  아이디 가져오기-->
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select ID from member where M_EMAIL=#{m_email}
+	</select>
+	
+	<!-- insert : boardShare -->
+	<insert id="insertBoardShare" parameterType="com.spring.boardShare.BoardShareVO">
+	INSERT INTO board_share VALUES (seq_bs_bno.nextval, #{id}, #{bs_category, jdbcType=VARCHAR},
+	#{bs_content, jdbcType=VARCHAR}, #{bs_title, jdbcType=VARCHAR}, sysdate, sysdate,
+	0, 0, 'N')
+	</insert>
+	
+	<!-- select : boardShare -->
+	<select id="selectBoardShare" parameterType="int" resultMap="BoardShareMap">
+	SELECT * FROM board_share WHERE BS_BNO=#{bs_bno}
+	</select>
+	
+	<!-- update : boardShare -->
+	<update id="updateBoardShare" parameterType="com.spring.boardShare.BoardShareVO">
+		UPDATE board_share SET BS_CATEGORY=#{bs_category, jdbcType=VARCHAR}, 
+		BS_TITLE=#{bs_title, jdbcType=VARCHAR}, BS_CONTENT=#{bs_content, jdbcType=VARCHAR}, 
+		BS_UPDATE_DATE=sysdate WHERE bs_bno=#{bs_bno}
+	</update>
+	
+	<sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 't'.toString()">
+                AND bs_title LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'c'.toString()">
+                AND bs_content LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'w'.toString()">
+                AND id LIKE CONCAT('%' || #{keyword}, '%')
+            </if>
+            <if test="searchType == 'tc'.toString()">
+                AND (
+                    bs_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bs_content LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'cw'.toString()">
+                AND (
+                    bf_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'tcw'.toString()">
+                AND (
+                    bs_title LIKE CONCAT('%' || #{keyword}, '%')
+                    OR bs_content LIKE CONCAT('%' || #{keyword}, '%')
+                    OR id LIKE CONCAT('%' || #{keyword}, '%')
+                )
+            </if>
+        </if>
+    </sql>
+	
+	<select id="countSearchedArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(bs_bno)
+		    FROM board_share
+		    WHERE bs_bno > 0
+        ]]>
+        <include refid="search"/>
+    </select>
+    
+     <select id="listSearch" resultMap="BoardShareMap">
+        <![CDATA[
+        select
+        	bs_bno
+            , id
+            , bs_category
+            , bs_content
+            , bs_title
+            , bs_reg_date
+            , bs_update_date
+            , bs_view_counter
+            , bs_warn_counter
+            , bs_deleteyn
+       from
+		   (
+		    select
+		    rownum rn
+		    , bs_bno
+            , id
+            , bs_category
+            , bs_content
+            , bs_title
+            , bs_reg_date
+            , bs_update_date
+            , bs_view_counter
+            , bs_warn_counter
+            , bs_deleteyn
+		    from board_share
+		    WHERE bs_bno > 0
+		    ]]>
+          	<include refid="search"/>
+       		<![CDATA[
+            order by bs_bno desc
+		   )
+		where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
+</mapper>

@@ -1,0 +1,203 @@
+
+/**
+* @Class Name :  mml_write.css
+* @Description : mml_write css
+* @Modification Information
+* @
+* @  수정일      수정자              수정내용
+* @ ---------   ---------   -------------------------------
+* @ 2019.07.27     한유진      최초생성
+*
+* @author BIT 116기 2조
+* @since 2019. 07.01
+* @version 1.0
+* @see
+*
+*  Copyright (C) by bit 2조 All right reserved.
+*/
+
+/* I. FRAMEWORK
+***********************/
+/*!
+ * Bootstrap v3.3.5 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+
+/*
+yj : start | index 페이지 상단의 영화 차트 관련
+*/
+.mml-write-title{
+	width:100%;
+	/* background-color:#ffa4ba; */
+	margin-left:auto;
+	margin-right:auto;
+}
+.mml-title{
+	width:75%;
+	border: 1px solid #999999; 
+}
+.mml-write-content{
+	width:100%;
+	/* background-color:#fff188; */
+}
+
+.mml-write-content textarea{
+	min-height: 300px;
+}
+
+.mml-write-movie{
+	width:100%;
+	/* background-color:#a3ffae; */
+}
+
+.mml-movie-body{
+	
+}
+
+.mml-movie-item{
+	display:inline-block;
+	width:150px;
+	height:200px;
+	border:1px solid gray;
+	text-align:center;
+	position:relative;
+	margin:10px;
+}
+
+.mml-movie-item img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.mml-movie-item .addbtn {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.mml-write-button{
+	width:100%;
+	/* background-color:#afe4ff; */
+	text-align: center;
+}
+
+.mml-write-button input{
+	display: inline-block;
+	background-color: black;
+	border-color: black;
+	color:white;
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+/*modal*/
+
+.modal-dialog {
+    width: 80%;
+    margin: 30px auto;
+}
+
+@media (max-width: 400px){
+	.modal-dialog {
+    	width: 350px;
+    	margin: 20px auto;
+	}
+}
+.modal-body{
+	/* text-align: left; */
+}
+.movielist-top{
+}
+
+.movielist-top select{
+	width:120px;
+	display: inline-block;
+}
+
+.movielist-top input{
+	width:60%;
+	display: inline-block;
+}
+
+.movielist-top button{
+	display: inline-block;
+}
+
+@media(max-width:600px){
+.movielist-top select{
+	width:100%;
+	display: block;
+	margin-bottom:10px;
+}
+
+.movielist-top input{
+	width:100%;
+	display: block;
+	margin-bottom:10px;
+}
+
+.movielist-top button{
+	width:100%;
+	display: block;
+	margin-bottom:10px;
+}
+}
+
+.modal-footer{
+	text-align: center;
+	padding: 0px;
+    height: 50px;
+}
+
+.modal-footer button{
+	width:100%;
+	height:100%;
+	background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.movielist-card{
+	display: inline-block;
+    background-color: white;
+    width: 150px;
+    height: 200px;
+    margin: 10px 20px;
+    position: relative;
+    border: 1px solid black;
+}
+
+.movielist-card img{
+	max-width:150px;
+	max-height:200px;
+}
+
+.movielist-card .movie-info{
+	position: absolute;
+	text-align: left;
+	left:105px;
+	top:5px;
+}
+
+/* 
+.movielist-card h4{
+	position: absolute;
+	font-size:13px;
+    left: 3px;
+    top: 155px;
+} */
+
+

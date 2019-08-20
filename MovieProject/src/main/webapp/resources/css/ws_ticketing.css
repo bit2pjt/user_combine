@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+.ws_brand_selector {
+	padding:15px;
+	margin:15%;
+}
+/*//////////*/
+/*티켓팅 크롤링 자리*/
+/*//////////*/
+#ws_ticketing_box {
+	width:100%;
+	text-align:center;
+	padding-top:15px;
+	
+}
+
+#ws_ticketing_box li {
+	width:100%;
+}
+
+
+#ws_ticketing_date {
+	width:50%;
+	padding-top:3px;
+	display:inline-block;
+	
+	
+}
+
+#ws_multi_eval {
+	display:inline-block;
+	width:49%;
+	text-align:left;
+}
+
+#ws_multi_eval img {
+	height:30px;
+	}
+
+.star-rating {
+	width:205px; 
+}  
+
+.star-rating,.star-rating span { 
+	display:inline-block;
+	height:39px; 
+	overflow:hidden; 
+	background:url('/movie/resources/images/customs/ws_img/doubleStar.png')no-repeat; 
+	
+	
+} 
+
+.star-rating span{ 
+	background-position:left bottom; 
+	line-height:0; 
+	vertical-align:top; 
+} 
+
+
+#ws_ticketing_date li {
+	font-weight:bold;
+	text-align:center;
+}
+
+#ws_ticketing_movies {
+	width:25%;
+	padding-top:3px;
+	display:inline-block;
+}
+#ws_ticketing_movies #ws_innerhead th {
+	border-bottom:1px solid #0F2133 ;
+	background-color : #DAD2B4;
+	text-align:center;
+}
+
+#ws_ticketing_movies th{
+	border:0px;
+	max-height:30px;
+}
+
+#ws_ticketing_movies .ws_movie_title {
+	max-width:20%;
+	text-overflow: ellipsis;
+
+}
+
+#ws_ticketing_cines {
+	width:33%;
+	padding-top:3px;
+	display:inline-block;
+}
+
+#ws_ticketing_screens {
+	width:20%;
+	padding-top:3px;
+	display:inline-block;
+}
+
+.ws_date {
+	background-color:#DAD2B4;
+}
+
+.ws_date:nth-child(1) {
+	background-color:#0F2133;
+	color:white;
+}
+
+.ws_ticketing_category {
+	background-color:#0F2133;
+	color:white;
+	font-weight:bold;
+	text-align:center;
+	width:100%;
+	padding:5px;
+}
+.ws_ticketing_infoboard {
+	background:#F9F6EC;
+	/*background-color:white;*/
+	overflow:scroll;
+	min-height:500px;
+	max-height:500px;
+	
+}
+
+.ws_ticketing_dateboard {
+	background:#F9F6EC;
+	text-align:center;
+}
+
+.ws_ticketing_dateboard table tr td {
+	text-align:center;
+	border:none;
+	font-weight:bold;
+	
+}
+
+
+
+
+/*커스텀 스크롤바 부분*/
+
+.force-overflow
+{
+	min-height: 450px;
+}
+
+.ws_ticketing_infoboard::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
+	/*border-radius: 1px;*/
+	background-color: #F9F6EC;
+}
+
+.ws_ticketing_infoboard::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.ws_ticketing_infoboard::-webkit-scrollbar-thumb
+{
+	/*border-radius: 10px;*/
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #0F2133;
+}
+/*커스텀 스크롤바 부분*/
+
+
+#ws_local_detail_top {
+	background-color:#dad2b4;
+	width:100%;
+	display:block;
+	padding:6px;
+}
+
+#ws_local_detail div { 
+	/*div로 잡으면 div 안의 div까지 non으로 잡는다.
+		문제는 향후  Jquery로 상위 div만 biock으로 변경되고
+		하위 div는 여전히 none으로 나와 동적 스타일 변경이 안된느 것 처럼 보이는것.
+	*/
+	display:none;
+}
+
+	/*//////////*/
+	/*/기타정보 자리//*/
+	/*//////////*/	
+#ws_total_info_tab {
+	width:20%;
+	padding-top:3px;
+	display:inline-block;
+	
+}
+
+#ws_total_info_tab div div img{
+	padding-top : 7%;
+}
+	
+
+#ws_local_detail div span {
+	display:inline-block;
+	width:45%;
+	max-width:45%;
+	min-width:45%;
+	display:none;
+}
+
+
+
+.scrollbar
+{
+	margin-left: 30px;
+	float: left;
+	height: 300px;
+	width: 65px;
+	background: #F5F5F5;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+	/*//////////*/
+	/*/스케쥴표 자리//*/
+	/*//////////*/	
+
+.ws_cine_schedule{
+	background-color:#dad2b4;
+	font-weight:bold;
+	
+}
+
+
+.ws_schedule_header {
+	text-align:left;
+	font-weight:bold;
+}
+
+.ws_schedule_box{
+	margin-bottom:10px;
+	
+}
+
+.ws_ticketing_detail {
+	background-color:#0F2133;
+	color:white;
+	border-radius:8px;
+	margin-left:5px;
+	margin-right:5px;
+	
+	padding:3px;
+}
+
+

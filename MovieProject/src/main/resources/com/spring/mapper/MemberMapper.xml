@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.spring.member.MemberDAO">
-	  <resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
+	 <resultMap type="com.spring.member.MemberVO" id="MemberResultMap">
       <result property="id" column="id"/>
       <result property="m_nickname" column="m_nickname"/>
       <result property="m_image" column="m_image"/>
@@ -23,15 +23,50 @@
       <result property="m_level" column="m_level"/>
       <result property="m_favorite" column="m_favorite"/>
       <result property="m_blacklist" column="m_blacklist"/>
+      <result property="m_authkey" column="m_authkey"/>
    </resultMap>
    
+   <insert id="memberJoin" parameterType="com.spring.member.MemberVO">
+		insert into member
+		values (seq_member_id.nextval, #{m_nickname, jdbcType=VARCHAR}, #{m_image, jdbcType=VARCHAR}, #{m_email, jdbcType=VARCHAR}, #{m_eagree, jdbcType=VARCHAR}, #{m_sagree, jdbcType=VARCHAR}, #{m_name, jdbcType=VARCHAR},#{m_phone, jdbcType=VARCHAR}, #{m_cert, jdbcType=VARCHAR}, #{m_password, jdbcType=VARCHAR},
+				sysdate, sysdate, #{m_deleteyn, jdbcType=VARCHAR}, #{m_following}, #{m_follower}, #{m_level, jdbcType=VARCHAR}, #{m_favorite, jdbcType=VARCHAR}, #{m_blacklist, jdbcType=VARCHAR}, #{m_authkey, jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="setAuthkey" parameterType="com.spring.member.MemberVO">
+		update member set m_authkey=#{m_authkey, jdbcType=VARCHAR} where id=#{id} and m_email=#{m_email, jdbcType=VARCHAR}
+	</update>
+	
+	<select id="getAuthkey" parameterType="int" resultType="String">
+		select m_authkey from member where id=#{id}
+	</select>
+	
+	<update id="updateCert" parameterType="com.spring.member.MemberVO">
+		update member set m_cert=#{m_cert, jdbcType=VARCHAR} where id=#{id} and m_authkey=#{m_authkey, jdbcType=VARCHAR}
+	</update>
+	
+	<select id="getCertById" parameterType="int" resultType="String">
+		select m_cert from member where id=#{id}
+	</select>
+	
    <!-- 로그인시 회원 체크 -->
 	<select id="userCheck" parameterType="String" resultMap="MemberResultMap">
 		select *
 		from member
-		where m_email = #{email}
+		where m_email = #{email, jdbcType=VARCHAR}
 	</select>
 	
+	<select id="getCert" parameterType="String" resultType="String">
+		select m_cert from member where m_email = #{m_email, jdbcType=VARCHAR} and m_password = #{m_password, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getDeletestatus" parameterType="String" resultType="String">
+		select m_deleteyn from member where m_email = #{m_email, jdbcType=VARCHAR} and m_password = #{m_password, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getId" parameterType="String" resultType="int">
+		select id from member where m_email = #{m_email, jdbcType=VARCHAR} and m_password = #{m_password, jdbcType=VARCHAR}
+	</select>
+
 	<select id="findEmail" parameterType="com.spring.member.MemberVO" resultType="String">
 		select m_email
 		from member
@@ -44,29 +79,28 @@
 		where m_email = #{m_email, jdbcType=VARCHAR} and m_name = #{m_name, jdbcType=VARCHAR} and m_phone = #{m_phone, jdbcType=VARCHAR}
 	</select>
 	
-
-	<insert id="memberJoin">
-		insert into member
-		values (seq_member_id.nextval, #{m_nickname}, #{m_image}, #{m_email}, #{m_eagree}, #{m_sagree}, #{m_name},#{m_phone}, #{m_cert}, #{m_password},
-				sysdate, sysdate, #{m_deleteyn}, #{m_following}, #{m_follower}, #{m_level}, #{m_favorite}, #{m_blacklist})
-	</insert>
+	<update id="updatePw" parameterType="com.spring.member.MemberVO">
+		update member set m_password = #{m_password, jdbcType=VARCHAR} where m_email = #{m_email, jdbcType=VARCHAR} and m_name = #{m_name, jdbcType=VARCHAR} and m_phone = #{m_phone, jdbcType=VARCHAR}
+	</update>
 
 	<select id="emailOverlapChk" parameterType="String" resultType="int">
 		select count(m_email)
 		from member
-		where m_email = #{m_email}
+		where m_email = #{m_email, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="nickOverlapChk" parameterType="String" resultType="int">
 		select count(m_nickname)
 		from member
-		where m_nickname = #{m_nickname}
+		where m_nickname = #{m_nickname, jdbcType=VARCHAR}
 	</select>
 	
-
-	<update id="updatePw" parameterType="com.spring.member.MemberVO">
-		update member set m_password = #{m_password, jdbcType=VARCHAR} where m_phone = #{m_phone, jdbcType=VARCHAR}
-	</update>
-
-
+	
+	
+	
+	
+	
+	<select id="userNickName" parameterType="int" resultType="String">
+		select m_nickname from member where id = #{id}
+	</select>
 </mapper>

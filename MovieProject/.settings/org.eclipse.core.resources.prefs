@@ -1,6 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/com/spring/member/LoginController.java=UTF-8
-encoding//src/main/java/com/spring/member/MemberServiceImpl.java=UTF-8
-encoding//src/main/java/com/spring/movie/BoardFreeController.java=UTF-8
-encoding//src/main/webapp/WEB-INF/footer.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/mypage/pw_confirm.jsp=UTF-8
+encoding//src/main/webapp/resources/css/header_style.css=UTF-8
+encoding//src/main/webapp/resources/css/style.css=UTF-8
+encoding/<project>=UTF-8
+separateDerivedEncodings=true
