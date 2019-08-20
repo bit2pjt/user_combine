@@ -88,7 +88,7 @@
 									<%if(member.getM_image() == null || member.getM_image().equals("")) {%>
 										<img src="resources/images/person.png" style="width:120px;height:120px;">
 									<%}else{ %>
-									<img src="./profile/${requestScope.member.m_image }" style="width:120px;height:120px;">
+									<img src="resources/images/sp_image/${requestScope.member.m_image }" style="width:120px;height:120px;">
 									<%} %>
 									<form name="goodsform" action="./profileAddAction" method="post" enctype="multipart/form-data">
 										<a href="#" class="red-btn">사진 변경</a>
