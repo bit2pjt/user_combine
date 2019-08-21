@@ -29,7 +29,7 @@
     <section>
 
 
-	<div class="hero user-hero">
+	<div class="hero user-hero" style="z-index:-100;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">

@@ -99,7 +99,9 @@ function update_img(){
 									<%if(member.getM_image() == null || member.getM_image().equals("") || member.getM_image().equals("null")) {%>
 										<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width:120px;height:120px;">
 									<%}else{ %>
+
 									<img src="./upload/${requestScope.member.m_image }" style="width:120px;height:120px;">
+
 									<%} %>
 									<form name="goodsform" action="./profileAddAction?id=<%= member.getId() %>" method="post" enctype="multipart/form-data">
 										<input name="file" id="file_img" type="file" onchange="update_img()" style="visibility:hidden;height:1px;" />

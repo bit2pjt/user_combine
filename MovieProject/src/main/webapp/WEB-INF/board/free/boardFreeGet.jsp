@@ -315,9 +315,9 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
-                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn">수정</button>
-                            <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-success modalModBtn">수정</button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
                         </div>
                     </div>
                 </div>
@@ -438,7 +438,6 @@
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
     });
     
-    $()
     
     $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li
