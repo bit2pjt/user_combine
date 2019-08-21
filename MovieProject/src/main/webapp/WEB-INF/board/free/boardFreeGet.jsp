@@ -48,7 +48,7 @@
  		var session = "${sessionyn}";
  		var reco = $("#ws-cnt-tup");
  		var deco = $("#ws-cnt-tdn");
- 		var warn = $("#ws-cnt-warning");
+ 		var warn = $("#modal-warning-btn");
  		var bno = "${boardFreeVO.bf_bno}";
  		
  		reco.on("click", function() {
@@ -107,9 +107,14 @@
  		 		location.href="index";
  		 		return false;
  		 	}
+ 		 	var warn_content = document.getElementById("bf_warncontent").value.trim();
+ 		 	if(warn_content.length == 0){
+ 		 		alert("신고사유를 입력해주세요.");
+ 		 		return false;
+ 		 	}
  			$.ajax({
  				url:"boardFreeWarn",
- 				data: {bf_bno: bno},
+ 				data: {bf_bno: bno,bf_warncontent: warn_content},
  				dataType: "text",
  				type:"post",
  				success: function(data) {
@@ -122,6 +127,9 @@
  					alert("에러");
  				}
  			});
+ 			var modal = document.getElementById("warning-modal");
+ 			modal.style.display="none";
+ 			$('.modal-backdrop').remove();
  		});
  		
  	});
@@ -205,14 +213,17 @@
 			<!-- 4. 글신고/글추천/글비추 자리 -->
 		<center class="ws-post-get-buttons">
 			<div style="float:left">
-				<%-- <button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
+				<!-- <button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
 							data-backdrop="static"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
-							<jsp:include page="../../modal_warning.jsp"/> --%>
-							<button class="ws-btn-warning" id="ws-cnt-warning" type="button" ><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
+							<jsp:include page="../../modal_warning.jsp"/> -->
+							<button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
+							data-backdrop="static"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
+							<jsp:include page="../../modal_warning.jsp"/>
+							
 			</div>
 			<span>
-				<button class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="far fa-thumbs-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
-				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="far fa-thumbs-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
+				<button type="button" class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="far fa-thumbs-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
+				<button type="button" class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="far fa-thumbs-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
 			
 		<form role="form" method="post">
