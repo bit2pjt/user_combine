@@ -148,8 +148,8 @@
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-
-      <Context docBase="C:\Users\Bit\Desktop\git_comb_crawling\user_combine\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Bit\Desktop\git_comb_crawling\user_combine\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MovieProject" path="/movie" reloadable="true" source="org.eclipse.jst.jee.server:MovieProject"/></Host>
+		<Context docBase="C:\Users\Bit\Desktop\git_comb_crawling\user_combine\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\upload" path="/movie/upload" reloadable="true"/>
+      <Context docBase="C:\Users\Bit\Desktop\git_comb_crawling\user_combine\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MovieProject" path="/movie" reloadable="true" source="org.eclipse.jst.jee.server:MovieProject"/></Host>
     </Engine>
   </Service>
 </Server>

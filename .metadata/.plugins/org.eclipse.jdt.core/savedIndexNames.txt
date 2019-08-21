@@ -45,7 +45,6 @@ INDEX VERSION 1.131+C:\Users\Bit\Desktop\git_comb_crawling\user_combine\.metadat
 1515715232.index
 3106393979.index
 600631949.index
-2561985520.index
 2517282340.index
 1610414540.index
 3097210851.index
