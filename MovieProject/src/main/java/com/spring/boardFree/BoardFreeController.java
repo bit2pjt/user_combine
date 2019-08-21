@@ -290,9 +290,11 @@ public class BoardFreeController {
 		String sessionyn = (String)session.getAttribute("m_email");
 		int id = boardFreeService.getUser(sessionyn); // 로그인한 사용자의 id값
 		int bno = Integer.parseInt(request.getParameter("bf_bno")); //게시글 번호
+		String warncontent =request.getParameter("bf_warncontent"); //게시글 번호
 		WarnVO vo = new WarnVO();
 		vo.setBf_bno(bno);
 		vo.setId(id);
+		vo.setBf_warncontent(warncontent);
 		
 		String msg = boardFreeService.warn_check(vo); 
 		if(msg.equals("1"))

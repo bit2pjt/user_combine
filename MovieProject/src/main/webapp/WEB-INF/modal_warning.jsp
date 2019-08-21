@@ -19,7 +19,6 @@
 	-->
 
 	<!-- start | modal -->
-						<%-- <jsp:include page="mmlWriteModal.jsp"/> --%>
 						<div class="modal fade" id="warning-modal" role="dialog">
 							<div class="modal-dialog" style="margin-top: 100px;">
 								<div class="modal-content">
@@ -31,12 +30,12 @@
 									<!-- end | modal-header -->
 									<!-- start | modal-body -->
 									<div class="modal-body">
-
+										<textarea id="bf_warncontent" name="bf_warncontent" style="resize:none;width:100%;height:200px;"></textarea>
 									</div>
 									<!-- end | modal-body -->
 									<!-- start | modal-footer -->
 									<div class="modal-footer">
-										<button type="button" id=modal-warning-btn'
+										<button type="button" id="modal-warning-btn"
 											class="btn btn-default pull-left" data-dismiss="modal">신고하기</button>
 									</div>
 									<!-- end | modal-footer -->
