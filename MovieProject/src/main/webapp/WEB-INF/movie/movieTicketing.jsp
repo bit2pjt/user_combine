@@ -319,7 +319,7 @@
 		<div class="ws_ticketing_category">선택영화</div>
 		<div class="ws_ticketing_infoboard" id="ws_movie_info_detail">
 		
-			<div > <img id="ws_movieDetail_poster" src=""></div>
+			<div ><a href="#" id="movieinfo"> <img id="ws_movieDetail_poster" src=""></a></div>
 			<div id="ws_movieDetail_name"></div>
 			<div  id="ws_movieDetail_nameEn"></div>
 			<div id="ws_movieDetail_openDate"></div>
@@ -394,7 +394,7 @@
 							$('#ws_movieDetail_genre').html('장르 : '+result.detail.genre);
 							$('#ws_movieDetail_grade').html('등급 : '+result.detail.grade);
 							
-							
+							$("#movieinfo").attr("href", "movieDetail?mi_ktitle=" + result.detail.name);
 							movieTitle = result.detail.name;// 예매링크시 제목이 필요하다. 전역변수로 추출
 							
 							$('#naver-star').css('width', result.orate.naver);
