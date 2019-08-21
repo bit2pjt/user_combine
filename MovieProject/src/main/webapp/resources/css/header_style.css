@@ -1,14 +1,14 @@
 /**
 * @Class Name : hm_css.css
-* @Description : memeber, index css 추가 사항
+* @Description : memeber, index css 異붽� �궗�빆
 * @Modification Information
 * @
-* @  수정일      수정자              수정내용
+* @  �닔�젙�씪      �닔�젙�옄              �닔�젙�궡�슜
 * @ ---------   ---------   -------------------------------
-* @ 2019.07.03   박현민       최초생성
-* @ 2019.07.15   박현민 	index 리스트 수정
+* @ 2019.07.03   諛뺥쁽誘�       理쒖큹�깮�꽦
+* @ 2019.07.15   諛뺥쁽誘� 	index 由ъ뒪�듃 �닔�젙
 *
-* @author bit 2조
+* @author bit 2議�
 * @since 2019. 07.01
 * @version 1.0
 * @see
@@ -2929,7 +2929,7 @@ button.close {
 	bottom: 0;
 	left: 0;
 	z-index: 1040;
-	background-color: #000;
+	background-color: #838383;
 }
 
 .modal-backdrop.fade {
@@ -4113,7 +4113,7 @@ ul {
 	text-transform: none;
 	margin-bottom: 25px;
 }
-/*자동대문자화 취소*/
+/*�옄�룞��臾몄옄�솕 痍⑥냼*/
 .bd-hd span {
 	font-family: 'Dosis', sans-serif;
 	font-size: 24px;
@@ -6024,7 +6024,7 @@ ul {
 
 .common-hero {
 	height: 282px;
-	background: url('../images/uploads/user-hero-bg.jpg') no-repeat;
+	background: url('../images/uploads/user-hero-bg.png') no-repeat;
 }
 
 .common-hero:before {
@@ -6033,7 +6033,7 @@ ul {
 
 .user-hero {
 	height: 385px;
-	background: url('../images/uploads/user-hero-bg.jpg') no-repeat;
+	background: url('../images/uploads/user-hero-bg.png') no-repeat;
 }
 
 .user-hero .hero-ct {
@@ -6071,7 +6071,7 @@ ul {
 }
 
 .landing-hero {
-	background-image: url('../images/uploads/user-hero-bg.jpg');
+	background-image: url('../images/uploads/user-hero-bg.png');
 	box-shadow: inset 0 0 1000px rgba(0, 0, 0, 0.5);
 	text-align: center;
 	padding: 110px 0;
@@ -6344,7 +6344,7 @@ font-weight
 	border-bottom: 10px solid transparent;
 	border-top: 10px solid transparent;
 	border-right: 10px solid #FF6F61;
-	/* Tam giác phải được đổ màu */
+	/* Tam gi찼c ph梳즜 휃튼沼즓 휃沼� m횪u */
 }
 
 .social-btn .hover-bnt:hover .hvr-item {
@@ -8754,7 +8754,7 @@ px
 .buster-light .user-pro .user {
 	border-color: #d0dae4;
 }
-/* 헤더 배경색 수정 */
+/* �뿤�뜑 諛곌꼍�깋 �닔�젙 */
 header {
 	position: absolute;
 	z-index: 100;

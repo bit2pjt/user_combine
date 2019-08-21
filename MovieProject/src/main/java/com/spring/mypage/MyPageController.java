@@ -92,7 +92,9 @@ public class MyPageController {
 		//서버의 사진이 날아가면 로컬에 저장된 사진들을 서버로 복붙해서 테스트하면 됩니당.
 		
 		//******아래의 경로, server.xml, servlet-context.xml의 모든 경로를 바꿔주세용******
+
 		realPath_t="C:\\upload";
+
 		
 //		System.out.println("================= profileAddAction | realPath ===================="+realPath);
 //		System.out.println("================= profileAddAction | realPath_t ===================="+realPath);
