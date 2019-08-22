@@ -21,13 +21,33 @@
 *  Copyright (C) by bit 2조 All right reserved.
 */
 -->
+
 <%@ include file="../header1.jsp"%>
 	<link rel="stylesheet" href="<c:url value="/resources/css/yj_style.css" />">
 <%@ include file="../header2.jsp" %>
 <!-- yj : 헤더와 본 컨텐츠를 분리하기 위해 section 사용-->
     <section>
-        <!-- yj : start | movielist -->
-        <div class="movielist mt-15">
+
+
+	<div class="hero user-hero" style="z-index:-100;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						<h1 style="margin-left: 0px; margin-top: -100px;">영화 목록</h1>
+						<ul style="margin-left: 0px;" class="breadcumb">
+							<li class="active"><a href="index">영화</a></li>
+							<li><span class="ion-ios-arrow-right"></span>영화 목록</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- yj : start | movielist -->
+        <div class="movielist mt-15" style="margin-top: -120px;">
             <!-- yj : start | movielist-search -->
             <div class="movielist-top">
                 <select class="form-control" name="searchType" id="searchType">
@@ -41,23 +61,21 @@
             </div>
             
             <!-- yj : start | movielist-bottom -->
-            <div class="movielist-bottom">
-                <div>
-                <c:forEach items="${movieList}" var="list" varStatus="status">
-					<div class="movielist-card" id="${list.mi_ktitle }" onclick="movieInfo(this.id)">
-						<img src="<c:url value='${list.mi_poster }' />" width="200" height="270">
-				 		<h6 class="movie-title">${list.mi_ktitle }</h6>
-				 	</div>
-				 	<input type="hidden" id="title" value="${list.mi_ktitle}"/>
-                </c:forEach>
-                
-                <!--  
-                <div class="movielist-card" onclick="location.href='movieDetail'">
-					<img src="<c:url value='/resources/images/uploads/mv-it12.jpg' />" width="170" height="261">
-					<h4 class="movie-title">비트와 함께 사라지다.</h4>
-				 </div>
-				-->
-                </div>
+            <div class="movielist-bottom" >
+	                <c:forEach items="${movieList}" var="list" varStatus="status">
+						<div class="movielist-card" id="${list.mi_ktitle }" >
+							<img src="<c:url value='${list.mi_poster }' />" class="movieImage" width="200" height="270">
+					 		<span class="desc">
+						 		<h6 class="movie-title">${list.mi_ktitle }</h6>
+						 		<span class="movie-in">상영 ${list.mi_time } </span> <br>
+						 		<span class="movie-in">${list.grade_code } </span>
+						 		<button type="button" class="btn-hjs-1" id="${list.mi_ktitle}" onclick="movieInfo(this.id)"> 상세보기 </button>
+					 		</span>
+					 	</div>
+					
+					 	<input type="hidden" id="title" value="${list.mi_ktitle}"/>
+
+	                </c:forEach>
                 <!-- yj : start | pagination -->
                 <!-- 페이징 버튼 연동은 책보고 참고해서 추가하기 -->
                 <div class="buster-light">

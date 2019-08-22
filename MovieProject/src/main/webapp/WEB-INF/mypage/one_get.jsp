@@ -32,15 +32,17 @@
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script>
-function deleteQna(){
-	var result = confirm("삭제하시겠습니까?");
-	
-	if(result == true) {
-		location.href="one_delete?qna_no=${requestScope.qnaDetail.qna_no}";
+
+	function deleteQnaDetail() {
+
+		var qno = qform.qna_no.value;
+		msg = "삭제 하시겠습니까?";
+		if (confirm(msg) != 0) {
+
+			location.href = "one_delete?qna_no=" + qno;
+		}
+
 	}
-	
-}
-	
 </script>
 
 
@@ -48,11 +50,26 @@ function deleteQna(){
 <%@ include file="../header2.jsp"%>
 <!-- 4. 여기에 페이지별 본문을 추가해주세요 -->
 
+<div class="hero user-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+					<h1 style="margin-left: 0px; margin-top: -80px;">1:1 문의내역</h1>
+					<ul style="margin-left: 0px;" class="breadcumb">
+						<li class="active"><a href="index">마이페이지</a></li>
+						<li><span class="ion-ios-arrow-right"></span> 1:1 문의내역</li>
+					</ul>
+				</div>
+			</div>
 
-<br>
+		</div>
+	</div>
+</div>
+
 <div class="buster-light">
-	<div class="page-single">
-		<div class="container">
+	<div class="page-single" style="margin-top: 0px;">
+		<div class="container" style="margin-top: -180px;">
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
@@ -66,17 +83,19 @@ function deleteQna(){
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage">마이페이지</a></li>
+								<li style="font-weight: bold;"><a style="font-size: 18px;"
+									href="mypage">마이페이지</a></li>
 							</ul>
-							<ul>
+							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 								<li>회원 정보</li>
 								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
 								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
-							<ul>
+							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 								<li>고객센터</li>
 								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
 								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 							</ul>
 						</div>
 					</div>
@@ -118,11 +137,14 @@ function deleteQna(){
 								</ul>
 								<br>
 								<div class="btn_m">
-									<input type="button"
+									<input style="width:200px; height: 40px;" type="button"
 										onClick="location.href='one_update?qna_no=${requestScope.qnaDetail.qna_no}'"
-										class="btn-check-hjs" value="수정"> &nbsp; <input
+
+										class="btn-check-hjs" value="수정"> &nbsp; <input style="width:200px; height: 40px;"
 										type="reset" class="btn-check-hjs" value="삭제"
-										onclick="deleteQna()">
+										onclick="deleteQnaDetail()"> 
+									<input  type="hidden" name="qna_no" value="${requestScope.qnaDetail.qna_no}">
+
 								</div>
 								<br>
 							</form>
@@ -167,7 +189,7 @@ function deleteQna(){
 
 								<br>
 								<div class="btn_m">
-									<input type="button" onClick="location.href='one_list'"
+									<input style="width:400px; height: 60px;" type="button" onClick="location.href='one_list'"
 										class="btn-check-hjs" value="> 목록으로 돌아가기">
 								</div>
 							</form>

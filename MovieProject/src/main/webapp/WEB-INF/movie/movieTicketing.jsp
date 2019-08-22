@@ -28,25 +28,36 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/ws_ticketing.css" />">
 	
 <%@ include file="../header2.jsp" %>
+<div class="hero user-hero" style="z-index: -1;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						<h1 style="margin-left: 0px; margin-top: -100px;">예매</h1>
+						<ul style="margin-left: 0px;" class="breadcumb">
+							<li class="active"><a href="index">예매 정보</a></li>
+							<li><span class="ion-ios-arrow-right"></span>예매</li>
+						</ul>
+					</div>
+				</div>
 
+			</div>
+		</div>
+	</div>
 
 
 <div class="buster-light">
-	<div class="hero mv-single-hero" style="height:170px;background-color:#DAD2B4;"> <!-- <<style.css에서 배경이미지 주석처리+배경색 변경 -->
-		<div class="ws_brand_selector">
-			<input type="checkbox" checked value="all"><label>모든 영화관</label>
-			<input type="checkbox" checked value="cgv"><label>CGV</label>
-			<input type="checkbox" checked value="mega"><label>메가박스</label>
-			<input type="checkbox" checked value="lotte"><label>롯데시네마</label>
-		</div>
-	</div>
-	<div class="row" style="background-color:white;">
-	<div id="ws_ticketing_box" >
+	
+	
+	
+<div class="container" >	
+	<div class="col-md-12" style="background-color:white;">
+	<div id="ws_ticketing_box"  style="margin-top:-170px;">
 	
 	
 	<div class="ws_ticketing_box_top">
 	<div id="ws_ticketing_date">
-		<div class="ws_ticketing_category">상영일</div>
+		<div class="ws_ticketing_category" style="float:left;">상영일</div>
 		<div class="ws_ticketing_dateboard">
 			<table>
 				<tr>
@@ -57,9 +68,7 @@
 					<td class="ws_day">금</td>
 					<td class="ws_day">토</td>
 					<td class="ws_day">일</td>
-					<td class="ws_day">월</td>
-					<td class="ws_day">화</td>
-					<td class="ws_day">수</td>
+				
 				</tr>
 				<tr>
 					<td class="ws_date" onclick="timeSetter(this)"></td>
@@ -69,15 +78,38 @@
 					<td class="ws_date" onclick="timeSetter(this)"></td>
 					<td class="ws_date" onclick="timeSetter(this)"></td>
 					<td class="ws_date" onclick="timeSetter(this)"></td>
-					<td class="ws_date" onclick="timeSetter(this)"></td>
-					<td class="ws_date" onclick="timeSetter(this)"></td>
-					<td class="ws_date" onclick="timeSetter(this)"></td>
+					
 				</tr>
 			</table>
 		</div>
 	</div>
+		<div id = "ws_multi_eval" style="">
+		<div>
+		<span style="width:155px;">네이버</span>
+		<!--  <img src="<c:url value="/resources/images/customs/ws_img/naver.PNG"/>" >-->
+			<span class="star-rating">
+				<span id="naver-star" style="width:0;"></span>
+			</span>
+			<em id="naver-num"></em>
+		</div>
 		
-	
+		<div>
+		<span style="width:155px;">다음</span>
+		<!--  <img src="<c:url value="/resources/images/customs/ws_img/naver.PNG"/>" >-->
+			<span class="star-rating">
+				<span id="daum-star" style="width:0%;"></span>
+			</span>
+			<em id="daum-num"></em>
+		</div>
+		<div>
+		<span style="width:155px;">cgv</span>
+		<!--  <img src="<c:url value="/resources/images/customs/ws_img/naver.PNG"/>" >-->
+			<span class="star-rating">
+				<span id="cgv-star" style="width:0%;"></span>
+			</span>
+			<em id="cgv-num"></em>
+		</div>
+		</div>	
 	</div>
 	
 	<div id="ws_ticketing_movies">
@@ -87,30 +119,27 @@
 				<tr id="ws_innerhead">
 					<th style="width:25%;border-bottom:1px solid black;">예매율</th>
 				<!--<th style="width:30%;border-bottom:1px solid black;">상영 브랜드</th>  -->	
-					<th style="width:75%;border-bottom:1px solid black;">제 목</th>
+					<th style="width:75%;border-bottom:1px solid black;">제 목 </th>
 				</tr>
 				<tr>
-					<th class="ws_movie_grade"><img src="<c:url value="/resources/images/customs/ws_img/use18.PNG"/>" style="width:20px;"></th>
-				<!--<th class ="ws_cinema_brand" >
+					<!--<th class="ws_movie_grade"><img src="<c:url value="/resources/images/customs/ws_img/use18.PNG"/>" style="width:20px;"></th>
+				<th class ="ws_cinema_brand" >
 						<img src="<c:url value="/resources/images/customs/ws_img/cgv.PNG"/>" style="width:20px;">
 						<img src="<c:url value="/resources/images/customs/ws_img/megabox.PNG"/>" style="width:20px;">
 						<img src="<c:url value="/resources/images/customs/ws_img/lotte.PNG"/>" style="width:20px;">
-					</th> -->
-					<th class ="ws_movie_title" style="text-overflow: ellipsis;max-width:20%;">나는 비와 함께간다.</th>
+					</th>
+					<th class ="ws_movie_title" style="text-overflow: ellipsis;max-width:20%;">나는 비와 함께간다.</th> -->
 				</tr>
 				<c:forEach items="${movies}" var="list">
 				<tr>
 					<th class="ws_movie_grade">${list.reserveRate}</th>
-					<th class="ws_movic_code">
-						<a class="ws_movic_code" id="<c:out value="${list.code}"/>" onclick="ab(this.id)">${list.title}</a>
+					<th class="ws_movie_code">
+						<a class="ws_movies" id="<c:out value="${list.code}"/>" onclick="ab(this.id)">${list.title}</a>
 					</th>
 				<!--  	<input type = "hidden" id = "code" value = <c:out value="${list.code}"/> />-->
 				</tr>
 				</c:forEach>
 			</table>
-			
-			
-			
 			
 			
 		</div>
@@ -122,12 +151,12 @@
 			<div style="display:inline-block;width:100%;">
 				<ul>
 					<li style="background-color:#dad2b4;width:100%;display:block;padding:6px;">지역</li>
-					<li id="GRPA" onclick="getLocalList(this.id)">서울<span></span></li>
-					<li id="GRPB" onclick="getLocalList(this.id)">인천/경기<span></span></li>
-					<li id="GRPC" onclick="getLocalList(this.id)">대전/충청/강원<span></span></li>
-					<li id="GRPD" onclick="getLocalList(this.id)">부산/경남<span></span></li>
-					<li id="GRPE" onclick="getLocalList(this.id)">대구/울산/경북<span></span></li>
-					<li id="GRPF" onclick="getLocalList(this.id)">광주/전라/제주<span></span></li>
+					<li class="ws_local_main_category" id="GRPA" onclick="getLocalList(this.id)">서울<span></span></li>
+					<li class="ws_local_main_category" id="GRPB" onclick="getLocalList(this.id)">인천/경기<span></span></li>
+					<li class="ws_local_main_category" id="GRPC" onclick="getLocalList(this.id)">대전/충청/강원<span></span></li>
+					<li class="ws_local_main_category" id="GRPD" onclick="getLocalList(this.id)">부산/경남<span></span></li>
+					<li class="ws_local_main_category" id="GRPE" onclick="getLocalList(this.id)">대구/울산/경북<span></span></li>
+					<li class="ws_local_main_category" id="GRPF" onclick="getLocalList(this.id)">광주/전라/제주<span></span></li>
 				</ul>
 			</div>
 		</div>
@@ -288,431 +317,49 @@
 	
 	<div id="ws_total_info_tab">
 		<div class="ws_ticketing_category">선택영화</div>
-		<div class="ws_ticketing_infoboard">
+		<div class="ws_ticketing_infoboard" id="ws_movie_info_detail">
 		
-			<div > <img id="ws_movieDetail_poster" src=""></div>
+			<div ><a href="#" id="movieinfo"> <img id="ws_movieDetail_poster" src=""></a></div>
 			<div id="ws_movieDetail_name"></div>
 			<div  id="ws_movieDetail_nameEn"></div>
 			<div id="ws_movieDetail_openDate"></div>
 			<div  id="ws_movieDetail_genre"></div>
-		<div  id="ws_movieDetail_grade"></div>	
+			<div  id="ws_movieDetail_grade"></div>	
 		
 		</div>
 	</div>
 	
 	
 	</div>
-	<div id="map">
-	
-	</div>
 	
 	
 	
 	
-	<div id="ws_outer_star">
-		  	포털 3사 리뷰[네이버 / 다음 / 로튼토마토]<br>
-		  	<br>
-		  	<br>
-			<img src="<c:url value="/resources/images/customs/ws_img/naver.PNG"/>" style="width:30%;">
-				<span>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-1x" aria-hidden="true" data-prefix="far" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path></svg>
-				</span>
-			   /10<br>
-			<img src="<c:url value="/resources/images/customs/ws_img/watcha.PNG"/>" style="width:30%;">
-				<span>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-				</span>
-				 /10<br>
-			<img src="<c:url value="/resources/images/customs/ws_img/rotten.PNG"/>" style="width:30%;">
-			 	 <span>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-					<svg class="svg-inline--fa fa-star fa-w-18 fa-2x" aria-hidden="true" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
-				</span>
-				 /10<br>
-			
-			
-	</div>
-	
-	
-	
-	
-	<!--  
-	<section class="section" style="padding:15px;">
-	<form class="cinema_select" name="frm1" >
-		<div class="ws_ticketing_nameSapce">
-			<span>날 짜</span>
-			<span>영 화</span>
-			<span>상 영 관</span>
-			<span>상 영 회 차</span>
-		</div>
-		<select name="gd_code" size="3" onChange="redirect(this.selectedIndex);">
-			<option value="1">알라딘</option>
-			<option value="2">정글북</option>
-			<option value="3">악마를 보았다</option>
-		</select>
 
-		<select name="gp_color" size="8" onChange="redirect1(this.selectedIndex);">
-		</select>
-
-		<select name="gp_face" size="8" onChange = "redirect2(this.selectedIndex);">
-		</select>
-
-		<select name="gp_quantity" size="8">
-		</select>
-	</form>
 	
-</section>
-	-->
-<!-- 영화관 정보 시작 -->
-<div class="cinema_info" >
-	<div class="cinema_info_text">
-		
-		
-	</div>
-	<!-- <div id="map" style="width:300px;height:250px;"> -->
-	</div>
-	<!--  <div class="cinema_info_map">
-		<img src="./images/.png">지도
-	</div>
-	-->
-	
+</div>
 </div>
 
 <!-- 영화관 정보 끝 -->	
 
-<div class="cinema_tab">
-	<div class="tab-wrap">
-    <ul>
-        <li><a href="#tab1">tab1</a></li>
-        <li><a href="#tab2">tab2</a></li>
-    </ul>
 
-    <div>
-        <article id="tab1">
-            <h1>극장정보</h1>
-            <div class="cinema_traffic">
-            	<div class="cinema_traffic_info" style="">
-            		<!-- 교통 / 주차 정보 데이터 -->
-            		<p>- 교통편</p>
-            		<p style="width: 1200px; height: 300px; border: 1px solid:#333;">교통편 설명</p>
-            		<p>- 주차</p>
-            		<p style="width: 1200px; height: 300px; border: 1px solid:#333;">교통편 설명</p>
-            	</div>
-            </div>
-
-        </article>
-        <article id="tab2">
-            <h1>리뷰</h1>
-           	<div class="cinema_review">
-           		<div class="cinema_review_table">
-           			<!-- start | 리뷰 -->
-										
-										<div id="review" class="tab review">
-												<div class="col-md-12">
-													<div class="movie-rate">
-														<div class="rate">
-															<i class="fas fa-star fa-3x"></i>
-															<p><span>8.5</span> /10<br>
-																<span class="rv">56 Reviews</span>
-															</p>
-														</div>
-														<div class="rate-star" style="width:600px;">
-				 											<i class="fas fa-star fa-2x"></i>
-															<i class="fas fa-star fa-2x"></i>
-															<i class="fas fa-star fa-2x"></i>
-															<i class="fas fa-star-half-alt fa-2x"></i>
-															<i class="far fa-star fa-2x"></i>
-														</div>
-													</div>
-													
-													<hr>
-													<div class="review-write col-md-11">
-														<div class="review-write-star">
-															<fieldset class="rating">
-																<input type="radio" id="star5" name="rating"
-																	value="10" /><label class="full" for="star5"
-																	title="10"></label>
-																<input type="radio" id="star4half" name="rating"
-																	value="9" /><label class="half" for="star4half"
-																	title="9"></label>
-																<input type="radio" id="star4" name="rating"
-																	value="8" /><label class="full" for="star4"
-																	title="8"></label>
-																<input type="radio" id="star3half" name="rating"
-																	value="7" /><label class="half" for="star3half"
-																	title="7"></label>
-																<input type="radio" id="star3" name="rating"
-																	value="6" /><label class="full" for="star3"
-																	title="6"></label>
-																<input type="radio" id="star2half" name="rating"
-																	value="5" /><label class="half" for="star2half"
-																	title="5"></label>
-																<input type="radio" id="star2" name="rating"
-																	value="4" /><label class="full" for="star2"
-																	title="4"></label>
-																<input type="radio" id="star1half" name="rating"
-																	value="3" /><label class="half" for="star1half"
-																	title="3"></label>
-																<input type="radio" id="star1" name="rating"
-																	value="2" /><label class="full" for="star1"
-																	title="2"></label>
-																<input type="radio" id="starhalf" name="rating"
-																	value="1" /><label class="half" for="starhalf"
-																	title="1"></label>
-															</fieldset>
-														</div>
-														<div class="review-write-input">
-															<textarea maxlength="150" rows="3"></textarea>
-														</div>
-														<div class="review-write-button">
-																<button class="redbtn">등록</button>
-														</div>
-														<hr class="mv-user-review-hr">
-													</div>
-													<!-- start | 사용자 리뷰 -->
-													<!-- start | 한개의 리뷰 -->
-													<div class="mv-user-review-item">
-														<div class="user-info">
-															
-																<img src="images/uploads/userava1.jpg" alt="">
-																<!-- <div class="user-name">사용자이름</div> 
-
-																<div class="user-review-date">작성날짜</div> -->
-																<p>사용자 이름</p>
-																<p>작성날짜</p>
-															
-														</div>
-														<div class="user-rate movie-rate movie-rate2">
-															<i class="fas fa-star fa-1x"></i>
-															<i class="fas fa-star fa-1x"></i>
-															<i class="fas fa-star fa-1x"></i>
-															<i class="fas fa-star-half-alt fa-1x"></i>
-															<i class="far fa-star fa-1x"></i>
-														</div>
-														<div class="user-content">
-														<p>아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아</p>
-														</div>
-														<div class="user-like">
-															<div class="notmyreview" >
-																<button class="thumbs-up"><img class="far fa-thumbs-up" aria-hidden="true" onclick=""> 100</button>
-																<button class="thumbs-down"><img class="far fa-thumbs-down" aria-hidden="true" onclick=""> 10</button>
-																<button class="warning"><img src="images/siren.png" width="40px" height="40px"></button>
-															</div>
-															
-															<div class="myreview" hidden>
-																	<button><img class="far fa-thumbs-up" aria-hidden="true" onclick="return false;"> 100</button>
-																	<button><img class="far fa-thumbs-down" aria-hidden="true" onclick="return false;"> 10</button>
-																<a onclick="">수정</a>
-																<a onclick="">삭제</a>
-															</div>
-														</div>
-													</div>
-													<!-- end | 한개의 리뷰 -->
-													<!-- start | 한개의 리뷰 -->
-													<div class="mv-user-review-item">
-															<div class="user-info">
-																
-																	<img src="images/uploads/userava1.jpg" alt="">
-																	<!-- <div class="user-name">사용자이름</div> 
-	
-																	<div class="user-review-date">작성날짜</div> -->
-																	<p>사용자 이름</p>
-																	<p>작성날짜</p>
-																
-															</div>
-															<div class="user-rate movie-rate movie-rate2">
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star-half-alt fa-1x"></i>
-																<i class="far fa-star fa-1x"></i>
-															</div>
-															<div class="user-content">
-															<p>아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아</p>
-															</div>
-															<div class="user-like">
-																	<div class="notmyreview" >
-																			<button class="thumbs-up"><img class="far fa-thumbs-up" aria-hidden="true" onclick=""> 100</button>
-																			<button class="thumbs-down"><img class="far fa-thumbs-down" aria-hidden="true" onclick=""> 10</button>
-																			<button class="warning"><img src="images/siren.png" width="40px" height="40px"></button>
-																		</div>
-																		
-																		<div class="myreview" hidden>
-																				<button><img class="far fa-thumbs-up" aria-hidden="true" onclick="return false;"> 100</button>
-																				<button><img class="far fa-thumbs-down" aria-hidden="true" onclick="return false;"> 10</button>
-																			<a onclick="">수정</a>
-																			<a onclick="">삭제</a>
-																		</div>
-															</div>
-														</div>
-														<!-- end | 한개의 리뷰 -->
-														<!-- start | 한개의 리뷰 -->
-													<div class="mv-user-review-item">
-															<div class="user-info">
-																
-																	<img src="images/uploads/userava1.jpg" alt="">
-																	<!-- <div class="user-name">사용자이름</div> 
-	
-																	<div class="user-review-date">작성날짜</div> -->
-																	<p>사용자 이름</p>
-																	<p>작성날짜</p>
-																
-															</div>
-															<div class="user-rate movie-rate movie-rate2">
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star-half-alt fa-1x"></i>
-																<i class="far fa-star fa-1x"></i>
-															</div>
-															<div class="user-content">
-															<p>아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아</p>
-															</div>
-															<div class="user-like">
-																	<div class="notmyreview" >
-																			<button class="thumbs-up"><img class="far fa-thumbs-up" aria-hidden="true" onclick=""> 100</button>
-																			<button class="thumbs-down"><img class="far fa-thumbs-down" aria-hidden="true" onclick=""> 10</button>
-																			<button class="warning"><img src="images/siren.png" width="40px" height="40px"></button>
-																		</div>
-																		
-																		<div class="myreview" hidden>
-																				<button><img class="far fa-thumbs-up" aria-hidden="true" onclick="return false;"> 100</button>
-																				<button><img class="far fa-thumbs-down" aria-hidden="true" onclick="return false;"> 10</button>
-																			<a onclick="">수정</a>
-																			<a onclick="">삭제</a>
-																		</div>
-															</div>
-														</div>
-														<!-- end | 한개의 리뷰 -->
-														<!-- start | 한개의 리뷰 -->
-													<div class="mv-user-review-item">
-															<div class="user-info">
-																
-																	<img src="images/uploads/userava1.jpg" alt="">
-																	<!-- <div class="user-name">사용자이름</div> 
-	
-																	<div class="user-review-date">작성날짜</div> -->
-																	<p>사용자 이름</p>
-																	<p>작성날짜</p>
-																
-															</div>
-															<div class="user-rate movie-rate movie-rate2">
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star-half-alt fa-1x"></i>
-																<i class="far fa-star fa-1x"></i>
-															</div>
-															<div class="user-content">
-															<p>아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아</p>
-															</div>
-															<div class="user-like">
-																	<div class="notmyreview" >
-																			<button class="thumbs-up"><img class="far fa-thumbs-up" aria-hidden="true" onclick=""> 100</button>
-																			<button class="thumbs-down"><img class="far fa-thumbs-down" aria-hidden="true" onclick=""> 10</button>
-																			<button class="warning"><img src="images/siren.png" width="40px" height="40px"></button>
-																		</div>
-																		
-																		<div class="myreview" hidden>
-																				<button><img class="far fa-thumbs-up" aria-hidden="true" onclick="return false;"> 100</button>
-																				<button><img class="far fa-thumbs-down" aria-hidden="true" onclick="return false;"> 10</button>
-																			<a onclick="">수정</a>
-																			<a onclick="">삭제</a>
-																		</div>
-															</div>
-														</div>
-														<!-- end | 한개의 리뷰 -->
-														<!-- start | 한개의 리뷰 -->
-													<div class="mv-user-review-item">
-															<div class="user-info">
-																
-																	<img src="images/uploads/userava1.jpg" alt="">
-																	<!-- <div class="user-name">사용자이름</div> 
-	
-																	<div class="user-review-date">작성날짜</div> -->
-																	<p>사용자 이름</p>
-																	<p>작성날짜</p>
-																
-															</div>
-															<div class="user-rate movie-rate movie-rate2">
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star fa-1x"></i>
-																<i class="fas fa-star-half-alt fa-1x"></i>
-																<i class="far fa-star fa-1x"></i>
-															</div>
-															<div class="user-content">
-															<p>아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아</p>
-															</div>
-															<div class="user-like">
-																	<div class="notmyreview" >
-																			<button class="thumbs-up"><img class="far fa-thumbs-up" aria-hidden="true" onclick=""> 100</button>
-																			<button class="thumbs-down"><img class="far fa-thumbs-down" aria-hidden="true" onclick=""> 10</button>
-																			<button class="warning"><img src="images/siren.png" width="40px" height="40px"></button>
-																		</div>
-																		
-																		<div class="myreview" hidden>
-																				<button><img class="far fa-thumbs-up" aria-hidden="true" onclick="return false;"> 100</button>
-																				<button><img class="far fa-thumbs-down" aria-hidden="true" onclick="return false;"> 10</button>
-																			<a onclick="">수정</a>
-																			<a onclick="">삭제</a>
-																		</div>
-															</div>
-														</div>
-														<!-- end | 한개의 리뷰 -->
-													<!-- end | 사용자 리뷰-->
-													<div class="topbar-filter">
-														<label>Reviews per page:</label>
-														<select>
-															<option value="range">5 Reviews</option>
-															<option value="saab">10 Reviews</option>
-														</select>
-														<div class="pagination2">
-															<span>Page 1 of 6:</span>
-															<a class="active" href="#">1</a>
-															<a href="#">2</a>
-															<a href="#">3</a>
-															<a href="#">4</a>
-															<a href="#">5</a>
-															<a href="#">6</a>
-															<a href="#"><i class="ion-arrow-right-b"></i></a>
-														</div>
-													</div>
-												</div>
-											</div>
-           		</div>
-           	</div>
-        </article>
-    </div>
-</div>
-</div>
 <!-- 극장 정보 탭  끝 -->
 
-</section>
 </div>	
 	
 	
-</div>
+
 <%@ include file="../footer1.jsp"%>
 	<script src="js/yj_js.js"></script>
 	<script src="<c:url value="/resources/js/ws_ticketing.js" />"></script>
 	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-	<script src="com.google.code.gson:gson:2.8.5"></script>
+	
 	<script>
 	
 	var cMetaOutter;
 	var todayGlobal;
+	var immutableToday;
+	
 	
 	var time;
 	var dayText;
@@ -720,8 +367,11 @@
 	var month;
 	var year;
 	var lastDay;
+	var movieTitle;
 	
 			function ab(mvCode) {
+				$('#ws_cine_n_screen').html('상영관을 선택해주세요');
+				
 				
 				function cd(mvCode, callback) {
 					
@@ -743,7 +393,18 @@
 							$('#ws_movieDetail_nameEn').html('('+result.detail.nameEn+')');
 							$('#ws_movieDetail_genre').html('장르 : '+result.detail.genre);
 							$('#ws_movieDetail_grade').html('등급 : '+result.detail.grade);
-						
+							
+							$("#movieinfo").attr("href", "movieDetail?mi_ktitle=" + result.detail.name);
+							movieTitle = result.detail.name;// 예매링크시 제목이 필요하다. 전역변수로 추출
+							
+							$('#naver-star').css('width', result.orate.naver);
+							$('#naver-num').text(result.orate.naver.replace('%', '')+'/ 100');
+							$('#daum-star').css('width', result.orate.daum);
+							$('#daum-num').text(result.orate.daum.replace('%', '')+'/ 100');
+							$('#cgv-star').css('width', result.orate.cgv);
+							$('#cgv-num').text(result.orate.cgv.replace('%', '')+'/ 100');
+							
+							
 						//2-1. 극장(CineInfoVO)을 지역 대분류로 나누는 절차를 시작한다.
 						//		가장 먼저. 각각의 대분류가 몇 개씩 있는지 숫자를 세어주자.
 						var cMeta = result.cineMeta;
@@ -798,7 +459,6 @@
 						for(i=0;i<cMeta.length;i++) {
 							
 							switch(cMeta[i].agc) {
-							
 							case 'GRPA' :	counterA = counterA +1;
 											
 											//매번 지역코드만큼의 변수를 만들기에는 너무 벅차다. 배열을 이용해보자
@@ -810,8 +470,6 @@
 												$('#GRPA'+j+' > a > span').text('['+grpaDetailCnt[j]+']');
 												}
 											};
-											
-											
 											
 											break;
 							case 'GRPB' :	counterB = counterB +1;
@@ -870,10 +528,7 @@
 											};
 											break;				
 							}//swtich문 끝
-							
-							
 						}//for문 끝
-						
 						
 						// 대분류별 상영관 수 표기
 						$('#GRPA > span').text('('+counterA+')');
@@ -885,7 +540,6 @@
 						
 						// cMeta값을 다른 함수에서도 쓸 수 있도록 밖으로 빼주자
 						cMetaOutter = cMeta;
-						
 						}
 					,
 					error: function (xhr, status, er) {
@@ -899,7 +553,9 @@
 			
 			function getLocalList(localCode) {
 				localCode.stopimmediatepropagation;
-				console.log(localCode);
+				
+				$('#ws_cine_n_screen').html('상영관을 선택해주세요');
+				
 				switch (localCode) {
 				case 'GRPA'  : 	
 								$('#ws_local_detail > div').css('display', 'none');
@@ -952,26 +608,19 @@
 						var cineName = innerCMeta[i].cineName;
 						var brandName = innerCMeta[i].supplierType;
 						
-						//stacked = '<div>'+cineName;
-						
-						//$('#ws_cine_n_screen').html(stacked);
-						
-						
+												
 						var screenInfo = innerCMeta[i].screenInfos;//ex 2관, 3관, 4관, 5관 네 개의 관 정보가 si[i]에 담겨있다. 새 값이 옛 값을 지우나??
-						//console.log('si == 해당 극장에서 몇 개의 스크린에서 상영하는지 '+screenInfo.length);
-						//console.log('si[0] = '+screenInfo[0].screenName);
-						//console.log('si[1] = '+screenInfo[1].screenName);
-						//console.log('si[2] = '+screenInfo[2].screenName);
 						
-						multiStacked = multiStacked +'<div>'+cineName;
+						
+						multiStacked = multiStacked +'<div class="ws_cine_schedule">'+cineName+'</div>';
 						for(j=0;j<screenInfo.length;j++) {	
 							
 							
-							var screenName		= screenInfo[j].screenName;			//n관의 이름	. 왜 강남만 안되는지...						
+							var screenName		= screenInfo[j].screenName;			//n관의 이름	. 				
 							var playType		= screenInfo[j].playTypeName;		//상영타입. 디지털, 4D 등.
 							var schedules		= screenInfo[j].scheduleInfos;		//스케쥴 배열을 꺼냈다.
 							
-							multiStacked = multiStacked+'<div><div class="ws_schedule_header">'+screenName+'<span class="ws_playType">'+playType+'</span></div>';
+							multiStacked = multiStacked+'<div class="ws_schedule_box"><div class="ws_schedule_header">'+screenName+'<span class="ws_playType">'+playType+'</span></div>';
 							//var resultOfSche;
 							for(k=0;k<schedules.length;k++) {//for문이 하나 돌 때 마다 하나의 span이 생성된다.
 								
@@ -980,28 +629,18 @@
 								var playStartTime 	= schedules[k].playStartTime;
 								//console.log(cineName+'상영관의 '+ screenName+'의 회차 '+playStartTime);
 							
-								multiStacked = multiStacked + '<span id="'+seq+'" value="'+
-								playDate+','+brandName+','+cineName+'" onclick="ticketing(this.value)" class="ws_ticketing_detail">'+playStartTime+'</span>'
+								multiStacked = multiStacked + '<span id="'+seq+'" data-info="'+
+								playDate+','+brandName+','+cineName+'" onclick="ticketing(this)" class="ws_ticketing_detail">'+playStartTime+'</span>'
 								
 							}
 							multiStacked = multiStacked+'</div>'
 							$('#ws_cine_n_screen').html(multiStacked);
 							
 						}
-						multiStacked = multiStacked +'</div>';
+						//multiStacked = multiStacked +'</div>'; 극장이름을 그냥 단독구역으로 나눔
 					}//if문을 닫기 전에 하나의 상영관 정보를 완성시켜야 한다.
-					
-					//stacked = stacked + '</div>';
-					//$('#ws_cine_n_screen').html(stacked);
-					
 				}//하나의 극장정보 정리 종료
-			
 			}
-			
-			
-
-			
-			
 			
 			
 			//자동으로 시작되는 함수.
@@ -1015,11 +654,18 @@
 			lastDay = new Date(year,month+2, 0);
 			lastDay = lastDay.getDate();
 			
+			if(month < 10) {
+				month = "0"+month;
+			}
+			if(date <10) {
+				date = "0"+date;
+			}
 			
 			var todayForm = year+'-'+month+'-'+date;
 			var todaySimple = month +'/'+date;
 			
 			todayGlobal =todayForm;
+			immutableToday = todayForm;
 			
 			var mon = '월';
 			var tue = '화';
@@ -1056,7 +702,7 @@
 					days[i+17] = thr;
 					
 					var startPointer = (i*2)-1;
-					for(j=1;j<=10;j++){
+					for(j=1;j<=7;j++){
 						$('.ws_day:nth-child('+j+')').text(days[startPointer]);
 						if(days[startPointer]=='토'){$('.ws_day:nth-child('+j+')').css('color','blue')};
 						if(days[startPointer]=='일'){$('.ws_day:nth-child('+j+')').css('color','red')};
@@ -1088,6 +734,19 @@
 					
 			
 			function timeSetter(obj) {
+				
+				$('#GRPA > span').text('');
+				$('#GRPB > span').text('');
+				$('#GRPC > span').text('');
+				$('#GRPD > span').text('');
+				$('#GRPE > span').text('');
+				$('#GRPF > span').text('');
+				
+				$('#ws_local_detail > div > span').css('display', 'none');
+				$('#ws_cine_n_screen').html('상영관을 선택해주세요');
+				$('#ws_movie_info_detail > div').html('');
+				$('#ws_movie_info_detail > div:nth-child(1)').html('<img id="ws_movieDetail_poster" src="">');
+				
 				var time = $(obj).text();
 				time = year +'-'+time;
 				todayGlobal = time;
@@ -1129,7 +788,81 @@
 				}
 			})
 			}
-			</script>
 
+			function ticketing(values) {
+				var tt=$(values).data('info');
+				var split =	tt.split(',');
+				var day = split[0];
+				var brand = split[1];
+				var cine = split[2];
+				var movieName = movieTitle;
+				var startTime =$(values).text();
+				var initDay = immutableToday;
+							
+				var datas = {"day": day,
+							 "brand" : brand,
+							 "cine" : cine,
+							 "movieName" : movieName,
+							 "startTime" : startTime,
+							 "initDay" : initDay}
+				
+				$.ajax ({
+					type: 'get',
+					data : datas,
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+					dataType : 'text',
+					url : '/movie/linkToRealTicketing/',       
+					success: function (result) {
+						console.log('반환결과 주소는 '+result);
+						window.open(result);
+					},
+					error: function (xhr, status, er) {
+						
+							alert('에러??');
+							
+						}
+					});	
+				//});
+				
+				
+			}//함수 땡
+			
+	$('.ws_movie_code').hover(function () {
+		$(this).siblings().css('background-color', '#DAD2B4');
+		$(this).css('background-color', '#DAD2B4');
+	},
+	function() {
+		$(this).css('background-color', '#F9F6EC');
+		$('.ws_movie_grade').css('background-color', '#F9F6EC');
+	});
+	
+	$('.ws_movie_code').on('click', function () {
+		$(this).siblings().css('background-color', '#DAD2B4');
+		$(this).css('background-color', '#DAD2B4');
+	});
+	
+	
+	$('.ws_local_main_category').hover(function () {
+			$(this).css('background-color', '#DAD2B4');
+		},
+		function() {
+			$(this).css('background-color', '#F9F6EC');
+		});
+	
+	$('#ws_local_detail > div > span').hover(function () {
+		$(this).css('background-color', '#DAD2B4');
+	},
+	function() {
+		$(this).css('background-color', '#F9F6EC');
+	});
+	//onclick시, 
+	$('#ws_local_detail > div > span').click(function (e) {
+		e.stopimmediatepropagation;
+		$(this).siblings().css('background-color', '#F9F6EC');
+		$(this).css('background-color', '#DAD2B4');
+		
+	});
+				
+			</script>
 <%@ include file="../footer2.jsp"%>
 

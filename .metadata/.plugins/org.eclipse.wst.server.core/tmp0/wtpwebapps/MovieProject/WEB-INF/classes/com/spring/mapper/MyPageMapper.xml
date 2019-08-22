@@ -65,16 +65,39 @@
 	</resultMap>
 	<!-- hm | 1:1문의 답변 resultMap추가 끝  -->
 	
+	<resultMap type="com.spring.mypage.FolFolDTO" id="getfolMap">
+		<result property="id" column="id"/>
+		<result property="m_nickname" column="m_nickname"/>
+		<result property="mf_ing" column="mf_ing"/>
+		<result property="mf_wer" column="mf_wer"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.mypage.MyBoardDTO" id="boardDTOMap">
+		<result property="id" column="id"/>
+		<result property="bno" column="bf_bno"/>
+		<result property="category" column="bf_category"/>
+		<result property="title" column="bf_title"/>
+		<result property="reg_date" column="bf_reg_date"/>
+		<result property="bno" column="bs_bno"/>
+		<result property="category" column="bs_category"/>
+		<result property="title" column="bs_title"/>
+		<result property="reg_date" column="bs_reg_date"/>
+	</resultMap>
+	
 	<select id="getMemberName" parameterType="String" resultType="String">
-		select M_NAME from member where M_EMAIL=#{m_email}
+		select M_NAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getMemberNickname" parameterType="String" resultType="String">
 		select M_NICKNAME from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
 	
+	<update id="insertProfileImage" >
+		update member set m_image=#{m_image, jdbcType=VARCHAR} where id=#{id}
+	</update>
+	
 	<select id="getMemberId" parameterType="String" resultType="int">
-		select ID from member where M_EMAIL=#{m_email}
+		select ID from member where M_EMAIL=#{m_email, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getQnaList" parameterType="int" resultMap="merberQnaMap">
@@ -85,6 +108,9 @@
 		select * from member where id=#{id}
 	</select>
 	
+	<select id="getMembers" resultType="com.spring.member.MemberVO">
+		select * from member
+	</select>
 	
 	<update id="updateMember" parameterType="com.spring.member.MemberVO">
 		update member set m_phone=#{m_phone},m_favorite=#{m_favorite},m_sagree=#{m_sagree},m_eagree=#{m_eagree} where id=#{id}
@@ -121,6 +147,10 @@
 		delete FROM board_qna WHERE qna_no = #{qna_no}
 	</delete>
 	
+	<delete id="deleteQna">
+		delete FROM board_qna WHERE qna_no = #{qna_no}
+	</delete>
+	
 	<!-- kgh | 비밀번호 변경 -->
 	
 	<!-- kgh | 비밀번호 체크  -->
@@ -146,7 +176,87 @@
 	 	 where
 	 	 	id = #{id}
 	 </update>
+	 
+	 <select id="checkNick" parameterType="String" resultType="int">
+		select count(m_nickname)
+		from member
+		where m_nickname = #{m_nickname, jdbcType=VARCHAR}
+	</select>
 	
+	<select id="getfollower" parameterType="int" resultMap="getfolMap">
+		select id,m_nickname from member where id in(
+        select mf_wer from member_follow where mf_ing=#{id})
+	</select>
 	
+	<select id="getfollowing" resultMap="getfolMap">
+		select id,m_nickname from member where id in(
+        select mf_ing from member_follow where mf_wer=#{id})
+	
+	</select>
+	
+	<select id="countArticles" resultType="int">
+        <![CDATA[
+	        SELECT COUNT(qna_no)
+	        FROM board_qna
+	        WHERE id=#{id} and qna_no > 0
+        ]]>
+    </select>
+    
+     <select id="listCriteria" resultMap="merberQnaMap">
+        <![CDATA[
+			select rn, qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+			from(
+				select rownum rn , qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+				from(
+					select qna_no , id , qna_category , qna_title , qna_content , qna_date , qna_update_date , qna_answer
+					from board_qna
+					order by qna_no desc
+					)
+				)
+			where id=#{id} and rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+        ]]>
+    </select>
+    
+	<select id="getFreeCount" parameterType="int" resultType="int">
+		select count(*)
+		from board_free
+		where id=#{id}
+	</select>
+	
+	<select id="getShareCount" parameterType="int" resultType="int">
+		select count(*)
+		from board_share
+		where id=#{id}
+	</select>
+	
+	<select id="getFreeBoard" resultMap="boardDTOMap">
+		<![CDATA[
+		select rn, id, bf_bno, bf_category, bf_title, bf_reg_date
+		from (
+			select rownum rn, id, bf_bno, bf_category, bf_title, bf_reg_date
+			from(
+				select id, bf_bno, bf_category, bf_title, bf_reg_date
+				from board_free
+				order by bf_reg_date
+				)
+			)
+		where id=#{id} and rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="getShareBoard" resultMap="boardDTOMap">
+		<![CDATA[
+		select rn, id, bs_bno, bs_category, bs_title, bs_reg_date
+		from (
+			select rownum rn, id, bs_bno, bs_category, bs_title, bs_reg_date
+			from(
+				select id, bs_bno, bs_category, bs_title, bs_reg_date
+				from board_share
+				order by bs_reg_date
+				)
+			)
+		where id=#{id} and rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
+		]]>
+	</select>
 	
 </mapper>

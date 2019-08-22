@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.boardFree.BoardFreeService;
+import com.spring.boardFree.BoardFreeServiceImpl;
 import com.spring.boardFree.BoardFreeVO;
 import com.spring.boardFree.WarnVO;
 import com.spring.member.MemberService;
 import com.spring.member.MemberVO;
+import com.spring.mml.MmlService;
 import com.spring.paging.PageMaker;
 import com.spring.paging.SearchCriteria;
 
@@ -44,6 +47,14 @@ public class BoardShareController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired 
+	BoardFreeService boardFreeService;
+	
+	@Autowired
+	MmlService mmlService;
+
+	
 	
 	/**
 	  * 나눔 게시판 리스트로 이동
@@ -87,7 +98,9 @@ public class BoardShareController {
 		model.addAttribute("sessionyn",sessionyn);
 		model.addAttribute("boardShareVO", boardShareVO); // 게시글의 내용
 		model.addAttribute("memberVO", memberVO); // 게시물 작성자의 정보
-		
+		model.addAttribute("boardListDaily", boardFreeService.boardListDaily());//오른쪽의 실시간 베스트5
+		model.addAttribute("bt_type","Today");
+		model.addAttribute("mmlTop3", mmlService.getMmlList_like_top3(boardShareVO.getId()));
 		return "board/share/boardShareGet"; 
 	}
 	

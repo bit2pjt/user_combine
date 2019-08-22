@@ -18,10 +18,15 @@ package com.spring.mypage;
  *  Copyright (C) by Bit All right reserved.
  */
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,7 +38,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.member.MemberVO;
@@ -45,6 +49,9 @@ import com.spring.paging.SearchCriteria;
 public class MyPageController {
    @Autowired
    private MyPageService myPageService;
+   
+   @Autowired
+   ServletContext context;
 
    // mypage 메인
    @RequestMapping(value = "/mypage", method = RequestMethod.GET)
@@ -58,207 +65,224 @@ public class MyPageController {
       qnaList = myPageService.getQnaList(id);
       model.addAttribute("qnaList", qnaList);
 
+      List<FolFolDTO> followerList = null;
+      followerList = myPageService.getfollower(id);
+      model.addAttribute("follower", followerList);
+      System.out.println(followerList);
+      
+      List<FolFolDTO> followingList = null;
+      followingList = myPageService.getfollowing(id);
+      model.addAttribute("following", followingList);
+      System.out.println(followingList);
+
       return "mypage/mypage";
    }
-
-   // 마이페이지 - 비밀번호 확인
-   @RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
-   public String pwConfirm(HttpSession session, Model model) {
-      int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
-      MemberVO member = myPageService.getMember(id);
-      model.addAttribute("member", member);
-
-      return "mypage/pw_confirm";
-   }
-
-   // 마이페이지 - 멤버정보
-   @RequestMapping(value = "/member_info")
-   public String memberInfo(MemberVO member, Model model, int id) {
-      MemberVO member1 = myPageService.getMember(id);
-      System.out.println("member1=" + member1);
-      String input_password = member.getM_password();
-      System.out.println("input_pwd=" + input_password);
-      String member_password = member1.getM_password();
-      System.out.println("member_pwd=" + member_password);
-
-      int check = 3;
-
-      if (input_password.equals(member_password)) {
-         model.addAttribute("member", member);
-         model.addAttribute("member1", member1);
-         model.addAttribute("check", check);
-         System.out.println("�ѱ��" + member1);
-         return "mypage/member_info";
-      } else {
-         return "mypage/mypage";
-      }
-   }
-
-   // 마이페이지 - 비밀번호 수정
-   @RequestMapping(value = "/update_pw")
-   public String updatePw(Model model, MemberVO memberVO, int id) {
-
-      MemberVO member1 = myPageService.getMember(id);
-
-      myPageService.updatePw(memberVO);
-
-      member1 = myPageService.getMember(id);
-
-      model.addAttribute("member1", member1);
-      return "mypage/member_info";
-   }
-
-//    // 마이페이지 - 닉네임확인
-//   @RequestMapping(value="/update_checknick")
-//   public String updateCheckNick(Model model, String m_nickname, MemberVO memberVO,int id) {
-//      int check = myPageService.checkNick(m_nickname);
-//      MemberVO member = myPageService.getMember(id);
-//      
-//      model.addAttribute("check", check);
-//      model.addAttribute("member1",member);
-//      System.out.println("�ߺ�üũ " +check);
-//      return "mypage/member_info";
-//   }
-
-   // 마이페이지 - 닉네임 수정
-   @RequestMapping(value = "/update_nick")
-   public String updateNick(Model model, int id, MemberVO memberVO) {
-      MemberVO member1 = myPageService.getMember(id);
-      myPageService.updateNick(memberVO);
-
-      member1 = myPageService.getMember(id);
-
-      model.addAttribute("member1", member1);
-
-      return "mypage/member_info";
-   }
-
-   // 마이페이지 - 회원정보 수정
-   @RequestMapping(value = "/member_update")
-   public String updateMember(Model model, HttpServletResponse response, MemberVO memberVO, int id) {
-      MemberVO member1 = myPageService.getMember(id);
-      myPageService.updateMember(memberVO);
-
-      member1 = myPageService.getMember(id);
-
-      model.addAttribute("member1", member1);
-
-      response.setContentType("text/html; charset=UTF-8");
-      try {
-         PrintWriter out = response.getWriter();
-         out.println("<script>");
-         out.println("alert('접근 권한이 없습니다.');");
-         out.println("</script>");
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-
-      return "mypage/member_info";
-   }
-
-   /*
-    * // kgh | // 마이페이지 - 비밀번호 재확인
-    * 
-    * @RequestMapping(value = "/pw_confirm", method = RequestMethod.GET) public
-    * String pwConfirm(Model model) {
-    * 
-    * return "mypage/pw_confirm"; }
-    */
-
-   // 마이페이지 - 비밀번호 재확인 - 회원정보 수정
-   @RequestMapping(value = "/member_info", method = RequestMethod.GET)
-   public String memberInfo(MemberVO vo, RedirectAttributes rttr, HttpSession session, HttpServletResponse response) {
-      
-      
-      boolean result = myPageService.checkPw(vo.getM_email(), vo.getM_password());
-      if (result) {// 비밀번호가 일치하면 사이트 이동
-         
-         // 아이디값을 가져와지긴 하는데...
-         System.out.println("비밀번호 일치");
-         MemberVO member1 =myPageService.getMember((int)session.getAttribute("id"));
-         System.out.println("member1의 값은 "+member1);
-         session.setAttribute("member1",member1);
-         System.out.println("비밀번호일치시 아이디:"+session.getAttribute("id"));
-         
-         return "mypage/member_info";
-      } else {
-         System.out.println("비밀번호 불일치");
-
-         rttr.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다.");
-
-         return "redirect:/pw_confirm";
-      }
-
-   }
-
-   // 마이페이지 - 회원탈퇴 (링크이동)
-   @RequestMapping(value = "/member_out", method = RequestMethod.GET)
-   public String memberOut() {
-      return "mypage/member_out";
-   }
-
-   // 마이페이지 - 회원탈퇴 (컨트롤러)
-
-   @RequestMapping(value = "/member_delete", method = RequestMethod.GET)
-   public String memberOutController(MemberVO vo, RedirectAttributes rttr, HttpSession session) {
-      //session.setAttribute("m_email", "bit0hyj@gmail.com");
-      //session.setAttribute("m_password", "1234");
-      //session.setAttribute("id", "1");
-      // 임시로 이메일값을 준다.
-
-      String m_email = (String) session.getAttribute("m_email");
-      String m_password = (String) session.getAttribute("m_password");
-      int id = (int)session.getAttribute("id");
-
-      System.out.println("m_email:" + m_email);
-      System.out.println("m_password:" + m_password);
-      System.out.println("id:" + id);
-
-      int num = myPageService.delete_member(m_email);
-      int id_num = myPageService.delete_date(id);
-      
-      rttr.addFlashAttribute("delete_msg", "탈퇴가 왼료되었습니다.");
-
-      // 로그아웃으로 세션들을 초기화시킴
-      session.invalidate();
-
-      return "redirect:/";
-   }
-
-   /*
-   // 마이페이지 - 1:1 문의내역 리스트
-   @RequestMapping(value = "/one_list", method = RequestMethod.GET)
-   public String oneList(HttpServletRequest request, HttpSession session) {
-
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
-
-      // 사용자 정보
-      String m_email = (String) session.getAttribute("m_email");
-      String m_name = myPageService.getMemberName(m_email); // System.out.println("=============MyPageController.java=====================
-                                                // m_name : " + m_name);
-      request.setAttribute("m_name", m_name);
-      int id = myPageService.getMemberId(m_email); // System.out.println("=============MyPageController.java=====================
-      // id : " + id);
-      
-      // 1:1 문의내역
-      List<OneVO> qnaList = null;
-      
-      qnaList = myPageService.getQnaList(id);
-      request.setAttribute("qnaList", qnaList);
-      return "mypage/one_list";
-   }
-   */
    
+   
+   //web.xml, servlet-context.xml, 서버의 server.xml, context.xml 모두 추가사항있음
+   @RequestMapping(value="/profileAddAction", method=RequestMethod.POST)
+   public String profileAddAction(HttpServletRequest request,HttpServletResponse response, RequestModel model) throws Exception{
+	   	String realPath = "";
+		String realPath_t = "";
+		String savePath="/upload";
+		int maxSize = 5 * 1024 * 1024;
+		
+		realPath = context.getRealPath(savePath);//서버 지우고나서 재시동시 기존의 사진자료들이 날아감, 테스트를 위해 아래코드로 저장경로를 로컬로 설정. -> 서버랑 로컬에 모두 저장! 
+		//서버의 사진이 날아가면 로컬에 저장된 사진들을 서버로 복붙해서 테스트하면 됩니당.
+		
+		//******아래의 경로, server.xml, servlet-context.xml의 모든 경로를 바꿔주세용******
+
+		realPath_t="C:\\upload";
+
+		
+//		System.out.println("================= profileAddAction | realPath ===================="+realPath);
+//		System.out.println("================= profileAddAction | realPath_t ===================="+realPath);
+		
+		List saveFiles = new ArrayList();
+		try {
+			MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)request;
+			Iterator it = mhsr.getFileNames();
+			MultipartFile mFile = null;
+			String fieldName = "";
+//			System.out.println("================= profileAddAction | it.hasNext() ===================="+it.hasNext());
+			while(it.hasNext()) {
+				fieldName = (String)it.next();
+				mFile = mhsr.getFile(fieldName);
+				if(mFile.getOriginalFilename().equals("")) {
+					break;
+				}
+				System.out.println("mFile : " + mFile.getOriginalFilename());
+				String originalFileExtension = mFile.getOriginalFilename().substring(
+						mFile.getOriginalFilename().lastIndexOf("."));
+				System.out.println("originalFileExtension : " + originalFileExtension);
+				String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+				System.out.println("storedFileName : " + storedFileName);
+				if(mFile.getSize() != 0) {
+					mFile.transferTo(new File(realPath + "/" + storedFileName));
+					mFile.transferTo(new File(realPath_t + "/" + storedFileName));
+				}
+				
+				if(it.hasNext()){
+					//지금 가져온 이름 다음 이름이 더 있으면
+					//즉, 지금 enumeration에서 가져온 이름이 마지막 요소가 아니면
+					saveFiles.add(storedFileName+",");
+				}else{
+					saveFiles.add(storedFileName);
+				}
+			}
+			StringBuffer fl=new StringBuffer();
+			for(int i=0;i<saveFiles.size();i++){
+				fl.append(saveFiles.get(i));	
+			}
+			int result = myPageService.insertProfileImage(Integer.parseInt(request.getParameter("id")),fl.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/mypage"; 
+		}
+
+	// 마이페이지 - 회원정보 수정
+	@RequestMapping(value = "/member_update")
+	public String updateMember(Model model, HttpServletResponse response, MemberVO memberVO, int id) {
+
+		MemberVO member = myPageService.getMember(id);
+		myPageService.updateMember(memberVO);
+		member = myPageService.getMember(id);
+		model.addAttribute("member", member);
+
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('접근 권한이 없습니다.');");
+			out.println("</script>");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "mypage/member_info";
+	}
+	
+	// 마이페이지 - 비밀번호 수정
+	@RequestMapping(value = "/update_pw")
+	public String updatePw(Model model, MemberVO memberVO, int id) {
+
+		MemberVO member = myPageService.getMember(id);
+		myPageService.updatePw(memberVO);
+		member = myPageService.getMember(id);
+
+		model.addAttribute("member", member);
+		return "mypage/member_info";
+	}
+   
+// 마이페이지 - 닉네임 수정
+	@RequestMapping(value = "/update_nick")
+	public String updateNick(Model model, MemberVO memberVO, HttpServletResponse response) throws Exception {
+
+		List<MemberVO> memberList = myPageService.getMembers();
+		System.out.println("memberlist=" + memberList);
+		for (int i = 0; i < memberList.size(); i++) {
+			MemberVO member = memberList.get(i);
+
+			String nick = member.getM_nickname();
+			System.out.println("nick=" + nick);
+
+			if (memberVO.getM_nickname().equals(nick)) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('중복된 닉네임입니다!');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				out.close();
+				return null;
+			}
+		}
+
+		myPageService.updateNick(memberVO);
+		MemberVO member = myPageService.getMember(memberVO.getId());
+		model.addAttribute("member", member);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('닉네임이 변경되었습니다.!');");
+		out.println("history.go(-1);");
+		out.println("</script>");
+		out.close();
+
+		return "mypage/member_info";
+
+	}
+ 
+	// 마이페이지 - 비밀번호 재확인 - 회원정보 수정
+	@RequestMapping(value = "/member_info", method = RequestMethod.POST)
+	public String memberInfo(MemberVO vo, RedirectAttributes rttr, Model model, HttpServletResponse response,
+			HttpSession session) {
+
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		boolean result = myPageService.checkPw(vo.getM_email(), vo.getM_password());
+
+		System.out.println(vo.getM_email());
+		System.out.println(vo.getM_password());
+
+		if (result) {// 비밀번호가 일치하면 사이트 이동
+			MemberVO member = myPageService.getMember(id);
+			// 아이디값을 가져와지긴 하는데...
+			System.out.println("비밀번호 일치");
+			System.out.println("member의 값은 " + member);
+			model.addAttribute("member", member);
+
+			return "mypage/member_info";
+		} else {
+			System.out.println("비밀번호 불일치");
+			rttr.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다.");
+
+			return "redirect:/pw_confirm";
+		}
+
+	}
+
+	// 마이페이지 - 비밀번호 확인
+	@RequestMapping(value = "/pw_confirm", method = RequestMethod.GET)
+	public String pwConfirm(HttpSession session, Model model) {
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		MemberVO member = myPageService.getMember(id);
+		model.addAttribute("member", member);
+
+		return "mypage/pw_confirm";
+	}
+	
+	// 마이페이지 - 회원탈퇴 (링크이동)
+	@RequestMapping(value = "/member_out", method = RequestMethod.GET)
+	public String memberOut() {
+		return "mypage/member_out";
+	}
+
+	
+	// 마이페이지 - 회원탈퇴 (컨트롤러)
+	@RequestMapping(value = "/member_delete", method = RequestMethod.GET)
+	public String memberOutController(MemberVO vo, RedirectAttributes rttr, HttpSession session) {
+
+		String m_email = (String) session.getAttribute("m_email");
+		String m_password = (String) session.getAttribute(vo.getM_password());
+		int id = (int) session.getAttribute("id");
+
+		System.out.println("m_email:" + m_email);
+		System.out.println("m_password:" + m_password);
+		System.out.println("id:" + id);
+
+		rttr.addFlashAttribute("delete_msg", "탈퇴가 왼료되었습니다.");
+		// 로그아웃으로 세션들을 초기화시킴
+		session.invalidate();
+
+		return "redirect:/";
+	}
+
    // 마이페이지 - 1:1 문의내역 리스트
    @RequestMapping(value = "/one_list", method = RequestMethod.GET)
    public String oneList(HttpServletRequest request, HttpSession session, Model model,@ModelAttribute("criteria") 
 	Criteria criteria) {
-
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
 
       // 사용자 정보
       String m_email = (String) session.getAttribute("m_email");
@@ -280,29 +304,58 @@ public class MyPageController {
       return "mypage/one_list";
    }
    
+// 마이페이지
+   @RequestMapping(value = "/myinfo", method = RequestMethod.GET)
+   public String myinfo(HttpServletRequest request, HttpSession session, Model model,@ModelAttribute("criteria") 
+	Criteria criteria) {
+	   String m_email = (String) session.getAttribute("m_email");
+	   if (m_email == null) {
+		   return "redirect:/index";
+	   }
+	   
+	   String m_name = myPageService.getMemberName(m_email);
+	   request.setAttribute("m_name", m_name);
+	   int id = myPageService.getMemberId(m_email); 
+	   
+	   PageMaker pageMaker1 = new PageMaker();
+	   PageMaker pageMaker2 = new PageMaker();
+	   
+	   criteria.setId(id);
+	   
+	   int freecount = myPageService.getFreeCount(id);
+	   int sharecount = myPageService.getShareCount(id);
+	   
+	   pageMaker1.setCriteria(criteria);
+	   pageMaker2.setCriteria(criteria);
+	   
+	   pageMaker1.setTotalCount(freecount);
+	   pageMaker2.setTotalCount(sharecount);
+	      
+	   model.addAttribute("freeList", myPageService.freeBoard(criteria));
+	   model.addAttribute("shareList", myPageService.shareBoard(criteria));
+	   
+	   model.addAttribute("pageMaker1", pageMaker1);	
+	   model.addAttribute("pageMaker2", pageMaker2);	
+	   
+      return "mypage/myinfo";
+   }
+   
 
    // 마이페이지 - 1:1 문의내역 리스트 - 1:1문의내역 등록
    @RequestMapping(value = "/one_register", method = RequestMethod.GET)
    public String oneRegister(HttpServletRequest request, HttpSession session, OneVO oneVO) {
 
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
-
       // 사용자 정보
       String m_email = (String) session.getAttribute("m_email");
-      
       if (m_email == null) {
 			return "redirect:/index";
-		}
+      }
       
       String m_name = myPageService.getMemberName(m_email);
       String m_nickname = myPageService.getMemberNickname(m_email); // System.out.println("=============MyPageController.java=====================
                                                       // nickname : " + m_nickname);
       request.setAttribute("m_name", m_name);
       request.setAttribute("m_nickname", m_nickname);
-
-//      myPageService.insertQna(oneVO);
 
       return "mypage/one_register";
    }
@@ -311,11 +364,7 @@ public class MyPageController {
    @RequestMapping(value = "/one_registerAction", method = RequestMethod.POST)
    public String oneRegisterAction(HttpSession session, HttpServletRequest request, HttpServletResponse response,
          OneVO oneVO) {
-
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
-
+	   
       oneVO.setId(myPageService.getMemberId((String) session.getAttribute("m_email")));
 
       // qna_title, qna_content의 앞뒤 공백 제거
@@ -337,9 +386,7 @@ public class MyPageController {
    // 마이페이지 - 1:1 문의내역 수정
    @RequestMapping(value = "/one_update", method = RequestMethod.GET)
    public String oneUpdate(HttpSession session, HttpServletRequest request) {
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
+	   
       String m_email = (String) session.getAttribute("m_email");
       if (m_email == null) {
 			return "redirect:/index";
@@ -368,11 +415,6 @@ public class MyPageController {
    // 마이페이지 - 1:1 문의내역 수정 액션
    @RequestMapping(value = "/one_updateAction", method = RequestMethod.POST)
    public String oneUpdateAction(HttpSession session, HttpServletRequest request, OneVO oneVO) {
-
-      // 로그인 연동 후 삭제
-      // 왼쪽 메뉴 상단의 사용자 정보가져오기 위해 session에 강제로 email정보 저장
-      // session.setAttribute("m_email", "bit0hyj@gmail.com");
-
       // qna_title, qna_content의 앞뒤 공백 제거
       oneVO.setQna_title(oneVO.getQna_title().trim());
       oneVO.setQna_content(oneVO.getQna_content().trim());
@@ -425,6 +467,38 @@ public class MyPageController {
 
       return "mypage/one_get";
    }
+   
+   // qna 삭제용
+	@RequestMapping(value = "/one_delete", method = RequestMethod.GET)
+	public String deleteQna(int qna_no) {
+
+		myPageService.deleteQna(qna_no);
+
+		return "redirect:/one_list";
+
+	}
+   
+	// 팔로잉 팔로워 더보기
+	@RequestMapping(value = "/folfol_list", method = RequestMethod.GET)
+	public String folfol_list(Model model, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria,
+			HttpServletRequest request, HttpSession session) {
+
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		MemberVO member = (MemberVO) myPageService.getMember(id);
+		model.addAttribute("member", member);
+
+		List<FolFolDTO> followerList = null;
+		followerList = myPageService.getfollower(id);
+		model.addAttribute("follower", followerList);
+		System.out.println(followerList);
+
+		List<FolFolDTO> followingList = null;
+		followingList = myPageService.getfollowing(id);
+		model.addAttribute("following", followingList);
+		System.out.println(followingList);
+
+		return "mypage/folfol_list";
+	}
 
    
    // hm | 마이페이지 - 문의 삭제

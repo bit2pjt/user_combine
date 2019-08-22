@@ -60,7 +60,7 @@
 	function update_back() {
 		msg = "나영리 수정을 취소하시겠습니까?";
 		if (confirm(msg) != 0) {
-			location.href = "mmlGet"+${requestScope.mmlContentVO.mml_num};
+			location.href = "mmlGet?mml_num="+${requestScope.mmlContentVO.mml_num};
 		}
 	}
 	function openModal(){
@@ -162,7 +162,7 @@
 											<div class="movielist-card"
 												onclick="movie_select(${movie.mi_code},'${movie.mi_poster}')"
 												data-dismiss="modal">
-												<img src="./upload/poster/${movie.mi_poster}">
+												<img src="${movie.mi_poster}">
 												<div class="movie-info">
 													<h4 class="movie-ktitle">${movie.mi_ktitle}</h4>
 													<h6 class="movie-etitle">${movie.mi_etitle}</h6>

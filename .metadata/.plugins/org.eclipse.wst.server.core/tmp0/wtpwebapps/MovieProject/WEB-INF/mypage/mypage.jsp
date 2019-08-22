@@ -17,7 +17,6 @@
 * @ 2019.07.06         황진석      		 	최초생성
 * @ 2019.07.22    한유진      		 	qnaList 기능 추가
 * @author bit 2조
-* @since 2019. 07.01
 * @version 1.0
 * @see
 *
@@ -29,6 +28,17 @@
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+function update_img(){
+	var a = document.getElementById("file_img").value;
+	if (a.length == 0) {
+		alert('사진변경을 취소합니다.');
+	} else {
+		$('#sbtn').click();
+	}
+}
+</script>
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
 
@@ -37,18 +47,17 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-					<h1>Edward kennedy’s profile</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li> <span class="ion-ios-arrow-right"></span>Rated movies</li>
+					<h1 style="margin-left: 0px; margin-top: -105px;">마이페이지</h1>
+					<ul style="margin-left: 0px;" class="breadcumb">
+						<li class="active"><a href="index">홈</a></li>
+						<li><span class="ion-ios-arrow-right"></span> 마이페이지</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div style="height:5%;"></div>
-<div class="buster-light">
+<div class="buster-light" style="margin-top: -180px;">
 	<div class="page-single">
 		<div class="container">
 			<div class="row ipad-width2">
@@ -60,19 +69,20 @@
 					<div class="user-information-hjs">
 						<div class="user-fav">
 								<ul>
-									<li><a href="mypage">마이페이지</a></li>
+									<li style="font-weight: bold;"><a style="font-size: 18px;" href="mypage">마이페이지</a></li>
 								</ul>
 										
-								<ul>
+								<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 									<li>회원 정보</li>
 									<li><a href="pw_confirm?id=<%= member.getId() %>">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
 									<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 								</ul>
 					
-								<ul>
+								<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 									<li>고객센터</li>
 									<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1 문의내역</a></li>
 									<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+									<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 								</ul>
 							</div>
 					</div>
@@ -86,9 +96,18 @@
 						<div style="display:block;">
 							<div class="information-hjs">
 								<div class="user-img">
-									<a href="#"><img src="resources/images/uploads/user-img.png" alt="사진등록"><br></a><br>
-									<a href="#" class="redbtn1">사진 등록</a>
-									<br>
+									<%if(member.getM_image() == null || member.getM_image().equals("") || member.getM_image().equals("null")) {%>
+										<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width:120px;height:120px;">
+									<%}else{ %>
+
+									<img src="./upload/${requestScope.member.m_image }" style="width:120px;height:120px;">
+
+									<%} %>
+									<form name="goodsform" action="./profileAddAction?id=<%= member.getId() %>" method="post" enctype="multipart/form-data">
+										<input name="file" id="file_img" type="file" onchange="update_img()" style="visibility:hidden;height:1px;" />
+										<input type="button" value="사진 변경" id="m_image_btn" onclick="$('#file_img').click();" style="width: 120px;background-color: black;color: white;font-weight: bold;"/>
+										<input id="sbtn" type="submit" style="visibility:hidden;height:1px;" />
+									</form>
 								</div>
 								
 								<div class="hjs-info" >
@@ -145,7 +164,7 @@
 							<div class="div_one">
 									<table class="tb_hjs">
 										<caption class="caption-hjs"> 
-											<h2> 나의 팔로잉/팔로워 <a href="#" class="caption_a"> 더보기 </a> </h2></caption>
+											<h2> 나의 팔로잉/팔로워 <a href="folfol_list?id=${requestScope.member.id}" class="caption_a"> 더보기 </a> </h2></caption>
 												
 											<colgroup>
 												<col width="25%" />
@@ -153,14 +172,27 @@
 											</colgroup>
 											<thead>
 												<tr>
-													<th colspan="2" class="th_border"> 팔로잉 ID </th>
-													<th colspan="2"> 팔로워 ID </th>
+													<th colspan="2" class="th_border"> 팔로잉 닉네임 </th>
+													<th colspan="2"> 팔로워 닉네임 </th>
 												</tr>
 											</thead>
 											
 											<tbody>
 												<tr>
-													<td colspan="4">  팔로잉/팔로워가 없습니다. </td>	
+													<td colspan="2" style="padding:0px;">
+													<c:forEach var="foling" items="${requestScope.following }" end="4">
+													<div style="padding:2px; border:1px solid rgba(51, 51, 51, 0.1)">
+													<a href="mmlMemberList?id=${foling.id}">${foling.m_nickname }</a><br>
+													</div>
+													</c:forEach>
+													 </td>
+													<td colspan="2" style="padding:0px;">
+													<c:forEach var="foler" items="${requestScope.follower }" end="4">
+													<div style="padding:2px; border:1px solid rgba(51, 51, 51, 0.1)">
+													<a href="mmlMemberList?id=${foler.id}"> ${foler.m_nickname}</a> <br>
+													 </div>
+												</c:forEach>
+													 </td>
 												</tr>
 											</tbody>
 									</table>

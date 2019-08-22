@@ -41,6 +41,7 @@
 
 <script>
 	function check() {
+		alert('check start!');
 		//제목과 내용의 앞뒤 공백 제거
 		var mml_title = mml_write_form.mml_title.value.trim();
 		var mml_content = mml_write_form.mml_content.value.trim();
@@ -62,6 +63,7 @@
 		//첫번째로 등록된 영화의 이미지를 대표 썸네일로 사용
 		//var mml_poster=document.getElementsByName("mml_poster");
 		//mml_poster[0].setAttribute("value",mml_movie_item[1].children[1].alt );
+		document.getElementById('mml_write_form').submit();
 		return true;
 	}
 	function register_back() {
@@ -82,11 +84,59 @@
 			+"</div>";
 		var modal = document.getElementById("movie-modal");
 		modal.style.display="none";
+		$('.modal-backdrop').remove();
+		
 	}
 	function movie_delete(del_num){
 		var del_movie = document.getElementById(del_num);
 		del_movie.remove();
 	}
+	$(function(){
+		var search_btn = $("#search_btn");
+		search_btn.on("click", function(event){
+			event.preventDefault();
+			/* alert('검색을 시작합니당'); */
+			var page=1;
+			var perPageNum=10;
+			var keyword = $("#keywordInput").val();
+			var searchType=$("select option:selected").val();
+			$('#movielist_mid').html('');
+			$.ajax({
+				url:"/movie/mmlWriteMovie",
+					data: {page:page, perPageNum:perPageNum, searchType: searchType ,keyword: keyword},
+					dataType: "json",
+					type:"get",
+					/* contentType : 'application/json; charset=UTF-8', */
+					success: function(data) {
+						if(data != null) {
+							$.each(data, function(index, item){
+							$('#movielist_mid').html($('#movielist_mid').html()
+									+'<div class="movielist-card" onclick="movie_select('+item.mi_code+','+"'"+item.mi_poster+"'"+')">'     //'+item.mi_code+','+"'"+item.mi_poster+"'"+'      data-dismiss="modal"
+									+'<img src="'+item.mi_poster+'">'
+									+'</div>');
+							}); 
+								
+
+						}else {
+							$('#movielist_mid').html('<br><br>검색 결과가 없습니다.');
+						}
+					},
+					error: function() {
+						$('#movielist_mid').html('<br><br>검색 결과가 없습니다.');
+					}
+			});
+		});
+	});
+	$(".pagination li a").on("click", function (event) {
+	    event.preventDefault();
+	
+	    var targetPage = $(this).attr("href");
+	    var listPageForm = $("#listPageForm");
+	    listPageForm.find("[name='page']").val(targetPage);
+	    listPageForm.attr("action", "movieList").attr("method", "get");
+	    listPageForm.submit();
+	});
+	
 </script>
 
 <%@ include file="../header2.jsp"%>
@@ -104,7 +154,7 @@
 </div>
 <div class="buster-light" style="min-height: 1000px; margin-top: 20px;">
 	<div class="col-md-10" style="margin-left:10%;">
-		<form name="mml_write_form" action="mmlWriteAction" method="post"
+		<form name="mml_write_form" id="mml_write_form"action="mmlWriteAction" method="post"
 			onsubmit="return check()">
 			<input type="hidden" name="id" value="${requestScope.id }">
 			<!-- <input type="hidden" name="mml_poster" value="0"> -->
@@ -131,7 +181,6 @@
 							alt="영화 추가하기" data-target="#movie-modal" data-toggle="modal"
 							data-backdrop="static">
 						<!-- start | modal -->
-						<%-- <jsp:include page="mmlWriteModal.jsp"/> --%>
 						<div class="modal fade" id="movie-modal" role="dialog">
 							<div class="modal-dialog" style="margin-top: 100px;">
 								<div class="modal-content">
@@ -145,42 +194,66 @@
 
 										<div class="form-group">
 											<div class="movielist-top">
-											
-												<select id="mcategory">
-													<option value="영화 제목" selected="selected">영화 제목</option>
-													<option value="개봉 연도">개봉 연도</option>
-													<option value="제작 국가">제작 국가</option>
-													<option value="영화 감독">영화 감독</option>
-													<option value="영화 배우">영화 배우</option>
-												</select> 
-												<input type="text" id="search_input" placeholder="검색어를 입력해주세요">
-												<button id="search_btn">검색</button>
-												 <!-- <a id="search_btn">검색</a>  -->
-											
+												<select class="form-control" name="searchType"
+													id="searchType">
+													<option value="u"
+														<c:out value="${searchCriteria.searchType == null ? 'selected' : ''}"/>>::::::
+														선택 ::::::</option>
+													<option value="n"
+														<c:out value="${searchCriteria.searchType eq 'n' ? 'selected' : ''}"/>>영화제목</option>
+													<option value="d"
+														<c:out value="${searchCriteria.searchType eq 'd' ? 'selected' : ''}"/>>영화감독</option>
+													<option value="a"
+														<c:out value="${searchCriteria.searchType eq 'a' ? 'selected' : ''}"/>>영화배우</option>
+												</select> <input type="text" class="form-control" name="keyword"
+													value="${searchCriteria.keyword}" id="keywordInput"
+													placeholder="검색어" width="150px;">
+												<button type="button" id="search_btn" style="background-color:black;color:white;">검색</button>
 											</div>
 										</div>
-										<c:forEach var="movie" items="${requestScope.movieList }"
-											end="5">
-											<div class="movielist-card"
-												onclick="movie_select(${movie.mi_code},'${movie.mi_poster}')"
-												data-dismiss="modal">
-												<img src="${movie.mi_poster}">
-												<div class="movie-info">
-													<h4 class="movie-ktitle">${movie.mi_ktitle}</h4>
-													<h6 class="movie-etitle">${movie.mi_etitle}</h6>
-													개봉년도 :
-													<c:out value="${fn:substring(movie.mi_releaseday,24,28) }"></c:out>
-													<br> 제작국가 :
-													<c:out value="${movie.mi_ccode }"></c:out>
-													<br> 감독 :
-													<c:out value="${movie.mi_director }"></c:out>
-													<br> 배우 :
-													<c:out value="${movie.mi_actor }"></c:out>
-													<br>
+										<div id="movielist_mid">
+											<div>
+												<c:forEach items="${movieList}" var="list" varStatus="status">
+													<div class="movielist-card" onclick="movie_select(${list.mi_code }, '${list.mi_poster }')"> 
+														<img src="${list.mi_poster }">
+														<h6 class="movie-title">${list.mi_ktitle }</h6>
+													</div>
+													<input type="hidden" id="title" value="${list.mi_ktitle}" />
+												</c:forEach>
+											</div>
+										</div>
+										<div class="buster-light">
+											<div class="movielist-bottom">
 
+												<!-- yj : start | pagination -->
+												<!-- 페이징 버튼 연동은 책보고 참고해서 추가하기 -->
+												<div class="buster-light">
+													<div class="text-center">
+														<form id="listPageForm">
+															<input type="hidden" name="page"
+																value="${pageMaker.criteria.page}"> <input
+																type="hidden" name="perPageNum"
+																value="${pageMaker.criteria.perPageNum}">
+														</form>
+														<ul class="pagination pagination-sm no-margin">
+															<c:if test="${pageMaker.prev}">
+																<li><a href="${pageMaker.startPage - 1}">이전</a></li>
+															</c:if>
+															<c:forEach begin="${pageMaker.startPage}"
+																end="${pageMaker.endPage}" var="idx">
+																<li
+																	<c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
+																	<a href="${idx}">${idx}</a>
+																</li>
+															</c:forEach>
+															<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+																<li><a href="${pageMaker.endPage + 1}">다음</a></li>
+															</c:if>
+														</ul>
+													</div>
 												</div>
 											</div>
-										</c:forEach>
+										</div>
 									</div>
 									<!-- end | modal-body -->
 									<!-- start | modal-footer -->
@@ -199,8 +272,8 @@
 			<!-- end | movie list -->
 			<!-- start | button -->
 			<div class="mml-write-button">
-				<input type="submit" value="등록"> <input type="button"
-					value="취소" onclick="register_back()">
+				<input type="button" id="mml_submit" value="등록" onclick="check()"/> 
+				<input type="button" value="취소" onclick="register_back()"/>
 			</div>
 			<!-- end | button -->
 		</form>

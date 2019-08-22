@@ -32,10 +32,26 @@
 
 <!-- 4. 여기에 페이지별 본문을 추가해주세요 -->
 
-<div style="height:5%;"></div>
-<div class="buster-light">
-	<div class="page-single">
+<div class="hero user-hero" >
 		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct" >
+						<h1 style="margin-left: 0px; margin-top: -80px;">FAQ</h1>
+						<ul style="margin-left: 0px;" class="breadcumb">
+							<li class="active"><a href="index">마이페이지</a></li>
+							<li><span class="ion-ios-arrow-right"></span>FAQ</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+<div class="buster-light">
+	<div class="page-single" style="margin-top: 0px;">
+		<div class="container" style="margin-top:-180px;">
 			<div class="row ipad-width2">
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
@@ -49,20 +65,21 @@
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage">마이페이지</a></li>
+								<li style="font-weight: bold;"><a style="font-size: 18px;" href="mypage">마이페이지</a></li>
 							</ul>
 
-							<ul>
+							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 								<li>회원 정보</li>
 								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
 								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
-							<ul>
+							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 								<li>고객센터</li>
 								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
 								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 							</ul>
 						</div>
 					</div>
@@ -134,6 +151,58 @@
 								</div>
 								<!--/.accordion-content-->
 							</article>
+							<article class="hm_content-entry">
+								<h4 class="hm_article-title">
+									<i></i>회원 탈퇴 후 개인정보 보존기간은 얼마인가요?
+								</h4>
+								<div class="hm_accordion-content">
+									<p>탈퇴 후 30일 까지는 회원님의 개인정보가 보존됩니다. 이는 회원탈퇴의사 철회를 위한
+										조치이며, 그 외의 용도로는 개인정보를 수집 및 활용하지 않습니다.
+									</p>
+								</div>
+								<!--/.accordion-content-->
+							</article>
+							<article class="hm_content-entry">
+								<h4 class="hm_article-title">
+									<i></i>블록버스터에서 예매를 직접 진행할 수는 없나요?
+								</h4>
+								<div class="hm_accordion-content">
+									<p>블록버스터는 예매관련 정보만을 제공할 뿐, 직접적인 영화예매 서비스 및 수수료 취득행위는
+										하지 않습니다.
+									</p>
+								</div>
+								<!--/.accordion-content-->
+							</article>
+							<article class="hm_content-entry">
+								<h4 class="hm_article-title">
+									<i></i>악성 이용자에 대한 제재방침을 알려주세요
+								</h4>
+								<div class="hm_accordion-content">
+									<p>신고가 빈번히 접수되는 이용자의 경우, 사전 경고없이 탈퇴처리 되며 해당 이메일은
+										블랙리스트에 등록됩니다.<br>
+										 한 번 블랙리스트에 등록된 이메일 계정으로는 별도의	사유가 없는 한, 회원가입이 거절됩니다.
+									</p>
+								</div>
+								<!--/.accordion-content-->
+							</article>
+							<article class="hm_content-entry">
+								<h4 class="hm_article-title">
+									<i></i>나영리 게시판에는 최대 몇 개의 영화를 등록할 수 있나요?
+								</h4>
+								<div class="hm_accordion-content">
+									<p>나만의 영화 이야기 게시판에서는 하나의 포스팅에 최대 네 개의 영화를 등록할 수 있습니다.</p>
+								</div>
+								<!--/.accordion-content-->
+							</article>
+							<article class="hm_content-entry">
+								<h4 class="hm_article-title">
+									<i></i>1:1 문의 답변을 받기 까지는 평균 어느정도의 기간이 소요되나요?
+								</h4>
+								<div class="hm_accordion-content">
+									<p>1:1 문의의 경우 평균 6~8시간의 기간이 소요됩니다. 다만, 오후 3시를 넘긴 1:1 문의는 대체로 익일 오전중에 답변이 등록됩니다.</p>
+								</div>
+								<!--/.accordion-content-->
+							</article>
 
 						</div>
 						<!--/#accordion-->
@@ -145,6 +214,10 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div style="width:1920px; height: 80px;">
+	
 </div>
 
 <!-- 5. footer1.jsp : footer -->

@@ -1,15 +1,41 @@
+<%@page import="com.spring.member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 	<link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=1.3">
+	<link rel="stylesheet" href="./resources/css/boardstyle.css">
 
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
 <script>
+window.onload = function(){
+ 	var slideIndex = 0;
+ 	showSlides();
+
+ 	function showSlides() {
+ 	    var i;
+ 	    var slides = document.getElementsByClassName("mySlides");
+ 	    var dots = document.getElementsByClassName("dot");
+ 	    for (i = 0; i < slides.length; i++) {
+ 	       slides[i].style.display = "none";  
+ 	    }
+ 	    slideIndex++;
+ 	    if (slideIndex > slides.length) {slideIndex = 1}    
+ 	    for (i = 0; i < dots.length; i++) {
+ 	        dots[i].className = dots[i].className.replace(" active", "");
+ 	    }
+ 	    slides[slideIndex-1].style.display = "block";  
+ 	    dots[slideIndex-1].className += " active";
+ 	    setTimeout(showSlides, 4000); // Change image every 2 seconds
+ 	}
+ 	}
+ 	
  	$(function() {
  		var session = "${sessionyn}";
  		var warn = $("#ws-cnt-warning");
@@ -71,33 +97,6 @@
 		
 	<div class="buster-light">
 		<div class="movie-items">
-		<!--  베스트 게시물 슬라이더 : 산만해. 우측 바가 더 깔끔할듯 하다 
-			<div class="slider movie-items" style="padding:5px;height:140px;">
-				<div class="container">
-					<div class="row" style="margin:-40px;">
-					<h3 style="top:15px;">베스트 게시물</h3>
-						<div  class="slick-multiItemSlider" style="padding:5px;min-width:300px;">
-	    					<span><a href="#">여초에서 난리난 고질라 쿠키영상1</a></span>
-	    					<span>페북에서 난리난 고질라 쿠키영상2</span>
-	    					<span>고질라 쿠키영상3</span>
-	    					<span>고질라 쿠키영상4</span>
-	    					<span>고질라 쿠키영상5</span>
-	    					<span>고질라 쿠키영상6</span>
-	    					<span>고질라 쿠키영상7</span>
-	    					<span>고질라 쿠키영상8</span>
-	    					<span>고질라 쿠키영상9</span>
-	    					<span>고질라 쿠키영상10</span>
-	    					<span>고질라 쿠키영상11</span>
-	    					<span>고질라 쿠키영상12</span>
-	    					<span>고질라 쿠키영상13</span>
-	    					<span>고질라 쿠키영상14</span>
-	    					<span>고질라 쿠키영상15</span>
-	    					<span>고질라 쿠키영상16</span>
-	    				</div>
-	    			</div>
-				</div>
-			</div>
-			-->
 <!-- blog detail section-->
 <div class="container">
 	<div class="col-md-12">
@@ -109,7 +108,20 @@
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
 				<div class="ws-post-get-info-profile">
-					<img src="${memberVO.m_image}" alt="프로필사진">
+					<%
+							MemberVO memberVO = (MemberVO)request.getAttribute("memberVO");
+							if (memberVO.getM_image() == null || memberVO.getM_image().equals("") || memberVO.getM_image().equals("null")) {
+						%>
+						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
+							style="width: 120px; height: 120px;">
+						<%
+							} else {
+						%>
+						<img src="./upload/${requestScope.memberVO.m_image }"
+							style="width: 120px; height: 120px;">
+						<%
+							}
+						%>
 				</div>
 				<div class="ws-post-get-info-inner">
 					<div>작성자 : ${memberVO.m_nickname}</div>
@@ -141,11 +153,11 @@
          	
 			<c:if test="${id == boardShareVO.id }">
 				<div style="float:right;">
-					 <button id='btn-hjs' onclick="updateContent()">수정</button> 
-					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
+					 <button style="width:100px; height: 40px;" id='btn-hjs' onclick="updateContent()">수정</button> 
+					 <button style="width:100px; height: 40px;" id='btn-hjs' onclick="deleteContent()">삭제</button>
 				</div>
 			</c:if>
-			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px;">목록</button>
+			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px; width:100px; height: 40px;">목록</button>
 		</center>
 		<span id="ws-content-msg"></span>
 		<!-- 글신고/글추천/글비추 배치 끝 -->
@@ -153,42 +165,39 @@
 	</div>
 	
 		<div class="ws-get-Rside">
-		<div class="ws-side-best" >
-			<ul>
-				<li >추천수 급상승 Best 10</li>
-				<li >감자튀김 사서 갔다가 입뺀 당한 후기[487]</li>
-				<li >개지리는 마술[4]</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-				<li >글제목이 길어서 두툼하게 두 세줄이 되더라도 사이드바 너비는 지금이 적당한거같아</li>
-			</ul>	
-		</div>
-		<div class="ws-get-mmlbest" >
-			<div class="ws-get-mmlbest-title">
-				김시덕이 님의 가장 핫한 나영리
+				<div class="ws-side-best">
+					<ul>
+						<li>${bt_type } Best5</li>
+						<c:forEach items="${boardListDaily}" var="board"
+							varStatus="status" end="4">
+							<li><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></li>
+						</c:forEach>
+					</ul>
+				</div>
+				<div class="ws-get-mmlbest">
+					<div class="ws-get-mmlbest-title">${memberVO.m_nickname} 님의
+						가장 핫한 나영리</div>
+					<div class="slideshow-container">
+						<c:forEach items="${mmlTop3}" var="mml" varStatus="status">
+							<div class="mySlides fade">
+									<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
+									<img src="<c:url value="${poster_one[0] }"/>">
+									<!-- 나영리 타이틀 -->
+									제목 : ${mml.mml_title} <br>
+									<!-- 나영리 좋아요수 -->
+									좋아요수 : ${mml.mml_like}
+							</div>
+						</c:forEach>
+					</div>
+					<br>
+
+					<div style="text-align: center">
+					<c:forEach items="${mmlTop3}" var="mml" varStatus="status">
+							<span class="dot"></span>
+						</c:forEach>
+					</div>
+				</div>
 			</div>
-			<div class="ws-get-mmlbest-poster" >
-				<img src="https://t1.daumcdn.net/movie/676b7dbf7a2cf721d01efc61708493080d2a9d8e" >
-			</div>
-			<div class="ws-get-mmlbest-title"> 
-				여름 스릴러 추천
-				<br>
-				누적 추천수 : 48742
-			</div>
-		</div>
-		
-		<div class="ws-side-recomend">
-			당신이 좋아할 수도 있는 나영리
-			<img src="https://t1.daumcdn.net/cfile/tistory/999A89485C3193F72F">
-			괴수물 덕후 모여봐라 <br>
-			조회수 : 24232
-			
-		</div>
-	</div>
 		
 		
 		
@@ -221,9 +230,9 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
-                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
-                            <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
                         </div>
                     </div>
                 </div>
@@ -252,10 +261,10 @@
 			<h3 class="box-title">댓글 작성</h3>
 			<div class="box-body">
 				<div class="form-group">
-					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:200px;"></textarea>
+					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:100px;"></textarea>
 	 			</div>
 				<div class="pull-right">
-					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록</button>
+					<button style="width:160px;" type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록</button>
 				</div>
 			</div>
 		</div>
@@ -267,44 +276,6 @@
 					<!-- comment form -->
 				</div>
 	
-<!-- end of  blog detail section-->
-	<!-- 
-    <div id="CatModal-post-delete" class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">게시글 삭제</h5>
-        </div>
-       <div class="modal-body">
-          <p>게시글을 삭제하시겠습니까?</p>
-       </div>
-       <div class="modal-footer">
-          <button onclick="CatDelete()" type="button" class="btn btn-primary">삭제하기</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-       </div>
-      </div>
-    </div>
- -->
-	<!-- 삭제 모달 : 댓글 
-		<div id="CatModal-reply-delete" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">댓글 삭제</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-       <div class="modal-body">
-          <p>댓글을 삭제하시겠습니까?</p>
-       </div>
-       <div class="modal-footer">
-          <button onclick="replydel()" type="button" class="btn btn-primary">삭제하기</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-       </div>
-      </div>
-    </div>
-	-->		
-
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <script>
@@ -524,6 +495,7 @@
 <!-- 6. 페이지별 script 추가 -->
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>

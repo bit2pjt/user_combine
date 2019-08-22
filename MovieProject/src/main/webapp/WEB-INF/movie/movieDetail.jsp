@@ -72,27 +72,27 @@
 							</div>
 							<table>
 								<tr>
-									<td width="100px">심의등급 :</td>
+									<td width="100px">심의등급 </td>
 									<td><span>${movieInfoVO.grade_code}</span></td>
 								</tr>
 								<tr>
-									<td>감독 :</td>
+									<td>감독 </td>
 									<td><span>${movieInfoVO.mi_director}</span></td>
 								</tr>
 								<tr>
-									<td>배우 :</td>
+									<td>배우 </td>
 									<td><span>${movieInfoVO.mi_actor}</span></td>
 								</tr>
 								<tr>
-									<td>장르 :</td>
+									<td>장르 </td>
 									<td><span>${movieInfoVO.mi_gcode}</span></td>
 								</tr>
 								<tr>
-									<td>상영시간 :</td>
+									<td>상영시간 </td>
 									<td><span>${movieInfoVO.mi_time}</span></td>
 								</tr>
 								<tr>
-									<td>제작국가 :</td>
+									<td>제작국가 </td>
 									<td><span>${movieInfoVO.mi_ccode}</span></td>
 								</tr>
 							</table>

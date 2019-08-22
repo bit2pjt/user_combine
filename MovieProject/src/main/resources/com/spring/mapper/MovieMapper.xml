@@ -74,7 +74,7 @@
 		    ]]>
           	<include refid="search"/>
        		<![CDATA[
-            order by mi_code ASC
+            order by mi_releaseday desc
 		   ))
 		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
         ]]>
@@ -107,6 +107,12 @@
 		SELECT	*
 		FROM movie_info
 		WHERE mi_ktitle = #{mi_ktitle}
+    </select>
+    
+    <select id="getTitle" parameterType="int" resultType="String">
+		SELECT	mi_ktitle
+		FROM movie_info
+		WHERE mi_code = #{mi_code}
     </select>
     
     <select id="getUser" parameterType="String" resultType="int">
@@ -177,7 +183,8 @@
 	</select>
 	
 	<select id="getMovieList_release" parameterType="String" resultMap="movieMap">
-		select * from movie_info where mi_releaseday like #{search_input, jdbcType=VARCHAR}
+		<!-- select * from movie_info where mi_releaseday like #{search_input, jdbcType=VARCHAR} -->
+		select * from movie_info where to_char(mi_releaseday,'YYYY') like #{search_input, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getMovieList_country" parameterType="String" resultMap="movieMap">

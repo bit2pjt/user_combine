@@ -95,7 +95,7 @@ body{
 .movielist-top select{
   display:inline;
   height: 40px; 
-  width:100px;
+  width:150px;
 }
 .movielist-top input{
   display:inline;
@@ -108,25 +108,70 @@ body{
   display:inline; 
 }   
 .movielist-bottom{
-  width:90%;
+  width:100%;
   margin:auto;
   text-align: center;
   display: inline-block;
-  max-width: 1160px;
+  max-width: 1300px;
+  margin-top:50px;
 }
+
 .movielist-card{
   display: inline-block;
   background-color: white;
-  width:170px;
-  height:300px;
+  width:200px;
+  height:278px;
   margin:20px;
   position: relative;
-  border: 1px solid black;
+  border: 2px solid black;
+  position: relative;
+}
+.movielist-card:hover {
+	background-color:black;
+}
+.movielist-card:hover .movieImage {
+	opacity: 0.4;
+}
+	
+.movielist-card:hover .desc {
+	opacity: 1;
 }
 .movie-title{
-  position: absolute;
+  /*position: absolute;*/
   left: 3px;
+  text-align:center;
+  margin-top:10px;
+  font-size:15px;
+  margin-bottom: 10px;
+  font-size:18px; 
+  color:#fff;
 }
+
+.movie-in {
+	color:#999;
+	font-size:12px;
+	font-weight:bold;
+}
+.movieImage {
+	  opacity: 1;
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	  transition: .5s ease;
+	  backface-visibility: hidden;
+}
+	
+.desc {
+	  transition: .5s ease;
+	  opacity: 0;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  -ms-transform: translate(-50%, -50%);
+	  text-align: center;
+}
+	
 .pagination {
   display: -webkit-flex;
   display: -moz-box;
@@ -136,6 +181,7 @@ body{
   justify-content: center;
   margin-top: 60px;
 }
+
 @media (max-width: 767px) {
   .pagination {
     flex-wrap: wrap;
@@ -258,13 +304,14 @@ yj : start | movieDetail 페이지 관련
 .movie-info{
   background: #ffffff5e;
   border-radius: 3%;
+  height:100%;
 }
 .movie-info h1, .movie-info h3, .movie-info table{
   color:black;
 }
 
   .movie-img img{
-    max-width: 261px;
+    max-width: 251px;
     max-height: 401px;
   }
   
@@ -319,8 +366,38 @@ yj : start | movieDetail 페이지 관련
 }
 .movie-single .movie-single-ct .movie-rate .rate p span {
   color: #000000;
-  font-size: 15px;
+  font-size: 25px;
   font-weight: 400;
+}
+
+.movie-rate .rate p span {
+  color: #000000;
+  font-size: 25px;
+  font-weight: 400;
+}
+.movie-single .movie-single-ct .movie-rate .rate p {
+	margin-bottom: 0;
+	margin-left: 10px;
+	font-size: 11px;
+	width:100px;
+	margin-top: 20px;
+}
+.movie-rate .rate p {
+	margin-bottom: 0;
+	margin-left: 10px;
+	font-size: 11px;
+	width:100px;
+	margin-top: 20px;
+}
+.movie-single .movie-single-ct .tab h3 {
+	font-family: 'Dosis', sans-serif;
+	font-size: 27px;
+	color: #abb7c4;
+	font-weight: bold;
+	text-transform: none;
+	margin-bottom: 15px;
+	text-align:left;
+	margin-left:10px;
 }
 .total-rate p span {
   color: #000000;
@@ -342,15 +419,44 @@ yj : start | movieDetail 페이지 관련
   max-width:310px;
 }
 
+.blockbuster-rate .movie-rate {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* border-top: 1px solid #405266;
+  border-bottom: 1px solid #405266; */
+  border-top: none;
+  border-bottom: none;
+  margin-bottom: 0px;
+  max-width:310px;
+}
+
 .movie-single .movie-single-ct h1{
   font-family: 'Dosis', sans-serif;
   color: #000000;
   font-weight: bold;
   text-transform: none;
   font-size: 27px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-} 
+  margin-bottom: 10px;
+  padding-top:10px;
+}
+
+.blockbuster-rate h1{
+  font-family: 'Dosis', sans-serif;
+  color: #000000;
+  font-weight: bold;
+  text-transform: none;
+  font-size: 27px;
+  margin-bottom: 10px;
+  padding-top:10px;
+}
+.movie-single .movie-single-ct h5{
+  margin-left:13px;
+  font-size:15px;
+}  
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
@@ -430,13 +536,14 @@ yj : start | tab - review
 .review-write{
   width: 100%;
   vertical-align: middle;
+  margin-top:30px;
 }
 .review-write-star{
   display:inline-flex;
   vertical-align: middle;
   border: #000000;
   border-width: 1px;
-  margin: auto;
+  margin-right: 20px;
 }
 .review-write-input{
   display:inline-flex;
@@ -492,7 +599,6 @@ yj : start | tab - review
 }
 .movie-single .movie-single-ct .tab.review .mv-user-review-item {
   border-bottom: 1px solid #233a50;
-  padding:5px;
 }
 .mv-user-review-item{
   display: inline-block;
@@ -501,7 +607,7 @@ yj : start | tab - review
 }
 .mv-user-review-item div{
   float: left;
-  height: 120px;
+  /*height: 120px;*/
 }
 .user-info{
   width: 120px;
@@ -510,9 +616,7 @@ yj : start | tab - review
   width: 60px;
   height: 60px;
 }
-.user-info p{
-  height:15px;
-}
+
 .user-rate{
   border: none;
 }
@@ -520,18 +624,18 @@ yj : start | tab - review
   margin-bottom: 0px;
 }
 .user-content{
-  width: 470px;
+  width: 550px;
   text-align: left;
-  border: 1px solid #696969c7;
+  /*border: 1px solid #696969c7;*/
   margin-right: 10px;
-  margin-left: 10px;
+  margin-left: 40px;
 }
 .user-like{
   width: 150px;
   text-align: center;
 }
 .user-like button{
-  width: 80px;
+  /*width: 80px;*/
   margin-top: 7px;
   background-color: #ffffff;
 }
@@ -614,3 +718,118 @@ yj : start | tab - review
   color: #f5b50c;
   margin-bottom: 10px;
 }
+
+#btn-hjs{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:9px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:13px;
+  width:70px;
+  margin-left:10px;
+}
+
+#btn-hjs-1{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:9px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:13px;
+  width:100px;
+  margin-left:10px;
+}
+
+.btn-hjs-1{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:9px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:13px;
+  width:100px;
+  margin-left:10px;
+  margin-top: 20px;
+}
+
+#btn-hjs-2{
+  display: inline-block;
+  background-color: black;
+  border-color: black;
+  color:white;
+  padding:6px;
+  font-size:13px;
+  margin-left:8px;
+}
+
+.ws-btn-thumbs-up {
+	/*min-width:50px;*/
+	min-height:30px;
+	background-color:#ffffff;
+	border-radius:8px;
+	border:white;
+	right:5px;
+	color:blue;
+	padding:0px;
+	}
+.ws-btn-thumbs-down {
+	min-width:50px;min-height:30px;
+	background-color:#ffffff;
+	border-radius:8px;
+	border:white;
+	right:5px;
+	color:red;
+	padding:0px;
+	margin-left:2px;
+}
+.ws-btn-warning {
+	min-width:35px;min-height:30px;
+	background-color:#ffffff;
+	border-radius:8px;
+	border:white;
+	right:5px;
+	color:orange;
+	padding:0px;
+}
+
+#star-hjs {
+	margin-left:25px; 
+	margin-top:5px; 
+	width:15%;	
+}
+
+#replyContent {
+	word-break:break-all; 
+	float:left; 
+	margin-top:10px; 
+	text-align:left;
+}
+
+#star-score{
+	color:black; 
+	margin-left:10px; 
+	margin-top:1px;
+}
+
+.tabs .tab-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.mv-single-hero {
+	background: linear-gradient(45deg, black, transparent);
+	height: 540px;
+}
+
+.tabs ul.tabs-mv {
+	padding: 20px 0;
+	margin-bottom: 30px;
+}
+

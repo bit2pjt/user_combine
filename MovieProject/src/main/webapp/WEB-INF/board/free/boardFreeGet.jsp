@@ -1,6 +1,10 @@
+<%@page import="com.spring.member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!-- 1. header1.jsp : head  -->
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
@@ -18,11 +22,33 @@
  		location.href="index";
  	}
  	*/
+ 	window.onload = function(){
+ 	var slideIndex = 0;
+ 	showSlides();
+
+ 	function showSlides() {
+ 	    var i;
+ 	    var slides = document.getElementsByClassName("mySlides");
+ 	    var dots = document.getElementsByClassName("dot");
+ 	    for (i = 0; i < slides.length; i++) {
+ 	       slides[i].style.display = "none";  
+ 	    }
+ 	    slideIndex++;
+ 	    if (slideIndex > slides.length) {slideIndex = 1}    
+ 	    for (i = 0; i < dots.length; i++) {
+ 	        dots[i].className = dots[i].className.replace(" active", "");
+ 	    }
+ 	    slides[slideIndex-1].style.display = "block";  
+ 	    dots[slideIndex-1].className += " active";
+ 	    setTimeout(showSlides, 4000); // Change image every 2 seconds
+ 	}
+ 	}
+ 	
  	$(function() {
  		var session = "${sessionyn}";
  		var reco = $("#ws-cnt-tup");
  		var deco = $("#ws-cnt-tdn");
- 		var warn = $("#ws-cnt-warning");
+ 		var warn = $("#modal-warning-btn");
  		var bno = "${boardFreeVO.bf_bno}";
  		
  		reco.on("click", function() {
@@ -81,9 +107,14 @@
  		 		location.href="index";
  		 		return false;
  		 	}
+ 		 	var warn_content = document.getElementById("bf_warncontent").value.trim();
+ 		 	if(warn_content.length == 0){
+ 		 		alert("신고사유를 입력해주세요.");
+ 		 		return false;
+ 		 	}
  			$.ajax({
  				url:"boardFreeWarn",
- 				data: {bf_bno: bno},
+ 				data: {bf_bno: bno,bf_warncontent: warn_content},
  				dataType: "text",
  				type:"post",
  				success: function(data) {
@@ -96,6 +127,9 @@
  					alert("에러");
  				}
  			});
+ 			var modal = document.getElementById("warning-modal");
+ 			modal.style.display="none";
+ 			$('.modal-backdrop').remove();
  		});
  		
  	});
@@ -111,6 +145,8 @@
  			location.href="boardFreeDelete?bno=${boardFreeVO.bf_bno}";
  		}
  	}
+ 	
+ 	
  	
  
 </script>
@@ -144,10 +180,23 @@
 		<!-- 글제목 자리 끝 -->
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
-				<div class="ws-post-get-info-profile">
-					<img src="resources/images/customs/ws_img/${memberVO.m_image}" alt="프로필사진">
-				</div>
-				<div class="ws-post-get-info-inner">
+					<div class="ws-post-get-info-profile">
+						<%
+							MemberVO memberVO = (MemberVO)request.getAttribute("memberVO");
+							if (memberVO.getM_image() == null || memberVO.getM_image().equals("") || memberVO.getM_image().equals("null")) {
+						%>
+						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
+							style="width: 120px; height: 120px;">
+						<%
+							} else {
+						%>
+						<img src="./upload/${requestScope.memberVO.m_image }"
+							style="width: 120px; height: 120px;">
+						<%
+							}
+						%>
+					</div>
+					<div class="ws-post-get-info-inner">
 					<div>작성자 : ${memberVO.m_nickname}</div>
 					<div>작성일자 : <fmt:formatDate value="${boardFreeVO.bf_reg_date}" pattern="yyyy-MM-dd"/></div>
 					<div>수정일자 : <fmt:formatDate value="${boardFreeVO.bf_update_date}" pattern="yyyy-MM-dd"/></div>
@@ -164,14 +213,17 @@
 			<!-- 4. 글신고/글추천/글비추 자리 -->
 		<center class="ws-post-get-buttons">
 			<div style="float:left">
-				<%-- <button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
+				<!-- <button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
 							data-backdrop="static"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
-							<jsp:include page="../../modal_warning.jsp"/> --%>
-							<button class="ws-btn-warning" id="ws-cnt-warning" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
+							<jsp:include page="../../modal_warning.jsp"/> -->
+							<button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
+							data-backdrop="static"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
+							<jsp:include page="../../modal_warning.jsp"/>
+							
 			</div>
 			<span>
-				<button class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="far fa-thumbs-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
-				<button class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="far fa-thumbs-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
+				<button type="button" class="ws-btn-thumbs-up" id="ws-cnt-tup"><i class="far fa-thumbs-up" aria-hidden="true" ></i> ${boardFreeVO.bf_recommend} </button> 
+				<button type="button" class="ws-btn-thumbs-down" id="ws-cnt-tdn"><i class="far fa-thumbs-down" aria-hidden="true"></i> ${boardFreeVO.bf_decommend}</button>
 			</span>
 			
 		<form role="form" method="post">
@@ -184,11 +236,11 @@
         	 
 			<c:if test="${id == boardFreeVO.id }">
 				<div style="float:right;">
-					 <button id='btn-hjs' onclick="updateContent()">수정</button> 
-					 <button id='btn-hjs' onclick="deleteContent()">삭제</button>
+					 <button style="width:100px; height:40px;" id='btn-hjs' onclick="updateContent()">수정</button> 
+					 <button style="width:100px; height:40px;" id='btn-hjs' onclick="deleteContent()">삭제</button>
 				</div>
 			</c:if>
-			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px;">목록</button>
+			 <button type="submit" id="btn-hjs" class="btn btn-primary listBtn" style="float:right; margin-right:7px; width:100px; height: 40px;">목록</button>
 		</center>
 		
 		
@@ -197,46 +249,44 @@
 		<!-- 글신고/글추천/글비추 배치 끝 -->
 		<!-- 5. 댓글 구현부의 시작 -->
 	</div>
-	
-		<div class="ws-get-Rside">
-		<div class="ws-side-best" >
-			<ul>
-				<li >추천수 급상승 Best 5</li>
-				<c:forEach items="${boardListDaily}" var="board" varStatus="status" end="4">
-					<li><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></li>
-				</c:forEach>
-			</ul>	
-		</div>
-		<div class="ws-get-mmlbest" >
-			<div class="ws-get-mmlbest-title">
-				${memberVO.m_nickname} 님의 가장 핫한 나영리
+			<div class="ws-get-Rside">
+				<div class="ws-side-best">
+					<ul>
+						<li>${bt_type } Best5</li>
+						<c:forEach items="${boardListDaily}" var="board"
+							varStatus="status" end="4">
+							<li><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></li>
+						</c:forEach>
+					</ul>
+				</div>
+				<div class="ws-get-mmlbest">
+					<div class="ws-get-mmlbest-title">${memberVO.m_nickname} 님의
+						가장 핫한 나영리</div>
+					<div class="slideshow-container">
+						<c:forEach items="${mmlTop3}" var="mml" varStatus="status">
+							<div class="mySlides fade">
+									<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
+									<img src="<c:url value="${poster_one[0] }"/>">
+									<!-- 나영리 타이틀 -->
+									제목 : ${mml.mml_title} <br>
+									<!-- 나영리 좋아요수 -->
+									좋아요수 : ${mml.mml_like}
+							</div>
+						</c:forEach>
+					</div>
+					<br>
+
+					<div style="text-align: center">
+					<c:forEach items="${mmlTop3}" var="mml" varStatus="status">
+							<span class="dot"></span>
+						</c:forEach>
+					</div>
+				</div>
 			</div>
-			<!-- 상필오빠 mml 추천순으로 정렬한거에서 추천수 제일많은거 1개  컨트롤러에 model로 추가해주기 -->
-			<div class="ws-get-mmlbest-poster" >
-				<!-- 나영리 이미지 -->
-				<img src="./upload/${mmlVO.mml_poster}">
-			</div>
-			<div class="ws-get-mmlbest-title"> 
-				<!-- 나영리 타이틀 -->
-				${mmlVO.mml_title}
-				<br>
-				<!-- 나영리 좋아요수 -->
-				${mmlVO.mml_like}
-			</div>
-		</div>
-		
-		<div class="ws-side-recomend">
-		<!-- 여기는 어떤기준으로 컨텐츠를 넣을지....정답을 알려조오~!! -->
-			당신이 좋아할 수도 있는 나영리
-			<img src="https://t1.daumcdn.net/cfile/tistory/999A89485C3193F72F">
-			괴수물 덕후 모여봐라 <br>
-			조회수 : 24232
-		</div>
-	</div>
-		
-		
-		
-	<div class="col-md-12">
+
+
+
+			<div class="col-md-12">
 		<br>
 		<h4> Reply list </h4>
 		<br>
@@ -265,9 +315,9 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
-                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn">수정</button>
-                            <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-success modalModBtn">수정</button>
+                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
                         </div>
                     </div>
                 </div>
@@ -296,10 +346,10 @@
 			<h3 class="box-title">댓글 작성</h3>
 			<div class="box-body">
 				<div class="form-group">
-					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:200px;"></textarea>
+					<textarea class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요" style="resize:none; margin-top:20px; height:100px;"></textarea>
 	 			</div>
 				<div class="pull-right">
-					<button type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
+					<button style="width:160px;" type="button" id="replyAddBtn" class="btn btn-primary"> 댓글 등록 </button>
 				</div>
 			</div>
 		</div>
@@ -311,44 +361,6 @@
 					<!-- comment form -->
 				</div>
 	
-<!-- end of  blog detail section-->
-	<!-- 
-    <div id="CatModal-post-delete" class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">게시글 삭제</h5>
-        </div>
-       <div class="modal-body">
-          <p>게시글을 삭제하시겠습니까?</p>
-       </div>
-       <div class="modal-footer">
-          <button onclick="CatDelete()" type="button" class="btn btn-primary">삭제하기</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-       </div>
-      </div>
-    </div>
- -->
-	<!-- 삭제 모달 : 댓글 
-		<div id="CatModal-reply-delete" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">댓글 삭제</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-       <div class="modal-body">
-          <p>댓글을 삭제하시겠습니까?</p>
-       </div>
-       <div class="modal-footer">
-          <button onclick="replydel()" type="button" class="btn btn-primary">삭제하기</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-       </div>
-      </div>
-    </div>
-	-->		
-
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <script>
@@ -426,7 +438,6 @@
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
     });
     
-    $()
     
     $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li

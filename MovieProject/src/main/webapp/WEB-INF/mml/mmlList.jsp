@@ -25,28 +25,61 @@
 <%@ include file="../header1.jsp"%>
 
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
-<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/sp_style.css" />">
 <script src="https://kit.fontawesome.com/bb8498b585.js"></script>
 
 
 <!-- 3. heaer2.jsp : header -->
-<%@ include file="../header2.jsp" %>
+<%@ include file="../header2.jsp"%>
 
 <!DOCTYPE html>
 
 <html>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
 <script type="text/javascript">
+
+
+
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    
+}
 
 
 $(document).ready(function(){
 	$('#sort_date').show();
+	$('#sort_date2').show();
 	$('#sort_like').hide();
+	$('#sort_like2').hide();
+	
+	var like = getParameterByName('like');
+	var keyword = getParameterByName('keyword');
+	
+	
+    
+    if(like==1){
+    	$('#sort_like').show();
+		$('#sort_like2').show();
+		$('#sort_date').hide();
+		$('#sort_date2').hide();
+    	
+    }
+    
+    if(keyword != ""){
+    	$('#sort_like2').hide();
+    	$('#sort_date2').hide();
+    	
+    }
 		
 
 });
-
 
 
 $(function(){
@@ -54,32 +87,44 @@ $(function(){
 	
 	$('#date_sort').click(function(){
 		$('#sort_date').show();
+		$('#sort_date2').show();
 		$('#sort_like').hide();
+		$('#sort_like2').hide();
 	});
 	
 	$('#like_sort').click(function(){
-		$('#sort_date').hide();
 		$('#sort_like').show();
+		$('#sort_like2').show();
+		$('#sort_date').hide();
+		$('#sort_date2').hide();
 	});
-	
-	
-	
-	
+		
 });
 
+ $(document).ready(function () {
 
-
-
+    $("#searchBtn").on("click", function (event) {
+        self.location =
+            "mmlList${pageMaker.makeQuery(1)}"
+            + "&searchType=" + $("select option:selected").val()
+            + "&keyword=" + encodeURIComponent($("#keywordInput").val());
+        
+            
+            
+    });
+}); 
 
 
 
 </script>
 
 <br>
-<br><br><br>
+<br>
+<br>
+<br>
 
- <div class="flex-it share-tag" style="width:1258px; float:left;">
-                                </div>
+<div class="flex-it share-tag" style="width: 1258px; float: left;">
+</div>
 
 <div class="buster-light">
 
@@ -87,105 +132,164 @@ $(function(){
 	<div class="page-single">
 		<div class="container">
 			<div class="row">
-				<div style="display: flex">
+				<div
+					style="display: flex; margin-left: 20px; margin-right: 20px; padding-left: 15px; padding-right: 15px;">
 					<div class="btn-group btn-group-lg mb-3" role="group"
 						aria-label="Large button group" style="flex: 5">
-						<button class="btn btn-secondary" type="button" id="date_sort">최신순 보기</button>
-						<button class="btn btn-secondary" type="button" id="like_sort">추천순 보기</button>
+						<button class="btn btn-secondary" type="button" id="date_sort">최신순
+							보기</button>
+						<button class="btn btn-secondary" type="button" id="like_sort">추천순
+							보기</button>
 					</div>
 					<div style="flex: 2">
-						<button type="button" class="btn-check" style="float:right"
+						<button type="button" class="btn-check" style="float: right"
 							OnClick="location.href ='mmlWrite '">나영리 작성</button>
 					</div>
 				</div>
 				<br>
 
-
-
-
-				<div class="row1" id="sort_like">
+<div class="row1" id="sort_like">
 						
-				<c:forEach var="mml2" items="${requestScope.mmlList2 }" varStatus="status">
+				<c:forEach var="mml2" items="${mmlList2}" varStatus="status">   
 		
 	<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet '" style="cursor:pointer;">
-									<c:set var="poster_one" value="${fn:split(mml2.mml_poster,',')}" />
+	<a href ="mmlGet?mml_num=${mml2.mml_num}">
+							<div class="card" style="cursor:pointer;">
+								<c:set var="poster_one" value="${fn:split(mml2.mml_poster,',')}" />
 									<img class="card-img" src="<c:url value="${poster_one[0] }"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
 											<div class="ho-info" style="float:left;">									
-												<h1 style="text-align: left; font-size:25px">${mml2.mml_title }</h1>
+												<h1 style="text-align: left; font-size:25px">${mml2.mml_title}</h1>
 												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
-												<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">${mml2.m_nickname }</h3>
+												<h5 style="display:inline; text-align:left" class="card-author" style="display:inline">${mml2.m_nickname}</h5>
 												</div><br>
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;${mml2.mml_like }&nbsp;<i class="far fa-eye"></i>&nbsp;${mml2.mml_view_count }&nbsp;
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;${mml2.mml_like}&nbsp;<i class="far fa-eye"></i>&nbsp;${mml2.mml_view_count }&nbsp;
 									
 									</div>
 									
-									</div>
-								  </div>
+									</div>       
+								  </div></a>
 					</div>
 					</c:forEach>
 					
-					</div>
-					
-					<div class="row1" id="sort_date">
-				<c:forEach var="mml" items="${requestScope.mmlList}" varStatus="status">
-	<div class="sp_col-md-41">
-							<div class="card" OnClick="location.href ='mmlGet '" style="cursor:pointer;">
+					</div> 
+
+				<div class="row1" id="sort_date">
+					<c:forEach var="mml" items="${mmlList}" varStatus="status">
+						<div class="sp_col-md-41">
+							<a
+								href="mmlGet${pageMaker.makeSearch(pageMaker.criteria.page)}&articleNo=${article.articleNo}&mml_num=${mml.mml_num}">
+								<div class="card" style="cursor: pointer;">
 									<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
 									<img class="card-img" src="<c:url value="${poster_one[0] }"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
-											<div class="ho-info" style="float:left;">									
-												<h1 style="text-align: left; font-size:25px">${mml.mml_title }</h1>
-												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
-												<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">${mml.m_nickname }</h3>
-												</div><br>
-													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;${mml.mml_like }&nbsp;<i class="far fa-eye"></i>&nbsp;${mml.mml_view_count }&nbsp;
-									
+										<div class="ho-info" style="float: left;">
+											<h1 style="text-align: left; font-size: 25px">${mml.mml_title }</h1>
+											<div style="float: left;">
+												<img class="mml_crown"
+													src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
+												<h5 style="display: inline; text-align: left"
+													class="card-author" style="display:inline">${mml.m_nickname }</h5>
+											</div>
+											<br> <span style="color: red"><i
+												class="fas fa-heart"></i></span>&nbsp;${mml.mml_like }&nbsp;<i
+												class="far fa-eye"></i>&nbsp;${mml.mml_view_count }&nbsp;
+
+										</div>
+
 									</div>
-									
-									</div>
-								  </div>
-					</div>
-					</c:forEach> 
-				
-					
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+
+
 				</div>
 
-<nav aria-label="Page navigation example">
+				<div class="row1" id="sort_date2">
+					<nav aria-label="Page navigation example">
 						<ul class="pagination">
-							
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-									<span class="sr-only">Previous</span>
-								</a>
-							</li>
-							
-						
-							<li ><a class="page-link" href="#">1</a></li>
-						
-						
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-									<span class="sr-only">Next</span>
-								</a>
-							</li>
-						
+							<c:if test="${pageMaker.prev}">
+								<li class="icon-prev"><a
+									href="mmlList${pageMaker.makeQuery(pageMaker.startPage-1) }"><i
+										class="ion-ios-arrow-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage }" var="index">
+								<li
+									<c:if test="${index eq pageMaker.criteria.page}">class="active"</c:if>><a
+									href="mmlList${pageMaker.makeQuery(index)}">${index}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next }">
+								<li class="icon-next"><a
+									href="mmlList${pageMaker.makeQuery(pageMaker.endPage+1)}"><i
+										class="ion-ios-arrow-right"></i></a></li>
+							</c:if>
 						</ul>
 					</nav>
+				</div>
 
-				
+				<div class="row1" id="sort_like2">
+ <nav aria-label="Page navigation example">
+						<ul class="pagination">
+								<c:if test="${pageMaker2.prev}">
+									<li class="icon-prev"><a href="mmlList${pageMaker2.makeQuery(pageMaker.startPage-1)}"><i
+											class="ion-ios-arrow-left"></i></a></li>
+								</c:if>
+								
+								<c:forEach begin="${pageMaker2.startPage}" end="${pageMaker2.endPage}" var="index">
+									<li <c:if test="${index eq pageMaker2.criteria.page}">class="active"</c:if>><a href="mmlList${pageMaker2.makeQuery(index)}&like=1">${index}</a></li>
+								</c:forEach>
+								
+								<c:if test="${pageMaker2.next}">
+									<li class="icon-next"><a href="mmlList${pageMaker2.makeQuery(pageMaker2.endPage+1)}"><i
+											class="ion-ios-arrow-right"></i></a></li>
+											</c:if>
+								</ul>
+					</nav>
+</div>  
+
+
+				<div class="search-form">
+					<div style="background-color: white;">
+						<div class="col-md-12 form-it" style="width: 50%; display: flex;">
+							<select class="form-control" name="searchType" id="searchType"
+								style="flex: 1;">
+								<option value="n"
+									<c:out value="${searchCriteria.searchType == null ? 'selected' : ''}"/>>::::::
+									선택 ::::::</option>
+								<option value="t"
+									<c:out value="${searchCriteria.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+								<option value="w"
+									<c:out value="${searchCriteria.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+							</select>&nbsp;&nbsp;&nbsp;
+							<div style="flex: 3; display: flex;">
+								<input style="flex: 1" type="text" class="form-control"
+									name="keyword" id="keywordInput"
+									value="${searchCriteria.keyword}" placeholder="검색어">&nbsp;&nbsp;&nbsp;
+								<span class="input-group-btn">
+									<button style="flex: 1" type="button"
+										class="btn btn-primary btn-flat" id="searchBtn">
+										<i class="fa fa-search"></i> 검색
+									</button>
+								</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
 				<div class="col-md-3 col-xs-12 col-sm-12"></div>
 			</div>
 		</div>
 	</div>
 	<!-- end of celebrity grid v2 section-->
 </div>
-
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <%@ include file="../footer.jsp"%>
 </body>
