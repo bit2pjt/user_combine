@@ -28,24 +28,36 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/ws_ticketing.css" />">
 	
 <%@ include file="../header2.jsp" %>
+<div class="hero user-hero" style="z-index: -1;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						<h1 style="margin-left: 0px; margin-top: -100px;">예매</h1>
+						<ul style="margin-left: 0px;" class="breadcumb">
+							<li class="active"><a href="index">예매 정보</a></li>
+							<li><span class="ion-ios-arrow-right"></span>예매</li>
+						</ul>
+					</div>
+				</div>
 
+			</div>
+		</div>
+	</div>
 
 
 <div class="buster-light">
 	
 	
-	<div class="hero mv-single-hero" style="height:170px;background-color:#DAD2B4;"> <!-- <<style.css에서 배경이미지 주석처리+배경색 변경 -->
-		<div class="ws_brand_selector">
-		</div>
-	</div>
+	
 <div class="container" >	
 	<div class="col-md-12" style="background-color:white;">
-	<div id="ws_ticketing_box" >
+	<div id="ws_ticketing_box"  style="margin-top:-170px;">
 	
 	
 	<div class="ws_ticketing_box_top">
 	<div id="ws_ticketing_date">
-		<div class="ws_ticketing_category">상영일</div>
+		<div class="ws_ticketing_category" style="float:left;">상영일</div>
 		<div class="ws_ticketing_dateboard">
 			<table>
 				<tr>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0.//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.mml.Mml_ReplyDAO">
+	
+	 <resultMap type="com.spring.mml.Mml_ReplyVO" id="mmlReplyResultMap">
+        <result property="mml_reply_code" column="mml_reply_code"/>
+        <result property="id" column="id"/>
+        <result property="mml_num" column="mml_num"/>
+        <result property="mml_reply_content" column="mml_reply_content"/>
+        <result property="mml_reply_write_date" column="mml_reply_write_date"/>
+        <result property="mml_reply_update_date" column="mml_reply_update_date"/>
+        <result property="mml_reply_like" column="mml_reply_like"/>
+        <result property="mml_reply_dislike" column="mml_reply_dislike"/>
+        <result property="mml_rep_warn_count" column="mml_rep_warn_count"/>
+    </resultMap>
+	
+	<select id="list" resultMap="mmlReplyResultMap">
+        SELECT *
+        FROM mml_reply
+        WHERE mml_num = #{mml_num}
+        ORDER BY mml_reply_code DESC
+    </select>
+
+    <insert id="create">
+	    <selectKey resultType="int" keyProperty="mml_reply_code" order="BEFORE">
+	        SELECT SEQ_MML_REPLY_CODE.NEXTVAL FROM dual        
+	    </selectKey>
+        INSERT INTO mml_reply 
+        VALUES (
+        	#{mml_reply_code}
+            , #{id}
+            , #{mml_num}
+            , #{mml_reply_content}
+            , sysdate
+            , sysdate
+            , 0
+            , 0
+            , 0
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE mml_reply
+        SET mml_reply_content = #{mml_reply_content}, mml_reply_update_date = sysdate
+        WHERE mml_reply_code = #{mml_reply_code}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM mml_reply
+        WHERE mml_reply_code = #{mml_reply_code}
+    </delete>
+
+
+	
+    <select id="listPaging" resultMap="mmlReplyResultMap">
+	  <![CDATA[
+		   select rownum,
+		 	mml_reply_code
+            , id
+            , mml_num
+            , mml_reply_content
+            , mml_reply_write_date
+            , mml_reply_update_date
+            , mml_reply_like
+            , mml_reply_dislike
+            , mml_rep_warn_count
+		 from 
+            (select rownum,
+		 	mml_reply_code
+            , id
+            , mml_num
+            , mml_reply_content
+            , mml_reply_write_date
+            , mml_reply_update_date
+            , mml_reply_like
+            , mml_reply_dislike
+            , mml_rep_warn_count
+            from
+		   (
+		    select
+		    mml_reply_code
+            , id
+            , mml_num
+            , mml_reply_content
+            , mml_reply_write_date
+            , mml_reply_update_date
+            , mml_reply_like
+            , mml_reply_dislike
+            , mml_rep_warn_count
+		    from mml_reply
+		    where mml_num =  #{mml_num}
+		    and mml_reply_code > 0	    
+            order by mml_reply_code desc
+		   )) where rownum > (#{page} -1) *#{perPageNum} and rownum <= #{page} * #{perPageNum}
+		]]>
+	</select>
+    
+
+    <select id="countReplies" resultType="int">
+        SELECT
+            COUNT(mml_num)
+        FROM mml_reply
+        WHERE mml_num = #{mml_num}
+    </select>
+
+    <select id="getArticleNo" resultType="int">
+        SELECT
+            mml_num
+        FROM mml_reply
+        WHERE mml_reply_code = #{mml_reply_code}
+    </select>
+
+   
+</mapper>

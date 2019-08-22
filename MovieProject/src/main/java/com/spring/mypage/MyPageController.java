@@ -92,7 +92,9 @@ public class MyPageController {
 		//서버의 사진이 날아가면 로컬에 저장된 사진들을 서버로 복붙해서 테스트하면 됩니당.
 		
 		//******아래의 경로, server.xml, servlet-context.xml의 모든 경로를 바꿔주세용******
-		realPath_t="C:\\Users\\bitcamp\\upload";
+
+		realPath_t="C:\\upload";
+
 		
 //		System.out.println("================= profileAddAction | realPath ===================="+realPath);
 //		System.out.println("================= profileAddAction | realPath_t ===================="+realPath);
@@ -202,13 +204,7 @@ public class MyPageController {
 		MemberVO member = myPageService.getMember(memberVO.getId());
 		model.addAttribute("member", member);
 		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('닉네임이 변경되었습니다.!');");
-		out.println("history.go(-1);");
-		out.println("</script>");
-		out.close();
+	
 
 		return "mypage/member_info";
 

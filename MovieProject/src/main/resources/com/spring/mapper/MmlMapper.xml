@@ -55,6 +55,18 @@
 		<result property="m_nickname" column="m_nickname"/>
 	</resultMap>
 	
+	<resultMap type="com.spring.boardFree.ThumbVO" id="ThumbMap">
+		<result property="mmlr_thumb" column="mmlr_thumb"/>
+		<result property="mml_reply_code" column="mml_reply_code"/>
+		<result property="mml_num" column="mml_num"/>
+		<result property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.boardFree.WarnVO" id="WarnMap">
+		<result property="mml_reply_code" column="mml_reply_code"/>
+		<result property="id" column="id"/>
+		<result property="bf_date" column="bf_date"/>
+	</resultMap>
 	
 	<!-- mi_ccode왜 이름 코드야... 바꿔죵 -->
 	<!-- ALTER TABLE mml_content DROP CONSTRAINT fk_movie_info_to_mml_content;  //movie_info -> mml_content fk 삭제 -->
@@ -474,5 +486,53 @@
         ]]>
     </select>
 	
+	<select id="reply_check" parameterType="com.spring.boardFree.ThumbVO" resultMap="ThumbMap">
+		select *
+		from mmlr_thumb
+		where mml_reply_code = #{mml_reply_code} and id = #{id}
+	</select>
+	
+	
+	<insert id="replyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		insert into mmlr_thumb values(#{mmlr_thumb}, #{id}, #{mml_reply_code})
+	</insert>
+	
+	<update id="updateReplyRecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update mml_reply set 
+		mml_reply_like = (select count(mmlr_thumb) from mmlr_thumb where mmlr_thumb = #{mmlr_thumb} and mml_reply_code = #{mml_reply_code})
+		where mml_reply_code = #{mml_reply_code}
+	</update>
+	
+	<update id="updateReplyDecommend" parameterType="com.spring.boardFree.ThumbVO">
+		update mml_reply set 
+		mml_reply_dislike = (select count(mmlr_thumb) from mmlr_thumb where mmlr_thumb = #{mmlr_thumb} and mml_reply_code = #{mml_reply_code})
+		where mml_reply_code = #{mml_reply_code}
+	</update>
+	
+	<select id="getReplyRecommend" parameterType="int" resultType="int">
+		select mml_reply_like
+		from mml_reply
+		where mml_reply_code = #{mml_reply_code}
+	</select>
+	
+	<select id="getReplyDecommend" parameterType="int" resultType="int">
+		select mml_reply_dislike
+		from mml_reply
+		where mml_reply_code = #{mml_reply_code}
+	</select>
+	
+	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+		select *
+		from mmlr_warning
+		where mml_reply_code = #{mml_reply_code} and id = #{id}
+	</select>
+	
+	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
+		insert into mmlr_warning values(#{mml_reply_code}, #{id}, sysdate, '신고사유')
+	</insert>
+	
+	<update id="ReplyWarnCount" parameterType="int">
+		update mml_reply set mml_rep_warn_count = mml_rep_warn_count + 1 where mml_reply_code = #{mml_reply_code}
+	</update>
 	
 </mapper>
