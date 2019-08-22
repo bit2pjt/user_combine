@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
+<%@ page import="com.spring.member.MemberVO"%>
+<%
+	MemberVO member = (MemberVO) request.getAttribute("member");
+%>
 
 <!--
 /**
@@ -30,12 +32,14 @@
 </head>
 <script>
 	/* 회원탈퇴 클릭 js  */
-	var delete_confirm = function() {
+	function delete_confirm() {
+		
+		
 		var deleteyn = confirm('정말 탈퇴하시겠습니까?');
 		if (deleteyn == true) {
 			// yes
 			alert("탈퇴가 완료되었습니다.");
-			location.href = "/member_delete";
+			location.href = "member_delete"
 		} else {
 			// no
 
@@ -70,10 +74,11 @@
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
 						<h2>
-							<strong>황진석 님</strong>
+							<strong><%=member.getM_nickname() %> 님 </strong>
 						</h2>
 						<h3>
-							<strong>h10046245h@naver.com</strong>
+							<strong><%=member.getM_email() %></strong>
+						
 						</h3>
 					</div>
 					<div class="user-information-hjs">
@@ -148,10 +153,11 @@
 						</dl>
 					</div>
 					<br>
-					<form action="member_delete">
+					<form action="member_delete" name="form">
+					<input type="hidden" name="m_email" value="${requestScope.member.m_email}">
 						<div class="btn_m">
-							<input type="submit" class="btn-check" value="탈퇴"
-								onclick="delete_confirm()"> &nbsp; <input type="reset"
+							<input type="button" class="btn-check" value="탈퇴"
+								onclick="delete_confirm()"> &nbsp; <input type="button" onClick="location.href='mypage'"
 								class="btn-check" value="취소">
 						</div>
 					</form>

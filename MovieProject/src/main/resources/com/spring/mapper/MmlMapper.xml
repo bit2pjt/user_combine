@@ -505,7 +505,7 @@
 	
 	<update id="updateReplyDecommend" parameterType="com.spring.boardFree.ThumbVO">
 		update mml_reply set 
-		mml_reply_dislike = (select count(mmlr_thumb) from mmlr_thumb where mmlr_thumb = #{mmlr_thumb} and mml_reply_code = #{mml_reply_code})
+		mml_reply_dislike = (select count(mmlr_thumb) from       mmlr_thumb where mmlr_thumb = #{mmlr_thumb} and mml_reply_code = #{mml_reply_code})
 		where mml_reply_code = #{mml_reply_code}
 	</update>
 	
