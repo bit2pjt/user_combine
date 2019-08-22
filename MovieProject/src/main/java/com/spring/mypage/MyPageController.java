@@ -204,13 +204,7 @@ public class MyPageController {
 		MemberVO member = myPageService.getMember(memberVO.getId());
 		model.addAttribute("member", member);
 		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('닉네임이 변경되었습니다.!');");
-		out.println("history.go(-1);");
-		out.println("</script>");
-		out.close();
+	
 
 		return "mypage/member_info";
 
