@@ -309,44 +309,25 @@
 </script>
 <script>
 	var replyPageNum = 1;
-    var mml_reply_code = "${Mml_ReplyVO.mml_reply_code}";
-    //getReplies();
+    var mml_num = "${mml_content.mml_num}";
+ 
     getRepliesPaging(replyPageNum);
   
-    
-    function getReplies() {
-        $.getJSON("/movie/mmlreplies/all/" + mml_reply_code, function (data) {
-            var str = "";
-            if(data == "") {
-            	str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
-            }else {
-            	 $(data).each(function () {
-                 	str +=	"<li data-replyNo='" + this.mml_reply_code + "' class='replyLi'>"
-     					+	"No.<p class='replyRno' style='display:inline-block;'> " + data.length-- + "</p>"
-                      	+	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.bfr_regdate + "</strong> </span>" + "</div><br>"
-                        +	"<p class='replyText' style='word-break:break-all;'>" + this.mml_reply_content + "</p>"
-                        +	"<button type='button' class='btn btn-xs btn-success modifyModal' data-value='"+this.mml_reply_code+"' data-toggle='modal' data-target='#modifyModal'>댓글 수정</button>"
-                        +	"</li>"
-                        +	"<hr/>";
-                 });
-            }
-            $("#replies").html(str);
-         });
-    }
+  
 	
 	
-    $("#replyAddBtn").on("click", function (mml_num) {
+    $("#replyAddBtn").on("click", function () {
     	var session = "${sessionyn}";
         var replyText = $("#newReplyText");
         var mml_reply_content = replyText.val();
         
-       
+     
 		
-       /*  if( session == "") {
+         /* if( session == "") {
 		 	alert("로그인 하셔야 이용하실수 있습니다.");
 		 	location.href="index";
 		 	return false;
-		} */
+		}  */
         
         if(mml_reply_content == "") {
         	alert("댓글 내용을 입력해주세요!");
@@ -355,7 +336,7 @@
         
         $.ajax({
             type : "post",
-            url : "/movie/mmlreplies/"+mml_num+"/1",
+            url : "/movie/replies/mml/",
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "POST"
@@ -382,26 +363,24 @@
         var replyText = reply.find(".replyText").text(); //댓글의 내용
         $("#replyNo").val(replyNo); // 댓글 수정창의 댓글번호에 넣음
         $("#replyText").val(replyText); // 댓글 수정창의 댓글내용에 넣음
-
     });
     
-    $()
     
-    $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 수정 버튼 클릭시
+    $("#replies").on("click", ".replyLi .ws-btn-thumbs-up", function () { // 댓글의 추천 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+        var mml_reply_code = reply.attr("data-replyNo"); // 댓글의 번호
         var present = $(this).parent().find(".ws-btn-thumbs-up");
         var session = "${sessionyn}";
         //var bf_rno = $("#replies > li");
         //alert($(this).parent().find(".ws-btn-thumbs-up").text());
-     	if( session == "") {
+     	/* if( session == "") {
  		 	alert("로그인 하셔야 이용하실수 있습니다.");
  		 	location.href="index";
  		 	return false;
- 		 }
+ 		 } */
  		$.ajax({
- 			url:"BFReplyReco",
- 			data: {bfr_rno: bfr_rno, type: 1},
+ 			url:"MmlReplyReco",
+ 			data: {mml_reply_code: mml_reply_code, type: 1},
  			dataType: "text",
  			type:"post",
  			success: function(data) {
@@ -419,21 +398,23 @@
  			
 	});
     
-    $("#replies").on("click", ".replyLi .ws-btn-thumbs-down", function () { // 댓글의 수정 버튼 클릭시
+    $("#replies").on("click", ".replyLi .ws-btn-thumbs-down", function () { // 댓글의 비추 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
+        var mml_reply_code = reply.attr("data-replyNo"); // 댓글의 번호
         var present = $(this).parent().find(".ws-btn-thumbs-down");
         var session = "${sessionyn}";
+        
+ 
         //var bf_rno = $("#replies > li");
         //alert($(this).parent().find(".ws-btn-thumbs-up").text());
-     	if( session == "") {
+     	 if( session == "") {
  		 	alert("로그인 하셔야 이용하실수 있습니다.");
  		 	location.href="index";
  		 	return false;
- 		 }
+ 		 } 
  		$.ajax({
- 			url:"BFReplyReco",
- 			data: {bfr_rno: bfr_rno, type: 0},
+ 			url:"MmlReplyReco",
+ 			data: {mml_reply_code: mml_reply_code, type: 0},
  			dataType: "text",
  			type:"post",
  			success: function(data) {
@@ -453,20 +434,20 @@
     
     $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
     	var reply = $(this).parent(); // 댓글의 li
-        var bfr_rno = reply.attr("data-replyNo"); // 댓글의 번호
-        var present = $(this).parent().find(".ws-btn-thumbs-down");
+        var mml_reply_code = reply.attr("data-replyNo"); // 댓글의 번호
+        var present = $(this).parent().find(".ws-btn-warning");
         var session = "${sessionyn}";
         //var bf_rno = $("#replies > li");
         //alert($(this).parent().find(".ws-btn-thumbs-up").text());
-     	if( session == "") {
+     	 if( session == "") {
  		 	alert("로그인 하셔야 이용하실수 있습니다.");
  		 	location.href="index";
  		 	return false;
- 		 }
+ 		 } 
      	
  		$.ajax({
- 			url:"BFReplyWarn",
- 			data: {bfr_rno: bfr_rno},
+ 			url:"MmlReplyWarn",
+ 			data: {mml_reply_code: mml_reply_code},
  			dataType: "text",
  			type:"post",
  			success: function(data) {
@@ -483,12 +464,11 @@
 	});
 	
     $(".modalDelBtn").on("click", function () {
-
         var replyRno = $("#replyNo").val();
         
         $.ajax({
             type : "delete",
-            url : "/movie/replies/" + replyRno,
+            url : "/movie/replies/mml/" + replyRno,
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "DELETE"
@@ -512,25 +492,21 @@
                 }
             }
         });
-
     });
-
 	
     $(".modalModBtn").on("click", function () {
-
         var reply = $(this).parent().parent();
-        var bfr_rno = reply.find("#replyNo").val();
-        var bfr_content = reply.find("#replyText").val();
-
+        var mml_reply_code = reply.find("#replyNo").val();
+        var mml_reply_content = reply.find("#replyText").val();
         $.ajax({
             type : "put",
-            url : "/movie/replies/" + bfr_rno,
+            url : "/movie/replies/mml/" + mml_reply_code,
             headers : {
                 "Content-type" : "application/json",
                 "X-HTTP-Method-Override" : "PUT"
             },
             data : JSON.stringify(
-                {bfr_content : bfr_content}
+                {mml_reply_content : mml_reply_content}
             ),
             dataType : "text",
             success : function (result) {
@@ -545,24 +521,22 @@
                 }
             }
         });
-
     });
     
     
 	var total ="";
 	var id = "${id}";
     function getRepliesPaging(page) {
-        $.getJSON("/movie/getMmlReplies/" + 52 + "/" + 1, function (data) {
+        $.getJSON("/movie/replies/mml/" + mml_num + "/" + page, function (data) {
            var str = "";
            total = data.pageMaker.totalCount;
            total = total - (page-1)*10;
-         
            if(data.replies == "") {
            		str += "<li style='text-align:center'> <h4>등록된 댓글이 없습니다.</h4> </li>";	
            }else {
                 $(data.replies).each(function () {
                 	if(this.id != id) {
-                		str +=	"<li style='display:inline-block; width:100%;'data-replyNo='" + this.mml_repliy_code + "' class='replyLi'>"
+                		str +=	"<li style='display:inline-block; width:100%;'data-replyNo='" + this.mml_reply_code + "' class='replyLi'>"
                     	+	"<input type='hidden' value='" + this.id +"'/>"
          				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
                         +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.mml_reply_write_date + "</strong> </span>" + "</div><br>"
@@ -573,7 +547,7 @@
                         +	"</li>"
                         +	"<hr/>";
                 	}else {
-	                    str +=	"<li data-replyNo='" + this.mml_repliy_code + "' class='replyLi'>"
+	                    str +=	"<li data-replyNo='" + this.mml_reply_code + "' class='replyLi'>"
 	                    	+	"<input type='hidden' value='" + this.id +"'/>"
 	         				+	"<p class='replyRno' style='display:inline-block;'> No. " + total-- + "</p>"
 	                        +	"<div class='replyDate'> <span class='replyWriter'> <strong>" +this.nickname + "</strong></span> <span style='float:right'><strong>등록일 : " + this.mml_reply_write_date + "</strong> </span>" + "</div><br>"
@@ -593,33 +567,30 @@
            
         });
     }
-
     function printPageNumbers(pageMaker) {
-
         var str = "";
-
         if (pageMaker.prev) {
             str += "<li><a href='"+(pageMaker.startPage-1)+"'>이전</a></li>";
         }
-
         for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
             var strCalss = pageMaker.criteria.page == i ? 'class=active' : '';
             str += "<li "+strCalss+"><a href='"+i+"'>"+i+"</a></li>";
         }
-
         if (pageMaker.next) {
             str += "<li><a href='"+(pageMaker.endPage + 1)+"'>다음</a></li>";
         }
-
         $(".pagination-sm").html(str);
     }
-
+    
     $(".pagination").on("click", "li a", function (event) {
         event.preventDefault();
         replyPageNum = $(this).attr("href");
         getRepliesPaging(replyPageNum);
-
     });
+    
+	var formObj = $("form[role='form']");
+ 	
+ 
 	
 </script>
 

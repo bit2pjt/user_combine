@@ -3,10 +3,10 @@
 <%@ page import="com.spring.member.MemberVO"%>
 <%
 	MemberVO member = (MemberVO) request.getAttribute("member");
-	String phone = member.getM_phone();
-	String phone1 = member.getM_phone().substring(0, 3);
-	String phone2 = member.getM_phone().substring(3, 7);
-	String phone3 = member.getM_phone().substring(7, 11);
+String[] phone =  member.getM_phone().split("-");
+String phone1 = phone[0];
+String phone2 = phone[1];
+String phone3 = phone[2];
 	String favorite = member.getM_favorite();
 %>
 <!--
@@ -33,35 +33,28 @@
 <head>
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script type="text/javascript">
-	function pw(form) {
-		var pass1 = form.pw_confirm.value;
-		var pass2 = form.input_pw.value;
-		var newpw1 = form.m_password.value;
-		var newpw2 = form.confirm_pw.value;
-
-		if (pass1 != pass2) {
-			alert("비밀번호가 일치하지 않습니다.");
-			pwform.input_pw.value = "";
-			pwform.input_pw.focus();
-			return false;
-		} else if (newpw1 != newpw2) {
-			alert("비밀번호가 일치하지 않습니다.");
-			pwform.m_password.value = "";
-			pwform.confirm_pw.value = "";
-			pwform.m_password.focus();
-			return false;
-		} else {
-			alert("비밀번호가 수정되었습니다.");
-		}
-
+function pw(form) {
+	
+	
+	var m_password = pwform.m_password.value;
+	
+	//비밀번호와 비밀번호 확인 입력값이 일치하지 않을경우
+	var pass_rule = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,50}).{8,20}$/;
+	if((pass_rule).test(m_password) == false || pwform.pass_chk.value == 0){
+		alert('비밀번호를 확인해주세요.');
+		return false;
+	}else {
+		alert("비밀번호가 수정되었습니다.");
 	}
+
+}
 
 	function modify(form) {
 
 		var ph;
 
-		ph = form.user_cell1.value + form.user_cell2.value
-				+ form.user_cell3.value;
+		ph = form.user_cell1.value +"-"+ form.user_cell2.value
+				+"-"+ form.user_cell3.value;
 
 		document.getElementById("modify_phone").value = ph;
 
@@ -91,6 +84,37 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+					
+					//비밀번호 체크
+					$('.inpbx1 #new_password').on('change keyup paste input', function() {
+						
+						var password_rule = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,50}).{8,20}$/;
+						var m_password = pwform.m_password.value;
+						
+						if(password_rule .test(m_password) == false){
+							$('#password_msg').html('ㄴ8-20자 이내 영문자, 숫자의 조합으로 입력해주세요.').css('color', 'red');
+						}else{
+							$('#password_msg').html('');
+						} 
+					});
+					
+					//비밀번호 확인 체크
+					$('.inpbx1 #confirm_password').on('change keyup paste input', function() {
+						var pass_rule = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,50}).{8,20}$/;
+						var m_password = pwform.m_password.value;
+						var c_password = pwform.confirm_pw.value;
+						
+						if(m_password != c_password){
+							$('#pass_chk_f').css('display', '');
+							$('#pass_chk_f').css('color', 'red');
+							$('#pass_chk_t').css('display', 'none');
+							$('#pass_chk').attr('value',0);
+						}else{
+							$('#pass_chk_f').css('display', 'none');
+							$('#pass_chk_t').css('display', '');
+							$('#pass_chk').attr('value',1);
+						}
+					});
 
 					//라디오 요소처럼 동작시킬 체크박스 그룹 셀렉터
 					$('input[type="checkbox"][name="chkbox"]').click(
@@ -200,12 +224,16 @@
 														id="new_password" name="m_password" placeholder="신규 비밀번호"
 														type="password"
 														class="ng-untouched ng-pristine ng-invalid">
-												</div>
+														<div id="password_msg" style="font-size:4px;">ㄴ8-20자 이내 영문자, 숫자, 특수문자의 조합으로 입력해주세요.</div>
+										</div>
+												
 												<div class="inpbx1">
 													<label for="confirm_password">신규 비밀번호 확인</label> <input
 														id="confirm_password" name="confirm_pw"
 														placeholder="신규 비밀번호 확인" type="password"
-														class="ng-untouched ng-pristine ng-invalid"> <br>
+														class="ng-untouched ng-pristine ng-invalid">
+														<div id="pass_chk_f" style="display:none; font-size:4px;" >ㄴ비밀번호가 일치하지 않습니다.</div>
+						<div id="pass_chk_t" style="display:none;color:blue;font-size:4px;">ㄴ비밀번호가 일치합니다.</div>
 													<input type="submit" class="btn-check-hjs" value="비밀번호 변경" />
 												</div>
 											</div>
@@ -340,7 +368,7 @@
 						</table>
 						<div class="btn_m">
 							<input style="width: 200px; height: 40px;" type="submit" class="btn-check-hjs" value="수정">
-							&nbsp; <input style="width: 200px; height: 40px;"  type="reset" class="btn-check-hjs" value="취소">
+							&nbsp; <a href="mypage"><input style="width: 200px; height: 40px;"  type="button" class="btn-check-hjs" value="취소"></a>
 						</div>
 						</form>
 					</div>

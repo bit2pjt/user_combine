@@ -204,13 +204,7 @@ public class MyPageController {
 		MemberVO member = myPageService.getMember(memberVO.getId());
 		model.addAttribute("member", member);
 		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('닉네임이 변경되었습니다.!');");
-		out.println("history.go(-1);");
-		out.println("</script>");
-		out.close();
+	
 
 		return "mypage/member_info";
 
@@ -256,7 +250,15 @@ public class MyPageController {
 	
 	// 마이페이지 - 회원탈퇴 (링크이동)
 	@RequestMapping(value = "/member_out", method = RequestMethod.GET)
-	public String memberOut() {
+	public String memberOut(HttpSession session,Model model) {
+		
+		String m_email = (String) session.getAttribute("m_email");
+		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
+		MemberVO member = myPageService.getMember(id);
+		model.addAttribute("member", member);
+		
+		model.addAttribute("m_email", m_email);
+		
 		return "mypage/member_out";
 	}
 
@@ -273,11 +275,12 @@ public class MyPageController {
 		System.out.println("m_password:" + m_password);
 		System.out.println("id:" + id);
 
+		myPageService.delete_member(m_email);
 		rttr.addFlashAttribute("delete_msg", "탈퇴가 왼료되었습니다.");
 		// 로그아웃으로 세션들을 초기화시킴
 		session.invalidate();
 
-		return "redirect:/";
+		return "/index";
 	}
 
    // 마이페이지 - 1:1 문의내역 리스트
