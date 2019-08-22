@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
 	
@@ -114,12 +115,13 @@
 					<textarea style="width: 100%; height: 358px; font-size: 20px;" ><c:out value="${mml_content.mml_content}"/></textarea>
 
 					<!-- share link -->
-					<a href="/movie/movieDetail?mi_code=<c:out value="${mml_content.mi_code}"/> "> 
-						<img src="<c:url value='${mml_content.mml_poster}'/>" alt="" width="185" height="284">
-					</a> 
-					<a href="#">
-						<img src="<c:url value='${mml_content.mml_poster}'/>" alt="" width="185" height="284">
-					</a>  
+					<c:set var="mml_poster" value="${fn:split(requestScope.mml_content.mml_poster,',')}" />
+					<c:forTokens items="${requestScope.mml_content.mi_code }" delims="," var="mi_code" varStatus="i">
+    					<div class='mml-movie-item' id='${mi_code }' style="display:inline-block;">
+							<input type='hidden' name='mi_code' value='${mi_code }'>
+							<img src='${mml_poster[i.index]}' alt='${mml_poster[i.index]}' onclick="location.href='movieDetail?mi_ktitle=${requestScope.ktitleList[i.index]}'" style="width:185px;height:284px;">
+						</div>
+					</c:forTokens>  
 					<br>
 					<div class="flex-it share-tag" style="width: 100%; float: left;"></div>
 					

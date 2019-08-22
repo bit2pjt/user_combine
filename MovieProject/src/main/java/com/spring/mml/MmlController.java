@@ -249,6 +249,10 @@ public class MmlController {
 			System.out.println("view id" + id);
 			
 			model.addAttribute("vid", id);
+			
+			//mml_content의 mi_code에 맞는 제들을 불러올거
+			List<String> ktitleList = movieService.getTitle(content);
+			model.addAttribute("ktitleList", ktitleList);
 			return "mml/mmlGet";
 		}
 
