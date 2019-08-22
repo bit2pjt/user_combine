@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.boardFree.ThumbVO;
+import com.spring.boardFree.WarnVO;
 import com.spring.member.MemberVO;
 import com.spring.paging.SearchCriteria;
 
@@ -68,26 +70,44 @@ public interface MmlDAO {
 	
 	public List<Integer> getFollowingListFromMF_table(int id);
 
-//상필이
-	public List<Mml_ContentVO> getMmlList();
+	//상필이
+		public List<Mml_ContentVO> getMmlList();
 
-	public List<Mml_ContentVO> getMmlList_like();
+		public List<Mml_ContentVO> getMmlList_like();
 
-	public List<Mml_ContentVO> getMmlList_user(int id);
+		public List<Mml_ContentVO> getMmlList_user(int id);
 
-	public int getMemberId(String m_email);
+		public int getMemberId(String m_email);
 
-	public String getMemberName(String m_email);
+		public String getMemberName(String m_email);
 
-	public String getMemberNickname(String m_email);
+		public String getMemberNickname(String m_email);
 
-	public String getMmlNickname(int id);
+		public String getMmlNickname(int id);
 
-	public int getMmlId(int id);
-	
-	int countSearchedArticles(SearchCriteria searchCriteria);
-	List<Mml_ListDTO> listSearch(SearchCriteria searchCriteria);
-	
-	int countSearchedArticles2(SearchCriteria searchCriteria);
-	List<Mml_ListDTO> listSearch2(SearchCriteria searchCriteria);
-}
+		public int getMmlId(int id);
+		
+		ThumbVO reply_check(ThumbVO vo);
+		
+		void updateReplyRecommend(ThumbVO vo);
+			
+		void updateReplyDecommend(ThumbVO vo);
+			
+		int getReplyRecommend(int mml_reply_code);
+			
+		int getReplyDecommend(int mml_reply_code);
+		
+		int replyRecommend(ThumbVO vo);
+		
+		int insertReplyWarn(WarnVO vo);
+		
+		WarnVO ReplyWarn(WarnVO vo);
+		
+		void ReplyWarnCount(int mml_reply_code);
+		
+		int countSearchedArticles(SearchCriteria searchCriteria);
+		List<Mml_ListDTO> listSearch(SearchCriteria searchCriteria);
+		
+		int countSearchedArticles2(SearchCriteria searchCriteria);
+		List<Mml_ListDTO> listSearch2(SearchCriteria searchCriteria);
+	}
