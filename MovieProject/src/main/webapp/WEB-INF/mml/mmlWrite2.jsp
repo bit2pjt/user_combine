@@ -41,6 +41,7 @@
 
 <script>
 	function check() {
+		alert('check start!');
 		//제목과 내용의 앞뒤 공백 제거
 		var mml_title = mml_write_form.mml_title.value.trim();
 		var mml_content = mml_write_form.mml_content.value.trim();
@@ -62,6 +63,7 @@
 		//첫번째로 등록된 영화의 이미지를 대표 썸네일로 사용
 		//var mml_poster=document.getElementsByName("mml_poster");
 		//mml_poster[0].setAttribute("value",mml_movie_item[1].children[1].alt );
+		document.getElementById('mml_write_form').submit();
 		return true;
 	}
 	function register_back() {
@@ -82,10 +84,11 @@
 			+"</div>";
 		var modal = document.getElementById("movie-modal");
 		modal.style.display="none";
+		$('.modal-backdrop').remove();
 		
 	}
 	function movie_delete(del_num){
-		var del_movie = document.getelementbyid(del_num);
+		var del_movie = document.getElementById(del_num);
 		del_movie.remove();
 	}
 	$(function(){
@@ -151,7 +154,7 @@
 </div>
 <div class="buster-light" style="min-height: 1000px; margin-top: 20px;">
 	<div class="col-md-10" style="margin-left:10%;">
-		<form name="mml_write_form" action="mmlWriteAction" method="post"
+		<form name="mml_write_form" id="mml_write_form"action="mmlWriteAction" method="post"
 			onsubmit="return check()">
 			<input type="hidden" name="id" value="${requestScope.id }">
 			<!-- <input type="hidden" name="mml_poster" value="0"> -->
@@ -178,7 +181,6 @@
 							alt="영화 추가하기" data-target="#movie-modal" data-toggle="modal"
 							data-backdrop="static">
 						<!-- start | modal -->
-						<%-- <jsp:include page="mmlWriteModal.jsp"/> --%>
 						<div class="modal fade" id="movie-modal" role="dialog">
 							<div class="modal-dialog" style="margin-top: 100px;">
 								<div class="modal-content">
@@ -206,7 +208,7 @@
 												</select> <input type="text" class="form-control" name="keyword"
 													value="${searchCriteria.keyword}" id="keywordInput"
 													placeholder="검색어" width="150px;">
-												<button type="button" id="search_btn">검색</button>
+												<button type="button" id="search_btn" style="background-color:black;color:white;">검색</button>
 											</div>
 										</div>
 										<div id="movielist_mid">
@@ -270,8 +272,8 @@
 			<!-- end | movie list -->
 			<!-- start | button -->
 			<div class="mml-write-button">
-				<input type="submit" value="등록"> <input type="button"
-					value="취소" onclick="register_back()">
+				<input type="button" id="mml_submit" value="등록" onclick="check()"/> 
+				<input type="button" value="취소" onclick="register_back()"/>
 			</div>
 			<!-- end | button -->
 		</form>

@@ -2,6 +2,8 @@ package com.spring.movie;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.boardFree.ThumbVO;
 import com.spring.boardFree.WarnVO;
 import com.spring.paging.SearchCriteria;
@@ -12,6 +14,7 @@ public interface MovieDAO {
 	public List<MovieInfoVO> getMovieListSerch(SearchCriteria searchCriteria);
 	public int countSearchedMovie(SearchCriteria searchCriteria);
 	public MovieInfoVO getMovieInfo(String mi_ktitle);
+	public String getTitle(@Param("mi_code") int mi_code);
 	public int getUser(String email);
 	
 	// 댓글 추천/비추천

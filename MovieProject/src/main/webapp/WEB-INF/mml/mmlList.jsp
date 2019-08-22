@@ -162,7 +162,7 @@ $(function(){
 											<div class="ho-info" style="float:left;">									
 												<h1 style="text-align: left; font-size:25px">${mml2.mml_title}</h1>
 												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
-												<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">${mml2.m_nickname}</h3>
+												<h5 style="display:inline; text-align:left" class="card-author" style="display:inline">${mml2.m_nickname}</h5>
 												</div><br>
 													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;${mml2.mml_like}&nbsp;<i class="far fa-eye"></i>&nbsp;${mml2.mml_view_count }&nbsp;
 									
@@ -190,8 +190,8 @@ $(function(){
 											<div style="float: left;">
 												<img class="mml_crown"
 													src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
-												<h3 style="display: inline; text-align: left"
-													class="card-author" style="display:inline">${mml.m_nickname }</h3>
+												<h5 style="display: inline; text-align: left"
+													class="card-author" style="display:inline">${mml.m_nickname }</h5>
 											</div>
 											<br> <span style="color: red"><i
 												class="fas fa-heart"></i></span>&nbsp;${mml.mml_like }&nbsp;<i
