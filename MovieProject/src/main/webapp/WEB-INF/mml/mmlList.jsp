@@ -118,13 +118,31 @@ $(function(){
 
 </script>
 
-<br>
-<br>
-<br>
-<br>
+<div class="hero user-hero" style="z-index: -100; margin-top: 30px;">
+		<div class="container"   style="margin-top: -140px;">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						<h1 style="margin-left: 0px; margin-top: 0px; text-align: left;">영화관
+							목록</h1>
+						<ul style="margin-left: 0px;" class="breadcumb">
+							<li class="active"><a style="color: #ccc;"index">영화관</a></li>
+							<li style="color: #ccc;"><span class="ion-ios-arrow-right"></span>영화관
+								목록</li>
+						</ul>
+					</div>
+				</div>
 
+			</div>
+		</div>
+	</div>
+	
+	
 <div class="flex-it share-tag" style="width: 1258px; float: left;">
 </div>
+
+
+
 
 <div class="buster-light">
 
