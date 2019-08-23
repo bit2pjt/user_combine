@@ -1,23 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<!--[if IE 7]>
-<html class="ie ie7 no-js" lang="en-US">
-<![endif]-->
-<!--[if IE 8]>
-<html class="ie ie8 no-js" lang="en-US">
-<![endif]-->
-<!--[if !(IE 7) | !(IE 8)  ]><!-->
-<html lang="en" class="no-js">
-<head>
+
 <%@ include file="../header1.jsp"%>
-<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+<!-- 
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">-->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/kgh_style.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/yj_style.css" />">
-<%@ include file="../header2.jsp"%>
+
 
 
 <style type="text/css">
@@ -677,11 +669,12 @@ div ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:i
 </script>
 
 
-</head>
-<body>
+
+
+<%@ include file="../header2.jsp"%>
 	<!-- Start | Section -->
-	<div class="hero user-hero" style="margin-top: -190px;">
-		<div class="container">
+	<div class="hero user-hero" style="z-index: -100;">
+		<div class="container"   style="margin-top: -140px;">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="hero-ct">
@@ -698,9 +691,7 @@ div ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:i
 			</div>
 		</div>
 	</div>
-
-	</div>
-	<div class="buster-light" style="margin-top: 100px;">
+	<div class="buster-light" style="margin-top:-180px;">
 		<section class="section">
 			<!-- 지역 영화관 선택 -->
 			<form class="cinema" name="frm1" style="margin-top: -70px;">
