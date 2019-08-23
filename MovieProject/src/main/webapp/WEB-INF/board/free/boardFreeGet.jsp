@@ -48,7 +48,7 @@
  		var session = "${sessionyn}";
  		var reco = $("#ws-cnt-tup");
  		var deco = $("#ws-cnt-tdn");
- 		var warn = $("#modal-warning-btn");
+ 		/* var warn = $("#modal-warning-btn"); */
  		var bno = "${boardFreeVO.bf_bno}";
  		
  		reco.on("click", function() {
@@ -101,7 +101,7 @@
  			});
  		});
  		
- 		warn.on("click", function() {
+ 		/* warn.on("click", function() {
  		 	if( session == "") {
  		 		alert("로그인 하셔야 이용하실수 있습니다.");
  		 		location.href="index";
@@ -130,7 +130,7 @@
  			var modal = document.getElementById("warning-modal");
  			modal.style.display="none";
  			$('.modal-backdrop').remove();
- 		});
+ 		}); */
  		
  	});
  	
@@ -213,12 +213,12 @@
 			<!-- 4. 글신고/글추천/글비추 자리 -->
 		<center class="ws-post-get-buttons">
 			<div style="float:left">
-				<!-- <button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
-							data-backdrop="static"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
-							<jsp:include page="../../modal_warning.jsp"/> -->
 							<button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
 							data-backdrop="static"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
-							<jsp:include page="../../modal_warning.jsp"/>
+							<jsp:include page="../../modal_warning.jsp">
+								<jsp:param value="bf" name="warn_type"/>
+								<jsp:param value="${boardFreeVO.bf_bno}" name="no" />
+							</jsp:include>
 							
 			</div>
 			<span>
@@ -264,6 +264,7 @@
 						가장 핫한 나영리</div>
 					<div class="slideshow-container">
 						<c:forEach items="${mmlTop3}" var="mml" varStatus="status">
+							
 							<div class="mySlides fade">
 									<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
 									<img src="<c:url value="${poster_one[0] }"/>">
@@ -618,6 +619,13 @@
                        	+	"<button style='float:right; margin-right:10px;' class='ws-btn-warning' id='ws-cnt-warning'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
                         +	"</li>"
                         +	"<hr/>";
+                        
+						/* <button class="ws-btn-warning" id="ws-cnt-warning" type="button" data-target="#warning-modal" data-toggle="modal"
+							data-backdrop="static"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>신고 </button>
+							<jsp:include page="../../modal_warning.jsp">
+								<jsp:param value="bf" name="warn_type"/>
+								<jsp:param value="${boardFreeVO.bf_bno}" name="no" />
+							</jsp:include> */
                 	}else {
 	                    str +=	"<li data-replyNo='" + this.bfr_rno + "' class='replyLi'>"
 	                    	+	"<input type='hidden' value='" + this.id +"'/>"
@@ -673,7 +681,6 @@
 <!-- 6. 페이지별 script 추가 -->
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>

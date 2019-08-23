@@ -173,6 +173,5 @@
 <%@ include file="../footer1.jsp"%>
 <!-- 6. 페이지별 script 추가 -->
 <script src="<c:url value="/resources/js/member_js.js" />"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <!-- footer2.jsp : script -->
 <%@ include file="../footer2.jsp"%>

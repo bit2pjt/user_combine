@@ -495,7 +495,6 @@ window.onload = function(){
 <!-- 6. 페이지별 script 추가 -->
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
