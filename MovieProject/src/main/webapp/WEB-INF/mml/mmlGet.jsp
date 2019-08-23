@@ -224,23 +224,19 @@
 
 
 					<c:if test="${member.id eq vid}">
-						<button class="submit2" type="button" data-toggle="modal"
-							data-target="#CatModal-post-delete">삭제</button>
-						<form action="/movie/mmlUpdate" method="get">
-							<button class="submit2" type="submit">수정</button>
-							<!-- 이름은 맞는데 값은 모두 0&null -->
+					<!--  <button class="submit2" type="button" data-toggle="modal" data-target="#CatModal-post-delete">삭제</button> -->
+					<button type="button" class="submit2" onclick="deleteMML()"> 삭제 </button>
+					<form action="/movie/mmlUpdate" method="get">			
+						<button class="submit2" type="submit">수정</button> <!-- 이름은 맞는데 값은 모두 0&null -->
+			
 					</c:if>
-
-
-					<input type="hidden" name="mml_num"
-						value="<c:out value="${mml_content.mml_num}"/>"> <input
-						type="hidden" name="mml_title"
-						value="<c:out value="${mml_content.mml_title}"/>"> <input
-						type="hidden" name="mml_content"
-						value="<c:out value="${mml_content.mml_content}"/>"> <input
-						type="hidden" name="mi_code"
-						value="<c:out value="${mml_content.mi_code}"/>">
-					</form>
+			
+					
+						<input type="hidden" id="mml_num" name="mml_num" value="<c:out value="${mml_content.mml_num}"/>">
+						<input type="hidden" name="mml_title" value="<c:out value="${mml_content.mml_title}"/>">
+						<input type="hidden" name="mml_content" value="<c:out value="${mml_content.mml_content}"/>">
+						<input type="hidden" name="mi_code" value="<c:out value="${mml_content.mi_code}"/>">
+					</form>			
 					<br>
 				</div>
 			</div>
@@ -383,9 +379,17 @@
 	</div>
 </div>
 <script type="text/javascript">
-	function CatDelete() {
 
-	}
+	function deleteMML() {
+    	var abc = confirm("삭제 하시겠습니까?");
+    	var mml_num = $("#mml_num").val();
+    	
+    	if( abc == true)
+    		location.href="mmlDelete?mml_num="+mml_num;
+    	else
+    		return false;
+  	}
+	
 	function replydel() {
 		location.replace("mmlGet");
 	}
