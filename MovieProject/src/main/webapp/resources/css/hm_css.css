@@ -430,3 +430,6 @@ margin-bottom: 20px;
 }
 
 /* 약관 오버레이 끝 */
+.container{
+	width: 75%;
+}
