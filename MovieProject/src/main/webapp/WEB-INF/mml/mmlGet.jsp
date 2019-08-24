@@ -162,11 +162,11 @@
 							<div class="right-it" style="flex: 1; vertical-align: middle;">
 								<!-- hm | 팔뤄워수 -->
 
-								<!-- 	<a href="#"> <img class="ws_memberService" id="ws_following"
+									<a href="#"> <img class="ws_memberService" id="ws_following"
 									style="width: 25px; height: 25px; margin:10px;"
 									src="<c:url value="/resources/images/sp_image/add-user.png"/>">
 								</a> 
-								 -->
+								 
 								<span
 									OnClick="location.href ='mmlFollowList?id=<c:out value="${member.id}"/>'">
 									<h4 style="display: inline">Followers</h4>
@@ -225,9 +225,9 @@
 
 					<c:if test="${member.id eq vid}">
 					<!--  <button class="submit2" type="button" data-toggle="modal" data-target="#CatModal-post-delete">삭제</button> -->
-					<button type="button" class="submit2" onclick="deleteMML()"> 삭제 </button>
+					<button style="background-color: #333;" type="button" class="submit2" onclick="deleteMML()"> 삭제 </button>
 					<form action="/movie/mmlUpdate" method="get">			
-						<button class="submit2" type="submit">수정</button> <!-- 이름은 맞는데 값은 모두 0&null -->
+					<button style="margin-right: 20px; background-color: #333;" class="submit2" type="submit">수정</button> <!-- 이름은 맞는데 값은 모두 0&null -->
 			
 					</c:if>
 			
