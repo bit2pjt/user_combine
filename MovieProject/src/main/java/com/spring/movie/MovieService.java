@@ -20,7 +20,7 @@ public interface MovieService {
 	
 	
 	public int insertReplyWarn(WarnVO vo);
-	public String ReplyWarn(WarnVO vo);
+	public String replyWarn(WarnVO vo);
 	
 	public List<MovieInfoVO> getMovieList_title(String search_input);
 	public List<MovieInfoVO> getMovieList_release(String search_input);

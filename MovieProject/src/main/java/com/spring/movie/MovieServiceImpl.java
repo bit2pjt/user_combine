@@ -219,9 +219,9 @@ public class MovieServiceImpl implements MovieService {
 	  * @return msg
 	 */
 	@Override
-	public String ReplyWarn(WarnVO vo) {
+	public String replyWarn(WarnVO vo) {
 		MovieDAO movieDAO = sqlSession.getMapper(MovieDAO.class);
-		WarnVO warnVO = movieDAO.ReplyWarn(vo);
+		WarnVO warnVO = movieDAO.replyWarn(vo);
 		String msg = "";
 		
 		if(warnVO != null) {

@@ -62,7 +62,22 @@
                 <!-- followee의 정보 -->
                 <div class="flex-it share-tag" style="width:100%; float:left;">
                         <div class="social-link" style="width:100%; display:flex;">
-                       		<img src="./resources/images/sp_image/<c:out value="${followee.m_image}"/>" class="profile_img">&nbsp;
+                       		
+                       	<%
+							MemberVO followee = (MemberVO) request.getAttribute("followee");
+							if (followee.getM_image() == null || followee.getM_image().equals("")
+									|| followee.getM_image().equals("null")) {
+						%>
+						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
+							style="width: 120px; height: 120px;">
+						<%
+							} else {
+						%>
+						<img src="./upload/${requestScope.followee.m_image }"
+							style="width: 120px; height: 120px;">
+						<%
+							}
+						%>
                            		<c:set var="level" value="${followee.m_level}"/>
 									<c:choose>
 						    			<c:when test="${level eq 'BRONZE'}">
@@ -121,7 +136,14 @@
                  		<div class="sp_col-md-4">               	
                         	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px">
                         		<div class="blog-it-infor" style="vertical-align:middle">
-                        			<img src="./resources/images/sp_image/<c:out value="${follower.m_image}"/>" class="profile_img" style="width:80px; height:80px;">
+                        			<c:choose>
+                        				<c:when test="${follower.m_image==null}" >
+											<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width: 120px; height: 120px;">
+										</c:when>
+										<c:otherwise>
+											<img src="./upload/${follower.m_image }" style="width: 120px; height: 120px;">
+										</c:otherwise>
+									</c:choose>
                         				<c:set var="level" value="${follower.m_level}"/>
 											<c:choose>
 						    					<c:when test="${level eq 'BRONZE'}">
@@ -199,6 +221,8 @@ function load(id, cnt, btn) {
 
 </script>
 
+
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

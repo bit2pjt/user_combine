@@ -93,7 +93,7 @@ public class MyPageController {
 		
 		//******아래의 경로, server.xml, servlet-context.xml의 모든 경로를 바꿔주세용******
 
-		realPath_t="C:\\upload";
+		realPath_t="/Users/yujeen/Desktop/bitcamp2019/2019bitPro/upload/";
 
 		
 //		System.out.println("================= profileAddAction | realPath ===================="+realPath);

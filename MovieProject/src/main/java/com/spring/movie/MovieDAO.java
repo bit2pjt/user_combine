@@ -27,7 +27,7 @@ public interface MovieDAO {
 	
 	// 댓글 신고
 	int insertReplyWarn(WarnVO vo);
-	WarnVO ReplyWarn(WarnVO vo);
+	WarnVO replyWarn(WarnVO vo);
 	void ReplyWarnCount(int mr_code);
 	
 	public List<MovieInfoVO> getMovieList_title(String search_input);
