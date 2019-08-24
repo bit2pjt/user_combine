@@ -289,7 +289,7 @@ public class MmlController {
 		model.addAttribute("followee", mmlService.getMemberInfo(id));
 		System.out.println("followee 정보 적재 완료");
 		
-		List<MemberVO> result = mmlService.getFollowList(id);
+		List<MemberVO> result = mmlService.getFollowingList(id);
 		
 		model.addAttribute("followers", result);
 		System.out.println("followers 정보 적재 완료"+result);

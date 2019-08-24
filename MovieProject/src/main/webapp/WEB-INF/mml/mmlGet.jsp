@@ -90,7 +90,7 @@
 									<!-- c:set은 짝짝이 태그 -->
 									<!--  hm| 엠블럼 끝 -->
 									<!-- hm| 닉네임 시작 -->
-									<h4>
+									<h4 id="mml_con_nick" value="${member.m_nickname}">
 										<c:out value="${member.m_nickname}" />
 									</h4>
 									<!-- hm | 닉네임 끝 -->
@@ -219,25 +219,7 @@
 						</div>
 					</c:forTokens>
 					<br>
-					<div class="flex-it share-tag"
-						style="width: 100%; float: left; height: 800px"></div>
-
-
-					<c:if test="${member.id eq vid}">
-					<!--  <button class="submit2" type="button" data-toggle="modal" data-target="#CatModal-post-delete">삭제</button> -->
-					<button style="background-color: #333;" type="button" class="submit2" onclick="deleteMML()"> 삭제 </button>
-					<form action="/movie/mmlUpdate" method="get">			
-					<button style="margin-right: 20px; background-color: #333;" class="submit2" type="submit">수정</button> <!-- 이름은 맞는데 값은 모두 0&null -->
-			
-					</c:if>
-			
 					
-						<input type="hidden" id="mml_num" name="mml_num" value="<c:out value="${mml_content.mml_num}"/>">
-						<input type="hidden" name="mml_title" value="<c:out value="${mml_content.mml_title}"/>">
-						<input type="hidden" name="mml_content" value="<c:out value="${mml_content.mml_content}"/>">
-						<input type="hidden" name="mi_code" value="<c:out value="${mml_content.mi_code}"/>">
-					</form>			
-					<br>
 				</div>
 			</div>
 			<!-- 진석코드 -->

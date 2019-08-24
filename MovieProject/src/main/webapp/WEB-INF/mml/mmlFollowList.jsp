@@ -81,10 +81,10 @@
                            		<c:set var="level" value="${followee.m_level}"/>
 									<c:choose>
 						    			<c:when test="${level eq 'BRONZE'}">
-        									<img class="crown" src="<c:url value="/resources/images/sp_image/helmet.png"/>">
+        									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
     									</c:when>
 										<c:when test="${level eq 'SILVER'}">
-        									<img class="crown" src="<c:url value="/resources/images/sp_image/shield.png"/>">
+        									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
     									</c:when>
 										<c:otherwise>
         									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
@@ -147,10 +147,10 @@
                         				<c:set var="level" value="${follower.m_level}"/>
 											<c:choose>
 						    					<c:when test="${level eq 'BRONZE'}">
-        											<img class="crown" src="<c:url value="/resources/images/sp_image/helmet.png"/>">
+        											<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
     											</c:when>
 												<c:when test="${level eq 'SILVER'}">
-        											<img class="crown" src="<c:url value="/resources/images/sp_image/shield.png"/>">
+        											<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
     											</c:when>
 												<c:otherwise>
         											<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
@@ -189,8 +189,6 @@
                         <!--  <button type="button" class="btn-check" OnClick="location.href = '#'"> 더보기 </button>-->
                     </center>
 
-			<div class="col-md-3 col-xs-12 col-sm-12">
-			</div>
 		</div>
 	</div>
 </div>
@@ -200,9 +198,9 @@
 
 <script>
 $(window).on('load', function () {
-    load('#js-load', '1');
+    load('#js-load', '5');
     $("#js-btn-wrap .button").on("click", function () {
-        load('#js-load', '1', '#js-btn-wrap');
+        load('#js-load', '5', '#js-btn-wrap');
     });
 });
 
@@ -222,7 +220,6 @@ function load(id, cnt, btn) {
 </script>
 
 
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<%@ include file="../footer.jsp"%>
-</body>
-</html>
+
+<%@ include file="../footer1.jsp"%>
+<%@ include file="../footer2.jsp"%>

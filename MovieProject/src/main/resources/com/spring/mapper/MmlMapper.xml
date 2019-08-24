@@ -142,7 +142,7 @@
 <!--  =================================mml 팔로우 추가 매퍼 3종 -->		
 	<insert id="registerFR">
 		insert into member_follow
-		values (1,#{mf_ing},#{mf_wer})
+		values (seq_mf_code.nextval,#{mf_ing},#{mf_wer})
 	
 	</insert>
 
