@@ -74,7 +74,7 @@
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
 						<h2>
-							<strong><%=member.getM_nickname() %> 님 </strong>
+							<strong><%=member.getM_name() %> 님 </strong>
 						</h2>
 						<h3>
 							<strong><%=member.getM_email() %></strong>
@@ -84,16 +84,16 @@
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li><a href="mypage">마이페이지</a></li>
+								<li style="font-weight: bold;"><a style="font-size: 18px;" href="mypage">마이페이지</a></li>
 							</ul>
 
-							<ul>
+							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 								<li>회원 정보</li>
 								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
 								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
-							<ul>
+							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
 								<li>고객센터</li>
 								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
@@ -156,8 +156,8 @@
 					<form action="member_delete" name="form">
 					<input type="hidden" name="m_email" value="${requestScope.member.m_email}">
 						<div class="btn_m">
-							<input type="button" class="btn-check" value="탈퇴"
-								onclick="delete_confirm()"> &nbsp; <input type="button" onClick="location.href='mypage'"
+							<input style="background-color: #333; border: 0px;width: 120px;height: 40px;" type="button" class="btn-check" value="탈퇴"
+								onclick="delete_confirm()"> &nbsp; <input style="background-color: #333; border: 0px;width: 120px;height: 40px;" type="button" onClick="location.href='mypage'"
 								class="btn-check" value="취소">
 						</div>
 					</form>

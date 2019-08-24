@@ -204,7 +204,9 @@ $(function(){
 									<div class="card-info">
 										<div class="card-ho"></div>
 										<div class="ho-info" style="float: left;">
+										<div style="height: 84px;" class="mml__list_title">
 											<h1 style="text-align: left; font-size: 25px">${mml.mml_title }</h1>
+										</div>
 											<div style="float: left;">
 												<img class="mml_crown"
 													src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;

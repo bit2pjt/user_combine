@@ -162,11 +162,11 @@
 							<div class="right-it" style="flex: 1; vertical-align: middle;">
 								<!-- hm | 팔뤄워수 -->
 
-								<!-- 	<a href="#"> <img class="ws_memberService" id="ws_following"
+									<a href="#"> <img class="ws_memberService" id="ws_following"
 									style="width: 25px; height: 25px; margin:10px;"
 									src="<c:url value="/resources/images/sp_image/add-user.png"/>">
 								</a> 
-								 -->
+								 
 								<span
 									OnClick="location.href ='mmlFollowList?id=<c:out value="${member.id}"/>'">
 									<h4 style="display: inline">Followers</h4>
