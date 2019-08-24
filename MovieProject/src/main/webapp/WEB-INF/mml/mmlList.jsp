@@ -154,9 +154,9 @@ $(function(){
 					style="display: flex; margin-left: 20px; margin-right: 20px; padding-left: 15px; padding-right: 15px;">
 					<div class="btn-group btn-group-lg mb-3" role="group"
 						aria-label="Large button group" style="flex: 5">
-						<button style="width:120px; height: 40px;"  class="btn btn-secondary" type="button" id="date_sort">최신순
+						<button style="width:120px; height: 40px; border: 0px;"  class="btn btn-secondary" type="button" id="date_sort">최신순
 							보기</button>
-						<button style="width:120px; height: 40px;" class="btn btn-secondary" type="button" id="like_sort">추천순
+						<button style="width:120px; height: 40px;border: 0px;" class="btn btn-secondary" type="button" id="like_sort">추천순
 							보기</button>
 					</div>
 					<div style="flex: 2">
@@ -204,7 +204,9 @@ $(function(){
 									<div class="card-info">
 										<div class="card-ho"></div>
 										<div class="ho-info" style="float: left;">
+										<div style="height: 84px;" class="mml__list_title">
 											<h1 style="text-align: left; font-size: 25px">${mml.mml_title }</h1>
+										</div>
 											<div style="float: left;">
 												<img class="mml_crown"
 													src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
@@ -274,8 +276,8 @@ $(function(){
 
 				<div class="search-form">
 					<div style="background-color: white;">
-						<div class="col-md-12 form-it" style="width: 50%; display: flex;">
-							<select class="form-control" name="searchType" id="searchType"
+						<div class="col-md-12 form-it" style="display: flex;">
+							<select style="width:120px;" class="form-control" name="searchType" id="searchType"
 								style="flex: 1;">
 								<option value="n"
 									<c:out value="${searchCriteria.searchType == null ? 'selected' : ''}"/>>::::::
@@ -286,11 +288,11 @@ $(function(){
 									<c:out value="${searchCriteria.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
 							</select>&nbsp;&nbsp;&nbsp;
 							<div style="flex: 3; display: flex;">
-								<input style="flex: 1" type="text" class="form-control"
+								<input style=" width: 400px;" type="text" class="form-control"
 									name="keyword" id="keywordInput"
 									value="${searchCriteria.keyword}" placeholder="검색어">&nbsp;&nbsp;&nbsp;
 								<span class="input-group-btn">
-									<button style="flex: 1" type="button"
+									<button style="flex: 1; height: 34px; width: 90px; background-color: #333; color: #fff; border: 0px;" type="button"
 										class="btn btn-primary btn-flat" id="searchBtn">
 										<i class="fa fa-search"></i> 검색
 									</button>
