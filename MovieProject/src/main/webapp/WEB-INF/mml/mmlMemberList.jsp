@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="com.spring.member.MemberVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!--
 /**
 * @Class Name : mmlMemberList.jsp
@@ -59,8 +61,23 @@
                         <div class="social-link" style="width:1258px; display:flex;">
                        
                             <div style="flex:2;">
-                                <img src="<c:url value="/resources/images/sp_image/dog.jfif"/>"  class="profile_img">
-                           &nbsp;&nbsp; <img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h2 style="display:inline">${follower.m_nickname}</h2>
+                                <%
+							MemberVO follower = (MemberVO) request.getAttribute("follower");
+							if (follower.getM_image() == null || follower.getM_image().equals("")
+									|| follower.getM_image().equals("null")) {
+						%>
+						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
+							style="width: 120px; height: 120px;">
+						<%
+							} else {
+						%>
+						<img src="./upload/${requestScope.follower.m_image }"
+							style="width: 120px; height: 120px;">
+						<%
+							}
+						%>
+                           
+                           <h2 style="display:inline">${follower.m_nickname}</h2>
                             </div>
                            
                             <div style="flex:2;"> 
@@ -92,7 +109,8 @@
 	<li class="js-load">
 	<div class="sp_col-md-41" id="js-load">
 							<div class="card" OnClick="location.href ='mmlGet?mml_num=${mml3.mml_num} '" style="cursor:pointer;">
-									<img class="card-img" src="<c:url value="/resources/images/sp_image/${mml3.mml_poster }"/>" alt="header" />
+									<c:set var="poster_one" value="${fn:split(mml3.mml_poster,',')}" />
+                           <img class="card-img" src="<c:url value="${poster_one[0] }"/>" alt="header" />
 									<div class="card-info">
 										<div class="card-ho"></div>
 											<div class="ho-info" style="float:left;">									
@@ -134,9 +152,9 @@
 
 <script>
 $(window).on('load', function () {
-    load('#js-load', '1');
+    load('#js-load', '5');
     $("#js-btn-wrap .button").on("click", function () {
-        load('#js-load', '1', '#js-btn-wrap');
+        load('#js-load', '5', '#js-btn-wrap');
     });
 });
 

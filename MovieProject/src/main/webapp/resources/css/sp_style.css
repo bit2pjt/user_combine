@@ -95,7 +95,7 @@
 
 .card {
   width: 250px;
-  height: 500px;
+  /* height: 500px; */
   margin-left:10px
 }
 
@@ -172,7 +172,7 @@
 .ho-info{
 
   position:absolute;
-   top:330px; 
+   top:290px; 
   background:black;
    color:white;
    width: 250px;
