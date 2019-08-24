@@ -144,7 +144,7 @@ $(function(){
 
 
 
-<div class="buster-light">
+<div class="buster-light" style="margin-top:-200px;">
 
 	<!-- celebrity grid v2 section-->
 	<div class="page-single">
@@ -154,9 +154,9 @@ $(function(){
 					style="display: flex; margin-left: 20px; margin-right: 20px; padding-left: 15px; padding-right: 15px;">
 					<div class="btn-group btn-group-lg mb-3" role="group"
 						aria-label="Large button group" style="flex: 5">
-						<button class="btn btn-secondary" type="button" id="date_sort">최신순
+						<button style="width:120px; height: 40px;"  class="btn btn-secondary" type="button" id="date_sort">최신순
 							보기</button>
-						<button class="btn btn-secondary" type="button" id="like_sort">추천순
+						<button style="width:120px; height: 40px;" class="btn btn-secondary" type="button" id="like_sort">추천순
 							보기</button>
 					</div>
 					<div style="flex: 2">
@@ -193,7 +193,7 @@ $(function(){
 					
 					</div> 
 
-				<div class="row1" id="sort_date">
+				<div class="row1" id="sort_date" style="width:100%">
 					<c:forEach var="mml" items="${mmlList}" varStatus="status">
 						<div class="sp_col-md-41">
 							<a
