@@ -225,9 +225,9 @@
 
 					<c:if test="${member.id eq vid}">
 					<!--  <button class="submit2" type="button" data-toggle="modal" data-target="#CatModal-post-delete">삭제</button> -->
-					<button type="button" class="submit2" onclick="deleteMML()"> 삭제 </button>
+					<button style="background-color: #333;" type="button" class="submit2" onclick="deleteMML()"> 삭제 </button>
 					<form action="/movie/mmlUpdate" method="get">			
-						<button class="submit2" type="submit">수정</button> <!-- 이름은 맞는데 값은 모두 0&null -->
+					<button style="margin-right: 20px; background-color: #333;" class="submit2" type="submit">수정</button> <!-- 이름은 맞는데 값은 모두 0&null -->
 			
 					</c:if>
 			
