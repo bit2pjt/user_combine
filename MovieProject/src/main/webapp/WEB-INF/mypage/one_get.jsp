@@ -109,7 +109,7 @@
 							</h1>
 						</div>
 						<div>
-							<form>
+							<form name="qform">
 								<ul>
 									<li class="tb_line">
 										<div class="tb_th1">상담구분</div>

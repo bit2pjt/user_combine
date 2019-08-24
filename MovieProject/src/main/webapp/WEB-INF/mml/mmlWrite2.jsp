@@ -41,7 +41,7 @@
 
 <script>
 	function check() {
-		alert('check start!');
+		/* alert('check start!'); */
 		//제목과 내용의 앞뒤 공백 제거
 		var mml_title = mml_write_form.mml_title.value.trim();
 		var mml_content = mml_write_form.mml_content.value.trim();

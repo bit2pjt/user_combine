@@ -16,7 +16,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- 사진업로드를 위해 경로를 설정 -->
-	<resources mapping="/upload/**" location="C:\\Users\\bitcamp\\upload" />
+	<resources mapping="/upload/**" location="/Users/yujeen/Desktop/bitcamp2019/2019bitPro/upload/" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

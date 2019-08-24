@@ -9,8 +9,6 @@ public class Criteria {
     private int page; // 현재 페이지 번호
     private int perPageNum; // 한페이지당 보여줄 게시물의 개수
     private int mml_num;
-    
-    
     public int getMml_num() {
 		return mml_num;
 	}

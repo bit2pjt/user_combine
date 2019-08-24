@@ -230,21 +230,31 @@ public class MmlController {
 		return "mml/mmlMemberList";
 	}
 
-/////////////////////////////////////
-// 개발부분 : mmlGet.jsp의 서비스들//
-/////////////////////////////////////
+	/////////////////////////////////////
+	// 개발부분 : mmlGet.jsp의 서비스들//
+	/////////////////////////////////////
 
-// 1. getpage
-	@RequestMapping(value = "/mmlGet", method = RequestMethod.GET)
-	public String mmlGet(@RequestParam("mml_num") int mml_num, Model model, HttpSession session) {
-
-		mmlService.upCounter(mml_num);// 조회수 1 증가
-		Mml_ContentVO content = mmlService.getPage(mml_num); // 참조변수이므로 null값이 들어오면 문제된다
-		model.addAttribute("mml_content", content); // 반환값이 null이면, null값을 그대로 요소에 담아 보낸다
-		model.addAttribute("member", mmlService.getMemberInfo(content.getId()));
-
-		String m_email = (String) session.getAttribute("m_email");
-		int id = myPageService.getMemberId(m_email);
+	// 1. getpage
+		@RequestMapping(value = "/mmlGet", method = RequestMethod.GET)
+		public String mmlGet(@RequestParam("mml_num") int mml_num, Model model, HttpSession session) {
+			System.out.println("나영리 게시글 " + mml_num + " 넘어옴");
+			mmlService.upCounter(mml_num);// 조회수 1 증가
+			Mml_ContentVO content = mmlService.getPage(mml_num); // 참조변수이므로 null값이 들어오면 문제된다
+			model.addAttribute("mml_content", content); // 반환값이 null이면, null값을 그대로 요소에 담아 보낸다
+			model.addAttribute("member", mmlService.getMemberInfo(content.getId()));
+			
+			String m_email = (String) session.getAttribute("m_email");
+			int id = myPageService.getMemberId(m_email);
+			
+			model.addAttribute("sessionyn",m_email);
+			
+			model.addAttribute("vid", id);
+			
+			//mml_content의 mi_code에 맞는 제들을 불러올거
+			List<String> ktitleList = movieService.getTitle(content);
+			model.addAttribute("ktitleList", ktitleList);
+			return "mml/mmlGet";
+		}
 
 		model.addAttribute("sessionyn", m_email);
 
@@ -282,15 +292,9 @@ public class MmlController {
 	public String mmlFollow(@RequestParam("id") int id, Model model) {
 		model.addAttribute("followee", mmlService.getMemberInfo(id));
 		System.out.println("followee 정보 적재 완료");
-
-		List<MemberVO> result = mmlService.getFollowList(id);
-
-		model.addAttribute("followers", result);
-		System.out.println("followers 정보 적재 완료" + result);
 		System.out.println(result.get(0).getId());
 
 		return "mml/mmlFollowList";
-	}
 
 	@RequestMapping(value = "/mmlFollowingList", method = RequestMethod.GET)
 	public String mmlFollowing(@RequestParam("id") int id, Model model) {
@@ -305,6 +309,47 @@ public class MmlController {
 
 		return "mml/mmlFollowingList";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/MmlReplyReco", method=RequestMethod.POST)
+	public String MmlReplyReco(HttpSession session, HttpServletRequest request) { 
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = mmlService.getMemberId(sessionyn); // 로그인한 사용자의 id값
+		int mml_reply_code = Integer.parseInt(request.getParameter("mml_reply_code")); //게시글 번호
+		int type = Integer.parseInt(request.getParameter("type")); // 추천:1, 비추천:0
+		ThumbVO vo = new ThumbVO();
+		vo.setMml_reply_code(mml_reply_code); // 댓글 번호
+		vo.setId(id); // 댓글 쓴 사람의 id
+		vo.setMmlr_thumb(type); // 1: 추천, 0: 비추천
+		
+		if( type == 1) { // 추천을 눌렀을 경우
+			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+			String msg = mmlService.reply_check(vo); 
+			return msg;
+		}else { // 비추천을 눌렀을 경우
+			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+			String msg = mmlService.reply_check(vo);
+			return msg;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/MmlReplyWarn", method=RequestMethod.POST)
+	public String BFReplyWarn(HttpSession session, HttpServletRequest request) {
+		String sessionyn = (String)session.getAttribute("m_email");
+		int id = mmlService.getMemberId(sessionyn); // 로그인한 사용자의 id값
+		int mml_reply_code = Integer.parseInt(request.getParameter("mml_reply_code")); //게시글 번호
+		WarnVO vo = new WarnVO();
+		vo.setMml_reply_code(mml_reply_code);
+		vo.setId(id);
+		
+		String msg = mmlService.ReplyWarn(vo); 
+		if(msg.equals("1"))
+			msg = "success";
+		
+		return msg;
+	}
+
 
 	@ResponseBody
 	@RequestMapping(value = "/MmlReplyReco", method = RequestMethod.POST)

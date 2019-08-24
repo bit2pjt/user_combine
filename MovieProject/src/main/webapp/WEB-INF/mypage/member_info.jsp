@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.member.MemberVO"%>
 <%
-	MemberVO member = (MemberVO)request.getAttribute("member");
+	MemberVO member = (MemberVO) request.getAttribute("member");
 String[] phone =  member.getM_phone().split("-");
 String phone1 = phone[0];
 String phone2 = phone[1];
 String phone3 = phone[2];
-String favorite = member.getM_favorite();	
-
+	String favorite = member.getM_favorite();
 %>
 <!--
 /**
@@ -35,10 +34,27 @@ String favorite = member.getM_favorite();
 <head>
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script type="text/javascript">
+function pw(form) {
+	
+	
+	var m_password = pwform.m_password.value;
+	
+	//비밀번호와 비밀번호 확인 입력값이 일치하지 않을경우
+	var pass_rule = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,50}).{8,20}$/;
+	if((pass_rule).test(m_password) == false || pwform.pass_chk.value == 0){
+		alert('비밀번호를 확인해주세요.');
+		return false;
+	}else {
+		alert("비밀번호가 수정되었습니다.");
+	}
+
+}
+
+	function modify(form) {
 
 
-
-
+		ph = form.user_cell1.value +"-"+ form.user_cell2.value
+				+"-"+ form.user_cell3.value;
 
 
 
@@ -94,7 +110,40 @@ function modify(form){
 <body>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					
+					//비밀번호 체크
+					$('.inpbx1 #new_password').on('change keyup paste input', function() {
+						
+						var password_rule = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,50}).{8,20}$/;
+						var m_password = pwform.m_password.value;
+						
+						if(password_rule .test(m_password) == false){
+							$('#password_msg').html('ㄴ8-20자 이내 영문자, 숫자의 조합으로 입력해주세요.').css('color', 'red');
+						}else{
+							$('#password_msg').html('');
+						} 
+					});
+					
+					//비밀번호 확인 체크
+					$('.inpbx1 #confirm_password').on('change keyup paste input', function() {
+						var pass_rule = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,50}).{8,20}$/;
+						var m_password = pwform.m_password.value;
+						var c_password = pwform.confirm_pw.value;
+						
+						if(m_password != c_password){
+							$('#pass_chk_f').css('display', '');
+							$('#pass_chk_f').css('color', 'red');
+							$('#pass_chk_t').css('display', 'none');
+							$('#pass_chk').attr('value',0);
+						}else{
+							$('#pass_chk_f').css('display', 'none');
+							$('#pass_chk_t').css('display', '');
+							$('#pass_chk').attr('value',1);
+						}
+					});
 
 
 
@@ -183,13 +232,70 @@ $(document).ready(function() {
 							</ul>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-9 col-sm-12 col-xs-12">
-					<div class="person_info">
-						<h1>
-							<strong>회원정보 수정</strong>
-						</h1>
-					</div>
+					<div class="col-md-9 col-sm-12 col-xs-12">
+						<div class="person_info">
+							<h1>
+								<strong>회원정보 수정</strong>
+							</h1>
+						</div>
+
+
+						<table class="tbinfo_hjs">
+							<colgroup>
+								<col width="10%" />
+								<col width="30%" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<td>이메일</td>
+									<td>
+										<div class="td-content"><%=member.getM_email()%></div>
+									</td>
+								</tr>
+								<form action="update_pw?id=<%=member.getId()%>" name="pwform"
+									onsubmit="return pw(this)" method="post">
+									<tr>
+										<td>비밀번호 변경</td>
+										<td>
+											<div class="td-content">
+												<div class="inpbx1">
+													<label for="user_password">현재 비밀번호</label> <input
+														id="user_password" name="input_pw" placeholder="현재 비밀번호"
+														type="password"
+														class="ng-untouched ng-pristine ng-invalid"> <input
+														name="pw_confirm" type="hidden"
+														value="<%=member.getM_password()%>">
+												</div>
+												<div class="inpbx1">
+													<label for="new_password">신규 비밀번호</label> <input
+														id="new_password" name="m_password" placeholder="신규 비밀번호"
+														type="password"
+														class="ng-untouched ng-pristine ng-invalid">
+														<div id="password_msg" style="font-size:4px;">ㄴ8-20자 이내 영문자, 숫자, 특수문자의 조합으로 입력해주세요.</div>
+										</div>
+												
+												<div class="inpbx1">
+													<label for="confirm_password">신규 비밀번호 확인</label> <input
+														id="confirm_password" name="confirm_pw"
+														placeholder="신규 비밀번호 확인" type="password"
+														class="ng-untouched ng-pristine ng-invalid">
+														<div id="pass_chk_f" style="display:none; font-size:4px;" >ㄴ비밀번호가 일치하지 않습니다.</div>
+						<div id="pass_chk_t" style="display:none;color:blue;font-size:4px;">ㄴ비밀번호가 일치합니다.</div>
+													<input type="submit" class="btn-check-hjs" value="비밀번호 변경" />
+												</div>
+											</div>
+										</td>
+									</tr>
+								</form>
+								<tr>
+									<td>이름</td>
+									<td>
+										<div class="td-content"><%=member.getM_name()%></div>
+									</td>
+								</tr>
+								<form id="nickChkform"
+									action="update_nick?id=<%=member.getId()%>" method="post">
+									<input type="hidden" name="id" value=<%=member.getId()%>>
 
 
 					<table class="tbinfo_hjs">
@@ -342,16 +448,16 @@ $(document).ready(function() {
 												<input type="hidden" name="m_eagree" id="modify_eagree" value="<%=member.getM_eagree() %>">
 										
 											</div>
-										</label>
-									</div>
-									<div class="etc">이벤트정보, 기타 다양한 정보를 빠르게 만나실 수 있습니다</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="btn_m">
-						<input type="submit" class="btn-check-hjs" value="수정">
-						&nbsp; <input type="reset" class="btn-check-hjs" value="취소">
+											<div class="etc">이벤트정보, 기타 다양한 정보를 빠르게 만나실 수 있습니다</div>
+										</td>
+									</tr>
+							</tbody>
+						</table>
+						<div class="btn_m">
+							<input style="width: 200px; height: 40px;" type="submit" class="btn-check-hjs" value="수정">
+							&nbsp; <a href="mypage"><input style="width: 200px; height: 40px;"  type="button" class="btn-check-hjs" value="취소"></a>
+						</div>
+						</form>
 					</div>
 					</form>
 				</div>

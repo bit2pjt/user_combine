@@ -95,7 +95,7 @@
 
 .card {
   width: 250px;
-  height: 500px;
+  /* height: 500px; */
   margin-left:10px
 }
 
@@ -172,7 +172,7 @@
 .ho-info{
 
   position:absolute;
-   top:330px; 
+   top:290px; 
   background:black;
    color:white;
    width: 250px;
@@ -400,8 +400,12 @@ input[type="button"].btn-block {
 
 .getheart{
 	color:red;
-	font-size:35px;
-
+	font-size:30px;
+}
+.getheart:hover { 
+ color:#ff6666;
+ cursor:pointer;
+ 
 }
 
 .getfol{

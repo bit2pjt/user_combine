@@ -189,6 +189,5 @@
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <!-- 6. 페이지별 script 추가 -->	
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>
