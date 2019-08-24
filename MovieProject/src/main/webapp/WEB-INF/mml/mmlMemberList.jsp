@@ -155,7 +155,6 @@ function load(id, cnt, btn) {
 
 </script>
 
-
-<%@ include file="../footer.jsp"%>
-</body>
-</html>
+<!-- <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script> -->
+<%@ include file="../footer1.jsp"%>
+<%@ include file="../footer2.jsp"%>
