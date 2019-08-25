@@ -88,6 +88,11 @@ public class MmlServiceImpl implements MmlService {
 	public int getContFollower(int id) {
 		return mmlDAO.getCountFollower(id);
 	}
+	
+	@Override
+	public int getContFollowing(int id) {
+		return mmlDAO.getCountFollowing(id);
+	}
 
 	@Override
 	public int getCountLike(int mml_num) {

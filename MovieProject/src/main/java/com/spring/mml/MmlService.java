@@ -32,6 +32,7 @@ public interface MmlService {
 	public Object getMemberInfo(int member);
 
 	public int getContFollower(int id);
+	public int getContFollowing(int id);
 
 	public int getCountLike(int mml_num);
 

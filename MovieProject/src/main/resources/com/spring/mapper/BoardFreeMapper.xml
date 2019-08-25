@@ -326,9 +326,25 @@
             , bf_decommend
             from
 		   (
+select
+            rownum rn
+        	, bf_bno
+            , id
+            , bf_category
+            , bf_title
+            , bf_reg_date
+            , bf_update_date
+            , bf_source
+            , bf_content
+            , bf_warn_counter
+            , bf_view_counter
+            , bf_deleteyn
+            , bf_recommend
+            , bf_decommend
+            from
+		   (
 		    select
-		    rownum rn
-		    , bf_bno
+		    bf_bno
             , id
             , bf_category
             , bf_title
@@ -348,6 +364,7 @@
        		<![CDATA[
             order by bf_bno desc
 		   )
+		   )
 		   where rn > (#{page} -1) *#{perPageNum} and rn <= #{page} * #{perPageNum}
         ]]>
     </select>
@@ -356,7 +373,7 @@
     	<![CDATA[
     	select * from (select * from board_free 
     	where bf_recommend >=3 and to_char(bf_reg_date, 'YYYYMMDD') = to_char(sysdate, 'YYYYMMDD') order by bf_recommend desc)
-		where rownum <= 10
+		where rownum <= 5
 		]]>
     </select>
     
@@ -365,7 +382,7 @@
     	select * from (
     	select * from board_free where  bf_recommend >=3 and bf_reg_date 
     	between to_char(TRUNC(sysdate, 'iw'), 'yyyymmdd') and to_char(TRUNC(sysdate, 'iw')+6, 'yyyymmdd') 
-    	order by bf_recommend desc)where rownum <= 10
+    	order by bf_recommend desc)where rownum <= 5
 		]]>
     </select>
     
@@ -373,7 +390,7 @@
     	<![CDATA[
     	select * from (select * from board_free 
     	where  bf_recommend >=3 and to_char(bf_reg_date, 'YYYYMM') = to_char(sysdate, 'YYYYMM') order by bf_recommend desc)
-		where rownum <= 10
+		where rownum <= 5
 		]]>
     </select>
 </mapper>

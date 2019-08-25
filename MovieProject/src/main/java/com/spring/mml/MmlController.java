@@ -292,6 +292,12 @@ public class MmlController {
 	public String mmlFollow(@RequestParam("id") int id, Model model) {
 		model.addAttribute("followee", mmlService.getMemberInfo(id));
 		System.out.println("followee 정보 적재 완료");
+
+		List<MemberVO> result = mmlService.getFollowList(id);
+		
+		model.addAttribute("followers", result);
+		System.out.println("followers 정보 적재 완료"+result);
+
 		System.out.println(result.get(0).getId());
 
 		return "mml/mmlFollowList";

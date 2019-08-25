@@ -187,11 +187,11 @@ $(function(){
 				</div>
 				<table class="tab-table">
 					<tbody id="table-tbody">
-						<c:forEach items="${boardListDaily}" var="board" varStatus="status" step="2">
+						<c:forEach items="${boardListDaily}" var="board" varStatus="status">
 							<tr>
-								<td style="width:8%;">[${status.index+1}위]&nbsp;</td>
+								<td style="width:8%;">${status.index+1}위</td>
 								<td style="width:10%;">${board.bf_category}</td>
-								<td style="width:45%;"><a href="boardFreeGet?bno=${boardListDaily[status.index].bf_bno}">${boardListDaily[status.index].bf_title}</a></td>
+								<td style="width:45%;"><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></td>
 								<td style="width:15%;">${board.nickname}</td>
 								<td style="width:15%;"><fmt:formatDate value="${board.bf_update_date}" pattern="yyyy/MM/dd"/></td>
 							</tr>

@@ -37,6 +37,8 @@ public interface MmlDAO {
 	public MemberVO getMemberInfo(int id);
 
 	public int getCountFollower(int id);
+	
+	public int getCountFollowing(int id);
 
 	public int getCountLike(int mml_num);
 

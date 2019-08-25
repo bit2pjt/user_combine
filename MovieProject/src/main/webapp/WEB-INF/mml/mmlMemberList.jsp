@@ -52,7 +52,6 @@
 <br>
 <br>
 <br>
-
 <div class="buster-light">
 
 	<!-- celebrity grid v2 section-->
@@ -109,6 +108,7 @@
 				<div class="blog-detail-ct">
 					<div class="flex-it share-tag" style="width: 1258px;"></div>
 				</div>
+
 
 
 

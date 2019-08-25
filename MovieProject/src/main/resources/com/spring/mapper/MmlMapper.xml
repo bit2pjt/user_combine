@@ -146,6 +146,12 @@
 		where id =#{id}
 	</select>
 	
+	<select id="getCountFollowing" resultType="INTEGER">
+		select m_following
+		from member
+		where id =#{id}
+	</select>
+	
 	<select id="getCountLike" resultType="INTEGER">
 		select mml_like
 		from mml_content

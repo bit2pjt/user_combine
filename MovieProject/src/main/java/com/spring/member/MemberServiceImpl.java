@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
 
 		sendMail.setSubject("[BlockBuster] 회원가입 이메일 인증");
 		sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>").append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-				.append("<a href='http://localhost:8080/movie/joinConfirm?id=").append(id).append("&m_email=")
+				.append("<a href='http://192.168.1.6:8080/movie/joinConfirm?id=").append(id).append("&m_email=")
 				.append(vo.getM_email()).append("&m_authkey=").append(m_authkey)
 				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 		sendMail.setFrom("bit0hyj@gmail.com", "BlockBuster Admin");

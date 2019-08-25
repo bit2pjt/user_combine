@@ -69,7 +69,9 @@
 									|| followee.getM_image().equals("null")) {
 						%>
 						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
+
 							style="width: 100px; height: 100px; border-radius: 50px;">
+
 						<%
 							} else {
 						%>
@@ -139,10 +141,12 @@
                         		<div class="blog-it-infor" style="vertical-align:middle">
                         			<c:choose>
                         				<c:when test="${follower.m_image==null}" >
+
 											<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width: 80px; height: 80px; border-radius: 40px;">
 										</c:when>
 										<c:otherwise>
 											<img src="./upload/${follower.m_image }" style="width: 80px; height: 80px; border-radius: 40px;">
+
 										</c:otherwise>
 									</c:choose>
                         				<c:set var="level" value="${follower.m_level}"/>
