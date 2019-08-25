@@ -336,7 +336,7 @@
 
 			<div class="col-md-12">
 				<br>
-				<h4>댓글 목록</h4>
+				<h4>Reply list</h4>
 				<br>
 				<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
 				<div class="comments"

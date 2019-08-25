@@ -56,7 +56,7 @@
     	<div class="buster-light">
 
 <!-- celebrity grid v2 section-->
-<div class="page-single" style="height: 800px;">
+<div class="page-single">
 	<div class="container">
 		<div class="row">
                 <!-- followee의 정보 -->
@@ -69,14 +69,12 @@
 									|| followee.getM_image().equals("null")) {
 						%>
 						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
-
-							style="width: 100px; height: 100px; border-radius: 50px;">
-
+							style="width: 120px; height: 120px;border-radius:60px;">
 						<%
 							} else {
 						%>
 						<img src="./upload/${requestScope.followee.m_image }"
-							style="width: 100px; height: 100px; border-radius: 50px;">
+							style="width: 120px; height: 120px;">
 						<%
 							}
 						%>
@@ -99,9 +97,8 @@
                         <h1 style="display:inline">&nbsp;'s FollowList</h1>
                    	</div>      
  				</div>
-                <div style="float:right;">
-					<h4 style="display:inline">팔로워수 </h4> <h4 style="display:inline; color: lightcoral" > <c:out value="${followee.m_follower}"/> </h4>
-					<h4 style="display:inline">팔로잉수 </h4> <h4 style="display:inline; color: lightcoral" > <c:out value="${followee.m_following }"/> </h4>
+                <div style="float:left;">
+					<h1 style="display:inline">Followers : </h1> <h4 style="display:inline; color: lightcoral" > <c:out value="${followee.m_follower}"/> </h4>
 				</div>
                 <div class="blog-detail-ct">
                 	<div class="flex-it share-tag" style="width:100%;"></div>
@@ -135,18 +132,16 @@
     				
                  	<c:forEach items="${followers}" var="follower">
                  
-                 	<%-- <li class="js-load">
+                 	<li class="js-load">
                  		<div class="sp_col-md-4">               	
-                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px; border-radius: 17px;">
+                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px">
                         		<div class="blog-it-infor" style="vertical-align:middle">
                         			<c:choose>
                         				<c:when test="${follower.m_image==null}" >
-
-											<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width: 80px; height: 80px; border-radius: 40px;">
+											<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width: 120px; height: 120px;border-radius:60px;">
 										</c:when>
 										<c:otherwise>
-											<img src="./upload/${follower.m_image }" style="width: 80px; height: 80px; border-radius: 40px;">
-
+											<img src="./upload/${follower.m_image }" style="width: 120px; height: 120px;border-radius:60px;">
 										</c:otherwise>
 									</c:choose>
                         				<c:set var="level" value="${follower.m_level}"/>
@@ -161,43 +156,11 @@
         											<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
     											</c:otherwise>
 											</c:choose>
-                        				<div style="float:right;">
-                        				<h4 style="display:inline">팔로워수  </h4><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_follower}"/>   </h4>
-                        				<h4 style="display:inline">팔로잉수  </h4><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_following}"/>   </h4>
-                        				</div>
 										<!-- c:set은 짝짝이 태그 -->
                         				&nbsp;<h3 style="display:inline"><a href="blogdetail_light.html"></a><c:out value="${follower.m_nickname}"/></h3>
                         				
-                        			 </div>
-                       			</div>
-                    		</div>
-                       </li> --%>
-                       <li class="js-load">
-                 		<div class="sp_col-md-4">               	
-                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px; border-radius: 17px;">
-                        		<div class="blog-it-infor" style="vertical-align:middle">
-                        			<!-- 이미지 시작 -->
-                        			<c:choose>
-                        				<c:when test="${follower.m_image==null}" >
-											<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width: 80px; height: 80px; border-radius: 40px;">
-										</c:when>
-										<c:otherwise>
-											<img src="./upload/${follower.m_image }" style="width: 80px; height: 80px; border-radius: 40px;     margin-left: 20px;">
-										</c:otherwise>
-									</c:choose>
-									<!-- 팔로워수  -->		
-                        				<div style="float:right; display:inline; margin-right: 92px;  margin-top: 19px;">
-                        				<h4 style="display:inline">팔로워수  </h4><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_follower}"/>   </h4>
                         				<br>
-                        				<h4 style="display:inline">팔로잉수  </h4><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_following}"/>   </h4>
-                        				</div>
-									<!-- 팔로워수끝 -->                        				
-									<!-- 왕관 -->
-									<div>
-                        				<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
-									<!-- 왕관 끝 -->
-                        				&nbsp;<h3 style="display:inline;     font-size: 20px;"><a href="blogdetail_light.html"></a><c:out value="${follower.m_nickname}"/></h3>
-                        				</div>
+                        				<h1 style="display:inline">Followers : </h1><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_follower}"/>   </h4>
                         			 </div>
                        			</div>
                     		</div>

@@ -32,7 +32,6 @@
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
 <script>
-
 	function deleteQnaDetail() {
 
 		var qno = qform.qna_no.value;
@@ -139,12 +138,10 @@
 								<div class="btn_m">
 									<input style="width:200px; height: 40px;" type="button"
 										onClick="location.href='one_update?qna_no=${requestScope.qnaDetail.qna_no}'"
-
 										class="btn-check-hjs" value="수정"> &nbsp; <input style="width:200px; height: 40px;"
 										type="reset" class="btn-check-hjs" value="삭제"
 										onclick="deleteQnaDetail()"> 
 									<input  type="hidden" name="qna_no" value="${requestScope.qnaDetail.qna_no}">
-
 								</div>
 								<br>
 							</form>

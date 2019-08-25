@@ -53,9 +53,8 @@ public interface MyPageDAO {
 	public int insertQna(OneVO oneVO);	//1:1 문의 등록
 	public OneVO getQnaDetail(int qna_no);	//1:1 문의 상세정보 가져오기
 	public int updateQna(OneVO oneVO);	//1:1 문의 상세정보 수정하기
-
-	public int deleteQna(int qna_no); // 삭제하기
-
+	public int deleteQna(int qna_no);
+	
 	
 	//hm | 1:1 문의 답변 가져오기
 	public OneAdVO getQnaAdDetail(int qna_no); // 1:1 문의 상세정보 가져오기
