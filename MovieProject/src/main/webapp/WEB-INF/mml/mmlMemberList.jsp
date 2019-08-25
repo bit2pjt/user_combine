@@ -60,7 +60,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="flex-it share-tag" style="width: 1258px; float: left;">
-					<div class="social-link" style="width: 1258px; display: flex;">
+					<div class="social-link" style="width: 100%; display: flex;">
 
 						<div style="flex: 2; display: inherit;">
 							<%
