@@ -274,6 +274,91 @@ public class MmlServiceImpl implements MmlService {
 
 		return list;
 	}
+	
+	@Override
+	public String reply_check(ThumbVO vo) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		// mml_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
+		ThumbVO thumbVO = mmlDAO.reply_check(vo); 
+		String msg = "";
+		
+		if( thumbVO != null) {// mml_thumb테이블에 해당 댓글번호가 있으면 중복 추천/비추천 불가
+			msg ="fail";
+		}else { 
+			msg = String.valueOf(replyRecommend(vo)); // mml_reply에서 추천수를 가져와서 보여준다.
+		}
+		return msg;
+	}
+
+	@Override
+	public int replyRecommend(ThumbVO vo) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		mmlDAO.replyRecommend(vo); // mmlr_thumb 추가
+		int num=0;
+		System.out.println("mmlr_thumb: " + vo.getMml_reply_code());
+		if(vo.getMmlr_thumb() == 1) {
+			updateReplyRecommend(vo); // mml_reply update
+			num = getReplyRecommend(vo.getMml_reply_code());
+		}else {
+			updateReplyDecommend(vo); // mml_reply update
+			num = getReplyDecommend(vo.getMml_reply_code());
+		}
+		return num;
+	}
+	
+
+	private int getReplyRecommend(int mml_reply_code) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		int num = mmlDAO.getReplyRecommend(mml_reply_code);
+		return num;
+	}
+	
+
+	private int getReplyDecommend(int mml_reply_code) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		int num = mmlDAO.getReplyDecommend(mml_reply_code);
+		return num;
+	}
+	
+	
+	private void updateReplyRecommend(ThumbVO vo) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		mmlDAO.updateReplyRecommend(vo);
+	}
+	
+	private void updateReplyDecommend(ThumbVO vo) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		mmlDAO.updateReplyDecommend(vo);
+	}
+	
+	@Override
+	public String ReplyWarn(WarnVO vo) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		WarnVO warnVO = mmlDAO.ReplyWarn(vo);
+		String msg = "";
+		
+		if(warnVO != null) {
+			msg = "fail";
+		}else {
+			msg = String.valueOf(insertReplyWarn(vo));  // 1
+		}
+		
+		return msg;
+	}
+	
+	private void ReplyWarnCount(int rno) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		mmlDAO.ReplyWarnCount(rno);
+	}
+	
+	@Override
+	public int insertReplyWarn(WarnVO vo) {
+		MmlDAO mmlDAO = sqlSession.getMapper(MmlDAO.class);
+		ReplyWarnCount(vo.getMml_reply_code()); // 신고수 1 증가
+		int num = mmlDAO.insertReplyWarn(vo); 
+		
+		return num;
+	}
 
 	@Override
 	public String reply_check(ThumbVO vo) {

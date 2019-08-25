@@ -182,6 +182,7 @@
   opacity: 0.6;
   right:5%;
   transition:all .3s linear;
+  height:111px;
 }
 
 .card:hover .ho-info{
@@ -419,8 +420,8 @@ input[type="button"].btn-block {
 }
 
 .crown{
-	width:45px;
-	height:45px;
+	width: 30px;
+    height: 30px;
 }
 
 .profile_img{
