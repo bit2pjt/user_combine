@@ -38,6 +38,62 @@ function update_img(){
 		$('#sbtn').click();
 	}
 }
+/*
+$(function() {
+		var session = "${sessionyn}";
+		var img_btn = $("#m_image_btn");
+		var file_img = $("#file_img");
+		
+		reco.on("click", function() {
+		 	if( session == "") {
+		 		alert("로그인 하셔야 이용하실수 있습니다.");
+		 		location.href="index";
+		 		return false;
+		 	}
+			$.ajax({
+				url:"profileAddAction",
+				data: {id: session, file: 1},
+				dataType: "text",
+				type:"post",
+				success: function(data) {
+					if(data == "fail") {
+						alert("이미 추천/비추천을 누르셨습니다.");
+						return false;
+					}else {
+						reco.html("<i class='far fa-thumbs-up' aria-hidden='true' ></i>  " + data);
+					}
+				},
+				error: function() {
+					alert("에러");
+				}
+			});
+		});
+		
+		deco.on("click", function() {
+		 	if( session == "") {
+		 		alert("로그인 하셔야 이용하실수 있습니다.");
+		 		location.href="index";
+		 		return false;
+		 	}
+			$.ajax({
+				url:"boardFreeReco",
+				data: {bf_bno: bno, type: 0},
+				dataType: "text",
+				type:"post",
+				success: function(data) {
+					if(data == "fail") {
+						alert("이미 추천/비추천을 누르셨습니다.");
+						return false;
+					}else {
+						deco.html("<i class='far fa-thumbs-down' aria-hidden='true'></i>  " + data);
+					}
+				},
+				error: function() {
+					alert("에러");
+				}
+			});
+		});
+		*/
 </script>
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
@@ -99,7 +155,9 @@ function update_img(){
 									<%if(member.getM_image() == null || member.getM_image().equals("") || member.getM_image().equals("null")) {%>
 										<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width:120px;height:120px;">
 									<%}else{ %>
+
 									<img src="./upload/${requestScope.member.m_image }" style="width:120px;height:120px;">
+
 									<%} %>
 									<form name="goodsform" action="./profileAddAction?id=<%= member.getId() %>" method="post" enctype="multipart/form-data">
 										<input name="file" id="file_img" type="file" onchange="update_img()" style="visibility:hidden;height:1px;" />
@@ -205,7 +263,7 @@ function update_img(){
 	</div>
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="../footer1.jsp"%>
-
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <!-- 6. 페이지별 script 추가해 주세요. -->
 
 <!-- 7. footer2.jsp : script -->

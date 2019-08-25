@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.spring.boardFree.BoardFreeDAO;
 import com.spring.boardFree.ThumbVO;
 import com.spring.boardFree.WarnVO;
+import com.spring.mml.Mml_ContentVO;
 import com.spring.mypage.MyPageDAO;
 import com.spring.mypage.OneVO;
 import com.spring.paging.SearchCriteria;
@@ -93,6 +94,18 @@ public class MovieServiceImpl implements MovieService {
 		MovieDAO movieDAO = sqlSession.getMapper(MovieDAO.class);
 		MovieInfoVO vo = movieDAO.getMovieInfo(mi_ktitle);
 		return vo;
+	}
+	
+	@Override
+	public List<String> getTitle(Mml_ContentVO content) {
+		MovieDAO movieDAO = sqlSession.getMapper(MovieDAO.class);
+		List<String> result = new ArrayList<String>();
+		String[] mi_code = content.getMi_code().split(",");
+		for(int i=0; i<mi_code.length; i++) {
+			System.out.println("result : " + movieDAO.getTitle(Integer.parseInt(mi_code[i])));
+			result.add(movieDAO.getTitle(Integer.parseInt(mi_code[i])));
+		}
+		return result;
 	}
 
 	@Override
@@ -206,9 +219,9 @@ public class MovieServiceImpl implements MovieService {
 	  * @return msg
 	 */
 	@Override
-	public String ReplyWarn(WarnVO vo) {
+	public String replyWarn(WarnVO vo) {
 		MovieDAO movieDAO = sqlSession.getMapper(MovieDAO.class);
-		WarnVO warnVO = movieDAO.ReplyWarn(vo);
+		WarnVO warnVO = movieDAO.replyWarn(vo);
 		String msg = "";
 		
 		if(warnVO != null) {

@@ -109,6 +109,12 @@
 		WHERE mi_ktitle = #{mi_ktitle}
     </select>
     
+    <select id="getTitle" parameterType="int" resultType="String">
+		SELECT	mi_ktitle
+		FROM movie_info
+		WHERE mi_code = #{mi_code}
+    </select>
+    
     <select id="getUser" parameterType="String" resultType="int">
 		select NVL(id, 0)
 		from member
@@ -151,7 +157,7 @@
 	</select>
     
  	<!-- 댓글 신고  -->
- 	<select id="ReplyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
+ 	<select id="replyWarn" parameterType="com.spring.boardFree.WarnVO" resultMap="WarnMap">
 		select *
 		from mr_warning
 		where mr_code = #{mr_code} and id = #{id}
@@ -162,7 +168,7 @@
 	</update>
 	
 	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">
-		insert into mr_warning values(#{id}, #{mr_code}, sysdate)
+		insert into mr_warning values(#{id}, #{mr_code}, sysdate,#{mr_warncontent, jdbcType=VARCHAR})
 	</insert>
     
     

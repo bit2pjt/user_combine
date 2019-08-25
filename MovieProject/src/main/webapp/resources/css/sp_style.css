@@ -95,7 +95,7 @@
 
 .card {
   width: 250px;
-  height: 500px;
+  /* height: 500px; */
   margin-left:10px
 }
 
@@ -172,7 +172,7 @@
 .ho-info{
 
   position:absolute;
-   top:320px; 
+   top:290px; 
   background:black;
    color:white;
    width: 250px;
@@ -182,6 +182,7 @@
   opacity: 0.6;
   right:5%;
   transition:all .3s linear;
+  height:111px;
 }
 
 .card:hover .ho-info{
@@ -400,8 +401,12 @@ input[type="button"].btn-block {
 
 .getheart{
 	color:red;
-	font-size:35px;
-
+	font-size:30px;
+}
+.getheart:hover { 
+ color:#ff6666;
+ cursor:pointer;
+ 
 }
 
 .getfol{
@@ -415,8 +420,8 @@ input[type="button"].btn-block {
 }
 
 .crown{
-	width:45px;
-	height:45px;
+	width: 30px;
+    height: 30px;
 }
 
 .profile_img{

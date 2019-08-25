@@ -2,6 +2,8 @@ package com.spring.mml;
 
 import java.util.List;
 
+import com.spring.boardFree.ThumbVO;
+import com.spring.boardFree.WarnVO;
 import com.spring.member.MemberVO;
 import com.spring.paging.SearchCriteria;
 
@@ -66,6 +68,13 @@ public interface MmlService {
 
 	public int getMmlId(int id);
 
+	String reply_check(ThumbVO vo);
+
+	int replyRecommend(ThumbVO vo);
+	
+	int insertReplyWarn(WarnVO vo);
+
+	String ReplyWarn(WarnVO vo);
 	
 	int countSearchedArticles(SearchCriteria searchCriteria);
 	List<Mml_ListDTO> listSearch(SearchCriteria searchCriteria);

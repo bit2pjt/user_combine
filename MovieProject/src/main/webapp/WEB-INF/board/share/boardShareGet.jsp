@@ -203,7 +203,7 @@ window.onload = function(){
 		
 	<div class="col-md-12">
 		<br>
-		<h4> Reply list </h4>
+		<h4> 댓글 목록 </h4>
 		<br>
 		<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
 		<div class="comments" style="border-width:3px 0px;border-style:solid;">
@@ -495,7 +495,6 @@ window.onload = function(){
 <!-- 6. 페이지별 script 추가 -->
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>

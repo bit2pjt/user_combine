@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.boardFree.ThumbVO;
 import com.spring.boardFree.WarnVO;
+import com.spring.mml.Mml_ContentVO;
 import com.spring.paging.SearchCriteria;
 
 public interface MovieService {
@@ -11,6 +12,7 @@ public interface MovieService {
 	public List<MovieInfoVO> getMovieListSerch(SearchCriteria searchCriteria);
 	public int countSearchedMovie(SearchCriteria searchCriteria);
 	public MovieInfoVO getMovieInfo(String mi_ktitle);
+	public List<String> getTitle(Mml_ContentVO content);
 	public int getUser(String email);
 	
 	public String reply_check(ThumbVO vo);
@@ -18,7 +20,7 @@ public interface MovieService {
 	
 	
 	public int insertReplyWarn(WarnVO vo);
-	public String ReplyWarn(WarnVO vo);
+	public String replyWarn(WarnVO vo);
 	
 	public List<MovieInfoVO> getMovieList_title(String search_input);
 	public List<MovieInfoVO> getMovieList_release(String search_input);
