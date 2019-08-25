@@ -20,6 +20,26 @@ function countFollower(id, callback, error) {
 	});
 }
 
+function countFollowing(id, callback, error) {
+	console.log('id를 기준으로 팔로워 카운터 시작' + id);
+	$.ajax({
+		type: 'get',
+		dataType: 'json',	//자동처리 믿지말자. 없으면 success가 작동하지 않는다.
+		url: '/movie/getCountFollowing/' + id,
+		success: function (result) {
+			console.log('countFollowing call back  : ' + result);
+			if (callback) {
+				callback(result);
+			}
+		},
+		error: function (xhr, status, er) {
+			if (error) {
+				alert('에러??');
+				error(er);
+			}
+		}
+	});
+}
 
 //1-2. 화면의 좋아요 수 갱신
 function countLike(mml_num, callback, error) {

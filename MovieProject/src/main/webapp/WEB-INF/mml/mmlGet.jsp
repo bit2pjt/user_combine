@@ -74,12 +74,12 @@
 										<c:when test="${level eq 'BRONZE'}">
 											<img class="crown"
 												style="height: 25px; width: 25px; margin: 5px"
-												src="<c:url value="/resources/images/sp_image/helmet.png" />">
+												src="<c:url value="/resources/images/sp_image/crown.png" />">
 										</c:when>
 										<c:when test="${level eq 'SILVER'}">
 											<img class="crown"
 												style="height: 25px; width: 25px; margin: 5px"
-												src="<c:url value="/resources/images/sp_image/shield.png"/>">
+												src="<c:url value="/resources/images/sp_image/crown.png"/>">
 										</c:when>
 										<c:otherwise>
 											<img class="crown"
@@ -167,10 +167,17 @@
 									src="<c:url value="/resources/images/sp_image/add-user.png"/>">
 								</a> 
 								 
-								<span
-									OnClick="location.href ='mmlFollowList?id=<c:out value="${member.id}"/>'">
-									<h4 style="display: inline">Followers</h4>
+								<span 
+									onclick="location.href ='mmlFollowList?id=<c:out value="${member.id}"/>'">
+									<h4 style="display: inline">Followers</h4></span>
 									<h4 id="ws_follower_set"
+										style="display: inline; color: lightcoral">
+										<!-- 팔로워 수가 들어올 자리지만, 이는 Ajax가 페이지 로딩이 끝난 후 채워준다. 변화가 잦은 영역이기 때문 -->
+									</h4>
+									<span
+									onclick="location.href ='mmlFollowingList?id=<c:out value="${member.id}"/>'">
+									<h4 style="display: inline">Followings</h4></span>
+									<h4 id="ws_following_set"
 										style="display: inline; color: lightcoral">
 										<!-- 팔로워 수가 들어올 자리지만, 이는 Ajax가 페이지 로딩이 끝난 후 채워준다. 변화가 잦은 영역이기 때문 -->
 									</h4>
@@ -390,6 +397,10 @@
 		//1. 게시자의 팔로워 수 조회
 		countFollower($('#ws_id').val(), function(result) {
 			$('#ws_follower_set').html(result);
+		});
+		
+		countFollowing($('#ws_id').val(), function(result) {
+			$('#ws_following_set').html(result);
 		});
 
 		//2. 게시글의 추천수 조회

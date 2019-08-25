@@ -19,6 +19,15 @@ public class MmlRestController {
 		String result = mmlService.getContFollower(id) + "";
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getCountFollowing/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<String> getCountFollowing(@PathVariable("id") int id) {
+// 왜 ResponseEntity는 Integer를 정상적으로 못넘기지? 객체에 담아서 보내면 불안한데...
+		String result = mmlService.getContFollowing(id) + "";
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 
 	@GetMapping(value = "/getCountLike/{mml_num}", produces = { MediaType.APPLICATION_XML_VALUE,
 																	MediaType.APPLICATION_JSON_UTF8_VALUE })

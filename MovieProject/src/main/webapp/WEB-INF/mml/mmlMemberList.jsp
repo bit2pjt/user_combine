@@ -67,12 +67,12 @@
 									|| follower.getM_image().equals("null")) {
 						%>
 						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
-							style="width: 120px; height: 120px;">
+							style="width: 120px; height: 120px;border-radius:60px;">
 						<%
 							} else {
 						%>
 						<img src="./upload/${requestScope.follower.m_image }"
-							style="width: 120px; height: 120px;">
+							style="width: 120px; height: 120px;border-radius:60px;">
 						<%
 							}
 						%>
