@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.spring.boardFree.ThumbVO;
-import com.spring.boardFree.WarnVO;
 import com.spring.member.MemberVO;
 import com.spring.paging.SearchCriteria;
 
@@ -86,24 +84,6 @@ public interface MmlDAO {
 	public String getMmlNickname(int id);
 
 	public int getMmlId(int id);
-	
-	ThumbVO reply_check(ThumbVO vo);
-	
-	void updateReplyRecommend(ThumbVO vo);
-		
-	void updateReplyDecommend(ThumbVO vo);
-		
-	int getReplyRecommend(int mml_reply_code);
-		
-	int getReplyDecommend(int mml_reply_code);
-	
-	int replyRecommend(ThumbVO vo);
-	
-	int insertReplyWarn(WarnVO vo);
-	
-	WarnVO ReplyWarn(WarnVO vo);
-	
-	void ReplyWarnCount(int mml_reply_code);
 	
 	int countSearchedArticles(SearchCriteria searchCriteria);
 	List<Mml_ListDTO> listSearch(SearchCriteria searchCriteria);

@@ -118,7 +118,7 @@
 	</insert>
 	
 	<insert id="insertWarn" parameterType="com.spring.boardFree.WarnVO">
-		insert into free_warning values(#{bf_bno}, #{id}, sysdate, #{bf_warncontent, jdbcType=VARCHAR})
+		insert into free_warning values(#{bf_bno}, #{id}, sysdate)
 	</insert>
 	
 	<insert id="insertReplyWarn" parameterType="com.spring.boardFree.WarnVO">

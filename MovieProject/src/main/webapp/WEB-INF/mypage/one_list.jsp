@@ -72,7 +72,7 @@
 								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
-							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
+							<ul>
 								<li>고객센터</li>
 								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>

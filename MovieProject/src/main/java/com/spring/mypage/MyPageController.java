@@ -34,11 +34,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -94,13 +92,11 @@ public class MyPageController {
 		//서버의 사진이 날아가면 로컬에 저장된 사진들을 서버로 복붙해서 테스트하면 됩니당.
 		
 		//******아래의 경로, server.xml, servlet-context.xml의 모든 경로를 바꿔주세용******
-
-		realPath_t="/Users/yujeen/Desktop/bitcamp2019/2019bitPro/upload/";
-
+		realPath_t="/Users/yujeen/Desktop/bitcamp2019/2019bitPro/upload";
 		
 //		System.out.println("================= profileAddAction | realPath ===================="+realPath);
 //		System.out.println("================= profileAddAction | realPath_t ===================="+realPath);
-			
+		
 		List saveFiles = new ArrayList();
 		try {
 			MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)request;
@@ -206,7 +202,13 @@ public class MyPageController {
 		MemberVO member = myPageService.getMember(memberVO.getId());
 		model.addAttribute("member", member);
 		
-	
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('닉네임이 변경되었습니다.!');");
+		out.println("history.go(-1);");
+		out.println("</script>");
+		out.close();
 
 		return "mypage/member_info";
 
@@ -252,15 +254,7 @@ public class MyPageController {
 	
 	// 마이페이지 - 회원탈퇴 (링크이동)
 	@RequestMapping(value = "/member_out", method = RequestMethod.GET)
-	public String memberOut(HttpSession session,Model model) {
-		
-		String m_email = (String) session.getAttribute("m_email");
-		int id = myPageService.getMemberId((String) session.getAttribute("m_email"));
-		MemberVO member = myPageService.getMember(id);
-		model.addAttribute("member", member);
-		
-		model.addAttribute("m_email", m_email);
-		
+	public String memberOut() {
 		return "mypage/member_out";
 	}
 
@@ -277,12 +271,11 @@ public class MyPageController {
 		System.out.println("m_password:" + m_password);
 		System.out.println("id:" + id);
 
-		myPageService.delete_member(m_email);
 		rttr.addFlashAttribute("delete_msg", "탈퇴가 왼료되었습니다.");
 		// 로그아웃으로 세션들을 초기화시킴
 		session.invalidate();
 
-		return "redirect:/index";
+		return "redirect:/";
 	}
 
    // 마이페이지 - 1:1 문의내역 리스트
@@ -506,26 +499,4 @@ public class MyPageController {
 		return "mypage/folfol_list";
 	}
 
-   
-   // hm | 마이페이지 - 문의 삭제
-	@GetMapping("/one_delete")
-	public String one_delete(@RequestParam("qna_no") int qna_no, HttpServletResponse response) {
-		myPageService.deleteQna(qna_no);
-		System.out.println(qna_no + " 번 나영리 게시물 삭제. 리스트 페이지로 Redirect");
-		// 알림창으로 삭제되었음을 통지할까??
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		out.println("<script>");
-		out.println("alert('�Խñ��� �����Ǿ����ϴ�.');");
-		out.println("location.replace('/movie/one_list')");
-		out.println("</script>");
-		out.close();
-		return "redirect:/one_list";
-	}
 }

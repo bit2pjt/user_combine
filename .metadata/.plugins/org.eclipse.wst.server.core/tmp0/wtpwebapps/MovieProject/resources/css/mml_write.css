@@ -173,16 +173,16 @@ yj : start | index 페이지 상단의 영화 차트 관련
 .movielist-card{
 	display: inline-block;
     background-color: white;
-    width: 150px;
-    height: 200px;
-    margin: 10px 20px;
+    width: 300px;
+    height: 150px;
+    margin: 10px;
     position: relative;
     border: 1px solid black;
 }
 
 .movielist-card img{
-	max-width:150px;
-	max-height:200px;
+	max-width:100px;
+	max-height:150px;
 }
 
 .movielist-card .movie-info{

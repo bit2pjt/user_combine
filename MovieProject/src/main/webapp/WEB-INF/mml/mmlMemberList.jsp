@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.spring.member.MemberVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!--
 /**
 * @Class Name : mmlMemberList.jsp
@@ -25,19 +23,17 @@
 <%@ include file="../header1.jsp"%>
 
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/sp_style.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/sp_style.css" />">
+
 <style>
 .js-load {
-	display: none;
+    display: none;
 }
-
 .js-load.active {
-	display: block;
+    display: block;
 }
-
 .is_comp.js-load:after {
-	display: block;
+    display: block;
 }
 </style>
 
@@ -45,7 +41,7 @@
 <script src="https://kit.fontawesome.com/bb8498b585.js"></script>
 
 <!-- 3. heaer2.jsp : header -->
-<%@ include file="../header2.jsp"%>
+<%@ include file="../header2.jsp" %>
 
 
 <br>
@@ -53,153 +49,113 @@
 <br>
 <br>
 
-<div class="buster-light">
+    	<div class="buster-light">
 
-	<!-- celebrity grid v2 section-->
-	<div class="page-single" style="height: 800px;">
-		<div class="container">
-			<div class="row">
-				<div class="flex-it share-tag" style="width: 1258px; float: left;">
-					<div class="social-link" style="width: 100%; display: flex;">
-
-						<div style="flex: 2; display: inherit;">
-							<%
-								MemberVO follower = (MemberVO) request.getAttribute("follower");
-								if (follower.getM_image() == null || follower.getM_image().equals("")
-										|| follower.getM_image().equals("null")) {
-							%>
-							<img src="resources/images/customs/ws_img/defaultprofile.PNG"
-								style="width: 100px; height: 100px; border-radius: 50px; margin-right: 50px;">
-							<%
-								} else {
-							%>
-							<img src="./upload/${requestScope.follower.m_image }"
-								style="width: 100px; height: 100px; border-radius: 50px; margin-right: 50px;">
-							<%
-								}
-							%>
-							<div
-								style="display: inline; margin-top: auto; margin-bottom: auto;">
-								<div class="hm_intro">
-									<img class="mml_crown" style="vertical-align: top;"
-										src="<c:url value="/resources/images/sp_image/crown.png"/>">
-									<h2 style="display: inline">${follower.m_nickname}</h2>
-								</div>
-								<!-- hm| 가입일 추가 -->
-								<div style="color: #ccc; display: inline;">
-									<h6>회원 가입일 ${follower.m_regdate }</h6>
-								</div>
-							</div>
-						</div>
-
-						<div style="flex: 2;">
-
-							<h4 style="display: inline">팔로워 수</h4>
-							<h4 style="display: inline; color: lightcoral">${follower.m_follower }</h4>
-							&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-							<h4 style="display: inline">팔로잉 수</h4>
-							<h4 style="display: inline; color: lightcoral">${follower.m_following }
-								&nbsp;&nbsp;&nbsp;</h4>
-
-						</div>
-
-					</div>
-				</div>
-
-				<div class="blog-detail-ct">
-					<div class="flex-it share-tag" style="width: 1258px;"></div>
-				</div>
-
-
+<!-- celebrity grid v2 section-->
+<div class="page-single">
+	<div class="container">
+		<div class="row">
+                <div class="flex-it share-tag" style="width:1258px; float:left;">
+                        <div class="social-link" style="width:1258px; display:flex;">
+                       
+                            <div style="flex:2;">
+                                <img src="<c:url value="/resources/images/sp_image/dog.jfif"/>"  class="profile_img">
+                           &nbsp;&nbsp; <img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;<h2 style="display:inline">${follower.m_nickname}</h2>
+                            </div>
+                           
+                            <div style="flex:2;"> 
+                          
+                            <h4 style="display:inline; color: lightcoral" >${follower.m_follower }</h4>&nbsp;&nbsp;&nbsp;&nbsp;<h4 style="display:inline">Followers</h4> 
+                          
+							&nbsp;&nbsp;&nbsp;&nbsp; <h4 style="display:inline; color: lightcoral">${follower.m_following } &nbsp;&nbsp;&nbsp;  </h4><h4 style="display:inline">Followings</h4>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                   
+                    <div class="blog-detail-ct">
+                    <div class="flex-it share-tag" style="width:1258px;">
+                        </div>
+                        </div>
+                    
+				
 
 
 
 
 				<div class="row1">
-					<div id="contents">
-						<div id="js-load" class="main">
-
-							<c:forEach var="mml3" items="${requestScope.mmlList3 }">
-								<li class="js-load">
-									<div class="sp_col-md-41" id="js-load">
-										<div class="card"
-											OnClick="location.href ='mmlGet?mml_num=${mml3.mml_num} '"
-											style="cursor: pointer;">
-											<c:set var="poster_one"
-												value="${fn:split(mml3.mml_poster,',')}" />
-											<img class="card-img"
-												src="<c:url value="${poster_one[0] }"/>" alt="header" />
-											<div class="card-info">
-												<div class="card-ho"></div>
-												<div class="ho-info">
-													<h1 style="text-align: left; font-size: 25px">${mml3.mml_title }</h1>
-													<!-- hm| 하단부시작 -->
-													<div class="hm_poster_bottom" style="margin-bottom: 1px; position: absolute; bottom: 0px;">
-														<div style="float: left;">
-															<img class="mml_crown"  style="vertical-align: top;"
-																src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
-															<h3 style="display: inline; text-align: left"
-																class="card-author" style="display:inline">${mml3.m_nickname }</h3>
-														</div>
-														<div class="poster_bottom_right" style="float: right; margin-top: -15px;     margin-left: 29px;"> 
-														<br> <span style="color: red"><i
-															class="fas fa-heart"></i></span>&nbsp;${mml3.mml_like }&nbsp;<i
-															class="far fa-eye"></i>&nbsp;${mml3.mml_view_count }&nbsp;
-														</div>
-													</div>
-												</div>
-
-											</div>
-										</div>
+				<div id="contents">
+				<div id="js-load" class="main">
+	
+	<c:forEach var="mml3" items="${requestScope.mmlList3 }">
+	<li class="js-load">
+	<div class="sp_col-md-41" id="js-load">
+							<div class="card" OnClick="location.href ='mmlGet?mml_num=${mml3.mml_num} '" style="cursor:pointer;">
+									<img class="card-img" src="<c:url value="/resources/images/sp_image/${mml3.mml_poster }"/>" alt="header" />
+									<div class="card-info">
+										<div class="card-ho"></div>
+											<div class="ho-info" style="float:left;">									
+												<h1 style="text-align: left; font-size:25px">${mml3.mml_title }</h1>
+												<div style="float:left;"><img class="mml_crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">&nbsp;
+												<h3 style="display:inline; text-align:left" class="card-author" style="display:inline">${mml3.m_nickname }</h3>
+												</div><br>
+													<span style="color:red"><i class="fas fa-heart"></i></span>&nbsp;${mml3.mml_like }&nbsp;<i class="far fa-eye"></i>&nbsp;${mml3.mml_view_count }&nbsp;
+									
 									</div>
-								</li>
-							</c:forEach>
-
-
-
-						</div>
-
-
-						<center>
-							<div id="js-btn-wrap" class="btn-wrap">
-								<a href="javascript:;" class="button">더보기</a>
-							</div>
-							<!--  <button type="button" class="btn-check" OnClick="location.href = '#'"> 더보기 </button>-->
-						</center>
-
-						<div class="col-md-3 col-xs-12 col-sm-12"></div>
+									
+									</div>
+								  </div>
 					</div>
-				</div>
+					</li>
+					</c:forEach>
+							
+				
+						
+					</div>
+					
+                 
+                    <center>
+                        <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
+                        <!--  <button type="button" class="btn-check" OnClick="location.href = '#'"> 더보기 </button>-->
+                    </center>
+
+			<div class="col-md-3 col-xs-12 col-sm-12">
+			</div>
+			</div>
 			</div>
 		</div>
 	</div>
-	<!-- end of celebrity grid v2 section-->
 </div>
+<!-- end of celebrity grid v2 section-->
+		</div>  
 
 
 
 <script>
-	$(window).on('load', function() {
-		load('#js-load', '5');
-		$("#js-btn-wrap .button").on("click", function() {
-			load('#js-load', '5', '#js-btn-wrap');
-		});
-	});
+$(window).on('load', function () {
+    load('#js-load', '1');
+    $("#js-btn-wrap .button").on("click", function () {
+        load('#js-load', '1', '#js-btn-wrap');
+    });
+});
 
-	function load(id, cnt, btn) {
-		var girls_list = id + " .js-load:not(.active)";
-		var girls_length = $(girls_list).length;
-		var girls_total_cnt;
-		if (cnt < girls_length) {
-			girls_total_cnt = cnt;
-		} else {
-			girls_total_cnt = girls_length;
-			$('.button').hide()
-		}
-		$(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-	}
+function load(id, cnt, btn) {
+    var girls_list = id + " .js-load:not(.active)";
+    var girls_length = $(girls_list).length;
+    var girls_total_cnt;
+    if (cnt < girls_length) {
+        girls_total_cnt = cnt;
+    } else {
+       girls_total_cnt = girls_length;
+        $('.button').hide()
+    }
+    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+}
+
 </script>
 
-<!-- <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script> -->
-<%@ include file="../footer1.jsp"%>
-<%@ include file="../footer2.jsp"%>
+
+<%@ include file="../footer.jsp"%>
+</body>
+</html>

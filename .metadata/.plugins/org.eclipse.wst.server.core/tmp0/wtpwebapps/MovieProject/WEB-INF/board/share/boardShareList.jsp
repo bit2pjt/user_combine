@@ -104,7 +104,7 @@
 								  <td>${board.bs_category}</td>
 								  <td><a href="boardShareGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bs_bno}">${board.bs_title}</a></td>
 								  <td style="word-break:break-all">${board.nickname}</td>
-								  <td ><fmt:formatDate value="${board.bs_update_date}" pattern="yyyy/MM/dd"/></td>
+								  <td ><fmt:formatDate value="${board.bs_update_date}" pattern="yyyy-MM-dd"/></td>
 								  <td>${board.bs_view_counter}</td>
 								  <td><a href="boardShareGet${pageMaker.makeSearch(pageMaker.criteria.page)}&bno=${board.bs_bno}">${board.bs_title}</a></td>
 								</tr>
@@ -189,6 +189,5 @@
 <!-- 5. footer1.jsp : footer -->
 <%@ include file="/WEB-INF/footer1.jsp" %>
 <!-- 6. 페이지별 script 추가 -->	
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <!-- footer2.jsp : script -->
 <%@ include file="/WEB-INF/footer2.jsp"%>

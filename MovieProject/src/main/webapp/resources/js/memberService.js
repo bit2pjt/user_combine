@@ -66,7 +66,6 @@ $('.ws_memberService').on('click', function (event) {
 //팔로우 클릭시, 2-3-2
 $('#ws_following').on('click', function (event, callback, error) {
 	var id = $('#ws_id').val();
-	var name = $('#mml_con_nick').attr('value');
 	//1. 팔로우 테이블에 새로운 값 추가<insert> 발생. 입력과 갱신(member의 follower값 update)만 있을 뿐, 반환값은 없다.
 	//2. 바로 이어서 follower값을 요청하는 함수를 호출해준다. 우선은 이렇게 해줘야 나중에 화면에서 흐름을 이해하기 쉬울듯 하다.
 	console.log('팔로우 테이블에 관계레코드 추가 ' + id);
@@ -79,7 +78,7 @@ $('#ws_following').on('click', function (event, callback, error) {
 
 			console.log('setFollowRelationship call back  : ' + result);
 			if (result == 'success') {
-				alert(name + '님을 팔로우 합니다');
+				alert('님을 팔로우 합니다');
 				//추가되었으니, 다시 follower값을 갱신해주자.
 				countFollower(id, function (result) {
 					$('#ws_follower_set').html(result);

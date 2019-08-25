@@ -2066,6 +2066,5 @@ Copyright (C) by bit 2조 All right reserved.
 <script src="js/custom.js"></script> -->
 
 <%@ include file="../footer1.jsp"%>
-
 <!-- 7. footer2.jsp : script -->
 <%@ include file="../footer2.jsp"%>

@@ -75,7 +75,6 @@
 	<select id="getMmlNum" parameterType="com.spring.mml.Mml_ContentVO" resultType="int">
 		select mml_num from mml_content where id=#{id} and mi_code=#{mi_code, jdbcType=VARCHAR} and mml_title=#{mml_title, jdbcType=VARCHAR}
 	</select>
-
 	
 	<select id="getMmlList_like_top3" parameterType="int" resultMap="mmlMap">
 		<![CDATA[
@@ -84,6 +83,7 @@
 		where rownum < 4
 		]]>
 	</select>
+
 
   <!-- 
   ////////////////

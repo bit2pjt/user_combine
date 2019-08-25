@@ -66,10 +66,10 @@
                            		<c:set var="level" value="${followee.m_level}"/>
 									<c:choose>
 						    			<c:when test="${level eq 'BRONZE'}">
-        									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
+        									<img class="crown" src="<c:url value="/resources/images/sp_image/helmet.png"/>">
     									</c:when>
 										<c:when test="${level eq 'SILVER'}">
-        									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
+        									<img class="crown" src="<c:url value="/resources/images/sp_image/shield.png"/>">
     									</c:when>
 										<c:otherwise>
         									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
@@ -178,9 +178,9 @@
 
 <script>
 $(window).on('load', function () {
-    load('#js-load', '5');
+    load('#js-load', '2');
     $("#js-btn-wrap .button").on("click", function () {
-        load('#js-load', '5', '#js-btn-wrap');
+        load('#js-load', '2', '#js-btn-wrap');
     });
 });
 
@@ -198,6 +198,7 @@ function load(id, cnt, btn) {
 }
 
 </script>
-<!-- <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script> -->
-<%@ include file="../footer1.jsp"%>
-<%@ include file="../footer2.jsp"%>
+
+<%@ include file="../footer.jsp"%>
+</body>
+</html>

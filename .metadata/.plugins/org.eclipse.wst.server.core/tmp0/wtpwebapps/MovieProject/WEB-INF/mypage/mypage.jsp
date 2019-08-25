@@ -28,17 +28,6 @@
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 
 <link rel="stylesheet" href="<c:url value="/resources/css/hjs.css" />">
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script>
-function update_img(){
-	var a = document.getElementById("file_img").value;
-	if (a.length == 0) {
-		alert('사진변경을 취소합니다.');
-	} else {
-		$('#sbtn').click();
-	}
-}
-</script>
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="../header2.jsp" %>
 
@@ -96,17 +85,13 @@ function update_img(){
 						<div style="display:block;">
 							<div class="information-hjs">
 								<div class="user-img">
-									<%if(member.getM_image() == null || member.getM_image().equals("") || member.getM_image().equals("null")) {%>
-										<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width:120px;height:120px;">
+									<%if(member.getM_image() == null || member.getM_image().equals("")) {%>
+										<img src="resources/images/person.png" style="width:120px;height:120px;">
 									<%}else{ %>
-
-									<img src="./upload/${requestScope.member.m_image }" style="width:120px;height:120px;">
-
+									<img src="./profile/${requestScope.member.m_image }" style="width:120px;height:120px;">
 									<%} %>
-									<form name="goodsform" action="./profileAddAction?id=<%= member.getId() %>" method="post" enctype="multipart/form-data">
-										<input name="file" id="file_img" type="file" onchange="update_img()" style="visibility:hidden;height:1px;" />
-										<input type="button" value="사진 변경" id="m_image_btn" onclick="$('#file_img').click();" style="width: 120px;background-color: black;color: white;font-weight: bold;"/>
-										<input id="sbtn" type="submit" style="visibility:hidden;height:1px;" />
+									<form name="goodsform" action="./profileAddAction" method="post" enctype="multipart/form-data">
+										<a href="#" class="red-btn">사진 변경</a>
 									</form>
 								</div>
 								

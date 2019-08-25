@@ -56,35 +56,20 @@
     	<div class="buster-light">
 
 <!-- celebrity grid v2 section-->
-<div class="page-single" style="height: 800px;">
+<div class="page-single">
 	<div class="container">
 		<div class="row">
                 <!-- followee의 정보 -->
                 <div class="flex-it share-tag" style="width:100%; float:left;">
                         <div class="social-link" style="width:100%; display:flex;">
-                       		
-                       	<%
-							MemberVO followee = (MemberVO) request.getAttribute("followee");
-							if (followee.getM_image() == null || followee.getM_image().equals("")
-									|| followee.getM_image().equals("null")) {
-						%>
-						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
-							style="width: 100px; height: 100px; border-radius: 50px;">
-						<%
-							} else {
-						%>
-						<img src="./upload/${requestScope.followee.m_image }"
-							style="width: 100px; height: 100px; border-radius: 50px;">
-						<%
-							}
-						%>
+                       		<img src="./resources/images/sp_image/<c:out value="${followee.m_image}"/>" class="profile_img">&nbsp;
                            		<c:set var="level" value="${followee.m_level}"/>
 									<c:choose>
 						    			<c:when test="${level eq 'BRONZE'}">
-        									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
+        									<img class="crown" src="<c:url value="/resources/images/sp_image/helmet.png"/>">
     									</c:when>
 										<c:when test="${level eq 'SILVER'}">
-        									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
+        									<img class="crown" src="<c:url value="/resources/images/sp_image/shield.png"/>">
     									</c:when>
 										<c:otherwise>
         									<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
@@ -97,9 +82,8 @@
                         <h1 style="display:inline">&nbsp;'s FollowList</h1>
                    	</div>      
  				</div>
-                <div style="float:right;">
-					<h4 style="display:inline">팔로워수 </h4> <h4 style="display:inline; color: lightcoral" > <c:out value="${followee.m_follower}"/> </h4>
-					<h4 style="display:inline">팔로잉수 </h4> <h4 style="display:inline; color: lightcoral" > <c:out value="${followee.m_following }"/> </h4>
+                <div style="float:left;">
+					<h1 style="display:inline">Followers : </h1> <h4 style="display:inline; color: lightcoral" > <c:out value="${followee.m_follower}"/> </h4>
 				</div>
                 <div class="blog-detail-ct">
                 	<div class="flex-it share-tag" style="width:100%;"></div>
@@ -133,67 +117,28 @@
     				
                  	<c:forEach items="${followers}" var="follower">
                  
-                 	<%-- <li class="js-load">
+                 	<li class="js-load">
                  		<div class="sp_col-md-4">               	
-                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px; border-radius: 17px;">
+                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px">
                         		<div class="blog-it-infor" style="vertical-align:middle">
-                        			<c:choose>
-                        				<c:when test="${follower.m_image==null}" >
-											<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width: 80px; height: 80px; border-radius: 40px;">
-										</c:when>
-										<c:otherwise>
-											<img src="./upload/${follower.m_image }" style="width: 80px; height: 80px; border-radius: 40px;">
-										</c:otherwise>
-									</c:choose>
+                        			<img src="./resources/images/sp_image/<c:out value="${follower.m_image}"/>" class="profile_img" style="width:80px; height:80px;">
                         				<c:set var="level" value="${follower.m_level}"/>
 											<c:choose>
 						    					<c:when test="${level eq 'BRONZE'}">
-        											<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
+        											<img class="crown" src="<c:url value="/resources/images/sp_image/helmet.png"/>">
     											</c:when>
 												<c:when test="${level eq 'SILVER'}">
-        											<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
+        											<img class="crown" src="<c:url value="/resources/images/sp_image/shield.png"/>">
     											</c:when>
 												<c:otherwise>
         											<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
     											</c:otherwise>
 											</c:choose>
-                        				<div style="float:right;">
-                        				<h4 style="display:inline">팔로워수  </h4><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_follower}"/>   </h4>
-                        				<h4 style="display:inline">팔로잉수  </h4><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_following}"/>   </h4>
-                        				</div>
 										<!-- c:set은 짝짝이 태그 -->
                         				&nbsp;<h3 style="display:inline"><a href="blogdetail_light.html"></a><c:out value="${follower.m_nickname}"/></h3>
                         				
-                        			 </div>
-                       			</div>
-                    		</div>
-                       </li> --%>
-                       <li class="js-load">
-                 		<div class="sp_col-md-4">               	
-                        	<div class="blog-item-style-3" OnClick="location.href ='mmlMemberList?id=<c:out value="${follower.id}"/>'" style="padding-left:20px; border-radius: 17px;">
-                        		<div class="blog-it-infor" style="vertical-align:middle">
-                        			<!-- 이미지 시작 -->
-                        			<c:choose>
-                        				<c:when test="${follower.m_image==null}" >
-											<img src="resources/images/customs/ws_img/defaultprofile.PNG" style="width: 80px; height: 80px; border-radius: 40px;">
-										</c:when>
-										<c:otherwise>
-											<img src="./upload/${follower.m_image }" style="width: 80px; height: 80px; border-radius: 40px;     margin-left: 20px;">
-										</c:otherwise>
-									</c:choose>
-									<!-- 팔로워수  -->		
-                        				<div style="float:right; display:inline; margin-right: 92px;  margin-top: 19px;">
-                        				<h4 style="display:inline">팔로워수  </h4><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_follower}"/>   </h4>
                         				<br>
-                        				<h4 style="display:inline">팔로잉수  </h4><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_following}"/>   </h4>
-                        				</div>
-									<!-- 팔로워수끝 -->                        				
-									<!-- 왕관 -->
-									<div>
-                        				<img class="crown" src="<c:url value="/resources/images/sp_image/crown.png"/>">
-									<!-- 왕관 끝 -->
-                        				&nbsp;<h3 style="display:inline;     font-size: 20px;"><a href="blogdetail_light.html"></a><c:out value="${follower.m_nickname}"/></h3>
-                        				</div>
+                        				<h1 style="display:inline">Followers : </h1><h4 style="display:inline; color: lightcoral" ><c:out value="${follower.m_follower}"/>   </h4>
                         			 </div>
                        			</div>
                     		</div>
@@ -222,6 +167,8 @@
                         <!--  <button type="button" class="btn-check" OnClick="location.href = '#'"> 더보기 </button>-->
                     </center>
 
+			<div class="col-md-3 col-xs-12 col-sm-12">
+			</div>
 		</div>
 	</div>
 </div>
@@ -231,9 +178,9 @@
 
 <script>
 $(window).on('load', function () {
-    load('#js-load', '5');
+    load('#js-load', '1');
     $("#js-btn-wrap .button").on("click", function () {
-        load('#js-load', '5', '#js-btn-wrap');
+        load('#js-load', '1', '#js-btn-wrap');
     });
 });
 
@@ -252,7 +199,6 @@ function load(id, cnt, btn) {
 
 </script>
 
-
-
-<%@ include file="../footer1.jsp"%>
-<%@ include file="../footer2.jsp"%>
+<%@ include file="../footer.jsp"%>
+</body>
+</html>

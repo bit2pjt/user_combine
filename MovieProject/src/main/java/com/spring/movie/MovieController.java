@@ -122,14 +122,12 @@ public class MovieController {
 	public String BFReplyWarn(HttpSession session, HttpServletRequest request) {
 		String sessionyn = (String)session.getAttribute("m_email");
 		int id = movieService.getUser(sessionyn); // 로그인한 사용자의 id값
-		int mr_code = Integer.parseInt(request.getParameter("no")); //게시글 번호
-		String mr_warncontent = request.getParameter("warncontent"); //게시글 번호
+		int mr_code = Integer.parseInt(request.getParameter("mr_code")); //게시글 번호
 		WarnVO vo = new WarnVO();
 		vo.setMr_code(mr_code);
-		vo.setMr_warncontent(mr_warncontent);
 		vo.setId(id);
 		
-		String msg = movieService.replyWarn(vo); 
+		String msg = movieService.ReplyWarn(vo); 
 		if(msg.equals("1"))
 			msg = "success";
 		

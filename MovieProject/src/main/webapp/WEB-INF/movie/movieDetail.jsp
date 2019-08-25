@@ -288,40 +288,12 @@
 											                    </div>
 											                </div>
 											            </div>
-														<!-- start | modal -->
-<div class="modal fade" id="warning-modal" role="dialog">
-	<div class="modal-dialog" style="margin-top: 100px;">
-		<div class="modal-content">
-			<a data-dismiss="modal"
-				style="font-weight: bold; float: right; margin-right: 10px; font-size: 30px;">x</a>
-			<!-- start | modal-header -->
-			<div class="modal-header">
-				<h4 class="modal-warning-title">신고하기</h4>
-			</div>
-			<!-- end | modal-header -->
-			<!-- start | modal-body -->
-			<div class="modal-body">
-				<input class="form-control" id="warn_replyNo" name="warn_replyNo" style="display:none;">
-				<textarea id="warncontent" name="warncontent"
-					style="resize: none; width: 100%; height: 200px;"></textarea>
-			</div>
-			<!-- end | modal-body -->
-			<!-- start | modal-footer -->
-			<div class="modal-footer">
-				<button type="button" id="modal-warning-btn"
-					class="btn btn-default pull-left" data-dismiss="modal">신고하기</button>
-			</div>
-			<!-- end | modal-footer -->
-		</div>
-	</div>
-</div>
-<!-- end | modal -->
+														
 											                <div class="box box-primary">
 																<div class="box-footer">
 											                        <ul id="replies">
 											
 											                        </ul>
-											                        
 											                    </div>
 											
 											                    <div class="box-footer">
@@ -474,53 +446,8 @@
  			
 	});
     
-    
-    
-    $("#modal-warning-btn").on("click", function() {
-		var session = "${sessionyn}";
-			
-		if (session == "") {
-			alert("로그인 하셔야 이용하실수 있습니다.");
-			location.href = "index";
-			return false;
-		}
-		
-		var no = document.getElementById("warn_replyNo").value;
-		var warn_content = document.getElementById("warncontent").value.trim();
-		if (warn_content.length == 0) {
-			alert("신고사유를 입력해주세요.");
-			return false;
-		}
-		$.ajax({
-			url : "MovieReplyWarn",
-							data : {
-								no : no,
-								warncontent : warn_content
-							},
-							dataType : "text",
-							type : "post",
-							success : function(data) {
-								if (data == "success")
-									alert("신고 되었습니다.");
-								else
-									alert("이미 신고 하셨습니다.");
-							},
-							error : function() {
-								alert("에러");
-							}
-						});
-						var modal = document
-								.getElementById("warning-modal");
-						modal.style.display = "none";
-						$('.modal-backdrop').remove();
-						$('#warncontent').attr('value','');
-					});
-
     $("#replies").on("click", ".replyLi .ws-btn-warning", function () { // 댓글의 수정 버튼 클릭시
-    	 var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
-         var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
-         $('#warn_replyNo').attr('value',mr_code);
-    	/* var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
+    	var reply = $(this).parent().parent().parent().parent(); // 댓글의 li
         var mr_code = reply.attr("data-replyNo"); // 댓글의 번호
         var present = $(this).parent().find(".ws-btn-warning");
         var session = "${sessionyn}";
@@ -546,8 +473,7 @@
  			error: function() {
  				alert("에러");
  			}
- 		}); */
- 		
+ 		});
  			
 	});
 	
@@ -663,7 +589,7 @@
 	        			+	"<div style='float:right; margin-top:10px;'>"
 	        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true'></i> "+ this.mr_like +"</button>"
 	        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn' style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.mr_dislike + "</button>"
-	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning' style='margin-left:10px;'type='button' data-target='#warning-modal' data-toggle='modal' data-backdrop='static'><i class='fa fa-exclamation-triangle' aria-hidden='true' ></i> 신고 </button>"
+	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning' style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
 	        			+	"</div></div></div></li>";
                 	}else {
                 		str += "<li data-replyNo='" + this.mr_code + "' class='replyLi'>"
@@ -676,7 +602,7 @@
 	        			+	"<div style='float:right; margin-top:10px;'>"
 	        			+	"<button class='ws-btn-thumbs-up' id='ws-cnt-tup' style='margin-left:10px;'><i class='far fa-thumbs-up' aria-hidden='true' ></i> "+ this.mr_like +"</button>"
 	        			+	"<button class='ws-btn-thumbs-down' id='ws-cnt-tdn'style='margin-left:10px;'><i class='far fa-thumbs-down' aria-hidden='true' ></i> " +  this.mr_dislike + "</button>"
-	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'style='margin-left:10px;' type='button' data-target='#warning-modal' data-toggle='modal' data-backdrop='static'><i class='fa fa-exclamation-triangle' aria-hidden='true' type='button' data-target='#warning-modal' data-toggle='modal' data-backdrop='static'></i> 신고 </button>"
+	        			+	"<button class='ws-btn-warning' id='ws-cnt-warning'style='margin-left:10px;'><i class='fa fa-exclamation-triangle' aria-hidden='true'></i> 신고 </button>"
 	        			+	"<button type='button' id='btn-hjs-2' style='margin-left:10px;' class='btn btn-xs btn-success modifyModal' data-toggle='modal' data-target='#modifyModal' style='float:right;''>댓글 수정</button></div>"
 	        			+	"</div></div></li>";
                 	}

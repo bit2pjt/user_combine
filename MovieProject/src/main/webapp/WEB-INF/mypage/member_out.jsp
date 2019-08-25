@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.spring.member.MemberVO"%>
-<%
-	MemberVO member = (MemberVO) request.getAttribute("member");
-%>
+
+
 
 <!--
 /**
@@ -32,14 +30,12 @@
 </head>
 <script>
 	/* 회원탈퇴 클릭 js  */
-	function delete_confirm() {
-		
-		
+	var delete_confirm = function() {
 		var deleteyn = confirm('정말 탈퇴하시겠습니까?');
 		if (deleteyn == true) {
 			// yes
 			alert("탈퇴가 완료되었습니다.");
-			location.href = "member_delete"
+			location.href = "/member_delete";
 		} else {
 			// no
 
@@ -74,30 +70,29 @@
 				<div class="col-md-3 col-sm-12 col-xs-12">
 					<div class="info">
 						<h2>
-							<strong><%=member.getM_name() %> 님 </strong>
+							<strong>황진석 님</strong>
 						</h2>
 						<h3>
-							<strong><%=member.getM_email() %></strong>
-						
+							<strong>h10046245h@naver.com</strong>
 						</h3>
 					</div>
 					<div class="user-information-hjs">
 						<div class="user-fav">
 							<ul>
-								<li style="font-weight: bold;"><a style="font-size: 18px;" href="mypage">마이페이지</a></li>
+								<li><a href="mypage.do">마이페이지</a></li>
 							</ul>
 
-							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
+							<ul>
 								<li>회원 정보</li>
-								<li><a href="pw_confirm">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
-								<li><a href="member_out">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
+								<li><a href="pw_confirm.do">&nbsp;&nbsp;&nbsp;&nbsp;회원정보수정</a></li>
+								<li><a href="member_out.do">&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴</a></li>
 							</ul>
 
-							<ul style="border-top: 1px solid #ccc; padding-top: 20px;">
+							<ul>
 								<li>고객센터</li>
-								<li><a href="one_list">&nbsp;&nbsp;&nbsp;&nbsp;1:1
+								<li><a href="one_list.do">&nbsp;&nbsp;&nbsp;&nbsp;1:1
 										문의내역</a></li>
-								<li><a href="faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
+								<li><a href="faq.do">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</a></li>
 								<li><a href="myinfo">&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 게시글</a></li>
 							</ul>
 						</div>
@@ -153,11 +148,10 @@
 						</dl>
 					</div>
 					<br>
-					<form action="member_delete" name="form">
-					<input type="hidden" name="m_email" value="${requestScope.member.m_email}">
+					<form action="member_delete">
 						<div class="btn_m">
-							<input style="background-color: #333; border: 0px;width: 120px;height: 40px;" type="button" class="btn-check" value="탈퇴"
-								onclick="delete_confirm()"> &nbsp; <input style="background-color: #333; border: 0px;width: 120px;height: 40px;" type="button" onClick="location.href='mypage'"
+							<input type="submit" class="btn-check" value="탈퇴"
+								onclick="delete_confirm()"> &nbsp; <input type="reset"
 								class="btn-check" value="취소">
 						</div>
 					</form>

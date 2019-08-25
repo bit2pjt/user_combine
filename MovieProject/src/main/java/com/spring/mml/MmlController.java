@@ -1,7 +1,9 @@
 package com.spring.mml;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +17,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.boardFree.ThumbVO;
-import com.spring.boardFree.WarnVO;
 import com.spring.member.MemberVO;
 import com.spring.movie.MovieInfoVO;
 import com.spring.movie.MovieService;
+import com.spring.movie.Movie_InfoVO;
 import com.spring.mypage.MyPageService;
 import com.spring.paging.PageMaker;
 import com.spring.paging.SearchCriteria;
@@ -35,51 +36,54 @@ public class MmlController {
 
 	@Autowired
 	private MyPageService myPageService;
-
+	
 	@Autowired
 	private MovieService movieService;
-
+	
+	
 ////////////////
 // 유진 개발부분//
 ////////////////
-
+	
 	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value="/mmlWriteMovie", method=RequestMethod.POST) public
-	 * List<MovieInfoVO> mmlWriteMovie(HttpServletRequest request,SearchCriteria
-	 * searchCriteria) {
-	 * 
-	 * String mcategory = request.getParameter("mcategory"); String search_input =
-	 * request.getParameter("search_input");
-	 * 
-	 * System.out.
-	 * println("=============MmlController.java===================== mcategory : " +
-	 * mcategory); System.out.
-	 * println("=============MmlController.java===================== search_input : "
-	 * + search_input);
-	 * 
-	 * if(mcategory.equals("영화 제목")) { List<MovieInfoVO> search_list =
-	 * movieService.getMovieList_title(search_input); //System.out.
-	 * println("=============MmlController.java===================== search_list.get(0).getMi_releaseday() : "
-	 * + search_list.get(0).getMi_releaseday()); return search_list; }else
-	 * if(mcategory.equals("개봉 연도")) { List<MovieInfoVO> search_list =
-	 * movieService.getMovieList_release(search_input); return search_list; }else
-	 * if(mcategory.equals("제작 국가")) { List<MovieInfoVO> search_list =
-	 * movieService.getMovieList_country(search_input); return search_list; }else
-	 * if(mcategory.equals("영화 감독")) { List<MovieInfoVO> search_list =
-	 * movieService.getMovieList_director(search_input); return search_list; }else{
-	 * // if(mcategory.equals("영화 배우")) List<MovieInfoVO> search_list =
-	 * movieService.getMovieList_actor(search_input); return search_list; }
-	 * 
-	 * PageMaker pageMaker = new PageMaker(); pageMaker.setCriteria(searchCriteria);
-	 * pageMaker.setTotalCount(movieService.countSearchedMovie(searchCriteria));
-	 * List<MovieInfoVO> movieList = movieService.getMovieListSerch(searchCriteria);
-	 * return movieList; }
-	 */
-
+	@ResponseBody
+	@RequestMapping(value="/mmlWriteMovie", method=RequestMethod.POST)
+	public List<MovieInfoVO> mmlWriteMovie(HttpServletRequest request,SearchCriteria searchCriteria) {
+		
+		String mcategory = request.getParameter("mcategory");
+		String search_input = request.getParameter("search_input");
+		
+		System.out.println("=============MmlController.java===================== mcategory : " + mcategory);
+		System.out.println("=============MmlController.java===================== search_input : " + search_input);
+		
+		if(mcategory.equals("영화 제목")) {
+			List<MovieInfoVO> search_list = movieService.getMovieList_title(search_input);
+			//System.out.println("=============MmlController.java===================== search_list.get(0).getMi_releaseday() : " + search_list.get(0).getMi_releaseday());
+			return search_list;
+		}else if(mcategory.equals("개봉 연도")) {
+			List<MovieInfoVO> search_list = movieService.getMovieList_release(search_input);
+			return search_list;
+		}else if(mcategory.equals("제작 국가")) {
+			List<MovieInfoVO> search_list = movieService.getMovieList_country(search_input);
+			return search_list;
+		}else if(mcategory.equals("영화 감독")) {
+			List<MovieInfoVO> search_list = movieService.getMovieList_director(search_input);
+			return search_list;
+		}else{ // if(mcategory.equals("영화 배우")) 
+			List<MovieInfoVO> search_list = movieService.getMovieList_actor(search_input);
+			return search_list;
+		}
+		
+		PageMaker pageMaker = new PageMaker();
+        pageMaker.setCriteria(searchCriteria);
+        pageMaker.setTotalCount(movieService.countSearchedMovie(searchCriteria));
+		List<MovieInfoVO> movieList = movieService.getMovieListSerch(searchCriteria);
+		return movieList;
+	}
+	*/
+	
 	@RequestMapping(value = "/mmlWrite", method = RequestMethod.GET)
-	public String mmlWrite(HttpSession session, Model model, SearchCriteria searchCriteria) {
+	public String mmlWrite(HttpSession session, Model model,SearchCriteria searchCriteria) {
 		String m_email = (String) session.getAttribute("m_email");
 		// System.out.println("=============MmlController.java=====================
 		// m_email : " + m_email);
@@ -91,17 +95,16 @@ public class MmlController {
 		}
 		int id = myPageService.getMemberId(m_email);
 		model.addAttribute("id", id);
-		// List<MovieInfoVO> movieList = movieService.getMovieList();
-		// System.out.println("=============MmlController.java=====================
-		// movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
-		// model.addAttribute("movieList", movieList);
+		//List<MovieInfoVO> movieList = movieService.getMovieList();
+		//System.out.println("=============MmlController.java===================== movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
+		//model.addAttribute("movieList", movieList);
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(searchCriteria);
-		pageMaker.setTotalCount(movieService.countSearchedMovie(searchCriteria));
+        pageMaker.setCriteria(searchCriteria);
+        pageMaker.setTotalCount(movieService.countSearchedMovie(searchCriteria));
 		List<MovieInfoVO> movieList = movieService.getMovieListSerch(searchCriteria);
 		model.addAttribute("movieList", movieList);
 		model.addAttribute("pageMaker", pageMaker);
-
+		
 		return "mml/mmlWrite2";
 	}
 
@@ -124,14 +127,13 @@ public class MmlController {
 			System.out.println("ERROR : MmlWriteAction - " + e.getMessage());
 			e.printStackTrace();
 		}
-		// 작성자의 개인 mmlList로 이동하게 추후 링크조정
-		System.out.println("mmlWriteAction test : " + mmlContentVO.getId() + ", " + mmlContentVO.getMi_code() + ", "
-				+ mmlContentVO.getMml_title());
+		//작성자의 개인 mmlList로 이동하게 추후 링크조정
+		System.out.println("mmlWriteAction test : " + mmlContentVO.getId() +", " + mmlContentVO.getMi_code()+", "+ mmlContentVO.getMml_title());
 		int mml_num = mmlService.getMmlNum(mmlContentVO);
 		System.out.println("mml_num : " + mml_num);
-		return "redirect:/mmlGet?mml_num=" + mml_num;
+		return "redirect:/mmlGet?mml_num="+mml_num;
 	}
-
+	
 	@RequestMapping(value = "/mmlUpdate", method = RequestMethod.GET)
 	public String mmlUpdate(HttpSession session, HttpServletRequest request, Model model) {
 		String m_email = (String) session.getAttribute("m_email");
@@ -158,15 +160,14 @@ public class MmlController {
 			return "redirect:/mmlGet?mml_num=" + mmlContentVO.getMml_num();
 		}
 		model.addAttribute("mmlContentVO", mmlContentVO);
-
+		
 		List<MovieInfoVO> movieList = movieService.getMovieList();
-		// System.out.println("=============MmlController.java=====================
-		// movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
+		//System.out.println("=============MmlController.java===================== movieList.get(0).getMi_code() : " + movieList.get(0).getMi_ktitle());
 		model.addAttribute("movieList", movieList);
-
+		
 		return "mml/mmlUpdate";
 	}
-
+	
 	@RequestMapping(value = "/mmlUpdateAction", method = RequestMethod.POST)
 	public String mmlUpdateAction(HttpServletRequest request, Mml_ContentVO mmlContentVO) {
 		// System.out.println("=============MyPageController.java -
@@ -183,48 +184,49 @@ public class MmlController {
 		}
 		return "redirect:/mmlGet?mml_num=" + mmlContentVO.getMml_num();
 	}
-
 ////////////////
 //상필 개발부분//
 ////////////////
 	@RequestMapping(value = "/mmlList", method = RequestMethod.GET)
-	public String mmlList(Model model, @ModelAttribute("searchCriteria") SearchCriteria searchCriteria)
-			throws Exception {
+	public String mmlList(Model model,@ModelAttribute("searchCriteria") 
+	SearchCriteria searchCriteria) throws Exception {
 
-//List<Mml_ContentVO> mmlList = mmlService.getMmlList();
-//List<Mml_ContentVO> mmlList2 = mmlService.getMmlList_like();
+		
+		
+//		List<Mml_ContentVO> mmlList = mmlService.getMmlList();
+//		List<Mml_ContentVO> mmlList2 = mmlService.getMmlList_like();
 //
-//System.out.println("mmlLlist======================" + mmlList);
+//		System.out.println("mmlLlist======================" + mmlList);
 
-//model.addAttribute("mmln", mmlList);
-//model.addAttribute("mmlList2", mmlList2);
-
+//		model.addAttribute("mmln", mmlList);
+//		model.addAttribute("mmlList2", mmlList2);
+		
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(searchCriteria);
-		pageMaker.setTotalCount(mmlService.countSearchedArticles(searchCriteria));
-		model.addAttribute("mmlList", mmlService.listSearch(searchCriteria));
-		System.out.println("pageMaker=" + pageMaker);
-		model.addAttribute("pageMaker", pageMaker);
-
-		PageMaker pageMaker2 = new PageMaker();
-		pageMaker2.setCriteria(searchCriteria);
-		pageMaker2.setTotalCount(mmlService.countSearchedArticles2(searchCriteria));
-		model.addAttribute("mmlList2", mmlService.listSearch2(searchCriteria));
-		System.out.println("pageMaker2=" + pageMaker2);
-		model.addAttribute("pageMaker2", pageMaker2);
+	      pageMaker.setCriteria(searchCriteria);
+	      pageMaker.setTotalCount(mmlService.countSearchedArticles(searchCriteria));
+	      model.addAttribute("mmlList", mmlService.listSearch(searchCriteria));
+	      System.out.println("pageMaker="+pageMaker);
+	      model.addAttribute("pageMaker", pageMaker);
+	      
+	      PageMaker pageMaker2 = new PageMaker();
+	      pageMaker2.setCriteria(searchCriteria);
+	      pageMaker2.setTotalCount(mmlService.countSearchedArticles2(searchCriteria));
+	      model.addAttribute("mmlList2", mmlService.listSearch2(searchCriteria));
+	      System.out.println("pageMaker2="+pageMaker2);
+	      model.addAttribute("pageMaker2", pageMaker2);
 
 		return "mml/mmlList";
 	}
 
 	@RequestMapping(value = "/mmlMemberList", method = RequestMethod.GET)
-	public String mmlMember(Model model, HttpSession session, @RequestParam("id") int id) {
-
+	public String mmlMember(Model model, HttpSession session,@RequestParam("id") int id) {
+		
 		MemberVO member = myPageService.getMember(id);
-
+		
 		List<Mml_ContentVO> mmlList3 = mmlService.getMmlList_user(id);
 
 		model.addAttribute("mmlList3", mmlList3);
-
+		
 		model.addAttribute("follower", member);
 
 		return "mml/mmlMemberList";
@@ -246,28 +248,18 @@ public class MmlController {
 			String m_email = (String) session.getAttribute("m_email");
 			int id = myPageService.getMemberId(m_email);
 			
-			model.addAttribute("sessionyn",m_email);
+			System.out.println("view id" + id);
 			
 			model.addAttribute("vid", id);
-			
-			//mml_content의 mi_code에 맞는 제들을 불러올거
-			List<String> ktitleList = movieService.getTitle(content);
-			model.addAttribute("ktitleList", ktitleList);
 			return "mml/mmlGet";
 		}
 
-		model.addAttribute("sessionyn", m_email);
-
-		model.addAttribute("vid", id);
-		return "mml/mmlGet";
-	}
-
-// 2. 게시글 삭제처리
+	// 2. 게시글 삭제처리
 	@GetMapping("/mmlDelete")
 	public String mmlDelete(@RequestParam("mml_num") int mml_num, HttpServletResponse response) {
 		mmlService.mmlDelete(mml_num);
 		System.out.println(mml_num + " 번 나영리 게시물 삭제. 리스트 페이지로 Redirect");
-// 알림창으로 삭제되었음을 통지할까??
+		// 알림창으로 삭제되었음을 통지할까??
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = null;
 		try {
@@ -284,111 +276,36 @@ public class MmlController {
 		return "redirect:/mmlList";
 	}
 
-////////////////////////////////////////////
-// ws 개발부분 : mmlFollowList.jsp의 서비스들//
-////////////////////////////////////////////
+	////////////////////////////////////////////
+	// ws 개발부분 : mmlFollowList.jsp의 서비스들//
+	////////////////////////////////////////////
 
 	@RequestMapping(value = "/mmlFollowList", method = RequestMethod.GET)
 	public String mmlFollow(@RequestParam("id") int id, Model model) {
 		model.addAttribute("followee", mmlService.getMemberInfo(id));
 		System.out.println("followee 정보 적재 완료");
+		
+		List<MemberVO> result = mmlService.getFollowList(id);
+		
+		model.addAttribute("followers", result);
+		System.out.println("followers 정보 적재 완료"+result);
 		System.out.println(result.get(0).getId());
 
 		return "mml/mmlFollowList";
-
+	}
+	
 	@RequestMapping(value = "/mmlFollowingList", method = RequestMethod.GET)
 	public String mmlFollowing(@RequestParam("id") int id, Model model) {
 		model.addAttribute("followee", mmlService.getMemberInfo(id));
 		System.out.println("followee 정보 적재 완료");
-
+		
 		List<MemberVO> result = mmlService.getFollowingList(id);
-
+		
 		model.addAttribute("followings", result);
-		System.out.println("followings 정보 적재 완료" + result);
+		System.out.println("followings 정보 적재 완료"+result);
 		System.out.println(result.get(0).getId());
 
 		return "mml/mmlFollowingList";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/MmlReplyReco", method=RequestMethod.POST)
-	public String MmlReplyReco(HttpSession session, HttpServletRequest request) { 
-		String sessionyn = (String)session.getAttribute("m_email");
-		int id = mmlService.getMemberId(sessionyn); // 로그인한 사용자의 id값
-		int mml_reply_code = Integer.parseInt(request.getParameter("mml_reply_code")); //게시글 번호
-		int type = Integer.parseInt(request.getParameter("type")); // 추천:1, 비추천:0
-		ThumbVO vo = new ThumbVO();
-		vo.setMml_reply_code(mml_reply_code); // 댓글 번호
-		vo.setId(id); // 댓글 쓴 사람의 id
-		vo.setMmlr_thumb(type); // 1: 추천, 0: 비추천
-		
-		if( type == 1) { // 추천을 눌렀을 경우
-			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
-			String msg = mmlService.reply_check(vo); 
-			return msg;
-		}else { // 비추천을 눌렀을 경우
-			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
-			String msg = mmlService.reply_check(vo);
-			return msg;
-		}
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/MmlReplyWarn", method=RequestMethod.POST)
-	public String BFReplyWarn(HttpSession session, HttpServletRequest request) {
-		String sessionyn = (String)session.getAttribute("m_email");
-		int id = mmlService.getMemberId(sessionyn); // 로그인한 사용자의 id값
-		int mml_reply_code = Integer.parseInt(request.getParameter("mml_reply_code")); //게시글 번호
-		WarnVO vo = new WarnVO();
-		vo.setMml_reply_code(mml_reply_code);
-		vo.setId(id);
-		
-		String msg = mmlService.ReplyWarn(vo); 
-		if(msg.equals("1"))
-			msg = "success";
-		
-		return msg;
-	}
-
-
-	@ResponseBody
-	@RequestMapping(value = "/MmlReplyReco", method = RequestMethod.POST)
-	public String MmlReplyReco(HttpSession session, HttpServletRequest request) {
-		String sessionyn = (String) session.getAttribute("m_email");
-		int id = mmlService.getMemberId(sessionyn); // 로그인한 사용자의 id값
-		int mml_reply_code = Integer.parseInt(request.getParameter("mml_reply_code")); // 게시글 번호
-		int type = Integer.parseInt(request.getParameter("type")); // 추천:1, 비추천:0
-		ThumbVO vo = new ThumbVO();
-		vo.setMml_reply_code(mml_reply_code); // 댓글 번호
-		vo.setId(id); // 댓글 쓴 사람의 id
-		vo.setMmlr_thumb(type); // 1: 추천, 0: 비추천
-
-		if (type == 1) { // 추천을 눌렀을 경우
-			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
-			String msg = mmlService.reply_check(vo);
-			return msg;
-		} else { // 비추천을 눌렀을 경우
-			// br_thumb 테이블에 해당 id가 있는지 확인 , 추천을 눌렀는지 안눌렀는지를 확인
-			String msg = mmlService.reply_check(vo);
-			return msg;
-		}
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/MmlReplyWarn", method = RequestMethod.POST)
-	public String BFReplyWarn(HttpSession session, HttpServletRequest request) {
-		String sessionyn = (String) session.getAttribute("m_email");
-		int id = mmlService.getMemberId(sessionyn); // 로그인한 사용자의 id값
-		int mml_reply_code = Integer.parseInt(request.getParameter("mml_reply_code")); // 게시글 번호
-		WarnVO vo = new WarnVO();
-		vo.setMml_reply_code(mml_reply_code);
-		vo.setId(id);
-
-		String msg = mmlService.ReplyWarn(vo);
-		if (msg.equals("1"))
-			msg = "success";
-
-		return msg;
 	}
 
 }

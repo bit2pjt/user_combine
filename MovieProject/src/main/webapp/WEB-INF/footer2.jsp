@@ -4,6 +4,6 @@
 
 <script src="<c:url value="/resources/js/header_custom.js" />"></script>
 <script src="<c:url value="/resources/js/hm_js.js" />"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 </body>
 </html>

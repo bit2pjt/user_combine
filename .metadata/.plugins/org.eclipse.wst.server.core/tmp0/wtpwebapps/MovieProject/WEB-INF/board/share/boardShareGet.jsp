@@ -1,4 +1,3 @@
-<%@page import="com.spring.member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,34 +7,11 @@
 <%@ include file="/WEB-INF/header1.jsp"%>
 <!-- 2. 여기에 페이지별 css 추가해주세요 -->
 	<link rel="stylesheet" href="./resources/css/ws_personal.css?Ver=1.3">
-	<link rel="stylesheet" href="./resources/css/boardstyle.css">
 
 <!-- 3. heaer2.jsp : header -->
 <%@ include file="/WEB-INF/header2.jsp" %>
 
 <script>
-window.onload = function(){
- 	var slideIndex = 0;
- 	showSlides();
-
- 	function showSlides() {
- 	    var i;
- 	    var slides = document.getElementsByClassName("mySlides");
- 	    var dots = document.getElementsByClassName("dot");
- 	    for (i = 0; i < slides.length; i++) {
- 	       slides[i].style.display = "none";  
- 	    }
- 	    slideIndex++;
- 	    if (slideIndex > slides.length) {slideIndex = 1}    
- 	    for (i = 0; i < dots.length; i++) {
- 	        dots[i].className = dots[i].className.replace(" active", "");
- 	    }
- 	    slides[slideIndex-1].style.display = "block";  
- 	    dots[slideIndex-1].className += " active";
- 	    setTimeout(showSlides, 4000); // Change image every 2 seconds
- 	}
- 	}
- 	
  	$(function() {
  		var session = "${sessionyn}";
  		var warn = $("#ws-cnt-warning");
@@ -108,20 +84,7 @@ window.onload = function(){
 		<!-- 2. 글정보+개인정보의 배치 -->
 		<div class="ws-post-get-info">
 				<div class="ws-post-get-info-profile">
-					<%
-							MemberVO memberVO = (MemberVO)request.getAttribute("memberVO");
-							if (memberVO.getM_image() == null || memberVO.getM_image().equals("") || memberVO.getM_image().equals("null")) {
-						%>
-						<img src="resources/images/customs/ws_img/defaultprofile.PNG"
-							style="width: 120px; height: 120px;">
-						<%
-							} else {
-						%>
-						<img src="./upload/${requestScope.memberVO.m_image }"
-							style="width: 120px; height: 120px;">
-						<%
-							}
-						%>
+					<img src="resources/images/customs/ws_img/${memberVO.m_image}" alt="프로필사진">
 				</div>
 				<div class="ws-post-get-info-inner">
 					<div>작성자 : ${memberVO.m_nickname}</div>
@@ -165,39 +128,43 @@ window.onload = function(){
 	</div>
 	
 		<div class="ws-get-Rside">
-				<div class="ws-side-best">
-					<ul>
-						<li>${bt_type } Best5</li>
-						<c:forEach items="${boardListDaily}" var="board"
-							varStatus="status" end="4">
-							<li><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></li>
-						</c:forEach>
-					</ul>
-				</div>
-				<div class="ws-get-mmlbest">
-					<div class="ws-get-mmlbest-title">${memberVO.m_nickname} 님의
-						가장 핫한 나영리</div>
-					<div class="slideshow-container">
-						<c:forEach items="${mmlTop3}" var="mml" varStatus="status">
-							<div class="mySlides fade">
-									<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
-									<img src="<c:url value="${poster_one[0] }"/>">
-									<!-- 나영리 타이틀 -->
-									제목 : ${mml.mml_title} <br>
-									<!-- 나영리 좋아요수 -->
-									좋아요수 : ${mml.mml_like}
-							</div>
-						</c:forEach>
-					</div>
-					<br>
-
-					<div style="text-align: center">
-					<c:forEach items="${mmlTop3}" var="mml" varStatus="status">
-							<span class="dot"></span>
-						</c:forEach>
-					</div>
-				</div>
+		<div class="ws-side-best" >
+			<ul>
+				<li style="padding: 10px;">추천수 급상승 Best 5</li>
+				<c:forEach items="${boardListDaily}" var="board" varStatus="status" end="4">
+					<li><a href="boardFreeGet?bno=${board.bf_bno}">${board.bf_title}</a></li>
+				</c:forEach>
+			</ul>	
+		</div>
+		<div class="ws-get-mmlbest" >
+			<div class="ws-get-mmlbest-title">
+				${memberVO.m_nickname} 님의 가장 핫한 나영리
 			</div>
+			<c:forEach items="${mmlTop2}" var="mml" varStatus="status">
+			<!-- 상필오빠 mml 추천순으로 정렬한거에서 추천수 제일많은거 1개  컨트롤러에 model로 추가해주기 -->
+			<div class="ws-get-mmlbest-poster" >
+				<!-- 나영리 이미지 -->
+				<c:set var="poster_one" value="${fn:split(mml.mml_poster,',')}" />
+				<img src="<c:url value="${poster_one[0] }"/>">
+			</div>
+			<div class="ws-get-mmlbest-title"> 
+				<!-- 나영리 타이틀 -->
+				제목 : ${mml.mml_title}
+				<br>
+				<!-- 나영리 좋아요수 -->
+				좋아요수 : ${mml.mml_like}
+			</div>
+			</c:forEach>
+		</div>
+		
+		<!-- <div class="ws-side-recomend"> -->
+		<!-- 여기는 어떤기준으로 컨텐츠를 넣을지....정답을 알려조오~!! -->
+			<!-- 당신이 좋아할 수도 있는 나영리
+			<img src="https://t1.daumcdn.net/cfile/tistory/999A89485C3193F72F">
+			괴수물 덕후 모여봐라 <br>
+			조회수 : 24232
+		</div> -->
+	</div>
 		
 		
 		
@@ -230,9 +197,9 @@ window.onload = function(){
 
                         </div>
                         <div class="modal-footer">
-                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
-                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
-                            <button style="width:100px;" type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
+                            <button type="button" id='btn-hjs' class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                            <button type="button" id='btn-hjs' class="btn btn-success modalModBtn" data-dismiss="modal">수정</button>
+                            <button type="button" id='btn-hjs' class="btn btn-danger modalDelBtn" data-dismiss="modal">삭제 </button>
                         </div>
                     </div>
                 </div>
