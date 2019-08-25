@@ -232,7 +232,7 @@
 			<!-- 진석코드 -->
 			<div class="row">
 				<br>
-				<h3 class="box-title">댓글</h3>
+				<h3 class="box-title">댓글 목록</h3>
 				<br>
 				<!-- 댓글 시작과 끝에 파랗고 두꺼운 선. -->
 				<div class="comments"
